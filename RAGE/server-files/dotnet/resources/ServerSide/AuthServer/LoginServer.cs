@@ -2,6 +2,7 @@
 using GTANetworkAPI;
 using ServerSide.Account;
 using ServerSide.DB;
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 
 namespace ServerSide.AuthServer
@@ -27,12 +28,15 @@ namespace ServerSide.AuthServer
                 var account = new Account.Account(username, player);
                 AccountManager.loggedAccounts.Add(account);
                 AccountManager.AccountPlayerPairs.Add(account, player);
-                
+
                 //CHARACTER SELECT
                 string[] names = new string[] { "Darius Campbell", "Andreea Gonzalez", "Michael Black" };
                 int[] money = new int[] { 100, 500, 200 };
+                string allnames = string.Join(",", names);
+                string allmoney = string.Join(",", money);
+                NAPI.Util.ConsoleOutput(allnames + ' ' + allmoney);
                 player.TriggerEvent("SERVER:CLIENT:showCharInterface");
-                player.TriggerEvent("SERVER:CLIENT:displayAccountInfo", username, names, money);
+                player.TriggerEvent("SERVER:CLIENT:displayAccountInfo", username, allnames, allmoney); 
             }
             else
             {

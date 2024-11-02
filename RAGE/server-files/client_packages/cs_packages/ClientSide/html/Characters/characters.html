@@ -95,6 +95,7 @@
         function selectCharacter(characterName) {
             console.log(characterName + " selected.");
             // Additional functionality for selecting a character goes here
+            mp.trigger("CEF:CLIENT:characterSelected", characterName);
         }
 
         function createCharacter() {
