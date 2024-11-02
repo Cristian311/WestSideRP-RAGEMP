@@ -46,3 +46,4 @@ C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\obj\x64\Debug\net8.0\refint\ClientSide.dll
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\obj\x64\Debug\net8.0\ClientSide.pdb
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\obj\x64\Debug\net8.0\ref\ClientSide.dll
+C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\obj\x64\Debug\net8.0\ClientSide.sourcelink.json

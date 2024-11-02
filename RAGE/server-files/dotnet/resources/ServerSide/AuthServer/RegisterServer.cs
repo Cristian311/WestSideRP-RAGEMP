@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using ServerSide.DB;
 namespace ServerSide.AuthServer
 {
     internal class RegisterServer : Script
@@ -10,7 +11,7 @@ namespace ServerSide.AuthServer
         [RemoteEvent("CLIENT:SERVER:clientRegister")]
         public void OnRegisterAttempt(Player player, string username, string password)
         {
-            DatabaseHelper db = new DatabaseHelper();
+            AccountDbManager db = new AccountDbManager();
             if (db.checkAccountRegister(username))
             {
                 db.RegisterAccount(username, password);

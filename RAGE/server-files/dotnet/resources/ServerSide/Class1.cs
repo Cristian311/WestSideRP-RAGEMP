@@ -1,5 +1,6 @@
 ﻿using System;
 using GTANetworkAPI;
+using ServerSide.DB;
 namespace ServerSide
 {
     public class Class1 : Script
@@ -7,7 +8,7 @@ namespace ServerSide
         [ServerEvent(Event.ResourceStart)]
         public void onResourceStart()
         {
-            DatabaseHelper db = new DatabaseHelper();
+            Database db = new Database();
             NAPI.Util.ConsoleOutput("resursa inceppe");
             string query = "SELECT * FROM `accounts`";
 

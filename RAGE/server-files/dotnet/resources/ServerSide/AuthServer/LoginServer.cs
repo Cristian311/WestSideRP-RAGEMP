@@ -1,5 +1,6 @@
 ﻿using GTANetworkAPI;
 using ServerSide.Account;
+using ServerSide.DB;
 
 namespace ServerSide.AuthServer
 {
@@ -14,7 +15,7 @@ namespace ServerSide.AuthServer
         [RemoteEvent("CLIENT:SERVER:clientLogin")]
         public void OnLoginAttempt(Player player, string username, string password)
         {
-            DatabaseHelper db = new DatabaseHelper();
+            AccountDbManager db = new AccountDbManager();
             if (db.checkAccountLogin(username, password))
             {
                 NAPI.Util.ConsoleOutput(username + " s-a logat.");
