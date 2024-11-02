@@ -9,15 +9,15 @@ namespace ServerSide.AuthServer
     {
         [RemoteEvent("CLIENT:SERVER:clientRegister")]
         public void OnRegisterAttempt(Player player, string username, string password)
-        { 
+        {
             DatabaseHelper db = new DatabaseHelper();
-            if(db.checkAccountRegister(username))
+            if (db.checkAccountRegister(username))
             {
                 db.RegisterAccount(username, password);
                 NAPI.Util.ConsoleOutput(username + " s-a inregistrat.");
                 player.TriggerEvent("SERVER:CLIENT:closeAuthInterface");
             }
-            else  
+            else
             {
                 player.TriggerEvent("SERVER:CLIENT:displayRegisterFail");
             }
