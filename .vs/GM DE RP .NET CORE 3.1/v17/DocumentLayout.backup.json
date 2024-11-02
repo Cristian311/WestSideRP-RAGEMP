@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4205CF70-98F8-4FAE-9D5C-CF4FD6749FB6}|RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\ClientSide.csproj|c:\\users\\sarof\\desktop\\rage mp servers\\gm de rp .net core 3.1\\rage\\server-files\\client_packages\\cs_packages\\clientside\\auth\\authhandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4205CF70-98F8-4FAE-9D5C-CF4FD6749FB6}|RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\ClientSide.csproj|solutionrelative:rage\\server-files\\client_packages\\cs_packages\\clientside\\auth\\authhandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{28D38C77-166E-414F-9E43-17189AE048BB}|RAGE\\server-files\\dotnet\\resources\\ServerSide\\ServerSide.csproj|c:\\users\\sarof\\desktop\\rage mp servers\\gm de rp .net core 3.1\\rage\\server-files\\dotnet\\resources\\serverside\\authserver\\registerserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{28D38C77-166E-414F-9E43-17189AE048BB}|RAGE\\server-files\\dotnet\\resources\\ServerSide\\ServerSide.csproj|solutionrelative:rage\\server-files\\dotnet\\resources\\serverside\\authserver\\registerserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,10 +27,6 @@
       "RelativeMoniker": "D:0:0:{28D38C77-166E-414F-9E43-17189AE048BB}|RAGE\\server-files\\dotnet\\resources\\ServerSide\\ServerSide.csproj|solutionrelative:rage\\server-files\\dotnet\\resources\\serverside\\account\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4205CF70-98F8-4FAE-9D5C-CF4FD6749FB6}|RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\ClientSide.csproj|c:\\users\\sarof\\desktop\\rage mp servers\\gm de rp .net core 3.1\\rage\\server-files\\client_packages\\cs_packages\\clientside\\auth\\authhandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4205CF70-98F8-4FAE-9D5C-CF4FD6749FB6}|RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\ClientSide.csproj|solutionrelative:rage\\server-files\\client_packages\\cs_packages\\clientside\\auth\\authhandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{28D38C77-166E-414F-9E43-17189AE048BB}|RAGE\\server-files\\dotnet\\resources\\ServerSide\\ServerSide.csproj|c:\\users\\sarof\\desktop\\rage mp servers\\gm de rp .net core 3.1\\rage\\server-files\\dotnet\\resources\\serverside\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{28D38C77-166E-414F-9E43-17189AE048BB}|RAGE\\server-files\\dotnet\\resources\\ServerSide\\ServerSide.csproj|solutionrelative:rage\\server-files\\dotnet\\resources\\serverside\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,7 +46,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Account.cs",
               "DocumentMoniker": "C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\dotnet\\resources\\ServerSide\\Account\\Account.cs",
               "RelativeDocumentMoniker": "RAGE\\server-files\\dotnet\\resources\\ServerSide\\Account\\Account.cs",
@@ -58,7 +58,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "login_register.html",
               "DocumentMoniker": "C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\html\\login_register.html",
               "RelativeDocumentMoniker": "RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\html\\login_register.html",
@@ -70,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "LoginServer.cs",
               "DocumentMoniker": "C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\dotnet\\resources\\ServerSide\\AuthServer\\LoginServer.cs",
               "RelativeDocumentMoniker": "RAGE\\server-files\\dotnet\\resources\\ServerSide\\AuthServer\\LoginServer.cs",
@@ -82,32 +82,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "RegisterServer.cs",
               "DocumentMoniker": "C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\dotnet\\resources\\ServerSide\\AuthServer\\RegisterServer.cs",
               "RelativeDocumentMoniker": "RAGE\\server-files\\dotnet\\resources\\ServerSide\\AuthServer\\RegisterServer.cs",
-              "ToolTip": "C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\dotnet\\resources\\ServerSide\\AuthServer\\RegisterServer.cs",
-              "RelativeToolTip": "RAGE\\server-files\\dotnet\\resources\\ServerSide\\AuthServer\\RegisterServer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAqAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\dotnet\\resources\\ServerSide\\AuthServer\\RegisterServer.cs*",
+              "RelativeToolTip": "RAGE\\server-files\\dotnet\\resources\\ServerSide\\AuthServer\\RegisterServer.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-01T17:26:30.122Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "AuthHandle.cs",
               "DocumentMoniker": "C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\Auth\\AuthHandle.cs",
               "RelativeDocumentMoniker": "RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\Auth\\AuthHandle.cs",
               "ToolTip": "C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\Auth\\AuthHandle.cs",
               "RelativeToolTip": "RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\Auth\\AuthHandle.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-01T16:59:11.724Z"
+              "WhenOpened": "2024-11-01T16:59:11.724Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "DB.cs",
               "DocumentMoniker": "C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\dotnet\\resources\\ServerSide\\Database\\DB.cs",
               "RelativeDocumentMoniker": "RAGE\\server-files\\dotnet\\resources\\ServerSide\\Database\\DB.cs",

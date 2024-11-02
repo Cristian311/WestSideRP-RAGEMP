@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Drawing;
 namespace ServerSide.AuthServer
 {
     internal class RegisterServer : Script
@@ -15,11 +15,12 @@ namespace ServerSide.AuthServer
             {
                 db.RegisterAccount(username, password);
                 NAPI.Util.ConsoleOutput(username + " s-a inregistrat.");
-                player.TriggerEvent("SERVER:CLIENT:closeAuthInterface");
+                //player.TriggerEvent("SERVER:CLIENT:closeAuthInterface");
+                player.TriggerEvent("SERVER:CLIENT:displayRegisterMessage", "Account created! Log into your account");
             }
             else
             {
-                player.TriggerEvent("SERVER:CLIENT:displayRegisterFail");
+                player.TriggerEvent("SERVER:CLIENT:displayRegisterMessage", "Account already exists");
             }
         }
     }

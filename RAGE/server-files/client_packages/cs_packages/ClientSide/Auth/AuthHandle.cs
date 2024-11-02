@@ -1,5 +1,6 @@
 ﻿using RAGE;
 using RAGE.Ui;
+using System.Drawing;
 
 namespace ClientSide.Auth
 {
@@ -14,8 +15,9 @@ namespace ClientSide.Auth
             Events.Add("CEF:CLIENT:clientLogin", onClientLogin);
             Events.Add("CEF:CLIENT:clientRegister", onClientRegister);
             Events.Add("SERVER:CLIENT:displayLoginFail", displayLoginFail);
-            Events.Add("SERVER:CLIENT:displayRegisterFail", displayRegisterFail);
+            Events.Add("SERVER:CLIENT:displayRegisterMessage", displayRegisterMessage);
         }
+
         private void ShowAuthInterface(object[] args)
         {
             cefBrowser = new HtmlWindow("C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\html\\login_register.html");
@@ -47,9 +49,10 @@ namespace ClientSide.Auth
         {
             cefBrowser.ExecuteJs($"displayLoginFail();");
         }
-        private void displayRegisterFail(object[] args)
+        private void displayRegisterMessage(object[] args)
         {
-            cefBrowser.ExecuteJs($"displayRegisterFail();");
+            string message = args[0].ToString();
+            cefBrowser.ExecuteJs($"displayRegisterMessage(`{message}`);");
         }
     }
 }

@@ -1,8 +1,6 @@
 # Ignore everything
-*RAGE/cef
-*RAGE/clientdata
-*RAGE/dotnet
-*RAGE/EasyAntiCheat
-*RAGE/rui
-*RAGE/ui
-*RAGE/v8
+*
+
+# Un-ignore the specific folder and its contents
+!RAGE/server-files/
+!RAGE/server-files/**

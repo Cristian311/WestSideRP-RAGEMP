@@ -14,11 +14,10 @@ namespace ServerSide.Account
         public Player player { get; }
         List<ICharacter> Characters;
 
-        public Account(string name, string password, string email, Player player)
+
+        public Account(string name, Player player)
         {
             Name = name;
-            Password = password;
-            Email = email;
             this.player = player;
 
         }

@@ -1,4 +1,5 @@
 ﻿using GTANetworkAPI;
+using ServerSide.Account;
 
 namespace ServerSide.AuthServer
 {
@@ -19,6 +20,9 @@ namespace ServerSide.AuthServer
                 NAPI.Util.ConsoleOutput(username + " s-a logat.");
                 player.TriggerEvent("SERVER:CLIENT:displayLoginResult", true);
                 player.TriggerEvent("SERVER:CLIENT:closeAuthInterface");
+                var account = new Account.Account(username, player);
+                AccountManager.loggedAccounts.Add(account);
+                AccountManager.AccountPlayerPairs.Add(account, player);
             }
             else
             {
