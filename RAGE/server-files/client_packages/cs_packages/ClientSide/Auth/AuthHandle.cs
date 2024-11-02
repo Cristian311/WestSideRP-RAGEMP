@@ -17,7 +17,7 @@ namespace ClientSide.Auth
             Events.Add("SERVER:CLIENT:displayLoginFail", displayLoginFail);
             Events.Add("SERVER:CLIENT:displayRegisterMessage", displayRegisterMessage);
         }
-
+         
         private void ShowAuthInterface(object[] args)
         {
             cefBrowser = new HtmlWindow("C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\html\\login_register.html");

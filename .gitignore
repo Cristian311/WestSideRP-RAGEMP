@@ -2,5 +2,4 @@
 *
 
 # Un-ignore the specific folder and its contents
-!RAGE/server-files/
-!RAGE/server-files/**
+!*.cs
