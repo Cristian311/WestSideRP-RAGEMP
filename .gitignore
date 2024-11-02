@@ -1,5 +1,9 @@
 # Ignore everything
 *
 
-# Un-ignore the specific folder and its contents
-!*.cs
+# Unignore the specific path to resources folder
+!RAGE/server-files/
+!RAGE/server-files/**
+
+# Ensure .gitignore itself isn't ignored
+!.gitignore
