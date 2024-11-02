@@ -1,0 +1,4 @@
+<meta>
+   <info name = "RP" description="Westside Roleplay" />
+   <script src="bin\x64\Debug\netcoreapp3.1\ServerSide.dll" />
+</meta>

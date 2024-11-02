@@ -1,9 +1,10 @@
 # Ignore everything
 *
 
-# Unignore the specific path to resources folder
-!RAGE/server-files/
-!RAGE/server-files/**
+# Unignore the specific path to the RAGE folder and its contents
+!/RAGE/
+!/RAGE/server-files/
+!/RAGE/server-files/**
 
 # Ensure .gitignore itself isn't ignored
 !.gitignore

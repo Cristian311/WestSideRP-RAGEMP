@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0);
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #registerForm {
+            display: none;
+        }
+
+        .toggle-link {
+            color: #4CAF50;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: 10px;
+            display: block;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container" id="loginForm">
+        <h2>Login</h2>
+        <input type="text" id="loginUsername" placeholder="Username" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+        <span class="toggle-link" onclick="showRegister()">Don't have an account? Register</span>
+        <div id="loginErrorMessage" class="error-message"></div>
+    </div>
+
+    <div class="form-container" id="registerForm">
+        <h2>Register</h2>
+        <input type="text" id="registerUsername" placeholder="Username" required>
+        <input type="password" id="registerPassword" placeholder="Password" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+        <button onclick="register()">Register</button>
+        <span class="toggle-link" onclick="showLogin()">Already have an account? Login</span>
+        <div id="registerErrorMessage" class="error-message"></div>
+    </div>
+
+    <script>
+        function showLogin() {
+            document.getElementById("loginForm").style.display = "block";
+            document.getElementById("registerForm").style.display = "none";
+        }
+
+        function showRegister() {
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("registerForm").style.display = "block";
+        }
+
+        function login() {
+            const username = document.getElementById("loginUsername").value;
+            const password = document.getElementById("loginPassword").value;
+            mp.trigger("CEF:CLIENT:clientLogin", username, password);
+        }
+
+        function register() {
+            const username = document.getElementById("registerUsername").value;
+            const password = document.getElementById("registerPassword").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            const registerErrorMessage = document.getElementById("registerErrorMessage");
+            registerErrorMessage.style.display = "none";
+
+            if (password !== confirmPassword) {
+                registerErrorMessage.innerText = "Passwords do not match!";
+                registerErrorMessage.style.display = "block";
+                return;
+            }
+
+            mp.trigger("CEF:CLIENT:clientRegister", username, password);
+        }
+
+        function displayLoginFail() {
+            const loginErrorMessage = document.getElementById("loginErrorMessage");
+            let message = "Name or Password invalid";
+            loginErrorMessage.innerText = message;
+            loginErrorMessage.style.display = "block";
+        }
+
+        function displayRegisterMessage(message) {
+            const registerErrorMessage = document.getElementById("registerErrorMessage");
+            //let message = "There's already an account with that name!";
+            registerErrorMessage.innerText = message;
+            registerErrorMessage.style.display = "block";
+        }
+    </script>
+</body>
+</html>
