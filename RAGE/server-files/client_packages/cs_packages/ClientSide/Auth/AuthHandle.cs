@@ -6,7 +6,7 @@ namespace ClientSide.Auth
 {
     public class AuthHandle : Events.Script
     {
-        private HtmlWindow cefBrowser; dasdasd
+        private HtmlWindow cefBrowser;
 
         public AuthHandle()
         { 
@@ -35,7 +35,6 @@ namespace ClientSide.Auth
             string username = args[0].ToString();
             string password = args[1].ToString();
             Events.CallRemote("CLIENT:SERVER:clientLogin", username, password);
-            RAGE.Chat.Output(username + password);
         }
 
         private void onClientRegister(object[] args)

@@ -14,7 +14,7 @@ namespace ClientSide
         }
         private void onPlayerReady()
         {
-            RAGE.Chat.Output("merge clientu");
+            RAGE.Chat.Output("merge clientu3");
         }
     }
 }

@@ -41,9 +41,9 @@ C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\obj\x64\Debug\net8.0\ClientSide.AssemblyInfoInputs.cache
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\obj\x64\Debug\net8.0\ClientSide.AssemblyInfo.cs
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\obj\x64\Debug\net8.0\ClientSide.csproj.CoreCompileInputs.cache
+C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\obj\x64\Debug\net8.0\ClientSide.sourcelink.json
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\obj\x64\Debug\net8.0\ClientSide.csproj.Up2Date
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\obj\x64\Debug\net8.0\ClientSide.dll
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\obj\x64\Debug\net8.0\refint\ClientSide.dll
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\obj\x64\Debug\net8.0\ClientSide.pdb
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\obj\x64\Debug\net8.0\ref\ClientSide.dll
-C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\obj\x64\Debug\net8.0\ClientSide.sourcelink.json
