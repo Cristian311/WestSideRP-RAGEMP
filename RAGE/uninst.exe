@@ -1,0 +1,5 @@
+If you were smart enough to install RAGE Multiplayer into an empty folder (e.g., not into GTA V folder), you can run installer again and it'll uinstall RAGE Multiplayer from your PC. 
+Removing it through Settings -> "Programs And Features" is also an option.
+
+
+!! If you weren't that smart though, it's recommended to manually delete it's files as running uninstaller will remove the directory RAGE Multiplayer is installed into with RAGE Multiplayer files (e.g, GTA V files if you installed it into it's folder).
