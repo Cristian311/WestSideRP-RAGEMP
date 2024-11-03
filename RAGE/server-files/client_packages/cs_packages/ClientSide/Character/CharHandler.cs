@@ -12,6 +12,7 @@ namespace ClientSide.Character
         {
             Events.Add("SERVER:CLIENT:showCharInterface", ShowCharInterface);
             Events.Add("SERVER:CLIENT:closeCharInterface", CloseCharInterface);
+            Events.Add("CEF:CLIENT:closeCharInterface", CloseCharInterface);
             Events.Add("SERVER:CLIENT:displayAccountInfo", DisplayAccountInfo);
             Events.Add("CEF:CLIENT:characterSelected", CharacterSelected);
             Events.Add("CEF:CLIENT:showCreateCharScreen", ShowCreateCharScreen);
