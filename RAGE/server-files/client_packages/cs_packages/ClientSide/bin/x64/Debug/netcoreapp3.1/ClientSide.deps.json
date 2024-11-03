@@ -8,11 +8,20 @@
     ".NETCoreApp,Version=v3.1": {
       "ClientSide/1.0.0": {
         "dependencies": {
+          "Newtonsoft.Json": "12.0.0.0",
           "rage-sharpN": "1.1.0.0",
           "System.Text.Json": "4.0.1.0"
         },
         "runtime": {
           "ClientSide.dll": {}
+        }
+      },
+      "Newtonsoft.Json/12.0.0.0": {
+        "runtime": {
+          "Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.3.23909"
+          }
         }
       },
       "rage-sharpN/1.1.0.0": {
@@ -129,14 +138,6 @@
           }
         }
       },
-      "Newtonsoft.Json/12.0.0.0": {
-        "runtime": {
-          "Newtonsoft.Json.dll": {
-            "assemblyVersion": "12.0.0.0",
-            "fileVersion": "12.0.3.23909"
-          }
-        }
-      },
       "MessagePack/2.1.0.0": {
         "runtime": {
           "MessagePack.dll": {
@@ -185,6 +186,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Newtonsoft.Json/12.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "rage-sharpN/1.1.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -201,11 +207,6 @@
       "sha512": ""
     },
     "Microsoft.CodeAnalysis.CSharp/3.5.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Newtonsoft.Json/12.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

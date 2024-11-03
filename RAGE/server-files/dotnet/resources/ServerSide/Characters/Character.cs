@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ServerSide.Characters
 {
-    internal class Character : ICharacter
+    public class Character : ICharacter
     {
 
         public IAccount Account { get; }
@@ -15,14 +15,15 @@ namespace ServerSide.Characters
         public string Name { get; }
         public int Age { get; }   
         public int Money { get; }
-
-        public Character(IAccount account, string name, int age)
+        public List<ICharacter> Characters { get; }
+        public Character currentCharacter { get; }
+        public Character(IAccount account, string name, int age, int money)
         {
             Account = account;
             Id = nrOfCharacters++;
             Name = name; 
             Age = age;
-            Money = 0;
+            Money = money;
         }
     }
 }

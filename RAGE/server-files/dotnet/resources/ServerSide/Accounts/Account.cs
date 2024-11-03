@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using GTANetworkAPI;
+using ServerSide.Characters;
 namespace ServerSide.Accounts
 {
     public class Account : IAccount
@@ -13,8 +14,8 @@ namespace ServerSide.Accounts
         public string Email { get; } = "";
         public Player player { get; }
         public int AdminLevel { get; set; }
-
-        List<ICharacter> Characters;
+        public List<ICharacter> Characters { get; }
+        public Character currentCharacter { get; }
 
         public Account(int id, string name, Player player)
         {

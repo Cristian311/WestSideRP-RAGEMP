@@ -1,8 +1,12 @@
 ﻿
 using GTANetworkAPI;
 using ServerSide.Accounts;
+using ServerSide.Characters;
 using ServerSide.DB;
+using System.Collections.Generic;
+using System;
 using System.Text.Json;
+using ServerSide.Interfaces;
 
 
 namespace ServerSide.AuthServer
@@ -30,10 +34,12 @@ namespace ServerSide.AuthServer
                 AccountManager.AccountPlayerPairs.Add(account, player);
 
                 //CHARACTER SELECT
-                string[] names = new string[] { "Darius Campbell", "Andreea Gonzalez", "Michael Black" };
-                int[] money = new int[] { 100, 500, 200 };
-                //string allnames = string.Join(",", names);
-                //string allmoney = string.Join(",", money);
+                CharacterDbManager characterDb = new CharacterDbManager();
+                List<ICharacter> characters = characterDb.getCharacters(account);
+                
+
+                CharacterManager cm = new CharacterManager();
+                cm.getNamesAndMoneyForCEF(characters, cm.getRequiredCount(characters), out string[] names, out int[] money);
                 string namesJSON = JsonSerializer.Serialize(names);
                 string moneyJSON = JsonSerializer.Serialize(money);
                 player.TriggerEvent("SERVER:CLIENT:showCharInterface");

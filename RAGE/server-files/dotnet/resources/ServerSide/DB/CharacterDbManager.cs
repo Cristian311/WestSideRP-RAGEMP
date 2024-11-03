@@ -34,12 +34,12 @@ namespace ServerSide.DB
                         if (result > 0)
                         {
                             return true;
-                            NAPI.Util.ConsoleOutput("Account created successfully.");
+                            NAPI.Util.ConsoleOutput("Character created successfully.");
                         }
                         else
                         {
                             return false;
-                            NAPI.Util.ConsoleOutput("Failed to create account.");
+                            NAPI.Util.ConsoleOutput("Failed to create character.");
                         }
                     }
                 }
@@ -100,10 +100,10 @@ namespace ServerSide.DB
             using (MySqlConnection connection = db.getDatabaseConnection())
             {
                 List<ICharacter> characters = new List<ICharacter>();
-                string query = "SELECT * FROM `characters` WHERE AccountName = @accoountName";
+                string query = "SELECT * FROM `characters` WHERE AccountId = @accountId";
 
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("@accountName", account.Name);
+                cmd.Parameters.AddWithValue("@accountId", account.Id);
                 try
                 {
                     connection.Open();
@@ -113,7 +113,7 @@ namespace ServerSide.DB
                         {
                             while (reader.Read())
                             {
-                                Character character = new Character(account, reader.GetString(2), reader.GetInt32(3));
+                                Character character = new Character(account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
                                 characters.Add(character);
                             }
                         }

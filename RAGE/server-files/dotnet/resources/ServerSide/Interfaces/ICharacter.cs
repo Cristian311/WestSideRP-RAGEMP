@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ServerSide.Interfaces
 {
-    internal interface ICharacter
+    public interface ICharacter
     {
         IAccount Account { get; }
         int Id { get; }

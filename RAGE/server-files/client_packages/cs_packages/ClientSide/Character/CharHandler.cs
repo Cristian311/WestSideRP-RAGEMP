@@ -14,6 +14,14 @@ namespace ClientSide.Character
             Events.Add("SERVER:CLIENT:closeCharInterface", CloseCharInterface);
             Events.Add("SERVER:CLIENT:displayAccountInfo", DisplayAccountInfo);
             Events.Add("CEF:CLIENT:characterSelected", CharacterSelected);
+            Events.Add("CEF:CLIENT:showCreateCharScreen", ShowCreateCharScreen);
+        }
+        private void ShowCreateCharScreen(object[] args)
+        {
+            CloseCharInterface(null);
+            cefBrowser = new HtmlWindow("C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\html\\Characters\\create_character.html");
+            cefBrowser.Active = true;
+            Cursor.Visible = true;
         }
         private void ShowCharInterface(object[] args)
         {
@@ -36,15 +44,6 @@ namespace ClientSide.Character
             string namesString = args[1].ToString();
             string moneyString = args[2].ToString();
 
-            // Split the strings into arrays
-            //var names = RAGE.Util.Json.Deserialize<string[]>(namesString);
-            //var money = RAGE.Util.Json.Deserialize<int[]>(moneyString);
-
-            //// Join the names and money arrays into a single string formatted for JavaScript
-            //string namesJsArray = string.Join(",", names.Select(name => $"\"{name.Trim()}\"")); // Quoting each name
-            //string moneyJsArray = string.Join(",", money); // No quotes for numbers
-
-            // Execute the JavaScript function with the username and arrays
             cefBrowser.ExecuteJs($"displayAccountInfo(`{username}`, {namesString}, {moneyString});");
 
         }

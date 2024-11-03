@@ -14,7 +14,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f0f0f0;
+            background-color: rgba(0, 0, 0, 0);
         }
 
         .create-character-container {
@@ -26,13 +26,13 @@
             text-align: center;
         }
 
-        .create-character-container h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #333;
-        }
+            .create-character-container h2 {
+                margin-bottom: 20px;
+                font-size: 24px;
+                color: #333;
+            }
 
-        .input-field, .dropdown {
+        .input-field {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -40,6 +40,29 @@
             border-radius: 4px;
             font-size: 16px;
         }
+
+        #genderSelection {
+            display: flex; /* Use flexbox to align buttons horizontally */
+            justify-content: space-between; /* Space between buttons */
+            margin: 10px 0; /* Space above and below */
+        }
+
+        .gender-button {
+            flex: 1; /* Allow buttons to grow equally */
+            padding: 10px;
+            background-color: #e9e9e9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 5px; /* Space between buttons */
+            transition: background-color 0.3s;
+        }
+
+            .gender-button.selected {
+                background-color: #4CAF50;
+                color: white;
+            }
 
         .create-button {
             width: 100%;
@@ -52,36 +75,60 @@
             font-size: 16px;
         }
 
-        .create-button:hover {
-            background-color: #45a049;
+            .create-button:hover {
+                background-color: #45a049;
+            }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="create-character-container">
         <h2>Create Character</h2>
-        
+
         <input type="text" id="characterName" class="input-field" placeholder="Character Name" required>
-        
-        <select id="characterGender" class="dropdown" required>
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select>
-        
+
+        <div id="genderSelection">
+            <button id="maleButton" class="gender-button" onclick="selectGender('male')">Male</button>
+            <button id="femaleButton" class="gender-button" onclick="selectGender('female')">Female</button>
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
         <button class="create-button" onclick="createCharacter()">Create Character</button>
     </div>
 
     <script>
+        let selectedGender = '';
+
+        function selectGender(gender) {
+            selectedGender = gender;
+
+            // Reset button styles
+            document.getElementById('maleButton').classList.remove('selected');
+            document.getElementById('femaleButton').classList.remove('selected');
+
+            // Set the selected button
+            if (gender === 'male') {
+                document.getElementById('maleButton').classList.add('selected');
+            } else {
+                document.getElementById('femaleButton').classList.add('selected');
+            }
+        }
+
         function createCharacter() {
             const name = document.getElementById("characterName").value;
-            const gender = document.getElementById("characterGender").value;
 
-            if (name && gender) {
-                console.log(`Character created with Name: ${name}, Gender: ${gender}`);
+            if (name && selectedGender) {
+                console.log(`Character created with Name: ${name}, Gender: ${selectedGender}`);
+                document.getElementById("errorMessage").innerHTML = ""; // Clear any previous error message
                 // Further character creation logic can go here
             } else {
-                alert("Please fill in all fields.");
+                document.getElementById("errorMessage").innerHTML = "Please fill in all fields.";
+                document.getElementById("errorMessage").style.display = "block";
             }
         }
     </script>
