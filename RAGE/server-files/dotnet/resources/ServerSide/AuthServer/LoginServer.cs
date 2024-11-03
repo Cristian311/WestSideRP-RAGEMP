@@ -32,7 +32,7 @@ namespace ServerSide.AuthServer
                 var account = new Account((int)Id, username, player);
                 AccountManager.loggedAccounts.Add(account);
                 AccountManager.AccountPlayerPairs.Add(account, player);
-
+                AccountManager.PlayerAccountPairs.Add(player, account);
                 //CHARACTER SELECT
                 CharacterDbManager characterDb = new CharacterDbManager();
                 List<ICharacter> characters = characterDb.getCharacters(account);

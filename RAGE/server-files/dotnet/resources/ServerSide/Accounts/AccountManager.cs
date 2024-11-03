@@ -9,7 +9,7 @@ namespace ServerSide.Accounts
     {
         public static List<Account> loggedAccounts = new List<Account>();
         public static Dictionary<Account, Player> AccountPlayerPairs = new Dictionary<Account, Player>();
-
+        public static Dictionary<Player, Account> PlayerAccountPairs = new Dictionary<Player, Account>();
 
     }
 }
