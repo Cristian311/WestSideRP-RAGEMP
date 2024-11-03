@@ -31,8 +31,10 @@ namespace ServerSide.AuthServer
 
                 var account = new Account((int)Id, username, player);
                 AccountManager.loggedAccounts.Add(account);
-                AccountManager.AccountPlayerPairs.Add(account, player);
-                AccountManager.PlayerAccountPairs.Add(player, account);
+                if(!AccountManager.AccountPlayerPairs.ContainsKey(account))
+                    AccountManager.AccountPlayerPairs.Add(account, player);
+                if(!AccountManager.PlayerAccountPairs.ContainsKey(player))
+                    AccountManager.PlayerAccountPairs.Add(player, account);
                 //CHARACTER SELECT
                 CharacterDbManager characterDb = new CharacterDbManager();
                 List<ICharacter> characters = characterDb.getCharacters(account);

@@ -52,6 +52,7 @@ namespace ClientSide.Character
         {
             string CharacterName = args[0].ToString();
             RAGE.Chat.Output(CharacterName);
+            
         }
     }
 }
