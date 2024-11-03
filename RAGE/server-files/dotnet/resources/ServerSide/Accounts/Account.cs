@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using GTANetworkAPI;
-namespace ServerSide.Account
+namespace ServerSide.Accounts
 {
     public class Account : IAccount
     {
-
+        public int Id { get; }
         public string Name { get; }
         public string Password { get; }
         public string Email { get; } = "";
@@ -16,9 +16,9 @@ namespace ServerSide.Account
 
         List<ICharacter> Characters;
 
-
-        public Account(string name, Player player)
+        public Account(int id, string name, Player player)
         {
+            Id = id;
             Name = name;
             this.player = player;
 

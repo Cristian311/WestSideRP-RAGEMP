@@ -7,6 +7,7 @@ namespace ServerSide.Interfaces
 {
     internal interface IAccount
     {
+        int Id { get; }
         string Name { get; }
         string Password { get; }
         string Email { get; }

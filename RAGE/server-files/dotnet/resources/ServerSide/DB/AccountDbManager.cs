@@ -1,15 +1,14 @@
 ﻿using GTANetworkAPI;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ServerSide.DB
 {
     internal class AccountDbManager
     {
-        public void RegisterAccount(string username, string password)
+        public bool RegisterAccount(string username, string password)
         {
+            if (checkAccountLogin(username, password, out int? _))
+                return false;
             Database db = new Database();
             using (MySqlConnection connection = db.getDatabaseConnection())
             {
@@ -26,17 +25,20 @@ namespace ServerSide.DB
                     if (result > 0)
                     {
                         NAPI.Util.ConsoleOutput("Account created successfully.");
+                        return true;
                     }
                     else
                     {
                         NAPI.Util.ConsoleOutput("Failed to create account.");
+                        return false;
                     }
                 }
             }
         }
 
-        public bool checkAccountLogin(string username, string password)
+        public bool checkAccountLogin(string username, string password, out int? Id)
         {
+            Id = null;
             if (username == string.Empty || password == string.Empty)
                 return false;
             Database db = new Database();
@@ -55,8 +57,10 @@ namespace ServerSide.DB
                     {
                         if (reader.HasRows)
                         {
+                            reader.Read();
+                            Id = reader.GetInt32(0);
                             // User found
-                            NAPI.Util.ConsoleOutput("User authenticated successfully.");
+                            NAPI.Util.ConsoleOutput("User authenticated successfully. ID: " + Id);
                             return true;
                         }
                         else
