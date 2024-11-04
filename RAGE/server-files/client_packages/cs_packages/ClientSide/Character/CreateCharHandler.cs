@@ -21,7 +21,7 @@ namespace ClientSide.Character
         private void UpdateCharacter(object[] args)
         {
             string json = args[0].ToString();
-            RAGE.Chat.Output(json);
+            Events.CallRemote("CLIENT:SERVER:CharCustomiseUpdate", json);
         }
         private void ShowCustomizeCharScreen(object[] args)
         {

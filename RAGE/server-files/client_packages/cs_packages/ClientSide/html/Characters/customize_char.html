@@ -267,49 +267,49 @@
     }
 
     function updateCharAttributes() {
-        //const shapeFirst = document.getElementById('shapeFirst').value;
-        //const shapeSecond = document.getElementById('shapeSecond').value;
-        //const shapeThird = document.getElementById('shapeThird').value;
-        //const skinFirst = document.getElementById('skinFirst').value;
-        //const skinSecond = document.getElementById('skinSecond').value;
-        //const skinThird = document.getElementById('skinThird').value;
-        //const shapeMix = document.getElementById('shapeMix').value;
-        //const skinMix = document.getElementById('skinMix').value;
-        //const thirdMix = document.getElementById('thirdMix').value;
-        //const noseWidth = document.getElementById('noseWidth').value;
-        //const noseHeight = document.getElementById('noseHeight').value;
-        //const noseLength = document.getElementById('noseLength').value;
-        //const noseBridge = document.getElementById('noseBridge').value;
-        //const noseTip = document.getElementById('noseTip').value;
-        //const noseBridgeShift = document.getElementById('noseBridgeShift').value;
-        //const browHeight = document.getElementById('browHeight').value;
-        //const browWidth = document.getElementById('browWidth').value;
-        //const jawWidth = document.getElementById('jawWidth').value;
-        //const skinColor = document.getElementById('skinColor').value;
-        //const eyeSize = document.getElementById('eyeSize').value;
-        //const eyeColor = document.getElementById('eyeColor').value;
+        const shapeFirst = document.getElementById('shapeFirst').value;
+        const shapeSecond = document.getElementById('shapeSecond').value;
+        const shapeThird = document.getElementById('shapeThird').value;
+        const skinFirst = document.getElementById('skinFirst').value;
+        const skinSecond = document.getElementById('skinSecond').value;
+        const skinThird = document.getElementById('skinThird').value;
+        const shapeMix = document.getElementById('shapeMix').value;
+        const skinMix = document.getElementById('skinMix').value;
+        const thirdMix = document.getElementById('thirdMix').value;
+        const noseWidth = document.getElementById('noseWidth').value;
+        const noseHeight = document.getElementById('noseHeight').value;
+        const noseLength = document.getElementById('noseLength').value;
+        const noseBridge = document.getElementById('noseBridge').value;
+        const noseTip = document.getElementById('noseTip').value;
+        const noseBridgeShift = document.getElementById('noseBridgeShift').value;
+        const browHeight = document.getElementById('browHeight').value;
+        const browWidth = document.getElementById('browWidth').value;
+        const jawWidth = document.getElementById('jawWidth').value;
+        const skinColor = document.getElementById('skinColor').value;
+        const eyeSize = document.getElementById('eyeSize').value;
+        const eyeColor = document.getElementById('eyeColor').value;
 
-        //document.getElementById('shapeFirstValue').textContent = shapeFirst;
-        //document.getElementById('shapeSecondValue').textContent = shapeSecond;
-        //document.getElementById('shapeThirdValue').textContent = shapeThird;
-        //document.getElementById('skinFirstValue').textContent = skinFirst;
-        //document.getElementById('skinSecondValue').textContent = skinSecond;
-        //document.getElementById('skinThirdValue').textContent = skinThird;
-        //document.getElementById('shapeMixValue').textContent = shapeMix;
-        //document.getElementById('skinMixValue').textContent = skinMix;
-        //document.getElementById('thirdMixValue').textContent = thirdMix;
-        //document.getElementById('noseWidthValue').textContent = noseWidth;
-        //document.getElementById('noseHeightValue').textContent = noseHeight;
-        //document.getElementById('noseLengthValue').textContent = noseLength;
-        //document.getElementById('noseBridgeValue').textContent = noseBridge;
-        //document.getElementById('noseTipValue').textContent = noseTip;
-        //document.getElementById('noseBridgeShiftValue').textContent = noseBridgeShift;
-        //document.getElementById('browHeightValue').textContent = browHeight;
-        //document.getElementById('browWidthValue').textContent = browWidth;
-        //document.getElementById('jawWidthValue').textContent = jawWidth;
-        //document.getElementById('skinColorValue').textContent = skinColor;
-        //document.getElementById('eyeSizeValue').textContent = eyeSize;
-        //document.getElementById('eyeColorValue').textContent = eyeColor;
+        document.getElementById('shapeFirstValue').textContent = shapeFirst;
+        document.getElementById('shapeSecondValue').textContent = shapeSecond;
+        document.getElementById('shapeThirdValue').textContent = shapeThird;
+        document.getElementById('skinFirstValue').textContent = skinFirst;
+        document.getElementById('skinSecondValue').textContent = skinSecond;
+        document.getElementById('skinThirdValue').textContent = skinThird;
+        document.getElementById('shapeMixValue').textContent = shapeMix;
+        document.getElementById('skinMixValue').textContent = skinMix;
+        document.getElementById('thirdMixValue').textContent = thirdMix;
+        document.getElementById('noseWidthValue').textContent = noseWidth;
+        document.getElementById('noseHeightValue').textContent = noseHeight;
+        document.getElementById('noseLengthValue').textContent = noseLength;
+        document.getElementById('noseBridgeValue').textContent = noseBridge;
+        document.getElementById('noseTipValue').textContent = noseTip;
+        document.getElementById('noseBridgeShiftValue').textContent = noseBridgeShift;
+        document.getElementById('browHeightValue').textContent = browHeight;
+        document.getElementById('browWidthValue').textContent = browWidth;
+        document.getElementById('jawWidthValue').textContent = jawWidth;
+        document.getElementById('skinColorValue').textContent = skinColor;
+        document.getElementById('eyeSizeValue').textContent = eyeSize;
+        document.getElementById('eyeColorValue').textContent = eyeColor;
         const characterData = {
             shape: {
                 first: document.getElementById('shapeFirst').value,
@@ -346,7 +346,7 @@
         };
 
         const jsonString = JSON.stringify(characterData);
-        mp.trigger("CEF:CLIENT:updateCharacter", characterData);
+        mp.trigger("CEF:CLIENT:updateCharacter", jsonString);
     }
 
     function createCharacter() {
