@@ -21,15 +21,16 @@ namespace ServerSide.AuthServer
 
         [RemoteEvent("CLIENT:SERVER:clientLogin")]
         public void OnLoginAttempt(Player player, string username, string password)
-        {
+        {   
             AccountDbManager accountDb = new AccountDbManager();
             if (accountDb.checkAccountLogin(username, password, out int? Id))
             {
                 //LOG IN SUCCESFULLY
                 NAPI.Util.ConsoleOutput(username + " s-a logat.");
                 player.TriggerEvent("SERVER:CLIENT:closeAuthInterface");
-
+                
                 var account = new Account((int)Id, username, player);
+                if(!AccountManager.loggedAccounts.Contains(account))
                 AccountManager.loggedAccounts.Add(account);
                 if(!AccountManager.AccountPlayerPairs.ContainsKey(account))
                     AccountManager.AccountPlayerPairs.Add(account, player);

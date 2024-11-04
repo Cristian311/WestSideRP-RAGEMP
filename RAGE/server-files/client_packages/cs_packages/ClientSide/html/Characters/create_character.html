@@ -90,7 +90,8 @@
     <div class="create-character-container">
         <h2>Create Character</h2>
 
-        <input type="text" id="characterName" class="input-field" placeholder="Character Name" required>
+        <input type="text" id="firstName" class="input-field" placeholder="First Name" required>
+        <input type="text" id="lastName" class="input-field" placeholder="Last Name" required>
 
         <div id="genderSelection">
             <button id="maleButton" class="gender-button" onclick="selectGender('male')">Male</button>
@@ -120,17 +121,19 @@
         }
 
         function createCharacter() {
-            const name = document.getElementById("characterName").value;
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
 
-            if (name && selectedGender) {
-                console.log(`Character created with Name: ${name}, Gender: ${selectedGender}`);
+            if (firstName && lastName && selectedGender) {
+                console.log(`Character created with Name: ${firstName} ${lastName}, Gender: ${selectedGender}`);
                 document.getElementById("errorMessage").innerHTML = ""; // Clear any previous error message
                 // Further character creation logic can go here
+                mp.trigger("CEF:CLIENT:closeCreateCharInterface");
+                mp.trigger("CEF:CLIENT:showCustomizeCharScreen", firstName, lastName, selectedGender);
             } else {
                 document.getElementById("errorMessage").innerHTML = "Please fill in all fields.";
                 document.getElementById("errorMessage").style.display = "block";
             }
-            mp.trigger("CEF:CLIENT:closeCharInterface");
         }
     </script>
 </body>

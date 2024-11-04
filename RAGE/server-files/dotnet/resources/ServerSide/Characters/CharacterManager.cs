@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using GTANetworkAPI;
+using MySql.Data.MySqlClient;
 using ServerSide.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -6,8 +7,10 @@ using System.Text;
 
 namespace ServerSide.Characters
 {
-    internal class CharacterManager
+    internal class CharacterManager : Script
+
     {
+
         public void getNamesAndMoneyForCEF(List<ICharacter> characters, int requiredCount, out string[] names, out int[] money)
         {
             names = new string[requiredCount];

@@ -99,7 +99,9 @@
         }
 
         function createCharacter() {
+            mp.trigger("CEF:CLIENT:closeCharInterface");
             mp.trigger("CEF:CLIENT:showCreateCharScreen");
+            
             // Functionality to create a new character goes here
         }
     </script>
