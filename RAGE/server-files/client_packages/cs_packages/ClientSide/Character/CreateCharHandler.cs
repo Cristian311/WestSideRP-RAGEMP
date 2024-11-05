@@ -14,6 +14,7 @@ namespace ClientSide.Character
         {
             Events.Add("CEF:CLIENT:showCreateCharScreen", ShowCreateCharScreen);
             Events.Add("CEF:CLIENT:showCustomizeCharScreen", ShowCustomizeCharScreen);
+            Events.Add("CEF:CLIENT:CreateNewCharacter", CreateNewCharacter);
             Events.Add("CEF:CLIENT:closeCustomizeCharScreen", closeCustomizeCharScreen);
             Events.Add("CEF:CLIENT:closeCreateCharInterface", CloseCreateCharInterface);
             Events.Add("CEF:CLIENT:updateCharacter", UpdateCharacter);
@@ -23,12 +24,16 @@ namespace ClientSide.Character
             string json = args[0].ToString();
             Events.CallRemote("CLIENT:SERVER:CharCustomiseUpdate", json);
         }
-        private void ShowCustomizeCharScreen(object[] args)
+        private void CreateNewCharacter(object[] args) 
         {
-            //CloseCreateCharInterface(null);
             string firstname = args[0].ToString();
             string lastname = args[1].ToString();
             string selectedGender = args[2].ToString();
+            Events.CallRemote("CLIENT:SERVER:CreateCharacter", firstname, lastname, selectedGender);
+        }
+        private void ShowCustomizeCharScreen(object[] args)
+        {
+            //CloseCreateCharInterface(null);
             cefBrowser = new HtmlWindow("C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\html\\Characters\\customize_char.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;

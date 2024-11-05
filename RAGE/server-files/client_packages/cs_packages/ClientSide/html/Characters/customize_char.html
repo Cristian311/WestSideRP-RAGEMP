@@ -81,156 +81,239 @@
 </head>
 <body>
 
-<div class="container">
-    <div id="page1" class="page" style="display: block;">
-        <h2>Character Shape</h2>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Shape First</span><span id="shapeFirstValue">0.00</span>
+    <div class="container">
+        <div id="page1" class="page" style="display: block;">
+            <h2>Character Shape</h2>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Shape First</span><span id="shapeFirstValue">0.00</span>
+                </div>
+                <input type="range" id="shapeFirst" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="shapeFirst" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Shape Second</span><span id="shapeSecondValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Shape Second</span><span id="shapeSecondValue">0.00</span>
+                </div>
+                <input type="range" id="shapeSecond" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="shapeSecond" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Shape Third</span><span id="shapeThirdValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Shape Third</span><span id="shapeThirdValue">0.00</span>
+                </div>
+                <input type="range" id="shapeThird" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="shapeThird" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
-        </div>
-        <h2>Character Skin</h2>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Skin First</span><span id="skinFirstValue">0.00</span>
+            <h2>Character Skin</h2>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Skin First</span><span id="skinFirstValue">0.00</span>
+                </div>
+                <input type="range" id="skinFirst" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="skinFirst" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Skin Second</span><span id="skinSecondValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Skin Second</span><span id="skinSecondValue">0.00</span>
+                </div>
+                <input type="range" id="skinSecond" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="skinSecond" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Skin Third</span><span id="skinThirdValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Skin Third</span><span id="skinThirdValue">0.00</span>
+                </div>
+                <input type="range" id="skinThird" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="skinThird" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Shape Mix</span><span id="shapeMixValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Shape Mix</span><span id="shapeMixValue">0.00</span>
+                </div>
+                <input type="range" id="shapeMix" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="shapeMix" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Skin Mix</span><span id="skinMixValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Skin Mix</span><span id="skinMixValue">0.00</span>
+                </div>
+                <input type="range" id="skinMix" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="skinMix" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Third Mix</span><span id="thirdMixValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Third Mix</span><span id="thirdMixValue">0.00</span>
+                </div>
+                <input type="range" id="thirdMix" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="thirdMix" min="0" max="100" step="1" value="0" oninput="updateCharAttributes()">
         </div>
-    </div>
 
-    <div id="page2" class="page">
-        <h2>Nose Features</h2>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Nose Width</span><span id="noseWidthValue">0.00</span>
+        <div id="page2" class="page">
+            <h2>Nose Features</h2>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Nose Width</span><span id="noseWidthValue">0.00</span>
+                </div>
+                <input type="range" id="noseWidth" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="noseWidth" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Nose Height</span><span id="noseHeightValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Nose Height</span><span id="noseHeightValue">0.00</span>
+                </div>
+                <input type="range" id="noseHeight" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="noseHeight" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Nose Length</span><span id="noseLengthValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Nose Length</span><span id="noseLengthValue">0.00</span>
+                </div>
+                <input type="range" id="noseLength" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="noseLength" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Nose Bridge</span><span id="noseBridgeValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Nose Bridge</span><span id="noseBridgeValue">0.00</span>
+                </div>
+                <input type="range" id="noseBridge" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="noseBridge" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Nose Tip</span><span id="noseTipValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Nose Tip</span><span id="noseTipValue">0.00</span>
+                </div>
+                <input type="range" id="noseTip" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="noseTip" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
         </div>
-    </div>
 
-    <div id="page3" class="page">
-        <h2>Facial Features</h2>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Nose Bridge Shift</span><span id="noseBridgeShiftValue">0.00</span>
+        <div id="page3" class="page">
+            <h2>Facial Features</h2>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Nose Bridge Shift</span><span id="noseBridgeShiftValue">0.00</span>
+                </div>
+                <input type="range" id="noseBridgeShift" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="noseBridgeShift" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Brow Height</span><span id="browHeightValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Brow Height</span><span id="browHeightValue">0.00</span>
+                </div>
+                <input type="range" id="browHeight" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="browHeight" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Brow Width</span><span id="browWidthValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Brow Width</span><span id="browWidthValue">0.00</span>
+                </div>
+                <input type="range" id="browWidth" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="browWidth" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Jaw Width</span><span id="jawWidthValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Jaw Width</span><span id="jawWidthValue">0.00</span>
+                </div>
+                <input type="range" id="jawWidth" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="jawWidth" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
         </div>
-    </div>
 
-    <div id="page4" class="page">
-        <h2>Final Adjustments</h2>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Skin Color</span><span id="skinColorValue">0.00</span>
+        <div id="page4" class="page">
+            <h2>Final Adjustments</h2>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Skin Color</span><span id="skinColorValue">0.00</span>
+                </div>
+                <input type="range" id="skinColor" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="skinColor" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Eye Size</span><span id="eyeSizeValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Eye Size</span><span id="eyeSizeValue">0.00</span>
+                </div>
+                <input type="range" id="eyeSize" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="eyeSize" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
-        </div>
-        <div class="slider">
-            <div class="slider-label">
-                <span>Eye Color</span><span id="eyeColorValue">0.00</span>
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Eye Color</span><span id="eyeColorValue">0.00</span>
+                </div>
+                <input type="range" id="eyeColor" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <input type="range" id="eyeColor" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Lips</span><span id="lipsValue">0.00</span>
+                </div>
+                <input type="range" id="lips" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
         </div>
-    </div>
 
-    <div class="navigation">
-        <button id="prevButton" class="button" onclick="prevPage()">Previous</button>
-        <button id="nextButton" class="button" onclick="nextPage()">Next</button>
-        <button id="createButton" class="button" style="display: none;" onclick="createCharacter()">Create</button>
+        <div id="page4" class="page">
+            <h2>Facial Features</h2>
+
+            <!-- Slider for Cheeks Height -->
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Cheeks Height</span><span id="cheeksHeightValue">0.00</span> <!-- Added for cheeks height -->
+                </div>
+                <input type="range" id="cheeksHeight" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+
+            <!-- Slider for Cheeks Width -->
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Cheeks Width</span><span id="cheeksWidthValue">0.00</span> <!-- Added for cheeks width -->
+                </div>
+                <input type="range" id="cheeksWidth" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+
+            <!-- Slider for Cheeks Cheeks Width -->
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Cheeks Cheeks Width</span><span id="cheeksCheeksWidthValue">0.00</span> <!-- Added for cheeks width (renamed) -->
+                </div>
+                <input type="range" id="cheeksCheeksWidth" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+
+            <!-- Slider for Jaw Width -->
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Jaw Width</span><span id="jawWidthValue">0.00</span> <!-- Added for jaw width -->
+                </div>
+                <input type="range" id="jawWidth" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+
+            <!-- Slider for Chin Length -->
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Chin Length</span><span id="chinLengthValue">0.00</span> <!-- Added for chin length -->
+                </div>
+                <input type="range" id="chinLength" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+
+            <!-- Slider for Chin Position -->
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Chin Position</span><span id="chinPositionValue">0.00</span> <!-- Added for chin position -->
+                </div>
+                <input type="range" id="chinPosition" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+
+            <!-- Slider for Chin Width -->
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Chin Width</span><span id="chinWidthValue">0.00</span> <!-- Added for chin width -->
+                </div>
+                <input type="range" id="chinWidth" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+
+            <!-- Slider for Chin Shape -->
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Chin Shape</span><span id="chinShapeValue">0.00</span> <!-- Added for chin shape -->
+                </div>
+                <input type="range" id="chinShape" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+
+            <!-- Slider for Neck Width -->
+            <div class="slider">
+                <div class="slider-label">
+                    <span>Neck Width</span><span id="neckWidthValue">0.00</span> <!-- Added for neck width -->
+                </div>
+                <input type="range" id="neckWidth" min="-1" max="1" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+        </div>
+
+
+        <div class="navigation">
+            <button id="prevButton" class="button" onclick="prevPage()">Previous</button>
+            <button id="nextButton" class="button" onclick="nextPage()">Next</button>
+            <button id="createButton" class="button" style="display: none;" onclick="createCharacter()">Create</button>
+        </div>
     </div>
-</div>
 
 <script>
     let currentPage = 0;
@@ -267,6 +350,7 @@
     }
 
     function updateCharAttributes() {
+        // Getting values from input elements
         const shapeFirst = document.getElementById('shapeFirst').value;
         const shapeSecond = document.getElementById('shapeSecond').value;
         const shapeThird = document.getElementById('shapeThird').value;
@@ -284,11 +368,23 @@
         const noseBridgeShift = document.getElementById('noseBridgeShift').value;
         const browHeight = document.getElementById('browHeight').value;
         const browWidth = document.getElementById('browWidth').value;
+
+        // New variables for cheeks and chin
+        const cheeksHeight = document.getElementById('cheeksHeight').value; // Added for cheeks height
+        const cheeksWidth = document.getElementById('cheeksWidth').value; // Added for cheeks width
+        const cheeksCheeksWidth = document.getElementById('cheeksCheeksWidth').value; // Added for cheeks width (renamed)
         const jawWidth = document.getElementById('jawWidth').value;
+        const chinLength = document.getElementById('chinLength').value; // Corrected typo 'lenght' to 'length'
+        const chinPosition = document.getElementById('chinPosition').value; // Added for chin position
+        const chinWidth = document.getElementById('chinWidth').value; // Added for chin width
+        const chinShape = document.getElementById('chinShape').value; // Added for chin shape
+        const neckWidth = document.getElementById('neckWidth').value; // Added for neck width
         const skinColor = document.getElementById('skinColor').value;
         const eyeSize = document.getElementById('eyeSize').value;
         const eyeColor = document.getElementById('eyeColor').value;
+        const lips = document.getElementById('lips').value;
 
+        // Updating text content to match the characterData structure
         document.getElementById('shapeFirstValue').textContent = shapeFirst;
         document.getElementById('shapeSecondValue').textContent = shapeSecond;
         document.getElementById('shapeThirdValue').textContent = shapeThird;
@@ -306,42 +402,68 @@
         document.getElementById('noseBridgeShiftValue').textContent = noseBridgeShift;
         document.getElementById('browHeightValue').textContent = browHeight;
         document.getElementById('browWidthValue').textContent = browWidth;
+
+        // Updating text content for new elements
+        document.getElementById('cheeksHeightValue').textContent = cheeksHeight; // Added for cheeks height
+        document.getElementById('cheeksWidthValue').textContent = cheeksWidth; // Added for cheeks width
+        document.getElementById('cheeksCheeksWidthValue').textContent = cheeksCheeksWidth; // Added for cheeks width
         document.getElementById('jawWidthValue').textContent = jawWidth;
+        document.getElementById('chinLengthValue').textContent = chinLength; // Added for chin length
+        document.getElementById('chinPositionValue').textContent = chinPosition; // Added for chin position
+        document.getElementById('chinWidthValue').textContent = chinWidth; // Added for chin width
+        document.getElementById('chinShapeValue').textContent = chinShape; // Added for chin shape
+        document.getElementById('neckWidthValue').textContent = neckWidth; // Added for neck width
         document.getElementById('skinColorValue').textContent = skinColor;
         document.getElementById('eyeSizeValue').textContent = eyeSize;
         document.getElementById('eyeColorValue').textContent = eyeColor;
+        document.getElementById('lipsValue').textContent = lips;
         const characterData = {
             shape: {
-                first: document.getElementById('shapeFirst').value,
-                second: document.getElementById('shapeSecond').value,
-                third: document.getElementById('shapeThird').value,
-                mix: document.getElementById('shapeMix').value,
+                first: shapeFirst,
+                second: shapeSecond,
+                third: shapeThird,
+                mix: shapeMix,
             },
             skin: {
-                first: document.getElementById('skinFirst').value,
-                second: document.getElementById('skinSecond').value,
-                third: document.getElementById('skinThird').value,
-                mix: document.getElementById('skinMix').value,
+                first: skinFirst,
+                second: skinSecond,
+                third: skinThird,
+                mix: skinMix,
             },
             nose: {
-                width: document.getElementById('noseWidth').value,
-                height: document.getElementById('noseHeight').value,
-                length: document.getElementById('noseLength').value,
-                bridge: document.getElementById('noseBridge').value,
-                tip: document.getElementById('noseTip').value,
-                bridgeShift: document.getElementById('noseBridgeShift').value,
+                width: noseWidth,
+                height: noseHeight,
+                length: noseLength,
+                bridge: noseBridge,
+                tip: noseTip,
+                bridgeShift: noseBridgeShift,
             },
             brow: {
-                height: document.getElementById('browHeight').value,
-                width: document.getElementById('browWidth').value,
+                height: browHeight,
+                width: browWidth,
+            },
+            cheeks: {
+                height : cheeksHeight,
+                width : cheeksWidth,
+                cheeksWidth : cheeksCheeksWidth,
             },
             jaw: {
-                width: document.getElementById('jawWidth').value,
+                width: jawWidth,
             },
-            skinColor: document.getElementById('skinColor').value,
+            chin: {
+                lenght: chinLength,
+                position: chinPosition,
+                width: chinWidth,
+                shape: chinShape,
+            },
+            neck: {
+                width : neckWidth,
+            },
+            lips: lips,
+            skinColor: skinColor,
             eye: {
-                size: document.getElementById('eyeSize').value,
-                color: document.getElementById('eyeColor').value,
+                size: eyeSize,
+                color: eyeColor,
             },
         };
 
