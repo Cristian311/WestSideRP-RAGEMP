@@ -9,7 +9,7 @@ namespace ServerSide
         public void onResourceStart()
         {
             Database db = new Database();
-            NAPI.Util.ConsoleOutput("resursa inceppe");
+            NAPI.Util.ConsoleOutput("resursa inceppe2");
             string query = "SELECT * FROM `accounts`";
 
             db.ExecuteQuery(query);

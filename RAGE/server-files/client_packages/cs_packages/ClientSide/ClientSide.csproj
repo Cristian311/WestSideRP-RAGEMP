@@ -1,21 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <Nullable>enable</Nullable>
-    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\dotnet\runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
+    <Compile Remove="html\**" />
+    <EmbeddedResource Remove="html\**" />
+    <None Remove="html\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="rage-sharpN">
-      <HintPath>..\..\..\..\dotnet\rage-sharpN.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Json">
-      <HintPath>..\..\..\dotnet\runtime\System.Text.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\RAGEMP\dotnet\rage-sharpN.dll</HintPath>
     </Reference>
   </ItemGroup>
 

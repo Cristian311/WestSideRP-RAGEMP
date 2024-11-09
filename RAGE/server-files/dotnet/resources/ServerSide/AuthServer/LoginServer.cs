@@ -18,6 +18,12 @@ namespace ServerSide.AuthServer
         {
             player.TriggerEvent("SERVER:CLIENT:showAuthInterface");
         }
+        [Command("login")]
+        private void LoginCommand(Player player)
+        {
+            player.TriggerEvent("SERVER:CLIENT:showAuthInterface");
+        }
+
 
         [RemoteEvent("CLIENT:SERVER:clientLogin")]
         public void OnLoginAttempt(Player player, string username, string password)
@@ -36,6 +42,7 @@ namespace ServerSide.AuthServer
                     AccountManager.AccountPlayerPairs.Add(account, player);
                 if(!AccountManager.PlayerAccountPairs.ContainsKey(player))
                     AccountManager.PlayerAccountPairs.Add(player, account);
+                
                 //CHARACTER SELECT
                 CharacterDbManager characterDb = new CharacterDbManager();
                 List<ICharacter> characters = characterDb.getCharacters(account);

@@ -36,6 +36,7 @@ namespace ServerSide.Characters
         public ChinAttributes Chin { get; set; }
         [JsonProperty("neck")]
         public NeckAttributes Neck { get; set; }
+
         public class ShapeAttributes
         {
             [JsonProperty("first")]
@@ -43,9 +44,6 @@ namespace ServerSide.Characters
 
             [JsonProperty("second")]
             public string Second { get; set; }
-
-            [JsonProperty("third")]
-            public string Third { get; set; }
 
             [JsonProperty("mix")]
             public string Mix { get; set; }
@@ -58,9 +56,6 @@ namespace ServerSide.Characters
 
             [JsonProperty("second")]
             public string Second { get; set; }
-
-            [JsonProperty("third")]
-            public string Third { get; set; }
 
             [JsonProperty("mix")]
             public string Mix { get; set; }
@@ -135,6 +130,11 @@ namespace ServerSide.Characters
             [JsonProperty("width")]
             public string Width { get; set; }
         }
+        //public class HairAttributes
+        //{
+        //    [JsonProperty("color")]
+        //    public string Color { get; set; }
+        //}
         public void PrintProperties()
         {
             PrintProperties(this, 0);

@@ -26,10 +26,10 @@ C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\dotnet\resources\ServerSide\bin\x64\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\dotnet\resources\ServerSide\bin\x64\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\dotnet\resources\ServerSide\bin\x64\Debug\netcoreapp3.1\Bootstrapper.dll
+C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\dotnet\resources\ServerSide\bin\x64\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\dotnet\resources\ServerSide\bin\x64\Debug\netcoreapp3.1\Colorful.Console.dll
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\dotnet\resources\ServerSide\bin\x64\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\dotnet\resources\ServerSide\bin\x64\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\dotnet\resources\ServerSide\bin\x64\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\dotnet\resources\ServerSide\bin\x64\Debug\netcoreapp3.1\NeoSmart.Hashing.dll
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\dotnet\resources\ServerSide\bin\x64\Debug\netcoreapp3.1\xxHash.dll
 C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\dotnet\resources\ServerSide\bin\x64\Debug\netcoreapp3.1\Ben.Demystifier.dll

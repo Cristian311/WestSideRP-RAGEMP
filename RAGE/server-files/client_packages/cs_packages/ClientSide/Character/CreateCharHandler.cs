@@ -34,7 +34,7 @@ namespace ClientSide.Character
         private void ShowCustomizeCharScreen(object[] args)
         {
             //CloseCreateCharInterface(null);
-            cefBrowser = new HtmlWindow("C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\html\\Characters\\customize_char.html");
+            cefBrowser = new HtmlWindow("http://package2/html/Characters/customize_char.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;
 
@@ -42,7 +42,7 @@ namespace ClientSide.Character
         private void ShowCreateCharScreen(object[] args)
         {
             //CloseCreateCharInterface(null);
-            cefBrowser = new HtmlWindow("C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\html\\Characters\\create_character.html"); 
+            cefBrowser = new HtmlWindow("http://package2/html/Characters/create_character.html"); 
             cefBrowser.Active = true;
             Cursor.Visible = true;
         }

@@ -20,7 +20,7 @@ namespace ClientSide.Auth
          
         private void ShowAuthInterface(object[] args)
         {
-            cefBrowser = new HtmlWindow("C:\\Users\\sarof\\Desktop\\RAGE MP SERVERS\\GM DE RP .NET CORE 3.1\\RAGE\\server-files\\client_packages\\cs_packages\\ClientSide\\html\\login_register.html");
+            cefBrowser = new HtmlWindow("http://package2/html/login_register.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;
         }

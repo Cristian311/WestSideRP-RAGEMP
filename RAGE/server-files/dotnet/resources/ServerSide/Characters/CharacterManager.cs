@@ -25,16 +25,15 @@ namespace ServerSide.Characters
             Character character = new Character(AccountManager.PlayerAccountPairs[player], tempname, 20, 0);
             dbManager.CreateCharacter(character);
         }
+
         [RemoteEvent("CLIENT:SERVER:CharCustomiseUpdate")]
         private void onCharCustomiseUpdate(Player player, string json)
         {
-            var playerData = Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterData>(json);
-            //NAPI.Util.ConsoleOutput(json);
+            var playerData = Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterData>(json); //all character data vars are string
             try
             {
-                NAPI.Util.ConsoleOutput(cont++ + '\n' + json + '\n');
+                NAPI.Util.ConsoleOutput(cont++ + json + '\n');
                 playerData.PrintProperties();
-                NAPI.Util.ConsoleOutput("\n");
 
                 HeadBlend headBlend = getHeadBlend(playerData);
                 Decoration[] decoration = new Decoration[10];
@@ -43,16 +42,25 @@ namespace ServerSide.Characters
                 HeadOverlay head = new HeadOverlay();
                 headOverlays.Add(0, head);
                 var eyeColor = byte.Parse(playerData.Eye.Color);
+                //var hairColor = //byte.Parse(playerData.Hair.Color);
                 player.SetCustomization(true, headBlend, eyeColor, 0, 0, faceFeatures(playerData), headOverlays, decoration);
+                Decoration decoration1 = new Decoration();
+                //player.SetHeadOverlay
                 var features = faceFeatures(playerData);
                 for (int i = 0; i < 20; i++)
                 {
-                    player.SetFaceFeature(i, features[i]);
+                    
+                   
+                    var feature = features[i] * 0.01;
+                    player.SetFaceFeature(i, (float)feature);
+                    NAPI.Util.ConsoleOutput($"getfacefeature[{i}]={player.GetFaceFeature(i)}");
+                    NAPI.Util.ConsoleOutput($"feature[{i}]={feature}");
+                    NAPI.Util.ConsoleOutput($"featurearray[{i}]={features[i]}");
                 }
             }
             catch(Exception e) 
             {
-                NAPI.Util.ConsoleOutput("onCharCustomiseUpdate ERROR: " + e.Message);
+                NAPI.Util.ConsoleOutput("onCharCustomiseUpdate ERROR: " + e.Message + "\n" + e.StackTrace);
             }
         }
         private float[] faceFeatures(CharacterData charData)
@@ -85,13 +93,13 @@ namespace ServerSide.Characters
             HeadBlend headBlend = new HeadBlend();
             headBlend.ShapeFirst = byte.Parse(charData.Shape.First);
             headBlend.ShapeSecond = byte.Parse(charData.Shape.Second);
-            headBlend.ShapeThird = byte.Parse(charData.Shape.Third);
-            headBlend.ShapeMix = byte.Parse(charData.Shape.Mix);
+            headBlend.ShapeThird = 0; //byte.Parse(charData.Shape.Third);
+            headBlend.ShapeMix = float.Parse(charData.Shape.Mix)*0.01f;
 
             headBlend.SkinFirst = byte.Parse(charData.Skin.First);
             headBlend.SkinSecond = byte.Parse(charData.Skin.Second);
-            headBlend.SkinThird = byte.Parse(charData.Skin.Third);
-            headBlend.SkinMix = byte.Parse(charData.Skin.Mix);
+            headBlend.SkinThird = 0; //byte.Parse(charData.Skin.Third);
+            headBlend.SkinMix = float.Parse(charData.Skin.Mix)*0.01f;
 
             //headBlend.ThirdMix = int.Parse(charData.) not implemented yet
             return headBlend;
