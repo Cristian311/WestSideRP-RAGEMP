@@ -14,9 +14,11 @@ namespace ClientSide.Character
         {
             Events.Add("CEF:CLIENT:showCreateCharScreen", ShowCreateCharScreen);
             Events.Add("CEF:CLIENT:showCustomizeCharScreen", ShowCustomizeCharScreen);
-            Events.Add("CEF:CLIENT:CreateNewCharacter", CreateNewCharacter);
+
             Events.Add("CEF:CLIENT:closeCustomizeCharScreen", closeCustomizeCharScreen);
             Events.Add("CEF:CLIENT:closeCreateCharInterface", CloseCreateCharInterface);
+
+            Events.Add("CEF:CLIENT:CreateNewCharacter", CreateNewCharacter);
             Events.Add("CEF:CLIENT:updateCharacter", UpdateCharacter);
         }
         private void UpdateCharacter(object[] args)
@@ -56,7 +58,8 @@ namespace ClientSide.Character
         {
             cefBrowser.Destroy();
             cefBrowser = null;
-            Cursor.Visible = false;
+            Cursor.Visible = false; //SERVER:CLIENT:updateHair
+            Events.CallRemote("CLIENT:SERVER:ClosedCustomizeCharScreen");
         }
     }
 }

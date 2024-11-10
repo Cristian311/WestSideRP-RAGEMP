@@ -17,6 +17,7 @@ namespace ServerSide.Characters
     internal class CharacterManager : Script
     {
         private static int cont = 0;
+        private static Dictionary<Player, CharacterData> playerData = new Dictionary<Player, CharacterData>();
         [RemoteEvent("CLIENT:SERVER:CreateCharacter")]
         private void CreateCharacter(Player player, string firstname, string lastname, string selectedgender)
         {
@@ -25,37 +26,42 @@ namespace ServerSide.Characters
             Character character = new Character(AccountManager.PlayerAccountPairs[player], tempname, 20, 0);
             dbManager.CreateCharacter(character);
         }
-
+        [RemoteEvent("CLIENT:SERVER:ClosedCustomizeCharScreen")]
+        private void onClosedCustomizeCharScreen(Player player)
+        {
+            player.TriggerEvent("SERVER:CLIENT:showHairScreen");
+        }
         [RemoteEvent("CLIENT:SERVER:CharCustomiseUpdate")]
         private void onCharCustomiseUpdate(Player player, string json)
         {
-            var playerData = Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterData>(json); //all character data vars are string
+            var data = Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterData>(json); //all character data vars are string
+            if (playerData.ContainsKey(player))
+                playerData[player] = data;
+            else
+                playerData.Add(player, data);
             try
             {
                 NAPI.Util.ConsoleOutput(cont++ + json + '\n');
-                playerData.PrintProperties();
+                //playerData.PrintProperties();
 
-                HeadBlend headBlend = getHeadBlend(playerData);
+                HeadBlend headBlend = getHeadBlend(playerData[player]);
                 Decoration[] decoration = new Decoration[10];
-                
+                //player.SetClothes
                 Dictionary<int, HeadOverlay> headOverlays = new Dictionary<int, HeadOverlay>();
                 HeadOverlay head = new HeadOverlay();
-                headOverlays.Add(0, head);
-                var eyeColor = byte.Parse(playerData.Eye.Color);
-                //var hairColor = //byte.Parse(playerData.Hair.Color);
-                player.SetCustomization(true, headBlend, eyeColor, 0, 0, faceFeatures(playerData), headOverlays, decoration);
-                Decoration decoration1 = new Decoration();
-                //player.SetHeadOverlay
-                var features = faceFeatures(playerData);
+                var eyeColor = byte.Parse(playerData[player].Eye.Color);
+
+                player.SetCustomization(true, headBlend, eyeColor, 0, 0, faceFeatures(playerData[player]), headOverlays, decoration);
+                var features = faceFeatures(playerData[player]);
                 for (int i = 0; i < 20; i++)
                 {
                     
                    
                     var feature = features[i] * 0.01;
                     player.SetFaceFeature(i, (float)feature);
-                    NAPI.Util.ConsoleOutput($"getfacefeature[{i}]={player.GetFaceFeature(i)}");
-                    NAPI.Util.ConsoleOutput($"feature[{i}]={feature}");
-                    NAPI.Util.ConsoleOutput($"featurearray[{i}]={features[i]}");
+                    //NAPI.Util.ConsoleOutput($"getfacefeature[{i}]={player.GetFaceFeature(i)}");
+                    //NAPI.Util.ConsoleOutput($"feature[{i}]={feature}");
+                    //NAPI.Util.ConsoleOutput($"featurearray[{i}]={features[i]}");
                 }
             }
             catch(Exception e) 
