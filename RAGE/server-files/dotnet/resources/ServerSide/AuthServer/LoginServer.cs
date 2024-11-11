@@ -27,7 +27,7 @@ namespace ServerSide.AuthServer
 
         [RemoteEvent("CLIENT:SERVER:clientLogin")]
         public void OnLoginAttempt(Player player, string username, string password)
-        {   
+        {
             AccountDbManager accountDb = new AccountDbManager();
             if (accountDb.checkAccountLogin(username, password, out int? Id))
             {
@@ -37,7 +37,7 @@ namespace ServerSide.AuthServer
                 
                 var account = new Account((int)Id, username, player);
                 if(!AccountManager.loggedAccounts.Contains(account))
-                AccountManager.loggedAccounts.Add(account);
+                    AccountManager.loggedAccounts.Add(account);
                 if(!AccountManager.AccountPlayerPairs.ContainsKey(account))
                     AccountManager.AccountPlayerPairs.Add(account, player);
                 if(!AccountManager.PlayerAccountPairs.ContainsKey(player))
@@ -46,7 +46,6 @@ namespace ServerSide.AuthServer
                 //CHARACTER SELECT
                 CharacterDbManager characterDb = new CharacterDbManager();
                 List<ICharacter> characters = characterDb.getCharacters(account);
-                
 
                 CharacterManager cm = new CharacterManager();
                 cm.getNamesAndMoneyForCEF(characters, cm.getRequiredCount(characters), out string[] names, out int[] money);

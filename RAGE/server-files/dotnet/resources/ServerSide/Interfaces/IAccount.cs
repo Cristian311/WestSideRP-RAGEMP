@@ -13,7 +13,7 @@ namespace ServerSide.Interfaces
         string Password { get; }
         string Email { get; }
         Player player { get; }
-        List<ICharacter> Characters { get; }
-        Character currentCharacter { get; }
+        List<ICharacter> Characters { get; set; }
+        Character currentCharacter { get; set; }
     }
 }

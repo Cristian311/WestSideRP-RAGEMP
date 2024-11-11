@@ -11,6 +11,7 @@ using ServerSide.Accounts;
 using System.Reflection;
 using Org.BouncyCastle.Asn1.X509;
 using System.Text.Json;
+using System.Security.Principal;
 
 namespace ServerSide.Characters
 {
@@ -18,18 +19,56 @@ namespace ServerSide.Characters
     {
         private static int cont = 0;
         private static Dictionary<Player, CharacterData> playerData = new Dictionary<Player, CharacterData>();
+        public static Dictionary<Player, Character> PlayerCharacterPair = new Dictionary<Player, Character>();
+        public static Dictionary<Character, IAccount> CharacterAccountPair = new Dictionary<Character, IAccount>();
+
         [RemoteEvent("CLIENT:SERVER:CreateCharacter")]
         private void CreateCharacter(Player player, string firstname, string lastname, string selectedgender)
         {
             CharacterDbManager dbManager = new CharacterDbManager();
             string tempname = firstname + ' ' + lastname;
             Character character = new Character(AccountManager.PlayerAccountPairs[player], tempname, 20, 0);
+            NAPI.Util.ConsoleOutput(tempname + ' ' + selectedgender);
             dbManager.CreateCharacter(character);
+        }
+        [RemoteEvent("CLIENT:SERVER:ClosedCreateCharScreen")]
+        private void onCloseCreateCharScreen(Player player)
+        {
+            CharacterDbManager characterDb = new CharacterDbManager();
+            List<ICharacter> characters = characterDb.getCharacters(AccountManager.PlayerAccountPairs[player]);
+            string username = AccountManager.PlayerAccountPairs[player].Name;
+            CharacterManager cm = new CharacterManager();
+            cm.getNamesAndMoneyForCEF(characters, cm.getRequiredCount(characters), out string[] names, out int[] money);
+            string namesJSON = System.Text.Json.JsonSerializer.Serialize(names);
+            string moneyJSON = System.Text.Json.JsonSerializer.Serialize(money);
+
+            player.TriggerEvent("SERVER:CLIENT:showCharInterface");
+            player.TriggerEvent("SERVER:CLIENT:displayAccountInfo", username, namesJSON, moneyJSON); 
+        }
+        [RemoteEvent("CLIENT:SERVER:CharSelected")]
+        private void onCharSelected(Player player, string charName)
+        {
+            CharacterDbManager characterDbManager = new CharacterDbManager();
+            AccountManager.PlayerAccountPairs[player].currentCharacter = characterDbManager.getCharacter(AccountManager.PlayerAccountPairs[player], charName);
+            player.SendChatMessage(charName);
+            PlayerCharacterPair[player] = AccountManager.PlayerAccountPairs[player].currentCharacter;
+        }
+        [RemoteEvent("CLIENT:SERVER:CharacterVerifications")]
+        private void CharVerifications(Player player)
+        {
+            if (PlayerCharacterPair[player].isCreated == false)
+                player.TriggerEvent("SERVER:CLIENT:showCustomizeCharScreen");
+            PlayerCharacterPair[player].getCharacterInfo();
         }
         [RemoteEvent("CLIENT:SERVER:ClosedCustomizeCharScreen")]
         private void onClosedCustomizeCharScreen(Player player)
         {
-            player.TriggerEvent("SERVER:CLIENT:showHairScreen");
+            if (PlayerCharacterPair[player].isCreated == false)
+            {
+                PlayerCharacterPair[player].isCreated = true;
+                player.TriggerEvent("SERVER:CLIENT:showHairScreen");
+                PlayerCharacterPair[player].getCharacterInfo();
+            }
         }
         [RemoteEvent("CLIENT:SERVER:CharCustomiseUpdate")]
         private void onCharCustomiseUpdate(Player player, string json)
@@ -50,7 +89,6 @@ namespace ServerSide.Characters
                 Dictionary<int, HeadOverlay> headOverlays = new Dictionary<int, HeadOverlay>();
                 HeadOverlay head = new HeadOverlay();
                 var eyeColor = byte.Parse(playerData[player].Eye.Color);
-
                 player.SetCustomization(true, headBlend, eyeColor, 0, 0, faceFeatures(playerData[player]), headOverlays, decoration);
                 var features = faceFeatures(playerData[player]);
                 for (int i = 0; i < 20; i++)

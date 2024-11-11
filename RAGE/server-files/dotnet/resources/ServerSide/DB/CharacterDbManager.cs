@@ -1,5 +1,6 @@
 ﻿using GTANetworkAPI;
 using MySql.Data.MySqlClient;
+using ServerSide.Accounts;
 using ServerSide.Characters;
 using ServerSide.Interfaces;
 using System;
@@ -92,6 +93,48 @@ namespace ServerSide.DB
                 }
             }
         }
+        public Character getCharacter(IAccount account, string name)
+        {
+            if (name == string.Empty)
+                return null;
+            Database db = new Database();
+            using (MySqlConnection connection = db.getDatabaseConnection())
+            {
+                string query = "SELECT * FROM `characters` WHERE Name = @name";
+
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@name", name);
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+
+                            Character character = new Character(account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+                            return character;
+                        }
+                        else
+                        {
+                            // No character found
+                            account.player.SendChatMessage("No characters found on this account, create one!");
+                            return null;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    NAPI.Util.ConsoleOutput($"An error occurred: {ex.Message}");
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
         public List<ICharacter> getCharacters(IAccount account)
         {
             if (account == null)
@@ -114,6 +157,7 @@ namespace ServerSide.DB
                             while (reader.Read())
                             {
                                 Character character = new Character(account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+                                character.isCreated = reader.GetBoolean(6);
                                 characters.Add(character);
                             }
                         }

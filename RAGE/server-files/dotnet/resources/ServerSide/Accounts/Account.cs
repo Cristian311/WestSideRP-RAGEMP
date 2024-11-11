@@ -14,8 +14,8 @@ namespace ServerSide.Accounts
         public string Email { get; } = "";
         public Player player { get; }
         public int AdminLevel { get; set; }
-        public List<ICharacter> Characters { get; }
-        public Character currentCharacter { get; }
+        public List<ICharacter> Characters { get; set; }
+        public Character currentCharacter { get; set; }
 
         public Account(int id, string name, Player player)
         {

@@ -95,9 +95,10 @@
             }
         }
         function selectCharacter(characterName) {
-            mp.trigger("CEF:CLIENT:closeCharInterface");
             mp.trigger("CEF:CLIENT:characterSelected", characterName);
-            mp.trigger("CEF:CLIENT:showCustomizeCharScreen");
+            mp.trigger("CEF:CLIENT:closeCharInterface");
+            
+            //mp.trigger("CEF:CLIENT:showCustomizeCharScreen");
         }
 
         function createCharacter() {

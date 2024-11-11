@@ -1,4 +1,5 @@
-﻿using ServerSide.Interfaces;
+﻿using GTANetworkAPI;
+using ServerSide.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,6 +18,7 @@ namespace ServerSide.Characters
         public int Money { get; }
         public List<ICharacter> Characters { get; }
         public Character currentCharacter { get; }
+        public bool isCreated { get; set; } = false;
         public Character(IAccount account, string name, int age, int money)
         {
             Account = account;
@@ -24,6 +26,11 @@ namespace ServerSide.Characters
             Name = name; 
             Age = age;
             Money = money;
+        }
+        public void getCharacterInfo()
+        {
+            NAPI.Util.ConsoleOutput($"Account: {accountName} ID: {Id}");
+            NAPI.Util.ConsoleOutput($"Name: {Name} Age: {Age} Money: {Money}, isCreated: {isCreated}");
         }
     }
 }

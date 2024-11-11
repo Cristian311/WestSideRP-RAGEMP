@@ -11,13 +11,12 @@ namespace ClientSide.Character
         public CharHandler()
         {
             Events.Add("SERVER:CLIENT:showCharInterface", ShowCharInterface);
+            Events.Add("CEF:CLIENT:showCharInterface", ShowCharInterface);
             Events.Add("SERVER:CLIENT:closeCharInterface", CloseCharInterface);
             Events.Add("CEF:CLIENT:closeCharInterface", CloseCharInterface);
 
             Events.Add("SERVER:CLIENT:displayAccountInfo", DisplayAccountInfo);
             Events.Add("CEF:CLIENT:characterSelected", CharacterSelected);
-
-            
         }
         
         private void ShowCharInterface(object[] args)
@@ -31,6 +30,7 @@ namespace ClientSide.Character
             cefBrowser.Destroy();
             cefBrowser = null;
             Cursor.Visible = false;
+            Events.CallRemote("CLIENT:SERVER:CharacterVerifications");
         }
 
         
@@ -48,7 +48,7 @@ namespace ClientSide.Character
         {
             string CharacterName = args[0].ToString();
             RAGE.Chat.Output(CharacterName);
-            
+            Events.CallRemote("CLIENT:SERVER:CharSelected", CharacterName);
         }
     }
 }

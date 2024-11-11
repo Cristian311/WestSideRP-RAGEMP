@@ -29,8 +29,9 @@ namespace ClientSide.Character
         private void stopHairScreen(object[] args)
         {
             cefBrowser.Destroy();
-            cefBrowser.Active = false;
+            cefBrowser = null;
             Cursor.Visible = false;
+            RAGE.Chat.Output("closed");
         }
     }
 }
