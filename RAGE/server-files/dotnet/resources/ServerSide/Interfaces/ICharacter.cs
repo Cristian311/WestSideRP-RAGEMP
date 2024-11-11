@@ -11,7 +11,7 @@ namespace ServerSide.Interfaces
         string Name { get; }
         int Age { get; }
         int Money { get; }
-        
+        public bool isCreated { get; set; } 
 
     }
 }

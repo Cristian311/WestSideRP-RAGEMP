@@ -65,9 +65,13 @@ namespace ServerSide.Characters
         {
             if (PlayerCharacterPair[player].isCreated == false)
             {
+
                 PlayerCharacterPair[player].isCreated = true;
                 player.TriggerEvent("SERVER:CLIENT:showHairScreen");
                 PlayerCharacterPair[player].getCharacterInfo();
+
+                CharacterDbManager cm = new CharacterDbManager();
+                cm.UpdateCharacter(PlayerCharacterPair[player]);
             }
         }
         [RemoteEvent("CLIENT:SERVER:CharCustomiseUpdate")]

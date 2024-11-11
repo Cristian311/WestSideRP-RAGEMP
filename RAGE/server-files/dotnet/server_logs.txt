@@ -1548408,4 +1548408,544 @@ Name: sss aaa Age: 20 Money: 0, isCreated: True
 {"hair":"48","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"15","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
 {"hair":"48","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"16","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
 {"hair":"48","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"17","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
-{"hair":"48","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"18","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"va
+{"hair":"48","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"18","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"vaInitializing Bootstrapper.dll (1.1.0.0)..
+-> SERVER STARTED AT 11.11.2024 17:03:56
+Loaded 667 entries from vehicleData.json
+Loading resources..
+-> Starting ServerSide resource..
+ServerSide: loading scripts.. found 1 script(s)
+ServerSide: instantiating ServerSide.Class1..
+ServerSide: instantiating ServerSide.Commands.AdminCommands..
+ServerSide: instantiating ServerSide.Commands.UtilCommands..
+ServerSide: instantiating ServerSide.Characters.CharacterManager..
+ServerSide: instantiating ServerSide.Characters.HairData.HairManager..
+ServerSide: instantiating ServerSide.AuthServer.LoginServer..
+ServerSide: instantiating ServerSide.AuthServer.RegisterServer..
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loaded 2 server events(s)
+ServerSide: loading commands.. found 2 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loaded 4 commands(s)
+ServerSide: loading remote events.. found 6 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loaded 9 remote event(s)
+Database: Connection successful!
+resursa inceppe2
+Connection successful!
+ID: 1, Name: aaa
+ID: 2, Name: aa
+ID: 3, Name: 
+ID: 4, Name: bbb
+ID: 5, Name: sss
+ID: 6, Name: aaad
+ID: 7, Name: hhh
+ID: 8, Name: Cristi
+ID: 9, Name: ggg
+ID: 10, Name: mario
+ID: 11, Name: HATZ
+ID: 12, Name: tt
+-> Resource ServerSide started!
+Started! Waiting for connections..
+Database: Connection successful!
+User authenticated successfully. ID: 1
+aaa s-a logat.
+Database: Connection successful!
+Database: Connection successful!
+Account:  ID: 6
+Name: sss aaa Age: 20 Money: 0, isCreated: False
+0{"shape":{"first":"5","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+1{"shape":{"first":"6","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+2{"shape":{"first":"7","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+3{"shape":{"first":"8","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+4{"shape":{"first":"9","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+5{"shape":{"first":"9","second":"3","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+6{"shape":{"first":"9","second":"4","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+7{"shape":{"first":"9","second":"5","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+8{"shape":{"first":"9","second":"7","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+9{"shape":{"first":"9","second":"7","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+10{"shape":{"first":"9","second":"7","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+11{"shape":{"first":"9","second":"7","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+12{"shape":{"first":"9","second":"7","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+13{"shape":{"first":"9","second":"7","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+14{"shape":{"first":"9","second":"7","mix":"0.5"},"skin":{"first":"0","second":"2","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},Initializing Bootstrapper.dll (1.1.0.0)..
+-> SERVER STARTED AT 11.11.2024 17:07:52
+Loaded 667 entries from vehicleData.json
+Loading resources..
+-> Starting ServerSide resource..
+ServerSide: loading scripts.. found 1 script(s)
+ServerSide: instantiating ServerSide.Class1..
+ServerSide: instantiating ServerSide.Commands.AdminCommands..
+ServerSide: instantiating ServerSide.Commands.UtilCommands..
+ServerSide: instantiating ServerSide.Characters.CharacterManager..
+ServerSide: instantiating ServerSide.Characters.HairData.HairManager..
+ServerSide: instantiating ServerSide.AuthServer.LoginServer..
+ServerSide: instantiating ServerSide.AuthServer.RegisterServer..
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loaded 2 server events(s)
+ServerSide: loading commands.. found 2 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loaded 4 commands(s)
+ServerSide: loading remote events.. found 6 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loaded 9 remote event(s)
+Database: Connection successful!
+resursa inceppe2
+Connection successful!
+ID: 1, Name: aaa
+ID: 2, Name: aa
+ID: 4, Name: bbb
+ID: 3, Name: 
+ID: 5, Name: sss
+ID: 6, Name: aaad
+ID: 7, Name: hhh
+ID: 8, Name: Cristi
+ID: 9, Name: ggg
+ID: 10, Name: mario
+ID: 11, Name: HATZ
+ID: 12, Name: tt
+-> Resource ServerSide started!
+Started! Waiting for connections..
+Database: Connection successful!
+User authenticated successfully. ID: 1
+aaa s-a logat.
+Database: Connection successful!
+Database: Connection successful!
+Account: aaa ID: 6
+Name: sss aaa Age: 20 Money: 0, isCreated: False
+0{"shape":{"first":"2","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+1{"shape":{"first":"3","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+2{"shape":{"first":"5","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+3{"shape":{"first":"7","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+4{"shape":{"first":"8","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+5{"shape":{"first":"9","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+6{"shape":{"first":"10","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+7{"shape":{"first":"12","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+8{"shape":{"first":"13","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+9{"shape":{"first":"12","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+10{"shape":{"first":"12","second":"5","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+11{"shape":{"first":"12","second":"6","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+12{"shape":{"first":"12","second":"9","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+13{"shape":{"first":"12","second":"12","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+14{"shape":{"first":"12","second":"14","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+15{"shape":{"first":"12","second":"16","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+16{"shape":{"first":"12","second":"16","mix":"0.49"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+17{"shape":{"first":"12","second":"16","mix":"0.48"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+18{"shape":{"first":"12","second":"16","mix":"0.47"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+19{"shape":{"first":"12","second":"16","mix":"0.45"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+20{"shape":{"first":"12","second":"16","mix":"0.39"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+21{"shape":{"first":"12","second":"16","mix":"0.35"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+22{"shape":{"first":"12","second":"16","mix":"0.3"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+23{"shape":{"first":"12","second":"16","mix":"0.21"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+24{"shape":{"first":"12","second":"16","mix":"0.18"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+25{"shape":{"first":"12","second":"16","mix":"0.16"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+26{"shape":{"first":"12","second":"16","mix":"0.15"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+27{"shape":{"first":"12","second":"16","mix":"0.13"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+28{"shape":{"first":"12","second":"16","mix":"0.1"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+29{"shape":{"first":"12","second":"16","mix":"0.07"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+30{"shape":{"first":"12","second":"16","mix":"0.04"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+31{"shape":{"first":"12","second":"16","mix":"0.02"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+32{"shape":{"first":"12","second":"16","mix":"0"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+33{"shape":{"first":"12","second":"16","mix":"0.02"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+34{"shape":{"first":"12","second":"16","mix":"0.11"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+35{"shape":{"first":"12","second":"16","mix":"0.23"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+36{"shape":{"first":"12","second":"16","mix":"0.39"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+37{"shape":{"first":"12","second":"16","mix":"0.54"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+38{"shape":{"first":"12","second":"16","mix":"0.65"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+39{"shape":{"first":"12","second":"16","mix":"0.71"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+40{"shape":{"first":"12","second":"16","mix":"0.74"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+41{"shape":{"first":"12","second":"16","mix":"0.77"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+42{"shape":{"first":"12","second":"16","mix":"0.8"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+43{"shape":{"first":"12","second":"16","mix":"0.88"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+44{"shape":{"first":"12","second":"16","mix":"0.93"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+45{"shape":{"first":"12","second":"16","mix":"0.98"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+46{"shape":{"first":"12","second":"16","mix":"1"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+47{"shape":{"first":"12","second":"16","mix":"0.93"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+48{"shape":{"first":"12","second":"16","mix":"0.86"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+49{"shape":{"first":"12","second":"16","mix":"0.79"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+50{"shape":{"first":"12","second":"16","mix":"0.69"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+51{"shape":{"first":"12","second":"16","mix":"0.59"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+52{"shape":{"first":"12","second":"16","mix":"0.48"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+53{"shape":{"first":"12","second":"16","mix":"0.4"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+54{"shape":{"first":"12","second":"16","mix":"0.35"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+55{"shape":{"first":"12","second":"16","mix":"0.31"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+56{"shape":{"first":"12","second":"16","mix":"0.27"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+57{"shape":{"first":"12","second":"16","mix":"0.28"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+58{"shape":{"first":"12","second":"16","mix":"0.29"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+59{"shape":{"first":"12","second":"16","mix":"0.33"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+60{"shape":{"first":"12","second":"16","mix":"0.37"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+61{"shape":{"first":"12","second":"16","mix":"0.42"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+62{"shape":{"first":"12","second":"16","mix":"0.45"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+63{"shape":{"first":"12","second":"16","mix":"0.47"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+64{"shape":{"first":"12","second":"16","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+65{"shape":{"first":"12","second":"16","mix":"0.54"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+66{"shape":{"first":"12","second":"16","mix":"0.57"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+67{"shape":{"first":"12","second":"16","mix":"0.59"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+68{"shape":{"first":"12","second":"16","mix":"0.6"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+69{"shape":{"first":"12","second":"16","mix":"0.61"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+70{"shape":{"first":"12","second":"16","mix":"0.64"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidthInitializing Bootstrapper.dll (1.1.0.0)..
+-> SERVER STARTED AT 11.11.2024 17:15:12
+Loaded 667 entries from vehicleData.json
+Loading resources..
+-> Starting ServerSide resource..
+ServerSide: loading scripts.. found 1 script(s)
+ServerSide: instantiating ServerSide.Class1..
+ServerSide: instantiating ServerSide.Commands.AdminCommands..
+ServerSide: instantiating ServerSide.Commands.UtilCommands..
+ServerSide: instantiating ServerSide.Characters.CharacterManager..
+ServerSide: instantiating ServerSide.Characters.HairData.HairManager..
+ServerSide: instantiating ServerSide.AuthServer.LoginServer..
+ServerSide: instantiating ServerSide.AuthServer.RegisterServer..
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loaded 2 server events(s)
+ServerSide: loading commands.. found 2 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loaded 4 commands(s)
+ServerSide: loading remote events.. found 6 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loaded 9 remote event(s)
+Database: Connection successful!
+resursa inceppe2
+Connection successful!
+ID: 1, Name: aaa
+ID: 2, Name: aa
+ID: 3, Name: 
+ID: 4, Name: bbb
+ID: 5, Name: sss
+ID: 6, Name: aaad
+ID: 7, Name: hhh
+ID: 8, Name: Cristi
+ID: 9, Name: ggg
+ID: 10, Name: mario
+ID: 11, Name: HATZ
+ID: 12, Name: tt
+-> Resource ServerSide started!
+Started! Waiting for connections..
+Database: Connection successful!
+User authenticated successfully. ID: 1
+aaa s-a logat.
+Database: Connection successful!
+Database: Connection successful!
+Account: aaa ID: 6
+Name: sss aaa Age: 20 Money: 0, isCreated: False
+0{"shape":{"first":"3","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+1{"shape":{"first":"4","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+2{"shape":{"first":"5","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+3{"shape":{"first":"9","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+4{"shape":{"first":"13","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+5{"shape":{"first":"13","second":"3","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+6{"shape":{"first":"13","second":"5","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+7{"shape":{"first":"13","second":"9","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+8{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+9{"shape":{"first":"13","second":"12","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+10{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+11{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+12{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+13{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+14{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+15{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+16{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"11","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+17{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"12","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+18{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"13","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+19{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"16","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+20{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"18","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+21{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"18","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"-0.04","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+22{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"18","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"-0.03","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+23{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"18","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"-0.06","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+24{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"18","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"-0.66","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+25{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"18","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"-0.99","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+26{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"18","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"-0.91","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+27{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"18","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0.41","tip":"-0.91","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+28{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"18","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0.34","tip":"-0.91","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+29{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"18","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0.08","tip":"-0.91","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+30{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"18","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0.04","tip":"-0.91","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+31{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"18","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0.17","tip":"-0.91","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+32{"shape":{"first":"13","second":"13","mix":"0.5"},"skin":{"first":"18","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0.18","tip":"-0.91","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+33{"sInitializing Bootstrapper.dll (1.1.0.0)..
+-> SERVER STARTED AT 11.11.2024 17:23:55
+Loaded 667 entries from vehicleData.json
+Loading resources..
+-> Starting ServerSide resource..
+ServerSide: loading scripts.. found 1 script(s)
+ServerSide: instantiating ServerSide.Class1..
+ServerSide: instantiating ServerSide.Commands.AdminCommands..
+ServerSide: instantiating ServerSide.Commands.UtilCommands..
+ServerSide: instantiating ServerSide.Characters.CharacterManager..
+ServerSide: instantiating ServerSide.Characters.HairData.HairManager..
+ServerSide: instantiating ServerSide.AuthServer.LoginServer..
+ServerSide: instantiating ServerSide.AuthServer.RegisterServer..
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loaded 2 server events(s)
+ServerSide: loading commands.. found 2 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loaded 4 commands(s)
+ServerSide: loading remote events.. found 6 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loaded 9 remote event(s)
+Database: Connection successful!
+resursa inceppe2
+Connection successful!
+ID: 1, Name: aaa
+ID: 2, Name: aa
+ID: 3, Name: 
+ID: 4, Name: bbb
+ID: 5, Name: sss
+ID: 6, Name: aaad
+ID: 7, Name: hhh
+ID: 8, Name: Cristi
+ID: 9, Name: ggg
+ID: 10, Name: mario
+ID: 11, Name: HATZ
+ID: 12, Name: tt
+-> Resource ServerSide started!
+Started! Waiting for connections..
+Database: Connection successful!
+User authenticated successfully. ID: 1
+aaa s-a logat.
+Database: Connection successful!
+Database: Connection successful!
+Account: aaa ID: 2
+Name: dd dd Age: 20 Money: 0, isCreated: True
+Database: Connection successful!
+User authenticated successfully. ID: 1
+aaa s-a logat.
+Database: Connection successful!
+Database: Connection successful!
+Account: aaa ID: 1
+Name: sss aaa Age: 20 Money: 0, isCreated: False
+0{"shape":{"first":"2","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+1{"shape":{"first":"3","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+2{"shape":{"first":"6","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+3{"shape":{"first":"10","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+4{"shape":{"first":"13","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+5{"shape":{"first":"14","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+6{"shape":{"first":"14","second":"4","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+7{"shape":{"first":"14","second":"5","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+8{"shape":{"first":"14","second":"10","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+9{"shape":{"first":"14","second":"15","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+10{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+11{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+12{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+13{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+14{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+15{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+16{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+17{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"1","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+18{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"2","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+19{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"4","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+20{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"5","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+21{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"5","second":"2","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+22{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"5","second":"3","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+23{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"5","second":"4","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+24{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"5","second":"5","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+25{"shape":{"first":"14","second":"17","mix":"0.5"},"skin":{"first":"5","second":"6","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+26{"shape":{"first":"14","second":"17","mix":"0.42"},"skin":{"first":"5","second":"6","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+27{"shape":{"first":"14","second":"17","mix":"0.39"},"skin":{"first":"5","second":"6","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+28{"shape":{"first":"14","second":"17","mix":"0.33"},"skin":{"first":"5","second":"6","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+29{"shape":{"first":"14","second":"17","mix":"0.28"},"skin":{"first":"5","second":"6","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+30{"shape":{"first":"14","second":"17","mix":"0.24"},"skin":{"first":"5","second":"6","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+31{"shape":{"first":"14","second":"17","mix":"0.24"},"skin":{"first":"5","second":"6","mix":"0.23"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+32{"shape":{"first":"14","second":"17","mix":"0.24"},"skin":{"first":"5","second":"6","mix":"0.24"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+33{"shape":{"first":"14","second":"17","mix":"0.24"},"skin":{"first":"5","second":"6","mix":"0.26"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+34{"shape":{"first":"14","second":"17","mix":"0.24"},"skin":{"first":"5","second":"6","mix":"0.29"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+35{"shape":{"first":"14","second":"17","mix":"0.24"},"skin":{"first":"5","second":"6","mix":"0.35"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+36{"shape":{"first":"14","second":"17","mix":"0.24"},"skin":{"first":"5","second":"6","mix":"0.37"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+37{"shape":{"first":"14","second":"17","mix":"0.24"},"skin":{"first":"5","second":"6","mix":"0.38"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+38{"shape":{"first":"14","second":"17","mix":"0.24"},"skin":{"first":"5","second":"6","mix":"0.38"},"nose":{"width":"0.01","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+39{"shape":{"first":"14","second":"17","mix":"0.24"},"skin":{"first":"5","second":"6","mix":"0.38"},"nose":{"width":"-0.04","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+40{"shape":{"first":"14","second":"17","mix":"0.24"},"skin":{"first":"5","second":"6","mix":"0.38"},"nose":{"width":"-0.17","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+41{"shape":{"first":"14","second":"17","mix":"0.24"},"skin":{"first":"5","second":"6","mix":"0.38"},"nose":{"width":"-0.22","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+42{"shape":{"first":"14","second":"17","mix":"0.24"},"skin":{"first":"5","second":"6","mix":"0.38"},"nose":{"width":"-0.22","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+Account: aaa ID: 1
+Name: sss aaa Age: 20 Money: 0, isCreated: True
+Database: Connection successful!
+Database: Connection successful!
+Executing Query: UPDATE `characters` SET AccountId = 1, Name = 'sss aaa', Age = 20, Money = 0 WHERE Id = 1
+Character updated successfully.
+{"hair":"5","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"7","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"8","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"12","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"15","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"18","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"19","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"19","facialHair":{"value":"3","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"19","facialHair":{"value":"4","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"19","facialHair":{"value":"6","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"19","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair

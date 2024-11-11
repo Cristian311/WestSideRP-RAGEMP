@@ -11,7 +11,7 @@ namespace ServerSide.Characters
 
         public IAccount Account { get; }
         public string accountName { get; }
-        public int Id { get; }
+        public int Id { get; set; }
         public static int nrOfCharacters = 0; 
         public string Name { get; }
         public int Age { get; }   
@@ -29,7 +29,7 @@ namespace ServerSide.Characters
         }
         public void getCharacterInfo()
         {
-            NAPI.Util.ConsoleOutput($"Account: {accountName} ID: {Id}");
+            NAPI.Util.ConsoleOutput($"Account: {Account.Name} ID: {Id}");
             NAPI.Util.ConsoleOutput($"Name: {Name} Age: {Age} Money: {Money}, isCreated: {isCreated}");
         }
     }
