@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RAGE;
+using RAGE.Ui;
 namespace ClientSide
 {
     internal class Main : Events.Script
@@ -15,6 +16,10 @@ namespace ClientSide
         private void onPlayerReady()
         {
             RAGE.Chat.Output("merge clientu3");
+            Chat.Show(false);
+            var chatbox = new HtmlWindow("http://package2/advanced-chat/index.html");
+            chatbox.MarkAsChat();
+            RAGE.Chat.Colors = true;
         }
     }
 }

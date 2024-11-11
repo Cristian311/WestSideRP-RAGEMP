@@ -30,7 +30,7 @@ namespace ClientSide.Character
             cefBrowser.Destroy();
             cefBrowser = null;
             Cursor.Visible = false;
-            Events.CallRemote("CLIENT:SERVER:CharacterVerifications");
+            
         }
 
         
@@ -49,6 +49,7 @@ namespace ClientSide.Character
             string CharacterName = args[0].ToString();
             RAGE.Chat.Output(CharacterName);
             Events.CallRemote("CLIENT:SERVER:CharSelected", CharacterName);
+            Events.CallRemote("CLIENT:SERVER:CharacterVerifications");
         }
     }
 }

@@ -1548948,4 +1548948,131 @@ Character updated successfully.
 {"hair":"19","facialHair":{"value":"4","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
 {"hair":"19","facialHair":{"value":"6","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
 {"hair":"19","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
-{"hair
+{"hairInitializing Bootstrapper.dll (1.1.0.0)..
+-> SERVER STARTED AT 11.11.2024 20:00:56
+Loaded 667 entries from vehicleData.json
+Loading resources..
+-> Starting ServerSide resource..
+ServerSide: loading scripts.. found 1 script(s)
+ServerSide: instantiating ServerSide.Server.ChatMessage..
+ServerSide: instantiating ServerSide.Server.Resource..
+ServerSide: instantiating ServerSide.Commands.AdminCommands..
+ServerSide: instantiating ServerSide.Commands.UtilCommands..
+ServerSide: instantiating ServerSide.Characters.CharacterManager..
+ServerSide: instantiating ServerSide.Characters.HairData.HairManager..
+ServerSide: instantiating ServerSide.AuthServer.LoginServer..
+ServerSide: instantiating ServerSide.AuthServer.RegisterServer..
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loaded 3 server events(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loading commands.. found 2 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loaded 5 commands(s)
+ServerSide: loading remote events.. found 6 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loaded 9 remote event(s)
+Database: Connection successful!
+resursa inceppe2
+Connection successful!
+ID: 1, Name: aaa
+ID: 2, Name: aa
+ID: 3, Name: 
+ID: 4, Name: bbb
+ID: 5, Name: sss
+ID: 6, Name: aaad
+ID: 7, Name: hhh
+ID: 8, Name: Cristi
+ID: 9, Name: ggg
+ID: 10, Name: mario
+ID: 11, Name: HATZ
+ID: 12, Name: tt
+-> Resource ServerSide started!
+Started! Waiting for connections..
+Database: Connection successful!
+User authenticated successfully. ID: 1
+aaa s-a logat.
+Database: Connection successful!
+Database: Connection successful!
+Account: aaa ID: 18
+Name: ss dd Age: 20 Money: 0, isCreated: False
+0{"shape":{"first":"5","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+1{"shape":{"first":"6","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+2{"shape":{"first":"8","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+3{"shape":{"first":"9","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+4{"shape":{"first":"11","second":"0","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+5{"shape":{"first":"11","second":"3","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+6{"shape":{"first":"11","second":"4","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+7{"shape":{"first":"11","second":"5","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+8{"shape":{"first":"11","second":"8","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+9{"shape":{"first":"11","second":"10","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+10{"shape":{"first":"11","second":"10","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+11{"shape":{"first":"11","second":"10","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+12{"shape":{"first":"11","second":"10","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+13{"shape":{"first":"11","second":"10","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+14{"shape":{"first":"11","second":"10","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+15{"shape":{"first":"11","second":"10","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+16{"shape":{"first":"11","second":"10","mix":"0.5"},"skin":{"first":"0","second":"0","mix":"0.5"},"nose":{"width":"0","height":"0","length":"0","bridge":"0","tip":"0","bridgeShift":"0"},"brow":{"height":"0","width":"0"},"cheeks":{"height":"0","width":"0","cheeksWidth":"0"},"jaw":{"width":"0"},"chin":{"lenght":"0","position":"0","width":"0","shape":"0"},"neck":{"width":"0"},"lips":"0","skinColor":"0","eye":{"size":"0","color":"0"}}
+
+Account: aaa ID: 18
+Name: ss dd Age: 20 Money: 0, isCreated: True
+Database: Connection successful!
+Database: Connection successful!
+Executing Query: UPDATE `characters` SET AccountId = 1, Name = 'ss dd', Age = 20, Money = 0 WHERE Id = 18
+Character updated successfully.
+{"hair":"9","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"7","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"6","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"9","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"11","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"14","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"18","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"21","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"4","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"5","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"7","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"9","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"4","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"5","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"6","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"7","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"9","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"10","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"11","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"10","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"9","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"25","facialHair":{"value":"9","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"26","facialHair":{"value":"9","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"27","facialHair":{"value":"9","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"30","facialHair":{"value":"9","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"31","facialHair":{"value":"9","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"33","facialHair":{"value":"9","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"34","facialHair":{"value":"9","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"35","facialHair":{"value":"9","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"37","facialHair":{"value":"9","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"38","facialHair":{"value":"9","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"8","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"39","facialHair":{"value":"9","color":"

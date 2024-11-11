@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Drawing;
 using GTANetworkAPI;
+using Org.BouncyCastle.Bcpg;
+using ServerSide.Characters;
 using ServerSide.DB;
-namespace ServerSide
+using ServerSide.Util;
+namespace ServerSide.Server
 {
-    public class Class1 : Script
+    public class Resource : Script
     {
         [ServerEvent(Event.ResourceStart)]
         public void onResourceStart()
@@ -13,6 +17,9 @@ namespace ServerSide
             string query = "SELECT * FROM `accounts`";
 
             db.ExecuteQuery(query);
+            NAPI.Server.SetGlobalServerChat(false);
+
         }
+        
     }
 }

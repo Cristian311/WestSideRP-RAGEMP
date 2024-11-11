@@ -41,7 +41,7 @@ namespace ServerSide.Characters
             cm.getNamesAndMoneyForCEF(characters, cm.getRequiredCount(characters), out string[] names, out int[] money);
             string namesJSON = System.Text.Json.JsonSerializer.Serialize(names);
             string moneyJSON = System.Text.Json.JsonSerializer.Serialize(money);
-
+            
             player.TriggerEvent("SERVER:CLIENT:showCharInterface");
             player.TriggerEvent("SERVER:CLIENT:displayAccountInfo", username, namesJSON, moneyJSON); 
         }
