@@ -160,7 +160,7 @@ namespace ServerSide.DB
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO `characters` (AccountId, Name, Age, Money) VALUES (@accountId, @Name, @Age, @Money)";
+                    string query = "INSERT INTO `characters` (AccountId, Name, Age, Money, gender) VALUES (@accountId, @Name, @Age, @Money, @gender)";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -168,6 +168,7 @@ namespace ServerSide.DB
                         command.Parameters.AddWithValue("@Name", character.Name);
                         command.Parameters.AddWithValue("@Age", character.Age);
                         command.Parameters.AddWithValue("@Money", character.Money);
+                        command.Parameters.AddWithValue("@gender", character.gender);
 
                         int result = command.ExecuteNonQuery();
 
@@ -255,10 +256,12 @@ namespace ServerSide.DB
                             Character character = new Character(account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
                             character.Id = reader.GetInt32(0);
                             character.isCreated = reader.GetBoolean(6);
+                            character.gender = reader.GetBoolean(9);
                             if (character.isCreated == true)
                             {
                                 character.CharacterFaceDetailsJSON = reader.GetString(7);
                                 character.HairJSON = reader.GetString(8);
+                                
                                 NAPI.Util.ConsoleOutput(character.HairJSON);
                             }
                             return character;

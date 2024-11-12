@@ -59,13 +59,14 @@ namespace ServerSide.Characters
         [RemoteEvent("CLIENT:SERVER:CharSelected")]
         private void onCharSelected(Player player, string charName)
         {
-            Character character = AccountManager.PlayerAccountPairs[player].currentCharacter;
+            //Character character = AccountManager.PlayerAccountPairs[player].currentCharacter;
             Account account = AccountManager.PlayerAccountPairs[player];
 
             CharacterDbManager characterDbManager = new CharacterDbManager();
-            character = characterDbManager.getCharacter(account, charName);
+            Character character = characterDbManager.getCharacter(account, charName);
             player.SendChatMessage(charName);
             PlayerCharacterPair[player] = character;
+
             //!!!!!!! UPDATE PLAYER CHARACTER DETAILS AFTER SELECTED
 
             if (character.isCreated == true)
@@ -116,6 +117,7 @@ namespace ServerSide.Characters
             try
             {
                 UpdatePlayerFaceFeatures(player, data, character.gender);
+                NAPI.Util.ConsoleOutput(character.gender.ToString());
             }
             catch(Exception e) 
             {
@@ -144,6 +146,7 @@ namespace ServerSide.Characters
         }
         private bool getGender(string gender)
         {
+            NAPI.Util.ConsoleOutput(gender);
             if (gender.Equals("male"))
                 return true;
             else

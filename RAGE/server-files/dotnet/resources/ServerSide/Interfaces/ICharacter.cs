@@ -14,5 +14,6 @@ namespace ServerSide.Interfaces
         public bool isCreated { get; set; }
         string CharacterFaceDetailsJSON { get; set; }
         string HairJSON { get; set; }
+        bool gender {  get; set; }
     }
 }

@@ -33,7 +33,7 @@ namespace ServerSide.Characters
         public void getCharacterInfo()
         {
             NAPI.Util.ConsoleOutput($"Account: {Account.Name} ID: {Id}");
-            NAPI.Util.ConsoleOutput($"Name: {Name} Age: {Age} Money: {Money}, isCreated: {isCreated}");
+            NAPI.Util.ConsoleOutput($"Name: {Name} Age: {Age} Money: {Money}, isCreated: {isCreated} Gender{gender}");
         }
     }
 }
