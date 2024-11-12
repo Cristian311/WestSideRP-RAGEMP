@@ -42,5 +42,12 @@ namespace ServerSide.Commands
             player.TriggerEvent("SERVER:CLIENT:showCharInterface");
             player.TriggerEvent("SERVER:CLIENT:displayAccountInfo", username, namesJSON, moneyJSON);
         }
+        [Command("clothes")]
+        private void clothesCommand(Player player)
+        {
+            var account = AccountManager.PlayerAccountPairs[player];
+            var character = CharacterManager.PlayerCharacterPair[player];
+            player.TriggerEvent("SERVER:CLIENT:openClothesScreen");
+        }
     }
 }

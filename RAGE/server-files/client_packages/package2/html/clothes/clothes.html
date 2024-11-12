@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Menu</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: space-between;
+        }
+        /* Left Menu */
+        .left-menu {
+            width: 200px;
+            background-color: #333;
+            padding: 10px;
+            color: #fff;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+        .left-button {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 5px;
+            outline: none;
+            transition: background 0.3s;
+        }
+        .left-button:hover {
+            background-color: #555;
+        }
+        .slider-group-left {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+        .slider {
+            width: 100%;
+        }
+        /* Right Menu */
+        .menu {
+            width: 250px;
+            background-color: #333;
+            padding: 10px;
+            color: #fff;
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+        .button {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 5px;
+            outline: none;
+            transition: background 0.3s;
+        }
+        .button:hover {
+            background-color: #555;
+        }
+        .slider-container {
+            display: none;
+            padding: 10px;
+            background-color: #222;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+        .slider-label {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .slider-group {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+        .slider-group label {
+            flex: 1;
+        }
+        .value-display {
+            color: #fff;
+            font-size: 14px;
+            width: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Left Menu -->
+    <div class="left-menu">
+        <button class="left-button" onclick="selectCharacter()">Select Costume</button>
+        <div class="slider-group-left">
+            <input type="range" min="0" max="10" value="0" class="slider" id="character-select" oninput="updateValue('character-select')">
+            <span class="value-display" id="character-select-value">0</span>
+        </div>
+        <button class="left-button" onclick="buyItem()">Buy</button>
+        <button class="left-button" onclick="exitMenu()">Exit</button>
+    </div>
+
+    <div class="menu">
+        <!-- Head -->
+        <button class="button" onclick="toggleSliders(this)">Head</button>
+        <div class="slider-container">
+            <div class="slider-group">
+                <label class="slider-label">Piece</label>
+                <input type="range" min="0" max="100" class="slider" id="head-piece" oninput="updateValue('head-piece')">
+                <span class="value-display" id="head-piece-value">0</span>
+            </div>
+            <div class="slider-group">
+                <label class="slider-label">Texture</label>
+                <input type="range" min="0" max="100" class="slider" id="head-texture" oninput="updateValue('head-texture')">
+                <span class="value-display" id="head-texture-value">0</span>
+            </div>
+        </div>
+
+        <!-- Masks -->
+        <button class="button" onclick="toggleSliders(this)">Masks</button>
+        <div class="slider-container">
+            <div class="slider-group">
+                <label class="slider-label">Piece</label>
+                <input type="range" min="0" max="100" class="slider" id="masks-piece" oninput="updateValue('masks-piece')">
+                <span class="value-display" id="masks-piece-value">0</span>
+            </div>
+            <div class="slider-group">
+                <label class="slider-label">Texture</label>
+                <input type="range" min="0" max="100" class="slider" id="masks-texture" oninput="updateValue('masks-texture')">
+                <span class="value-display" id="masks-texture-value">0</span>
+            </div>
+        </div>
+
+        <!-- Torsos -->
+        <button class="button" onclick="toggleSliders(this)">Torsos</button>
+        <div class="slider-container">
+            <div class="slider-group">
+                <label class="slider-label">Piece</label>
+                <input type="range" min="0" max="100" class="slider" id="torsos-piece" oninput="updateValue('torsos-piece')">
+                <span class="value-display" id="torsos-piece-value">0</span>
+            </div>
+            <div class="slider-group">
+                <label class="slider-label">Texture</label>
+                <input type="range" min="0" max="100" class="slider" id="torsos-texture" oninput="updateValue('torsos-texture')">
+                <span class="value-display" id="torsos-texture-value">0</span>
+            </div>
+        </div>
+
+        <!-- Legs -->
+        <button class="button" onclick="toggleSliders(this)">Legs</button>
+        <div class="slider-container">
+            <div class="slider-group">
+                <label class="slider-label">Piece</label>
+                <input type="range" min="0" max="100" class="slider" id="legs-piece" oninput="updateValue('legs-piece')">
+                <span class="value-display" id="legs-piece-value">0</span>
+            </div>
+            <div class="slider-group">
+                <label class="slider-label">Texture</label>
+                <input type="range" min="0" max="100" class="slider" id="legs-texture" oninput="updateValue('legs-texture')">
+                <span class="value-display" id="legs-texture-value">0</span>
+            </div>
+        </div>
+
+        <!-- Bags and Parachutes -->
+        <button class="button" onclick="toggleSliders(this)">Bags and Parachutes</button>
+        <div class="slider-container">
+            <div class="slider-group">
+                <label class="slider-label">Piece</label>
+                <input type="range" min="0" max="100" class="slider" id="bags-piece" oninput="updateValue('bags-piece')">
+                <span class="value-display" id="bags-piece-value">0</span>
+            </div>
+            <div class="slider-group">
+                <label class="slider-label">Texture</label>
+                <input type="range" min="0" max="100" class="slider" id="bags-texture" oninput="updateValue('bags-texture')">
+                <span class="value-display" id="bags-texture-value">0</span>
+            </div>
+        </div>
+
+        <!-- Shoes -->
+        <button class="button" onclick="toggleSliders(this)">Shoes</button>
+        <div class="slider-container">
+            <div class="slider-group">
+                <label class="slider-label">Piece</label>
+                <input type="range" min="0" max="100" class="slider" id="shoes-piece" oninput="updateValue('shoes-piece')">
+                <span class="value-display" id="shoes-piece-value">0</span>
+            </div>
+            <div class="slider-group">
+                <label class="slider-label">Texture</label>
+                <input type="range" min="0" max="100" class="slider" id="shoes-texture" oninput="updateValue('shoes-texture')">
+                <span class="value-display" id="shoes-texture-value">0</span>
+            </div>
+        </div>
+
+        <!-- Accessories -->
+        <button class="button" onclick="toggleSliders(this)">Accessories</button>
+        <div class="slider-container">
+            <div class="slider-group">
+                <label class="slider-label">Piece</label>
+                <input type="range" min="0" max="100" class="slider" id="accessories-piece" oninput="updateValue('accessories-piece')">
+                <span class="value-display" id="accessories-piece-value">0</span>
+            </div>
+            <div class="slider-group">
+                <label class="slider-label">Texture</label>
+                <input type="range" min="0" max="100" class="slider" id="accessories-texture" oninput="updateValue('accessories-texture')">
+                <span class="value-display" id="accessories-texture-value">0</span>
+            </div>
+        </div>
+
+        <!-- Undershirts -->
+        <button class="button" onclick="toggleSliders(this)">Undershirts</button>
+        <div class="slider-container">
+            <div class="slider-group">
+                <label class="slider-label">Piece</label>
+                <input type="range" min="0" max="100" class="slider" id="undershirts-piece" oninput="updateValue('undershirts-piece')">
+                <span class="value-display" id="undershirts-piece-value">0</span>
+            </div>
+            <div class="slider-group">
+                <label class="slider-label">Texture</label>
+                <input type="range" min="0" max="100" class="slider" id="undershirts-texture" oninput="updateValue('undershirts-texture')">
+                <span class="value-display" id="undershirts-texture-value">0</span>
+            </div>
+        </div>
+
+        <!-- Body Armors -->
+        <button class="button" onclick="toggleSliders(this)">Body Armors</button>
+        <div class="slider-container">
+            <div class="slider-group">
+                <label class="slider-label">Piece</label>
+                <input type="range" min="0" max="100" class="slider" id="body-armor-piece" oninput="updateValue('body-armor-piece')">
+                <span class="value-display" id="body-armor-piece-value">0</span>
+            </div>
+            <div class="slider-group">
+                <label class="slider-label">Texture</label>
+                <input type="range" min="0" max="100" class="slider" id="body-armor-texture" oninput="updateValue('body-armor-texture')">
+                <span class="value-display" id="body-armor-texture-value">0</span>
+            </div>
+        </div>
+
+        <!-- Shirts and Jackets -->
+        <button class="button" onclick="toggleSliders(this)">Shirts and Jackets</button>
+        <div class="slider-container">
+            <div class="slider-group">
+                <label class="slider-label">Piece</label>
+                <input type="range" min="0" max="100" class="slider" id="shirts-piece" oninput="updateValue('shirts-piece')">
+                <span class="value-display" id="shirts-piece-value">0</span>
+            </div>
+            <div class="slider-group">
+                <label class="slider-label">Texture</label>
+                <input type="range" min="0" max="100" class="slider" id="shirts-texture" oninput="updateValue('shirts-texture')">
+                <span class="value-display" id="shirts-texture-value">0</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSliders(button) {
+            const container = button.nextElementSibling;
+            container.style.display = container.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function updateValue(id) {
+            document.getElementById(id + '-value').textContent = document.getElementById(id).value;
+            let data = collectSliderData();
+            mp.trigger("CEF:CLIENT:updateClothes", data);
+        }
+
+        function editItem() {
+            alert("Edit mode activated. You can now adjust the clothing items.");
+        }
+
+        function selectCharacter() {
+            const characterValue = document.getElementById('character-select').value;
+            alert("Character " + characterValue + " selected.");
+        }
+
+        function buyItem() {
+            alert("Purchase successful!");
+        }
+
+        function exitMenu() {
+            mp.trigger("CEF:CLIENT:closeClothesScreen");
+        }
+        function collectSliderData() {
+        const data = {
+        head: {
+            drawable: document.getElementById("head-piece").value,
+            texture: document.getElementById("head-texture").value,
+        },
+        masks: {
+            drawable: document.getElementById("masks-piece").value,
+            texture: document.getElementById("masks-texture").value,
+        },
+        torsos: {
+            drawable: document.getElementById("torsos-piece").value,
+            texture: document.getElementById("torsos-texture").value,
+        },
+        legs: {
+            drawable: document.getElementById("legs-piece").value,
+            texture: document.getElementById("legs-texture").value,
+        },
+        bags: {
+            drawable: document.getElementById("bags-piece").value,
+            texture: document.getElementById("bags-texture").value,
+        },
+        shoes: {
+            drawable: document.getElementById("shoes-piece").value,
+            texture: document.getElementById("shoes-texture").value,
+        },
+        accessories: {
+            drawable: document.getElementById("accessories-piece").value,
+            texture: document.getElementById("accessories-texture").value,
+        },
+        undershirts: {
+            drawable: document.getElementById("undershirts-piece").value,
+            texture: document.getElementById("undershirts-texture").value,
+        },
+        bodyArmor: {
+            drawable: document.getElementById("body-armor-piece").value,
+            texture: document.getElementById("body-armor-texture").value,
+        },
+        tops: {
+            drawable: document.getElementById("shirts-piece").value,
+            texture: document.getElementById("shirts-texture").value,
+        }
+    };
+
+    return JSON.stringify(data);
+    }
+    </script>
+</body>
+</html>
