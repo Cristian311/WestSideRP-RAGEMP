@@ -12,6 +12,7 @@ namespace ClientSide.Character
         {
             Events.Add("SERVER:CLIENT:showCharInterface", ShowCharInterface);
             Events.Add("CEF:CLIENT:showCharInterface", ShowCharInterface);
+
             Events.Add("SERVER:CLIENT:closeCharInterface", CloseCharInterface);
             Events.Add("CEF:CLIENT:closeCharInterface", CloseCharInterface);
 
@@ -32,8 +33,6 @@ namespace ClientSide.Character
             Cursor.Visible = false;
             
         }
-
-        
         private void DisplayAccountInfo(object[] args)
         {
 
@@ -49,7 +48,7 @@ namespace ClientSide.Character
             string CharacterName = args[0].ToString();
             RAGE.Chat.Output(CharacterName);
             Events.CallRemote("CLIENT:SERVER:CharSelected", CharacterName);
-            Events.CallRemote("CLIENT:SERVER:CharacterVerifications");
+            Events.CallRemote("CLIENT:SERVER:CheckIfCharExistsForCustomizeScreen");
         }
     }
 }

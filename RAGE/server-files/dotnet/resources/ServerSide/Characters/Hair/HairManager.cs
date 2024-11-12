@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ServerSide.Characters.HairData
+namespace ServerSide.Hair
 {
     internal class HairManager : Script
     {

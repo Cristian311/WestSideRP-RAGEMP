@@ -545,7 +545,7 @@
         const jsonString = JSON.stringify(characterData);
         console.log(jsonString);
         mp.trigger("CEF:CLIENT:updateCharacter", jsonString);
-        mp.trigger("CEF:CLIENT:closeCustomizeCharScreen");
+        mp.trigger("CEF:CLIENT:closeCustomizeCharScreen", jsonString);
     }
 
     showPage(currentPage); // Initial page load

@@ -1,78 +1,101 @@
 ﻿using GTANetworkAPI;
-using MySql.Data.MySqlClient;
 using ServerSide.DB;
 using ServerSide.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Newtonsoft.Json;
-//using System.Text.Json;
 using ServerSide.Accounts;
-using System.Reflection;
-using Org.BouncyCastle.Asn1.X509;
-using System.Text.Json;
-using System.Security.Principal;
+using ServerSide.Hair;
+using GTANetworkMethods;
+using Player = GTANetworkAPI.Player;
 
 namespace ServerSide.Characters
 {
     internal class CharacterManager : Script
     {
         private static int cont = 0;
-        private static Dictionary<Player, CharacterData> playerData = new Dictionary<Player, CharacterData>();
+        
+        //PAIRS FOR PLAYER AND THEIR DATA
+        private static Dictionary<Player, CharacterData> playerData = new Dictionary<Player, CharacterData>(); //this should be <Character, CharacterData>, needs fixed
+        private static Dictionary<Character, HairData> characterHairData = new Dictionary<Character, HairData>();
+
+        //player->character and character->account links
         public static Dictionary<Player, Character> PlayerCharacterPair = new Dictionary<Player, Character>();
-        public static Dictionary<Character, IAccount> CharacterAccountPair = new Dictionary<Character, IAccount>();
+        public static Dictionary<Character, Account> CharacterAccountPair = new Dictionary<Character, Account>();
+        //public static Dictionary<Character, IAccount> CharacterAccountPair = new Dictionary<Character, IAccount>();
 
         [RemoteEvent("CLIENT:SERVER:CreateCharacter")]
         private void CreateCharacter(Player player, string firstname, string lastname, string selectedgender)
         {
-            CharacterDbManager dbManager = new CharacterDbManager();
+            //prepare vars
             string tempname = firstname + ' ' + lastname;
-            Character character = new Character(AccountManager.PlayerAccountPairs[player], tempname, 20, 0);
-            NAPI.Util.ConsoleOutput(tempname + ' ' + selectedgender);
+            Character character = new Character(AccountManager.PlayerAccountPairs[player], tempname, 20, 5000);
+            character.gender = getGender(selectedgender);
+            character.getCharacterInfo();//debug
+            //insert char in database
+            CharacterDbManager dbManager = new CharacterDbManager();
             dbManager.CreateCharacter(character);
         }
-        [RemoteEvent("CLIENT:SERVER:ClosedCreateCharScreen")]
+        [RemoteEvent("CLIENT:SERVER:ClosedCreateCharScreen")] // meaning character interface needs to appear
         private void onCloseCreateCharScreen(Player player)
         {
+            var account = AccountManager.PlayerAccountPairs[player];
+            string username = account.Name;
+
             CharacterDbManager characterDb = new CharacterDbManager();
-            List<ICharacter> characters = characterDb.getCharacters(AccountManager.PlayerAccountPairs[player]);
-            string username = AccountManager.PlayerAccountPairs[player].Name;
+            List<ICharacter> characters = characterDb.getCharacters(account);
+
             CharacterManager cm = new CharacterManager();
             cm.getNamesAndMoneyForCEF(characters, cm.getRequiredCount(characters), out string[] names, out int[] money);
-            string namesJSON = System.Text.Json.JsonSerializer.Serialize(names);
-            string moneyJSON = System.Text.Json.JsonSerializer.Serialize(money);
+
+            string namesJSON = NAPI.Util.ToJson(names);
+            string moneyJSON = NAPI.Util.ToJson(money);
             
+            //display character interface with new character data
             player.TriggerEvent("SERVER:CLIENT:showCharInterface");
             player.TriggerEvent("SERVER:CLIENT:displayAccountInfo", username, namesJSON, moneyJSON); 
         }
         [RemoteEvent("CLIENT:SERVER:CharSelected")]
         private void onCharSelected(Player player, string charName)
         {
+            Character character = AccountManager.PlayerAccountPairs[player].currentCharacter;
+            Account account = AccountManager.PlayerAccountPairs[player];
+
             CharacterDbManager characterDbManager = new CharacterDbManager();
-            AccountManager.PlayerAccountPairs[player].currentCharacter = characterDbManager.getCharacter(AccountManager.PlayerAccountPairs[player], charName);
+            character = characterDbManager.getCharacter(account, charName);
             player.SendChatMessage(charName);
-            PlayerCharacterPair[player] = AccountManager.PlayerAccountPairs[player].currentCharacter;
+            PlayerCharacterPair[player] = character;
+            //!!!!!!! UPDATE PLAYER CHAR
+            var data = Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterData>(character.CharacterFaceDetailsJSON);
+            UpdatePlayerFaceFeatures(player, data);
+            
         }
-        [RemoteEvent("CLIENT:SERVER:CharacterVerifications")]
+        [RemoteEvent("CLIENT:SERVER:CheckIfCharExistsForCustomizeScreen")] // this checks if the character is created or not, if it's not created it will show the cusyomize character interface
         private void CharVerifications(Player player)
         {
+            
             if (PlayerCharacterPair[player].isCreated == false)
                 player.TriggerEvent("SERVER:CLIENT:showCustomizeCharScreen");
-            PlayerCharacterPair[player].getCharacterInfo();
+
+            PlayerCharacterPair[player].getCharacterInfo();//debug
         }
+
         [RemoteEvent("CLIENT:SERVER:ClosedCustomizeCharScreen")]
-        private void onClosedCustomizeCharScreen(Player player)
+        private void ClosedCustomizeCharScreen(Player player, string faceFeaturesJSON)
         {
-            if (PlayerCharacterPair[player].isCreated == false)
+            Character character = PlayerCharacterPair[player];
+            if (character.isCreated == false) //show the hair screen if it's not created for first time hairstyle modeling
             {
-
-                PlayerCharacterPair[player].isCreated = true;
+                character.isCreated = true;
                 player.TriggerEvent("SERVER:CLIENT:showHairScreen");
-                PlayerCharacterPair[player].getCharacterInfo();
-
-                CharacterDbManager cm = new CharacterDbManager();
-                cm.UpdateCharacter(PlayerCharacterPair[player]);
+                character.getCharacterInfo(); // debug
             }
+            character.CharacterFaceDetailsJSON = faceFeaturesJSON;
+
+            //update db
+            CharacterDbManager cm = new CharacterDbManager();
+            cm.UpdateCharacter(character);
+            cm.UpdateCharacterFaceData(character);
         }
         [RemoteEvent("CLIENT:SERVER:CharCustomiseUpdate")]
         private void onCharCustomiseUpdate(Player player, string json)
@@ -84,32 +107,36 @@ namespace ServerSide.Characters
                 playerData.Add(player, data);
             try
             {
-                NAPI.Util.ConsoleOutput(cont++ + json + '\n');
-                //playerData.PrintProperties();
-
-                HeadBlend headBlend = getHeadBlend(playerData[player]);
-                Decoration[] decoration = new Decoration[10];
-                //player.SetClothes
-                Dictionary<int, HeadOverlay> headOverlays = new Dictionary<int, HeadOverlay>();
-                HeadOverlay head = new HeadOverlay();
-                var eyeColor = byte.Parse(playerData[player].Eye.Color);
-                player.SetCustomization(true, headBlend, eyeColor, 0, 0, faceFeatures(playerData[player]), headOverlays, decoration);
-                var features = faceFeatures(playerData[player]);
-                for (int i = 0; i < 20; i++)
-                {
-                    
-                   
-                    var feature = features[i] * 0.01;
-                    player.SetFaceFeature(i, (float)feature);
-                    //NAPI.Util.ConsoleOutput($"getfacefeature[{i}]={player.GetFaceFeature(i)}");
-                    //NAPI.Util.ConsoleOutput($"feature[{i}]={feature}");
-                    //NAPI.Util.ConsoleOutput($"featurearray[{i}]={features[i]}");
-                }
+                UpdatePlayerFaceFeatures(player, data);
             }
             catch(Exception e) 
             {
                 NAPI.Util.ConsoleOutput("onCharCustomiseUpdate ERROR: " + e.Message + "\n" + e.StackTrace);
             }
+        }
+        private void UpdatePlayerFaceFeatures(Player player, CharacterData data)
+        {
+            //placeholder empty vars
+            Decoration[] decoration = new Decoration[10];
+            Dictionary<int, HeadOverlay> headOverlays = new Dictionary<int, HeadOverlay>();
+            HeadOverlay head = new HeadOverlay();
+
+            //actual vars
+            HeadBlend headBlend = getHeadBlend(data);
+            var eyeColor = byte.Parse(data.Eye.Color);
+            var features = faceFeatures(data);
+
+            player.SetCustomization(true, headBlend, eyeColor, 0, 0, features, headOverlays, decoration);
+            
+            for (int i = 0; i < 20; i++)
+            {
+                var feature = features[i] * 0.01;
+                player.SetFaceFeature(i, (float)feature);
+            }
+        }
+        private bool getGender(string gender)
+        {
+             return gender == "male" ? true : false;
         }
         private float[] faceFeatures(CharacterData charData)
         {

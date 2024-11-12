@@ -18,7 +18,9 @@ namespace ServerSide.Characters
         public int Money { get; }
         public List<ICharacter> Characters { get; }
         public Character currentCharacter { get; }
+        public bool gender { get; set; }
         public bool isCreated { get; set; } = false;
+        public string CharacterFaceDetailsJSON { get; set; }
         public Character(IAccount account, string name, int age, int money)
         {
             Account = account;
