@@ -30,6 +30,7 @@ namespace ServerSide.Characters
             //prepare vars
             string tempname = firstname + ' ' + lastname;
             Character character = new Character(AccountManager.PlayerAccountPairs[player], tempname, 20, 5000);
+            NAPI.Util.ConsoleOutput(selectedgender);
             character.gender = getGender(selectedgender);
             character.getCharacterInfo();//debug
             //insert char in database
@@ -65,10 +66,19 @@ namespace ServerSide.Characters
             character = characterDbManager.getCharacter(account, charName);
             player.SendChatMessage(charName);
             PlayerCharacterPair[player] = character;
-            //!!!!!!! UPDATE PLAYER CHAR
-            var data = Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterData>(character.CharacterFaceDetailsJSON);
-            UpdatePlayerFaceFeatures(player, data);
-            
+            //!!!!!!! UPDATE PLAYER CHARACTER DETAILS AFTER SELECTED
+
+            if (character.isCreated == true)
+            {
+                var data = Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterData>(character.CharacterFaceDetailsJSON);
+                UpdatePlayerFaceFeatures(player, data, character.gender);
+                //update hair
+                if (character.HairJSON != null)
+                {
+                    var hairData = Newtonsoft.Json.JsonConvert.DeserializeObject<HairData>(character.HairJSON);
+                    HairManager.updateHair(player, hairData);
+                }
+            }
         }
         [RemoteEvent("CLIENT:SERVER:CheckIfCharExistsForCustomizeScreen")] // this checks if the character is created or not, if it's not created it will show the cusyomize character interface
         private void CharVerifications(Player player)
@@ -97,24 +107,22 @@ namespace ServerSide.Characters
             cm.UpdateCharacter(character);
             cm.UpdateCharacterFaceData(character);
         }
+        
         [RemoteEvent("CLIENT:SERVER:CharCustomiseUpdate")]
         private void onCharCustomiseUpdate(Player player, string json)
         {
             var data = Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterData>(json); //all character data vars are string
-            if (playerData.ContainsKey(player))
-                playerData[player] = data;
-            else
-                playerData.Add(player, data);
+            Character character = PlayerCharacterPair[player];
             try
             {
-                UpdatePlayerFaceFeatures(player, data);
+                UpdatePlayerFaceFeatures(player, data, character.gender);
             }
             catch(Exception e) 
             {
                 NAPI.Util.ConsoleOutput("onCharCustomiseUpdate ERROR: " + e.Message + "\n" + e.StackTrace);
             }
         }
-        private void UpdatePlayerFaceFeatures(Player player, CharacterData data)
+        private void UpdatePlayerFaceFeatures(Player player, CharacterData data, bool gender)
         {
             //placeholder empty vars
             Decoration[] decoration = new Decoration[10];
@@ -125,8 +133,8 @@ namespace ServerSide.Characters
             HeadBlend headBlend = getHeadBlend(data);
             var eyeColor = byte.Parse(data.Eye.Color);
             var features = faceFeatures(data);
-
-            player.SetCustomization(true, headBlend, eyeColor, 0, 0, features, headOverlays, decoration);
+            NAPI.Util.ConsoleOutput(gender.ToString());
+            player.SetCustomization(gender, headBlend, eyeColor, 0, 0, features, headOverlays, decoration);
             
             for (int i = 0; i < 20; i++)
             {
@@ -136,7 +144,10 @@ namespace ServerSide.Characters
         }
         private bool getGender(string gender)
         {
-             return gender == "male" ? true : false;
+            if (gender.Equals("male"))
+                return true;
+            else
+                return false;
         }
         private float[] faceFeatures(CharacterData charData)
         {

@@ -13,5 +13,6 @@ namespace ServerSide.Interfaces
         int Money { get; }
         public bool isCreated { get; set; }
         string CharacterFaceDetailsJSON { get; set; }
+        string HairJSON { get; set; }
     }
 }

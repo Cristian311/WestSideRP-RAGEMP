@@ -32,6 +32,9 @@ namespace ClientSide.Character
             cefBrowser = null;
             Cursor.Visible = false;
             RAGE.Chat.Output("closed");
+
+            string json = args[0].ToString();
+            Events.CallRemote("CLIENT:SERVER:UpdateHair", json);
         }
     }
 }

@@ -1,7 +1,11 @@
 ﻿using GTANetworkAPI;
+using GTANetworkMethods;
+using ServerSide.Characters;
+using ServerSide.DB;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Player = GTANetworkAPI.Player;
 
 namespace ServerSide.Hair
 {
@@ -17,23 +21,38 @@ namespace ServerSide.Hair
                 playerHair[player] = hairData;
             else
                 playerHair.Add(player, hairData);
+            //set open chest
             player.SetClothes(3, 15, 0);
             player.SetClothes(11, 15, 0);
             player.SetClothes(8, 15, 0);
-            player.SetClothes(2, byte.Parse(hairData.Hair), 0);
+            //set hair
             try
             {
-                var facialhair = CreateHeadOverlay(byte.Parse(hairData.FacialHair.Value), byte.Parse(hairData.FacialHair.Color), byte.Parse(hairData.FacialHair.SecondaryColor), float.Parse(hairData.FacialHair.Opacity));
-                var eyebrows = CreateHeadOverlay(byte.Parse(hairData.Eyebrows.Value), byte.Parse(hairData.Eyebrows.Color), byte.Parse(hairData.Eyebrows.SecondaryColor), float.Parse(hairData.Eyebrows.Opacity));
-                var bodyhair = CreateHeadOverlay(byte.Parse(hairData.BodyHair.Value), byte.Parse(hairData.BodyHair.Color), byte.Parse(hairData.BodyHair.SecondaryColor), float.Parse(hairData.BodyHair.Opacity));
-                player.SetHeadOverlay(1, facialhair);
-                player.SetHeadOverlay(2, eyebrows);
-                player.SetHeadOverlay(10, bodyhair);
+                updateHair(player, hairData);
             }
             catch (Exception e)
             {
                 NAPI.Util.ConsoleOutput("HairCustomizeUpdate ERROR: " + e.Message + "\n" + e.StackTrace);
             }
+        }
+        [RemoteEvent("CLIENT:SERVER:UpdateHair")]
+        private void UpdateHairEvent(Player player, string json)
+        {
+            Character character = CharacterManager.PlayerCharacterPair[player];
+            character.HairJSON = json;
+
+            CharacterDbManager cm = new CharacterDbManager();
+            cm.UpdateCharacterHair(character);
+        }
+        public static void updateHair(Player player, HairData hairData)
+        {
+            var facialhair = CreateHeadOverlay(byte.Parse(hairData.FacialHair.Value), byte.Parse(hairData.FacialHair.Color), byte.Parse(hairData.FacialHair.SecondaryColor), float.Parse(hairData.FacialHair.Opacity));
+            var eyebrows = CreateHeadOverlay(byte.Parse(hairData.Eyebrows.Value), byte.Parse(hairData.Eyebrows.Color), byte.Parse(hairData.Eyebrows.SecondaryColor), float.Parse(hairData.Eyebrows.Opacity));
+            var bodyhair = CreateHeadOverlay(byte.Parse(hairData.BodyHair.Value), byte.Parse(hairData.BodyHair.Color), byte.Parse(hairData.BodyHair.SecondaryColor), float.Parse(hairData.BodyHair.Opacity));
+            player.SetHeadOverlay(1, facialhair);
+            player.SetHeadOverlay(2, eyebrows);
+            player.SetHeadOverlay(10, bodyhair);
+            player.SetClothes(2, byte.Parse(hairData.Hair), 0);
         }
         private static HeadOverlay CreateHeadOverlay(Byte index, Byte color, Byte secondaryColor, float opacity)
         {
