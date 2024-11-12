@@ -14,12 +14,14 @@ namespace ServerSide.Commands
         [Command("hair")]
         private void hairCommand(Player player)
         {
-            player.TriggerEvent("SERVER:CLIENT:showHairScreen");
+            Character character = CharacterManager.PlayerCharacterPair[player];
+            player.TriggerEvent("SERVER:CLIENT:showHairScreen", character.HairJSON);
         }
         [Command("facefeatures")]
         private void facefeaturesCommand(Player player)
         {
-            player.TriggerEvent("SERVER:CLIENT:showCustomizeCharScreen");
+            Character character = CharacterManager.PlayerCharacterPair[player];
+            player.TriggerEvent("SERVER:CLIENT:showCustomizeCharScreen", character.CharacterFaceDetailsJSON);
         }
         [Command("changechar")]
         private void changecharCommand(Player player)

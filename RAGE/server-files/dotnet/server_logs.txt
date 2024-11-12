@@ -1555375,4 +1555375,301 @@ Character updated successfully.
 {"hair":"32","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"14","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
 {"hair":"32","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"15","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
 {"hair":"32","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"14","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
-{"hair":"32","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"13","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacit
+{"hair":"32","facialHair":{"value":"8","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"13","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacitInitializing Bootstrapper.dll (1.1.0.0)..
+-> SERVER STARTED AT 12.11.2024 18:55:38
+Loaded 667 entries from vehicleData.json
+Loading resources..
+-> Starting ServerSide resource..
+ServerSide: loading scripts.. found 1 script(s)
+ServerSide: instantiating ServerSide.Server.Resource..
+ServerSide: instantiating ServerSide.Commands.AdminCommands..
+ServerSide: instantiating ServerSide.Commands.ChatMessage..
+ServerSide: instantiating ServerSide.Commands.CustomizeCommands..
+ServerSide: instantiating ServerSide.Commands.UtilCommands..
+ServerSide: instantiating ServerSide.Hair.HairManager..
+ServerSide: instantiating ServerSide.Characters.CharacterManager..
+ServerSide: instantiating ServerSide.AuthServer.LoginServer..
+ServerSide: instantiating ServerSide.AuthServer.RegisterServer..
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loaded 3 server events(s)
+ServerSide: loading commands.. found 2 command(s)
+ServerSide: loading commands.. found 3 command(s)
+ServerSide: loading commands.. found 3 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loaded 10 commands(s)
+ServerSide: loading remote events.. found 2 remote event(s)
+ServerSide: loading remote events.. found 6 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loaded 10 remote event(s)
+Database: Connection successful!
+resursa inceppe2
+Connection successful!
+ID: 1, Name: aaa
+ID: 2, Name: aa
+ID: 3, Name: 
+ID: 4, Name: bbb
+ID: 5, Name: sss
+ID: 6, Name: aaad
+ID: 7, Name: hhh
+ID: 8, Name: Cristi
+ID: 9, Name: ggg
+ID: 10, Name: mario
+ID: 11, Name: HATZ
+ID: 12, Name: tt
+-> Resource ServerSide started!
+Started! Waiting for connections..
+Database: Connection successful!
+User authenticated successfully. ID: 1
+aaa s-a logat.
+Database: Connection successful!
+Database: Connection successful!
+{"hair":"10","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+True
+Account: aaa ID: 52
+Name: Hatz Gion Age: 20 Money: 5000, isCreated: True GenderTrue
+{"hair":"19","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"24","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"28","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"30","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"29","facialHair":{"value":"0","color":"0","secondarInitializing Bootstrapper.dll (1.1.0.0)..
+-> SERVER STARTED AT 12.11.2024 19:08:23
+Loaded 667 entries from vehicleData.json
+Loading resources..
+-> Starting ServerSide resource..
+ServerSide: loading scripts.. found 1 script(s)
+ServerSide: instantiating ServerSide.Server.Resource..
+ServerSide: instantiating ServerSide.Commands.AdminCommands..
+ServerSide: instantiating ServerSide.Commands.ChatMessage..
+ServerSide: instantiating ServerSide.Commands.CustomizeCommands..
+ServerSide: instantiating ServerSide.Commands.UtilCommands..
+ServerSide: instantiating ServerSide.Hair.HairManager..
+ServerSide: instantiating ServerSide.Characters.CharacterManager..
+ServerSide: instantiating ServerSide.AuthServer.LoginServer..
+ServerSide: instantiating ServerSide.AuthServer.RegisterServer..
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loaded 3 server events(s)
+ServerSide: loading commands.. found 2 command(s)
+ServerSide: loading commands.. found 3 command(s)
+ServerSide: loading commands.. found 3 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loaded 10 commands(s)
+ServerSide: loading remote events.. found 2 remote event(s)
+ServerSide: loading remote events.. found 6 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loaded 10 remote event(s)
+Database: Connection successful!
+resursa inceppe2
+Connection successful!
+ID: 1, Name: aaa
+ID: 2, Name: aa
+ID: 3, Name: 
+ID: 4, Name: bbb
+ID: 5, Name: sss
+ID: 6, Name: aaad
+ID: 7, Name: hhh
+ID: 8, Name: Cristi
+ID: 9, Name: ggg
+ID: 10, Name: mario
+ID: 11, Name: HATZ
+ID: 12, Name: tt
+-> Resource ServerSide started!
+Started! Waiting for connections..
+Database: Connection successful!
+User authenticated successfully. ID: 1
+aaa s-a logat.
+Database: Connection successful!
+Database: Connection successful!
+{"hair":"0","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+True
+Account: aaa ID: 52
+Name: Hatz Gion Age: 20 Money: 5000, isCreated: True GenderTrue
+{"hair":"6","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"10","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"13","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"18","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"19","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"21","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"22","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"23","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"25","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"25","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+Database: Connection successful!
+Database: Connection successful!
+Character updated successfully.
+{"hair":"0","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+Database: Connection successful!
+Database: Connection successful!
+Character updated successfully.
+{"hair":"18","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"26","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"27","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"29","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"34","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"43","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"45","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity"Initializing Bootstrapper.dll (1.1.0.0)..
+-> SERVER STARTED AT 12.11.2024 20:01:12
+Loaded 667 entries from vehicleData.json
+Loading resources..
+-> Starting ServerSide resource..
+ServerSide: loading scripts.. found 1 script(s)
+ServerSide: instantiating ServerSide.Server.Resource..
+ServerSide: instantiating ServerSide.Commands.AdminCommands..
+ServerSide: instantiating ServerSide.Commands.ChatMessage..
+ServerSide: instantiating ServerSide.Commands.CustomizeCommands..
+ServerSide: instantiating ServerSide.Commands.UtilCommands..
+ServerSide: instantiating ServerSide.Hair.HairManager..
+ServerSide: instantiating ServerSide.Characters.CharacterManager..
+ServerSide: instantiating ServerSide.AuthServer.LoginServer..
+ServerSide: instantiating ServerSide.AuthServer.RegisterServer..
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loaded 3 server events(s)
+ServerSide: loading commands.. found 2 command(s)
+ServerSide: loading commands.. found 3 command(s)
+ServerSide: loading commands.. found 3 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loaded 10 commands(s)
+ServerSide: loading remote events.. found 2 remote event(s)
+ServerSide: loading remote events.. found 6 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loaded 10 remote event(s)
+Database: Connection successful!
+resursa inceppe2
+Connection successful!
+ID: 1, Name: aaa
+ID: 2, Name: aa
+ID: 3, Name: 
+ID: 4, Name: bbb
+ID: 5, Name: sss
+ID: 6, Name: aaad
+ID: 7, Name: hhh
+ID: 8, Name: Cristi
+ID: 9, Name: ggg
+ID: 10, Name: mario
+ID: 11, Name: HATZ
+ID: 12, Name: tt
+-> Resource ServerSide started!
+Started! Waiting for connections..
+Database: Connection successful!
+User authenticated successfully. ID: 1
+aaa s-a logat.
+Database: Connection successful!
+Database: Connection successful!
+{"hair":"0","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+True
+Account: aaa ID: 52
+Name: Hatz Gion Age: 20 Money: 5000, isCreated: True GenderTrue
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True
+Database: Connection successful!
+Database: Connection successful!
+Executing Query: UPDATE `characters` SET AccountId = 1, Name = 'Hatz Gion', Age = 20, Money = 5000 WHERE Id = 52
+Character updated successfully.
+Database: Connection successful!
+Database: Connection successful!
+Character updated successfully.
+{"hair":"17","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"17","facialHair":{"value":"10","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"17","facialHair":{"value":"10","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"14","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"17","facialHair":{"value":"10","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"14","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","Initializing Bootstrapper.dll (1.1.0.0)..
+-> SERVER STARTED AT 12.11.2024 20:05:41
+Loaded 667 entries from vehicleData.json
+Loading resources..
+-> Starting ServerSide resource..
+ServerSide: loading scripts.. found 1 script(s)
+ServerSide: instantiating ServerSide.Server.Resource..
+ServerSide: instantiating ServerSide.Commands.AdminCommands..
+ServerSide: instantiating ServerSide.Commands.ChatMessage..
+ServerSide: instantiating ServerSide.Commands.CustomizeCommands..
+ServerSide: instantiating ServerSide.Commands.UtilCommands..
+ServerSide: instantiating ServerSide.Hair.HairManager..
+ServerSide: instantiating ServerSide.Characters.CharacterManager..
+ServerSide: instantiating ServerSide.AuthServer.LoginServer..
+ServerSide: instantiating ServerSide.AuthServer.RegisterServer..
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loading server events.. found 1 server event(s)
+ServerSide: loaded 3 server events(s)
+ServerSide: loading commands.. found 2 command(s)
+ServerSide: loading commands.. found 3 command(s)
+ServerSide: loading commands.. found 3 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loading commands.. found 1 command(s)
+ServerSide: loaded 10 commands(s)
+ServerSide: loading remote events.. found 2 remote event(s)
+ServerSide: loading remote events.. found 6 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loading remote events.. found 1 remote event(s)
+ServerSide: loaded 10 remote event(s)
+Database: Connection successful!
+resursa inceppe2
+Connection successful!
+ID: 1, Name: aaa
+ID: 2, Name: aa
+ID: 3, Name: 
+ID: 4, Name: bbb
+ID: 5, Name: sss
+ID: 6, Name: aaad
+ID: 7, Name: hhh
+ID: 8, Name: Cristi
+ID: 9, Name: ggg
+ID: 10, Name: mario
+ID: 11, Name: HATZ
+ID: 12, Name: tt
+-> Resource ServerSide started!
+Started! Waiting for connections..
+Database: Connection successful!
+User authenticated successfully. ID: 1
+aaa s-a logat.
+Database: Connection successful!
+Database: Connection successful!
+{"hair":"0","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+True
+Account: aaa ID: 52
+Name: Hatz Gion Age: 20 Money: 5000, isCreated: True GenderTrue
+{"hair":"26","facialHair":{"value":"0","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"26","facialHair":{"value":"10","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"26","facialHair":{"value":"10","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+Database: Connection successful!
+Database: Connection successful!
+Character updated successfully.
+{"hair":"26","facialHair":{"value":"10","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"5","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"}}
+{"hair":"26","facialHair":{"value":"10","color":"0","secondaryColor":"0","opacity":1},"eyebrows":{"value":"0","color":"0","secondaryColor":"0","opacity":"1"},"bodyHair":{"value":"6","color":"0","secondaryColor":"0","opacity":"1"},"hairTattoo":{"value":"0","color

@@ -89,11 +89,11 @@ namespace ServerSide.Characters
         [RemoteEvent("CLIENT:SERVER:CheckIfCharExistsForCustomizeScreen")] // this checks if the character is created or not, if it's not created it will show the cusyomize character interface
         private void CharVerifications(Player player)
         {
-            
-            if (PlayerCharacterPair[player].isCreated == false)
+            Character character = PlayerCharacterPair[player];
+            if (character.isCreated == false)
                 player.TriggerEvent("SERVER:CLIENT:showCustomizeCharScreen");
 
-            PlayerCharacterPair[player].getCharacterInfo();//debug
+            character.getCharacterInfo();//debug
         }
 
         [RemoteEvent("CLIENT:SERVER:ClosedCustomizeCharScreen")]
@@ -103,7 +103,7 @@ namespace ServerSide.Characters
             if (character.isCreated == false) //show the hair screen if it's not created for first time hairstyle modeling
             {
                 character.isCreated = true;
-                player.TriggerEvent("SERVER:CLIENT:showHairScreen");
+                player.TriggerEvent("SERVER:CLIENT:showHairScreen", character.HairJSON);
                 character.getCharacterInfo(); // debug
             }
             character.CharacterFaceDetailsJSON = faceFeaturesJSON;

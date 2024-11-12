@@ -547,6 +547,92 @@
         mp.trigger("CEF:CLIENT:updateCharacter", jsonString);
         mp.trigger("CEF:CLIENT:closeCustomizeCharScreen", jsonString);
     }
+    function updateCharacterDataFromJson(CharJSON) {
+        // Parse the JSON string into an object
+        const characterData = JSON.parse(CharJSON);
+
+        // Update each property in the HTML (both value and textContent)
+        document.getElementById('shapeFirst').value = characterData.shape.first;
+        document.getElementById('shapeFirstValue').textContent = characterData.shape.first;
+
+        document.getElementById('shapeSecond').value = characterData.shape.second;
+        document.getElementById('shapeSecondValue').textContent = characterData.shape.second;
+
+        document.getElementById('shapeMix').value = characterData.shape.mix;
+        document.getElementById('shapeMixValue').textContent = characterData.shape.mix;
+
+        document.getElementById('skinFirst').value = characterData.skin.first;
+        document.getElementById('skinFirstValue').textContent = characterData.skin.first;
+
+        document.getElementById('skinSecond').value = characterData.skin.second;
+        document.getElementById('skinSecondValue').textContent = characterData.skin.second;
+
+        document.getElementById('skinMix').value = characterData.skin.mix;
+        document.getElementById('skinMixValue').textContent = characterData.skin.mix;
+
+        document.getElementById('noseWidth').value = characterData.nose.width;
+        document.getElementById('noseWidthValue').textContent = characterData.nose.width;
+
+        document.getElementById('noseHeight').value = characterData.nose.height;
+        document.getElementById('noseHeighValue').textContent = characterData.nose.height;
+
+        document.getElementById('noseLength').value = characterData.nose.length;
+        document.getElementById('noseLengthValue').textContent = characterData.nose.length;
+
+        document.getElementById('noseBridge').value = characterData.nose.bridge;
+        document.getElementById('noseBridgeValue').textContent = characterData.nose.bridge;
+
+        document.getElementById('noseTip').value = characterData.nose.tip;
+        document.getElementById('noseTipValue').textContent = characterData.nose.tip;
+
+        document.getElementById('noseBridgeShift').value = characterData.nose.bridgeShift;
+        document.getElementById('noseBridgeShiftValue').textContent = characterData.nose.bridgeShift;
+
+        document.getElementById('browHeight').value = characterData.brow.height;
+        document.getElementById('browHeightValue').textContent = characterData.brow.height;
+
+        document.getElementById('browWidth').value = characterData.brow.width;
+        document.getElementById('browWidthValue').textContent = characterData.brow.width;
+
+        document.getElementById('cheeksHeight').value = characterData.cheeks.height;
+        document.getElementById('cheeksHeightValue').textContent = characterData.cheeks.height;
+
+        document.getElementById('cheeksWidth').value = characterData.cheeks.width;
+        document.getElementById('cheeksWidthValue').textContent = characterData.cheeks.width;
+
+        document.getElementById('cheeksCheeksWidth').value = characterData.cheeks.cheeksWidth;
+        document.getElementById('cheeksCheeksWidthValue').textContent = characterData.cheeks.cheeksWidth;
+
+        document.getElementById('jawWidth').value = characterData.jaw.width;
+        document.getElementById('jawWidthValue').textContent = characterData.jaw.width;
+
+        document.getElementById('chinLength').value = characterData.chin.length;
+        document.getElementById('chinLengthValue').textContent = characterData.chin.length;
+
+        document.getElementById('chinPosition').value = characterData.chin.position;
+        document.getElementById('chinPositionValue').textContent = characterData.chin.position;
+
+        document.getElementById('chinWidth').value = characterData.chin.width;
+        document.getElementById('chinWidthValue').textContent = characterData.chin.width;
+
+        document.getElementById('chinShape').value = characterData.chin.shape;
+        document.getElementById('chinShapeValue').textContent = characterData.chin.shape;
+
+        document.getElementById('neckWidth').value = characterData.neck.width;
+        document.getElementById('neckWidthValue').textContent = characterData.neck.width;
+
+        document.getElementById('skinColor').value = characterData.skinColor;
+        document.getElementById('skinColorValue').textContent = characterData.skinColor;
+
+        document.getElementById('eyeSize').value = characterData.eye.size;
+        document.getElementById('eyeSizeValue').textContent = characterData.eye.size;
+
+        document.getElementById('eyeColor').value = characterData.eye.color;
+        document.getElementById('eyeColorValue').textContent = characterData.eye.color;
+
+        document.getElementById('lips').value = characterData.lips;
+        document.getElementById('lipsValue').textContent = characterData.lips;
+    }
 
     showPage(currentPage); // Initial page load
 </script>

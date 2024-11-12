@@ -292,73 +292,125 @@
 
     const jsonString = JSON.stringify(hairData);
     mp.trigger("CEF:CLIENT:updateHair", jsonString);
-}
+    }
 
 
     function editHair() {
-        const hair = document.getElementById('hair').value;
+    const hair = document.getElementById('hair').value;
 
-const facialHair = document.getElementById('facialHair').value;
-const facialHairColor = document.getElementById('facialHairColor')?.value || 0;
-const facialHairSecondaryColor = document.getElementById('facialHairSecondaryColor')?.value || 0;
-const facialHairOpacity = document.getElementById('facialHairOpacity')?.value || 1;
+    const facialHair = document.getElementById('facialHair').value;
+    const facialHairColor = document.getElementById('facialHairColor')?.value || 0;
+    const facialHairSecondaryColor = document.getElementById('facialHairSecondaryColor')?.value || 0;
+    const facialHairOpacity = document.getElementById('facialHairOpacity')?.value || 1;
 
-const eyebrows = document.getElementById('eyebrows').value;
-const eyebrowsColor = document.getElementById('eyebrowsColor')?.value || 0;
-const eyebrowsSecondaryColor = document.getElementById('eyebrowsSecondaryColor')?.value || 0;
-const eyebrowsOpacity = document.getElementById('eyebrowsOpacity')?.value || 1;
+    const eyebrows = document.getElementById('eyebrows').value;
+    const eyebrowsColor = document.getElementById('eyebrowsColor')?.value || 0;
+    const eyebrowsSecondaryColor = document.getElementById('eyebrowsSecondaryColor')?.value || 0;
+    const eyebrowsOpacity = document.getElementById('eyebrowsOpacity')?.value || 1;
 
-const bodyHair = document.getElementById('bodyHair').value;
-const bodyHairColor = document.getElementById('bodyHairColor')?.value || 0;
-const bodyHairSecondaryColor = document.getElementById('bodyHairSecondaryColor')?.value || 0;
-const bodyHairOpacity = document.getElementById('bodyHairOpacity')?.value || 1;
+    const bodyHair = document.getElementById('bodyHair').value;
+    const bodyHairColor = document.getElementById('bodyHairColor')?.value || 0;
+    const bodyHairSecondaryColor = document.getElementById('bodyHairSecondaryColor')?.value || 0;
+    const bodyHairOpacity = document.getElementById('bodyHairOpacity')?.value || 1;
 
-const hairTattoo = document.getElementById('hairTattoo').value;
-const hairTattooColor = document.getElementById('hairTattooColor')?.value || 0;
-const hairTattooSecondaryColor = document.getElementById('hairTattooSecondaryColor')?.value || 0;
-const hairTattooOpacity = document.getElementById('hairTattooOpacity')?.value || 1;
+    const hairTattoo = document.getElementById('hairTattoo').value;
+    const hairTattooColor = document.getElementById('hairTattooColor')?.value || 0;
+    const hairTattooSecondaryColor = document.getElementById('hairTattooSecondaryColor')?.value || 0;
+    const hairTattooOpacity = document.getElementById('hairTattooOpacity')?.value || 1;
 
-// Update the displayed values
-document.getElementById('hairValue').textContent = hair;
-document.getElementById('facialHairValue').textContent = facialHair;
-document.getElementById('eyebrowsValue').textContent = eyebrows;
-document.getElementById('bodyHairValue').textContent = bodyHair;
-document.getElementById('hairTattooValue').textContent = hairTattoo;
+    // Update the displayed values
+    document.getElementById('hairValue').textContent = hair;
+    document.getElementById('facialHairValue').textContent = facialHair;
+    document.getElementById('eyebrowsValue').textContent = eyebrows;
+    document.getElementById('bodyHairValue').textContent = bodyHair;
+    document.getElementById('hairTattooValue').textContent = hairTattoo;
 
-// Create the hair data object with all attributes and colors
-const hairData = {
-    hair: hair,
-    facialHair: {
-        value: facialHair,
-        color: facialHairColor,
-        secondaryColor: facialHairSecondaryColor,
-        opacity: facialHairOpacity
-    },
-    eyebrows: {
-        value: eyebrows,
-        color: eyebrowsColor,
-        secondaryColor: eyebrowsSecondaryColor,
-        opacity: eyebrowsOpacity
-    },
-    bodyHair: {
-        value: bodyHair,
-        color: bodyHairColor,
-        secondaryColor: bodyHairSecondaryColor,
-        opacity: bodyHairOpacity
-    },
-    hairTattoo: {
-        value: hairTattoo,
-        color: hairTattooColor,
-        secondaryColor: hairTattooSecondaryColor,
-        opacity: hairTattooOpacity
-    }
-};
+    // Create the hair data object with all attributes and colors
+    const hairData = {
+        hair: hair,
+        facialHair: {
+            value: facialHair,
+            color: facialHairColor,
+            secondaryColor: facialHairSecondaryColor,
+            opacity: facialHairOpacity
+        },
+        eyebrows: {
+            value: eyebrows,
+            color: eyebrowsColor,
+            secondaryColor: eyebrowsSecondaryColor,
+            opacity: eyebrowsOpacity
+        },
+        bodyHair: {
+            value: bodyHair,
+            color: bodyHairColor,
+            secondaryColor: bodyHairSecondaryColor,
+            opacity: bodyHairOpacity
+        },
+        hairTattoo: {
+            value: hairTattoo,
+            color: hairTattooColor,
+            secondaryColor: hairTattooSecondaryColor,
+            opacity: hairTattooOpacity
+        }
+    };
 
-const jsonString = JSON.stringify(hairData);
-mp.trigger("CEF:CLIENT:updateHair", jsonString);
+    const jsonString = JSON.stringify(hairData);
+    mp.trigger("CEF:CLIENT:updateHair", jsonString);
         mp.trigger("CEF:CLIENT:stopHairScreen", jsonString);
     }
 
+    function updateHairDataFromJson(jsonString) {
+    // Parse the JSON string to convert it into an object
+    const hairData = JSON.parse(jsonString);
+
+    // Update text content for each attribute
+    document.getElementById('hairValue').textContent = hairData.hair;
+    document.getElementById('facialHairValue').textContent = hairData.facialHair.value;
+    document.getElementById('eyebrowsValue').textContent = hairData.eyebrows.value;
+    document.getElementById('bodyHairValue').textContent = hairData.bodyHair.value;
+    document.getElementById('hairTattooValue').textContent = hairData.hairTattoo.value;
+
+    // Additional updates for colors or other properties if needed
+    document.getElementById('facialHairColorValue').textContent = hairData.facialHair.color;
+    document.getElementById('facialHairSecondaryColorValue').textContent = hairData.facialHair.secondaryColor;
+    document.getElementById('facialHairOpacityValue').textContent = hairData.facialHair.opacity;
+
+    document.getElementById('eyebrowsColorValue').textContent = hairData.eyebrows.color;
+    document.getElementById('eyebrowsSecondaryColorValue').textContent = hairData.eyebrows.secondaryColor;
+    document.getElementById('eyebrowsOpacityValue').textContent = hairData.eyebrows.opacity;
+
+    document.getElementById('bodyHairColorValue').textContent = hairData.bodyHair.color;
+    document.getElementById('bodyHairSecondaryColorValue').textContent = hairData.bodyHair.secondaryColor;
+    document.getElementById('bodyHairOpacityValue').textContent = hairData.bodyHair.opacity;
+
+    document.getElementById('hairTattooColorValue').textContent = hairData.hairTattoo.color;
+    document.getElementById('hairTattooSecondaryColorValue').textContent = hairData.hairTattoo.secondaryColor;
+    document.getElementById('hairTattooOpacityValue').textContent = hairData.hairTattoo.opacity;
+
+     // Update value for each attribute
+     document.getElementById('hair').value = hairData.hair;
+    document.getElementById('facialHair').value = hairData.facialHair.value;
+    document.getElementById('eyebrows').value = hairData.eyebrows.value;
+    document.getElementById('bodyHair').value = hairData.bodyHair.value;
+    document.getElementById('hairTattoo').value = hairData.hairTattoo.value;
+
+    // Additional updates for colors or other properties if needed
+    document.getElementById('facialHairColor').value = hairData.facialHair.color;
+    document.getElementById('facialHairSecondaryColor').value = hairData.facialHair.secondaryColor;
+    document.getElementById('facialHairOpacity').value = hairData.facialHair.opacity;
+
+    document.getElementById('eyebrowsColor').value = hairData.eyebrows.color;
+    document.getElementById('eyebrowsSecondaryColor').value = hairData.eyebrows.secondaryColor;
+    document.getElementById('eyebrowsOpacity').value = hairData.eyebrows.opacity;
+
+    document.getElementById('bodyHairColor').value = hairData.bodyHair.color;
+    document.getElementById('bodyHairSecondaryColor').value = hairData.bodyHair.secondaryColor;
+    document.getElementById('bodyHairOpacity').value = hairData.bodyHair.opacity;
+
+    document.getElementById('hairTattooColor').value = hairData.hairTattoo.color;
+    document.getElementById('hairTattooSecondaryColor').value = hairData.hairTattoo.secondaryColor;
+    document.getElementById('hairTattooOpacity').value = hairData.hairTattoo.opacity;
+    }
     showPage(currentPage); // Initial page load
 </script>
 
