@@ -36,6 +36,9 @@ namespace ServerSide.Characters
             //insert char in database
             CharacterDbManager dbManager = new CharacterDbManager();
             dbManager.CreateCharacter(character);
+            dbManager.UpdateCharacter(character);
+            dbManager.UpdateCharacterFaceData(character);
+            dbManager.UpdateCharacterHair(character);
         }
         [RemoteEvent("CLIENT:SERVER:ClosedCreateCharScreen")] // meaning character interface needs to appear
         private void onCloseCreateCharScreen(Player player)
@@ -59,6 +62,8 @@ namespace ServerSide.Characters
         [RemoteEvent("CLIENT:SERVER:CharSelected")]
         private void onCharSelected(Player player, string charName)
         {
+            if (charName == "null")
+                return;
             //Character character = AccountManager.PlayerAccountPairs[player].currentCharacter;
             Account account = AccountManager.PlayerAccountPairs[player];
 

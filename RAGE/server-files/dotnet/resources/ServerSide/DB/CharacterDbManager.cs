@@ -160,7 +160,7 @@ namespace ServerSide.DB
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO `characters` (AccountId, Name, Age, Money, gender) VALUES (@accountId, @Name, @Age, @Money, @gender)";
+                    string query = "INSERT INTO `characters` (AccountId, Name, Age, Money, gender, faceJSON, HairJSON) VALUES (@accountId, @Name, @Age, @Money, @gender, @FaceJSON, @HairJSON)";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -169,6 +169,8 @@ namespace ServerSide.DB
                         command.Parameters.AddWithValue("@Age", character.Age);
                         command.Parameters.AddWithValue("@Money", character.Money);
                         command.Parameters.AddWithValue("@gender", character.gender);
+                        command.Parameters.AddWithValue("@FaceJSON", character.CharacterFaceDetailsJSON);
+                        command.Parameters.AddWithValue("@HairJSON", character.HairJSON);
 
                         int result = command.ExecuteNonQuery();
 

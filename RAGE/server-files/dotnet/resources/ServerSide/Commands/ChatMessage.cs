@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ServerSide.Server
+namespace ServerSide.Commands
 {
     internal class ChatMessage : Script
     {
@@ -49,5 +49,6 @@ namespace ServerSide.Server
                 p.SendChatMessage($"{Colors.COLOR_CHAT_LOW}{name} spune(încet): {action}");
             }
         }
+        
     }
 }

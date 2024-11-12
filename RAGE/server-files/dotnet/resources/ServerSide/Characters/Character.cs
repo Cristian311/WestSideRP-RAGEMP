@@ -20,8 +20,8 @@ namespace ServerSide.Characters
         public Character currentCharacter { get; }
         public bool gender { get; set; }
         public bool isCreated { get; set; } = false;
-        public string CharacterFaceDetailsJSON { get; set; }
-        public string HairJSON { get; set; }
+        public string CharacterFaceDetailsJSON { get; set; } = "{\"shape\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"skin\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"nose\":{\"width\":\"0\",\"height\":\"0\",\"length\":\"0\",\"bridge\":\"0\",\"tip\":\"0\",\"bridgeShift\":\"0\"},\"brow\":{\"height\":\"0\",\"width\":\"0\"},\"cheeks\":{\"height\":\"0\",\"width\":\"0\",\"cheeksWidth\":\"0\"},\"jaw\":{\"width\":\"0\"},\"chin\":{\"lenght\":\"0\",\"position\":\"0\",\"width\":\"0\",\"shape\":\"0\"},\"neck\":{\"width\":\"0\"},\"lips\":\"0\",\"skinColor\":\"0\",\"eye\":{\"size\":\"0\",\"color\":\"0\"}}\r\n";
+        public string HairJSON { get; set; } = "{\"hair\":\"0\",\"facialHair\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":1},\"eyebrows\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"},\"bodyHair\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"},\"hairTattoo\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"}}\r\n";
         public Character(IAccount account, string name, int age, int money)
         {
             Account = account;
