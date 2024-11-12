@@ -9,16 +9,16 @@ namespace ServerSide.Characters.Clothes
 {
     public class ClothesData
     {
-        [JsonProperty("mask")]
+        [JsonProperty("masks")]
         public ClothingAttributes Mask { get; set; }
 
-        [JsonProperty("torso")]
+        [JsonProperty("torsos")]
         public ClothingAttributes Torso { get; set; }
 
         [JsonProperty("legs")]
         public ClothingAttributes Legs { get; set; }
 
-        [JsonProperty("bag")]
+        [JsonProperty("bags")]
         public ClothingAttributes Bag { get; set; }
 
         [JsonProperty("shoes")]
@@ -27,7 +27,7 @@ namespace ServerSide.Characters.Clothes
         [JsonProperty("accessories")]
         public ClothingAttributes Accessories { get; set; }
 
-        [JsonProperty("undershirt")]
+        [JsonProperty("undershirts")]
         public ClothingAttributes Undershirt { get; set; }
 
         [JsonProperty("bodyArmor")]
