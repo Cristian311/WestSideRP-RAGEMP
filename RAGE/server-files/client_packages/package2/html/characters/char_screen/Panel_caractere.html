@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panou Personaje</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: url('./bg4.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Caracter Styles */
+        .character-panel {
+            display: flex;
+            background-color: #1c1c1c;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 600px;
+            height: 300px;
+        }
+
+        .sidebar {
+            width: 60px;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .sidebar .icon {
+            width: 30px;
+            height: 30px;
+            background-color: #444;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            display: flex;
+            width: 100%;
+        }
+
+        .profile-card, .character-card, .create-character {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #292929;
+            border-right: 1px solid #ffb30003;
+            text-align: center;
+        }
+
+        .profile-card, .character-card {
+            padding: 20px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background-color: #444;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            overflow: hidden;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top:10px;
+            background-color: #ffb300;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #e68900;
+        }
+
+        .create-character {
+            text-align: center;
+        }
+
+        .create-character .plus-icon {
+            font-size: 48px;
+            width: 50%;
+            padding: 10px;
+            margin-bottom:10px;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            transition: background-color 0.3s;
+        }
+        
+        .create-character .plus-icon:hover {
+            font-size: 48px;
+            width: 50%;
+            padding: 10px;
+            margin-bottom:10px;
+            background-color: #e68900;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            transition: background-color 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dashboard Caractere -->
+    <div class="character-panel" id="characterPanel">
+        <div class="sidebar">
+            <div class="icon"><img src="user.png" alt="UserIcon" class="icon"></div>
+        </div>
+        <div class="content">
+            <!-- Caracter stânga -->
+            <div class="profile-card">
+                <div class="avatar" id="profileAvatar"></div>
+                <h3 id="profileName">Mmnf Dev</h3>
+                <button class="button">Intră în joc</button>
+            </div>
+            
+            <!-- Caracterul Dreapta -->
+            <div class="character-card">
+                <div class="avatar" id="characterAvatar"></div>
+                <h3 id="characterName">Homobid Test</h3>
+                <button class="button">Intră în joc</button>
+            </div>
+            
+            <!-- Buton creare caracter -->
+            <div class="create-character">
+                <button class="plus-icon" onclick="createCharacter()">+</button>
+                <p>Crează un caracter</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Exemplu de configurare a avatarului în funcție de gen
+        const profileGender = "female"; // Poate fi 'male' sau 'female' în funcție de caracter
+        const characterGender = "male"; // Poate fi 'male' sau 'female'
+
+        // Setează avatarul și numele pentru profilul din stânga
+        document.getElementById("profileAvatar").style.backgroundImage = 
+            profileGender === 'male' ? "url('./male.png')" : "url('./female.png')";
+        document.getElementById("profileName").textContent = "Nume Caracter"; // Setează numele profilului
+
+        // Setează avatarul și numele pentru caracterul principal
+        document.getElementById("characterAvatar").style.backgroundImage = 
+            characterGender === 'male' ? "url('./male.png')" : "url('./female.png')";
+        document.getElementById("characterName").textContent = "Nume Caracter"; // Setează numele caracterului
+
+        // Funcție pentru crearea unui nou caracter
+        function createCharacter() {
+            alert("Crearea unui nou personaj!"); // Exemplu de acțiune
+            // Aici poți adăuga funcționalitatea necesară pentru a crea un personaj
+        }
+    </script>
+</body>
+</html>

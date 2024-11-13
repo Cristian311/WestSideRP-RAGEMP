@@ -36,8 +36,18 @@ namespace ServerSide.Characters.Clothes
         [JsonProperty("decals")]
         public ClothingAttributes Decals { get; set; }
 
-        [JsonProperty("tops")]
-        public ClothingAttributes Tops { get; set; }
+        [JsonProperty("shirts")]
+        public ClothingAttributes Shirts { get; set; }
+        [JsonProperty("helmets")]
+        public ClothingAttributes Helmets { get; set; }
+        [JsonProperty("glasses")]
+        public ClothingAttributes Glasses { get; set; }
+        [JsonProperty("earAccesories")]
+        public ClothingAttributes EarAccesories { get; set; }
+        [JsonProperty("watches")]
+        public ClothingAttributes Watches { get; set; }
+        [JsonProperty("bracelets")]
+        public ClothingAttributes Bracelets { get; set; }    
 
         public class ClothingAttributes
         {

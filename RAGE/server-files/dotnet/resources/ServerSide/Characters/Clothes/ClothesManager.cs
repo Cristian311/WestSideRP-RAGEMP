@@ -10,11 +10,38 @@ namespace ServerSide.Characters.Clothes
         [RemoteEvent("CLIENT:SERVER:ClothesUpdate")]
         private void ClothesUpdate(Player player, string json)
         {
+            NAPI.Util.ConsoleOutput(json);
             var clothesData = NAPI.Util.FromJson<ClothesData>(json);
             var clothes = getClothes(clothesData);
+            setProps(player, clothesData);
             player.SetClothes(clothes);
-            NAPI.Util.ConsoleOutput(json);
+            
         }
+        private struct Prop
+        {
+            public int drawable;
+            public int texture;
+            public Prop(int drawable, int texture)
+            {
+                this.drawable = drawable;
+                this.texture = texture;
+            }
+        }
+        private void setProps(Player player, ClothesData clothesData)
+        {
+            Prop hat = new Prop(clothesData.Helmets.Drawable, clothesData.Helmets.Texture);
+            Prop glasses = new Prop(clothesData.Glasses.Drawable, clothesData.Glasses.Texture);
+            Prop ears = new Prop(clothesData.EarAccesories.Drawable, clothesData.EarAccesories.Texture);
+            Prop watches = new Prop(clothesData.Watches.Drawable, clothesData.Watches.Texture);
+            Prop bracelets = new Prop(clothesData.Bracelets.Drawable, clothesData.Bracelets.Texture);
+
+            NAPI.Player.SetPlayerAccessory(player, 0, hat.drawable, hat.texture);
+            NAPI.Player.SetPlayerAccessory(player, 1, glasses.drawable, glasses.texture);
+            NAPI.Player.SetPlayerAccessory(player, 2, ears.drawable, ears.texture);
+            NAPI.Player.SetPlayerAccessory(player, 6, watches.drawable, watches.texture);
+            NAPI.Player.SetPlayerAccessory(player, 7, bracelets.drawable, bracelets.texture);
+        }
+
         private Dictionary<int, ComponentVariation> getClothes(ClothesData clothesData)
         {
             Dictionary<int, ComponentVariation> clothes = new Dictionary<int, ComponentVariation>();
@@ -47,8 +74,8 @@ namespace ServerSide.Characters.Clothes
             ComponentVariation decals = new ComponentVariation(clothesData.Decals.Drawable, clothesData.Decals.Texture);
             clothes.Add(10, decals);
             //ID 11 TOPS
-            ComponentVariation tops = new ComponentVariation(clothesData.Tops.Drawable, clothesData.Tops.Texture);
-            clothes.Add(11, tops);
+            ComponentVariation shirts = new ComponentVariation(clothesData.Shirts.Drawable, clothesData.Shirts.Texture);
+            clothes.Add(11, shirts);
 
             return clothes;
         }
