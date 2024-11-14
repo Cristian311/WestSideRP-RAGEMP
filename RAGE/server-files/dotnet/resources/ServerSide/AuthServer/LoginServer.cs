@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System;
 using System.Text.Json;
 using ServerSide.Interfaces;
+using ServerSide.DB.CharacterDB;
 
 
 namespace ServerSide.AuthServer
@@ -44,8 +45,7 @@ namespace ServerSide.AuthServer
                     AccountManager.PlayerAccountPairs.Add(player, account);
                 
                 //CHARACTER SELECT
-                CharacterDbManager characterDb = new CharacterDbManager();
-                List<ICharacter> characters = characterDb.getCharacters(account);
+                List<ICharacter> characters = CharacterDbManager.getCharacters(account);
 
                 CharacterManager cm = new CharacterManager();
                 cm.getNamesAndMoneyForCEF(characters, cm.getRequiredCount(characters), out string[] names, out int[] money);

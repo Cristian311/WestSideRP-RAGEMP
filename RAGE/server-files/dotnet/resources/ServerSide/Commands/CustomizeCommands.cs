@@ -1,11 +1,10 @@
 ﻿using GTANetworkAPI;
 using ServerSide.Accounts;
 using ServerSide.Characters;
-using ServerSide.DB;
+using ServerSide.DB.CharacterDB;
 using ServerSide.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace ServerSide.Commands
 {
@@ -29,8 +28,7 @@ namespace ServerSide.Commands
             var account = AccountManager.PlayerAccountPairs[player];
             string username = account.Name;
 
-            CharacterDbManager characterDb = new CharacterDbManager();
-            List<ICharacter> characters = characterDb.getCharacters(account);
+            List<ICharacter> characters = CharacterDbManager.getCharacters(account);
 
             CharacterManager cm = new CharacterManager();
             cm.getNamesAndMoneyForCEF(characters, cm.getRequiredCount(characters), out string[] names, out int[] money);

@@ -1,10 +1,8 @@
 ﻿using GTANetworkAPI;
-using GTANetworkMethods;
 using ServerSide.Characters;
-using ServerSide.DB;
+using ServerSide.DB.CharacterDB;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Player = GTANetworkAPI.Player;
 
 namespace ServerSide.Hair
@@ -41,8 +39,7 @@ namespace ServerSide.Hair
             Character character = CharacterManager.PlayerCharacterPair[player];
             character.HairJSON = json;
 
-            CharacterDbManager cm = new CharacterDbManager();
-            cm.UpdateCharacterHair(character);
+            UpdateCharDataDBManager.UpdateCharacterHair(character);
         }
         public static void updateHair(Player player, HairData hairData)
         {

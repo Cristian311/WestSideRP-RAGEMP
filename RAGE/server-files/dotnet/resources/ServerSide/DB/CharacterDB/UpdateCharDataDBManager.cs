@@ -1,0 +1,196 @@
+﻿using GTANetworkAPI;
+using MySql.Data.MySqlClient;
+using ServerSide.Characters;
+using ServerSide.Interfaces;
+
+
+namespace ServerSide.DB.CharacterDB
+{
+    internal class UpdateCharDataDBManager
+    {
+        public static bool UpdateCharacter(ICharacter character)
+        {
+            Database db = new Database();
+            if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
+                return false;
+
+            using (MySqlConnection connection = db.getDatabaseConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "UPDATE `characters` SET AccountId = @accountId, Name = @Name, Age = @Age, Money = @Money, isCreated = @isCreated WHERE Id = @Id";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Update values, using the unique Id to identify the character
+                        command.Parameters.AddWithValue("@accountId", character.Account.Id);
+                        command.Parameters.AddWithValue("@Name", character.Name);
+                        command.Parameters.AddWithValue("@Age", character.Age);
+                        command.Parameters.AddWithValue("@Money", character.Money);
+                        command.Parameters.AddWithValue("@Id", character.Id);
+                        command.Parameters.AddWithValue("@isCreated", character.isCreated);
+
+                        string debugQuery = $"UPDATE `characters` SET AccountId = {character.Account.Id}, Name = '{character.Name}', Age = {character.Age}, Money = {character.Money} WHERE Id = {character.Id}";
+                        NAPI.Util.ConsoleOutput($"Executing Query: {debugQuery}");
+
+                        int result = command.ExecuteNonQuery();
+
+                        if (result > 0)
+                        {
+                            NAPI.Util.ConsoleOutput("Character updated successfully.");
+                            return true;
+                        }
+                        else
+                        {
+                            NAPI.Util.ConsoleOutput("Failed to update character.");
+                            return false;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    NAPI.Util.ConsoleOutput($"An error occurred: {ex.Message}");
+                    return false;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+        public static bool UpdateCharacterFaceData(ICharacter character)
+        {
+            Database db = new Database();
+            if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
+                return false;
+
+            using (MySqlConnection connection = db.getDatabaseConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "UPDATE `characters` SET FaceJSON = @json WHERE Id = @Id";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Update values, using the unique Id to identify the character
+                        command.Parameters.AddWithValue("@json", character.CharacterFaceDetailsJSON);
+                        command.Parameters.AddWithValue("@Id", character.Id);
+
+                        int result = command.ExecuteNonQuery();
+
+                        if (result > 0)
+                        {
+                            NAPI.Util.ConsoleOutput("Character updated successfully.");
+                            return true;
+                        }
+                        else
+                        {
+                            NAPI.Util.ConsoleOutput("Failed to update character.");
+                            return false;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    NAPI.Util.ConsoleOutput($"An error occurred: {ex.Message}");
+                    return false;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+        public static bool UpdateCharacterHair(ICharacter character)
+        {
+            Database db = new Database();
+            if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
+                return false;
+
+            using (MySqlConnection connection = db.getDatabaseConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "UPDATE `characters` SET HairJSON = @json WHERE Id = @Id";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Update values, using the unique Id to identify the character
+                        command.Parameters.AddWithValue("@json", character.HairJSON);
+                        command.Parameters.AddWithValue("@Id", character.Id);
+
+                        int result = command.ExecuteNonQuery();
+
+                        if (result > 0)
+                        {
+                            NAPI.Util.ConsoleOutput("Character updated successfully.");
+                            return true;
+                        }
+                        else
+                        {
+                            NAPI.Util.ConsoleOutput("Failed to update character.");
+                            return false;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    NAPI.Util.ConsoleOutput($"An error occurred: {ex.Message}");
+                    return false;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public static bool UpdateCharacterClothes(ICharacter character)
+        {
+            Database db = new Database();
+            if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
+                return false;
+
+            using (MySqlConnection connection = db.getDatabaseConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "UPDATE `characters` SET HairJSON = @json WHERE Id = @Id";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Update values, using the unique Id to identify the character
+                        command.Parameters.AddWithValue("@json", character.HairJSON);
+                        command.Parameters.AddWithValue("@Id", character.Id);
+
+                        int result = command.ExecuteNonQuery();
+
+                        if (result > 0)
+                        {
+                            NAPI.Util.ConsoleOutput("Character updated successfully.");
+                            return true;
+                        }
+                        else
+                        {
+                            NAPI.Util.ConsoleOutput("Failed to update character.");
+                            return false;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    NAPI.Util.ConsoleOutput($"An error occurred: {ex.Message}");
+                    return false;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+    }
+}
