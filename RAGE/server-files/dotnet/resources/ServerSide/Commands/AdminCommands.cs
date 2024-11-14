@@ -16,6 +16,12 @@ namespace ServerSide.Commands
             VehicleHash busModel = NAPI.Util.VehicleNameToModel(car); //Gets the hash of bus model
             NAPI.Vehicle.CreateVehicle(busModel, player.Position, 0, 0, 0); //Creates a bus on the player's position
         }
+        [Command("weapon")]
+        public void WeaponCommand(Player player, string weapon, int ammo)
+        {
+            WeaponHash weaponHash = NAPI.Util.WeaponNameToModel(weapon);
+            player.GiveWeapon(weaponHash, ammo);
+        }
         [Command("weather")]
         public void cmd_weather(Player player, string weather)
         {

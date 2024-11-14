@@ -71,7 +71,8 @@ namespace ServerSide.Characters
 
             Character character = CharacterDbManager.getCharacter(account, charName);
             player.SendChatMessage(charName);
-            PlayerCharacterPair[player] = character;
+            PlayerCharacterPair[player] = character;    
+            NAPI.Player.SetPlayerNametag(player, charName);
 
             //!!!!!!! UPDATE PLAYER CHARACTER DETAILS AFTER SELECTED
 
