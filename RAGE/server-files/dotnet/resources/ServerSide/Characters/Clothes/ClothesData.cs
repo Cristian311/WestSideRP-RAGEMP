@@ -11,6 +11,7 @@ namespace ServerSide.Characters.Clothes
     {
         [JsonProperty("id")]
         public int Id {  get; set; }
+
         [JsonProperty("masks")]
         public ClothingAttributes Mask { get; set; }
 

@@ -26,7 +26,7 @@ namespace ServerSide.Characters
             {
                 character.isCreated = true;
                 var HairJSON = NAPI.Util.ToJson(character.Hair);
-                player.TriggerEvent("SERVER:CLIENT:showHairScreen", HairJSON);
+                player.TriggerEvent("SERVER:CLIENT:showHairScreen", HairJSON); // sends hair as json
                 character.getCharacterInfo(); // debug
             }
             character.Face = NAPI.Util.FromJson<CharacterData>(faceFeaturesJSON);
@@ -39,7 +39,7 @@ namespace ServerSide.Characters
         [RemoteEvent("CLIENT:SERVER:CharCustomiseUpdate")]
         private void onCharCustomiseUpdate(Player player, string json)
         {
-            var data = Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterData>(json); //all character data vars are string
+            CharacterData data = Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterData>(json); //all character data vars are string
             Character character = CharacterManager.PlayerCharacterPair[player];
             try
             {

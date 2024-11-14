@@ -1,6 +1,7 @@
 ﻿using GTANetworkAPI;
 using MySql.Data.MySqlClient;
 using ServerSide.Characters;
+using ServerSide.Characters.Clothes;
 using ServerSide.Interfaces;
 
 
@@ -150,11 +151,9 @@ namespace ServerSide.DB.CharacterDB
             }
         }
 
-        public static bool UpdateCharacterClothes(ICharacter character)
+        public static bool UpdateCharacterClothes(ICharacter character, ClothesData clothes)
         {
             Database db = new Database();
-            if (CharacterDbManager.CharacterExists(character.Name))
-                return false;
             using (MySqlConnection connection = db.getDatabaseConnection())
             {
                 try
@@ -165,21 +164,22 @@ namespace ServerSide.DB.CharacterDB
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@characterID", character.Id);
-                        command.Parameters.AddWithValue("@localID", character.Name);
-                        command.Parameters.AddWithValue("@clothesname", character.Age);
-                        command.Parameters.AddWithValue("@clothesdata", character.Money);
+                        command.Parameters.AddWithValue("@localID", clothes.Id);
+                        command.Parameters.AddWithValue("@clothesname", character.Name);
+                        var clothesJSON = NAPI.Util.ToJson(clothes);
+                        command.Parameters.AddWithValue("@clothesdata", clothesJSON);
 
                         int result = command.ExecuteNonQuery();
 
                         if (result > 0)
                         {
-                            return true;
                             NAPI.Util.ConsoleOutput("Character created successfully.");
+                            return true;
                         }
                         else
                         {
-                            return false;
                             NAPI.Util.ConsoleOutput("Failed to create character.");
+                            return false;
                         }
                     }
                 }

@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using ServerSide.Accounts;
 using ServerSide.Characters;
+using ServerSide.Characters.Clothes;
 using ServerSide.Hair;
 using ServerSide.Interfaces;
 using System;
@@ -185,6 +186,49 @@ namespace ServerSide.DB.CharacterDB
                         }
                     }
                     return characters;
+                }
+                catch (MySqlException ex)
+                {
+                    NAPI.Util.ConsoleOutput($"An error occurred: {ex.Message}");
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+        public static ClothesData getClothes(ICharacter character, byte index)
+        {
+
+            Database db = new Database();
+            using (MySqlConnection connection = db.getDatabaseConnection())
+            {
+                ClothesData clothesData = new ClothesData();
+                string query = "SELECT * FROM `clothes` WHERE characterID = @characterId AND localID = @localID";
+
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@characterId", character.Id);
+                cmd.Parameters.AddWithValue("@localID", index);
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            var clothesJSON = reader.GetString(4);
+                            clothesData = NAPI.Util.FromJson<ClothesData>(clothesJSON);
+                        }
+                        else
+                        {
+                            // No character found
+                            NAPI.Util.ConsoleOutput("No clothes found on this account, create one!");
+                            return null;
+                        }
+                    }
+                    return clothesData;
                 }
                 catch (MySqlException ex)
                 {

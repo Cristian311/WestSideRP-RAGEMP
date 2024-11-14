@@ -22,8 +22,7 @@ namespace ServerSide.Characters
         public bool gender { get; set; }
         public bool isCreated { get; set; } = false;
         public CharacterData Face { get; set; }
-         public HairData Hair { get; set; }
-
+        public HairData Hair { get; set; }
         public List<ClothesData> Clothes { get; set; }
         public Character(IAccount account, string name, int age, int money)
         {

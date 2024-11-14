@@ -139,6 +139,7 @@ body {
     <script>
         // Initialize data structure
         const itemData = {
+            id: 0,
             decals: { drawable: 0   , texture: 0 },
             masks: { drawable: 0, texture: 0 },
             torsos: { drawable: 0, texture: 0 },
@@ -189,6 +190,7 @@ body {
         function updateValue(type) {
             const value = document.getElementById(`${type}-slider`).value;
             itemData[selectedItem][type] = parseInt(value, 10);
+            itemData.id = document.getElementById('character-select').value;
             document.getElementById(`${type}-value`).textContent = value;
             mp.trigger("CEF:CLIENT:updateClothes", getItemDataJSON());
         }
@@ -198,15 +200,25 @@ body {
             const value = document.getElementById('character-select').value;
             document.getElementById('character-select-value').textContent = value;
         }
-
+        function UpdateClothes(json)
+        {
+            const data = JSON.parse(json);
+            itemData = data;
+        }
         // Function to get JSON representation of the data
         function getItemDataJSON() {
             return JSON.stringify(itemData, null, 2);
         }
 
         // Placeholder functions for left menu buttons
-        function selectCharacter() { alert("Character selected!"); }
-        function buyItem() { alert("Item bought!"); }
+        function selectCharacter() { 
+            const value = document.getElementById('character-select').value;
+            mp.trigger("CEF:CLIENT:SelectCostume", value);
+        }
+        function buyItem() { 
+            const value = document.getElementById('character-select').value;
+            mp.trigger("CEF:CLIENT:BuyCostume", getItemDataJSON());
+        }
         function exitMenu() { mp.trigger("CEF:CLIENT:closeClothesScreen"); }
     </script>
 </body>

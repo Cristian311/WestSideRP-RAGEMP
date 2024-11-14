@@ -1,4 +1,5 @@
 ﻿using GTANetworkAPI;
+using ServerSide.DB.CharacterDB;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +8,26 @@ namespace ServerSide.Characters.Clothes
 {
     internal class ClothesManager : Script
     {
+        [RemoteEvent("CLIENT:SERVER:GetClothes")]
+        private void GetClothes(Player player, byte index)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            var clothes = CharacterDbManager.getClothes(character, index);
+            var clothesJSON = NAPI.Util.ToJson(clothes);
+            player.TriggerEvent("SERVER:CLIENT:ShowCostume", clothesJSON);
+            if(clothes != null)
+                ClothesUpdate(player, clothesJSON);
+        }
+        [RemoteEvent("CLIENT:SERVER:BuyClothes")]
+        private void BuyClothes(Player player, string ClothesJSON)
+        {
+            var clothes = NAPI.Util.FromJson<ClothesData>(ClothesJSON);
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if (UpdateCharDataDBManager.UpdateCharacterClothes(character, clothes))
+                NAPI.Util.ConsoleOutput("good");
+            else
+                NAPI.Util.ConsoleOutput("bad");
+        }
         [RemoteEvent("CLIENT:SERVER:ClothesUpdate")]
         private void ClothesUpdate(Player player, string json)
         {

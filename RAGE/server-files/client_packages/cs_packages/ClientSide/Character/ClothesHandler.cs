@@ -15,6 +15,31 @@ namespace ClientSide.Character
             Events.Add("SERVER:CLIENT:closeClothesScreen", CloseClothesScreen);
             Events.Add("CEF:CLIENT:closeClothesScreen", CloseClothesScreen);
             Events.Add("CEF:CLIENT:updateClothes", UpdateClothes);
+            Events.Add("CEF:CLIENT:SelectCostume", SelectClothes);
+            Events.Add("CEF:CLIENT:BuyCostume", BuyClothes);
+            Events.Add("SERVER:CLIENT:ShowCostume", ShowClothes);
+        }
+
+        private void ShowClothes(object[] args)
+        {
+
+            string json = args[0].ToString();
+            RAGE.Chat.Output(json);
+            string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
+            cefBrowser.ExecuteJs($"UpdateClothes(\"{escapedJson}\");");
+        }
+
+        private void BuyClothes(object[] args)
+        {
+            string clothesJSON = args[0].ToString();
+            Events.CallRemote("CLIENT:SERVER:BuyClothes", clothesJSON);
+            CloseClothesScreen(null);
+        }
+
+        private void SelectClothes(object[] args)
+        {
+            byte index = byte.Parse(args[0].ToString());
+            Events.CallRemote("CLIENT:SERVER:GetClothes", index);
         }
         private void UpdateClothes(object[] args)
         {
