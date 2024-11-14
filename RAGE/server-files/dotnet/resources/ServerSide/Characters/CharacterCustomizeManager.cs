@@ -25,10 +25,11 @@ namespace ServerSide.Characters
             if (character.isCreated == false) //show the hair screen if it's not created for first time hairstyle modeling
             {
                 character.isCreated = true;
-                player.TriggerEvent("SERVER:CLIENT:showHairScreen", character.HairJSON);
+                var HairJSON = NAPI.Util.ToJson(character.Hair);
+                player.TriggerEvent("SERVER:CLIENT:showHairScreen", HairJSON);
                 character.getCharacterInfo(); // debug
             }
-            character.CharacterFaceDetailsJSON = faceFeaturesJSON;
+            character.Face = NAPI.Util.FromJson<CharacterData>(faceFeaturesJSON);
 
             //update db
             UpdateCharDataDBManager.UpdateCharacter(character);

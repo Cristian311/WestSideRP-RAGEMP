@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using ServerSide.Accounts;
 using ServerSide.Characters;
+using ServerSide.Hair;
 using ServerSide.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,6 @@ namespace ServerSide.DB.CharacterDB
 {
     internal class CharacterDbManager
     {
-
         public static bool CreateCharacter(ICharacter character)
         {
             Database db = new Database();
@@ -31,8 +31,8 @@ namespace ServerSide.DB.CharacterDB
                         command.Parameters.AddWithValue("@Age", character.Age);
                         command.Parameters.AddWithValue("@Money", character.Money);
                         command.Parameters.AddWithValue("@gender", character.gender);
-                        command.Parameters.AddWithValue("@FaceJSON", character.CharacterFaceDetailsJSON);
-                        command.Parameters.AddWithValue("@HairJSON", character.HairJSON);
+                        command.Parameters.AddWithValue("@FaceJSON", NAPI.Util.ToJson(character.Face));
+                        command.Parameters.AddWithValue("@HairJSON", NAPI.Util.ToJson(character.Hair));
 
                         int result = command.ExecuteNonQuery();
 
@@ -123,10 +123,12 @@ namespace ServerSide.DB.CharacterDB
                             character.gender = reader.GetBoolean(9);
                             if (character.isCreated == true)
                             {
-                                character.CharacterFaceDetailsJSON = reader.GetString(7);
-                                character.HairJSON = reader.GetString(8);
+                                var FaceJSON = reader.GetString(7);
+                                character.Face = NAPI.Util.FromJson<CharacterData>(FaceJSON);
+                                var HairJSON = reader.GetString(8);
+                                character.Hair = NAPI.Util.FromJson<HairData>(HairJSON);
 
-                                NAPI.Util.ConsoleOutput(character.HairJSON);
+                                NAPI.Util.ConsoleOutput(HairJSON);
                             }
                             return character;
                         }

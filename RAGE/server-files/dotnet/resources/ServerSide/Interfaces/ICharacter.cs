@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ServerSide.Characters;
+using ServerSide.Characters.Clothes;
+using ServerSide.Hair;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,8 +15,9 @@ namespace ServerSide.Interfaces
         int Age { get; }
         int Money { get; }
         public bool isCreated { get; set; }
-        string CharacterFaceDetailsJSON { get; set; }
-        string HairJSON { get; set; }
+        CharacterData Face { get; set; }
+        HairData Hair { get; set; }
+        List<ClothesData> Clothes { get; set; }
         bool gender {  get; set; }
     }
 }

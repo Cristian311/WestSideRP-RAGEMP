@@ -14,13 +14,15 @@ namespace ServerSide.Commands
         private void hairCommand(Player player)
         {
             Character character = CharacterManager.PlayerCharacterPair[player];
-            player.TriggerEvent("SERVER:CLIENT:showHairScreen", character.HairJSON);
+            var HairJSON = NAPI.Util.ToJson(character.Hair);
+            player.TriggerEvent("SERVER:CLIENT:showHairScreen", HairJSON);
         }
         [Command("facefeatures")]
         private void facefeaturesCommand(Player player)
         {
             Character character = CharacterManager.PlayerCharacterPair[player];
-            player.TriggerEvent("SERVER:CLIENT:showCustomizeCharScreen", character.CharacterFaceDetailsJSON);
+            var FaceJSON = NAPI.Util.ToJson(character.Face);
+            player.TriggerEvent("SERVER:CLIENT:showCustomizeCharScreen", FaceJSON);
         }
         [Command("changechar")]
         private void changecharCommand(Player player)

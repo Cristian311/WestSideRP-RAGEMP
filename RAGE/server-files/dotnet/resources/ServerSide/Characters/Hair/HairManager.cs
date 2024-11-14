@@ -37,7 +37,8 @@ namespace ServerSide.Hair
         private void UpdateHairEvent(Player player, string json)
         {
             Character character = CharacterManager.PlayerCharacterPair[player];
-            character.HairJSON = json;
+            var hairData = NAPI.Util.FromJson<HairData>(json);
+            character.Hair = hairData;
 
             UpdateCharDataDBManager.UpdateCharacterHair(character);
         }

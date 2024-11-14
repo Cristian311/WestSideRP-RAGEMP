@@ -8,3 +8,4 @@
 
 # Ensure .gitignore itself isn't ignored
 !.gitignore
+RAGE/server-files/dotnet/server_logs.txt

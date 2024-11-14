@@ -9,6 +9,8 @@ namespace ServerSide.Characters.Clothes
 {
     public class ClothesData
     {
+        [JsonProperty("id")]
+        public int Id {  get; set; }
         [JsonProperty("masks")]
         public ClothingAttributes Mask { get; set; }
 

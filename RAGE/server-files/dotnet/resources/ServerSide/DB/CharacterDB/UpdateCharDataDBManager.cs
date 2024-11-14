@@ -75,7 +75,8 @@ namespace ServerSide.DB.CharacterDB
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         // Update values, using the unique Id to identify the character
-                        command.Parameters.AddWithValue("@json", character.CharacterFaceDetailsJSON);
+                        var FaceJSON = NAPI.Util.ToJson(character.Face);
+                        command.Parameters.AddWithValue("@json", FaceJSON);
                         command.Parameters.AddWithValue("@Id", character.Id);
 
                         int result = command.ExecuteNonQuery();
@@ -119,7 +120,8 @@ namespace ServerSide.DB.CharacterDB
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         // Update values, using the unique Id to identify the character
-                        command.Parameters.AddWithValue("@json", character.HairJSON);
+                        var HairJSON = NAPI.Util.ToJson(character.Hair);
+                        command.Parameters.AddWithValue("@json", HairJSON);
                         command.Parameters.AddWithValue("@Id", character.Id);
 
                         int result = command.ExecuteNonQuery();
@@ -151,33 +153,33 @@ namespace ServerSide.DB.CharacterDB
         public static bool UpdateCharacterClothes(ICharacter character)
         {
             Database db = new Database();
-            if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
+            if (CharacterDbManager.CharacterExists(character.Name))
                 return false;
-
             using (MySqlConnection connection = db.getDatabaseConnection())
             {
                 try
                 {
                     connection.Open();
-                    string query = "UPDATE `characters` SET HairJSON = @json WHERE Id = @Id";
+                    string query = "INSERT INTO `clothes` (characterID, localID, clothesname, clothesdata) VALUES (@characterID, @localID, @clothesname, @clothesdata)";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        // Update values, using the unique Id to identify the character
-                        command.Parameters.AddWithValue("@json", character.HairJSON);
-                        command.Parameters.AddWithValue("@Id", character.Id);
+                        command.Parameters.AddWithValue("@characterID", character.Id);
+                        command.Parameters.AddWithValue("@localID", character.Name);
+                        command.Parameters.AddWithValue("@clothesname", character.Age);
+                        command.Parameters.AddWithValue("@clothesdata", character.Money);
 
                         int result = command.ExecuteNonQuery();
 
                         if (result > 0)
                         {
-                            NAPI.Util.ConsoleOutput("Character updated successfully.");
                             return true;
+                            NAPI.Util.ConsoleOutput("Character created successfully.");
                         }
                         else
                         {
-                            NAPI.Util.ConsoleOutput("Failed to update character.");
                             return false;
+                            NAPI.Util.ConsoleOutput("Failed to create character.");
                         }
                     }
                 }

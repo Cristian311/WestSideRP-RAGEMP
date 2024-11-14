@@ -15,6 +15,9 @@ namespace ServerSide.Characters
     internal class CharacterManager : Script
     {
         private static int cont = 0;
+        //DEFAULT JSONS
+        public const string FaceDefaultJSON = "{\"shape\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"skin\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"nose\":{\"width\":\"0\",\"height\":\"0\",\"length\":\"0\",\"bridge\":\"0\",\"tip\":\"0\",\"bridgeShift\":\"0\"},\"brow\":{\"height\":\"0\",\"width\":\"0\"},\"cheeks\":{\"height\":\"0\",\"width\":\"0\",\"cheeksWidth\":\"0\"},\"jaw\":{\"width\":\"0\"},\"chin\":{\"lenght\":\"0\",\"position\":\"0\",\"width\":\"0\",\"shape\":\"0\"},\"neck\":{\"width\":\"0\"},\"lips\":\"0\",\"skinColor\":\"0\",\"eye\":{\"size\":\"0\",\"color\":\"0\"}}\r\n";
+        public const string HairDefaultJSON = "{\"hair\":\"0\",\"facialHair\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":1},\"eyebrows\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"},\"bodyHair\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"},\"hairTattoo\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"}}\r\n";
         
         //PAIRS FOR PLAYER AND THEIR DATA
         private static Dictionary<Player, CharacterData> playerData = new Dictionary<Player, CharacterData>(); //this should be <Character, CharacterData>, needs fixed
@@ -74,13 +77,11 @@ namespace ServerSide.Characters
 
             if (character.isCreated == true)
             {
-                var data = Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterData>(character.CharacterFaceDetailsJSON);
-                CharacterCustomizeManager.UpdatePlayerFaceFeatures(player, data, character.gender);
+                CharacterCustomizeManager.UpdatePlayerFaceFeatures(player, character.Face, character.gender);
                 //update hair
-                if (character.HairJSON != null)
+                if (character.Hair != null)
                 {
-                    var hairData = Newtonsoft.Json.JsonConvert.DeserializeObject<HairData>(character.HairJSON);
-                    HairManager.updateHair(player, hairData);
+                    HairManager.updateHair(player, character.Hair);
                 }
             }
         }
