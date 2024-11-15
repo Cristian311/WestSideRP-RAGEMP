@@ -5,90 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slider JSON Generator</title>
     <style>
-/* General body styling */
-/* General body styling */
-body {
-    display: flex;
-    justify-content: space-between;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0); /* Light background with an orange tint */
-}
 
-/* Left and right menus inside boxes with grey background */
-.left-menu, .menu {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-    background-color: #fff5e6; /* Light orange background for the menu */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
+    body {
+        display: flex;
+        justify-content: space-between;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0);
+    }
 
-/* Button Styling for both left and right menus */
-.button, .left-button {
-    padding: 15px 20px; /* Bigger buttons */
-    background-color: #ffa500; /* Orange background */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px; /* Slightly bigger font for better readability */
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 100%; /* Buttons span the entire width on the left menu */
-    box-sizing: border-box;
-    white-space: nowrap; /* Prevent text from wrapping */
-}
+    /* Left and right menus inside boxes with grey background */
+    .left-menu, .menu {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        background-color: #fff5e6;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-.button:hover, .left-button:hover {
-    background-color: #ff7f00; /* Darker orange on hover */
-    transform: scale(1.05); /* Slight zoom effect on hover */
-}
+    /* Button Styling for both left and right menus */
+    .button, .left-button {
+        padding: 15px 20px;
+        background-color: #ffa500;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        width: 100%;
+        box-sizing: border-box;
+        white-space: nowrap;
+    }
 
-/* For the left menu buttons, ensure they are stacked vertically */
-.left-menu .button, .left-menu .left-button {
-    margin-bottom: 10px;
-}
+    .button:hover, .left-button:hover {
+        background-color: #ff7f00;
+        transform: scale(1.05);
+    }
 
-/* For the right menu buttons, place 3 buttons in a row */
-.menu {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 buttons per row */
-    gap: 15px; /* Increase gap for better spacing */
-}
+    .left-menu .button, .left-menu .left-button {
+        margin-bottom: 10px;
+    }
 
-/* Slider Group Styling */
-.slider-container, .slider-group-left {
-    display: flex;
-    flex-direction: column; /* Sliders should be stacked vertically */
-    align-items: flex-start; /* Align sliders to the left */
-    margin-bottom: 20px; /* Space between sliders */
-}
+    /* Right menu buttons in grid layout */
+    .menu {
+        display: flex;
+        flex-direction: column; /* Make the menu column-based */
+        gap: 15px; /* Space between items */
+    }
 
-.value-display {
-    margin-top: 5px;
-    font-weight: bold;
-    font-size: 14px;
-}
+    /* Active button highlight */
+    .button.active {
+        background-color: #ff7f00; /* Highlight color */
+        transform: scale(1.05);
+    }
 
-/* Slider styling */
-.slider {
-    width: 100%;
-    margin-bottom: 10px; /* Space between sliders */
-}
+    /* Slider Group Styling */
+    .slider-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        width: 100%; /* Ensure sliders take full width */
+    }
 
-/* Specific styling for the left menu sliders */
-.left-menu .slider-group-left {
-    margin-top: 20px; /* Add space above sliders */
-}
+    .value-display {
+        margin-top: 5px;
+        font-weight: bold;
+        font-size: 14px;
+    }
 
+    /* Slider styling */
+    .slider {
+        width: 100%; /* Make sliders as wide as the container */
+        height: 30px; /* Make the sliders bigger */
+        margin-bottom: 10px;
+    }
 
+    /* Layout for buttons in rows of 3 */
+    .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
 
-    </style>
-</head>
+    .button-row .button {
+        flex-basis: 30%; /* Each button will take up 30% of the container width */
+        max-width: 30%; /* Ensure buttons don't exceed 30% */
+        white-space: normal; /* Allow wrapping text in buttons */
+    }
+
+    .slider-container input[type="range"] {
+        width: 100%; /* Make sliders fill the container */
+    }
+</style>
+
 <body>
     <!-- Left Menu -->
     <div class="left-menu">
@@ -104,22 +119,32 @@ body {
     <!-- Right Menu -->
     <div class="menu">
         <!-- Buttons to Select Items -->
-        <button class="button" onclick="selectItem('decals')">Decals</button>
-        <button class="button" onclick="selectItem('masks')">Masks</button>
-        <button class="button" onclick="selectItem('torsos')">Torsos</button>
-        <button class="button" onclick="selectItem('legs')">Legs</button>
-        <button class="button" onclick="selectItem('bags')">Bags</button>
-        <button class="button" onclick="selectItem('shoes')">Shoes</button>
-        <button class="button" onclick="selectItem('accessories')">Accessories</button>
-        <button class="button" onclick="selectItem('undershirts')">Undershirts</button>
-        <button class="button" onclick="selectItem('bodyArmor')">Body Armors</button>
-        <button class="button" onclick="selectItem('shirts')">Shirts and Jackets</button>
-        <button class="button" onclick="selectItem('helmets')">Helmets</button>
-        <button class="button" onclick="selectItem('glasses')">Glasses</button>
-        <button class="button" onclick="selectItem('earAccessories')">Ear Accessories</button>
-        <button class="button" onclick="selectItem('watches')">Watches</button>
-        <button class="button" onclick="selectItem('bracelets')">Bracelets</button>
-        <div></div>
+        <div class="button-row">
+            <button class="button" onclick="selectItem('decals')">Decals</button>
+            <button class="button" onclick="selectItem('masks')">Masks</button>
+            <button class="button" onclick="selectItem('torsos')">Torsos</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="selectItem('legs')">Legs</button>
+            <button class="button" onclick="selectItem('bags')">Bags</button>
+            <button class="button" onclick="selectItem('shoes')">Shoes</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="selectItem('accessories')">Accessories</button>
+            <button class="button" onclick="selectItem('undershirts')">Undershirts</button>
+            <button class="button" onclick="selectItem('bodyArmor')">Body Armors</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="selectItem('shirts')">Shirts and Jackets</button>
+            <button class="button" onclick="selectItem('helmets')">Helmets</button>
+            <button class="button" onclick="selectItem('glasses')">Glasses</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="selectItem('earAccessories')">Ear Accessories</button>
+            <button class="button" onclick="selectItem('watches')">Watches</button>
+            <button class="button" onclick="selectItem('bracelets')">Bracelets</button>
+        </div>
+
         <!-- Sliders for drawable and texture -->
         <div class="slider-container">
             <label class="slider-label">Piece:</label>
@@ -131,10 +156,8 @@ body {
             <input type="range" min="0" max="30" value="0" class="slider" id="texture-slider" oninput="updateValue('texture')">
             <span class="value-display" id="texture-value">0</span>
         </div>
-
-        <!-- Button to Get JSON -->
-        <button onclick="console.log(getItemDataJSON())" class="button">Log JSON</button>
     </div>
+
 
     <script>
         // Initialize data structure
@@ -200,11 +223,42 @@ body {
             const value = document.getElementById('character-select').value;
             document.getElementById('character-select-value').textContent = value;
         }
-        function UpdateClothes(json)
-        {
-            const data = JSON.parse(json);
-            itemData = data;
-        }
+        
+        function UpdateClothes(json) {
+        const data = JSON.parse(json);
+
+        // Update each item in itemData using the parsed JSON data
+        Object.keys(data).forEach(key => {
+            if (key in itemData) {
+                if (typeof data[key] === 'object' && data[key] !== null) {
+                    // Update nested properties (drawable and texture for items like "decals", "masks", etc.)
+                    Object.keys(data[key]).forEach(nestedKey => {
+                        itemData[key][nestedKey] = data[key][nestedKey];
+                        
+                        // Update UI for the selected item if it matches the current selection
+                        if (key === selectedItem) {
+                            if (nestedKey === 'drawable') {
+                                document.getElementById('drawable-slider').value = itemData[key][nestedKey];
+                                document.getElementById('drawable-value').textContent = itemData[key][nestedKey];
+                            } else if (nestedKey === 'texture') {
+                                document.getElementById('texture-slider').value = itemData[key][nestedKey];
+                                document.getElementById('texture-value').textContent = itemData[key][nestedKey];
+                            }
+                        }
+                    });
+                } else {
+                    // For non-object properties like `id`, update directly
+                    itemData[key] = data[key];
+
+                    // Update the UI if we're changing the character ID
+                    if (key === 'id') {
+                        document.getElementById('character-select').value = itemData[key];
+                        document.getElementById('character-select-value').textContent = itemData[key];
+                    }
+                }
+            }
+        });
+    }
         // Function to get JSON representation of the data
         function getItemDataJSON() {
             return JSON.stringify(itemData, null, 2);

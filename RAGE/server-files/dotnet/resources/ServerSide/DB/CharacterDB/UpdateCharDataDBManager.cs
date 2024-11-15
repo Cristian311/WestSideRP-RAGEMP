@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using ServerSide.Characters;
 using ServerSide.Characters.Clothes;
 using ServerSide.Interfaces;
+using System;
 
 
 namespace ServerSide.DB.CharacterDB
@@ -159,27 +160,70 @@ namespace ServerSide.DB.CharacterDB
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO `clothes` (characterID, localID, clothesname, clothesdata) VALUES (@characterID, @localID, @clothesname, @clothesdata)";
 
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    // First, check if the localID for the given characterID exists.
+                    string checkQuery = "SELECT COUNT(*) FROM `clothes` WHERE `characterID` = @characterID AND `localID` = @localID";
+
+                    using (MySqlCommand checkCommand = new MySqlCommand(checkQuery, connection))
                     {
-                        command.Parameters.AddWithValue("@characterID", character.Id);
-                        command.Parameters.AddWithValue("@localID", clothes.Id);
-                        command.Parameters.AddWithValue("@clothesname", character.Name);
-                        var clothesJSON = NAPI.Util.ToJson(clothes);
-                        command.Parameters.AddWithValue("@clothesdata", clothesJSON);
+                        checkCommand.Parameters.AddWithValue("@characterID", character.Id);
+                        checkCommand.Parameters.AddWithValue("@localID", clothes.Id);
 
-                        int result = command.ExecuteNonQuery();
+                        int count = Convert.ToInt32(checkCommand.ExecuteScalar());
 
-                        if (result > 0)
+                        // If the record exists, update it.
+                        if (count > 0)
                         {
-                            NAPI.Util.ConsoleOutput("Character created successfully.");
-                            return true;
+                            string updateQuery = "UPDATE `clothes` SET `clothesname` = @clothesname, `clothesdata` = @clothesdata WHERE `characterID` = @characterID AND `localID` = @localID";
+
+                            using (MySqlCommand updateCommand = new MySqlCommand(updateQuery, connection))
+                            {
+                                updateCommand.Parameters.AddWithValue("@characterID", character.Id);
+                                updateCommand.Parameters.AddWithValue("@localID", clothes.Id);
+                                updateCommand.Parameters.AddWithValue("@clothesname", character.Name);
+                                var clothesJSON = NAPI.Util.ToJson(clothes);
+                                updateCommand.Parameters.AddWithValue("@clothesdata", clothesJSON);
+
+                                int result = updateCommand.ExecuteNonQuery();
+
+                                if (result > 0)
+                                {
+                                    NAPI.Util.ConsoleOutput("Character clothes updated successfully.");
+                                    return true;
+                                }
+                                else
+                                {
+                                    NAPI.Util.ConsoleOutput("Failed to update character clothes.");
+                                    return false;
+                                }
+                            }
                         }
                         else
                         {
-                            NAPI.Util.ConsoleOutput("Failed to create character.");
-                            return false;
+                            // If the record does not exist, insert it.
+                            string insertQuery = "INSERT INTO `clothes` (characterID, localID, clothesname, clothesdata) VALUES (@characterID, @localID, @clothesname, @clothesdata)";
+
+                            using (MySqlCommand insertCommand = new MySqlCommand(insertQuery, connection))
+                            {
+                                insertCommand.Parameters.AddWithValue("@characterID", character.Id);
+                                insertCommand.Parameters.AddWithValue("@localID", clothes.Id);
+                                insertCommand.Parameters.AddWithValue("@clothesname", character.Name);
+                                var clothesJSON = NAPI.Util.ToJson(clothes);
+                                insertCommand.Parameters.AddWithValue("@clothesdata", clothesJSON);
+
+                                int result = insertCommand.ExecuteNonQuery();
+
+                                if (result > 0)
+                                {
+                                    NAPI.Util.ConsoleOutput("Character clothes inserted successfully.");
+                                    return true;
+                                }
+                                else
+                                {
+                                    NAPI.Util.ConsoleOutput("Failed to insert character clothes.");
+                                    return false;
+                                }
+                            }
                         }
                     }
                 }
