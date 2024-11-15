@@ -102,6 +102,10 @@
     .slider-container input[type="range"] {
         width: 100%; /* Make sliders fill the container */
     }
+    .button.active {
+    background-color: #ff7f00; /* Highlight color */
+    transform: scale(1.05);
+    }
 </style>
 
 <body>
@@ -140,7 +144,7 @@
             <button class="button" onclick="selectItem('glasses')">Glasses</button>
         </div>
         <div class="button-row">
-            <button class="button" onclick="selectItem('earAccessories')">Ear Accessories</button>
+            <button class="button" onclick="selectItem('earAccesories')">Ear Accessories</button>
             <button class="button" onclick="selectItem('watches')">Watches</button>
             <button class="button" onclick="selectItem('bracelets')">Bracelets</button>
         </div>
@@ -207,6 +211,15 @@
             document.getElementById('texture-slider').value = itemData[item].texture;
             document.getElementById('drawable-value').textContent = itemData[item].drawable;
             document.getElementById('texture-value').textContent = itemData[item].texture;
+            // Remove 'active' class from all buttons
+            const buttons = document.querySelectorAll('.button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Add 'active' class to the clicked button
+            const clickedButton = event.target;
+            clickedButton.classList.add('active');
         }
 
         // Function to update the value of drawable or texture for the selected item
