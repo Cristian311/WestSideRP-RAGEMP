@@ -16,10 +16,13 @@ namespace ServerSide.Characters.Clothes
             var clothes = CharacterDbManager.getClothes(character, index);
             var clothesJSON = NAPI.Util.ToJson(clothes);
             player.TriggerEvent("SERVER:CLIENT:ShowCostume", clothesJSON);
-            if(clothes != null)
+            if (clothes != null)
                 ClothesUpdate(player, clothesJSON);
             else
+            {
                 ClothesUpdate(player, defaultClothesJSON);
+                NAPI.Player.ClearPlayerAccessory(player, 7);
+            }
         }
         [RemoteEvent("CLIENT:SERVER:BuyClothes")]
         private void BuyClothes(Player player, string ClothesJSON)

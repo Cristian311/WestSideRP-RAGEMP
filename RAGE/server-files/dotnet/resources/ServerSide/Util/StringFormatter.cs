@@ -17,7 +17,7 @@ namespace ServerSide.Util
             if (!char.IsUpper(input[0]))
             {
                 input = char.ToUpper(input[0]) + input.Substring(1);
-            }
+            } 
 
             // Ensure the string ends with a period
             if (!input.EndsWith("."))

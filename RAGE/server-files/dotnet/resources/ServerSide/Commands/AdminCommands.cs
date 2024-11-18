@@ -15,6 +15,7 @@ namespace ServerSide.Commands
             //if (AccountManager.PlayerAccountPairs[player].AdminLevel)
             VehicleHash busModel = NAPI.Util.VehicleNameToModel(car); //Gets the hash of bus model
             NAPI.Vehicle.CreateVehicle(busModel, player.Position, 0, 0, 0); //Creates a bus on the player's position
+
         }
         [Command("weapon")]
         public void WeaponCommand(Player player, string weapon, int ammo)
