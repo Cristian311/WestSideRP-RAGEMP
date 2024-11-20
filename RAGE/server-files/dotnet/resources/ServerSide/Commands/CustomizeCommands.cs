@@ -49,5 +49,12 @@ namespace ServerSide.Commands
             var character = CharacterManager.PlayerCharacterPair[player];
             player.TriggerEvent("SERVER:CLIENT:openClothesScreen");
         }
+        [Command("shirtoff")]
+        private void shirtCommand(Player player)
+        {
+            player.SetClothes(3, 15, 0);
+            player.SetClothes(11, 15, 0);
+            player.SetClothes(8, 15, 0);
+        }
     }
 }

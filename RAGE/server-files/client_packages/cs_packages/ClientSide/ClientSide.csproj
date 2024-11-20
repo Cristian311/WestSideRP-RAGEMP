@@ -11,6 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\..\gm\RAGE\server-files\dotnet\runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="rage-sharpN">
       <HintPath>..\..\..\..\..\..\..\..\..\..\RAGEMP\dotnet\rage-sharpN.dll</HintPath>
     </Reference>

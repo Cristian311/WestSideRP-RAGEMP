@@ -1,67 +1,53 @@
-﻿using System;
+﻿using RAGE;
+using RAGE.NUI;
+using RAGE.Ui;
+using RAGE.Util;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using RAGE;
-using RAGE.NUI;
+
 namespace ClientSide.Character
 {
     internal class TattooHandler : Events.Script
     {
-        
-        public TattooHandler() 
+        private HtmlWindow cefBrowser;
+        private TattooHandler()
         {
-            Events.Add("SERVER:CLIENT:OpenTattooMenu", OpenTattooMenu);
+            Events.Add("SERVER:CLIENT:showTattooScreen", showTattooScreen);
+            Events.Add("CEF:CLIENT:stopTattooScreen", stopTattooScreen);
+            Events.Add("CEF:CLIENT:ApplyTattoo", updateTattoo);
+
         }
 
-        private void OpenTattooMenu(object[] args)
+        private void updateTattoo(object[] args)
         {
+            string tattooName = args[0].ToString();
+            Events.CallRemote("CLIENT:SERVER:ApplyTattoo", tattooName);
+        //    string json = args[0].ToString();
+        //    Events.CallRemote("CLIENT:SERVER:TattooCustomizeUpdate", json);
+        }
+        private void showTattooScreen(object[] args)
+        {
+            // Initialize the HTML window and show the cursor
+            string json = args[0].ToString();
+            cefBrowser = new HtmlWindow("http://package2/html/tattoos/tattoos.html");
             
-            MenuPool menuPool = new MenuPool();
+            cefBrowser.Active = true;
+            Cursor.Visible = true;
+            Chat.Show(false);
+            //string json = args[0].ToString();
+            //RAGE.Chat.Output(json);
+            string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
+            cefBrowser.ExecuteJs($"updateDataFromJson(\"{escapedJson}\");");
+            //
+            //
+        }
 
-            UIMenu tattooMenu = new UIMenu("Tattoo Menu", "Choose the tattoo you want");
-
-            menuPool.Add(tattooMenu);
-
-
-            var tattooNames = new List<dynamic>
-            {
-                "haa",
-                "fdsfsd"
-            };
-            UIMenuListItem tattoos = new UIMenuListItem("tatoos", tattooNames, 0);
-            tattooMenu.AddItem(tattoos);
-
-            UIMenuItem applyButton = new UIMenuItem("Apply");
-            tattooMenu.AddItem(applyButton);
-
-            string selectedTattoo = string.Empty;
-
-            tattooMenu.OnListChange += (sender, item, index) =>
-            {
-                if (sender == tattooMenu)
-                {
-                    if(item == tattoos)
-                    {
-                        selectedTattoo = item.IndexToItem(index).ToString();
-                    }    
-                }
-            };
-            tattooMenu.OnItemSelect += (sender, item, index) =>
-            {
-                if(sender == tattooMenu)
-                    if(item == applyButton)
-                    {
-                        RAGE.Chat.Output(tattoos.CurrentItem());
-                    }
-            };
-            tattooMenu.Visible = true;
-            tattooMenu.FreezeAllInput = true;
-            tattooMenu.RefreshIndex();
-
-            Events.Tick += (name) =>
-            {
-                menuPool.ProcessMenus();
-            };
+        private void stopTattooScreen(object[] args)
+        {
+            cefBrowser.Destroy();
+            cefBrowser = null;
+            Cursor.Visible = false;
         }
     }
 }

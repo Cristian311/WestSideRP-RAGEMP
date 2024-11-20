@@ -1,4 +1,5 @@
 ﻿using RAGE;
+using RAGE.NUI;
 using RAGE.Ui;
 using RAGE.Util;
 using System;
@@ -15,7 +16,9 @@ namespace ClientSide.Character
             Events.Add("SERVER:CLIENT:showHairScreen", showHairScreen);
             Events.Add("CEF:CLIENT:stopHairScreen", stopHairScreen);
             Events.Add("CEF:CLIENT:updateHair", UpdateHair);
+            
         }
+        
         private void UpdateHair(object[] args)
         {
             string json = args[0].ToString();
