@@ -34,7 +34,7 @@ namespace ClientSide.Character
             
             cefBrowser.Active = true;
             Cursor.Visible = true;
-            Chat.Show(false);
+            Chat.Show(false); 
             //string json = args[0].ToString();
             //RAGE.Chat.Output(json);
             string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
