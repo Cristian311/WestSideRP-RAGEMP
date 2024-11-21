@@ -56,7 +56,6 @@ namespace ServerSide.Commands
             var chars = CharacterManager.getCharByName(target);
             if (chars.Count == 1)
             {
-                player.SendChatMessage("hatz");
                 var character = chars[0];
                 if (!AdminManager.CheckIfAdminAccess(player, 1))
                     return;
@@ -68,7 +67,6 @@ namespace ServerSide.Commands
             }
             else
             {
-                player.SendChatMessage("hatz2");
                 foreach (var character in chars)
                 {
                     player.SendChatMessage(character.Name);
@@ -81,7 +79,6 @@ namespace ServerSide.Commands
             var chars = CharacterManager.getCharByName(target);
             if (chars.Count == 1)
             {
-                player.SendChatMessage("hatz");
                 var character = chars[0];
                 if (!AdminManager.CheckIfAdminAccess(player, 1))
                     return;
@@ -94,7 +91,6 @@ namespace ServerSide.Commands
             }
             else
             {
-                player.SendChatMessage("hatz2");
                 foreach (var character in chars)
                 {
                     player.SendChatMessage(character.Name);
@@ -107,7 +103,6 @@ namespace ServerSide.Commands
             var chars = CharacterManager.getCharByName(target);
             if (chars.Count == 1)
             {
-                player.SendChatMessage("hatz");
                 var character = chars[0];
                 if (!AdminManager.CheckIfAdminAccess(player, 1))
                     return;
@@ -120,7 +115,6 @@ namespace ServerSide.Commands
             }
             else
             {
-                player.SendChatMessage("hatz2");
                 foreach (var character in chars)
                 {
                     player.SendChatMessage(character.Name);
@@ -133,7 +127,6 @@ namespace ServerSide.Commands
             var chars = CharacterManager.getCharByName(target);
             if (chars.Count == 1)
             {
-                player.SendChatMessage("hatz");
                 var character = chars[0];
                 if (!AdminManager.CheckIfAdminAccess(player, 1))
                     return;
@@ -142,11 +135,10 @@ namespace ServerSide.Commands
 
                 KickedAccount.Muted = false;
                 //TODO LOGIC BAN DATABASE
-                NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat mute lui {KickedAccount.currentCharacter.Name}");
+                NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat unmute lui {KickedAccount.currentCharacter.Name}");
             }
             else
             {
-                player.SendChatMessage("hatz2");
                 foreach (var character in chars)
                 {
                     player.SendChatMessage(character.Name);
