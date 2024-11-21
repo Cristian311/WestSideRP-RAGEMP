@@ -8,6 +8,7 @@ using ServerSide.Hair;
 using GTANetworkMethods;
 using Player = GTANetworkAPI.Player;
 using ServerSide.DB.CharacterDB;
+using System.Threading;
 
 
 namespace ServerSide.Characters
@@ -28,6 +29,20 @@ namespace ServerSide.Characters
         public static Dictionary<Character, Account> CharacterAccountPair = new Dictionary<Character, Account>();
         //public static Dictionary<Character, IAccount> CharacterAccountPair = new Dictionary<Character, IAccount>();
 
+        public static List<Character> getCharByName(string name)
+        {
+            int cont = 0;
+            List<Character> chars = new List<Character>();
+            foreach(var account in AccountManager.loggedAccounts)
+            {
+                if (account.currentCharacter.Name.Contains(name))
+                {
+                    cont++;
+                    chars.Add(account.currentCharacter);
+                }
+            }
+            return chars;
+        }
         [RemoteEvent("CLIENT:SERVER:CreateCharacter")]
         private void CreateCharacter(Player player, string firstname, string lastname, string selectedgender)
         {

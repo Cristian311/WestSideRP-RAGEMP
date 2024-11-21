@@ -9,6 +9,7 @@ namespace ServerSide.Accounts
     public class Account : IAccount
     {
         public int Id { get; }
+        public int GameId { get; set; }
         public string Name { get; }
         public string Password { get; }
         public string Email { get; } = "";

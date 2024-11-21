@@ -54,9 +54,11 @@ namespace ServerSide.Characters.Tattoos
             player.SendChatMessage(tattoo);
             string tattooHash = getTattooHash(player,tattoo);
             string tattooCollection = getTattooCollection(tattoo);
+
             Decoration tattooDecoration = new Decoration();
             tattooDecoration.Collection = NAPI.Util.GetHashKey(tattooCollection);
             tattooDecoration.Overlay = NAPI.Util.GetHashKey(tattooHash);
+
             player.SendChatMessage($"HASH: {tattooHash} COLLECTION: {tattooCollection}");
             player.SetDecoration(tattooDecoration);
         }

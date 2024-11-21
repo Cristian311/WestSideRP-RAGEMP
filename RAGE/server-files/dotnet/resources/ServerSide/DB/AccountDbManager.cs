@@ -82,6 +82,51 @@ namespace ServerSide.DB
                 }
             }
         }
+        public bool checkAccountAdminLevel(string username, out int? adminLevel)
+        {
+            adminLevel = null;
+
+            if (string.IsNullOrEmpty(username))
+                return false;
+
+            Database db = new Database();
+            using (MySqlConnection connection = db.getDatabaseConnection())
+            {
+                string query = "SELECT * FROM `accounts` WHERE Name = @username";
+
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@username", username);
+
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            adminLevel = reader.GetInt32(reader.GetOrdinal("adminLevel")); // Read adminLevel
+                            return true; // User exists, admin level retrieved
+                        }
+                        else
+                        {
+                            NAPI.Util.ConsoleOutput("No user found with the given username.");
+                            return false; // No user found
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    NAPI.Util.ConsoleOutput($"An error occurred: {ex.Message}");
+                    return false; // Database error
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
         public bool checkAccountRegister(string username)
         {
             Database db = new Database();
@@ -118,5 +163,6 @@ namespace ServerSide.DB
                 }
             }
         }
+        
     }
 }
