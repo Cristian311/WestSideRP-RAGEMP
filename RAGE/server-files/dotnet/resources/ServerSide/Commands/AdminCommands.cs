@@ -110,7 +110,7 @@ namespace ServerSide.Commands
                 var TargetAccount = CharacterManager.CharacterAccountPair[character];
 
                 TargetAccount.Muted = true;
-                //TODO LOGIC BAN DATABASE
+                //TODO LOGIC MUTE DATABASE
                 NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat mute lui {TargetAccount.currentCharacter.Name} Motiv: {reason}");
             }
             else
@@ -134,7 +134,7 @@ namespace ServerSide.Commands
                 var TargetAccount = CharacterManager.CharacterAccountPair[character];
 
                 TargetAccount.Muted = false;
-                //TODO LOGIC BAN DATABASE
+                //TODO LOGIC MUTE DATABASE
                 NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat unmute lui {TargetAccount.currentCharacter.Name}");
             }
             else

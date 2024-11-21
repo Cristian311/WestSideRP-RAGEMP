@@ -1,5 +1,6 @@
 ﻿using GTANetworkAPI;
 using ServerSide.Accounts;
+using ServerSide.Admin;
 using ServerSide.Characters;
 using ServerSide.Util;
 using System;
@@ -27,6 +28,69 @@ namespace ServerSide.Commands
                 }
             }
         }
+        [Command("to")]
+        private void cmd_to(Player player, string target, string message)
+        {
+            var chars = CharacterManager.getCharByName(target);
+            if (chars.Count == 1)
+            {
+                var character = chars[0];
+                var otherplayer = CharacterManager.CharacterAccountPair[character].player;
+
+                var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
+                var name = CharacterManager.PlayerCharacterPair[player].Name;
+                foreach (var p in players)
+                {
+                    if(p != otherplayer)
+                        p.SendChatMessage($"{Colors.COLOR_CHAT_LOW}{name} spune lui {character.Name}: {message}");
+                }
+                otherplayer.SendChatMessage($"[!]{Colors.COLOR_CHAT_LOW}{name} spune lui {character.Name}: {message}");
+            }
+            else
+            {
+                foreach (var character in chars)
+                {
+                    player.SendChatMessage(character.Name);
+                }
+            }
+        }
+        [Command("lowto")]
+        private void cmd_lowto(Player player, string target, string message)
+        {
+            var chars = CharacterManager.getCharByName(target);
+            if (chars.Count == 1)
+            {
+                var character = chars[0];
+
+                var players = NAPI.Player.GetPlayersInRadiusOfPlayer(15, player);
+                var otherplayer = CharacterManager.CharacterAccountPair[character].player;
+
+                var name = CharacterManager.PlayerCharacterPair[player].Name;
+                foreach (var p in players)
+                {
+                    if (p != otherplayer)
+                        p.SendChatMessage($"{Colors.COLOR_CHAT_LOW}{name} spune(încet) lui {character.Name}: {message}");
+                }
+                otherplayer.SendChatMessage($"[!]{Colors.COLOR_CHAT_LOW}{name} spune(încet) lui {character.Name}: {message}");
+            }
+            else
+            {
+                foreach (var character in chars)
+                {
+                    player.SendChatMessage(character.Name);
+                }
+            }
+        }
+        [Command("melow", GreedyArg = true)]
+        private void cmd_melow(Player player, string action)
+        {
+            var players = NAPI.Player.GetPlayersInRadiusOfPlayer(15, player);
+            var name = CharacterManager.PlayerCharacterPair[player].Name;
+            foreach (var p in players)
+            {
+                p.SendChatMessage($"{Colors.COLOR_CHAT_ME}* {name} {action}");
+            }
+        }
         [Command("me", GreedyArg = true)]
         private void meCommand(Player player, string action)
         {
@@ -37,6 +101,7 @@ namespace ServerSide.Commands
                 p.SendChatMessage($"{Colors.COLOR_CHAT_ME}* {name} {action}");
             }
         }
+
         [Command("do", GreedyArg = true)]
         private void doCommand(Player player, string action)
         {
@@ -49,7 +114,7 @@ namespace ServerSide.Commands
         [Command("low", GreedyArg = true)]
         private void lowCommand(Player player, string action)
         {
-            var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
+            var players = NAPI.Player.GetPlayersInRadiusOfPlayer(15, player);
             var name = CharacterManager.PlayerCharacterPair[player].Name;
             foreach (var p in players)
             {
