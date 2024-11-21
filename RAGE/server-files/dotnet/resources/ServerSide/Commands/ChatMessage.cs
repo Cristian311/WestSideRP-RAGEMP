@@ -44,7 +44,17 @@ namespace ServerSide.Commands
                     if(p != otherplayer)
                         p.SendChatMessage($"{Colors.COLOR_CHAT_LOW}{name} spune lui {character.Name}: {message}");
                 }
-                otherplayer.SendChatMessage($"[!]{Colors.COLOR_CHAT_LOW}{name} spune lui {character.Name}: {message}");
+                otherplayer.SendChatMessage($"{Colors.COLOR_CHAT_PARTY}[!]{Colors.COLOR_CHAT_LOW}{name} spune lui {character.Name}: {message}");
+            }
+            else
+            {
+                foreach (var character in chars)
+
+                var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
+                var name = CharacterManager.PlayerCharacterPair[player].Name;
+                
+                otherplayer.SendChatMessage($"{Colors.COLOR_CHAT_WHISPER}{name} spune(soapta): {message}");
+                player.SendChatMessage($"{Colors.COLOR_CHAT_WHISPER}{name} spune(soapta): {message}");
             }
             else
             {
@@ -71,7 +81,7 @@ namespace ServerSide.Commands
                     if (p != otherplayer)
                         p.SendChatMessage($"{Colors.COLOR_CHAT_LOW}{name} spune(încet) lui {character.Name}: {message}");
                 }
-                otherplayer.SendChatMessage($"[!]{Colors.COLOR_CHAT_LOW}{name} spune(încet) lui {character.Name}: {message}");
+                otherplayer.SendChatMessage($"{Colors.COLOR_CHAT_PARTY}[!]{Colors.COLOR_CHAT_LOW}{name} spune(încet) lui {character.Name}: {message}");
             }
             else
             {
@@ -106,6 +116,15 @@ namespace ServerSide.Commands
         private void doCommand(Player player, string action)
         {
             var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
+            foreach (var p in players)
+            {
+                p.SendChatMessage($"{Colors.COLOR_CHAT_ME}* {action} ({CharacterManager.PlayerCharacterPair[player].Name}) ");
+            }
+        }
+        [Command("dolow", GreedyArg = true)]
+        private void dolowCommand(Player player, string action)
+        {
+            var players = NAPI.Player.GetPlayersInRadiusOfPlayer(15, player);
             foreach (var p in players)
             {
                 p.SendChatMessage($"{Colors.COLOR_CHAT_ME}* {action} ({CharacterManager.PlayerCharacterPair[player].Name}) ");
