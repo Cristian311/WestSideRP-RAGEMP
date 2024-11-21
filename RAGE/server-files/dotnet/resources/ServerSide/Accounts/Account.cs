@@ -17,7 +17,7 @@ namespace ServerSide.Accounts
         public int AdminLevel { get; set; }
         public List<ICharacter> Characters { get; set; }
         public Character currentCharacter { get; set; }
-
+        public bool Muted { get; set; }
         public Account(int id, string name, Player player)
         {
             Id = id;

@@ -1,4 +1,5 @@
 ﻿using GTANetworkAPI;
+using ServerSide.Accounts;
 using ServerSide.Characters;
 using ServerSide.Util;
 using System;
@@ -12,12 +13,18 @@ namespace ServerSide.Commands
         [ServerEvent(Event.ChatMessage)]
         private void playerChat(Player player, string message)
         {
-            var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
-            message = StringFormatter.FormatStringForChatMessage(message);
-            var name = CharacterManager.PlayerCharacterPair[player].Name;
-            foreach (var p in players)
+            var account = AccountManager.PlayerAccountPairs[player];
+            if (account.Muted == true)
+                player.SendChatMessage($"{Colors.COLOR_CHAT_MUTED}You are muted and can't send a message");
+            else
             {
-                p.SendChatMessage($"{name} spune: {message}");
+                var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
+                message = StringFormatter.FormatStringForChatMessage(message);
+                var name = CharacterManager.PlayerCharacterPair[player].Name;
+                foreach (var p in players)
+                {
+                    p.SendChatMessage($"{name} spune: {message}");
+                }
             }
         }
         [Command("me", GreedyArg = true)]

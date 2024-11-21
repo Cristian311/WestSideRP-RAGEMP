@@ -1,6 +1,9 @@
 ﻿using GTANetworkAPI;
+using Org.BouncyCastle.Asn1.IsisMtt.Ocsp;
 using ServerSide.Accounts;
 using ServerSide.Admin;
+using ServerSide.Characters;
+using ServerSide.Util;
 using ServerSide.Util.Admin;
 using System;
 using System.Collections.Generic;
@@ -44,6 +47,111 @@ namespace ServerSide.Commands
                 return;
             NAPI.World.SetTime(hour, 0, 0);
             player.SendNotification($"Set time to {hour}.");
+        }
+
+        ////MODERATION COMMANDS
+        [Command("kick")]
+        public void KickPlayerCommand(Player player, string target, string reason)
+        {
+            var chars = CharacterManager.getCharByName(target);
+            if (chars.Count == 1)
+            {
+                player.SendChatMessage("hatz");
+                var character = chars[0];
+                if (!AdminManager.CheckIfAdminAccess(player, 1))
+                    return;
+                var AdminAccount = AccountManager.PlayerAccountPairs[player];
+                var KickedAccount = CharacterManager.CharacterAccountPair[character];
+
+                KickedAccount.player.Kick($"You were kicked by an admin. Reason: {reason}");
+                NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat kick lui {KickedAccount.currentCharacter.Name} Motiv: {reason}");
+            }
+            else
+            {
+                player.SendChatMessage("hatz2");
+                foreach (var character in chars)
+                {
+                    player.SendChatMessage(character.Name);
+                }
+            }
+        }
+        [Command("ban")]
+        public void BanPlayerCommand(Player player, string target, string reason)
+        {
+            var chars = CharacterManager.getCharByName(target);
+            if (chars.Count == 1)
+            {
+                player.SendChatMessage("hatz");
+                var character = chars[0];
+                if (!AdminManager.CheckIfAdminAccess(player, 1))
+                    return;
+                var AdminAccount = AccountManager.PlayerAccountPairs[player];
+                var KickedAccount = CharacterManager.CharacterAccountPair[character];
+
+                KickedAccount.player.Ban($"You were banned by an admin. Reason: {reason}");
+                //TODO LOGIC BAN DATABASE
+                NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat ban lui {KickedAccount.currentCharacter.Name} Motiv: {reason}");
+            }
+            else
+            {
+                player.SendChatMessage("hatz2");
+                foreach (var character in chars)
+                {
+                    player.SendChatMessage(character.Name);
+                }
+            }
+        }
+        [Command("mute")]
+        public void MutePlayerCommand(Player player, string target, string reason)
+        {
+            var chars = CharacterManager.getCharByName(target);
+            if (chars.Count == 1)
+            {
+                player.SendChatMessage("hatz");
+                var character = chars[0];
+                if (!AdminManager.CheckIfAdminAccess(player, 1))
+                    return;
+                var AdminAccount = AccountManager.PlayerAccountPairs[player];
+                var KickedAccount = CharacterManager.CharacterAccountPair[character];
+
+                KickedAccount.Muted = true;
+                //TODO LOGIC BAN DATABASE
+                NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat mute lui {KickedAccount.currentCharacter.Name} Motiv: {reason}");
+            }
+            else
+            {
+                player.SendChatMessage("hatz2");
+                foreach (var character in chars)
+                {
+                    player.SendChatMessage(character.Name);
+                }
+            }
+        }
+        [Command("unmute")]
+        public void UnmutePlayerCommand(Player player, string target)
+        {
+            var chars = CharacterManager.getCharByName(target);
+            if (chars.Count == 1)
+            {
+                player.SendChatMessage("hatz");
+                var character = chars[0];
+                if (!AdminManager.CheckIfAdminAccess(player, 1))
+                    return;
+                var AdminAccount = AccountManager.PlayerAccountPairs[player];
+                var KickedAccount = CharacterManager.CharacterAccountPair[character];
+
+                KickedAccount.Muted = false;
+                //TODO LOGIC BAN DATABASE
+                NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat mute lui {KickedAccount.currentCharacter.Name}");
+            }
+            else
+            {
+                player.SendChatMessage("hatz2");
+                foreach (var character in chars)
+                {
+                    player.SendChatMessage(character.Name);
+                }
+            }
         }
     }
 }

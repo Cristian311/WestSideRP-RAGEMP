@@ -27,20 +27,24 @@ namespace ServerSide.Characters
         //player->character and character->account links
         public static Dictionary<Player, Character> PlayerCharacterPair = new Dictionary<Player, Character>();
         public static Dictionary<Character, Account> CharacterAccountPair = new Dictionary<Character, Account>();
+        public static List<Character> loggedCharacters = new List<Character>();
         //public static Dictionary<Character, IAccount> CharacterAccountPair = new Dictionary<Character, IAccount>();
 
         public static List<Character> getCharByName(string name)
         {
             int cont = 0;
             List<Character> chars = new List<Character>();
-            foreach(var account in AccountManager.loggedAccounts)
+            foreach(var character in loggedCharacters)
             {
-                if (account.currentCharacter.Name.Contains(name))
+                var charName = character.Name.ToLower();
+                NAPI.Util.ConsoleOutput(character.Name);
+                if (charName.Contains(name.ToLower()))
                 {
                     cont++;
-                    chars.Add(account.currentCharacter);
+                    chars.Add(character);
                 }
             }
+            NAPI.Util.ConsoleOutput(cont.ToString());
             return chars;
         }
         [RemoteEvent("CLIENT:SERVER:CreateCharacter")]
@@ -85,9 +89,11 @@ namespace ServerSide.Characters
             Account account = AccountManager.PlayerAccountPairs[player];
 
             Character character = CharacterDbManager.getCharacter(account, charName);
-            player.SendChatMessage(charName);
-            PlayerCharacterPair[player] = character;    
-            NAPI.Player.SetPlayerNametag(player, charName);
+            loggedCharacters.Add(character);
+            PlayerCharacterPair[player] = character;
+            CharacterManager.CharacterAccountPair[character] = account;
+            account.currentCharacter = character;
+            player.Nametag = charName;
 
             //!!!!!!! UPDATE PLAYER CHARACTER DETAILS AFTER SELECTED
 
