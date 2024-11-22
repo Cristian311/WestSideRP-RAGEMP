@@ -14,6 +14,8 @@ namespace ServerSide.Items
 {
     internal class ItemManager : Script
     {
+        
+        
         [Command("inv")]
         private void cmd_inv(Player player)
         {
@@ -32,16 +34,16 @@ namespace ServerSide.Items
         }
 
         [Command("createitem")]
-        private void cmd_createItem(Player player, string Name, string Type, int Ammount)
+        private void cmd_createItem(Player player, string Name, string Type, int Ammount, string UsedFor = "")
         {
             var character = CharacterManager.PlayerCharacterPair[player];
             player.SendChatMessage($"{Colors.COLOR_CHAT_ADMIN}Created item {Name} Type {Type} {Ammount} units");
-            bool Countable;
-            if (Type == "Weapon")
-                Countable = false;
+            Item item;
+            bool Countable = getCountable(Type);
+            if(UsedFor != string.Empty && Type.ToLower() == "bullet")
+                item = new Item(character, Name, Type, Ammount, Countable, UsedFor);
             else
-                Countable = true;
-            Item item = new Item(Name, Type, Ammount, Countable);
+                item = new Item(character, Name, Type, Ammount, Countable);
             character.Items.Add(item);
             
         }
@@ -59,7 +61,13 @@ namespace ServerSide.Items
             }
 
         }
-
+        private bool getCountable(string Type)
+        {
+            if (Type == "Weapon")
+                return false;
+            else
+                return true;
+        }
         private void UseItem(Character character, Item usedItem)
         {
             var item = character.Items.FirstOrDefault(i => i == usedItem);
@@ -68,8 +76,17 @@ namespace ServerSide.Items
             switch(item.Type.ToLower())
             {
                 case "weapon":
-                    WeaponHash weaponHash = NAPI.Util.WeaponNameToModel(item.Name);
-                    player.GiveWeapon(weaponHash, 50);
+                    int bullets = getBullets(character, item);
+                    if (bullets > 0)
+                    {
+                        WeaponHash weaponHash = NAPI.Util.WeaponNameToModel(item.Name);
+                        player.GiveWeapon(weaponHash, bullets);
+                    }
+                    else
+                    {
+                        
+                        player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu ai gloante pentru acest tip de arma");
+                    }
                     break;
                 default:
                     player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}Used item {item.Name}");
@@ -90,7 +107,18 @@ namespace ServerSide.Items
                 }
             }
         }
-
+        private int getBullets(Character character, Item weapon)
+        {
+            foreach (var item in character.Items)
+            {
+                if (item.Type == "bullet")
+                {
+                    if (item.UsedFor == weapon.Name)
+                        return item.Amount;
+                }
+            }
+            return 0;
+        }
         private Item getItemByIndex(List<Item> items, int index)
         {
             bool foundItem = false;
