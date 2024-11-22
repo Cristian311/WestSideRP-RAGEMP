@@ -50,7 +50,7 @@ namespace ServerSide.Commands
                 }
             }
             if (found == false)
-                player.SendChatMessage("Couldn't find the id you're looking for");
+                player.SendChatMessage("Couldn't find the player you're looking for");
         }
     }
 }

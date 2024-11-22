@@ -52,7 +52,7 @@ namespace ServerSide.Characters
         {
             //prepare vars
             string tempname = firstname + ' ' + lastname;
-            Character character = new Character(AccountManager.PlayerAccountPairs[player], tempname, 20, 5000);
+            Character character = new Character(player, AccountManager.PlayerAccountPairs[player], tempname, 20, 5000);
             NAPI.Util.ConsoleOutput(selectedgender);
             character.gender = getGender(selectedgender);
             character.getCharacterInfo();//debug

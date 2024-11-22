@@ -118,7 +118,7 @@ namespace ServerSide.DB.CharacterDB
                         {
                             reader.Read();
 
-                            Character character = new Character(account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+                            Character character = new Character(account.player, account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
                             character.Id = reader.GetInt32(0);
                             character.isCreated = reader.GetBoolean(6);
                             character.gender = reader.GetBoolean(9);
@@ -173,7 +173,7 @@ namespace ServerSide.DB.CharacterDB
                         {
                             while (reader.Read())
                             {
-                                Character character = new Character(account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+                                Character character = new Character(account.player, account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
                                 character.isCreated = reader.GetBoolean(6);
                                 characters.Add(character);
                             }

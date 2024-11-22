@@ -19,7 +19,7 @@ namespace ServerSide.Util
         public static string COLOR_CHAT_FRIENDLY = "!{#00FF00}"; // Bright Green
         public static string COLOR_CHAT_ENEMY = "!{#FF0000}"; // Bright Red
         public static string COLOR_CHAT_SYSTEM = "!{#ADD8E6}"; // Light Blue
-        public static string COLOR_CHAT_ANNOUNCEMENT = "!{#FFFF00}"; // Yellow
+        public static string COLOR_CHAT_ITEMS = "!{#FFFF00}"; // Yellow
         public static string COLOR_CHAT_ADMIN = "!{#8B0000}"; // Dark Red
         public static string COLOR_CHAT_MODERATOR = "!{#9400D3}"; // Dark Violet
         public static string COLOR_CHAT_EVENT = "!{#FF69B4}"; // HotPink
