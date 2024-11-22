@@ -49,6 +49,19 @@ namespace ServerSide.Commands
             else
             {
                 foreach (var character in chars)
+                {
+                    player.SendChatMessage(character.Name);
+                }
+            }
+        }
+        [Command("w")]
+        private void cmd_w(Player player, string target, string message)
+        {
+            var chars = CharacterManager.getCharByName(target);
+            if (chars.Count == 1)
+            {
+                var character = chars[0];
+                var otherplayer = CharacterManager.CharacterAccountPair[character].player;
 
                 var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
                 var name = CharacterManager.PlayerCharacterPair[player].Name;
