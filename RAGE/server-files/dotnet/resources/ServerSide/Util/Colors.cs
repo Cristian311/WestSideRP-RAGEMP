@@ -30,5 +30,25 @@ namespace ServerSide.Util
         public static string COLOR_CHAT_HELP = "!{#6A5ACD}"; // SlateBlue
         public static string COLOR_CHAT_COMMAND = "!{#DAA520}"; // GoldenRod
 
+        // New Color Definitions:
+        public static string COLOR_CHAT_SKY_BLUE = "!{#87CEEB}"; // SkyBlue
+        public static string COLOR_CHAT_LIGHT_GREEN = "!{#90EE90}"; // LightGreen
+        public static string COLOR_CHAT_DARK_BLUE = "!{#00008B}"; // DarkBlue
+        public static string COLOR_CHAT_TEAL = "!{#008080}"; // Teal
+        public static string COLOR_CHAT_LIGHT_PINK = "!{#FFB6C1}"; // LightPink
+        public static string COLOR_CHAT_INDIGO = "!{#4B0082}"; // Indigo
+        public static string COLOR_CHAT_MAGENTA = "!{#FF00FF}"; // Magenta
+        public static string COLOR_CHAT_TURQUOISE = "!{#40E0D0}"; // Turquoise
+        public static string COLOR_CHAT_BROWN = "!{#A52A2A}"; // Brown
+        public static string COLOR_CHAT_CRIMSON = "!{#DC143C}"; // Crimson
+        public static string COLOR_CHAT_CHOCOLATE = "!{#D2691E}"; // Chocolate
+        public static string COLOR_CHAT_DARK_ORANGE = "!{#FF8C00}"; // Dark Orange
+        public static string COLOR_CHAT_CYAN = "!{#00FFFF}"; // Cyan
+        public static string COLOR_CHAT_PEACH = "!{#FFDAB9}"; // Peach
+        public static string COLOR_CHAT_LAVENDER = "!{#E6E6FA}"; // Lavender
+        public static string COLOR_CHAT_GOLDENROD = "!{#B8860B}"; // Goldenrod
+        public static string COLOR_CHAT_IVORY = "!{#FFFFF0}"; // Ivory
+
+
     }
 }

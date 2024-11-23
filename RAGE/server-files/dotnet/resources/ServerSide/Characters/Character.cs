@@ -28,6 +28,7 @@ namespace ServerSide.Characters
         public HairData Hair { get; set; }
         public List<ClothesData> Clothes { get; set; }
         public List<Item> Items { get; set; } = new List<Item>();
+        public List<WeaponHash> currentWeapons {  get; set; } = new List<WeaponHash>();
         public PlayerIdManager ItemIdManager = new PlayerIdManager();
         public Character(Player player, IAccount account, string name, int age, int money)
         {
