@@ -1,5 +1,6 @@
 ﻿using GTANetworkAPI;
 using GTANetworkMethods;
+using ServerSide.Accounts;
 using ServerSide.Admin;
 using ServerSide.Characters;
 using ServerSide.DB.CharacterDB;
@@ -38,6 +39,7 @@ namespace ServerSide.Items
                 return;
             }
             player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}Current items:");
+            character.Items = FixItemsOrder(character.Items);
             foreach (var item in character.Items)
             {
                 player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] {item.Name} - {item.Amount} units");
@@ -49,10 +51,6 @@ namespace ServerSide.Items
         {
 
             var character = CharacterManager.PlayerCharacterPair[player];
-
-            
-            if (!AdminManager.CheckIfAdminAccess(player, 1))
-                return;
 
             Name = StringFormatter.CapitalizeFirstLetter(Name); 
             UsedFor = StringFormatter.CapitalizeFirstLetter(UsedFor);
@@ -99,11 +97,83 @@ namespace ServerSide.Items
             {
                 character.Items.Add(new Item(character, Name, "weapon", Ammount, Countable));
             }
-
         }
+        [Command("creatdrug")]
+        private void cmd_createdrug(Player player, string Name, int Ammount)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            Name = StringFormatter.CapitalizeFirstLetter(Name);
+            if (!AdminManager.CheckIfAdminAccess(player, 1))
+                return;
 
-        
+            player.SendChatMessage($"{Colors.COLOR_CHAT_LIGHT_RED}Created drug {Name} {Ammount} units");
+            bool Countable = false;
 
+            for (int i = 1; i <= Ammount; i++)
+            {
+                character.Items.Add(new Item(character, Name, "drug", Ammount, Countable));
+            }
+        }
+        [Command("giveitem")]
+        public void cmd_giveitem(Player player, string target, int index, int ammount = 1)
+        {
+            var chars = CharacterManager.getCharByName(target);
+            if (chars.Count == 1)
+            {
+                var targetCharacter = chars[0];
+                var character = CharacterManager.PlayerCharacterPair[player];
+
+                Item item = getItemByIndex(character.Items, index);
+                if(item.Amount < ammount)
+                {
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_LIGHT_RED}N-ai {ammount} {item.Name}");
+                    return;
+                }    
+                item.Amount -= ammount;
+                if (item.Amount <= 0)
+                {
+                    character.Items.Remove(item);
+                    character.ItemIdManager.ReclaimId(item.Id);
+                }
+                Item receivedItem = new Item(targetCharacter, item.Name, item.Type, ammount, item.Countable, item.UsedFor);
+                targetCharacter.Items.Add(receivedItem);
+                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}I-ai dat {ammount} {item.Name} lui {targetCharacter.Name}");
+                targetCharacter.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai primit {ammount} {item.Name} de la {character.Name}");
+            }
+            else
+            {
+                foreach (var character in chars)
+                {
+                    player.SendChatMessage(character.Name);
+                }
+            }
+        }
+        [Command("showitem")]
+        public void cmd_showitem(Player player, string target, int index)
+        {
+            var chars = CharacterManager.getCharByNameAroundPlayer(20, player, target);
+            if (chars.Count == 1)
+            {
+                var targetCharacter = chars[0];
+                var character = CharacterManager.PlayerCharacterPair[player];
+
+                Item item = getItemByIndex(character.Items, index);
+                
+                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}I-ai aratat {Colors.COLOR_CHAT_DARK_BLUE}{item.Name}{Colors.COLOR_CHAT_INFO} lui {targetCharacter.Name}");
+                targetCharacter.SendChatMessage($"{Colors.COLOR_CHAT_INFO}{character.Name}ti-a aratat {Colors.COLOR_CHAT_DARK_BLUE}{item.Name}{Colors.COLOR_CHAT_INFO}.");
+            }
+            else
+            {
+                bool found = false;
+                foreach (var character in chars)
+                {
+                    found = true;
+                    player.SendChatMessage(character.Name);
+                }
+                if (found == false)
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_LIGHT_RED}Caracterul nu este langa tine.");
+            }
+        }
         [Command("use")]
         private void cmd_use(Player player, int index)
         {
@@ -123,7 +193,7 @@ namespace ServerSide.Items
             // Validate the player has weapons to unequip
             if (character.currentWeapons.Count == 0)
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}N-ai nici o arma echipata.");
+                player.SendChatMessage($"{Colors.COLOR_CHAT_LIGHT_RED}N-ai nici o arma echipata.");
                 return;
             }
 
@@ -162,12 +232,13 @@ namespace ServerSide.Items
             else if(index < 0)
             {
 
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Selecteaza ID-ul itemului.");
+                player.SendChatMessage($"{Colors.COLOR_CHAT_LIGHT_RED}Selecteaza ID-ul itemului.");
             }    
             else
             {
                 var item = character.Items[index];
                 character.Items.RemoveAt(index);
+                character.ItemIdManager.ReclaimId(item.Id);
                 player.SendChatMessage($"{Colors.COLOR_CHAT_CRIMSON}Ai aruncat {item.Name}");
             }
         }
@@ -206,30 +277,29 @@ namespace ServerSide.Items
                         }
                         else
                         {
-                            player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu ai gloante pentru acest tip de arma");
+                            player.SendChatMessage($"{Colors.COLOR_CHAT_LIGHT_RED}Nu ai gloante pentru acest tip de arma");
                         }
                     }
                     else
                     {
-                        player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu ai gloante pentru acest tip de arma");
+                        player.SendChatMessage($"{Colors.COLOR_CHAT_LIGHT_RED}Nu ai gloante pentru acest tip de arma");
                     }
                     break;
                 case "drink":
                     player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai baut {usedItem.Name}");
-                    player.Health = player.Health + 20;
+                    player.Health += 10;
                     break;
                 case "food":
                     player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai mancat {usedItem.Name}");
-                    player.Health = player.Health + 30;
+                    player.Health += 25;
+                    break;
+                case "drug":
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai bagat {usedItem.Name}, efectele vor aparea in cateva minute");
+                    player.Health += 50;
                     break;
                 default:    
                     player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}Used item {usedItem.Name}");
                     break;
-
-                     
-
-
-
             }
             if (usedItem != null)
             {
@@ -242,9 +312,32 @@ namespace ServerSide.Items
                 if (usedItem.Amount <= 0)
                 {
                     character.Items.Remove(usedItem);
+                    character.ItemIdManager.ReclaimId(usedItem.Id);
                 }
             }
             ItemDbManager.UpdateCharacterItems(character);
+        }
+        private List<Item> FixItemsOrder(List<Item> items)
+        {
+            if (items == null || items.Count == 0)
+                return new List<Item>();
+
+            var groupedItems = new Dictionary<string, Item>();
+            foreach (var item in items)
+            {
+                string itemKey = item.Name.Trim().ToLower();
+
+                if (groupedItems.ContainsKey(itemKey))
+                {
+                    groupedItems[itemKey].Amount += item.Amount;
+                }
+                else
+                {
+                    groupedItems[itemKey] = item;
+                }
+            }
+
+            return new List<Item>(groupedItems.Values);
         }
         private Item getBulletsOfWeapon(Character character, Item weapon)
         {

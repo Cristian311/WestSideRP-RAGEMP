@@ -32,6 +32,7 @@ namespace ServerSide.Characters
         public PlayerIdManager ItemIdManager = new PlayerIdManager();
         public Character(Player player, IAccount account, string name, int age, int money)
         {
+            this.player = player;
             Account = account;
             Id = nrOfCharacters++;
             Name = name; 
@@ -43,6 +44,10 @@ namespace ServerSide.Characters
         {
             NAPI.Util.ConsoleOutput($"Account: {Account.Name} ID: {Id}");
             NAPI.Util.ConsoleOutput($"Name: {Name} Age: {Age} Money: {Money}, isCreated: {isCreated} Gender{gender}");
+        }
+        public void SendChatMessage(string message)
+        {
+            player.SendChatMessage(message);
         }
     }
 }

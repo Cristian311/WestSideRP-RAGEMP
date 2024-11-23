@@ -32,7 +32,6 @@ namespace ServerSide.Characters
 
         public static List<Character> getCharByName(string name)
         {
-            int cont = 0;
             List<Character> chars = new List<Character>();
             foreach(var character in loggedCharacters)
             {
@@ -40,11 +39,25 @@ namespace ServerSide.Characters
                 NAPI.Util.ConsoleOutput(character.Name);
                 if (charName.Contains(name.ToLower()))
                 {
-                    cont++;
                     chars.Add(character);
                 }
             }
-            NAPI.Util.ConsoleOutput(cont.ToString());
+            return chars;
+        }
+        public static List<Character> getCharByNameAroundPlayer(double radius, Player player, string name)
+        {
+            List<Character> chars = new List<Character>();
+            var playersAroundPlayer = NAPI.Player.GetPlayersInRadiusOfPlayer(radius, player);
+            foreach (var character in loggedCharacters)
+            {
+                var charName = character.Name.ToLower();
+                NAPI.Util.ConsoleOutput(character.Name);
+                if (charName.Contains(name.ToLower()))
+                {
+                    if(playersAroundPlayer.Contains(character.player))
+                        chars.Add(character);
+                }
+            }
             return chars;
         }
         [RemoteEvent("CLIENT:SERVER:CreateCharacter")]
