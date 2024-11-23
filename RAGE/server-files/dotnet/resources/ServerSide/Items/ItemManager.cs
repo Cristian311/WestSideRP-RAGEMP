@@ -222,9 +222,10 @@ namespace ServerSide.Items
                     player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai mancat {usedItem.Name}");
                     player.Health = player.Health + 30;
                     break;
-                default:
+                default:    
                     player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}Used item {usedItem.Name}");
                     break;
+
 
             }
             if (usedItem != null)
