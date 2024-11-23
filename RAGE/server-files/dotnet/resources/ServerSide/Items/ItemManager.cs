@@ -2,6 +2,7 @@
 using GTANetworkMethods;
 using ServerSide.Admin;
 using ServerSide.Characters;
+using ServerSide.DB.CharacterDB;
 using ServerSide.Interfaces;
 using ServerSide.Items.Util;
 using ServerSide.Util;
@@ -20,7 +21,12 @@ namespace ServerSide.Items
         {
             WeaponHashMapper.LoadWeapons("json\\weapon\\weapon_names.json");
         }
-        
+        [ServerEvent(Event.PlayerDisconnected)]
+        private void SaveCharItems(Player player, DisconnectionType type, string reason)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            ItemDbManager.UpdateCharacterItems(character);
+        }
         [Command("inv")]
         private void cmd_inv(Player player)
         {
@@ -41,13 +47,24 @@ namespace ServerSide.Items
         [Command("createitem")]
         private void cmd_createItem(Player player, string Name, string Type, int Ammount, string UsedFor = "")
         {
-            Name = StringFormatter.CapitalizeFirstLetter(Name);
+
+            var character = CharacterManager.PlayerCharacterPair[player];
+
+            
             if (!AdminManager.CheckIfAdminAccess(player, 1))
                 return;
-            var character = CharacterManager.PlayerCharacterPair[player];
-            player.SendChatMessage($"{Colors.COLOR_CHAT_ADMIN}Created item {Name} Type {Type} {Ammount} units");
 
+            Name = StringFormatter.CapitalizeFirstLetter(Name); 
+            UsedFor = StringFormatter.CapitalizeFirstLetter(UsedFor);
+            player.SendChatMessage($"{Colors.COLOR_CHAT_ADMIN}Created item {Name} Type {Type} {Ammount} units");
             bool Countable = getCountable(Type);
+
+            if (character.Items == null)
+            {
+                character.Items = new List<Item>();
+            }
+
+
             if (UsedFor != string.Empty && Type.ToLower() == "bullet")
             {
                 character.Items.Add(new Item(character, Name, Type, Ammount, Countable, UsedFor));
@@ -56,6 +73,7 @@ namespace ServerSide.Items
             {
                 if (Countable == false)
                 {
+
                     for (int i = 1; i <= Ammount; i++)
                     {
                         character.Items.Add(new Item(character, Name, Type, 1, Countable));
@@ -64,16 +82,17 @@ namespace ServerSide.Items
                 else
                     character.Items.Add(new Item(character, Name, Type, Ammount, Countable));
             }
+            ItemDbManager.UpdateCharacterItems(character);
         }
         [Command("createweapon")]
         private void cmd_createweapon(Player player, string Name, int Ammount)
         {
+            var character = CharacterManager.PlayerCharacterPair[player];
             Name = StringFormatter.CapitalizeFirstLetter(Name);
             if (!AdminManager.CheckIfAdminAccess(player, 1))
                 return;
-            var character = CharacterManager.PlayerCharacterPair[player];
+            
             player.SendChatMessage($"{Colors.COLOR_CHAT_ADMIN}Created weapon {Name} {Ammount} units");
-            Item item;
             bool Countable = false;
 
             for (int i = 1; i <= Ammount; i++)
@@ -89,19 +108,18 @@ namespace ServerSide.Items
         private void cmd_use(Player player, int index)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            var item = getItemByIndex(character.Items, index);
+            Item item = getItemByIndex(character.Items, index);
             if ( item != null)
             { 
                 //player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}You've used {item.Name}");
                 UseItem(character, item);
-                
             }
         }
 
         [Command("unequip")]
         private void cmd_unequip(Player player)
         {
-            Character character = CharacterManager.PlayerCharacterPair[player];
+            var character = CharacterManager.PlayerCharacterPair[player];
             // Validate the player has weapons to unequip
             if (character.currentWeapons.Count == 0)
             {
@@ -125,20 +143,45 @@ namespace ServerSide.Items
                 var ammo = player.GetWeaponAmmo(weapon);
                 if (ammo > 0)
                 {
-                    Item ammoData = new Item(character, weaponName + " bullets", "bullet", ammo, true, weaponName);
+                    Item ammoData = new Item(character, $"{weaponName} bullets", "bullet", ammo, true, weaponName);
                     character.Items.Add(ammoData);
                 }
                 
                 player.RemoveWeapon(weapon);
             }
         }
+        [Command("drop")]
+        private void cmd_drop(Player player, string all = "", int index = -1)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if(all == "all")
+            {
+                character.Items.Clear();
+                player.SendChatMessage($"{Colors.COLOR_CHAT_CRIMSON}Ai aruncat toate itemele");
+            }
+            else if(index < 0)
+            {
 
+                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Selecteaza ID-ul itemului.");
+            }    
+            else
+            {
+                var item = character.Items[index];
+                character.Items.RemoveAt(index);
+                player.SendChatMessage($"{Colors.COLOR_CHAT_CRIMSON}Ai aruncat {item.Name}");
+            }
+        }
         private bool getCountable(string Type)
         {
             if (Type == "weapon")
                 return false;
             else
                 return true;
+        }
+        public static Character GetCharacterById(int characterId)
+        {
+            // Search for character using only the characterId
+            return CharacterManager.loggedCharacters.FirstOrDefault(c => c.Id == characterId);
         }
         private void UseItem(Character character, Item usedItem)
         {
@@ -155,10 +198,11 @@ namespace ServerSide.Items
                         {
                             WeaponHash weaponHash = NAPI.Util.WeaponNameToModel(usedItem.Name);
                             player.GiveWeapon(weaponHash, bullets.Amount);
-                            character.Items.Remove(bullets);
-                            character.Items.Remove(usedItem);
                             character.currentWeapons.Add(weaponHash);
                             player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai echipat {weaponHash.ToString()}");
+
+                            character.Items.Remove(bullets);
+                            character.Items.Remove(usedItem);
                         }
                         else
                         {
@@ -196,6 +240,7 @@ namespace ServerSide.Items
                     character.Items.Remove(usedItem);
                 }
             }
+            ItemDbManager.UpdateCharacterItems(character);
         }
         private Item getBulletsOfWeapon(Character character, Item weapon)
         {
@@ -203,7 +248,7 @@ namespace ServerSide.Items
             {
                 if (item.Type == "bullet")
                 {
-                    if (item.UsedFor == weapon.Name)
+                    if (StringFormatter.CapitalizeFirstLetter(item.UsedFor) == weapon.Name)
                         return item;
                 }
             }

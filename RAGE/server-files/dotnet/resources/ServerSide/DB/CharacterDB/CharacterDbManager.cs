@@ -5,6 +5,7 @@ using ServerSide.Characters;
 using ServerSide.Characters.Clothes;
 using ServerSide.Hair;
 using ServerSide.Interfaces;
+using ServerSide.Items;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -128,8 +129,61 @@ namespace ServerSide.DB.CharacterDB
                                 character.Face = NAPI.Util.FromJson<CharacterData>(FaceJSON);
                                 var HairJSON = reader.GetString(8);
                                 character.Hair = NAPI.Util.FromJson<HairData>(HairJSON);
+                                var ItemsJSON = reader.GetString(10);
+                                character.Items = NAPI.Util.FromJson<List<Item>>(ItemsJSON);
+                            }
+                            return character;
+                        }
+                        else
+                        {
+                            // No character found
+                            account.player.SendChatMessage("No characters found on this account, create one!");
+                            return null;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    NAPI.Util.ConsoleOutput($"An error occurred: {ex.Message}");
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+        public static Character getCharacterById(IAccount account, int id)
+        {
+            Database db = new Database();
+            using (MySqlConnection connection = db.getDatabaseConnection())
+            {
+                string query = "SELECT * FROM `characters` WHERE id = @id";
 
-                                NAPI.Util.ConsoleOutput(HairJSON);
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@id", id);
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+
+                            Character character = new Character(account.player, account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+                            character.Id = reader.GetInt32(0);
+                            character.isCreated = reader.GetBoolean(6);
+                            character.gender = reader.GetBoolean(9);
+                            if (character.isCreated == true)
+                            {
+                                var FaceJSON = reader.GetString(7);
+                                character.Face = NAPI.Util.FromJson<CharacterData>(FaceJSON);
+                                var HairJSON = reader.GetString(8);
+                                character.Hair = NAPI.Util.FromJson<HairData>(HairJSON);
+                                var ItemsJSON = reader.GetString(10);
+                                if(ItemsJSON != string.Empty)
+                                    character.Items = NAPI.Util.FromJson<List<Item>>(ItemsJSON);
                             }
                             return character;
                         }

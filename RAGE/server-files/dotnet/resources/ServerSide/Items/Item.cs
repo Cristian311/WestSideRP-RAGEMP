@@ -1,4 +1,7 @@
-﻿using ServerSide.Characters;
+﻿using Newtonsoft.Json;
+using ServerSide.Accounts;
+using ServerSide.Characters;
+using ServerSide.DB.CharacterDB;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,14 +19,24 @@ namespace ServerSide.Items
         public string UsedFor { get; set; }
         public int Amount { get; set; }
         public bool Countable { get; }
+        public int currentCharacterId { get; } = 0;
+        [JsonIgnore]
         public Character currentCharacter { get; set; }
         public Item(Character character, string Name, string Type, int Amount, bool Countable, string UsedFor = "")
         {
             Id = ItemsCounter;
             ItemsCounter++;
-            localID = character.ItemIdManager.AssignId();
-            currentCharacter = character;
-            this.Name = Name.ToLower();
+
+            if (character != null)
+            {
+                currentCharacterId = character.Id;
+                localID = character.ItemIdManager.AssignId();
+                currentCharacter = character;
+            }
+            else
+                currentCharacter = ItemManager.GetCharacterById(currentCharacterId);
+
+            this.Name = Name;
             this.Type = Type.ToLower();
             this.Amount = Amount;
             this.Countable = Countable;

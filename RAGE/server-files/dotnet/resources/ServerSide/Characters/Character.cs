@@ -37,6 +37,7 @@ namespace ServerSide.Characters
             Name = name; 
             Age = age;
             Money = money;
+            Items = new List<Item>();
         }
         public void getCharacterInfo()
         {
