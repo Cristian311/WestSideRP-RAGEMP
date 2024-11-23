@@ -20517,3 +20517,86 @@ Newtonsoft.Json.JsonSerializationException: Self referencing loop detected for p
 ==================[23.11.2024 04:13:40]==================
 Newtonsoft.Json.JsonSerializationException: Self referencing loop detected for property 'currentCharacter' with type 'ServerSide.Characters.Character'. Path '[0].currentCharacter.Account'.
    at bool Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CheckForCircularReference(JsonWriter writer, object value, JsonProperty property, JsonContract contract, JsonContainerContract containerContrac
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type parentType, MemberInfo memberInfo, JsonSerializerOptions options)
+=========================================================
+
+==================[23.11.2024 22:20:17]==================
+System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
+   at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type paren

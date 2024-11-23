@@ -1,14 +1,22 @@
 ﻿using GTANetworkAPI;
+using Newtonsoft.Json;
 using ServerSide.DB.CharacterDB;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace ServerSide.Characters.Clothes
 {
     internal class ClothesManager : Script
     {
         private string defaultClothesJSON = "{\"id\":2,\"masks\":{\"drawable\":0,\"texture\":0},\"torsos\":{\"drawable\":0,\"texture\":0},\"legs\":{\"drawable\":0,\"texture\":0},\"bags\":{\"drawable\":0,\"texture\":0},\"shoes\":{\"drawable\":0,\"texture\":0},\"accessories\":{\"drawable\":0,\"texture\":0},\"undershirts\":{\"drawable\":0,\"texture\":0},\"bodyArmor\":{\"drawable\":0,\"texture\":0},\"decals\":{\"drawable\":0,\"texture\":0},\"shirts\":{\"drawable\":0,\"texture\":0},\"helmets\":{\"drawable\":11,\"texture\":0},\"glasses\":{\"drawable\":0,\"texture\":0},\"earAccesories\":{\"drawable\":255,\"texture\":0},\"watches\":{\"drawable\":255,\"texture\":0},\"bracelets\":{\"drawable\":16,\"texture\":0}}";
+        private ClothesManager()
+        {
+            
+        }
+
         [RemoteEvent("CLIENT:SERVER:GetClothes")]
         private void GetClothes(Player player, byte index)
         {

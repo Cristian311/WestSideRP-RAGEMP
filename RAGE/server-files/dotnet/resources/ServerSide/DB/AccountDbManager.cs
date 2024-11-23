@@ -7,7 +7,7 @@ namespace ServerSide.DB
     {
         public bool RegisterAccount(string username, string password)
         {
-            if (checkAccountLogin(username, password, out int? _))
+            if (CheckAccountLogin(username, password, out int? _))
                 return false;
             Database db = new Database();
             using (MySqlConnection connection = db.getDatabaseConnection())
@@ -36,7 +36,7 @@ namespace ServerSide.DB
             }
         }
 
-        public bool checkAccountLogin(string username, string password, out int? Id)
+        public bool CheckAccountLogin(string username, string password, out int? Id)
         {
             Id = null;
             if (username == string.Empty || password == string.Empty)
@@ -82,7 +82,7 @@ namespace ServerSide.DB
                 }
             }
         }
-        public bool checkAccountAdminLevel(string username, out int? adminLevel)
+        public bool CheckAccountAdminLevel(string username, out int? adminLevel)
         {
             adminLevel = null;
 
@@ -127,7 +127,7 @@ namespace ServerSide.DB
             }
         }
 
-        public bool checkAccountRegister(string username)
+        public bool CheckAccountRegister(string username)
         {
             Database db = new Database();
             using (MySqlConnection connection = db.getDatabaseConnection())

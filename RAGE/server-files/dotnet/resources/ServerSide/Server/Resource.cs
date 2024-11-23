@@ -10,7 +10,7 @@ namespace ServerSide.Server
     public class Resource : Script
     {
         [ServerEvent(Event.ResourceStart)]
-        public void onResourceStart()
+        public void OnResourceStart()
         {
             Database db = new Database();
             NAPI.Util.ConsoleOutput("resursa inceppe2");

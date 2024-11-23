@@ -12,7 +12,7 @@ namespace ServerSide.AuthServer
         public void OnRegisterAttempt(Player player, string username, string password)
         {
             AccountDbManager db = new AccountDbManager();
-            if (db.checkAccountRegister(username))
+            if (db.CheckAccountRegister(username))
             {
                 db.RegisterAccount(username, password);
                 NAPI.Util.ConsoleOutput(username + " s-a inregistrat.");

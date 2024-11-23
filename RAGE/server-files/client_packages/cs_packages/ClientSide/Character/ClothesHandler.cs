@@ -18,6 +18,7 @@ namespace ClientSide.Character
             Events.Add("CEF:CLIENT:SelectCostume", SelectClothes);
             Events.Add("CEF:CLIENT:BuyCostume", BuyClothes);
             Events.Add("SERVER:CLIENT:ShowCostume", ShowClothes);
+            Events.Add("SERVER:CLIENT:UpdateDataMaxValues", UpdateDataMaxValues);
         }
 
         private void ShowClothes(object[] args)
@@ -51,6 +52,13 @@ namespace ClientSide.Character
             cefBrowser.Destroy();
             cefBrowser = null;
             Cursor.Visible = false;
+        }
+        private void UpdateDataMaxValues(object[] args)
+        {
+            string json = args[0].ToString();
+            string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
+
+            cefBrowser.ExecuteJs($"updateMaxValuesFromJSON(\"{escapedJson}\");");
         }
         private void OpenClothesScreen(object[] args)
         {

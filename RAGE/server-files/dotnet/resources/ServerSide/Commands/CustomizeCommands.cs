@@ -1,9 +1,8 @@
 ﻿using GTANetworkAPI;
 using ServerSide.Accounts;
 using ServerSide.Characters;
-using ServerSide.DB.CharacterDB;
-using ServerSide.Interfaces;
-using System.Collections.Generic;
+using ServerSide.Clothes;
+
 
 
 namespace ServerSide.Commands
@@ -41,7 +40,11 @@ namespace ServerSide.Commands
         {
             var account = AccountManager.PlayerAccountPairs[player];
             var character = CharacterManager.PlayerCharacterPair[player];
+            ClothesNames clothesNames = new ClothesNames();
+            clothesNames.SetGender(character.Gender ? "male" : "female");
+            var itemMaxValuesJSON = NAPI.Util.ToJson(clothesNames.results);
             player.TriggerEvent("SERVER:CLIENT:openClothesScreen");
+            player.TriggerEvent("SERVER:CLIENT:UpdateDataMaxValues", itemMaxValuesJSON);
         }
         [Command("shirtoff")]
         private void ShirtCommand(Player player)
