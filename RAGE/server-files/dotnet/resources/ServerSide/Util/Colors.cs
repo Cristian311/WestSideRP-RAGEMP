@@ -9,7 +9,7 @@ namespace ServerSide.Util
         public static string COLOR_CHAT_ME = "!{#d68aff}"; // Purple
         public static string COLOR_CHAT_LOW = "!{#C0C0C0}"; // Grey
         public static string COLOR_CHAT_HIGH = "!{#FFD700}"; // Gold
-        public static string COLOR_CHAT_ERROR = "!{#FF4500}"; // OrangeRed
+        public static string COLOR_CHAT_ERROR = "!{#FF6347}"; // OrangeRed
         public static string COLOR_CHAT_SUCCESS = "!{#32CD32}"; // LimeGreen
         public static string COLOR_CHAT_INFO = "!{#1E90FF}"; // DodgerBlue
         public static string COLOR_CHAT_WARNING = "!{#FFA500}"; // Orange
