@@ -3,6 +3,7 @@ using ServerSide.Characters.Clothes;
 using ServerSide.Hair;
 using ServerSide.Interfaces;
 using ServerSide.Items;
+using ServerSide.Items.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -29,7 +30,7 @@ namespace ServerSide.Characters
         public List<ClothesData> Clothes { get; set; }
         public List<Item> Items { get; set; } = new List<Item>();
         public List<WeaponHash> currentWeapons {  get; set; } = new List<WeaponHash>();
-        public PlayerIdManager ItemIdManager = new PlayerIdManager();
+        public ItemIdManager ItemIdManager = new ItemIdManager();
         public Character(Player player, IAccount account, string name, int age, int money)
         {
             this.player = player;

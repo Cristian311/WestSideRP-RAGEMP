@@ -131,6 +131,10 @@ namespace ServerSide.DB.CharacterDB
                                 character.Hair = NAPI.Util.FromJson<HairData>(HairJSON);
                                 var ItemsJSON = reader.GetString(10);
                                 character.Items = NAPI.Util.FromJson<List<Item>>(ItemsJSON);
+                                foreach(var item in character.Items)
+                                {
+                                    character.ItemIdManager.SetIdBusy(item.localID);
+                                }    
                             }
                             return character;
                         }
