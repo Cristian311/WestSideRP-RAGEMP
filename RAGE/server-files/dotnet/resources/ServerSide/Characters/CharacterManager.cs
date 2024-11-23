@@ -9,13 +9,13 @@ using GTANetworkMethods;
 using Player = GTANetworkAPI.Player;
 using ServerSide.DB.CharacterDB;
 using System.Threading;
+using Org.BouncyCastle.Asn1.X509;
 
 
 namespace ServerSide.Characters
 {
     internal class CharacterManager : Script
     {
-        private static int cont = 0;
         //DEFAULT JSONS
         public const string FaceDefaultJSON = "{\"shape\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"skin\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"nose\":{\"width\":\"0\",\"height\":\"0\",\"length\":\"0\",\"bridge\":\"0\",\"tip\":\"0\",\"bridgeShift\":\"0\"},\"brow\":{\"height\":\"0\",\"width\":\"0\"},\"cheeks\":{\"height\":\"0\",\"width\":\"0\",\"cheeksWidth\":\"0\"},\"jaw\":{\"width\":\"0\"},\"chin\":{\"lenght\":\"0\",\"position\":\"0\",\"width\":\"0\",\"shape\":\"0\"},\"neck\":{\"width\":\"0\"},\"lips\":\"0\",\"skinColor\":\"0\",\"eye\":{\"size\":\"0\",\"color\":\"0\"}}\r\n";
         public const string HairDefaultJSON = "{\"hair\":\"0\",\"facialHair\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":1},\"eyebrows\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"},\"bodyHair\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"},\"hairTattoo\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"}}\r\n";
@@ -44,7 +44,7 @@ namespace ServerSide.Characters
             }
             return chars;
         }
-        public static List<Character> getCharByNameAroundPlayer(double radius, Player player, string name)
+        public static List<Character> GetCharByNameAroundPlayer(double radius, Player player, string name)
         {
             List<Character> chars = new List<Character>();
             var playersAroundPlayer = NAPI.Player.GetPlayersInRadiusOfPlayer(radius, player);
@@ -67,8 +67,9 @@ namespace ServerSide.Characters
             string tempname = firstname + ' ' + lastname;
             Character character = new Character(player, AccountManager.PlayerAccountPairs[player], tempname, 20, 5000);
             NAPI.Util.ConsoleOutput(selectedgender);
-            character.gender = getGender(selectedgender);
-            character.getCharacterInfo();//debug
+            character.Gender = GetGender(selectedgender);
+            character.GetCharacterInfo();//debug
+
             //insert char in database
             CharacterDbManager.CreateCharacter(character);
             UpdateCharDataDBManager.UpdateCharacter(character);
@@ -76,25 +77,19 @@ namespace ServerSide.Characters
             UpdateCharDataDBManager.UpdateCharacterHair(character);
         }
         [RemoteEvent("CLIENT:SERVER:ClosedCreateCharScreen")] // meaning character interface needs to appear
-        private void onCloseCreateCharScreen(Player player)
+        private void OnCloseCreateCharScreen(Player player)
         {
             var account = AccountManager.PlayerAccountPairs[player];
             string username = account.Name;
 
-            List<ICharacter> characters = CharacterDbManager.getCharacters(account);
-
-            CharacterManager cm = new CharacterManager();
-            cm.getNamesAndMoneyForCEF(characters, cm.getRequiredCount(characters), out string[] names, out int[] money);
-
-            string namesJSON = NAPI.Util.ToJson(names);
-            string moneyJSON = NAPI.Util.ToJson(money);
+            GetNameMoneyJson(account, out string namesJSON, out string moneyJSON);
             
             //display character interface with new character data
             player.TriggerEvent("SERVER:CLIENT:showCharInterface");
             player.TriggerEvent("SERVER:CLIENT:displayAccountInfo", username, namesJSON, moneyJSON); 
         }
         [RemoteEvent("CLIENT:SERVER:CharSelected")]
-        private void onCharSelected(Player player, string charName)
+        private void OnCharSelected(Player player, string charName)
         {
             if (charName == "null")
                 return;
@@ -112,16 +107,34 @@ namespace ServerSide.Characters
 
             if (character.isCreated == true)
             {
-                CharacterCustomizeManager.UpdatePlayerFaceFeatures(player, character.Face, character.gender);
+                CharacterCustomizeManager.UpdatePlayerFaceFeatures(player, character.Face, character.Gender);
                 //update hair
                 if (character.Hair != null)
                 {
-                    HairManager.updateHair(player, character.Hair);
+                    HairManager.UpdateHair(player, character.Hair);
                 }
             }
         }
-        
-        private bool getGender(string gender)
+        public static Character GetCharacterNearby(Player player, string targetName, float range = 20f)
+        {
+            var chars = GetCharByNameAroundPlayer(range, player, targetName);
+
+            if (chars.Count == 1)
+            {
+                return chars[0]; // Return the character if exactly one is found
+            }
+            else if (chars.Count > 1)
+            {
+                foreach (var character in chars)
+                {
+                    player.SendChatMessage(character.Name); // Print all found characters
+                }
+            }
+
+            return null; // Return null if no character or multiple characters are found
+        }
+
+        private bool GetGender(string gender)
         {
             NAPI.Util.ConsoleOutput(gender);
             if (gender.Equals("male"))
@@ -129,7 +142,17 @@ namespace ServerSide.Characters
             else
                 return false;
         }
-        public void getNamesAndMoneyForCEF(List<ICharacter> characters, int requiredCount, out string[] names, out int[] money)
+        public static void GetNameMoneyJson(Account account, out string namesJSON, out string moneyJSON)
+        {
+            List<ICharacter> characters = CharacterDbManager.getCharacters(account);
+
+            GetNamesAndMoneyForCEF(characters, GetRequiredCount(characters), out string[] names, out int[] money);
+
+            namesJSON = NAPI.Util.ToJson(names);
+            moneyJSON = NAPI.Util.ToJson(money);
+        }
+            
+        public static void GetNamesAndMoneyForCEF(List<ICharacter> characters, int requiredCount, out string[] names, out int[] money)
         {
             names = new string[requiredCount];
             money = new int[requiredCount];
@@ -158,7 +181,7 @@ namespace ServerSide.Characters
                 }    
             }
         }
-        public int getRequiredCount(List<ICharacter> characters)
+        public static int GetRequiredCount(List<ICharacter> characters)
         {
             int requiredCount;
             if (characters == null)

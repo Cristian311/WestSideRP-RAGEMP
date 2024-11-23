@@ -33,7 +33,7 @@ namespace ServerSide.Commands
             player.GiveWeapon(weaponHash, ammo);
         }
         [Command("weather")]
-        public void cmd_weather(Player player, string weather)
+        public void WeatherCommand(Player player, string weather)
         {
             if (!AdminManager.CheckIfAdminAccess(player,1))
                 return;
@@ -41,7 +41,7 @@ namespace ServerSide.Commands
             player.SendNotification($"Set weather to {weather}.");
         }
         [Command("time")]
-        public void cmd_time(Player player, int hour)
+        public void TimeCommand(Player player, int hour)
         {
             if (!AdminManager.CheckIfAdminAccess(player, 1))
                 return;
@@ -160,7 +160,7 @@ namespace ServerSide.Commands
 
                 player.Position = character.Account.player.Position;
                 //TODO LOGIC BAN DATABASE
-                AdminManager.sendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} s-a teleportat la {character.Name}");
+                AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} s-a teleportat la {character.Name}");
             }
             else
             {
@@ -184,7 +184,7 @@ namespace ServerSide.Commands
 
                 character.Account.player.Position = player.Position;
                 //TODO LOGIC BAN DATABASE
-                AdminManager.sendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} l-a teleportat pe {character.Name} la el");
+                AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} l-a teleportat pe {character.Name} la el");
             }
             else
             {
@@ -210,7 +210,7 @@ namespace ServerSide.Commands
 
                 NAPI.Player.FreezePlayerTime(player, true);
                 //TODO LOGIC BAN DATABASE
-                AdminManager.sendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat freeze lui {character.Name}");
+                AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat freeze lui {character.Name}");
             }
             else
             {
@@ -236,7 +236,7 @@ namespace ServerSide.Commands
                 NAPI.Player.FreezePlayerTime(player, false);
                 
                 //TODO LOGIC BAN DATABASE
-                AdminManager.sendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat unfreeze lui {character.Name}");
+                AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat unfreeze lui {character.Name}");
             }
             else
             {

@@ -20,6 +20,6 @@ namespace ServerSide.Interfaces
         HairData Hair { get; set; }
         List<ClothesData> Clothes { get; set; }
         List<Item> Items { get; set; }
-        bool gender {  get; set; }
+        bool Gender {  get; set; }
     }
 }

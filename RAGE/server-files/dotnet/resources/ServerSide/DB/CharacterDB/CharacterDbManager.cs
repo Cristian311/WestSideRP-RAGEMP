@@ -32,7 +32,7 @@ namespace ServerSide.DB.CharacterDB
                         command.Parameters.AddWithValue("@Name", character.Name);
                         command.Parameters.AddWithValue("@Age", character.Age);
                         command.Parameters.AddWithValue("@Money", character.Money);
-                        command.Parameters.AddWithValue("@gender", character.gender);
+                        command.Parameters.AddWithValue("@gender", character.Gender);
                         command.Parameters.AddWithValue("@FaceJSON", NAPI.Util.ToJson(character.Face));
                         command.Parameters.AddWithValue("@HairJSON", NAPI.Util.ToJson(character.Hair));
 
@@ -122,7 +122,7 @@ namespace ServerSide.DB.CharacterDB
                             Character character = new Character(account.player, account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
                             character.Id = reader.GetInt32(0);
                             character.isCreated = reader.GetBoolean(6);
-                            character.gender = reader.GetBoolean(9);
+                            character.Gender = reader.GetBoolean(9);
                             if (character.isCreated == true)
                             {
                                 var FaceJSON = reader.GetString(7);
@@ -178,7 +178,7 @@ namespace ServerSide.DB.CharacterDB
                             Character character = new Character(account.player, account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
                             character.Id = reader.GetInt32(0);
                             character.isCreated = reader.GetBoolean(6);
-                            character.gender = reader.GetBoolean(9);
+                            character.Gender = reader.GetBoolean(9);
                             if (character.isCreated == true)
                             {
                                 var FaceJSON = reader.GetString(7);

@@ -26,7 +26,7 @@ namespace ServerSide.Admin
             }
             return true;
         }
-        public static void sendChatMessageToAdmins(string message)
+        public static void SendChatMessageToAdmins(string message)
         {
             foreach(var account in AccountManager.loggedAccounts)
             {

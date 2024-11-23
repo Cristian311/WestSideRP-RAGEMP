@@ -43,19 +43,19 @@ namespace ServerSide.AuthServer
         public void OnLoginAttempt(Player player, string username, string password)
         {
             AccountDbManager accountDb = new AccountDbManager();
-            if (accountDb.checkAccountLogin(username, password, out int? Id))
+            if (accountDb.CheckAccountLogin(username, password, out int? Id))
             {
                 //LOG IN SUCCESFULLY
                 NAPI.Util.ConsoleOutput(username + " s-a logat.");
                 player.TriggerEvent("SERVER:CLIENT:closeAuthInterface");
                 
                 var account = new Account((int)Id, username, player);
-                if(accountDb.checkAccountAdminLevel(username, out int? adminLevel))
+                if(accountDb.CheckAccountAdminLevel(username, out int? adminLevel))
                 {
                     if (!AccountManager.loggedAccounts.Contains(account))
                         AccountManager.loggedAccounts.Add(account);
                     account.AdminLevel = adminLevel.GetValueOrDefault();
-                    AdminManager.sendChatMessageToAdmins($"Admin {username} Level {adminLevel} s-a logat.");
+                    AdminManager.SendChatMessageToAdmins($"Admin {username} Level {adminLevel} s-a logat.");
                 }
                 account.GameId = AccountManager.idManager.AssignId();
                 if(!AccountManager.loggedAccounts.Contains(account))
@@ -64,14 +64,9 @@ namespace ServerSide.AuthServer
                     AccountManager.AccountPlayerPairs.Add(account, player);
                 if(!AccountManager.PlayerAccountPairs.ContainsKey(player))
                     AccountManager.PlayerAccountPairs.Add(player, account);
-                
-                //CHARACTER SELECT
-                List<ICharacter> characters = CharacterDbManager.getCharacters(account);
 
-                CharacterManager cm = new CharacterManager();
-                cm.getNamesAndMoneyForCEF(characters, cm.getRequiredCount(characters), out string[] names, out int[] money);
-                string namesJSON = JsonSerializer.Serialize(names);
-                string moneyJSON = JsonSerializer.Serialize(money);
+                //CHARACTER SELECT
+                CharacterManager.GetNameMoneyJson(account, out string namesJSON, out string moneyJSON);
                 player.TriggerEvent("SERVER:CLIENT:showCharInterface");
                 player.TriggerEvent("SERVER:CLIENT:displayAccountInfo", username, namesJSON, moneyJSON); 
             }

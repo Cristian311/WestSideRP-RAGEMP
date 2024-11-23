@@ -11,7 +11,7 @@ namespace ServerSide.Hair
     {
         private static Dictionary<Player, HairData> playerHair = new Dictionary<Player, HairData>();
         [RemoteEvent("CLIENT:SERVER:HairCustomizeUpdate")]
-        private void onHairCustomizeUpdate(Player player, string json)
+        private void OnHairCustomizeUpdate(Player player, string json)
         {
             var hairData = Newtonsoft.Json.JsonConvert.DeserializeObject<HairData>(json); //all character data vars are string
             NAPI.Util.ConsoleOutput(json);
@@ -26,7 +26,7 @@ namespace ServerSide.Hair
             //set hair
             try
             {
-                updateHair(player, hairData);
+                UpdateHair(player, hairData);
             }
             catch (Exception e)
             {
@@ -42,7 +42,7 @@ namespace ServerSide.Hair
 
             UpdateCharDataDBManager.UpdateCharacterHair(character);
         }
-        public static void updateHair(Player player, HairData hairData)
+        public static void UpdateHair(Player player, HairData hairData)
         {
             var facialhair = CreateHeadOverlay(byte.Parse(hairData.FacialHair.Value), byte.Parse(hairData.FacialHair.Color), byte.Parse(hairData.FacialHair.SecondaryColor), float.Parse(hairData.FacialHair.Opacity));
             var eyebrows = CreateHeadOverlay(byte.Parse(hairData.Eyebrows.Value), byte.Parse(hairData.Eyebrows.Color), byte.Parse(hairData.Eyebrows.SecondaryColor), float.Parse(hairData.Eyebrows.Opacity));

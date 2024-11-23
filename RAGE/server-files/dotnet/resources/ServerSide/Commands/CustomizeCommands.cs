@@ -30,27 +30,21 @@ namespace ServerSide.Commands
             var account = AccountManager.PlayerAccountPairs[player];
             string username = account.Name;
 
-            List<ICharacter> characters = CharacterDbManager.getCharacters(account);
-
-            CharacterManager cm = new CharacterManager();
-            cm.getNamesAndMoneyForCEF(characters, cm.getRequiredCount(characters), out string[] names, out int[] money);
-
-            string namesJSON = NAPI.Util.ToJson(names);
-            string moneyJSON = NAPI.Util.ToJson(money);
+            CharacterManager.GetNameMoneyJson(account, out string namesJSON, out string moneyJSON);
 
             //display character interface with new character data
             player.TriggerEvent("SERVER:CLIENT:showCharInterface");
             player.TriggerEvent("SERVER:CLIENT:displayAccountInfo", username, namesJSON, moneyJSON);
         }
         [Command("clothes")]
-        private void clothesCommand(Player player)
+        private void ClothesCommand(Player player)
         {
             var account = AccountManager.PlayerAccountPairs[player];
             var character = CharacterManager.PlayerCharacterPair[player];
             player.TriggerEvent("SERVER:CLIENT:openClothesScreen");
         }
         [Command("shirtoff")]
-        private void shirtCommand(Player player)
+        private void ShirtCommand(Player player)
         {
             player.SetClothes(3, 15, 0);
             player.SetClothes(11, 15, 0);

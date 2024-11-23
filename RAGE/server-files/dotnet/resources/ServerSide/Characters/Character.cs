@@ -22,7 +22,7 @@ namespace ServerSide.Characters
         public int Money { get; }
         public List<ICharacter> Characters { get; }
         public Character currentCharacter { get; }
-        public bool gender { get; set; }
+        public bool Gender { get; set; }
         public bool isCreated { get; set; } = false;
         public bool isCop { get; set; } = false;
         public CharacterData Face { get; set; }
@@ -41,10 +41,10 @@ namespace ServerSide.Characters
             Money = money;
             Items = new List<Item>();
         }
-        public void getCharacterInfo()
+        public void GetCharacterInfo()
         {
             NAPI.Util.ConsoleOutput($"Account: {Account.Name} ID: {Id}");
-            NAPI.Util.ConsoleOutput($"Name: {Name} Age: {Age} Money: {Money}, isCreated: {isCreated} Gender{gender}");
+            NAPI.Util.ConsoleOutput($"Name: {Name} Age: {Age} Money: {Money}, isCreated: {isCreated} Gender{Gender}");
         }
         public void SendChatMessage(string message)
         {

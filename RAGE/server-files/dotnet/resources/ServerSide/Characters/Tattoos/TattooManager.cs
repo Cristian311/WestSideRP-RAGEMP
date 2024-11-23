@@ -52,8 +52,8 @@ namespace ServerSide.Characters.Tattoos
         private void ApplyTattoo(Player player, string tattoo)
         {
             player.SendChatMessage(tattoo);
-            string tattooHash = getTattooHash(player,tattoo);
-            string tattooCollection = getTattooCollection(tattoo);
+            string tattooHash = GetTattooHash(player,tattoo);
+            string tattooCollection = GetTattooCollection(tattoo);
 
             Decoration tattooDecoration = new Decoration();
             tattooDecoration.Collection = NAPI.Util.GetHashKey(tattooCollection);
@@ -63,21 +63,21 @@ namespace ServerSide.Characters.Tattoos
             player.SetDecoration(tattooDecoration);
         }
 
-        private string getTattooCollection(string tattooName)
+        private string GetTattooCollection(string tattooName)
         {
             foreach (var data in allTattooData)
                 if (data.LocalizedName == tattooName)
                     return data.FileName;
             return string.Empty;
         }
-        private string getTattooHash(Player player, string tattooName)
+        private string GetTattooHash(Player player, string tattooName)
         {
             var PlayerCharacter = CharacterManager.PlayerCharacterPair[player];
             foreach (var data in allTattooData)
             {
                 if (data.LocalizedName == tattooName)
                 {
-                    if (PlayerCharacter.gender == true)
+                    if (PlayerCharacter.Gender == true)
                         return data.HashNameMale;
                     else
                         return data.HashNameFemale;
@@ -86,7 +86,7 @@ namespace ServerSide.Characters.Tattoos
             return string.Empty;
         }
         [Command("tattoo")]
-        private void tattooCommand(Player player)
+        private void TattooCommand(Player player)
         {
             var tattooZoneGrouped = new Dictionary<string, List<string>>();
 
@@ -103,10 +103,8 @@ namespace ServerSide.Characters.Tattoos
             // Convert the dictionary to a JSON string
             string json = NAPI.Util.ToJson(tattooZoneGrouped);
 
-            // Send the JSON to the client-side event
             player.TriggerEvent("SERVER:CLIENT:showTattooScreen", json);
 
-            // Log the JSON for debugging
             NAPI.Util.ConsoleOutput(json);
         }
     }

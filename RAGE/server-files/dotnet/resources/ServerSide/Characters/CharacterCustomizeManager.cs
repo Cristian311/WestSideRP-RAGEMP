@@ -15,7 +15,7 @@ namespace ServerSide.Characters
             if (character.isCreated == false)
                 player.TriggerEvent("SERVER:CLIENT:showCustomizeCharScreen");
 
-            character.getCharacterInfo();//debug
+            character.GetCharacterInfo();//debug
         }
 
         [RemoteEvent("CLIENT:SERVER:ClosedCustomizeCharScreen")]
@@ -27,7 +27,7 @@ namespace ServerSide.Characters
                 character.isCreated = true;
                 var HairJSON = NAPI.Util.ToJson(character.Hair);
                 player.TriggerEvent("SERVER:CLIENT:showHairScreen", HairJSON); // sends hair as json
-                character.getCharacterInfo(); // debug
+                character.GetCharacterInfo(); // debug
             }
             character.Face = NAPI.Util.FromJson<CharacterData>(faceFeaturesJSON);
 
@@ -43,8 +43,8 @@ namespace ServerSide.Characters
             Character character = CharacterManager.PlayerCharacterPair[player];
             try
             {
-                UpdatePlayerFaceFeatures(player, data, character.gender);
-                NAPI.Util.ConsoleOutput(character.gender.ToString());
+                UpdatePlayerFaceFeatures(player, data, character.Gender);
+                NAPI.Util.ConsoleOutput(character.Gender.ToString());
             }
             catch (Exception e)
             {
@@ -59,9 +59,9 @@ namespace ServerSide.Characters
             HeadOverlay head = new HeadOverlay();
 
             //actual vars
-            HeadBlend headBlend = getHeadBlend(data);
+            HeadBlend headBlend = GetHeadBlend(data);
             var eyeColor = byte.Parse(data.Eye.Color);
-            var features = faceFeatures(data);
+            var features = FaceFeatures(data);
             NAPI.Util.ConsoleOutput(gender.ToString());
             player.SetCustomization(gender, headBlend, eyeColor, 0, 0, features, headOverlays, decoration);
 
@@ -72,7 +72,7 @@ namespace ServerSide.Characters
             }
         }
 
-        private static float[] faceFeatures(CharacterData charData)
+        private static float[] FaceFeatures(CharacterData charData)
         {
             float[] face = new float[20];
             face[0] = float.Parse(charData.Nose.Width);
@@ -97,7 +97,7 @@ namespace ServerSide.Characters
             face[19] = float.Parse(charData.Neck.Width);
             return face;
         }
-        private static HeadBlend getHeadBlend(CharacterData charData)
+        private static HeadBlend GetHeadBlend(CharacterData charData)
         {
             HeadBlend headBlend = new HeadBlend();
             headBlend.ShapeFirst = byte.Parse(charData.Shape.First);
