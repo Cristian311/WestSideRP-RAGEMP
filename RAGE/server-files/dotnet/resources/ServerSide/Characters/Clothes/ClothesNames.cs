@@ -1,12 +1,10 @@
-﻿using System;
+﻿using GTANetworkAPI;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
-using GTANetworkAPI;
+using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ServerSide.Clothes
 {
@@ -55,6 +53,13 @@ namespace ServerSide.Clothes
                 {
                     Console.WriteLine($"Including file: {fileName}");
                     var summary = ProcessJsonFile(file);
+
+                    // Replace "_female_" with "_male_" in filenames for the results
+                    if (gender == "female" && fileName.Contains("_female_"))
+                    {
+                        fileName = fileName.Replace("_female_", "_male_");
+                    }
+
                     results.Add(fileName, summary);
                 }
                 else if (IsAlwaysIncludedFile(fileName))
@@ -164,6 +169,6 @@ public class FileSummary
 {
     [JsonIgnore]
     public int NumberOfDrawables { get; set; }
- 
+
     public Dictionary<string, int> DrawableSummaries { get; set; }
 }
