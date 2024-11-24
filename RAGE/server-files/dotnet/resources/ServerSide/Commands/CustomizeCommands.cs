@@ -42,7 +42,7 @@ namespace ServerSide.Commands
         {
             var account = AccountManager.PlayerAccountPairs[player];
             var character = CharacterManager.PlayerCharacterPair[player];
-            ClothesNames clothesNames = new ClothesNames();
+            ClothesTextureData clothesNames = new ClothesTextureData();
             clothesNames.SetGender(character.Gender ? "male" : "female");
             var itemMaxValuesJSON = NAPI.Util.ToJson(clothesNames.results);
             player.TriggerEvent("SERVER:CLIENT:openClothesScreen");

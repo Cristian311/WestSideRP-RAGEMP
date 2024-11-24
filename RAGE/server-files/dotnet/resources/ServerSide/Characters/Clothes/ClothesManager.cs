@@ -39,6 +39,7 @@ namespace ServerSide.Characters.Clothes
             var clothes = NAPI.Util.FromJson<ClothesData>(ClothesJSON);
             var character = CharacterManager.PlayerCharacterPair[player];
             UpdateCharDataDBManager.UpdateCharacterClothes(character, clothes);
+            character.currentOutfit = clothes.Id;
         }
         [RemoteEvent("CLIENT:SERVER:ClothesUpdate")]
         private static void ClothesUpdate(Player player, string json)

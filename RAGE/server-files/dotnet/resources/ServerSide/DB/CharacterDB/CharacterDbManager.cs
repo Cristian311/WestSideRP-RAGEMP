@@ -140,6 +140,9 @@ namespace ServerSide.DB.CharacterDB
                                 character.currentOutfit = reader.GetInt32(11);
                                 if (character.currentOutfit == null)
                                     character.currentOutfit = 0;
+                                var TattooJSON = reader.GetString(12);
+                                character.tattoos = NAPI.Util.FromJson<List<Decoration>>(TattooJSON);
+
                             }
                             return character;
                         }

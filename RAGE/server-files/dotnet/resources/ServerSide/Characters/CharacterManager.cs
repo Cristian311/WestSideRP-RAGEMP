@@ -11,6 +11,7 @@ using ServerSide.DB.CharacterDB;
 using System.Threading;
 using Org.BouncyCastle.Asn1.X509;
 using ServerSide.Characters.Clothes;
+using ServerSide.Characters.Tattoos;
 
 
 namespace ServerSide.Characters
@@ -116,6 +117,7 @@ namespace ServerSide.Characters
                 }
             }
             ClothesManager.GetClothes(player, (byte)character.currentOutfit);
+            TattooManager.ApplyTattoos(player, character.tattoos);
         }
         public static Character GetCharacterNearby(Player player, string targetName, float range = 20f)
         {

@@ -31,6 +31,7 @@ namespace ServerSide.Characters
         public List<ClothesData> Clothes { get; set; }
         public List<Item> Items { get; set; } = new List<Item>();
         public List<WeaponHash> currentWeapons {  get; set; } = new List<WeaponHash>();
+        public List<Decoration> tattoos { get; set; } 
         public ItemIdManager ItemIdManager = new ItemIdManager();
         public Character(Player player, IAccount account, string name, int age, int money)
         {
@@ -41,6 +42,7 @@ namespace ServerSide.Characters
             Age = age;
             Money = money;
             Items = new List<Item>();
+            tattoos = new List<Decoration>();
         }
         public void GetCharacterInfo()
         {

@@ -51,16 +51,41 @@ namespace ServerSide.Characters.Tattoos
         [RemoteEvent("CLIENT:SERVER:ApplyTattoo")]
         private void ApplyTattoo(Player player, string tattoo)
         {
-            player.SendChatMessage(tattoo);
-            string tattooHash = GetTattooHash(player,tattoo);
+            var character = CharacterManager.PlayerCharacterPair[player];
+            string tattooHash = GetTattooHash(player, tattoo);
             string tattooCollection = GetTattooCollection(tattoo);
 
             Decoration tattooDecoration = new Decoration();
             tattooDecoration.Collection = NAPI.Util.GetHashKey(tattooCollection);
             tattooDecoration.Overlay = NAPI.Util.GetHashKey(tattooHash);
-
-            player.SendChatMessage($"HASH: {tattooHash} COLLECTION: {tattooCollection}");
+            if(character.tattoos != null)
+                character.tattoos.Add(tattooDecoration);
             player.SetDecoration(tattooDecoration);
+        }
+        public static void ApplyTattoos(Player player, List<Decoration> tattoosList)
+        {
+            if (tattoosList == null)
+                return;
+            Decoration[] tattoos = new Decoration[tattoosList.Count];
+            for(int i = 0; i <= tattoosList.Count; i++)
+                tattoos[i] = tattoosList[i];
+            player.SetDecoration(tattoos);
+        }
+        [RemoteEvent("CLIENT:SERVER:RemoveTattoo")]
+        private void RemoveTattoo(Player player, string tattoo)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if (character.tattoos == null)
+                return;
+            string tattooHash = GetTattooHash(player, tattoo);
+            string tattooCollection = GetTattooCollection(tattoo);
+
+            Decoration tattooDecoration = new Decoration();
+            tattooDecoration.Collection = NAPI.Util.GetHashKey(tattooCollection);
+            tattooDecoration.Overlay = NAPI.Util.GetHashKey(tattooHash);
+            if (character.tattoos.Contains(tattooDecoration))
+                character.tattoos.Remove(tattooDecoration);
+            player.RemoveDecoration(tattooDecoration);
         }
 
         private string GetTattooCollection(string tattooName)

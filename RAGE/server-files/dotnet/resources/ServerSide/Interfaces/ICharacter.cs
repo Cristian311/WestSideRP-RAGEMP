@@ -1,4 +1,5 @@
-﻿using ServerSide.Characters;
+﻿using GTANetworkAPI;
+using ServerSide.Characters;
 using ServerSide.Characters.Clothes;
 using ServerSide.Hair;
 using ServerSide.Items;
@@ -20,6 +21,7 @@ namespace ServerSide.Interfaces
         HairData Hair { get; set; }
         List<ClothesData> Clothes { get; set; }
         List<Item> Items { get; set; }
+        List<Decoration> tattoos { get; set; }
         int currentOutfit { get; set; }
         bool Gender {  get; set; }
     }

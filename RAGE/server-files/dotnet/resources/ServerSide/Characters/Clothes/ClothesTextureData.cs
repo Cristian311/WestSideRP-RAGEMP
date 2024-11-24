@@ -8,13 +8,13 @@ using Newtonsoft.Json;
 
 namespace ServerSide.Clothes
 {
-    internal class ClothesNames : Script
+    internal class ClothesTextureData : Script
     {
         public Dictionary<string, FileSummary> results;
         private string gender;
 
         // Parameterless constructor
-        public ClothesNames()
+        public ClothesTextureData()
         {
             results = new Dictionary<string, FileSummary>();
         }

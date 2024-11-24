@@ -15,7 +15,7 @@
             align-items: center;
             height: 100vh;
         }
-
+    
         .box {
             background-color: #333;
             padding: 20px;
@@ -24,19 +24,19 @@
             width: 300px;
             text-align: center;
         }
-
+    
         .box h1 {
             color: orange;
             margin-bottom: 20px;
         }
-
+    
         .slider-label {
             color: #fff;
             font-weight: bold;
             margin-bottom: 5px;
             display: block;
         }
-
+    
         input[type="range"] {
             -webkit-appearance: none;
             appearance: none;
@@ -48,7 +48,7 @@
             opacity: 0.8;
             transition: opacity 0.3s;
         }
-
+    
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -58,7 +58,7 @@
             background: orange;
             cursor: pointer;
         }
-
+    
         input[type="range"]::-moz-range-thumb {
             width: 20px;
             height: 20px;
@@ -66,13 +66,18 @@
             background: orange;
             cursor: pointer;
         }
-
+    
+        /* Add margin to space out the tattoo slider section */
+        .tattoo-section {
+            margin-top: 20px; /* Increase this value to push it further down */
+        }
+    
         .buttons {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
-
+    
         button {
             background-color: orange;
             border: none;
@@ -83,38 +88,45 @@
             font-weight: bold;
             transition: background-color 0.3s;
         }
-
+    
         button:hover {
             background-color: #ff8c00;
         }
-
+    
         .slider-value {
             color: #fff;
             font-weight: bold;
         }
-
+    
         .highlighted {
             color: green;
             font-weight: bold;
         }
     </style>
-</head>
-<body>
-    <div class="box">
-        <h1>Tattoo Selector</h1>
-        <label class="slider-label" for="zone-slider">Zone:</label>
-        <input id="zone-slider" type="range" min="0" max="4" value="0">
-        <div class="slider-value" id="zone-name">ZONE_LEFT_ARM</div>
-
-        <label class="slider-label" for="tattoo-slider">Tattoo:</label>
-        <input id="tattoo-slider" type="range" min="0" max="10" value="0">
-        <div class="slider-value" id="tattoo-name">Mk II Girl</div>
-
-        <div class="buttons">
-            <button id="apply-button">Apply</button>
-            <button id="remove-button">Remove</button>
+    
+    <body>
+        <div class="box">
+            <h1>Tattoo Selector</h1>
+    
+            <label class="slider-label" for="zone-slider">Zone:</label>
+            <input id="zone-slider" type="range" min="0" max="4" value="0">
+            <div class="slider-value" id="zone-name">ZONE_LEFT_ARM</div>
+    
+            <!-- Add a container for the tattoo section to apply margin -->
+            <div class="tattoo-section">
+                <label class="slider-label" for="tattoo-slider">Tattoo:</label>
+                <input id="tattoo-slider" type="range" min="0" max="10" value="0">
+                <div class="slider-value" id="tattoo-name">Mk II Girl</div>
+            </div>
+    
+            <div class="buttons">
+                <button id="apply-button">Apply</button>
+                <button id="remove-button">Remove</button>
+                <button id="exit-button"> Exit</button>
+            </div>
         </div>
-    </div>
+    </body>
+    
 
     <script>
         // JSON data
@@ -218,9 +230,16 @@
         const tattooName = document.getElementById('tattoo-name');
         const applyButton = document.getElementById('apply-button');
         const removeButton = document.getElementById('remove-button');
+        const exitButton = document.getElementById('exit-button');
 
         let currentZone = 0;
         let currentTattoo = 0;
+        
+        function updateTattooData(json){
+            const data = JSON.parse(json);
+            tattooData = data;
+            
+        }
 
         // Update tattoo and zone displays
         function updateDisplays() {
@@ -250,7 +269,13 @@
 
         tattooSlider.addEventListener('input', () => {
             currentTattoo = parseInt(tattooSlider.value, 10);
+            // Remove the previously applied tattoo before applying the new one
+            mp.trigger("CEF:CLIENT:RemoveTattoo", tattooName.textContent);
+
+            // Apply the new tattoo as you move the slider
+            
             updateDisplays();
+            mp.trigger("CEF:CLIENT:ApplyTattoo", tattooName.textContent);
         });
 
         applyButton.addEventListener('click', () => {
@@ -261,6 +286,11 @@
 
         removeButton.addEventListener('click', () => {
             highlights[zones[currentZone]][currentTattoo] = false;
+            mp.trigger("CEF:CLIENT:RemoveTattoo", tattooName.textContent);
+            updateDisplays();
+        });
+        exitButton.addEventListener('click', () => {
+            mp.trigger("CEF:CLIENT:stopTattooScreen");
             updateDisplays();
         });
 

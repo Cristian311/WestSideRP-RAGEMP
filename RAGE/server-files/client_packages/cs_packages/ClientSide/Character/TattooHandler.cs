@@ -16,15 +16,20 @@ namespace ClientSide.Character
             Events.Add("SERVER:CLIENT:showTattooScreen", showTattooScreen);
             Events.Add("CEF:CLIENT:stopTattooScreen", stopTattooScreen);
             Events.Add("CEF:CLIENT:ApplyTattoo", updateTattoo);
+            Events.Add("CEF:CLIENT:RemoveTattoo", RemoveTattoo);
 
+        }
+
+        private void RemoveTattoo(object[] args)
+        {
+            string tattooName = args[0].ToString();
+            Events.CallRemote("CLIENT:SERVER:RemoveTattoo", tattooName);
         }
 
         private void updateTattoo(object[] args)
         {
             string tattooName = args[0].ToString();
             Events.CallRemote("CLIENT:SERVER:ApplyTattoo", tattooName);
-        //    string json = args[0].ToString();
-        //    Events.CallRemote("CLIENT:SERVER:TattooCustomizeUpdate", json);
         }
         private void showTattooScreen(object[] args)
         {
@@ -48,6 +53,7 @@ namespace ClientSide.Character
             cefBrowser.Destroy();
             cefBrowser = null;
             Cursor.Visible = false;
+            Chat.Show(true);
         }
     }
 }
