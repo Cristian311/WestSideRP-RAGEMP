@@ -2,6 +2,7 @@
 using ServerSide.Accounts;
 using ServerSide.Characters;
 using ServerSide.Clothes;
+using ServerSide.DB.CharacterDB;
 
 
 
@@ -27,10 +28,11 @@ namespace ServerSide.Commands
         private void changecharCommand(Player player)
         {
             var account = AccountManager.PlayerAccountPairs[player];
+            var character = CharacterManager.PlayerCharacterPair[player];
             string username = account.Name;
 
             CharacterManager.GetNameMoneyJson(account, out string namesJSON, out string moneyJSON);
-
+            UpdateCharDataDBManager.UpdateCharacter(character);
             //display character interface with new character data
             player.TriggerEvent("SERVER:CLIENT:showCharInterface");
             player.TriggerEvent("SERVER:CLIENT:displayAccountInfo", username, namesJSON, moneyJSON);

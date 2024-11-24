@@ -136,7 +136,10 @@ namespace ServerSide.DB.CharacterDB
                                 foreach(var item in character.Items)
                                 {
                                     character.ItemIdManager.SetIdBusy(item.localID);
-                                }    
+                                }
+                                character.currentOutfit = reader.GetInt32(11);
+                                if (character.currentOutfit == null)
+                                    character.currentOutfit = 0;
                             }
                             return character;
                         }

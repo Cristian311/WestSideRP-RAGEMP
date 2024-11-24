@@ -30,7 +30,7 @@ namespace ServerSide.Hair
             }
             catch (Exception e)
             {
-                NAPI.Util.ConsoleOutput("HairCustomizeUpdate ERROR: " + e.Message + "\n" + e.StackTrace);
+                NAPI.Util.ConsoleOutput("HairCustomize ERROR: " + e.Message + "\n" + e.StackTrace);
             }
         }
         [RemoteEvent("CLIENT:SERVER:UpdateHair")]

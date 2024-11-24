@@ -11,14 +11,14 @@ namespace ServerSide.Characters.Clothes
 {
     internal class ClothesManager : Script
     {
-        private string defaultClothesJSON = "{\"id\":2,\"masks\":{\"drawable\":0,\"texture\":0},\"torsos\":{\"drawable\":0,\"texture\":0},\"legs\":{\"drawable\":0,\"texture\":0},\"bags\":{\"drawable\":0,\"texture\":0},\"shoes\":{\"drawable\":0,\"texture\":0},\"accessories\":{\"drawable\":0,\"texture\":0},\"undershirts\":{\"drawable\":0,\"texture\":0},\"bodyArmor\":{\"drawable\":0,\"texture\":0},\"decals\":{\"drawable\":0,\"texture\":0},\"shirts\":{\"drawable\":0,\"texture\":0},\"helmets\":{\"drawable\":11,\"texture\":0},\"glasses\":{\"drawable\":0,\"texture\":0},\"earAccesories\":{\"drawable\":255,\"texture\":0},\"watches\":{\"drawable\":255,\"texture\":0},\"bracelets\":{\"drawable\":16,\"texture\":0}}";
+        private static string defaultClothesJSON = "{\"id\":2,\"masks\":{\"drawable\":0,\"texture\":0},\"torsos\":{\"drawable\":0,\"texture\":0},\"legs\":{\"drawable\":0,\"texture\":0},\"bags\":{\"drawable\":0,\"texture\":0},\"shoes\":{\"drawable\":0,\"texture\":0},\"accessories\":{\"drawable\":0,\"texture\":0},\"undershirts\":{\"drawable\":0,\"texture\":0},\"bodyArmor\":{\"drawable\":0,\"texture\":0},\"decals\":{\"drawable\":0,\"texture\":0},\"shirts\":{\"drawable\":0,\"texture\":0},\"helmets\":{\"drawable\":11,\"texture\":0},\"glasses\":{\"drawable\":0,\"texture\":0},\"earAccesories\":{\"drawable\":255,\"texture\":0},\"watches\":{\"drawable\":255,\"texture\":0},\"bracelets\":{\"drawable\":16,\"texture\":0}}";
         private ClothesManager()
         {
             
         }
 
         [RemoteEvent("CLIENT:SERVER:GetClothes")]
-        private void GetClothes(Player player, byte index)
+        public static void GetClothes(Player player, byte index)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
             var clothes = CharacterDbManager.getClothes(character, index);
@@ -31,6 +31,7 @@ namespace ServerSide.Characters.Clothes
                 ClothesUpdate(player, defaultClothesJSON);
                 NAPI.Player.ClearPlayerAccessory(player, 7);
             }
+            character.currentOutfit = index;
         }
         [RemoteEvent("CLIENT:SERVER:BuyClothes")]
         private void BuyClothes(Player player, string ClothesJSON)
@@ -40,11 +41,11 @@ namespace ServerSide.Characters.Clothes
             UpdateCharDataDBManager.UpdateCharacterClothes(character, clothes);
         }
         [RemoteEvent("CLIENT:SERVER:ClothesUpdate")]
-        private void ClothesUpdate(Player player, string json)
+        private static void ClothesUpdate(Player player, string json)
         {
             NAPI.Util.ConsoleOutput(json);
             var clothesData = NAPI.Util.FromJson<ClothesData>(json);
-            var clothes = GetClothes(clothesData);
+            var clothes = GetClothesComponents(clothesData);
             SetProps(player, clothesData);
             player.SetClothes(clothes);
         }
@@ -58,7 +59,7 @@ namespace ServerSide.Characters.Clothes
                 this.texture = texture;
             }
         }
-        private void SetProps(Player player, ClothesData clothesData)
+        private static void SetProps(Player player, ClothesData clothesData)
         {
             Prop hat = new Prop(clothesData.Helmets.Drawable, clothesData.Helmets.Texture);
             Prop glasses = new Prop(clothesData.Glasses.Drawable, clothesData.Glasses.Texture);
@@ -73,7 +74,7 @@ namespace ServerSide.Characters.Clothes
             NAPI.Player.SetPlayerAccessory(player, 7, bracelets.drawable, bracelets.texture);
         }
 
-        private Dictionary<int, ComponentVariation> GetClothes(ClothesData clothesData)
+        private static Dictionary<int, ComponentVariation> GetClothesComponents(ClothesData clothesData)
         {
             Dictionary<int, ComponentVariation> clothes = new Dictionary<int, ComponentVariation>();
 

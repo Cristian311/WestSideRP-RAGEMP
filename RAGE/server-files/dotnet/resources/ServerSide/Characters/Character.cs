@@ -22,6 +22,7 @@ namespace ServerSide.Characters
         public int Money { get; }
         public List<ICharacter> Characters { get; }
         public Character currentCharacter { get; }
+        public int currentOutfit { get; set; }
         public bool Gender { get; set; }
         public bool isCreated { get; set; } = false;
         public bool isCop { get; set; } = false;

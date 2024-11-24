@@ -8,8 +8,14 @@ using System;
 
 namespace ServerSide.DB.CharacterDB
 {
-    internal class UpdateCharDataDBManager
+    internal class UpdateCharDataDBManager : Script
     {
+        [ServerEvent(Event.PlayerDisconnected)]
+        private void SaveCharacterInfo(Player player, DisconnectionType disconnectionType, string reason)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            UpdateCharacter(character);
+        }
         public static bool UpdateCharacter(ICharacter character)
         {
             Database db = new Database();
@@ -21,7 +27,7 @@ namespace ServerSide.DB.CharacterDB
                 try
                 {
                     connection.Open();
-                    string query = "UPDATE `characters` SET AccountId = @accountId, Name = @Name, Age = @Age, Money = @Money, isCreated = @isCreated WHERE Id = @Id";
+                    string query = "UPDATE `characters` SET AccountId = @accountId, Name = @Name, Age = @Age, Money = @Money, isCreated = @isCreated, currentOutfit = @currentOutfit WHERE Id = @Id";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -32,6 +38,7 @@ namespace ServerSide.DB.CharacterDB
                         command.Parameters.AddWithValue("@Money", character.Money);
                         command.Parameters.AddWithValue("@Id", character.Id);
                         command.Parameters.AddWithValue("@isCreated", character.isCreated);
+                        command.Parameters.AddWithValue("@currentOutfit", character.currentOutfit);
 
                         string debugQuery = $"UPDATE `characters` SET AccountId = {character.Account.Id}, Name = '{character.Name}', Age = {character.Age}, Money = {character.Money} WHERE Id = {character.Id}";
                         NAPI.Util.ConsoleOutput($"Executing Query: {debugQuery}");

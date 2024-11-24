@@ -10,6 +10,7 @@ using Player = GTANetworkAPI.Player;
 using ServerSide.DB.CharacterDB;
 using System.Threading;
 using Org.BouncyCastle.Asn1.X509;
+using ServerSide.Characters.Clothes;
 
 
 namespace ServerSide.Characters
@@ -114,6 +115,7 @@ namespace ServerSide.Characters
                     HairManager.UpdateHair(player, character.Hair);
                 }
             }
+            ClothesManager.GetClothes(player, (byte)character.currentOutfit);
         }
         public static Character GetCharacterNearby(Player player, string targetName, float range = 20f)
         {
