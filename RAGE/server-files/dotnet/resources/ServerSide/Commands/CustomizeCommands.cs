@@ -69,5 +69,47 @@ namespace ServerSide.Commands
                 player.SetClothes(8, character.Clothes[index].Undershirt.Drawable, character.Clothes[index].Undershirt.Texture); // undershirt
             }
         }
+        [Command("pants")]
+        private void PantsCommand(Player player, string toggle)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if (toggle == "off")
+            {
+                player.SetClothes(4, 61, 0); // legs
+            }
+            if (toggle == "on")
+            {
+                int index = character.currentOutfit;
+                player.SetClothes(4, character.Clothes[index].Legs.Drawable, character.Clothes[index].Legs.Texture); // legs
+            }
+        }
+        [Command("shoes")]
+        private void ShoesCommand(Player player, string toggle)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if (toggle == "off")
+            {
+                player.SetClothes(6, 34, 0); // shoes
+            }
+            if (toggle == "on")
+            {
+                int index = character.currentOutfit;
+                player.SetClothes(6, character.Clothes[index].Shoes.Drawable, character.Clothes[index].Shoes.Texture); // shoes
+            }
+        }
+        [Command("cap")]
+        private void CapCommand(Player player, string toggle)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if (toggle == "off")
+            {
+                player.SetAccessories(0, 0, 0); // cap
+            }
+            if (toggle == "on")
+            {
+                int index = character.currentOutfit;
+                player.SetAccessories(0, character.Clothes[index].Helmets.Drawable, character.Clothes[index].Helmets.Texture); // cap
+            }
+        }
     }
 }
