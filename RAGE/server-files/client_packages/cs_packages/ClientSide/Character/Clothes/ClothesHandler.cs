@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ClientSide.Character
+namespace ClientSide.Character.Clothes
 {
     internal class ClothesHandler : Events.Script
     {
@@ -25,7 +25,7 @@ namespace ClientSide.Character
         {
 
             string json = args[0].ToString();
-            RAGE.Chat.Output(json);
+            Chat.Output(json);
             string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
             cefBrowser.ExecuteJs($"UpdateClothes(\"{escapedJson}\");");
         }
@@ -45,7 +45,23 @@ namespace ClientSide.Character
         private void UpdateClothes(object[] args)
         {
             string json = args[0].ToString();
-            Events.CallRemote("CLIENT:SERVER:ClothesUpdate", json);
+            var clothesData = RAGE.Util.Json.Deserialize<ClothesData>(json);
+            //Events.CallRemote("CLIENT:SERVER:ClothesUpdate", json);
+            RAGE.Elements.Player.LocalPlayer.SetComponentVariation(1, clothesData.Mask.Drawable, clothesData.Mask.Texture, 0);
+            RAGE.Elements.Player.LocalPlayer.SetComponentVariation(3, clothesData.Torso.Drawable, clothesData.Torso.Texture, 0);
+            RAGE.Elements.Player.LocalPlayer.SetComponentVariation(4, clothesData.Legs.Drawable, clothesData.Legs.Texture, 0);
+            RAGE.Elements.Player.LocalPlayer.SetComponentVariation(5, clothesData.Bag.Drawable, clothesData.Bag.Texture, 0);
+            RAGE.Elements.Player.LocalPlayer.SetComponentVariation(6, clothesData.Shoes.Drawable, clothesData.Shoes.Texture, 0);
+            RAGE.Elements.Player.LocalPlayer.SetComponentVariation(7, clothesData.Accessories.Drawable, clothesData.Accessories.Texture, 0);
+            RAGE.Elements.Player.LocalPlayer.SetComponentVariation(8, clothesData.Undershirt.Drawable, clothesData.Undershirt.Texture, 0);
+            RAGE.Elements.Player.LocalPlayer.SetComponentVariation(9, clothesData.BodyArmor.Drawable, clothesData.BodyArmor.Texture, 0);
+            RAGE.Elements.Player.LocalPlayer.SetComponentVariation(10, clothesData.Decals.Drawable, clothesData.Decals.Texture, 0);
+            RAGE.Elements.Player.LocalPlayer.SetComponentVariation(11, clothesData.Shirts.Drawable, clothesData.Shirts.Texture, 0);
+            RAGE.Elements.Player.LocalPlayer.SetPropIndex(0, clothesData.Helmets.Drawable, clothesData.Helmets.Texture, true);
+            RAGE.Elements.Player.LocalPlayer.SetPropIndex(1, clothesData.Glasses.Drawable, clothesData.Glasses.Texture, true);
+            RAGE.Elements.Player.LocalPlayer.SetPropIndex(2, clothesData.EarAccesories.Drawable, clothesData.EarAccesories.Texture, true);
+            RAGE.Elements.Player.LocalPlayer.SetPropIndex(6, clothesData.Watches.Drawable, clothesData.Watches.Texture, true);
+            RAGE.Elements.Player.LocalPlayer.SetPropIndex(7, clothesData.Bracelets.Drawable, clothesData.Bracelets.Texture, true);
         }
         private void CloseClothesScreen(object[] args)
         {

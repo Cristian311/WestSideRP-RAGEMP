@@ -17,7 +17,6 @@ namespace ClientSide.Character
             Events.Add("CEF:CLIENT:stopTattooScreen", stopTattooScreen);
             Events.Add("CEF:CLIENT:ApplyTattoo", updateTattoo);
             Events.Add("CEF:CLIENT:RemoveTattoo", RemoveTattoo);
-
         }
 
         private void RemoveTattoo(object[] args)
@@ -44,8 +43,7 @@ namespace ClientSide.Character
             //RAGE.Chat.Output(json);
             string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
             cefBrowser.ExecuteJs($"updateDataFromJson(\"{escapedJson}\");");
-            //
-            //
+
         }
 
         private void stopTattooScreen(object[] args)

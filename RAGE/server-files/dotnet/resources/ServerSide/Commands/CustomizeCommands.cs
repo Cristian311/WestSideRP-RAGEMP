@@ -36,6 +36,7 @@ namespace ServerSide.Commands
             //display character interface with new character data
             player.TriggerEvent("SERVER:CLIENT:showCharInterface");
             player.TriggerEvent("SERVER:CLIENT:displayAccountInfo", username, namesJSON, moneyJSON);
+            UpdateCharDataDBManager.UpdateCharacter(character);
         }
         [Command("clothes")]
         private void ClothesCommand(Player player)
@@ -43,17 +44,30 @@ namespace ServerSide.Commands
             var account = AccountManager.PlayerAccountPairs[player];
             var character = CharacterManager.PlayerCharacterPair[player];
             ClothesTextureData clothesNames = new ClothesTextureData();
-            clothesNames.SetGender(character.Gender ? "male" : "female");
+            var gender = character.Gender ? "male" : "female";
+            clothesNames.SetGender(gender);
             var itemMaxValuesJSON = NAPI.Util.ToJson(clothesNames.results);
             player.TriggerEvent("SERVER:CLIENT:openClothesScreen");
             player.TriggerEvent("SERVER:CLIENT:UpdateDataMaxValues", itemMaxValuesJSON);
+            
         }
-        [Command("shirtoff")]
-        private void ShirtCommand(Player player)
+        [Command("shirt")]
+        private void ShirtCommand(Player player, string toggle)
         {
-            player.SetClothes(3, 15, 0);
-            player.SetClothes(11, 15, 0);
-            player.SetClothes(8, 15, 0);
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if (toggle == "off")
+            {
+                player.SetClothes(3, 15, 0); // torso
+                player.SetClothes(11, 15, 0); // shirt
+                player.SetClothes(8, 15, 0); // undershirt
+            }
+            if(toggle == "on")
+            {
+                int index = character.currentOutfit;
+                player.SetClothes(3, character.Clothes[index].Torso.Drawable, character.Clothes[index].Torso.Texture); // torso
+                player.SetClothes(11, character.Clothes[index].Shirts.Drawable, character.Clothes[index].Shirts.Texture); // shirt
+                player.SetClothes(8, character.Clothes[index].Undershirt.Drawable, character.Clothes[index].Undershirt.Texture); // undershirt
+            }
         }
     }
 }

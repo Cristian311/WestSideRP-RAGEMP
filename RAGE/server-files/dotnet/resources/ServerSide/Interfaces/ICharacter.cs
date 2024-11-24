@@ -19,7 +19,7 @@ namespace ServerSide.Interfaces
         public bool isCreated { get; set; }
         CharacterData Face { get; set; }
         HairData Hair { get; set; }
-        List<ClothesData> Clothes { get; set; }
+        ClothesData[] Clothes { get; set; }
         List<Item> Items { get; set; }
         List<Decoration> tattoos { get; set; }
         int currentOutfit { get; set; }

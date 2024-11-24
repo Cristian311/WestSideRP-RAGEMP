@@ -20600,3 +20600,60 @@ System.NotSupportedException: The collection type 'System.Collections.Generic.Di
 ==================[23.11.2024 22:20:17]==================
 System.NotSupportedException: The collection type 'System.Collections.Generic.Dictionary`2[System.Int32,ServerSide.Characters.Clothes.Drawable]' on 'ServerSide.Characters.Clothes.ClothesNames.Drawable' is not supported.
    at Type System.Text.Json.JsonClassInfo.GetElementType(Type propertyType, Type paren
+==================[24.11.2024 05:54:55]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+=========================================================
+
+==================[24.11.2024 05:54:55]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+=========================================================
+
+==================[24.11.2024 05:54:55]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at int MySql.Data.MySqlClient.Driver.GetResult(int statementId, ref int affectedRows, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+=========================================================
+
+==================[24.11.2024 05:54:55]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at int MySql.Data.MySqlClient.Driver.GetResult(int statementId, ref int affectedRows, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySqlDataReader MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+=========================================================
+
+==================[24.11.2024 05:55:00]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+=========================================================
+
+==================[24.11.2024 05:55:00]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+=========================================================
+
+==================[24.11.2024 05:55:00]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at int MySql.Data.MySqlClient.Driver.GetResult(int statementId, ref int affectedRows, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+=========================================================
+
+==================[24.11.2024 05:55:00]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at int MySql.Data.MySqlClient.Driver.GetResult(int statementId, ref int affectedRows, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at 
