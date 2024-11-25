@@ -294,7 +294,6 @@ let selectedItem = "shirts";
 function selectItem(item) {
     selectedItem = item;
     
-    // Get the maximum drawable value for this item type
     const maxDrawable = Math.max(...Object.keys(itemTextureMaxValues[item] || {}).map(Number));
     
     // Update the drawable slider

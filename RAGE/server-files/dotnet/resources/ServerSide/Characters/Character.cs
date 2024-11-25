@@ -1,5 +1,6 @@
 ﻿using GTANetworkAPI;
 using ServerSide.Characters.Clothes;
+using ServerSide.Characters.Customize;
 using ServerSide.Hair;
 using ServerSide.Interfaces;
 using ServerSide.Items;

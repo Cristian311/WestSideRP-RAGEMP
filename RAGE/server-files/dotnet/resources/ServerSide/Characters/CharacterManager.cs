@@ -12,6 +12,7 @@ using System.Threading;
 using Org.BouncyCastle.Asn1.X509;
 using ServerSide.Characters.Clothes;
 using ServerSide.Characters.Tattoos;
+using ServerSide.Characters.Customize;
 
 
 namespace ServerSide.Characters

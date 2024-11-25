@@ -1,9 +1,8 @@
 ﻿using Newtonsoft.Json;
-using GTANetworkAPI;
 using System.Reflection;
 using System; 
 
-namespace ServerSide.Characters
+namespace Clientside.CustomizeChar
 {
     public class CharacterData
     {
@@ -130,54 +129,6 @@ namespace ServerSide.Characters
             [JsonProperty("width")]
             public string Width { get; set; }
         }
-        //public class HairAttributes
-        //{
-        //    [JsonProperty("color")]
-        //    public string Color { get; set; }
-        //}
-        public void PrintProperties()
-        {
-            PrintProperties(this, 0);
-        }
-
-        private void PrintProperties(object obj, int indentLevel)
-        {
-            // Check if the object itself is null
-            if (obj == null)
-            {
-                NAPI.Util.ConsoleOutput(new string(' ', indentLevel * 2) + "null");
-                return;
-            }
-
-            Type type = obj.GetType();
-            foreach (PropertyInfo property in type.GetProperties())
-            {
-                var value = property.GetValue(obj);
-                string indent = new string(' ', indentLevel * 2); // Increase indentation for nested properties
-
-                if (value == null) // Check if the property value is null
-                {
-                    NAPI.Util.ConsoleOutput($"{indent}{property.Name}: null");
-                }
-                else if (value is string || value.GetType().IsValueType) // Handle strings and value types
-                {
-                    NAPI.Util.ConsoleOutput($"{indent}{property.Name}: {value}");
-                }
-                else if (value is Array array) // Handle arrays
-                {
-                    NAPI.Util.ConsoleOutput($"{indent}{property.Name}:");
-                    foreach (var item in array)
-                    {
-                        PrintProperties(item, indentLevel + 1); // Recursive call for array items
-                    }
-                }
-                else // Handle complex types (nested objects)
-                {
-                    NAPI.Util.ConsoleOutput($"{indent}{property.Name}:");
-                    PrintProperties(value, indentLevel + 1); // Recursive call for nested properties
-                }
-            }
-        }
-
+        
     }
 }

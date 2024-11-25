@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ServerSide.Characters
+namespace ServerSide.Characters.Customize
 {
     internal class CharacterCustomizeManager : Script
     {
@@ -13,7 +13,7 @@ namespace ServerSide.Characters
         {
             Character character = CharacterManager.PlayerCharacterPair[player];
             if (character.isCreated == false)
-                player.TriggerEvent("SERVER:CLIENT:ShowCustomizeCharScreen");
+                player.TriggerEvent("SERVER:CLIENT:ShowCustomizeCharScreen", character.Gender);
 
             character.GetCharacterInfo();//debug
         }

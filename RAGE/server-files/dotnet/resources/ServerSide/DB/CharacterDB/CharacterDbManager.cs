@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using ServerSide.Accounts;
 using ServerSide.Characters;
 using ServerSide.Characters.Clothes;
+using ServerSide.Characters.Customize;
 using ServerSide.Hair;
 using ServerSide.Interfaces;
 using ServerSide.Items;

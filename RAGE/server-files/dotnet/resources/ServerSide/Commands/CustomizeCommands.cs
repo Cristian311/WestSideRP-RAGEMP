@@ -22,7 +22,7 @@ namespace ServerSide.Commands
         {
             Character character = CharacterManager.PlayerCharacterPair[player];
             var FaceJSON = NAPI.Util.ToJson(character.Face);
-            player.TriggerEvent("SERVER:CLIENT:ShowCustomizeCharScreen", FaceJSON);
+            player.TriggerEvent("SERVER:CLIENT:ShowCustomizeCharScreen", FaceJSON, character.Gender);
         }
         [Command("changechar")]
         private void changecharCommand(Player player)
