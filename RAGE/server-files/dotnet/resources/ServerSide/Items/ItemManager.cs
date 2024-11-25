@@ -27,6 +27,8 @@ namespace ServerSide.Items
         [ServerEvent(Event.PlayerDisconnected)] // save items in db on disconnect
         private void SaveCharItems(Player player, DisconnectionType type, string reason)
         {
+            if (CharacterManager.PlayerCharacterPair.ContainsKey(player) == false)
+                return;
             var character = CharacterManager.PlayerCharacterPair[player];
             ItemDbManager.UpdateCharacterItems(character);
         }

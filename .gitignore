@@ -9,3 +9,8 @@
 # Ensure .gitignore itself isn't ignored
 !.gitignore
 RAGE/server-files/dotnet/server_logs.txt
+RAGE/server-files/client_packages/.listcache
+RAGE/server-files/client_packages/.listcache
+RAGE/server-files/dotnet/resources/ServerSide/obj/x64/Debug/netcoreapp3.1/ServerSide.AssemblyInfoInputs.cache
+RAGE/server-files/dotnet/resources/ServerSide/obj/x64/Debug/netcoreapp3.1/ServerSide.csproj.CoreCompileInputs.cache
+RAGE/server-files/dotnet/server_logs.txt

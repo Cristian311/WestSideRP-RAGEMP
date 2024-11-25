@@ -25,7 +25,6 @@ namespace ClientSide.Character.Clothes
         {
 
             string json = args[0].ToString();
-            Chat.Output(json);
             string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
             cefBrowser.ExecuteJs($"UpdateClothes(\"{escapedJson}\");");
         }

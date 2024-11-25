@@ -13,6 +13,8 @@ namespace ServerSide.DB.CharacterDB
         [ServerEvent(Event.PlayerDisconnected)]
         private void SaveCharacterInfo(Player player, DisconnectionType disconnectionType, string reason)
         {
+            if (CharacterManager.PlayerCharacterPair.ContainsKey(player) == false)
+                return;
             var character = CharacterManager.PlayerCharacterPair[player];
             UpdateCharacter(character);
         }
@@ -113,7 +115,7 @@ namespace ServerSide.DB.CharacterDB
                 }
             }
         }
-        public static bool UpdateCharacterTattoos(ICharacter character)
+        public static bool UpdateCharacterTattoos(Character character)
         {
             Database db = new Database();
             if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
@@ -124,13 +126,15 @@ namespace ServerSide.DB.CharacterDB
                 try
                 {
                     connection.Open();
-                    string query = "UPDATE `characters` SET TattooJSON = @json WHERE Id = @Id";
+                    string query = "UPDATE `characters` SET TattooJSON = @json, HighlightsJSON = @json2 WHERE Id = @Id";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         // Update values, using the unique Id to identify the character
-                        var TattoosJSON = NAPI.Util.ToJson(character.tattoos);
-                        command.Parameters.AddWithValue("@json", TattoosJSON);
+                        var TattoosJson = NAPI.Util.ToJson(character.Tattoos);
+                        var HighlightJson = NAPI.Util.ToJson(character.TattooNames);
+                        command.Parameters.AddWithValue("@json", TattoosJson);
+                        command.Parameters.AddWithValue("@json2", HighlightJson);
                         command.Parameters.AddWithValue("@Id", character.Id);
 
                         int result = command.ExecuteNonQuery();

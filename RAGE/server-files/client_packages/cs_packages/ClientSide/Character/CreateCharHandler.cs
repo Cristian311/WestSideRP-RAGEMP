@@ -22,7 +22,6 @@ namespace ClientSide.Character
             string firstname = args[0].ToString();
             string lastname = args[1].ToString();
             string selectedGender = args[2].ToString();
-            RAGE.Chat.Output(firstname + selectedGender);
             Events.CallRemote("CLIENT:SERVER:CreateCharacter", firstname, lastname, selectedGender);
         }
         
@@ -38,7 +37,6 @@ namespace ClientSide.Character
             cefBrowser.Destroy();
             cefBrowser = null;
             Cursor.Visible = false;
-            //RAGE.Chat.Output("rrrr");
             Events.CallRemote("CLIENT:SERVER:ClosedCreateCharScreen");
         }
         

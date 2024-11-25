@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: flex-start; /* Align to left */
+            justify-content: flex-start;
             align-items: center;
             height: 100vh;
         }
@@ -67,9 +67,8 @@
             cursor: pointer;
         }
     
-        /* Add margin to space out the tattoo slider section */
         .tattoo-section {
-            margin-top: 20px; /* Increase this value to push it further down */
+            margin-top: 20px;
         }
     
         .buttons {
@@ -103,125 +102,35 @@
             font-weight: bold;
         }
     </style>
-    
-    <body>
-        <div class="box">
-            <h1>Tattoo Selector</h1>
-    
-            <label class="slider-label" for="zone-slider">Zone:</label>
-            <input id="zone-slider" type="range" min="0" max="4" value="0">
-            <div class="slider-value" id="zone-name">ZONE_LEFT_ARM</div>
-    
-            <!-- Add a container for the tattoo section to apply margin -->
-            <div class="tattoo-section">
-                <label class="slider-label" for="tattoo-slider">Tattoo:</label>
-                <input id="tattoo-slider" type="range" min="0" max="10" value="0">
-                <div class="slider-value" id="tattoo-name">Mk II Girl</div>
-            </div>
-    
-            <div class="buttons">
-                <button id="apply-button">Apply</button>
-                <button id="remove-button">Remove</button>
-                <button id="exit-button"> Exit</button>
-            </div>
+</head>
+<body>
+    <div class="box">
+        <h1>Tattoo Selector</h1>
+
+        <label class="slider-label" for="zone-slider">Zone:</label>
+        <input id="zone-slider" type="range" min="0" max="4" value="0">
+        <div class="slider-value" id="zone-name"></div>
+
+        <div class="tattoo-section">
+            <label class="slider-label" for="tattoo-slider">Tattoo:</label>
+            <input id="tattoo-slider" type="range" min="0" max="0" value="0">
+            <div class="slider-value" id="tattoo-name"></div>
         </div>
-    </body>
-    
+
+        <div class="buttons">
+            <button id="apply-button">Apply</button>
+            <button id="remove-button">Remove</button>
+            <button id="exit-button">Exit</button>
+        </div>
+    </div>
 
     <script>
-        // JSON data
-        const tattooData = {
-    Left_Arm: [
-        "Mk II Girl", "Pegassi Flames", "Flaming Driver", "Top Dead Center", "Toxic Trails", "Tiki Tower", 
-        "Mermaid L.S.", "Tribal Flower", "Parrot", "Urban Stunter", "Macabre Tree", "Cranial Rose", 
-        "Live to Ride", "Good Luck", "Chain Fist", "Ride Hard Die Fast", "Muffler Helmet", "Poison Scorpion", 
-        "$100 Bill", "All-Seeing Eye", "Greed is Good", "Viking Warrior", "Tiger & Mask", "Spartan Combat", 
-        "Katana", "Winged Serpent", "Cerberus", "Skull Rider", "Electric Snake", "8 Ball Skull", 
-        "Time's Up Outline", "Time's Up Color", "The Christmas Spirit", "Festive Reaper", "Fooligan Clown", 
-        "Dude Outline", "Dude Jester", "Fooligan Impotent Rage", "Sidearm", "Bandolier", "Spiked Skull", 
-        "Blood Money", "Praying Skull", "Serpent Revolver", "Tiger Heart", "Mighty Thog", "Scratch Panther", 
-        "Diamond Sparkle", "Bricks", "Mustache", "Lightning Bolt", "Pizza", "Padlock", "Thorny Rose", "Stop", 
-        "Sunrise", "Sleeve", "Triangle White", "Peace", "Piston Sleeve", "Scarlett", "Love Hustle", 
-        "Skeleton Party", "My Crazy Life", "No Evil", "Los Santos Life", "City Sorrow", "Fatal Dagger", 
-        "Egyptian Mural", "Divine Goddess", "Python Skull", "Geometric Design", "Floral Symmetry", 
-        "Archangel & Mary", "Gabriel", "Skeleton Shot", "Music Is The Remedy", "Serpent Mic", "Weed Knuckles", 
-        "Honor", "Horrors Of The Deep", "Mermaid's Curse", "8 Eyed Skull", "Big Cat", "Moonlight Ride", 
-        "Piston Head", "Tanked", "Stuntman's End", "Kaboom", "Engine Arm", "Bigness Chimp", 
-        "Up-n-Atomizer Design", "Rocket Launcher Girl", "Laser Eyes Skull", "Classic Vampire", "Demon Drummer", 
-        "Suits", "Get Lucky", "Vice", "Can't Win Them All", "Banknote Rose", "Burning Heart", "Racing Blonde", 
-        "Racing Brunette", "Serpents", "Oriental Mural", "Zodiac Skull", "Lady M", "Dope Skull"
-    ],
-    Torso: [
-        "Rearview", "Tempesta Girl", "Gearhead", "V8 Demon", "Devil in the Back Seat", "Dewbauchee Stylized", 
-        "Futo Smoke", "Benefactor Demon", "Widowmaker", "Engine Heart", "Sabre Turbo Eyes", "Turbo Dragon", 
-        "Fooligan Hellfire", "Hot Rod Demon", "Turbulence", "Pilot Skull", "Winged Bombshell", "Balloon Pioneer", 
-        "Parachute Belle", "Bombs Away", "Eagle Eyes", "Ship Arms", "Tribal Hammerhead", "Tribal Shark", 
-        "Swordfish", "Wheel", "Rock Solid", "Hibiscus Flower Duo", "Shrimp", "Anchor", "Los Santos Wreath", 
-        "Love Dagger", "Sea Horses", "Catfish", "Swallow", "Hibiscus Flower", "Dolphin", "Demon Rider", 
-        "Both Barrels", "Web Rider", "Made In America", "Chopper Freedom", "Freedom Wheels", "Skull Of Taurus", 
-        "R.I.P. My Brothers", "Demon Crossbones", "Clawed Beast", "Skeletal Chopper", "Gruesome Talons", 
-        "Flaming Reaper", "Western MC", "American Dream", "Bone Wrench", "Brothers For Life", "Gear Head", 
-        "Western Eagle", "Brotherhood of Bikes", "Gas Guzzler", "No Regrets", "Ride Forever", "Unforgiven", 
-        "Biker Mount", "Reaper Vulture", "Faggio", "We Are The Mods!", "Refined Hustler", "Rich", "$$$", 
-        "Makin' Paper", "High Roller", "Makin' Money", "Love Money", "Diamond Back", "Santo Capra Logo", 
-        "Money Bag", "Respect", "Gold Digger", "Thor & Goblin", "Kabuto", "Native Warrior", "Ghost Dragon", 
-        "Spartan Warrior", "Norse Rune", "Spartan Shield", "Weathered Skull", "Samurai Combat", "Odin & Raven", 
-        "Strike Force", "Medusa's Gaze", "Spartan & Lion", "Spartan & Horse", "Dragon Slayer", "Spartan Skull", 
-        "Molon Labe", "???", "Carp Outline", "Carp Shaded", "Time To Die", "Roaring Tiger", "Lizard", 
-        "Japanese Warrior", "Loose Lips Outline", "Loose Lips Color", "Royal Dagger Outline", 
-        "Royal Dagger Color", "Executioner", "Herbal Bouquet", "Cash Krampus", "All In One Night", 
-        "A Little Present For You", "Masked Machete Killer", "Killer", "Powwer", "Two Headed Beast", 
-        "Dudes", "Fooligan Jester", "Vile Smile", "Demon Skull Jester", "Fatal Incursion Outline", 
-        "Many-Headed Beast", "Demon Stitches", "Collector", "Monkey", "Dragon", "Snake", "Goat", "Rat", 
-        "Rabbit", "Ox", "Pig", "Rooster", "Dog", "Horse", "Tiger", "Bullet Proof", "Crossed Weapons", 
-        "Butterfly Knife", "Cash Money", "Dollar Daggers", "Wolf Insignia", "Backstabber", "Dog Tags", 
-        "Dual Wield Skull", "Pistol Wings", "Crowned Weapons", "Explosive Heart", "Micro SMG Chain", 
-        "Win Some Lose Some", "Bigfoot", "Mount Chiliad", "Davis", "Dignity", "Epsilon", "Bananas Gone Bad", 
-        "Fatal Incursion", "Howitzer", "LS City", "LS Panic", "LS Shield", "Ladybug", "Robot Bubblegum", 
-        "Space Rangers", "Skeleton Breeze", "Wild Dancers", "Paradise Nap", "Paradise Ukulele", "Rose Panther", 
-        "Tropical Sorcerer", "Record Head", "Record Shot", "Speaker Tower", "Skull Surfer", "Paradise Sirens", 
-        "Techno Glitch", "Radio Tape", "Crossed Arrows", "Chemistry", "Feather Birds", "Infinity", "Antlers", 
-        "Boombox", "Pyramid", "Watch Your Step", "Sad", "Shark Fin", "Skateboard", "Paper Plane", "Stag", 
-        "Sewn Heart", "Tooth", "Triangles", "Cassette", "Block Back", "Power Plant", "Tuned to Death", 
-        "Serpents of Destruction", "Take the Wheel", "Talk Shit Get Hit", "SA Assault", "Love the Game", 
-        "Lady Liberty", "Royal Kiss", "Two Face", "Death Behind", "Dead Pretty", "Reign Over", "King Fight", 
-        "Holy Mary", "Gun Mic", "Amazon", "Bad Angel", "Love Gamble", "Love is Blind", "Sad Angel", 
-        "Royal Takeover", "The Howler", "Geometric Galaxy", "Cloaked Angel", "Reaper Sway", "Cobra Dawn", 
-        "Geometric Design", "Abstract Skull", "Adorned Wolf", "Eye of the Griffin", "Flying Eye", 
-        "Ancient Queen", "Smoking Sisters", "Feather Mural", "Hood Heart", "Los Santos Tag", "Blessed Boombox", 
-        "Chamberlain Hills", "Smoking Barrels", "All From The Same Tree", "King of the Jungle", "Night Owl", 
-        "Beatbox Silhouette", "Davis Flames", "Dollar Guns Crossed", "Bless The Dead", "Dead Lies", 
-        "Give Nothing Back", "Never Surrender", "No Honor", "Tall Ship Conflict", "See You In Hell", 
-        "Torn Wings", "Jolly Roger", "Skull Compass", "Framed Tall Ship", "Finders Keepers", "Lost At Sea", 
-        "Dead Tales", "X Marks The Spot", "Pirate Captain", "Claimed By The Beast", "Wheels of Death", 
-        "Punk Biker", "Bat Cat of Spades", "Vintage Bully", "Engine Heart", "Road Kill", "Winged Wheel", 
-        "Punk Road Hog", "Majestic Finish", "Man's Ruin", "Sugar Skull Trucker", "Feather Road Kill", 
-        "Big Grills", "Monkey Chopper", "Brapp", "Ram Skull", "Full Metal Drag", "Baddest of the Baddest", 
-        "Top Skull", "Vicious Chopper", "Bike Gods", "Carpe Diem", "Live Hard Ride Harder", "World Beater", 
-        "Supermarket Shriek", "On The Run", "Flaming Roll", "Mean Cabbie", "Defying Death", "Crash", 
-        "End of the Line", "Grand Prix Winner", "Tattooed Chimera", "LS Pulse", "Skull & Blood Roses", 
-        "Steel Panther", "Chiliad Wheelie", "Scorpions & Roses", "In the Clouds", "Cosmic Rider", 
-        "Blackhole Charger", "Serpent Spitter", "Flying Skull", "Heaven Racer", "Losing Control", 
-        "Blazing Wheels", "Midnight Trail", "Spectre Streak", "Heart Explode", "Piston Shriek"
-    ],
-    ZONE_RIGHT_ARM: [
-        "Hot Rod Creep", "Mamba Sleeve", "Stick Shift"
-    ],
-    ZONE_LEFT_LEG: [
-        "Eyeball Shifter", "Speed Demon", "Comedy and Tragedy"
-    ],
-    ZONE_RIGHT_LEG: [
-        "Voodoo Skyline", "Sugoi Flames", "Crank Head"
-    ]
-};
-
-
-        const zones = Object.keys(tattooData);
-        const highlights = {}; // To track applied highlights
-
-        zones.forEach(zone => {
-            highlights[zone] = new Array(tattooData[zone].length).fill(false);
-        });
+        let tattooData = {};
+        const highlights = {};
+        let zones = [];
+        let currentZone = 0;
+        let currentTattoo = 0;
+        let previousTattoo = null; // Add this to track the previous tattoo
 
         // Elements
         const zoneSlider = document.getElementById('zone-slider');
@@ -231,71 +140,152 @@
         const applyButton = document.getElementById('apply-button');
         const removeButton = document.getElementById('remove-button');
         const exitButton = document.getElementById('exit-button');
-
-        let currentZone = 0;
-        let currentTattoo = 0;
         
-        function updateTattooData(json){
-            const data = JSON.parse(json);
-            tattooData = data;
-            
+        function updateHighlights(jsonStr) {
+        try {
+            const tattooNames = JSON.parse(jsonStr); // Parse the list of tattoo names
+
+            // Clear all current highlights
+            for (const zone in highlights) {
+                highlights[zone] = new Array(tattooData[zone].length).fill(false);
+            }
+
+            // Highlight tattoos based on the provided list
+            for (const zone in tattooData) {
+                tattooData[zone].forEach((tattoo, index) => {
+                    if (tattooNames.includes(tattoo)) {
+                        highlights[zone][index] = true;
+                    }
+                });
+            }
+
+            // Update the display to reflect the new highlights
+            updateDisplays();
+            } catch (error) {
+                console.error('Error updating highlights:', error);
+            }
+        }
+        function getHighlightedTattoos() {
+        const highlightedTattoos = [];
+        
+        for (const zone in highlights) {
+            tattooData[zone].forEach((tattoo, index) => {
+                if (highlights[zone][index]) {
+                    highlightedTattoos.push(tattoo);
+                }
+            });
+        }
+        return highlightedTattoos;
         }
 
-        // Update tattoo and zone displays
+        function updateTattooData(jsonStr) {
+            try {
+                const data = JSON.parse(jsonStr);
+                tattooData = data;
+                zones = Object.keys(tattooData);
+                zoneSlider.max = zones.length - 1;
+                
+                zones.forEach(zone => {
+                    highlights[zone] = new Array(tattooData[zone].length).fill(false);
+                });
+                
+                currentZone = 0;
+                currentTattoo = 0;
+                previousTattoo = null; // Reset previous tattoo
+                zoneSlider.value = 0;
+                tattooSlider.value = 0;
+                
+                updateDisplays();
+            } catch (error) {
+                console.error('Error updating tattoo data:', error);
+            }
+        }
+
         function updateDisplays() {
+            if (zones.length === 0) return;
+            
             const zone = zones[currentZone];
-            const tattoo = tattooData[zone][currentTattoo];
+            const tattoos = tattooData[zone];
+            
+            if (!tattoos || tattoos.length === 0) return;
+            
+            const tattoo = tattoos[currentTattoo];
+            
             zoneName.textContent = zone;
+            tattooSlider.max = tattoos.length - 1;
             tattooName.textContent = tattoo;
 
-            // Highlight if applied
             if (highlights[zone][currentTattoo]) {
                 tattooName.classList.add('highlighted');
             } else {
                 tattooName.classList.remove('highlighted');
             }
-
-            // Adjust tattoo slider range
-            tattooSlider.max = tattooData[zone].length - 1;
         }
 
-        // Event listeners
         zoneSlider.addEventListener('input', () => {
             currentZone = parseInt(zoneSlider.value, 10);
             currentTattoo = 0;
+            previousTattoo = null; // Reset previous tattoo when changing zones
             tattooSlider.value = 0;
             updateDisplays();
         });
 
         tattooSlider.addEventListener('input', () => {
-            currentTattoo = parseInt(tattooSlider.value, 10);
-            // Remove the previously applied tattoo before applying the new one
-            mp.trigger("CEF:CLIENT:RemoveTattoo", tattooName.textContent);
-
-            // Apply the new tattoo as you move the slider
+            const zone = zones[currentZone];
+            const tattoos = tattooData[zone];
+            const newTattoo = tattoos[parseInt(tattooSlider.value, 10)];
             
+            if (typeof mp !== 'undefined') {
+                // If there was a previous tattoo, remove it
+                if (previousTattoo !== null) {
+                    if(highlights[zone][tattoos.indexOf(previousTattoo)] === false)
+                    mp.trigger("CEF:CLIENT:RemoveTattooClient", JSON.stringify(getHighlightedTattoos()));
+                }
+                // Apply the new tattoo
+                mp.trigger("CEF:CLIENT:ApplyTattooClient", newTattoo);
+            }
+            
+            // Update the current and previous tattoo values
+            previousTattoo = newTattoo;
+            currentTattoo = parseInt(tattooSlider.value, 10);
             updateDisplays();
-            mp.trigger("CEF:CLIENT:ApplyTattoo", tattooName.textContent);
         });
 
         applyButton.addEventListener('click', () => {
-            highlights[zones[currentZone]][currentTattoo] = true;
-            mp.trigger("CEF:CLIENT:ApplyTattoo", tattooName.textContent);
+            const zone = zones[currentZone];
+            highlights[zone][currentTattoo] = true;
+            if (typeof mp !== 'undefined') {
+                mp.trigger("CEF:CLIENT:ApplyTattoo", tattooName.textContent);
+            }
+            previousTattoo = tattooName.textContent; // Update previous tattoo when applying
             updateDisplays();
         });
 
         removeButton.addEventListener('click', () => {
-            highlights[zones[currentZone]][currentTattoo] = false;
-            mp.trigger("CEF:CLIENT:RemoveTattoo", tattooName.textContent);
-            updateDisplays();
-        });
-        exitButton.addEventListener('click', () => {
-            mp.trigger("CEF:CLIENT:stopTattooScreen");
+            const zone = zones[currentZone];
+            highlights[zone][currentTattoo] = false;
+            if (typeof mp !== 'undefined') {
+                mp.trigger("CEF:CLIENT:RemoveTattoo", tattooName.textContent);
+            }
+            previousTattoo = null; // Reset previous tattoo when removing
             updateDisplays();
         });
 
-        // Initialize
+        exitButton.addEventListener('click', () => {
+        const highlightedTattoos = getHighlightedTattoos(); // Get the list of highlighted tattoos
+        const currentZone = zones[parseInt(zoneSlider.value, 10)];
+        const currentTattoo = tattooData[currentZone][parseInt(tattooSlider.value, 10)];
+
+        if (!highlightedTattoos.includes(currentTattoo)) {
+            mp.trigger("CEF:CLIENT:RemoveTattoo", currentTattoo); // Remove the current tattoo if not highlighted
+        }
+        
+        const highlightsStr = JSON.stringify(highlightedTattoos);
+        mp.trigger("CEF:CLIENT:StopTattooScreen", highlightsStr);
+        });
+
         updateDisplays();
     </script>
+
 </body>
 </html>

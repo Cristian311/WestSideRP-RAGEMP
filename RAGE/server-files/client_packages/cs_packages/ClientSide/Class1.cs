@@ -15,7 +15,7 @@ namespace ClientSide
 
         private void onPlayerSpawn()
         {
-            RAGE.Chat.Output("ddd");
+
         }
     }
 }

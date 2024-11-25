@@ -25,7 +25,6 @@ namespace ClientSide.Character
 
             // Get the JSON string and output it to chat for debugging
             string json = args[0].ToString();
-            RAGE.Chat.Output(json);
 
             // Escape the JSON for embedding in JavaScript
             string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");

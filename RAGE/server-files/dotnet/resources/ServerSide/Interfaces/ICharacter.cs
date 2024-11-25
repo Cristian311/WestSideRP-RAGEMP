@@ -21,7 +21,7 @@ namespace ServerSide.Interfaces
         HairData Hair { get; set; }
         ClothesData[] Clothes { get; set; }
         List<Item> Items { get; set; }
-        List<Decoration> tattoos { get; set; }
+        List<Decoration> Tattoos { get; set; }
         int currentOutfit { get; set; }
         bool Gender {  get; set; }
     }

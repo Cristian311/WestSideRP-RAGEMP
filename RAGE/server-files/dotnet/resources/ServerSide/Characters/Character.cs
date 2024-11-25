@@ -31,8 +31,9 @@ namespace ServerSide.Characters
         public ClothesData[] Clothes { get; set; } = new ClothesData[20];
         public List<Item> Items { get; set; } = new List<Item>();
         public List<WeaponHash> currentWeapons {  get; set; } = new List<WeaponHash>();
-        public List<Decoration> tattoos { get; set; } 
+        public List<Decoration> Tattoos { get; set; } 
         public ItemIdManager ItemIdManager = new ItemIdManager();
+        public List<string> TattooNames { get; set; } = new List<string>();
         public Character(Player player, IAccount account, string name, int age, int money)
         {
             this.player = player;
@@ -42,7 +43,7 @@ namespace ServerSide.Characters
             Age = age;
             Money = money;
             Items = new List<Item>();
-            tattoos = new List<Decoration>();
+            Tattoos = new List<Decoration>();
         }
         public void GetCharacterInfo()
         {

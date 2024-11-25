@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ClientSide
+namespace ClientSide.Character.Tattoos
 {
     public class TattooData
     {

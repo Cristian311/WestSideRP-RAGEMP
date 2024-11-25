@@ -141,8 +141,17 @@ namespace ServerSide.DB.CharacterDB
                                 if (character.currentOutfit == null)
                                     character.currentOutfit = 0;
                                 var TattooJSON = reader.GetString(12);
-                                character.tattoos = NAPI.Util.FromJson<List<Decoration>>(TattooJSON);
+                                character.Tattoos = NAPI.Util.FromJson<List<Decoration>>(TattooJSON);
+                                var HighlightsJson = reader.GetString(13);
 
+
+                                if (HighlightsJson != null)
+                                {
+                                    var highlights = NAPI.Util.FromJson<List<string>>(HighlightsJson);
+                                    character.TattooNames = highlights;
+                                }
+                                else
+                                    character.TattooNames = new List<string>();
                             }
                             return character;
                         }

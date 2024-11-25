@@ -117,7 +117,15 @@ namespace ServerSide.Characters
                 }
             }
             ClothesManager.GetClothes(player, (byte)character.currentOutfit);
-            TattooManager.ApplyTattoos(player, character.tattoos);
+            if (character.Tattoos != null)
+            {
+                Decoration[] decorations = new Decoration[character.Tattoos.Count];
+                for (int i = 0; i < character.Tattoos.Count; i++)
+                {
+                    decorations[i] = character.Tattoos[i];
+                }
+                TattooManager.ApplyTattoos(player, decorations);
+            }
         }
         public static Character GetCharacterNearby(Player player, string targetName, float range = 20f)
         {

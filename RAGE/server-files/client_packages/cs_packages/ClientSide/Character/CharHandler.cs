@@ -46,7 +46,7 @@ namespace ClientSide.Character
         private void CharacterSelected(object[] args)
         {
             string CharacterName = args[0].ToString();
-            RAGE.Chat.Output(CharacterName);
+
             Events.CallRemote("CLIENT:SERVER:CharSelected", CharacterName);
             Events.CallRemote("CLIENT:SERVER:CheckIfCharExistsForCustomizeScreen");
         }

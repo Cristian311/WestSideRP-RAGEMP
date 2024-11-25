@@ -1,8 +1,11 @@
 ﻿using GTANetworkAPI;
 using GTANetworkInternals;
+using Org.BouncyCastle.Bcpg;
+using ServerSide.DB.CharacterDB;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace ServerSide.Characters.Tattoos
@@ -52,30 +55,34 @@ namespace ServerSide.Characters.Tattoos
         private void ApplyTattoo(Player player, string tattoo)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
+            
             string tattooHash = GetTattooHash(player, tattoo);
             string tattooCollection = GetTattooCollection(tattoo);
 
             Decoration tattooDecoration = new Decoration();
             tattooDecoration.Collection = NAPI.Util.GetHashKey(tattooCollection);
             tattooDecoration.Overlay = NAPI.Util.GetHashKey(tattooHash);
-            if(character.tattoos != null)
-                character.tattoos.Add(tattooDecoration);
+            if (character.Tattoos == null)
+                character.Tattoos = new List<Decoration> { tattooDecoration };
+            else if (character.Tattoos.Contains(tattooDecoration))
+                return;
+                else
+                    character.Tattoos.Add(tattooDecoration);
+            if (character.TattooNames == null)
+                character.TattooNames = new List<string>();
+            character.TattooNames.Add(tattoo);
+
             player.SetDecoration(tattooDecoration);
         }
-        public static void ApplyTattoos(Player player, List<Decoration> tattoosList)
+        public static void ApplyTattoos(Player player, Decoration[] tattoos)
         {
-            if (tattoosList == null)
-                return;
-            Decoration[] tattoos = new Decoration[tattoosList.Count];
-            for(int i = 0; i <= tattoosList.Count; i++)
-                tattoos[i] = tattoosList[i];
             player.SetDecoration(tattoos);
         }
         [RemoteEvent("CLIENT:SERVER:RemoveTattoo")]
         private void RemoveTattoo(Player player, string tattoo)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            if (character.tattoos == null)
+            if (character.Tattoos == null)
                 return;
             string tattooHash = GetTattooHash(player, tattoo);
             string tattooCollection = GetTattooCollection(tattoo);
@@ -83,11 +90,21 @@ namespace ServerSide.Characters.Tattoos
             Decoration tattooDecoration = new Decoration();
             tattooDecoration.Collection = NAPI.Util.GetHashKey(tattooCollection);
             tattooDecoration.Overlay = NAPI.Util.GetHashKey(tattooHash);
-            if (character.tattoos.Contains(tattooDecoration))
-                character.tattoos.Remove(tattooDecoration);
+            if (character.Tattoos.Contains(tattooDecoration))
+                character.Tattoos.Remove(tattooDecoration);
+            character.TattooNames.Remove(tattoo);
             player.RemoveDecoration(tattooDecoration);
         }
-
+        [RemoteEvent("CLIENT:SERVER:UpdateTattoo")]
+        private void UpdateTattoo(Player player, string highlightJson)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            var highlights = NAPI.Util.FromJson<List<string>>(highlightJson);
+            character.TattooNames = highlights;
+            UpdateCharDataDBManager.UpdateCharacterTattoos(character);
+            NAPI.Util.ConsoleOutput($"Character {character.Name} updated tattoos: {highlightJson}");
+        }
+        
         private string GetTattooCollection(string tattooName)
         {
             foreach (var data in allTattooData)
@@ -113,7 +130,11 @@ namespace ServerSide.Characters.Tattoos
         [Command("tattoo")]
         private void TattooCommand(Player player)
         {
+            var character = CharacterManager.PlayerCharacterPair[player];
+
             var tattooZoneGrouped = new Dictionary<string, List<string>>();
+            var tattooCollection = new Dictionary<string, string>();
+            var tattooHash = new Dictionary<string, string>();
 
             // Group the tattoos by their zones
             foreach (var data in allTattooData)
@@ -123,14 +144,19 @@ namespace ServerSide.Characters.Tattoos
                     tattooZoneGrouped[data.Zone] = new List<string>();
                 }
                 tattooZoneGrouped[data.Zone].Add(data.LocalizedName);
+                var hash = character.Gender ? data.HashNameMale : data.HashNameFemale;
+                tattooHash[data.LocalizedName] = hash;
+                tattooCollection[data.LocalizedName] = data.FileName;
             }
 
             // Convert the dictionary to a JSON string
-            string json = NAPI.Util.ToJson(tattooZoneGrouped);
+            string tattooZoneGroupedJson = NAPI.Util.ToJson(tattooZoneGrouped);
+            string CurrentTattoosJson = NAPI.Util.ToJson(character.TattooNames);
+            string TattooCollectionJson = NAPI.Util.ToJson(tattooCollection);
+            string TattooHashJson = NAPI.Util.ToJson(tattooHash);
+            player.TriggerEvent("SERVER:CLIENT:ShowTattooScreen", tattooZoneGroupedJson, CurrentTattoosJson, TattooCollectionJson, TattooHashJson);
 
-            player.TriggerEvent("SERVER:CLIENT:showTattooScreen", json);
-
-            NAPI.Util.ConsoleOutput(json);
+            NAPI.Util.ConsoleOutput(tattooZoneGroupedJson);
         }
     }
 }
