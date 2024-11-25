@@ -12,8 +12,8 @@ namespace ClientSide.Character
         private HtmlWindow cefBrowser;
         CreateCharHandler()
         {
-            Events.Add("CEF:CLIENT:showCreateCharScreen", ShowCreateCharScreen);
-            Events.Add("CEF:CLIENT:closeCreateCharInterface", CloseCreateCharInterface);
+            Events.Add("CEF:CLIENT:ShowCreateCharScreen", ShowCreateCharScreen);
+            Events.Add("CEF:CLIENT:CloseCreateCharInterface", CloseCreateCharInterface);
             Events.Add("CEF:CLIENT:CreateNewCharacter", CreateNewCharacter);
             
         }

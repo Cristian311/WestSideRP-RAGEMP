@@ -87,8 +87,8 @@ namespace ServerSide.Characters
             GetNameMoneyJson(account, out string namesJSON, out string moneyJSON);
             
             //display character interface with new character data
-            player.TriggerEvent("SERVER:CLIENT:showCharInterface");
-            player.TriggerEvent("SERVER:CLIENT:displayAccountInfo", username, namesJSON, moneyJSON); 
+            player.TriggerEvent("SERVER:CLIENT:ShowCharInterface");
+            player.TriggerEvent("SERVER:CLIENT:SisplayAccountInfo", username, namesJSON, moneyJSON); 
         }
         [RemoteEvent("CLIENT:SERVER:CharSelected")]
         private void OnCharSelected(Player player, string charName)

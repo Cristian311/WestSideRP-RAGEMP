@@ -457,7 +457,7 @@
         };
 
         const jsonString = JSON.stringify(characterData);
-        mp.trigger("CEF:CLIENT:updateCharacter", jsonString);
+        mp.trigger("CEF:CLIENT:UpdateCharacter", jsonString);
     }
 
     function createCharacter() {
@@ -544,8 +544,8 @@
 
         const jsonString = JSON.stringify(characterData);
         console.log(jsonString);
-        mp.trigger("CEF:CLIENT:updateCharacter", jsonString);
-        mp.trigger("CEF:CLIENT:closeCustomizeCharScreen", jsonString);
+        mp.trigger("CEF:CLIENT:UpdateCharacter", jsonString);
+        mp.trigger("CEF:CLIENT:CloseCustomizeCharScreen", jsonString);
     }
     function updateCharacterDataFromJson(CharJSON) {
         // Parse the JSON string into an object

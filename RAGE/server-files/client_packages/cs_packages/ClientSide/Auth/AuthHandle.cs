@@ -10,12 +10,12 @@ namespace ClientSide.Auth
 
         public AuthHandle()
         { 
-            Events.Add("SERVER:CLIENT:showAuthInterface", ShowAuthInterface);
-            Events.Add("SERVER:CLIENT:closeAuthInterface", CloseAuthInterface);
-            Events.Add("CEF:CLIENT:clientLogin", onClientLogin);
-            Events.Add("CEF:CLIENT:clientRegister", onClientRegister);
-            Events.Add("SERVER:CLIENT:displayLoginFail", displayLoginFail);
-            Events.Add("SERVER:CLIENT:displayRegisterMessage", displayRegisterMessage);
+            Events.Add("SERVER:CLIENT:ShowAuthInterface", ShowAuthInterface);
+            Events.Add("SERVER:CLIENT:CloseAuthInterface", CloseAuthInterface);
+            Events.Add("CEF:CLIENT:ClientLogin", onClientLogin);
+            Events.Add("CEF:CLIENT:ClientRegister", onClientRegister);
+            Events.Add("SERVER:CLIENT:DisplayLoginFail", displayLoginFail);
+            Events.Add("SERVER:CLIENT:DisplayRegisterMessage", displayRegisterMessage);
         }
          
         private void ShowAuthInterface(object[] args)
@@ -34,14 +34,14 @@ namespace ClientSide.Auth
         {
             string username = args[0].ToString();
             string password = args[1].ToString();
-            Events.CallRemote("CLIENT:SERVER:clientLogin", username, password);
+            Events.CallRemote("CLIENT:SERVER:ClientLogin", username, password);
         }
 
         private void onClientRegister(object[] args)
         {
             string username = args[0].ToString();
             string password = args[1].ToString();
-            Events.CallRemote("CLIENT:SERVER:clientRegister", username, password);
+            Events.CallRemote("CLIENT:SERVER:ClientRegister", username, password);
 
         }
         private void displayLoginFail(object[] args)

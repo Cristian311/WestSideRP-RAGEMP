@@ -8,7 +8,7 @@ namespace ServerSide.AuthServer
 {
     internal class RegisterServer : Script
     {
-        [RemoteEvent("CLIENT:SERVER:clientRegister")]
+        [RemoteEvent("CLIENT:SERVER:ClientRegister")]
         public void OnRegisterAttempt(Player player, string username, string password)
         {
             AccountDbManager db = new AccountDbManager();
@@ -17,11 +17,11 @@ namespace ServerSide.AuthServer
                 db.RegisterAccount(username, password);
                 NAPI.Util.ConsoleOutput(username + " s-a inregistrat.");
                 //player.TriggerEvent("SERVER:CLIENT:closeAuthInterface");
-                player.TriggerEvent("SERVER:CLIENT:displayRegisterMessage", "Account created! Log into your account");
+                player.TriggerEvent("SERVER:CLIENT:DisplayRegisterMessage", "Account created! Log into your account");
             }
             else
             {
-                player.TriggerEvent("SERVER:CLIENT:displayRegisterMessage", "Account already exists");
+                player.TriggerEvent("SERVER:CLIENT:DisplayRegisterMessage", "Account already exists");
             }
         }
     }

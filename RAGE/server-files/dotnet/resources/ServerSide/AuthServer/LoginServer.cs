@@ -19,7 +19,7 @@ namespace ServerSide.AuthServer
         [ServerEvent(Event.PlayerConnected)]
         private void onPlayerConnected(Player player)
         {
-            player.TriggerEvent("SERVER:CLIENT:showAuthInterface");
+            player.TriggerEvent("SERVER:CLIENT:ShowAuthInterface");
         }
         [ServerEvent(Event.PlayerDisconnected)]
         private void onPlayerDisconnected(Player player, DisconnectionType type, string reason)
@@ -35,11 +35,11 @@ namespace ServerSide.AuthServer
         [Command("login")]
         private void LoginCommand(Player player)
         {
-            player.TriggerEvent("SERVER:CLIENT:showAuthInterface");
+            player.TriggerEvent("SERVER:CLIENT:ShowAuthInterface");
         }
 
 
-        [RemoteEvent("CLIENT:SERVER:clientLogin")]
+        [RemoteEvent("CLIENT:SERVER:ClientLogin")]
         public void OnLoginAttempt(Player player, string username, string password)
         {
             AccountDbManager accountDb = new AccountDbManager();
@@ -47,7 +47,7 @@ namespace ServerSide.AuthServer
             {
                 //LOG IN SUCCESFULLY
                 NAPI.Util.ConsoleOutput(username + " s-a logat.");
-                player.TriggerEvent("SERVER:CLIENT:closeAuthInterface");
+                player.TriggerEvent("SERVER:CLIENT:CloseAuthInterface");
                 
                 var account = new Account((int)Id, username, player);
                 if(accountDb.CheckAccountAdminLevel(username, out int? adminLevel))
@@ -67,12 +67,12 @@ namespace ServerSide.AuthServer
 
                 //CHARACTER SELECT
                 CharacterManager.GetNameMoneyJson(account, out string namesJSON, out string moneyJSON);
-                player.TriggerEvent("SERVER:CLIENT:showCharInterface");
-                player.TriggerEvent("SERVER:CLIENT:displayAccountInfo", username, namesJSON, moneyJSON); 
+                player.TriggerEvent("SERVER:CLIENT:ShowCharInterface");
+                player.TriggerEvent("SERVER:CLIENT:DisplayAccountInfo", username, namesJSON, moneyJSON); 
             }
             else
             {//login unsuccesfull
-                player.TriggerEvent("SERVER:CLIENT:displayLoginFail");
+                player.TriggerEvent("SERVER:CLIENT:DisplayLoginFail");
             }
         }
     }

@@ -10,14 +10,14 @@ namespace ClientSide.Character
 
         public CharHandler()
         {
-            Events.Add("SERVER:CLIENT:showCharInterface", ShowCharInterface);
-            Events.Add("CEF:CLIENT:showCharInterface", ShowCharInterface);
+            Events.Add("SERVER:CLIENT:ShowCharInterface", ShowCharInterface);
+            Events.Add("CEF:CLIENT:ShowCharInterface", ShowCharInterface);
 
-            Events.Add("SERVER:CLIENT:closeCharInterface", CloseCharInterface);
-            Events.Add("CEF:CLIENT:closeCharInterface", CloseCharInterface);
+            Events.Add("SERVER:CLIENT:CloseCharInterface", CloseCharInterface);
+            Events.Add("CEF:CLIENT:CloseCharInterface", CloseCharInterface);
 
-            Events.Add("SERVER:CLIENT:displayAccountInfo", DisplayAccountInfo);
-            Events.Add("CEF:CLIENT:characterSelected", CharacterSelected);
+            Events.Add("SERVER:CLIENT:DisplayAccountInfo", DisplayAccountInfo);
+            Events.Add("CEF:CLIENT:CharacterSelected", CharacterSelected);
         }
         
         private void ShowCharInterface(object[] args)

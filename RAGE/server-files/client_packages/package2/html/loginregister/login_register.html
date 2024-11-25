@@ -142,7 +142,7 @@
         function login() {
             const username = document.getElementById("loginUsername").value;
             const password = document.getElementById("loginPassword").value;
-            mp.trigger("CEF:CLIENT:clientLogin", username, password);
+            mp.trigger("CEF:CLIENT:ClientLogin", username, password);
         }
 
         function register() {
@@ -159,7 +159,7 @@
                 return;
             }
 
-            mp.trigger("CEF:CLIENT:clientRegister", username, password);
+            mp.trigger("CEF:CLIENT:ClientRegister", username, password);
         }
 
         function displayLoginFail() {

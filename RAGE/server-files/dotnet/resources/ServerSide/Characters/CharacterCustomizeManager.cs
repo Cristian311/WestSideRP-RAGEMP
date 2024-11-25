@@ -13,7 +13,7 @@ namespace ServerSide.Characters
         {
             Character character = CharacterManager.PlayerCharacterPair[player];
             if (character.isCreated == false)
-                player.TriggerEvent("SERVER:CLIENT:showCustomizeCharScreen");
+                player.TriggerEvent("SERVER:CLIENT:ShowCustomizeCharScreen");
 
             character.GetCharacterInfo();//debug
         }
@@ -26,7 +26,7 @@ namespace ServerSide.Characters
             {
                 character.isCreated = true;
                 var HairJSON = NAPI.Util.ToJson(character.Hair);
-                player.TriggerEvent("SERVER:CLIENT:showHairScreen", HairJSON); // sends hair as json
+                player.TriggerEvent("SERVER:CLIENT:ShowHairScreen", HairJSON); // sends hair as json
                 character.GetCharacterInfo(); // debug
             }
             character.Face = NAPI.Util.FromJson<CharacterData>(faceFeaturesJSON);

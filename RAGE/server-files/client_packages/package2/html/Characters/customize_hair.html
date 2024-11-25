@@ -291,7 +291,7 @@
     };
 
     const jsonString = JSON.stringify(hairData);
-    mp.trigger("CEF:CLIENT:updateHair", jsonString);
+    mp.trigger("CEF:CLIENT:UpdateHair", jsonString);
     }
 
 
@@ -355,8 +355,8 @@
     };
 
     const jsonString = JSON.stringify(hairData);
-    mp.trigger("CEF:CLIENT:updateHair", jsonString);
-        mp.trigger("CEF:CLIENT:stopHairScreen", jsonString);
+    mp.trigger("CEF:CLIENT:UpdateHair", jsonString);
+        mp.trigger("CEF:CLIENT:StopHairScreen", jsonString);
     }
 
     function updateHairDataFromJson(jsonString) {

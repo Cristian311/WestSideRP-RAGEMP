@@ -11,10 +11,10 @@ namespace ClientSide.Character
         private HtmlWindow cefBrowser;
         public CustomizeCharHandler() 
         {
-            Events.Add("CEF:CLIENT:showCustomizeCharScreen", ShowCustomizeCharScreen);
-            Events.Add("SERVER:CLIENT:showCustomizeCharScreen", ShowCustomizeCharScreenServer);
-            Events.Add("CEF:CLIENT:closeCustomizeCharScreen", CloseCustomizeCharScreen);
-            Events.Add("CEF:CLIENT:updateCharacter", UpdateCharacter);
+            Events.Add("CEF:CLIENT:ShowCustomizeCharScreen", ShowCustomizeCharScreen);
+            Events.Add("SERVER:CLIENT:ShowCustomizeCharScreen", ShowCustomizeCharScreenServer);
+            Events.Add("CEF:CLIENT:CloseCustomizeCharScreen", CloseCustomizeCharScreen);
+            Events.Add("CEF:CLIENT:UpdateCharacter", UpdateCharacter);
         }
         private void ShowCustomizeCharScreenServer(object[] args)
         {

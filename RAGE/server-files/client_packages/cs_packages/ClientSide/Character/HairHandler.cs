@@ -13,9 +13,9 @@ namespace ClientSide.Character
         private HtmlWindow cefBrowser;
         private HairHandler() 
         {
-            Events.Add("SERVER:CLIENT:showHairScreen", showHairScreen);
-            Events.Add("CEF:CLIENT:stopHairScreen", stopHairScreen);
-            Events.Add("CEF:CLIENT:updateHair", UpdateHair);
+            Events.Add("SERVER:CLIENT:ShowHairScreen", showHairScreen);
+            Events.Add("CEF:CLIENT:StopHairScreen", stopHairScreen);
+            Events.Add("CEF:CLIENT:UpdateHair", UpdateHair);
             
         }
         

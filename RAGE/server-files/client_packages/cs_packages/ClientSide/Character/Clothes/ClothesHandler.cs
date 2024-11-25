@@ -11,10 +11,10 @@ namespace ClientSide.Character.Clothes
         private HtmlWindow cefBrowser;
         private ClothesHandler()
         {
-            Events.Add("SERVER:CLIENT:openClothesScreen", OpenClothesScreen);
-            Events.Add("SERVER:CLIENT:closeClothesScreen", CloseClothesScreen);
-            Events.Add("CEF:CLIENT:closeClothesScreen", CloseClothesScreen);
-            Events.Add("CEF:CLIENT:updateClothes", UpdateClothes);
+            Events.Add("SERVER:CLIENT:OpenClothesScreen", OpenClothesScreen);
+            Events.Add("SERVER:CLIENT:CloseClothesScreen", CloseClothesScreen);
+            Events.Add("CEF:CLIENT:CloseClothesScreen", CloseClothesScreen);
+            Events.Add("CEF:CLIENT:UpdateClothes", UpdateClothes);
             Events.Add("CEF:CLIENT:SelectCostume", SelectClothes);
             Events.Add("CEF:CLIENT:BuyCostume", BuyClothes);
             Events.Add("SERVER:CLIENT:ShowCostume", ShowClothes);
@@ -84,7 +84,10 @@ namespace ClientSide.Character.Clothes
             string json = args[0].ToString();
             string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
 
-            cefBrowser.ExecuteJs($"updateHairDataFromJson(\"{escapedJson}\");");
+            int currentClothes = int.Parse(args[1].ToString());
+
+            cefBrowser.ExecuteJs($"UpdateClothes(\"{escapedJson}\");");
+            cefBrowser.ExecuteJs($"selectItem(\"{currentClothes}\");");
         }
     }
 }

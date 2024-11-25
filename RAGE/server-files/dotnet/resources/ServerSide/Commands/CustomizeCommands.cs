@@ -15,14 +15,14 @@ namespace ServerSide.Commands
         {
             Character character = CharacterManager.PlayerCharacterPair[player];
             var HairJSON = NAPI.Util.ToJson(character.Hair);
-            player.TriggerEvent("SERVER:CLIENT:showHairScreen", HairJSON);
+            player.TriggerEvent("SERVER:CLIENT:ShowHairScreen", HairJSON);
         }
         [Command("facefeatures")]
         private void facefeaturesCommand(Player player)
         {
             Character character = CharacterManager.PlayerCharacterPair[player];
             var FaceJSON = NAPI.Util.ToJson(character.Face);
-            player.TriggerEvent("SERVER:CLIENT:showCustomizeCharScreen", FaceJSON);
+            player.TriggerEvent("SERVER:CLIENT:ShowCustomizeCharScreen", FaceJSON);
         }
         [Command("changechar")]
         private void changecharCommand(Player player)
@@ -34,8 +34,8 @@ namespace ServerSide.Commands
             CharacterManager.GetNameMoneyJson(account, out string namesJSON, out string moneyJSON);
             UpdateCharDataDBManager.UpdateCharacter(character);
             //display character interface with new character data
-            player.TriggerEvent("SERVER:CLIENT:showCharInterface");
-            player.TriggerEvent("SERVER:CLIENT:displayAccountInfo", username, namesJSON, moneyJSON);
+            player.TriggerEvent("SERVER:CLIENT:ShowCharInterface");
+            player.TriggerEvent("SERVER:CLIENT:DisplayAccountInfo", username, namesJSON, moneyJSON);
             UpdateCharDataDBManager.UpdateCharacter(character);
         }
         [Command("clothes")]
@@ -47,7 +47,9 @@ namespace ServerSide.Commands
             var gender = character.Gender ? "male" : "female";
             clothesNames.SetGender(gender);
             var itemMaxValuesJSON = NAPI.Util.ToJson(clothesNames.results);
-            player.TriggerEvent("SERVER:CLIENT:openClothesScreen");
+            var clothes = character.Clothes[character.currentOutfit];
+            var clothesJson = NAPI.Util.ToJson(clothes);
+            player.TriggerEvent("SERVER:CLIENT:OpenClothesScreen", clothesJson, character.currentOutfit);
             player.TriggerEvent("SERVER:CLIENT:UpdateDataMaxValues", itemMaxValuesJSON);
             
         }

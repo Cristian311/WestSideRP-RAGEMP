@@ -139,7 +139,7 @@
             <button class="button" onclick="selectItem('bodyArmor')">Body Armors</button>
         </div>
         <div class="button-row">
-            <button class="button" onclick="selectItem('shirts')">Shirts and Jackets</button>
+            <button class="button active" onclick="selectItem('shirts')">Shirts and Jackets</button>
             <button class="button" onclick="selectItem('helmets')">Helmets</button>
             <button class="button" onclick="selectItem('glasses')">Glasses</button>
         </div>
@@ -254,9 +254,43 @@ function updateMaxTexture(itemType) {
     textureSlider.value = itemData[itemType].texture;
     document.getElementById('texture-value').textContent = itemData[itemType].texture;
 }
+function UpdateClothes(json) {
+        const data = JSON.parse(json);
 
+        // Update each item in itemData using the parsed JSON data
+        Object.keys(data).forEach(key => {
+            if (key in itemData) {
+                if (typeof data[key] === 'object' && data[key] !== null) {
+                    // Update nested properties (drawable and texture for items like "decals", "masks", etc.)
+                    Object.keys(data[key]).forEach(nestedKey => {
+                        itemData[key][nestedKey] = data[key][nestedKey];
+                        
+                        // Update UI for the selected item if it matches the current selection
+                        if (key === selectedItem) {
+                            if (nestedKey === 'drawable') {
+                                document.getElementById('drawable-slider').value = itemData[key][nestedKey];
+                                document.getElementById('drawable-value').textContent = itemData[key][nestedKey];
+                            } else if (nestedKey === 'texture') {
+                                document.getElementById('texture-slider').value = itemData[key][nestedKey];
+                                document.getElementById('texture-value').textContent = itemData[key][nestedKey];
+                            }
+                        }
+                    });
+                } else {
+                    // For non-object properties like `id`, update directly
+                    itemData[key] = data[key];
+
+                    // Update the UI if we're changing the character ID
+                    if (key === 'id') {
+                        document.getElementById('character-select').value = itemData[key];
+                        document.getElementById('character-select-value').textContent = itemData[key];
+                    }
+                }
+            }
+        });
+    }
 // Function to select an item
-let selectedItem = null;
+let selectedItem = "shirts";
 function selectItem(item) {
     selectedItem = item;
     
@@ -277,10 +311,12 @@ function selectItem(item) {
     buttons.forEach(button => button.classList.remove('active'));
     
     // Add 'active' class to the clicked button
-    const clickedButton = event.target;
-    clickedButton.classList.add('active');
+    const clickedButton = document.querySelector(`.button[onclick="selectItem('${item}')"]`);
+    if (clickedButton) {
+        clickedButton.classList.add('active');
+    }
 }
-
+selectItem(selectedItem);
 // Function to update the value of drawable or texture for the selected item
 function updateValue(type) {
     if (!selectedItem) return;
@@ -297,7 +333,7 @@ function updateValue(type) {
     itemData.id = parseInt(document.getElementById('character-select').value);
     
     // Trigger any necessary actions based on updated data
-    mp.trigger("CEF:CLIENT:updateClothes", getItemDataJSON());
+    mp.trigger("CEF:CLIENT:UpdateClothes", getItemDataJSON());
 }
 
 // Rest of your existing functions remain the same
@@ -320,7 +356,7 @@ function buyItem() {
 }
 
 function exitMenu() {
-    mp.trigger("CEF:CLIENT:closeClothesScreen");
+    mp.trigger("CEF:CLIENT:CloseClothesScreen");
 }
     </script>
     
