@@ -56,11 +56,31 @@ namespace ClientSide.Character.Clothes
             RAGE.Elements.Player.LocalPlayer.SetComponentVariation(9, clothesData.BodyArmor.Drawable, clothesData.BodyArmor.Texture, 0);
             RAGE.Elements.Player.LocalPlayer.SetComponentVariation(10, clothesData.Decals.Drawable, clothesData.Decals.Texture, 0);
             RAGE.Elements.Player.LocalPlayer.SetComponentVariation(11, clothesData.Shirts.Drawable, clothesData.Shirts.Texture, 0);
-            RAGE.Elements.Player.LocalPlayer.SetPropIndex(0, clothesData.Helmets.Drawable, clothesData.Helmets.Texture, true);
-            RAGE.Elements.Player.LocalPlayer.SetPropIndex(1, clothesData.Glasses.Drawable, clothesData.Glasses.Texture, true);
-            RAGE.Elements.Player.LocalPlayer.SetPropIndex(2, clothesData.EarAccesories.Drawable, clothesData.EarAccesories.Texture, true);
-            RAGE.Elements.Player.LocalPlayer.SetPropIndex(6, clothesData.Watches.Drawable, clothesData.Watches.Texture, true);
-            RAGE.Elements.Player.LocalPlayer.SetPropIndex(7, clothesData.Bracelets.Drawable, clothesData.Bracelets.Texture, true);
+
+            if (clothesData.Helmets.Drawable == -1)
+                RAGE.Elements.Player.LocalPlayer.ClearProp(0);
+            else
+                RAGE.Elements.Player.LocalPlayer.SetPropIndex(0, clothesData.Helmets.Drawable, clothesData.Helmets.Texture, true);
+
+            if (clothesData.Glasses.Drawable == -1)
+                RAGE.Elements.Player.LocalPlayer.ClearProp(1);
+            else
+                RAGE.Elements.Player.LocalPlayer.SetPropIndex(1, clothesData.Glasses.Drawable, clothesData.Glasses.Texture, true);
+
+            if (clothesData.EarAccesories.Drawable == -1)
+                RAGE.Elements.Player.LocalPlayer.ClearProp(2);
+            else
+                RAGE.Elements.Player.LocalPlayer.SetPropIndex(2, clothesData.EarAccesories.Drawable, clothesData.EarAccesories.Texture, true);
+
+            if(clothesData.Watches.Drawable == -1)
+                RAGE.Elements.Player.LocalPlayer.ClearProp(6);
+            else
+                RAGE.Elements.Player.LocalPlayer.SetPropIndex(6, clothesData.Watches.Drawable, clothesData.Watches.Texture, true);
+
+            if(clothesData.Bracelets.Drawable == -1)
+                RAGE.Elements.Player.LocalPlayer.ClearProp(7);
+            else
+                RAGE.Elements.Player.LocalPlayer.SetPropIndex(7, clothesData.Bracelets.Drawable, clothesData.Bracelets.Texture, true);
         }
         private void CloseClothesScreen(object[] args)
         {

@@ -11,10 +11,10 @@ namespace ServerSide.Characters.Clothes
 {
     internal class ClothesManager : Script
     {
-        private static string defaultClothesJSON = "{\"id\":2,\"masks\":{\"drawable\":0,\"texture\":0},\"torsos\":{\"drawable\":0,\"texture\":0},\"legs\":{\"drawable\":0,\"texture\":0},\"bags\":{\"drawable\":0,\"texture\":0},\"shoes\":{\"drawable\":0,\"texture\":0},\"accessories\":{\"drawable\":0,\"texture\":0},\"undershirts\":{\"drawable\":0,\"texture\":0},\"bodyArmor\":{\"drawable\":0,\"texture\":0},\"decals\":{\"drawable\":0,\"texture\":0},\"shirts\":{\"drawable\":0,\"texture\":0},\"helmets\":{\"drawable\":11,\"texture\":0},\"glasses\":{\"drawable\":0,\"texture\":0},\"earAccesories\":{\"drawable\":255,\"texture\":0},\"watches\":{\"drawable\":255,\"texture\":0},\"bracelets\":{\"drawable\":16,\"texture\":0}}";
+        private static string defaultClothesJSON = "{\"id\":2,\"masks\":{\"drawable\":0,\"texture\":0},\"torsos\":{\"drawable\":0,\"texture\":0},\"legs\":{\"drawable\":0,\"texture\":0},\"bags\":{\"drawable\":0,\"texture\":0},\"shoes\":{\"drawable\":0,\"texture\":0},\"accessories\":{\"drawable\":0,\"texture\":0},\"undershirts\":{\"drawable\":0,\"texture\":0},\"bodyArmor\":{\"drawable\":0,\"texture\":0},\"decals\":{\"drawable\":0,\"texture\":0},\"shirts\":{\"drawable\":0,\"texture\":0},\"helmets\":{\"drawable\":-1,\"texture\":0},\"glasses\":{\"drawable\":-1,\"texture\":0},\"earAccesories\":{\"drawable\":-1,\"texture\":0},\"watches\":{\"drawable\":-1,\"texture\":0},\"bracelets\":{\"drawable\":-1,\"texture\":0}}";
         private ClothesManager()
         {
-            
+
         }
 
         [RemoteEvent("CLIENT:SERVER:GetClothes")]
@@ -22,18 +22,17 @@ namespace ServerSide.Characters.Clothes
         {
             var character = CharacterManager.PlayerCharacterPair[player];
             var clothes = CharacterDbManager.getClothes(character, index);
-            var clothesJSON = NAPI.Util.ToJson(clothes);
-            player.TriggerEvent("SERVER:CLIENT:ShowCostume", clothesJSON);
+            string clothesJson;
             if (clothes != null)
-                ClothesUpdate(player, clothesJSON);
+                clothesJson = NAPI.Util.ToJson(clothes);
             else
-            {
-                ClothesUpdate(player, defaultClothesJSON);
-                NAPI.Player.ClearPlayerAccessory(player, 7);
-            }
+                clothesJson = defaultClothesJSON;
+            player.TriggerEvent("SERVER:CLIENT:ShowCostume", clothesJson);
+            ClothesUpdate(player, clothesJson);
+
             character.Clothes[index] = clothes;
             character.currentOutfit = index;
-        }
+        } 
         [Command("getoutfit")] //debug command
         private void outfit(Player player)
         {
@@ -76,11 +75,31 @@ namespace ServerSide.Characters.Clothes
             Prop watches = new Prop(clothesData.Watches.Drawable, clothesData.Watches.Texture);
             Prop bracelets = new Prop(clothesData.Bracelets.Drawable, clothesData.Bracelets.Texture);
 
-            NAPI.Player.SetPlayerAccessory(player, 0, hat.drawable, hat.texture);
-            NAPI.Player.SetPlayerAccessory(player, 1, glasses.drawable, glasses.texture);
-            NAPI.Player.SetPlayerAccessory(player, 2, ears.drawable, ears.texture);
-            NAPI.Player.SetPlayerAccessory(player, 6, watches.drawable, watches.texture);
-            NAPI.Player.SetPlayerAccessory(player, 7, bracelets.drawable, bracelets.texture);
+            if (clothesData.Helmets.Drawable == -1)
+                NAPI.Player.ClearPlayerAccessory(player, 0);
+            else
+                NAPI.Player.SetPlayerAccessory(player, 0, clothesData.Helmets.Drawable, clothesData.Helmets.Texture);
+
+            if (clothesData.Glasses.Drawable == -1)
+                NAPI.Player.ClearPlayerAccessory(player, 1);
+            else
+                NAPI.Player.SetPlayerAccessory(player, 1, clothesData.Glasses.Drawable, clothesData.Glasses.Texture);
+
+            if (clothesData.EarAccesories.Drawable == -1)
+                NAPI.Player.ClearPlayerAccessory(player, 2);
+            else
+                NAPI.Player.SetPlayerAccessory(player, 2, clothesData.EarAccesories.Drawable, clothesData.EarAccesories.Texture);
+
+            if (clothesData.Watches.Drawable == -1)
+                NAPI.Player.ClearPlayerAccessory(player, 6);
+            else
+                NAPI.Player.SetPlayerAccessory(player, 6, clothesData.Watches.Drawable, clothesData.Watches.Texture);
+
+            if (clothesData.Bracelets.Drawable == -1)
+                NAPI.Player.ClearPlayerAccessory(player, 7);
+            else
+                NAPI.Player.SetPlayerAccessory(player, 7, clothesData.Bracelets.Drawable, clothesData.Bracelets.Texture);
+
         }
 
         private static Dictionary<int, ComponentVariation> GetClothesComponents(ClothesData clothesData)

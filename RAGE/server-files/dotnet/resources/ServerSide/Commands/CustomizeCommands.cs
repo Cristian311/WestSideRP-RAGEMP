@@ -105,7 +105,7 @@ namespace ServerSide.Commands
             var character = CharacterManager.PlayerCharacterPair[player];
             if (toggle == "off")
             {
-                player.SetAccessories(0, 0, 0); // cap
+                player.ClearAccessory(0); // cap
             }
             if (toggle == "on")
             {

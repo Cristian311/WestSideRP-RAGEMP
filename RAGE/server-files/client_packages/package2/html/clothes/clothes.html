@@ -176,11 +176,11 @@ const itemData = {
     undershirts: { drawable: 0, texture: 0 },
     bodyArmor: { drawable: 0, texture: 0 },
     shirts: { drawable: 0, texture: 0 },
-    helmets: { drawable: 0, texture: 0 },
-    glasses: { drawable: 0, texture: 0 },
-    earAccesories: { drawable: 0, texture: 0 },
-    watches: { drawable: 0, texture: 0 },
-    bracelets: { drawable: 0, texture: 0 }
+    helmets: { drawable: -1, texture: 0 },
+    glasses: { drawable: -1, texture: 0 },
+    earAccesories: { drawable: -1, texture: 0 },
+    watches: { drawable: -1, texture: 0 },
+    bracelets: { drawable: -1, texture: 0 }
 };
 
 // Map of item types to their JSON file names
@@ -294,13 +294,20 @@ let selectedItem = "shirts";
 function selectItem(item) {
     selectedItem = item;
     
+    // Get the maximum drawable value for the selected item
     const maxDrawable = Math.max(...Object.keys(itemTextureMaxValues[item] || {}).map(Number));
+    
+    // Determine minimum and default drawable values
+    const isSpecialItem = ["helmets", "glasses", "earAccesories", "watches", "bracelets"].includes(item);
+    const minDrawable = isSpecialItem ? -1 : 0;
+    const defaultDrawable = isSpecialItem ? -1 : itemData[item].drawable;
     
     // Update the drawable slider
     const drawableSlider = document.getElementById('drawable-slider');
+    drawableSlider.min = minDrawable;
     drawableSlider.max = maxDrawable;
-    drawableSlider.value = itemData[item].drawable;
-    document.getElementById('drawable-value').textContent = itemData[item].drawable;
+    drawableSlider.value = defaultDrawable;
+    document.getElementById('drawable-value').textContent = defaultDrawable;
     
     // Update the texture slider based on the current drawable
     updateMaxTexture(item);
