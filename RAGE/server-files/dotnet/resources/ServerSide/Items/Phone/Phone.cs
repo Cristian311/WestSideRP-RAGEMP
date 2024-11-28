@@ -5,14 +5,15 @@ using System.Text;
 
 namespace ServerSide.Items
 {
-    internal class Phone : Item
+    public class Phone : Item
     {
         public List<PhoneMessage> messages = new List<PhoneMessage>();
         public readonly int PhoneNumber;
-        public Phone(Character character, string Name, string Type, int PhoneNumber, int Amount = 1, bool Countable = false, string UsedFor = "")
+        public Phone(Character character, string Name, string Type, int phoneNumber, int Amount = 1, bool Countable = false, string UsedFor = "")
             : base(character, Name, Type, Amount, Countable)
         {
-            this.PhoneNumber = PhoneNumber;
+            PhoneNumber = phoneNumber;
+            base.PhoneNumber = PhoneNumber;
         }
     }
 }

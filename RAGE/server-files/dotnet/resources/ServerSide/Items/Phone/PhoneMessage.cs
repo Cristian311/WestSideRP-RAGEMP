@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ServerSide.Items
 {
-    internal class PhoneMessage
+    public class PhoneMessage
     {
         public int ReceiverNumber {  get; }
         public int SenderNumber { get; }

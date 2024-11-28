@@ -31,6 +31,7 @@ namespace ServerSide.Characters
         public HairData Hair { get; set; }
         public ClothesData[] Clothes { get; set; } = new ClothesData[20];
         public List<Item> Items { get; set; } = new List<Item>();
+        public Phone MainPhone { get; set; }
         public List<WeaponHash> currentWeapons {  get; set; } = new List<WeaponHash>();
         public List<Decoration> Tattoos { get; set; } 
         public ItemIdManager ItemIdManager = new ItemIdManager();

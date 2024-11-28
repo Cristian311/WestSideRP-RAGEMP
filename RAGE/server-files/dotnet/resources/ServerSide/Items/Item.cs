@@ -19,7 +19,7 @@ namespace ServerSide.Items
         public string UsedFor { get; set; }
         public int Amount { get; set; }
         public bool Countable { get; }
-        public int PhoneNumber { get; }
+        public int PhoneNumber { get; set; }
         public int currentCharacterId { get; } = 0;
         [JsonIgnore]
         public Character currentCharacter { get; set; }

@@ -274,6 +274,7 @@ namespace ServerSide.Items
             // Search for character using only the characterId
             return CharacterManager.loggedCharacters.FirstOrDefault(c => c.Id == characterId);
         }
+
         private void UseItem(Character character, Item usedItem)
         {
             Player player = CharacterManager.CharacterAccountPair[character].player;
@@ -330,7 +331,7 @@ namespace ServerSide.Items
                 case "phone":
                     player.SendChatMessage($"Se deschide telefonul {usedItem.Name}");
                     Phone phone = new Phone(character, usedItem.Name, usedItem.Type, usedItem.PhoneNumber);
-                    PhoneManager.SeeMessages(player, phone);
+                    PhoneManager.SeeMessages(character, phone);
                     break;
                 default:    
                     player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}Used item {usedItem.Name}.");
@@ -352,7 +353,7 @@ namespace ServerSide.Items
             }
             ItemDbManager.UpdateCharacterItems(character);
         }
-        private List<Item> FixItemsOrder(List<Item> items)
+        public static List<Item> FixItemsOrder(List<Item> items)
         {
             if (items == null || items.Count == 0)
                 return new List<Item>();
