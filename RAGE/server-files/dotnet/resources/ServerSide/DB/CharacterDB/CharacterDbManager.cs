@@ -134,9 +134,15 @@ namespace ServerSide.DB.CharacterDB
                                 character.Items = NAPI.Util.FromJson<List<Item>>(ItemsJSON);
                                 if (character.Items == null)
                                     character.Items = new List<Item>();
-                                foreach(var item in character.Items)
+                                foreach (var item in character.Items)
                                 {
                                     character.ItemIdManager.SetIdBusy(item.localID);
+                                    if (item.Type == "phone")
+                                    {
+                                        var phone = new Phone(character, item.Name, "phone", item.PhoneNumber);
+                                        PhoneManager.phoneList.Add(phone);
+                                        break;
+                                    }
                                 }
                                 character.currentOutfit = reader.GetInt32(11);
                                 if (character.currentOutfit == null)

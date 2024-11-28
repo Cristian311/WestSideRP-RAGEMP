@@ -5,6 +5,7 @@ using ServerSide.Admin;
 using ServerSide.Characters;
 using ServerSide.DB.CharacterDB;
 using ServerSide.Interfaces;
+using ServerSide.Items;   
 using ServerSide.Items.Util;
 using ServerSide.Util;
 using System;
@@ -46,7 +47,10 @@ namespace ServerSide.Items
             player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}Current items:");
             foreach (var item in character.Items) // print items
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] {item.Name} - {item.Amount} units.");
+                if(item.Type == "phone")
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] {item.Name} - {item.PhoneNumber}");
+                else
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] {item.Name} - {item.Amount} units.");
             }
         }
 
@@ -322,6 +326,11 @@ namespace ServerSide.Items
                 case "drug":
                     player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai bagat {usedItem.Name}, efectele vor aparea in cateva minute.");
                     player.Health += 50;
+                    break;
+                case "phone":
+                    player.SendChatMessage($"Se deschide telefonul {usedItem.Name}");
+                    Phone phone = new Phone(character, usedItem.Name, usedItem.Type, usedItem.PhoneNumber);
+                    PhoneManager.SeeMessages(player, phone);
                     break;
                 default:    
                     player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}Used item {usedItem.Name}.");
