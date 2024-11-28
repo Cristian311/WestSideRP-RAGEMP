@@ -20,9 +20,9 @@ namespace ServerSide.Hair
             else
                 playerHair.Add(player, hairData);
             //set open chest
-            player.SetClothes(3, 15, 0);
-            player.SetClothes(11, 15, 0);
-            player.SetClothes(8, 15, 0);
+            //player.SetClothes(3, 15, 0);
+            //player.SetClothes(11, 15, 0);
+            //player.SetClothes(8, 15, 0);
             //set hair
             try
             {

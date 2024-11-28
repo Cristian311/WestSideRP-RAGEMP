@@ -28,12 +28,6 @@ namespace ClientSide.Character
 
             string tattoosJson = args[0].ToString();
             var tattoos = RAGE.Util.Json.Deserialize<List<string>>(tattoosJson);
-            //RAGE.Chat.Output(tattoosJson);
-            //RAGE.Chat.Output(RAGE.Util.Json.Serialize(tattooHash));
-            ////RAGE.Chat.Output(RAGE.Util.Json.Serialize(tattooCollection));
-            //Events.CallRemote("CLIENT:SERVER:PrintMessage", RAGE.Util.Json.Serialize(tattooHash));
-            //Events.CallRemote("CLIENT:SERVER:PrintMessage", tattoosJson);
-            //Events.CallRemote("CLIENT:SERVER:PrintMessage", RAGE.Util.Json.Serialize(tattooCollection));
             foreach (var tattooName in tattoos)
             {
                 var collection = RAGE.Util.Joaat.Hash(tattooCollection[tattooName]);

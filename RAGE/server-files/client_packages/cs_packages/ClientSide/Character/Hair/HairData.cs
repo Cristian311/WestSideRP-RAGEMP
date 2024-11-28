@@ -18,6 +18,8 @@ namespace ClientSide.Hair
 
         [JsonProperty("bodyHair")]
         public HairDetail BodyHair { get; set; }
+        [JsonProperty("hairTattoo")]
+        public string HairTattoo { get; set; }
     }
 
     public class HairDetail
@@ -34,4 +36,17 @@ namespace ClientSide.Hair
         [JsonProperty("opacity")]
         public string Opacity { get; set; }
     }
+
+    public class HairDecal
+    {
+        public int ID { get; set; }
+        public string Collection { get; set; }
+        public string Overlay { get; set; }
+    }
+
+    public class HairDecalsList
+    {
+        public List<List<HairDecal>> Decals { get; set; }
+    }
+
 }

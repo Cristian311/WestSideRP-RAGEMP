@@ -20657,3 +20657,134 @@ MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.Tatto
    at int MySql.Data.MySqlClient.Driver.GetResult(int statementId, ref int affectedRows, ref long insertedId)
    at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
    at 
+==================[28.11.2024 06:40:24]==================
+System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Hair.HairDetail.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+=========================================================
+
+==================[28.11.2024 06:40:24]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 0 to type 'ServerSide.Hair.HairDetail'. Path 'eyebrows', line 1, position 103.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Hair.HairDetail.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+=========================================================
+
+==================[28.11.2024 06:40:24]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 0 to type 'ServerSide.Hair.HairDetail'. Path 'eyebrows', line 1, position 103.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Hair.HairDetail.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+=========================================================
+
+==================[28.11.2024 06:40:24]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 0 to type 'ServerSide.Hair.HairDetail'. Path 'eyebrows', line 1, position 103.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Hair.HairDetail.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Js
+==================[28.11.2024 06:41:33]==================
+System.ArgumentException: Could not cast or convert from System.String to ServerSide.Hair.HairDetail.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+=========================================================
+
+==================[28.11.2024 06:41:33]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value "0" to type 'ServerSide.Hair.HairDetail'. Path 'eyebrows', line 1, position 105.
+ ---> System.ArgumentException: Could not cast or convert from System.String to ServerSide.Hair.HairDetail.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+=========================================================
+
+==================[28.11.2024 06:41:33]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value "0" to type 'ServerSide.Hair.HairDetail'. Path 'eyebrows', line 1, position 105.
+ ---> System.ArgumentException: Could not cast or convert from System.String to ServerSide.Hair.HairDetail.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+=========================================================
+
+==================[28.11.2024 06:41:33]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value "0" to type 'ServerSide.Hair.HairDetail'. Path 'eyebrows', line 1, position 105.
+ ---> System.ArgumentException: Could not cast or convert from System.String to ServerSide.Hair.HairDetail.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object New
+==================[28.11.2024 07:11:08]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+=========================================================
+
+==================[28.11.2024 07:11:08]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+=========================================================
+
+==================[28.11.2024 07:11:08]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at int MySql.Data.MySqlClient.Driver.GetResult(int statementId, ref int affectedRows, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+=========================================================
+
+==================[28.11.2024 07:11:08]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at int MySql.Data.MySqlClient.Driver.GetResult(int statementId, ref int affectedRows, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySqlDataReader MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+=========================================================
+
+==================[28.11.2024 07:11:08]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+=========================================================
+
+==================[28.11.2024 07:11:08]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+=========================================================
+
+==================[28.11.2024 07:11:08]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at int MySql.Data.MySqlClient.Driver.GetResult(int statementId, ref int affectedRows, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+=========================================================
+
+==================[28.11.2024 07:11:08]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at int MySql.Data.MySqlClient.Driver.GetResult(int statementId, ref int affectedRows, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at 
