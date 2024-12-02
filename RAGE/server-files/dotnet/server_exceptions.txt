@@ -20788,3 +20788,60 @@ MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.Tatto
    at int MySql.Data.MySqlClient.Driver.GetResult(int statementId, ref int affectedRows, ref long insertedId)
    at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
    at 
+==================[02.12.2024 16:17:15]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+=========================================================
+
+==================[02.12.2024 16:17:15]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+=========================================================
+
+==================[02.12.2024 16:17:15]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at int MySql.Data.MySqlClient.Driver.GetResult(int statementId, ref int affectedRows, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+=========================================================
+
+==================[02.12.2024 16:17:15]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at int MySql.Data.MySqlClient.Driver.GetResult(int statementId, ref int affectedRows, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySqlDataReader MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+=========================================================
+
+==================[02.12.2024 16:17:47]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+=========================================================
+
+==================[02.12.2024 16:17:47]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+=========================================================
+
+==================[02.12.2024 16:17:47]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at int MySql.Data.MySqlClient.Driver.GetResult(int statementId, ref int affectedRows, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at bool MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+=========================================================
+
+==================[02.12.2024 16:17:47]==================
+MySql.Data.MySqlClient.MySqlException (0x80004005): CONSTRAINT `characters.TattooJSON` failed for `rage-db`.`characters`
+   at MySqlPacket MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at int MySql.Data.MySqlClient.NativeDriver.GetResult(ref int affectedRow, ref long insertedId)
+   at int MySql.Data.MySqlClient.Driver.GetResult(int statementId, ref int affectedRows, ref long insertedId)
+   at ResultSet MySql.Data.MySqlClient.Driver.NextResult(int statementId, bool force)
+   at 

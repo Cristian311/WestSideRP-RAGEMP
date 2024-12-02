@@ -4,6 +4,7 @@ using ServerSide.Characters;
 using ServerSide.DB.CharacterDB;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ServerSide.Items
@@ -42,6 +43,11 @@ namespace ServerSide.Items
             this.Amount = Amount;
             this.Countable = Countable;
             this.UsedFor = UsedFor;
+
+            if (Type.ToLower() == "phone")
+            {
+                this.PhoneNumber = character?.Items?.FirstOrDefault(i => i.Type == "phone" && i.PhoneNumber != 0)?.PhoneNumber ?? 0;
+            }
         }
     }
 }

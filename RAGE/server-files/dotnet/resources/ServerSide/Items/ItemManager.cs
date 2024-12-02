@@ -237,6 +237,11 @@ namespace ServerSide.Items
                 {
                     character.ItemIdManager.ReclaimId(item.localID);
                 }
+                foreach(var item in character.Items)
+                {
+                    if (item.Type == "phone")
+                        PhoneManager.phoneList.Remove(PhoneManager.GetPhoneFromItem(item));
+                }
                 character.Items.Clear();
                 
                 player.SendChatMessage($"{Colors.COLOR_CHAT_CRIMSON}Ai aruncat toate itemele.");
@@ -361,10 +366,31 @@ namespace ServerSide.Items
             var groupedItems = new Dictionary<string, Item>();
             var result = new List<Item>();
 
-            // Process items and group non-weapons by name and UsedFor
+            // Process items and group non-weapons and non-phones
             foreach (var item in items)
             {
-                if (item.Type != "weapon")
+                if (item.Type == "weapon" || item.Type == "phone")
+                {
+                    // If it's a phone, preserve its PhoneNumber when creating the new item
+                    if (item.Type == "phone")
+                    {
+                        result.Add(new Phone(item.currentCharacter, item.Name, item.Type, item.PhoneNumber)
+                        {
+                            localID = item.localID,  // Keep the current localID for now
+                            Description = item.Description
+                        });
+                    }
+                    else
+                    {
+                        // Handle weapon as usual
+                        result.Add(new Item(item.currentCharacter, item.Name, item.Type, item.Amount, item.Countable, item.UsedFor)
+                        {
+                            localID = item.localID,  // Keep the current localID for now
+                            Description = item.Description
+                        });
+                    }
+                }
+                else
                 {
                     string itemKey = item.Name?.Trim().ToLower();
                     string usedForKey = item.UsedFor?.Trim().ToLower();
@@ -418,18 +444,9 @@ namespace ServerSide.Items
                         }
                     }
                 }
-                else
-                {
-                    // Add weapons as separate items
-                    result.Add(new Item(item.currentCharacter, item.Name, item.Type, 1, item.Countable, item.UsedFor)
-                    {
-                        localID = item.localID,  // Keep the current localID for now
-                        Description = item.Description
-                    });
-                }
             }
 
-            // Add grouped non-weapon items to the result list
+            // Add grouped non-weapon and non-phone items to the result list
             result.AddRange(groupedItems.Values);
 
             // Now, reassign localID to be sequential without gaps
@@ -441,8 +458,11 @@ namespace ServerSide.Items
                 item.localID = newId;
                 newId++;
             }
+
             return sortedItems;
         }
+
+
 
 
 

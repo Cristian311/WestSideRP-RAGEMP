@@ -1,4 +1,5 @@
 ﻿using GTANetworkAPI;
+using Org.BouncyCastle.Bcpg;
 using ServerSide.Accounts;
 using ServerSide.Admin;
 using ServerSide.Characters;
@@ -6,6 +7,7 @@ using ServerSide.DB.CharacterDB;
 using ServerSide.Util;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
@@ -27,20 +29,30 @@ namespace ServerSide.Items
                 character.SendChatMessage($"{Colors.COLOR_CHAT_DARK_YELLOW}{message.SenderNumber}: {message.Message}.");
             }
         }
-        private Phone GetPhoneFromItem(Character character, Item item)
+        public static Phone GetPhoneFromItem(Item item)
         {
             if (item.Type != "phone")
-                return null;
-            Phone phone = new Phone(character, item.Name, "phone", item.PhoneNumber);
-            return phone;
+                throw new InvalidOperationException("Cannot convert non-phone item to Phone.");
+
+            // Use the item's properties to create a new Phone object
+            return new Phone(
+                item.currentCharacter,
+                item.Name,
+                item.Type,
+                item.PhoneNumber, // Use the PhoneNumber property from the item
+                item.Amount,
+                item.Countable,
+                item.UsedFor
+            );
         }
+
         private Phone GetPlayerPhone(Player player)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
             foreach(var item in character.Items)
             {
                 if (item.Type == "phone")
-                    return GetPhoneFromItem(character, item);
+                    return GetPhoneFromItem(item);
             }
             return null;
         }
@@ -48,27 +60,52 @@ namespace ServerSide.Items
         private void SmsCommand(Player player, string Target, string MessageString)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            if(character.MainPhone == null)
+            if (character.MainPhone == null)
             {
                 character.SendChatMessage($"{Colors.COLOR_CHAT_ERROR} Nu ti-ai setat un telefon principal, foloseste comanda /setmainphone");
                 return;
             }
-            int TargetPhoneNumber = int.Parse(Target);
+
+            if (!int.TryParse(Target, out int TargetPhoneNumber))
+            {
+                character.SendChatMessage($"{Colors.COLOR_CHAT_ERROR} Numar de telefon invalid.");
+                return;
+            }
+
             var PlayerPhone = character.MainPhone; //GetPlayerPhone(player);
             var Message = new PhoneMessage(TargetPhoneNumber, PlayerPhone.PhoneNumber, MessageString);
+
+            bool messageSent = false;
             foreach (var phone in phoneList)
             {
+                Console.WriteLine($"Phone: {phone.PhoneNumber}, Character: {phone.currentCharacter?.Name}");
+
                 if (phone.PhoneNumber == Message.ReceiverNumber)
                 {
+                    if (phone.currentCharacter == null)
+                    {
+                        player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR} Telefonul tinta nu este activ.");
+                        return;
+                    }
+
                     phone.currentCharacter.SendChatMessage($"{Colors.COLOR_CHAT_DARK_YELLOW}Mesaj de la {Message.SenderNumber}: {Message.Message}");
+                    phone.messages ??= new List<PhoneMessage>();
                     phone.messages.Add(Message);
+
                     player.SendChatMessage($"{Colors.COLOR_CHAT_DARK_YELLOW}Mesaj catre {Message.ReceiverNumber}: {Message.Message}");
-                    PhoneMessage phoneMessage = new PhoneMessage(TargetPhoneNumber, PlayerPhone.PhoneNumber, Message.Message);
-                    phoneMessages.Add(phoneMessage);
+                    phoneMessages.Add(Message);
+
+                    messageSent = true;
                     break;
                 }
             }
+
+            if (!messageSent)
+            {
+                character.SendChatMessage($"{Colors.COLOR_CHAT_ERROR} Numarul de telefon nu a fost gasit.");
+            }
         }
+
         [Command("setmainphone")]
         private void SetMainPhoneCommand(Player player, int index)
         {
@@ -96,10 +133,11 @@ namespace ServerSide.Items
             {
                 if (item.Type == "phone")
                 {
-                    if(item == character.MainPhone)
-                        character.SendChatMessage($"{Colors.COLOR_CHAT_GREEN}{item.localID}. {item.Name} - {item.PhoneNumber} [Main Phone]");
+                    var phone = GetPhoneFromItem(item);
+                    if(phone == character.MainPhone)
+                        character.SendChatMessage($"{Colors.COLOR_CHAT_GREEN}{phone.localID}. {phone.Name} - {phone.PhoneNumber} [Main Phone]");
                     else
-                        character.SendChatMessage($"{Colors.COLOR_CHAT_GREEN}{item.localID}. {item.Name} - {item.PhoneNumber}");
+                        character.SendChatMessage($"{Colors.COLOR_CHAT_GREEN}{phone.localID}. {phone.Name} - {phone.PhoneNumber}");
                     found = true;
                 }
                 
@@ -128,28 +166,33 @@ namespace ServerSide.Items
             var character = CharacterManager.PlayerCharacterPair[player];
             Name = StringFormatter.CapitalizeFirstLetter(Name);
 
-            player.SendChatMessage($"{Colors.COLOR_CHAT_ADMIN}Created Phone {Name} {1} units.");
-            bool Countable = false;
+            player.SendChatMessage($"{Colors.COLOR_CHAT_LIGHT_RED}Created phone {Name} {1} units.");
 
             int PhoneNumber = random.Next(100000, 999999);
-            while(PhoneNumberAvailable(PhoneNumber))
+            while (!PhoneNumberAvailable(PhoneNumber))
             {
+                player.SendChatMessage(".");
                 PhoneNumber = random.Next(100000, 999999);
             }
+
+            // Create the phone with the specific phone number
             Phone phone = new Phone(character, Name, "phone", PhoneNumber);
 
-            character.Items.Add(phone);
+            // Ensure the phone number is set in the item as well
+            Item phoneItem = new Item(character, Name, "phone", 1, false)
+            {
+                PhoneNumber = PhoneNumber
+            };
+
+            character.SendChatMessage(PhoneNumber.ToString());
+            character.Items.Add(phoneItem);
             phoneList.Add(phone);
             ItemDbManager.UpdateCharacterItems(character);
         }
         private bool PhoneNumberAvailable(int phoneNumber)
         {
-            foreach(var phone in phoneList)
-            {
-                if (phone.PhoneNumber == phoneNumber)
-                    return false;
-            }
-            return true;
+            return !phoneList.Any(phone => phone.PhoneNumber == phoneNumber);
         }
+
     }
 }

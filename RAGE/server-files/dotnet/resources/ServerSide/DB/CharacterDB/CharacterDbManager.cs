@@ -25,7 +25,7 @@ namespace ServerSide.DB.CharacterDB
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO `characters` (AccountId, Name, Age, Money, gender, faceJSON, HairJSON) VALUES (@accountId, @Name, @Age, @Money, @gender, @FaceJSON, @HairJSON)";
+                    string query = "INSERT INTO `characters` (AccountId, Name, Age, Money, gender, faceJSON, HairJSON, TattooJSON, HighlightsJSON) VALUES (@accountId, @Name, @Age, @Money, @gender, @FaceJSON, @HairJSON, @TattooJSON, @HighlightsJSON)";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -36,18 +36,22 @@ namespace ServerSide.DB.CharacterDB
                         command.Parameters.AddWithValue("@gender", character.Gender);
                         command.Parameters.AddWithValue("@FaceJSON", NAPI.Util.ToJson(character.Face));
                         command.Parameters.AddWithValue("@HairJSON", NAPI.Util.ToJson(character.Hair));
+                        command.Parameters.AddWithValue("@TattooJSON", "{}"); // null tattoos when created
+                        command.Parameters.AddWithValue("@HighlightsJSON", "{}"); // null highlihhts when created
 
                         int result = command.ExecuteNonQuery();
 
                         if (result > 0)
                         {
-                            return true;
                             NAPI.Util.ConsoleOutput("Character created successfully.");
+                            return true;
+                            
                         }
                         else
                         {
-                            return false;
                             NAPI.Util.ConsoleOutput("Failed to create character.");
+                            return false;
+                            
                         }
                     }
                 }
@@ -121,37 +125,46 @@ namespace ServerSide.DB.CharacterDB
                             reader.Read();
 
                             Character character = new Character(account.player, account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+
                             character.Id = reader.GetInt32(0);
+
                             character.isCreated = reader.GetBoolean(6);
+
                             character.Gender = reader.GetBoolean(9);
+
                             if (character.isCreated == true)
                             {
                                 var FaceJSON = reader.GetString(7);
                                 character.Face = NAPI.Util.FromJson<CharacterData>(FaceJSON);
+
                                 var HairJSON = reader.GetString(8);
                                 character.Hair = NAPI.Util.FromJson<HairData>(HairJSON);
+
                                 var ItemsJSON = reader.GetString(10);
                                 character.Items = NAPI.Util.FromJson<List<Item>>(ItemsJSON);
+
                                 if (character.Items == null)
                                     character.Items = new List<Item>();
+
                                 foreach (var item in character.Items)
                                 {
                                     character.ItemIdManager.SetIdBusy(item.localID);
                                     if (item.Type == "phone")
                                     {
                                         var phone = new Phone(character, item.Name, "phone", item.PhoneNumber);
+                                        character.SendChatMessage($"phone:{item.Name} number:{item.PhoneNumber}");
                                         PhoneManager.phoneList.Add(phone);
-                                        break;
                                     }
                                 }
+
                                 character.currentOutfit = reader.GetInt32(11);
                                 if (character.currentOutfit == null)
                                     character.currentOutfit = 0;
+
                                 var TattooJSON = reader.GetString(12);
                                 character.Tattoos = NAPI.Util.FromJson<List<Decoration>>(TattooJSON);
+
                                 var HighlightsJson = reader.GetString(13);
-
-
                                 if (HighlightsJson != null)
                                 {
                                     var highlights = NAPI.Util.FromJson<List<string>>(HighlightsJson);

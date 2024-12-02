@@ -13,6 +13,7 @@ using Org.BouncyCastle.Asn1.X509;
 using ServerSide.Characters.Clothes;
 using ServerSide.Characters.Tattoos;
 using ServerSide.Characters.Customize;
+using ServerSide.Items;
 
 
 namespace ServerSide.Characters
@@ -106,7 +107,18 @@ namespace ServerSide.Characters
             account.currentCharacter = character;
             player.Nametag = charName;
 
+            //add the phones to phone list
+            foreach (var item in character.Items)
+            {
+                if (item.Type == "phone")
+                {
+                    Phone phone = new Phone(character, item.Name, item.Type, item.PhoneNumber);
+                    PhoneManager.phoneList.Add(phone);
+                }
+            }
             //!!!!!!! UPDATE PLAYER CHARACTER DETAILS AFTER SELECTED
+
+
 
             if (character.isCreated == true)
             {
