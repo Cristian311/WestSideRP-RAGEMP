@@ -9,6 +9,7 @@ using ServerSide.Interfaces;
 using ServerSide.Items;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace ServerSide.DB.CharacterDB
@@ -134,12 +135,15 @@ namespace ServerSide.DB.CharacterDB
 
                             if (character.isCreated == true)
                             {
+                                //FACE HANDLER
                                 var FaceJSON = reader.GetString(7);
                                 character.Face = NAPI.Util.FromJson<CharacterData>(FaceJSON);
 
+                                //HAIR HANDLER
                                 var HairJSON = reader.GetString(8);
                                 character.Hair = NAPI.Util.FromJson<HairData>(HairJSON);
 
+                                //ITEMS HANDLER
                                 var ItemsJSON = reader.GetString(10);
                                 character.Items = NAPI.Util.FromJson<List<Item>>(ItemsJSON);
 
@@ -157,10 +161,12 @@ namespace ServerSide.DB.CharacterDB
                                     }
                                 }
 
+                                //CURRENT OUTFIT HANDLER
                                 character.currentOutfit = reader.GetInt32(11);
                                 if (character.currentOutfit == null)
                                     character.currentOutfit = 0;
 
+                                //TATOOOS DB HANDLER
                                 var TattooJSON = reader.GetString(12);
                                 character.Tattoos = NAPI.Util.FromJson<List<Decoration>>(TattooJSON);
 
@@ -172,6 +178,34 @@ namespace ServerSide.DB.CharacterDB
                                 }
                                 else
                                     character.TattooNames = new List<string>();
+
+                                //MAIN PHONE DB HANDLER
+                                int? mainPhone = reader.IsDBNull(14) ? (int?)null : reader.GetInt32(14);
+
+                                if (mainPhone.HasValue) // Check if mainPhone is not null
+                                {
+                                    int mainPhoneIndex = mainPhone.Value; // Get the actual integer value
+
+                                    // Check if the index is within bounds to prevent out-of-range errors
+                                    if (mainPhoneIndex >= 0 && mainPhoneIndex < character.Items.Count)
+                                    {
+                                        Item phoneItem = character.Items[mainPhoneIndex]; // Use the non-nullable int index
+                                        Phone phone = new Phone(character, phoneItem.Name, "phone", phoneItem.PhoneNumber);
+                                        character.MainPhone = phone;
+                                    }
+                                    else
+                                    {
+                                        // Handle the case where the index is out of range
+                                        character.MainPhone = null;
+                                    }
+                                }
+                                else
+                                {
+                                    // Handle the case where mainPhone is null
+                                    character.MainPhone = null;
+                                }
+
+
                             }
                             return character;
                         }

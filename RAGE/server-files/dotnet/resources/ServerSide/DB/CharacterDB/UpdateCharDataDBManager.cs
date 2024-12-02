@@ -162,6 +162,50 @@ namespace ServerSide.DB.CharacterDB
                 }
             }
         }
+        public static bool UpdateCharacterPhone(Character character, int currentphoneId)
+        {
+            Database db = new Database();
+            if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
+                return false;
+
+            using (MySqlConnection connection = db.getDatabaseConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "UPDATE `characters` SET currentphone = @currentphone WHERE Id = @Id";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Update values, using the unique Id to identify the character
+                        command.Parameters.AddWithValue("@currentphone", currentphoneId);
+                        command.Parameters.AddWithValue("@Id", character.Id);
+
+                        int result = command.ExecuteNonQuery();
+
+                        if (result > 0)
+                        {
+                            NAPI.Util.ConsoleOutput("Character updated successfully.");
+                            return true;
+                        }
+                        else
+                        {
+                            NAPI.Util.ConsoleOutput("Failed to update character.");
+                            return false;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    NAPI.Util.ConsoleOutput($"An error occurred: {ex.Message}");
+                    return false;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
         public static bool UpdateCharacterHair(ICharacter character)
         {
             Database db = new Database();

@@ -39,12 +39,12 @@ namespace ServerSide.Items
             var character = CharacterManager.PlayerCharacterPair[player];
             if(character.Items == null)
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}You don't have any item.");
+                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu ai nici un item.");
                 return;
             }
-            character.Items = FixItemsOrder(character.Items); // fix items in inventory
+            character.Items = FixItemsOrder(character.Items); // fix items indexes in inventory
 
-            player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}Current items:");
+            player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}Itemele detinute in prezent:");
             foreach (var item in character.Items) // print items
             {
                 if(item.Type == "phone")
@@ -363,109 +363,76 @@ namespace ServerSide.Items
             if (items == null || items.Count == 0)
                 return new List<Item>();
 
-            var groupedItems = new Dictionary<string, Item>();
             var result = new List<Item>();
+            var phoneItems = new List<Phone>();
+            var otherItems = new Dictionary<string, Item>();
 
-            // Process items and group non-weapons and non-phones
             foreach (var item in items)
             {
-                if (item.Type == "weapon" || item.Type == "phone")
+                if (item.Type == "weapon")
                 {
-                    // If it's a phone, preserve its PhoneNumber when creating the new item
-                    if (item.Type == "phone")
+                    result.Add(new Item(item.currentCharacter, item.Name, item.Type, item.Amount, item.Countable, item.UsedFor)
                     {
-                        result.Add(new Phone(item.currentCharacter, item.Name, item.Type, item.PhoneNumber)
-                        {
-                            localID = item.localID,  // Keep the current localID for now
-                            Description = item.Description
-                        });
-                    }
-                    else
+                        localID = item.localID,
+                        Description = item.Description
+                    });
+                }
+                else if (item.Type == "phone")
+                {
+                    var phone = new Phone(item.currentCharacter, item.Name, item.Type, item.PhoneNumber)
                     {
-                        // Handle weapon as usual
-                        result.Add(new Item(item.currentCharacter, item.Name, item.Type, item.Amount, item.Countable, item.UsedFor)
-                        {
-                            localID = item.localID,  // Keep the current localID for now
-                            Description = item.Description
-                        });
-                    }
+                        localID = item.localID,
+                        Description = item.Description
+                    };
+                    phoneItems.Add(phone);
                 }
                 else
                 {
-                    string itemKey = item.Name?.Trim().ToLower();
-                    string usedForKey = item.UsedFor?.Trim().ToLower();
+                    string key = CreateUniqueKey(item);
 
-                    if (string.IsNullOrEmpty(usedForKey))
+                    if (otherItems.TryGetValue(key, out var existingItem))
                     {
-                        // Handle case where UsedFor is not specified (no merging)
-                        if (groupedItems.ContainsKey(itemKey))
-                        {
-                            groupedItems[itemKey].Amount += item.Amount;
-                        }
-                        else
-                        {
-                            groupedItems[itemKey] = new Item(item.currentCharacter, item.Name, item.Type, item.Amount, item.Countable, item.UsedFor)
-                            {
-                                localID = item.localID,  // Keep the current localID for now
-                                Description = item.Description
-                            };
-                        }
+                        existingItem.Amount += item.Amount;
                     }
                     else
                     {
-                        // Check if we already have an item that matches the "UsedFor" key
-                        if (groupedItems.ContainsKey(usedForKey))
+                        otherItems[key] = new Item(item.currentCharacter, item.Name, item.Type, item.Amount, item.Countable, item.UsedFor)
                         {
-                            var existingItem = groupedItems[usedForKey];
-
-                            // Merge items if they are the same "UsedFor" type
-                            if (existingItem.Name.ToLower().Contains(usedForKey) || item.Name.ToLower().Contains(usedForKey))
-                            {
-                                existingItem.Amount += item.Amount;
-                            }
-                            else
-                            {
-                                // If no match in names, just add them as different items
-                                groupedItems[usedForKey] = new Item(item.currentCharacter, item.Name, item.Type, item.Amount, item.Countable, item.UsedFor)
-                                {
-                                    localID = item.localID,
-                                    Description = item.Description
-                                };
-                            }
-                        }
-                        else
-                        {
-                            // Add a new item for this "UsedFor" type
-                            groupedItems[usedForKey] = new Item(item.currentCharacter, item.Name, item.Type, item.Amount, item.Countable, item.UsedFor)
-                            {
-                                localID = item.localID,
-                                Description = item.Description
-                            };
-                        }
+                            localID = item.localID,
+                            Description = item.Description
+                        };
                     }
                 }
             }
 
-            // Add grouped non-weapon and non-phone items to the result list
-            result.AddRange(groupedItems.Values);
-
-            // Now, reassign localID to be sequential without gaps
-            var sortedItems = result.OrderBy(item => item.localID).ToList();
-
-            int newId = 0;
-            foreach (var item in sortedItems)
+            // Sort phones by phone number to ensure consistent ordering
+            var sortedPhones = phoneItems.OrderBy(p => p.PhoneNumber).ToList();
+            for (int i = 0; i < sortedPhones.Count; i++)
             {
-                item.localID = newId;
-                newId++;
+                sortedPhones[i].localID = i;
+                result.Add(sortedPhones[i]);
             }
 
-            return sortedItems;
+            // Add other items
+            result.AddRange(otherItems.Values.OrderBy(item => item.Name));
+
+            // Reassign localID for non-phone and non-weapon items
+            var otherItemsList = result.Where(item => item.Type != "weapon" && item.Type != "phone").ToList();
+            for (int i = sortedPhones.Count; i < result.Count; i++)
+            {
+                result[i].localID = i;
+            }
+
+            return result;
         }
 
+        private static string CreateUniqueKey(Item item)
+        {
+            string name = item.Name?.Trim().ToLower() ?? "";
+            string usedFor = item.UsedFor?.Trim().ToLower() ?? "";
 
-
-
-
+            return !string.IsNullOrEmpty(usedFor) ? usedFor : name;
+        }
         private Item GetBulletsOfWeapon(Character character, Item weapon)
         {
             foreach (var item in character.Items)
@@ -478,7 +445,7 @@ namespace ServerSide.Items
             }
             return null;
         }
-        private Item GetItemByIndex(List<Item> items, int index)
+        public static Item GetItemByIndex(List<Item> items, int index)
         {
             bool foundItem = false;
             foreach (var item in items)

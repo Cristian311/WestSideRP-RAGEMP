@@ -107,20 +107,27 @@ namespace ServerSide.Items
         }
 
         [Command("setmainphone")]
-        private void SetMainPhoneCommand(Player player, int index)
+        public static void SetMainPhoneCommand(Player player, int index)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            if (character.Items[index].Type != "phone")
+            Item phoneItem = ItemManager.GetItemByIndex(character.Items, index);
+            if(phoneItem == null)
+            {
+                character.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Acest item nu este un telefon!");
+                return;
+            }
+            if (phoneItem.Type != "phone")
             {
                 character.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Acest item nu este un telefon!");
                 return;
             }
             else
             {
-                Item phoneItem = character.Items[index];
-                Phone phone = new Phone(character, phoneItem.Name, "phone", phoneItem.PhoneNumber);
+                Phone phone = GetPhoneFromItem(phoneItem);
                 character.MainPhone = phone;
-                character.SendChatMessage($"{Colors.COLOR_CHAT_GREEN}Ai selected {phone.Name} ca telefon principal!");
+                character.SendChatMessage($"{Colors.COLOR_CHAT_GREEN}Ai selectat {phone.Name} ca telefon principal!");
+
+                UpdateCharDataDBManager.UpdateCharacterPhone(character, phoneItem.Id);
             }
         }
         [Command("phones")]
@@ -128,19 +135,18 @@ namespace ServerSide.Items
         {
             var character = CharacterManager.PlayerCharacterPair[player];
             bool found = false;
-            character.Items = ItemManager.FixItemsOrder(character.Items);
+            //character.Items = ItemManager.FixItemsOrder(character.Items);
             foreach (var item in character.Items)
             {
                 if (item.Type == "phone")
                 {
                     var phone = GetPhoneFromItem(item);
-                    if(phone == character.MainPhone)
-                        character.SendChatMessage($"{Colors.COLOR_CHAT_GREEN}{phone.localID}. {phone.Name} - {phone.PhoneNumber} [Main Phone]");
+                    if (character.MainPhone != null && item.Name == character.MainPhone.Name) // !!!!! NEEDS FIX ASAP IT SHOULD CHECK BY ID NOT NAME, BUT ITS BUGGED
+                        character.SendChatMessage($"{Colors.COLOR_CHAT_GREEN}{item.localID}. {phone.Name} - {phone.PhoneNumber} [Main Phone]");
                     else
-                        character.SendChatMessage($"{Colors.COLOR_CHAT_GREEN}{phone.localID}. {phone.Name} - {phone.PhoneNumber}");
+                        character.SendChatMessage($"{Colors.COLOR_CHAT_GREEN}{item.localID}. {phone.Name} - {phone.PhoneNumber}");
                     found = true;
                 }
-                
             }
             if (found == false)
                 character.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu ai nici un telefon!");
