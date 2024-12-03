@@ -3,6 +3,7 @@ using Org.BouncyCastle.Asn1.IsisMtt.Ocsp;
 using ServerSide.Accounts;
 using ServerSide.Admin;
 using ServerSide.Characters;
+using ServerSide.Commands.CommandAttributes;
 using ServerSide.Util;
 using ServerSide.Util.Admin;
 using System;
@@ -15,41 +16,43 @@ namespace ServerSide.Commands
     internal class AdminCommands : Script
     {
         AccountManager accountManager = new AccountManager();
+
+        [RequiresAdmin]
         [Command("createveh")]
         public void CreateVehicleCommand(Player player, string car)
         {
-            if (!AdminManager.CheckIfAdminAccess(player, 1))
-                return;
             VehicleHash busModel = NAPI.Util.VehicleNameToModel(car); //Gets the hash of bus model
             NAPI.Vehicle.CreateVehicle(busModel, player.Position, 0, 0, 0); //Creates a bus on the player's position
 
         }
+
+        [RequiresAdmin]
         [Command("weapon")]
         public void WeaponCommand(Player player, string weapon, int ammo)
         {
-            if (!AdminManager.CheckIfAdminAccess(player, 1))
-                return;
             WeaponHash weaponHash = NAPI.Util.WeaponNameToModel(weapon);
             player.GiveWeapon(weaponHash, ammo);
         }
+
+        [RequiresAdmin]
         [Command("weather")]
         public void WeatherCommand(Player player, string weather)
         {
-            if (!AdminManager.CheckIfAdminAccess(player,1))
-                return;
+            
             NAPI.World.SetWeather(weather);
             player.SendNotification($"Set weather to {weather}.");
         }
+
+        [RequiresAdmin]
         [Command("time")]
         public void TimeCommand(Player player, int hour)
         {
-            if (!AdminManager.CheckIfAdminAccess(player, 1))
-                return;
             NAPI.World.SetTime(hour, 0, 0);
             player.SendNotification($"Set time to {hour}.");
         }
 
         ////MODERATION COMMANDS
+        [RequiresAdmin]
         [Command("kick")]
         public void KickPlayerCommand(Player player, string target, string reason)
         {
@@ -57,8 +60,6 @@ namespace ServerSide.Commands
             if (chars.Count == 1)
             {
                 var character = chars[0];
-                if (!AdminManager.CheckIfAdminAccess(player, 1))
-                    return;
                 var AdminAccount = AccountManager.PlayerAccountPairs[player];
                 var TargetAccount = CharacterManager.CharacterAccountPair[character];
 
@@ -73,6 +74,8 @@ namespace ServerSide.Commands
                 }
             }
         }
+
+        [RequiresAdmin]
         [Command("ban")]
         public void BanPlayerCommand(Player player, string target, string reason)
         {
@@ -80,8 +83,6 @@ namespace ServerSide.Commands
             if (chars.Count == 1)
             {
                 var character = chars[0];
-                if (!AdminManager.CheckIfAdminAccess(player, 1))
-                    return;
                 var AdminAccount = AccountManager.PlayerAccountPairs[player];
                 var TargetAccount = CharacterManager.CharacterAccountPair[character];
 
@@ -97,6 +98,8 @@ namespace ServerSide.Commands
                 }
             }
         }
+
+        [RequiresAdmin]
         [Command("mute")]
         public void MutePlayerCommand(Player player, string target, string reason)
         {
@@ -104,8 +107,6 @@ namespace ServerSide.Commands
             if (chars.Count == 1)
             {
                 var character = chars[0];
-                if (!AdminManager.CheckIfAdminAccess(player, 1))
-                    return;
                 var AdminAccount = AccountManager.PlayerAccountPairs[player];
                 var TargetAccount = CharacterManager.CharacterAccountPair[character];
 
@@ -121,6 +122,8 @@ namespace ServerSide.Commands
                 }
             }
         }
+
+        [RequiresAdmin]
         [Command("unmute")]
         public void UnmutePlayerCommand(Player player, string target)
         {
@@ -128,8 +131,6 @@ namespace ServerSide.Commands
             if (chars.Count == 1)
             {
                 var character = chars[0];
-                if (!AdminManager.CheckIfAdminAccess(player, 1))
-                    return;
                 var AdminAccount = AccountManager.PlayerAccountPairs[player];
                 var TargetAccount = CharacterManager.CharacterAccountPair[character];
 
@@ -145,7 +146,9 @@ namespace ServerSide.Commands
                 }
             }
         }
+
         //TELEPORT COMMANDS
+        [RequiresAdmin]
         [Command("goto")]
         public void GotoPlayerCommand(Player player, string target)
         {
@@ -153,8 +156,6 @@ namespace ServerSide.Commands
             if (chars.Count == 1)
             {
                 var character = chars[0];
-                if (!AdminManager.CheckIfAdminAccess(player, 1))
-                    return;
                 var AdminAccount = AccountManager.PlayerAccountPairs[player];
                 var TargetAccount = CharacterManager.CharacterAccountPair[character];
 
@@ -170,6 +171,8 @@ namespace ServerSide.Commands
                 }
             }
         }
+
+        [RequiresAdmin]
         [Command("bring")]
         public void BringPlayerCommand(Player player, string target)
         {
@@ -177,8 +180,6 @@ namespace ServerSide.Commands
             if (chars.Count == 1)
             {
                 var character = chars[0];
-                if (!AdminManager.CheckIfAdminAccess(player, 1))
-                    return;
                 var AdminAccount = AccountManager.PlayerAccountPairs[player];
                 var TargetAccount = CharacterManager.CharacterAccountPair[character];
 
@@ -196,6 +197,7 @@ namespace ServerSide.Commands
         }
 
         //FREEEZE
+        [RequiresAdmin]
         [Command("freeze")]
         public void FreezePlayerCommand(Player player, string target)
         {
@@ -203,8 +205,6 @@ namespace ServerSide.Commands
             if (chars.Count == 1)
             {
                 var character = chars[0];
-                if (!AdminManager.CheckIfAdminAccess(player, 1))
-                    return;
                 var AdminAccount = AccountManager.PlayerAccountPairs[player];
                 var TargetAccount = CharacterManager.CharacterAccountPair[character];
 
@@ -221,6 +221,7 @@ namespace ServerSide.Commands
             }
         }
         //needs fixed
+        [RequiresAdmin]
         [Command("unfreeze")]
         public void UnfreezePlayerCommand(Player player, string target)
         {
@@ -228,8 +229,6 @@ namespace ServerSide.Commands
             if (chars.Count == 1)
             {
                 var character = chars[0];
-                if (!AdminManager.CheckIfAdminAccess(player, 1))
-                    return;
                 var AdminAccount = AccountManager.PlayerAccountPairs[player];
                 var TargetAccount = CharacterManager.CharacterAccountPair[character];
 
