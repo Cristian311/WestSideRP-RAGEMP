@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrollable Cart Interface</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: rgba(0, 0, 0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .store-container {
+            width: 70%;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 15px;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .content {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Left Menu (Store Items) */
+        .store-menu {
+            width: 60%;
+            background-color: #111;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-auto-rows: 150px;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .store-item {
+            text-align: center;
+            background-color: #222;
+            border-radius: 8px;
+            padding: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .store-item:hover {
+            transform: scale(1.05);
+            background-color: #333;
+        }
+
+        .store-item span {
+            margin-top: 10px;
+        }
+
+        .store-item .price {
+            color: #ff6600;
+            font-weight: bold;
+        }
+
+        /* Right Menu (Cart) */
+        .cart-menu {
+            width: 40%;
+            background-color: #1a1a1a;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-items-container {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #111;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .cart-item span {
+            margin-right: 10px;
+        }
+
+        .cart-item .quantity {
+            color: #ff6600;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .dropdown {
+            margin-top: 20px;
+            background-color: #333;
+            color: #fff;
+            padding: 5px;
+            border: 1px solid #ff6600;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .total {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        .checkout-btn {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .checkout-btn:hover {
+            background-color: #ff8533;
+        }
+
+        /* Add Item Section */
+        .add-item-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .add-item-form {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+            background-color: #111;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .add-item-form input, .add-item-form select, .add-item-form button {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ff6600;
+            font-size: 1em;
+        }
+
+        .add-item-form button {
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .add-item-form button:hover {
+            background-color: #ff8533;
+        }
+        .exit-btn {
+        margin-top: 20px;
+        width: 100px;
+        padding: 10px;
+        background-color: #ff0000;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        align-self: center;
+        }
+
+       .exit-btn:hover {
+        background-color: #ff4d4d;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="store-container">
+        <div class="content">
+            <div class="store-menu" id="store-menu">
+                <div class="store-item" onclick="addToCart('Item 1', 10)">
+                    <span>Item 1</span>
+                    <span class="price">$10</span>
+                </div>
+                <div class="store-item" onclick="addToCart('Item 2', 15)">
+                    <span>Item 2</span>
+                    <span class="price">$15</span>
+                </div>
+                <div class="store-item" onclick="addToCart('Item 3', 20)">
+                    <span>Item 3</span>
+                    <span class="price">$20</span>
+                </div>
+                <div class="store-item" onclick="addToCart('Item 4', 25)">
+                    <span>Item 4</span>
+                    <span class="price">$25</span>
+                </div>
+            </div>
+            <div class="cart-menu">
+                <h2>Cart</h2>
+                <div class="cart-items-container" id="cart-items"></div>
+                <select id="payment-method" class="dropdown">
+                    <option value="cash">Cash</option>
+                    <option value="card">Card</option>
+                </select>
+                <div class="total">Total: $<span id="total-cost">0</span></div>
+                <button class="checkout-btn">Checkout</button>
+            </div>
+        </div>
+        <div class="add-item-section">
+            <button onclick="toggleAddItemForm()">Add Item</button>
+            <div class="add-item-form" id="add-item-form">
+                <input type="text" id="new-item-name" placeholder="Item Name" />
+                <input type="number" id="new-item-price" placeholder="Item Price" />
+                <select id="new-item-type">
+                    <option value="food">Food</option>
+                    <option value="drink">Drink</option>
+                </select>
+                <button onclick="addItem()">Add</button>
+            </div>
+        </div>
+        <button class="exit-btn" onclick="exitStore()">Exit</button>
+    </div>
+
+    <script>
+        let cart = {};
+        let totalCost = 0;
+
+        function addToCart(item, price) {
+            if (cart[item]) {
+                cart[item].quantity++;
+            } else {
+                cart[item] = { price, quantity: 1 };
+            }
+            totalCost += price;
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const totalCostSpan = document.getElementById('total-cost');
+
+            cartItems.innerHTML = '';
+            for (const [item, details] of Object.entries(cart)) {
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <span>${item}</span>
+                    <span>$${details.price}</span>
+                    <span class="quantity">x${details.quantity}</span>
+                    <button onclick="removeFromCart('${item}')">Remove</button>
+                `;
+                cartItems.appendChild(div);
+            }
+
+            totalCostSpan.textContent = totalCost;
+        }
+
+        function removeFromCart(item) {
+            if (cart[item]) {
+                totalCost -= cart[item].price;
+                cart[item].quantity--;
+                if (cart[item].quantity <= 0) {
+                    delete cart[item];
+                }
+                updateCart();
+            }
+        }
+
+        function toggleAddItemForm() {
+            const form = document.getElementById('add-item-form');
+            form.style.display = form.style.display === 'none' || form.style.display === '' ? 'flex' : 'none';
+        }
+
+        function addItem() {
+            const name = document.getElementById('new-item-name').value;
+            const price = parseFloat(document.getElementById('new-item-price').value);
+            const type = document.getElementById('new-item-type').value;
+
+            if (name && price && price > 0) {
+                const storeMenu = document.getElementById('store-menu');
+                const newItem = document.createElement('div');
+                newItem.className = 'store-item';
+                newItem.innerHTML = `
+                    <span>${name} (${type})</span>
+                    <span class="price">$${price}</span>
+                `;
+                newItem.onclick = () => addToCart(name, price);
+                storeMenu.appendChild(newItem);
+
+                document.getElementById('new-item-name').value = '';
+                document.getElementById('new-item-price').value = '';
+                toggleAddItemForm();
+            } else {
+                alert('Please enter valid item details.');
+            }
+        }
+        function exitStore() {
+            mp.trigger("CEF:CLIENT:CloseShop"); // Uncomment this for GTAV client-side interaction
+              document.querySelector('.store-container').style.display = 'none'; // Hide the store container
+        }
+
+    </script>
+</body>
+</html>

@@ -15,7 +15,7 @@ namespace ServerSide.Shops
         private void CreateShopCommand(Player player, string Name)
         {
             ColShape colShape = NAPI.ColShape.CreateCylinderColShape(player.Position, 1f, 1f, NAPI.GlobalDimension);
-            TextLabel textLabel = NAPI.TextLabel.CreateTextLabel("Apasa Y sa deschizi shopul", player.Position, 1f, 1f, 0, new Color(0, 250, 0), true, NAPI.GlobalDimension);
+            TextLabel textLabel = NAPI.TextLabel.CreateTextLabel("Apasa Y sa deschizi shopul", player.Position, 5f, 1f, 0, new Color(0, 250, 0), true, NAPI.GlobalDimension);
             Shop shop = new Shop(Name, colShape, textLabel);
             shops.Add(shop);
             shopColshapes.Add(colShape);
