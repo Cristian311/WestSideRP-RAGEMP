@@ -23,7 +23,6 @@ namespace ServerSide.Blips
             {
                 NAPI.Blip.CreateBlip(blip.Sprite, blip.Position, blip.Scale, blip.Color, blip.Name, 255, 0, true, 0, NAPI.GlobalDimension);
             }
-            NAPI.Util.ConsoleOutput(NAPI.Util.ToJson(blips));
         }
         
         [Command("createblip")]

@@ -13,9 +13,12 @@ namespace ServerSide.Shops
         private void ActionKeyPressed(Player player)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
+
+            //Normal Shop case
             if (ShopManager.shopColshapes.Contains(character.currentColshape))
             {
                 Shop shop = ShopManager.shops.FirstOrDefault(s => s.colShape == character.currentColshape);
+                
                 player.TriggerEvent("SERVER:CLIENT:OpenShop");
             }
         }

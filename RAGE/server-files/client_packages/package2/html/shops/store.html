@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scrollable Cart Interface</title>
@@ -289,7 +292,7 @@
         function addItem() {
             const name = document.getElementById('new-item-name').value;
             const price = parseFloat(document.getElementById('new-item-price').value);
-            const type = document.getElementById('new-item-type').value;
+            const type = $('#new-item-type').val(); // Use Select2's value
 
             if (name && price && price > 0) {
                 const storeMenu = document.getElementById('store-menu');
@@ -309,11 +312,24 @@
                 alert('Please enter valid item details.');
             }
         }
+
         function exitStore() {
             mp.trigger("CEF:CLIENT:CloseShop"); // Uncomment this for GTAV client-side interaction
-              document.querySelector('.store-container').style.display = 'none'; // Hide the store container
+            document.querySelector('.store-container').style.display = 'none'; // Hide the store container
         }
 
+        // Initialize Select2 Dropdowns
+        $(document).ready(function() {
+            $('#payment-method').select2({
+                placeholder: "Select payment method",
+                allowClear: true
+            });
+
+            $('#new-item-type').select2({
+                placeholder: "Select item type",
+                allowClear: true
+            });
+        });
     </script>
 </body>
 </html>
