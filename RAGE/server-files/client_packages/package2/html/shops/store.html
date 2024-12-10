@@ -232,6 +232,7 @@
                 <select id="new-item-type">
                     <option value="food">Food</option>
                     <option value="drink">Drink</option>
+                    <option value="other">Other</option>
                 </select>
                 <button onclick="addItem()">Add</button>
             </div>
@@ -299,7 +300,7 @@
                 const newItem = document.createElement('div');
                 newItem.className = 'store-item';
                 newItem.innerHTML = `
-                    <span>${name} (${type})</span>
+                    <span>${name}</span>
                     <span class="price">$${price}</span>
                 `;
                 newItem.onclick = () => addToCart(name, price);
@@ -307,16 +308,94 @@
 
                 document.getElementById('new-item-name').value = '';
                 document.getElementById('new-item-price').value = '';
-                toggleAddItemForm();
+                toggleAddItemForm(); 
+
+                let itemsList = [];
+
+            // Get all items in the store menu
+            const storeItems = document.querySelectorAll('.store-item');
+
+            // Loop through each item and capture its details
+            storeItems.forEach(item => {
+                const name = item.querySelector('span').textContent; // Get item name
+                const price = parseFloat(item.querySelector('.price').textContent.replace('$', '')); // Get item price (remove '$' and convert to float)
+                const type = item.querySelector('span').nextElementSibling ? 'Food' : 'Drink'; // You may want to adjust this logic based on item type
+
+                // Add the item details to the list
+                itemsList.push({
+                    Name: name,
+                    Type: type,
+                    Cost: price
+                });
+            });
+
+            // Convert the items list to a JSON string
+            const jsonItems = JSON.stringify(itemsList);
+
+            // Pass the JSON items to mp.trigger (you can use this to send it to the backend)
+            mp.trigger("CEF:CLIENT:SaveItemData", jsonItems);
             } else {
                 alert('Please enter valid item details.');
             }
         }
+        function UpdateItems(json) {
+        // Parse the JSON string into an array of item objects
+        const itemData = JSON.parse(json);
 
-        function exitStore() {
-            mp.trigger("CEF:CLIENT:CloseShop"); // Uncomment this for GTAV client-side interaction
-            document.querySelector('.store-container').style.display = 'none'; // Hide the store container
-        }
+        // Get the store menu container
+        const storeMenu = document.getElementById('store-menu');
+        storeMenu.innerHTML = '';  // Clear the existing items in the store menu
+
+        // Loop through the parsed items and create new store item elements
+        itemData.forEach(item => {
+            const newItem = document.createElement('div');
+            newItem.className = 'store-item';
+            
+            // Add the content of the new item
+            newItem.innerHTML = `
+                <span>${item.Name}</span>
+                <span class="price">$${item.Cost}</span>
+            `;
+            
+            // Add an event listener to add the item to the cart when clicked
+            newItem.onclick = () => addToCart(item.Name, item.Cost);
+
+            // Append the new item to the store menu
+            storeMenu.appendChild(newItem);
+        });
+     }
+
+     function exitStore() {
+        // Create an array to hold all store items
+        let itemsList = [];
+
+        // Get all items in the store menu
+        const storeItems = document.querySelectorAll('.store-item');
+
+        // Loop through each item and capture its details
+        storeItems.forEach(item => {
+            const name = item.querySelector('span').textContent; // Get item name
+            const price = parseFloat(item.querySelector('.price').textContent.replace('$', '')); // Get item price (remove '$' and convert to float)
+            const type = item.querySelector('span').nextElementSibling ? 'Food' : 'Drink'; // You may want to adjust this logic based on item type
+
+            // Add the item details to the list
+            itemsList.push({
+                Name: name,
+                Type: type,
+                Cost: price
+            });
+        });
+
+        // Convert the items list to a JSON string
+        const jsonItems = JSON.stringify(itemsList);
+
+        // Pass the JSON items to mp.trigger (you can use this to send it to the backend)
+        mp.trigger("CEF:CLIENT:CloseShop", jsonItems);
+
+        // Hide the store container after triggering the event
+        document.querySelector('.store-container').style.display = 'none';
+    }
+
 
         // Initialize Select2 Dropdowns
         $(document).ready(function() {

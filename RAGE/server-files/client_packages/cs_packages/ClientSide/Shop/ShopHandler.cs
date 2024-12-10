@@ -13,6 +13,8 @@ namespace ClientSide.Shop
         {
             Events.Add("SERVER:CLIENT:OpenShop", OpenShop);
             Events.Add("CEF:CLIENT:CloseShop", CloseShop);
+            Events.Add("CEF:CLIENT:SaveItemData", SaveItemData);
+
         }
 
         private void OpenShop(object[] args)
@@ -20,12 +22,22 @@ namespace ClientSide.Shop
             cefBrowser = new HtmlWindow("http://package2/html/shops/store.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;
+            string json = args[0].ToString();
+            string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
+            cefBrowser.ExecuteJs($"UpdateItems(\"{escapedJson}\");");
+        }
+        private void SaveItemData(object[] args)
+        {
+            string json = args[0].ToString();
+            Events.CallRemote("CLIENT:SERVER:SaveItemData", json);
         }
         private void CloseShop(object[] args)
         {
             cefBrowser.Destroy();
             cefBrowser = null;
             Cursor.Visible = false;
+            string json = args[0].ToString();
+            Events.CallRemote("CLIENT:SERVER:SaveItemData", json);
             //Events.CallRemote("CLIENT:SERVER:ClosedCreateCharScreen");
         }
     }

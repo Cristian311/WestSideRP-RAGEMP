@@ -20,6 +20,7 @@ namespace ServerSide.AuthServer
         private void onPlayerConnected(Player player)
         {
             player.TriggerEvent("SERVER:CLIENT:ShowAuthInterface");
+            
         }
         [ServerEvent(Event.PlayerDisconnected)]
         private void onPlayerDisconnected(Player player, DisconnectionType type, string reason)

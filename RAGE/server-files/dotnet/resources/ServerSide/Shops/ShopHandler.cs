@@ -1,5 +1,6 @@
 ﻿using GTANetworkAPI;
 using ServerSide.Characters;
+using ServerSide.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,22 @@ namespace ServerSide.Shops
             if (ShopManager.shopColshapes.Contains(character.currentColshape))
             {
                 Shop shop = ShopManager.shops.FirstOrDefault(s => s.colShape == character.currentColshape);
-                
-                player.TriggerEvent("SERVER:CLIENT:OpenShop");
+                string json = NAPI.Util.ToJson(shop.items);
+                player.TriggerEvent("SERVER:CLIENT:OpenShop", json);
+            }
+        }
+        [RemoteEvent("CLIENT:SERVER:SaveItemData")]
+        private void SaveItemData(Player player, string json)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            var data = NAPI.Util.FromJson<List<ShopItem>>(json);
+            Console.WriteLine(json);
+            if (ShopManager.shopColshapes.Contains(character.currentColshape))
+            {
+                Shop shop = ShopManager.shops.FirstOrDefault(s => s.colShape == character.currentColshape);
+                shop.items = data;
+
+                Console.WriteLine(NAPI.Util.ToJson(shop.items));
             }
         }
     }

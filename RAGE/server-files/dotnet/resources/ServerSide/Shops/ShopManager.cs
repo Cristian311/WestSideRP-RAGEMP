@@ -55,8 +55,8 @@ namespace ServerSide.Shops
             shopColshapes.Add(colShape);
 
             // Create ShopData to save
-            ShopData shopData = new ShopData(name, player.Position);
-            List<ShopData> shopDataList = shops.ConvertAll(s => new ShopData(s.Name, s.colShape.Position));
+            ShopData shopData = new ShopData(name, player.Position, null);
+            List<ShopData> shopDataList = shops.ConvertAll(s => new ShopData(s.Name, s.colShape.Position, s.items));
 
             // Debugging output: Check what data will be saved
             foreach (var data in shopDataList)
@@ -85,15 +85,16 @@ namespace ServerSide.Shops
     }
 
     // Class to hold shop data for saving/loading
-    public class ShopData
+    internal class ShopData
     {
         public string Name { get; set; }
         public SerializableVector3 Position { get; set; }
-
-        public ShopData(string name, Vector3 position)
+        public List<ShopItem> items { get; set; }
+        public ShopData(string name, Vector3 position, List<ShopItem> items)
         {
             Name = name;
             Position = new SerializableVector3(position);
+            this.items = items;
         }
     }
 
