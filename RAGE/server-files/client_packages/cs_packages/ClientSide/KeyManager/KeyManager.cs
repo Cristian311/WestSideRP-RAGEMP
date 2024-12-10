@@ -13,6 +13,7 @@ namespace CHRP.Assets
 
         public const int KeyMouse = 0xC0;    //    Key [~]
         public const int KeyLctrl = 0xA2;    //    Key [Left CTRL]
+        public const int KeyY = 0x59;        //    Key [Y]
 
 
 

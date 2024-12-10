@@ -3,7 +3,7 @@ using CHRP.Assets;
 using RAGE;
 using RAGE.Ui;
 
-namespace CHRP.Events
+namespace ClientSide
 {
     public class TickEvent : RAGE.Events.Script
     {
@@ -21,8 +21,13 @@ namespace CHRP.Events
             
             KeyManager.KeyBind(KeyManager.KeyMouse, delegate // ~
             {
-                Cursor.Visible = !Cursor.Visible;               
-            }); 
+                Cursor.Visible = !Cursor.Visible;
+            });
+
+            KeyManager.KeyBind(KeyManager.KeyY, () =>
+            {
+                Events.CallRemote("CLIENT:SERVER:ActionKeyPressed");
+            });
 
         }
 
