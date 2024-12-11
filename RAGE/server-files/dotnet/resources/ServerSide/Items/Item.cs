@@ -32,7 +32,7 @@ namespace ServerSide.Items
             if (character != null)
             {
                 currentCharacterId = character.Id;
-                localID = character.ItemIdManager.AssignId();
+                localID = character.ItemIdManager.AssignNewId();
                 currentCharacter = character;
             }
             else

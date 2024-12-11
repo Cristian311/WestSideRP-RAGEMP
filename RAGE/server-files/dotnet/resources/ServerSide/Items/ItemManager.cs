@@ -42,6 +42,7 @@ namespace ServerSide.Items
                 player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu ai nici un item.");
                 return;
             }
+            //
             character.Items = FixItemsOrder(character.Items); // fix items indexes in inventory
 
             player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}Itemele detinute in prezent:");
@@ -57,41 +58,36 @@ namespace ServerSide.Items
         [Command("createitem")]
         private void CreateItemCommand(Player player, string Name, string Type, int Ammount, string UsedFor = "")
         {
-            if (!AdminManager.CheckIfAdminAccess(player, 1))
-                return;
             var character = CharacterManager.PlayerCharacterPair[player];
-            Name = StringFormatter.CapitalizeFirstLetter(Name); 
-            UsedFor = StringFormatter.CapitalizeFirstLetter(UsedFor);
-
-            player.SendChatMessage($"{Colors.COLOR_CHAT_ADMIN}Created item {Name} Type {Type} {Ammount} units.");
-            bool Countable = GetCountable(Type);
 
             if (character.Items == null)
             {
                 character.Items = new List<Item>();
             }
 
+            bool isCountable = GetCountable(Type);
 
-            if (UsedFor != string.Empty && Type.ToLower() == "bullet")
-            {//create bullets
-                character.Items.Add(new Item(character, Name, Type, Ammount, Countable, UsedFor));
+            if (!isCountable)
+            {
+                // For non-countable items, create individual instances
+                for (int i = 1; i <= Ammount; i++)
+                {
+                    var newItem = new Item(character, Name, Type, 1, false);
+                    newItem.localID = character.ItemIdManager.AssignNewId();
+                    character.Items.Add(newItem);
+                }
             }
             else
             {
-                if (Countable == false)
-                { 
-
-                    for (int i = 1; i <= Ammount; i++)
-                    {
-                        // if its not countable multiple instances of the same item with ammount 1 will appear, for weapons for example
-                        character.Items.Add(new Item(character, Name, Type, 1, Countable));
-                    }
-                }
-                else
-                    character.Items.Add(new Item(character, Name, Type, Ammount, Countable));
+                // For countable items, create a single item
+                var newItem = new Item(character, Name, Type, Ammount, true);
+                newItem.localID = character.ItemIdManager.AssignNewId();
+                character.Items.Add(newItem);
             }
-            ItemDbManager.UpdateCharacterItems(character);//update DB
+            player.SendChatMessage($"{Colors.COLOR_CHAT_ADMIN}Created item {Name} Type {Type} {Ammount} units.");
+            ItemDbManager.UpdateCharacterItems(character);
         }
+
         [Command("createweapon")]
         private void CreateWeaponCommand(Player player, string Name, int Ammount = 1)
         {
@@ -289,12 +285,13 @@ namespace ServerSide.Items
             {
                 case "weapon":
                     var whiteWeapons = WeaponData.ExtractWeaponNames(WeaponData.WhiteWeaponData);
-                    if(whiteWeapons.Contains("weapon_" + usedItem.Name.ToLower()))
+                    if (whiteWeapons.Contains("weapon_" + usedItem.Name.ToLower()))
                     {
                         WeaponHash weaponHash = NAPI.Util.WeaponNameToModel(usedItem.Name);
                         player.GiveWeapon(weaponHash, 1);
                         character.currentWeapons.Add(weaponHash);
                         character.Items.Remove(usedItem);
+                        character.ItemIdManager.ReclaimId(usedItem.localID);
                         player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai echipat {weaponHash.ToString()}.");
                         return;
                     }
@@ -309,7 +306,9 @@ namespace ServerSide.Items
                             player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai echipat {weaponHash.ToString()}.");
 
                             character.Items.Remove(bullets);
+                            character.ItemIdManager.ReclaimId(bullets.localID);
                             character.Items.Remove(usedItem);
+                            character.ItemIdManager.ReclaimId(usedItem.localID);
                         }
                         else
                         {
@@ -342,11 +341,12 @@ namespace ServerSide.Items
                     player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}Used item {usedItem.Name}.");
                     break;
             }
+            // Handle item usage and removal
             if (usedItem != null)
             {
                 if (!usedItem.Countable)
                     return;
-                    // Decrease the item's amount
+                // Decrease the item's amount
                 usedItem.Amount--;
 
                 // If the amount reaches zero, remove it from the list
@@ -356,6 +356,9 @@ namespace ServerSide.Items
                     character.ItemIdManager.ReclaimId(usedItem.localID);
                 }
             }
+
+            // Reassign IDs to ensure they remain sequential
+            character.ItemIdManager.ReassignSequentialIds(character.Items);
             ItemDbManager.UpdateCharacterItems(character);
         }
         public static List<Item> FixItemsOrder(List<Item> items)
