@@ -41,14 +41,14 @@ namespace ServerSide.Characters.Tattoos
                 NAPI.Util.ConsoleOutput($"Processed file: {fileName}, Total Tattoos: {tattooData.Count}");
             }
 
-            // Debugging output for all combined data
-            NAPI.Util.ConsoleOutput($"All Tattoo Data: {NAPI.Util.ToJson(allTattooData)}");
+            //// Debugging output for all combined data
+            //NAPI.Util.ConsoleOutput($"All Tattoo Data: {NAPI.Util.ToJson(allTattooData)}");
 
-            // Example: Output consolidated tattoo names
-            foreach (var name in tattooNames)
-            {
-                NAPI.Util.ConsoleOutput($"Tattoo Name: {name}");
-            }
+            //// Example: Output consolidated tattoo names
+            //foreach (var name in tattooNames)
+            //{
+            //    NAPI.Util.ConsoleOutput($"Tattoo Name: {name}");
+            //}
         }
 
         [RemoteEvent("CLIENT:SERVER:ApplyTattoo")]

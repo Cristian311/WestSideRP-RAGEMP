@@ -33,7 +33,7 @@ namespace ServerSide.Shops
 
                     ColShape colShape = NAPI.ColShape.CreateCylinderColShape(position, 1f, 1f, NAPI.GlobalDimension);
                     TextLabel textLabel = NAPI.TextLabel.CreateTextLabel("Press Y to open the shop", position, 5f, 1f, 0, new Color(0, 250, 0), true, NAPI.GlobalDimension);
-                    Shop shop = new Shop(shopData.Name, colShape, textLabel)
+                    Shop shop = new Shop(shopData.Name, colShape, textLabel, position)
                     {
                         items = shopData.items ?? new List<ShopItem>()
                     };
@@ -48,7 +48,7 @@ namespace ServerSide.Shops
             // Convert shops to ShopData for serialization
             List<ShopData> shopDataList = shops.ConvertAll(s => new ShopData(
                 s.Name,
-                s.colShape.Position,
+                s.Position,
                 s.items ?? new List<ShopItem>()
             ));
 
@@ -65,11 +65,11 @@ namespace ServerSide.Shops
         {
             // Ensure position is correct before saving
             Console.WriteLine($"Creating shop: {name} at position: {player.Position}");
-
+            
             // Create the shop in-game
             ColShape colShape = NAPI.ColShape.CreateCylinderColShape(player.Position, 1f, 1f, NAPI.GlobalDimension);
             TextLabel textLabel = NAPI.TextLabel.CreateTextLabel("Press Y to open the shop", player.Position, 5f, 1f, 0, new Color(0, 250, 0), true, NAPI.GlobalDimension);
-            Shop shop = new Shop(name, colShape, textLabel);
+            Shop shop = new Shop(name, colShape, textLabel, player.Position);
 
             // Add to runtime lists
             shops.Add(shop);
