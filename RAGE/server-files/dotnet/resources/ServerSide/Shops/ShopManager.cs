@@ -1,8 +1,9 @@
 ﻿using GTANetworkAPI;
+using ServerSide.Characters;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using System.Linq;
 using Color = GTANetworkAPI.Color;
 
 namespace ServerSide.Shops
@@ -11,7 +12,7 @@ namespace ServerSide.Shops
     {
         public static List<Shop> shops = new List<Shop>();
         public static List<ColShape> shopColshapes = new List<ColShape>();
-        private string filePath = "json/shops/shops.json";
+        private static string filePath = "json/shops/shops.json";
 
         public ShopManager()
         {
@@ -32,11 +33,31 @@ namespace ServerSide.Shops
 
                     ColShape colShape = NAPI.ColShape.CreateCylinderColShape(position, 1f, 1f, NAPI.GlobalDimension);
                     TextLabel textLabel = NAPI.TextLabel.CreateTextLabel("Press Y to open the shop", position, 5f, 1f, 0, new Color(0, 250, 0), true, NAPI.GlobalDimension);
-                    Shop shop = new Shop(shopData.Name, colShape, textLabel);
+                    Shop shop = new Shop(shopData.Name, colShape, textLabel)
+                    {
+                        items = shopData.items ?? new List<ShopItem>()
+                    };
                     shops.Add(shop);
                     shopColshapes.Add(colShape);
                 }
             }
+        }
+
+        public static void SaveShopsToFile()
+        {
+            // Convert shops to ShopData for serialization
+            List<ShopData> shopDataList = shops.ConvertAll(s => new ShopData(
+                s.Name,
+                s.colShape.Position,
+                s.items ?? new List<ShopItem>()
+            ));
+
+            // Serialize and save to file
+            string updatedJson = NAPI.Util.ToJson(shopDataList);
+            File.WriteAllText(filePath, updatedJson);
+
+            // Debugging output
+            Console.WriteLine($"Saved Shops with Items: {updatedJson}");
         }
 
         [Command("createshop")]
@@ -56,13 +77,6 @@ namespace ServerSide.Shops
 
             // Create ShopData to save
             ShopData shopData = new ShopData(name, player.Position, null);
-            List<ShopData> shopDataList = shops.ConvertAll(s => new ShopData(s.Name, s.colShape.Position, s.items));
-
-            // Debugging output: Check what data will be saved
-            foreach (var data in shopDataList)
-            {
-                Console.WriteLine($"Shop to save: {data.Name} at position: {data.Position.ToVector3()}");
-            }
 
             // Read existing shop data from the file
             List<ShopData> existingShops = new List<ShopData>();
@@ -83,39 +97,4 @@ namespace ServerSide.Shops
             Console.WriteLine($"Saved Shops: {updatedJson}");
         }
     }
-
-    // Class to hold shop data for saving/loading
-    internal class ShopData
-    {
-        public string Name { get; set; }
-        public SerializableVector3 Position { get; set; }
-        public List<ShopItem> items { get; set; }
-        public ShopData(string name, Vector3 position, List<ShopItem> items)
-        {
-            Name = name;
-            Position = new SerializableVector3(position);
-            this.items = items;
-        }
-    }
-
-    // Helper class to serialize Vector3 to JSON
-    public class SerializableVector3
-    {
-        public float X { get; set; }
-        public float Y { get; set; }
-        public float Z { get; set; }
-
-        public SerializableVector3(Vector3 vector)
-        {
-            X = vector.X;
-            Y = vector.Y;
-            Z = vector.Z;
-        }
-
-        public Vector3 ToVector3()
-        {
-            return new Vector3(X, Y, Z);
-        }
-    }
-
 }
