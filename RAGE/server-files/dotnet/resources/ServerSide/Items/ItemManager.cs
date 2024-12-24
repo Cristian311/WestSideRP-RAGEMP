@@ -33,7 +33,7 @@ namespace ServerSide.Items
             var character = CharacterManager.PlayerCharacterPair[player];
             ItemDbManager.UpdateCharacterItems(character);
         }
-        [Command("inv")]
+        [Command("invex")]
         private void InvCommand(Player player)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
@@ -49,7 +49,9 @@ namespace ServerSide.Items
             foreach (var item in character.Items) // print items
             {
                 if(item.Type == "phone")
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] {item.Name} - {item.PhoneNumber}");
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] Phone - {item.Name} - {item.PhoneNumber}");
+                else if(item.UsedFor != string.Empty)
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] {item.Name} - {item.Amount} units - Used for: {item.UsedFor}");
                 else
                     player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] {item.Name} - {item.Amount} units.");
             }
@@ -72,7 +74,7 @@ namespace ServerSide.Items
                 // For non-countable items, create individual instances
                 for (int i = 1; i <= Ammount; i++)
                 {
-                    var newItem = new Item(character, Name, Type, 1, false);
+                    var newItem = new Item(character, Name, Type, 1, false, UsedFor);
                     newItem.localID = character.ItemIdManager.AssignNewId(newItem);
                     character.Items.Add(newItem);
                 }
@@ -80,7 +82,7 @@ namespace ServerSide.Items
             else
             {
                 // For countable items, create a single item
-                var newItem = new Item(character, Name, Type, Ammount, true);
+                var newItem = new Item(character, Name, Type, Ammount, true, UsedFor);
                 newItem.localID = character.ItemIdManager.AssignNewId(newItem);
                 character.Items.Add(newItem);
             }
