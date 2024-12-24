@@ -73,7 +73,7 @@ namespace ServerSide.Items
                 for (int i = 1; i <= Ammount; i++)
                 {
                     var newItem = new Item(character, Name, Type, 1, false);
-                    newItem.localID = character.ItemIdManager.AssignNewId();
+                    newItem.localID = character.ItemIdManager.AssignNewId(newItem);
                     character.Items.Add(newItem);
                 }
             }
@@ -81,7 +81,7 @@ namespace ServerSide.Items
             {
                 // For countable items, create a single item
                 var newItem = new Item(character, Name, Type, Ammount, true);
-                newItem.localID = character.ItemIdManager.AssignNewId();
+                newItem.localID = character.ItemIdManager.AssignNewId(newItem);
                 character.Items.Add(newItem);
             }
             player.SendChatMessage($"{Colors.COLOR_CHAT_ADMIN}Created item {Name} Type {Type} {Ammount} units.");
@@ -248,6 +248,13 @@ namespace ServerSide.Items
         private void DropItemCommand(Player player, int index, int ammount = 1)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
+
+            if (!UtilMethods.TryGetElement<Item>(character.Items, index, out Item element))
+            {
+                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Index-ul nu exista in inventarul tau!");
+                return;
+            }
+
             var item = character.Items[index];
             if (item == null)
             {
@@ -260,8 +267,8 @@ namespace ServerSide.Items
                 character.Items.Remove(item);
                 character.ItemIdManager.ReclaimId(item.localID);
             }
-            player.SendChatMessage($"{Colors.COLOR_CHAT_CRIMSON}Ai aruncat {ammount}{item.Name}.");
 
+            player.SendChatMessage($"{Colors.COLOR_CHAT_CRIMSON}Ai aruncat {ammount}{item.Name}.");
         }
         private bool GetCountable(string Type)
         {
@@ -358,7 +365,7 @@ namespace ServerSide.Items
             }
 
             // Reassign IDs to ensure they remain sequential
-            character.ItemIdManager.ReassignSequentialIds(character.Items);
+            //character.ItemIdManager.ReassignSequentialIds(character.Items);
             ItemDbManager.UpdateCharacterItems(character);
         }
         public static List<Item> FixItemsOrder(List<Item> items)

@@ -34,7 +34,7 @@ namespace ServerSide.Characters
         public Phone MainPhone { get; set; }
         public List<WeaponHash> currentWeapons {  get; set; } = new List<WeaponHash>();
         public List<Decoration> Tattoos { get; set; } 
-        public ItemIdManager ItemIdManager = new ItemIdManager();
+        public IdManager<Item> ItemIdManager = new IdManager<Item>();
         public ColShape currentColshape { get; set; }
         public List<string> TattooNames { get; set; } = new List<string>();
         public Character(Player player, IAccount account, string name, int age, int money)

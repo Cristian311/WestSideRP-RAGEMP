@@ -1,9 +1,11 @@
 ﻿using GTANetworkAPI;
 using ServerSide.Characters;
+using ServerSide.Commands.CommandAttributes;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Color = GTANetworkAPI.Color;
 
 namespace ServerSide.Shops
@@ -60,6 +62,25 @@ namespace ServerSide.Shops
             Console.WriteLine($"Saved Shops with Items: {updatedJson}");
         }
 
+        [RequiresAdmin]
+        [Command("shops")]
+        private void ShopsCommand(Player player)
+        {
+            int cont = 0;
+            foreach (var shop in shops)
+            {
+                cont++;
+                string json = NAPI.Util.ToJson(shop.items);
+                player.SendChatMessage($"{cont}. {shop.Name} - {json}");
+            }
+        }
+
+        [Command("copyshop")]
+        private void CopyShopCommand(Player player, string name)
+        {
+
+        }
+        [RequiresAdmin]
         [Command("createshop")]
         private void CreateShopCommand(Player player, string name)
         {

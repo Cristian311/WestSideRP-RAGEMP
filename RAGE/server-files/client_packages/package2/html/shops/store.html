@@ -6,11 +6,11 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrollable Cart Interface</title>
+    <title>Modern Store Interface</title>
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: rgba(0, 0, 0, 0);
             display: flex;
             justify-content: center;
@@ -19,202 +19,255 @@
         }
 
         .store-container {
-            width: 70%;
-            background-color: #000;
+            width: 60%;
+            max-width: 900px;
+            min-height: 600px;
+            max-height: 800px;
+            background-color: #111;
             color: #fff;
             display: flex;
             flex-direction: column;
-            align-items: center;
             border-radius: 15px;
             overflow: hidden;
-            padding: 20px;
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.2);
+        }
+
+        .store-header {
+            background-color: #000;
+            padding: 12px;
+            text-align: center;
+            border-bottom: 2px solid #ff6600;
+        }
+
+        .store-header h1 {
+            margin: 0;
+            color: #ff6600;
+            font-size: 1.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .content {
             display: flex;
-            width: 100%;
+            padding: 15px;
+            gap: 15px;
+            flex: 1;
         }
 
-        /* Left Menu (Store Items) */
+        /* Store Items Section */
         .store-menu {
-            width: 60%;
-            background-color: #111;
+            width: 65%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            grid-auto-rows: 150px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 15px;
-            padding: 20px;
+            padding: 15px;
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            max-height: 450px;
+            overflow-y: auto;
         }
 
         .store-item {
-            text-align: center;
+            height: 120px;
             background-color: #222;
             border-radius: 8px;
-            padding: 10px;
+            padding: 12px;
             cursor: pointer;
-            transition: transform 0.2s, background-color 0.2s;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #333;
         }
 
         .store-item:hover {
-            transform: scale(1.05);
-            background-color: #333;
+            transform: translateY(-3px);
+            box-shadow: 0 3px 10px rgba(255, 102, 0, 0.3);
+            border-color: #ff6600;
         }
 
-        .store-item span {
-            margin-top: 10px;
+        .item-name {
+            font-size: 1em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #fff;
         }
 
-        .store-item .price {
+        .item-price {
             color: #ff6600;
+            font-size: 1.1em;
             font-weight: bold;
         }
 
-        /* Right Menu (Cart) */
+        /* Cart Section */
         .cart-menu {
-            width: 40%;
+            width: 35%;
             background-color: #1a1a1a;
-            padding: 20px;
+            padding: 15px;
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
         }
 
-        .cart-items-container {
-            max-height: 300px;
-            overflow-y: auto;
-            margin-bottom: 10px;
-            border: 1px solid #333;
-            border-radius: 5px;
-            padding: 10px;
-            background-color: #111;
-        }
-
-        .cart-item {
+        .cart-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #ff6600;
         }
 
-        .cart-item span {
-            margin-right: 10px;
+        .cart-header h2 {
+            font-size: 1.2em;
+            margin: 0;
         }
 
-        .cart-item .quantity {
-            color: #ff6600;
-            font-weight: bold;
-            margin-left: 10px;
+        .cart-items-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            padding: 8px;
+            background-color: #222;
+            border-radius: 8px;
+            max-height: 200px;
         }
 
-        .dropdown {
-            margin-top: 20px;
+        .cart-item {
             background-color: #333;
-            color: #fff;
-            padding: 5px;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+        }
+
+        .cart-item button {
+            background-color: #ff3300;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+
+        .select2-container {
+            margin-bottom: 15px;
+        }
+
+        .select2-container--default .select2-selection--single {
+            background-color: #333;
             border: 1px solid #ff6600;
-            border-radius: 5px;
-            width: 100%;
+            border-radius: 6px;
+            height: 35px;
         }
 
         .total {
-            margin-top: 20px;
             font-size: 1.2em;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 6px;
+            text-align: right;
         }
 
         .checkout-btn {
-            margin-top: 10px;
-            width: 100%;
-            padding: 10px;
             background-color: #ff6600;
-            color: #fff;
+            color: white;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            padding: 10px;
+            border-radius: 6px;
             font-size: 1em;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .checkout-btn:hover {
-            background-color: #ff8533;
-        }
-
-        /* Add Item Section */
         .add-item-section {
-            margin-top: 20px;
-            text-align: center;
+            padding: 15px;
+            background-color: #1a1a1a;
+            margin: 15px;
+            border-radius: 12px;
         }
 
         .add-item-form {
             display: none;
-            flex-direction: column;
             gap: 10px;
-            margin-top: 10px;
-            background-color: #111;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 15px;
+            background-color: #222;
+            border-radius: 8px;
         }
 
-        .add-item-form input, .add-item-form select, .add-item-form button {
-            padding: 10px;
-            border-radius: 5px;
+        .add-item-form input,
+        .add-item-form select {
+            padding: 8px;
+            border-radius: 6px;
             border: 1px solid #ff6600;
-            font-size: 1em;
+            background-color: #333;
+            color: white;
+            font-size: 0.9em;
         }
 
-        .add-item-form button {
+        .add-item-form button,
+        .add-item-section > button {
             background-color: #ff6600;
-            color: #fff;
+            color: white;
             border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
             cursor: pointer;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .add-item-form button:hover {
-            background-color: #ff8533;
-        }
         .exit-btn {
-        margin-top: 20px;
-        width: 100px;
-        padding: 10px;
-        background-color: #ff0000;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1em;
-        align-self: center;
+            align-self: center;
+            margin: 15px;
+            padding: 8px 20px;
+            background-color: #ff3300;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-       .exit-btn:hover {
-        background-color: #ff4d4d;
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 6px;
         }
 
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ff6600;
+            border-radius: 3px;
+        }
     </style>
 </head>
+<!-- Rest of the HTML and JavaScript remains the same as in the previous version -->
 <body>
     <div class="store-container">
+        <div class="store-header">
+            <h1>Store</h1>
+        </div>
         <div class="content">
             <div class="store-menu" id="store-menu">
-                <div class="store-item" onclick="addToCart('Item 1', 10)">
-                    <span>Item 1</span>
-                    <span class="price">$10</span>
-                </div>
-                <div class="store-item" onclick="addToCart('Item 2', 15)">
-                    <span>Item 2</span>
-                    <span class="price">$15</span>
-                </div>
-                <div class="store-item" onclick="addToCart('Item 3', 20)">
-                    <span>Item 3</span>
-                    <span class="price">$20</span>
-                </div>
-                <div class="store-item" onclick="addToCart('Item 4', 25)">
-                    <span>Item 4</span>
-                    <span class="price">$25</span>
-                </div>
+                <!-- Store items will be dynamically added here -->
             </div>
             <div class="cart-menu">
-                <h2>Cart</h2>
+                <div class="cart-header">
+                    <h2>Shopping Cart</h2>
+                </div>
                 <div class="cart-items-container" id="cart-items"></div>
                 <select id="payment-method" class="dropdown">
                     <option value="cash">Cash</option>
@@ -225,7 +278,7 @@
             </div>
         </div>
         <div class="add-item-section">
-            <button onclick="toggleAddItemForm()">Add Item</button>
+            <button onclick="toggleAddItemForm()">Add New Item</button>
             <div class="add-item-form" id="add-item-form">
                 <input type="text" id="new-item-name" placeholder="Item Name" />
                 <input type="number" id="new-item-price" placeholder="Item Price" />
@@ -234,15 +287,42 @@
                     <option value="drink">Drink</option>
                     <option value="other">Other</option>
                 </select>
-                <button onclick="addItem()">Add</button>
+                <button onclick="addItem()">Add Item</button>
             </div>
         </div>
-        <button class="exit-btn" onclick="exitStore()">Exit</button>
+        <button class="exit-btn" onclick="exitStore()">Exit Store</button>
     </div>
 
     <script>
         let cart = {};
         let totalCost = 0;
+
+        // Initialize with some sample items
+        const initialItems = [
+            { name: "Premium Coffee", price: 10 },
+            { name: "Artisan Sandwich", price: 15 },
+            { name: "Fresh Salad", price: 20 },
+            { name: "Gourmet Burger", price: 25 }
+        ];
+
+        function initializeStore() {
+            const storeMenu = document.getElementById('store-menu');
+            initialItems.forEach(item => {
+                const newItem = createStoreItem(item.name, item.price);
+                storeMenu.appendChild(newItem);
+            });
+        }
+
+        function createStoreItem(name, price) {
+            const div = document.createElement('div');
+            div.className = 'store-item';
+            div.innerHTML = `
+                <span class="item-name">${name}</span>
+                <span class="item-price">$${price}</span>
+            `;
+            div.onclick = () => addToCart(name, price);
+            return div;
+        }
 
         function addToCart(item, price) {
             if (cart[item]) {
@@ -264,14 +344,16 @@
                 div.className = 'cart-item';
                 div.innerHTML = `
                     <span>${item}</span>
-                    <span>$${details.price}</span>
-                    <span class="quantity">x${details.quantity}</span>
-                    <button onclick="removeFromCart('${item}')">Remove</button>
+                    <div>
+                        <span>$${details.price}</span>
+                        <span class="quantity">×${details.quantity}</span>
+                        <button onclick="removeFromCart('${item}')">Remove</button>
+                    </div>
                 `;
                 cartItems.appendChild(div);
             }
 
-            totalCostSpan.textContent = totalCost;
+            totalCostSpan.textContent = totalCost.toFixed(2);
         }
 
         function removeFromCart(item) {
@@ -293,35 +375,31 @@
         function addItem() {
             const name = document.getElementById('new-item-name').value;
             const price = parseFloat(document.getElementById('new-item-price').value);
-            const type = $('#new-item-type').val(); // Use Select2's value
 
             if (name && price && price > 0) {
                 const storeMenu = document.getElementById('store-menu');
-                const newItem = document.createElement('div');
-                newItem.className = 'store-item';
-                newItem.innerHTML = `
-                    <span>${name}</span>
-                    <span class="price">$${price}</span>
-                `;
-                newItem.onclick = () => addToCart(name, price);
+                const newItem = createStoreItem(name, price);
                 storeMenu.appendChild(newItem);
 
                 document.getElementById('new-item-name').value = '';
                 document.getElementById('new-item-price').value = '';
-                toggleAddItemForm(); 
+                toggleAddItemForm();
 
-                let itemsList = [];
+                saveItemData();
+            } else {
+                alert('Please enter valid item details.');
+            }
+        }
 
-            // Get all items in the store menu
+        function saveItemData() {
+            let itemsList = [];
             const storeItems = document.querySelectorAll('.store-item');
 
-            // Loop through each item and capture its details
             storeItems.forEach(item => {
-                const name = item.querySelector('span').textContent; // Get item name
-                const price = parseFloat(item.querySelector('.price').textContent.replace('$', '')); // Get item price (remove '$' and convert to float)
-                const type = item.querySelector('span').nextElementSibling ? 'Food' : 'Drink'; // You may want to adjust this logic based on item type
+                const name = item.querySelector('.item-name').textContent;
+                const price = parseFloat(item.querySelector('.item-price').textContent.replace('$', ''));
+                const type = 'Food'; // Default type, modify as needed
 
-                // Add the item details to the list
                 itemsList.push({
                     Name: name,
                     Type: type,
@@ -329,75 +407,43 @@
                 });
             });
 
-            // Convert the items list to a JSON string
             const jsonItems = JSON.stringify(itemsList);
-
-            // Pass the JSON items to mp.trigger (you can use this to send it to the backend)
             mp.trigger("CEF:CLIENT:SaveItemData", jsonItems);
-            } else {
-                alert('Please enter valid item details.');
-            }
         }
+
         function UpdateItems(json) {
-        // Parse the JSON string into an array of item objects
-        const itemData = JSON.parse(json);
+            const itemData = JSON.parse(json);
+            const storeMenu = document.getElementById('store-menu');
+            storeMenu.innerHTML = '';
 
-        // Get the store menu container
-        const storeMenu = document.getElementById('store-menu');
-        storeMenu.innerHTML = '';  // Clear the existing items in the store menu
-
-        // Loop through the parsed items and create new store item elements
-        itemData.forEach(item => {
-            const newItem = document.createElement('div');
-            newItem.className = 'store-item';
-            
-            // Add the content of the new item
-            newItem.innerHTML = `
-                <span>${item.Name}</span>
-                <span class="price">$${item.Cost}</span>
-            `;
-            
-            // Add an event listener to add the item to the cart when clicked
-            newItem.onclick = () => addToCart(item.Name, item.Cost);
-
-            // Append the new item to the store menu
-            storeMenu.appendChild(newItem);
-        });
-     }
-
-     function exitStore() {
-        // Create an array to hold all store items
-        let itemsList = [];
-
-        // Get all items in the store menu
-        const storeItems = document.querySelectorAll('.store-item');
-
-        // Loop through each item and capture its details
-        storeItems.forEach(item => {
-            const name = item.querySelector('span').textContent; // Get item name
-            const price = parseFloat(item.querySelector('.price').textContent.replace('$', '')); // Get item price (remove '$' and convert to float)
-            const type = item.querySelector('span').nextElementSibling ? 'Food' : 'Drink'; // You may want to adjust this logic based on item type
-
-            // Add the item details to the list
-            itemsList.push({
-                Name: name,
-                Type: type,
-                Cost: price
+            itemData.forEach(item => {
+                const newItem = createStoreItem(item.Name, item.Cost);
+                storeMenu.appendChild(newItem);
             });
-        });
+        }
 
-        // Convert the items list to a JSON string
-        const jsonItems = JSON.stringify(itemsList);
+        function exitStore() {
+            let itemsList = [];
+            const storeItems = document.querySelectorAll('.store-item');
 
-        // Pass the JSON items to mp.trigger (you can use this to send it to the backend)
-        mp.trigger("CEF:CLIENT:CloseShop", jsonItems);
+            storeItems.forEach(item => {
+                const name = item.querySelector('.item-name').textContent;
+                const price = parseFloat(item.querySelector('.item-price').textContent.replace('$', ''));
+                const type = 'Food'; // Default type, modify as needed
 
-        // Hide the store container after triggering the event
-        document.querySelector('.store-container').style.display = 'none';
-    }
+                itemsList.push({
+                    Name: name,
+                    Type: type,
+                    Cost: price
+                });
+            });
 
+            const jsonItems = JSON.stringify(itemsList);
+            mp.trigger("CEF:CLIENT:CloseShop", jsonItems);
+            document.querySelector('.store-container').style.display = 'none';
+        }
 
-        // Initialize Select2 Dropdowns
+        // Initialize Select2 and store items when document is ready
         $(document).ready(function() {
             $('#payment-method').select2({
                 placeholder: "Select payment method",
@@ -408,6 +454,8 @@
                 placeholder: "Select item type",
                 allowClear: true
             });
+
+            initializeStore();
         });
     </script>
 </body>
