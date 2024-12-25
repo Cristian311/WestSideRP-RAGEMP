@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory System</title>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgba(0, 0, 0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .inventory-container {
+            width: 40%;
+            max-width: 600px;
+            background-color: #111;
+            color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.2);
+            position: relative;
+        }
+
+        .inventory-header {
+            background-color: #000;
+            padding: 8px;
+            text-align: center;
+            border-bottom: 2px solid #ff6600;
+        }
+
+        .inventory-header h1 {
+            margin: 0;
+            color: #ff6600;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+            padding: 10px;
+            background-color: #1a1a1a;
+            min-height: 300px;
+        }
+
+        .inventory-slot {
+            aspect-ratio: 1;
+            background-color: #222;
+            border-radius: 4px;
+            border: 1px solid #333;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .inventory-slot.empty {
+            cursor: default;
+        }
+
+        .inventory-slot:not(.empty):hover {
+            border-color: #ff6600;
+            transform: translateY(-2px);
+        }
+
+        .item {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            box-sizing: border-box;
+            position: relative;
+            font-size: 0.8em;
+            cursor: move;
+        }
+
+        .item-id {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            font-size: 0.7em;
+            color: #ff6600;
+        }
+
+        .item-name {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2px;
+        }
+
+        .item-type {
+            font-size: 0.7em;
+            color: #888;
+        }
+
+        .floating-menu {
+            position: fixed;
+            background-color: #1a1a1a;
+            border: 1px solid #ff6600;
+            border-radius: 4px;
+            padding: 3px;
+            display: none;
+            flex-direction: column;
+            gap: 2px;
+            width: 100px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .floating-menu button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: background-color 0.2s;
+            text-align: left;
+        }
+
+        .floating-menu button:hover {
+            background-color: #ff6600;
+        }
+
+        .sortable-ghost {
+            opacity: 0.5;
+        }
+
+        .sortable-chosen {
+            background-color: #333;
+        }
+
+        .sortable-drag {
+            cursor: grabbing;
+        }
+    </style>
+</head>
+<body>
+    <div class="inventory-container">
+        <div class="inventory-header">
+            <h1>Inventory</h1>
+        </div>
+        <div class="inventory-grid" id="inventory-grid"></div>
+    </div>
+    <div class="floating-menu" id="floating-menu"></div>
+
+    <script>
+        const inventoryItems = [
+            { id: 1, name: "Desert Eagle", type: "weapon" },
+            { id: 2, name: "Medkit", type: "consumable" },
+            { id: 3, name: "Armor Vest", type: "equipment" },
+            { id: 4, name: "Apple", type: "food" },
+            { id: 5, name: "Car Key", type: "key" }
+        ];
+
+        let currentFloatingMenu = null;
+
+        function createInventory() {
+    const grid = document.getElementById('inventory-grid');
+    for (let i = 0; i < 25; i++) {
+        const slot = document.createElement('div');
+        slot.className = 'inventory-slot empty'; // All slots start as empty
+        slot.dataset.slot = i;
+        grid.appendChild(slot);
+    }
+
+    inventoryItems.forEach((item, index) => {
+        const slot = grid.children[index];
+        slot.className = 'inventory-slot'; // Mark slot as occupied
+        slot.innerHTML = `
+            <div class="item" data-item-id="${item.id}" data-item-type="${item.type}">
+                <span class="item-id">#${item.id}</span>
+                <span class="item-name">${item.name}</span>
+                <span class="item-type">${item.type}</span>
+            </div>
+        `;
+    });
+}
+
+
+        function getPrimaryActionText(type) {
+            switch(type.toLowerCase()) {
+                case 'weapon': return 'Equip';
+                case 'food':
+                case 'consumable': return 'Use';
+                case 'equipment': return 'Wear';
+                case 'key': return 'Use';
+                default: return 'Use';
+            }
+        }
+
+        function showFloatingMenu(e, item) {
+            if (e.button !== 0) return; // Only show menu on left click
+            e.preventDefault();
+            const menu = document.getElementById('floating-menu');
+            const itemId = item.dataset.itemId;
+            const itemType = item.dataset.itemType;
+
+            menu.innerHTML = `
+                <button onclick="handleItemAction(${itemId}, '${getPrimaryActionText(itemType).toLowerCase()}')">${getPrimaryActionText(itemType)}</button>
+                <button onclick="showItem(${itemId})">Show</button>
+                <button onclick="giveItem(${itemId})">Give</button>
+                <button onclick="dropItem(${itemId})">Drop</button>
+            `;
+
+            const rect = item.getBoundingClientRect();
+            
+            let top = rect.bottom;
+            let left = rect.left;
+
+            if (top + menu.offsetHeight > window.innerHeight) {
+                top = rect.top - menu.offsetHeight;
+            }
+            if (left + menu.offsetWidth > window.innerWidth) {
+                left = rect.right - menu.offsetWidth;
+            }
+
+            menu.style.top = `${top}px`;
+            menu.style.left = `${left}px`;
+            menu.style.display = 'flex';
+            
+            if (currentFloatingMenu && currentFloatingMenu !== menu) {
+                currentFloatingMenu.style.display = 'none';
+            }
+            currentFloatingMenu = menu;
+
+            e.stopPropagation();
+        }
+
+        function closeFloatingMenu() {
+            document.getElementById('floating-menu').style.display = 'none';
+        }
+
+        function reorganizeInventory() {
+        const grid = document.getElementById('inventory-grid');
+        const slots = Array.from(grid.children);
+        
+        slots.forEach(slot => {
+            if (!slot.querySelector('.item')) {
+                slot.className = 'inventory-slot empty';
+            } else {
+                slot.className = 'inventory-slot';
+            }
+        });
+    }
+
+    function initializeSortable() {
+    const grid = document.getElementById('inventory-grid');
+
+    new Sortable(grid, {
+        animation: 150,
+        ghostClass: 'sortable-ghost',
+        chosenClass: 'sortable-chosen',
+        dragClass: 'sortable-drag',
+        handle: '.item', // Draggable elements are the items
+        draggable: '.item', // Make only the items draggable
+        group: 'inventory', // Allow reordering within the same group
+        onStart: function(evt) {
+            console.log('Drag started:', evt.item);
+            closeFloatingMenu();
+        },
+        onEnd: function(evt) {
+            console.log('Drag ended:', evt);
+
+            const itemEl = evt.item; // The dragged element
+            const targetSlot = evt.to.children[evt.newIndex]; // The slot it was dropped into
+
+            if (targetSlot.classList.contains('empty')) {
+                // If the slot is empty, place the item
+                targetSlot.appendChild(itemEl);
+                targetSlot.classList.remove('empty');
+            } else {
+                // Prevent overwriting and return item to its original slot
+                console.log('Slot not empty, reverting position');
+                evt.from.insertBefore(itemEl, evt.from.children[evt.oldIndex]);
+            }
+
+            reorganizeInventory();
+        }
+    });
+}
+
+
+
+        document.addEventListener('mousedown', e => {
+            const clickedItem = e.target.closest('.item');
+            const clickedMenu = e.target.closest('.floating-menu');
+            
+            if (!clickedItem && !clickedMenu) {
+                closeFloatingMenu();
+            } else if (clickedItem && !clickedMenu && e.button === 0) {
+                showFloatingMenu(e, clickedItem);
+            }
+        });
+
+        function handleItemAction(id, action) {
+            console.log(`${action} item #${id}`);
+            mp.trigger(`CEF:CLIENT:${action.charAt(0).toUpperCase() + action.slice(1)}Item`, id);
+            closeFloatingMenu();
+        }
+
+        function showItem(id) {
+            console.log(`Showing item #${id}`);
+            mp.trigger("CEF:CLIENT:ShowItem", id);
+            closeFloatingMenu();
+        }
+
+        function giveItem(id) {
+            console.log(`Giving item #${id}`);
+            mp.trigger("CEF:CLIENT:GiveItem", id);
+            closeFloatingMenu();
+        }
+
+        function dropItem(id) {
+            console.log(`Dropping item #${id}`);
+            mp.trigger("CEF:CLIENT:DropItem", id);
+            const item = document.querySelector(`[data-item-id="${id}"]`);
+            if (item) {
+                const slot = item.closest('.inventory-slot');
+                slot.className = 'inventory-slot empty';
+                slot.innerHTML = '';
+            }
+            reorganizeInventory();
+            closeFloatingMenu();
+        }
+
+        createInventory();
+        initializeSortable();
+    </script>
+</body>
+</html>

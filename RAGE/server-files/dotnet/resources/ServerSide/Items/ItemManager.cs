@@ -33,8 +33,22 @@ namespace ServerSide.Items
             var character = CharacterManager.PlayerCharacterPair[player];
             ItemDbManager.UpdateCharacterItems(character);
         }
-        [Command("invex")]
+        [Command("inv")]
         private void InvCommand(Player player)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if (character.Items == null)
+            {
+                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu ai nici un item.");
+                return;
+            }
+            character.Items = FixItemsOrder(character.Items);
+
+            player.SendChatMessage("hatz");
+            player.TriggerEvent("SERVER:CLIENT:OpenInventory");
+        }
+        [Command("invex")]
+        private void InvexCommand(Player player)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
             if(character.Items == null)

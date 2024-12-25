@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CHRP.Assets;
+using ClientSide.Character.Inventory;
 using RAGE;
 using RAGE.Ui;
 
@@ -29,9 +30,10 @@ namespace ClientSide
                 Events.CallRemote("CLIENT:SERVER:ActionKeyPressed");
             });
 
+            KeyManager.KeyBind(KeyManager.KeyF4, () =>
+            {
+                InventoryHandler.CloseInventory(null);
+            });
         }
-
     }
-
-
 }

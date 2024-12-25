@@ -12,8 +12,8 @@ namespace ClientSide.Character.Hair
         private HairDecalsList hairDecalsList;
         private HairHandler()
         {
-            Events.Add("SERVER:CLIENT:ShowHairScreen", showHairScreen);
-            Events.Add("CEF:CLIENT:StopHairScreen", stopHairScreen);
+            Events.Add("SERVER:CLIENT:ShowHairScreen", ShowHairScreen);
+            Events.Add("CEF:CLIENT:StopHairScreen", StopHairScreen);
             Events.Add("CEF:CLIENT:UpdateHair", UpdateHair);
             hairDecalsList = new HairDecalsList
             {
@@ -125,7 +125,7 @@ namespace ClientSide.Character.Hair
             RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(10, bodyhairValue, bodyhairOpacity);
             RAGE.Elements.Player.LocalPlayer.SetComponentVariation(2, hairValue, 0, 0);
         }
-        private void showHairScreen(object[] args)
+        private void ShowHairScreen(object[] args)
         {
             // Initialize the HTML window and show the cursor
             cefBrowser = new HtmlWindow("http://package2/html/Characters/customize_hair.html");
@@ -133,19 +133,19 @@ namespace ClientSide.Character.Hair
             Cursor.Visible = true;
 
             string json = args[0].ToString();
-            Chat.Output(json);
+            //Chat.Output(json);
 
             // Escape the JSON for embedding in JavaScript
             string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
             cefBrowser.ExecuteJs($"updateHairDataFromJson(\"{escapedJson}\");");
         }
 
-        private void stopHairScreen(object[] args)
+        private void StopHairScreen(object[] args)
         {
             cefBrowser.Destroy();
             cefBrowser = null;
             Cursor.Visible = false;
-            Chat.Output("closed");
+            //Chat.Output("closed");
 
             string json = args[0].ToString();
             Events.CallRemote("CLIENT:SERVER:UpdateHair", json);
