@@ -32,6 +32,9 @@
             padding: 8px;
             text-align: center;
             border-bottom: 2px solid #ff6600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .inventory-header h1 {
@@ -40,6 +43,20 @@
             font-size: 1.2em;
             text-transform: uppercase;
             letter-spacing: 1px;
+            flex-grow: 1;
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            color: #ff6600;
+            cursor: pointer;
+            font-size: 1.2em;
+            padding: 0 10px;
+        }
+
+        .close-button:hover {
+            color: #ff8533;
         }
 
         .inventory-grid {
@@ -89,6 +106,17 @@
             left: 2px;
             font-size: 0.7em;
             color: #ff6600;
+        }
+
+        .item-amount {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            font-size: 0.8em;
+            color: #fff;
+            background-color: rgba(255, 102, 0, 0.8);
+            padding: 1px 4px;
+            border-radius: 3px;
         }
 
         .item-name {
@@ -143,50 +171,151 @@
         .sortable-drag {
             cursor: grabbing;
         }
+        /* Add styles for the new modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1a1a1a;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            z-index: 2000;
+        }
+
+        .modal-header {
+            padding: 10px;
+            background-color: #000;
+            border-bottom: 2px solid #ff6600;
+            text-align: center;
+        }
+
+        .modal-content {
+            padding: 10px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-top: 1px solid #333;
+        }
+
+        .player-list {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .player-list button {
+            width: 100%;
+            padding: 5px;
+            text-align: left;
+            border: none;
+            background-color: #333;
+            color: white;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .player-list button:hover {
+            background-color: #ff6600;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .slider-container input {
+            flex-grow: 1;
+        }
     </style>
 </head>
 <body>
     <div class="inventory-container">
         <div class="inventory-header">
             <h1>Inventory</h1>
+            <button class="close-button" onclick="closeInventory()">×</button>
         </div>
         <div class="inventory-grid" id="inventory-grid"></div>
     </div>
     <div class="floating-menu" id="floating-menu"></div>
 
-    <script>
-        const inventoryItems = [
-            { id: 1, name: "Desert Eagle", type: "weapon" },
-            { id: 2, name: "Medkit", type: "consumable" },
-            { id: 3, name: "Armor Vest", type: "equipment" },
-            { id: 4, name: "Apple", type: "food" },
-            { id: 5, name: "Car Key", type: "key" }
-        ];
+     <!-- Player selection modal -->
+     <div class="modal" id="player-modal">
+        <div class="modal-header">
+            <h3>Select a Player</h3>
+        </div>
+        <div class="modal-content">
+            <div class="player-list" id="player-list"></div>
+            <div class="slider-container" id="slider-container" style="display: none;">
+                <input type="range" id="amount-slider" min="1" max="1" value="1">
+                <span id="slider-value">1</span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button onclick="closePlayerModal()">Cancel</button>
+        </div>
+    </div>
 
-        let currentFloatingMenu = null;
+    <script>
+        let inventoryItems = []; // Will be populated by updateInventory
+
+        function updateInventory(itemDataJson) {
+            try {
+                const itemData = JSON.parse(itemDataJson);
+                inventoryItems = itemData;
+                refreshInventoryDisplay();
+            } catch (e) {
+                console.error('Error parsing inventory data:', e);
+            }
+        }
+
+        function refreshInventoryDisplay() {
+            const grid = document.getElementById('inventory-grid');
+            // Clear all slots first
+            Array.from(grid.children).forEach(slot => {
+                slot.className = 'inventory-slot empty';
+                slot.innerHTML = '';
+            });
+
+            // Add items to slots
+            inventoryItems.forEach((item, index) => {
+                if (index < grid.children.length) {
+                    const slot = grid.children[index];
+                    slot.className = 'inventory-slot';
+                    slot.innerHTML = `
+                        <div class="item" data-item-id="${item.id}" data-item-type="${item.type}">
+                            <span class="item-id">#${item.id}</span>
+                            <span class="item-name">${item.name}</span>
+                            <span class="item-type">${item.type}</span>
+                            <span class="item-amount">${item.amount || 1}</span>
+                        </div>
+                    `;
+                }
+            });
+        }
 
         function createInventory() {
-    const grid = document.getElementById('inventory-grid');
-    for (let i = 0; i < 25; i++) {
-        const slot = document.createElement('div');
-        slot.className = 'inventory-slot empty'; // All slots start as empty
-        slot.dataset.slot = i;
-        grid.appendChild(slot);
-    }
+            const grid = document.getElementById('inventory-grid');
+            for (let i = 0; i < 25; i++) {
+                const slot = document.createElement('div');
+                slot.className = 'inventory-slot empty';
+                slot.dataset.slot = i;
+                grid.appendChild(slot);
+            }
+        }
 
-    inventoryItems.forEach((item, index) => {
-        const slot = grid.children[index];
-        slot.className = 'inventory-slot'; // Mark slot as occupied
-        slot.innerHTML = `
-            <div class="item" data-item-id="${item.id}" data-item-type="${item.type}">
-                <span class="item-id">#${item.id}</span>
-                <span class="item-name">${item.name}</span>
-                <span class="item-type">${item.type}</span>
-            </div>
-        `;
-    });
-}
-
+        function closeInventory() {
+            mp.trigger("CEF:CLIENT:CloseInventory");
+        }
 
         function getPrimaryActionText(type) {
             switch(type.toLowerCase()) {
@@ -200,7 +329,7 @@
         }
 
         function showFloatingMenu(e, item) {
-            if (e.button !== 0) return; // Only show menu on left click
+            if (e.button !== 0) return;
             e.preventDefault();
             const menu = document.getElementById('floating-menu');
             const itemId = item.dataset.itemId;
@@ -229,11 +358,6 @@
             menu.style.left = `${left}px`;
             menu.style.display = 'flex';
             
-            if (currentFloatingMenu && currentFloatingMenu !== menu) {
-                currentFloatingMenu.style.display = 'none';
-            }
-            currentFloatingMenu = menu;
-
             e.stopPropagation();
         }
 
@@ -242,66 +366,41 @@
         }
 
         function reorganizeInventory() {
-        const grid = document.getElementById('inventory-grid');
-        const slots = Array.from(grid.children);
-        
-        slots.forEach(slot => {
-            if (!slot.querySelector('.item')) {
-                slot.className = 'inventory-slot empty';
-            } else {
-                slot.className = 'inventory-slot';
-            }
-        });
-    }
-
-    function initializeSortable() {
-    const grid = document.getElementById('inventory-grid');
-
-    new Sortable(grid, {
-        animation: 150,
-        ghostClass: 'sortable-ghost',
-        chosenClass: 'sortable-chosen',
-        dragClass: 'sortable-drag',
-        handle: '.item', // Draggable elements are the items
-        draggable: '.item', // Make only the items draggable
-        group: 'inventory', // Allow reordering within the same group
-        onStart: function(evt) {
-            console.log('Drag started:', evt.item);
-            closeFloatingMenu();
-        },
-        onEnd: function(evt) {
-            console.log('Drag ended:', evt);
-
-            const itemEl = evt.item; // The dragged element
-            const targetSlot = evt.to.children[evt.newIndex]; // The slot it was dropped into
-
-            if (targetSlot.classList.contains('empty')) {
-                // If the slot is empty, place the item
-                targetSlot.appendChild(itemEl);
-                targetSlot.classList.remove('empty');
-            } else {
-                // Prevent overwriting and return item to its original slot
-                console.log('Slot not empty, reverting position');
-                evt.from.insertBefore(itemEl, evt.from.children[evt.oldIndex]);
-            }
-
-            reorganizeInventory();
+            const grid = document.getElementById('inventory-grid');
+            Array.from(grid.children).forEach(slot => {
+                slot.className = slot.querySelector('.item') ? 'inventory-slot' : 'inventory-slot empty';
+            });
         }
-    });
-}
 
-
-
-        document.addEventListener('mousedown', e => {
-            const clickedItem = e.target.closest('.item');
-            const clickedMenu = e.target.closest('.floating-menu');
+        function initializeSortable() {
+            const grid = document.getElementById('inventory-grid');
             
-            if (!clickedItem && !clickedMenu) {
-                closeFloatingMenu();
-            } else if (clickedItem && !clickedMenu && e.button === 0) {
-                showFloatingMenu(e, clickedItem);
-            }
-        });
+            new Sortable(grid, {
+                animation: 150,
+                ghostClass: 'sortable-ghost',
+                chosenClass: 'sortable-chosen',
+                dragClass: 'sortable-drag',
+                handle: '.item',
+                filter: '.empty', // Prevent dragging empty slots
+                onStart: function(evt) {
+                    closeFloatingMenu();
+                },
+                onEnd: function(evt) {
+                    const fromSlot = evt.from.children[evt.oldIndex];
+                    const toSlot = evt.to.children[evt.newIndex];
+                    
+                    if (toSlot.querySelector('.item') && fromSlot !== toSlot) {
+                        // Revert if target slot is not empty
+                        evt.from.insertBefore(evt.item, evt.from.children[evt.oldIndex]);
+                    }
+                    
+                    reorganizeInventory();
+                    // Trigger an event to save the new order if needed
+                    const newOrder = Array.from(grid.querySelectorAll('.item')).map(item => item.dataset.itemId);
+                    mp.trigger("CEF:CLIENT:UpdateInventoryOrder", JSON.stringify(newOrder));
+                }
+            });
+        }
 
         function handleItemAction(id, action) {
             console.log(`${action} item #${id}`);
@@ -334,8 +433,98 @@
             closeFloatingMenu();
         }
 
+        // Close floating menu when clicking outside
+        document.addEventListener('mousedown', e => {
+            const clickedItem = e.target.closest('.item');
+            const clickedMenu = e.target.closest('.floating-menu');
+            
+            if (!clickedItem && !clickedMenu) {
+                closeFloatingMenu();
+            } else if (clickedItem && !clickedMenu && e.button === 0) {
+                showFloatingMenu(e, clickedItem);
+            }
+        });
+        let nearbyPlayers = []; // This will be populated by the client-side script
+
+        function populateNearbyPlayers(playersJson) {
+            try {
+                nearbyPlayers = JSON.parse(playersJson);
+            } catch (e) {
+                console.error('Error parsing nearby players:', e);
+                nearbyPlayers = [];
+            }
+        }
+
+        function showPlayerModal(action, itemId) {
+            const modal = document.getElementById('player-modal');
+            const playerList = document.getElementById('player-list');
+            const sliderContainer = document.getElementById('slider-container');
+            const amountSlider = document.getElementById('amount-slider');
+            const sliderValue = document.getElementById('slider-value');
+
+            // Clear previous player list
+            playerList.innerHTML = '';
+
+            // Populate player list
+            nearbyPlayers.forEach(player => {
+                const button = document.createElement('button');
+                button.textContent = player.name;
+                button.onclick = () => {
+                    if (action === 'give') {
+                        const amount = parseInt(amountSlider.value, 10);
+                        giveItemToPlayer(itemId, player.id, amount);
+                    } else if (action === 'show') {
+                        showItemToPlayer(itemId, player.id);
+                    }
+                    closePlayerModal();
+                };
+                playerList.appendChild(button);
+            });
+
+            // Show slider only for "give" action
+            if (action === 'give') {
+                sliderContainer.style.display = 'flex';
+                amountSlider.max = getItemAmount(itemId); // Assuming this function exists to get the item amount
+                amountSlider.value = amountSlider.max;
+                sliderValue.textContent = amountSlider.value;
+                amountSlider.oninput = () => {
+                    sliderValue.textContent = amountSlider.value;
+                };
+            } else {
+                sliderContainer.style.display = 'none';
+            }
+
+            modal.style.display = 'block';
+        }
+
+        function closePlayerModal() {
+            const modal = document.getElementById('player-modal');
+            modal.style.display = 'none';
+        }
+
+        function getItemAmount(itemId) {
+            const item = inventoryItems.find(item => item.id === parseInt(itemId, 10));
+            return item ? item.amount : 1;
+        }
+
+        function showItemToPlayer(itemId, playerId) {
+            console.log(`Showing item #${itemId} to player #${playerId}`);
+            mp.trigger("CEF:CLIENT:ShowItemToPlayer", itemId, playerId);
+        }
+
+        function giveItemToPlayer(itemId, playerId, amount) {
+            console.log(`Giving ${amount} of item #${itemId} to player #${playerId}`);
+            mp.trigger("CEF:CLIENT:GiveItemToPlayer", itemId, playerId, amount);
+        }
+
+        // Example of populating nearby players from client-side:
+        populateNearbyPlayers('[{"id":1,"name":"Player1"},{"id":2,"name":"Player2"}]');
+        // Initialize the inventory
         createInventory();
         initializeSortable();
+
+        // Example of how to update inventory with new data:
+        // updateInventory('[{"id": 1, "name": "Desert Eagle", "type": "weapon", "amount": 1}, {"id": 2, "name": "Medkit", "type": "consumable", "amount": 5}]');
     </script>
 </body>
 </html>

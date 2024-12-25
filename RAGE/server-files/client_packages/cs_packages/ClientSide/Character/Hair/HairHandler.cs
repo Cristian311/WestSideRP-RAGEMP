@@ -133,9 +133,6 @@ namespace ClientSide.Character.Hair
             Cursor.Visible = true;
 
             string json = args[0].ToString();
-            //Chat.Output(json);
-
-            // Escape the JSON for embedding in JavaScript
             string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
             cefBrowser.ExecuteJs($"updateHairDataFromJson(\"{escapedJson}\");");
         }

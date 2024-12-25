@@ -51,6 +51,7 @@ namespace ServerSide.Characters.Customize
                 NAPI.Util.ConsoleOutput("onCharCustomiseUpdate ERROR: " + e.Message + "\n" + e.StackTrace);
             }
         }
+
         public static void UpdatePlayerFaceFeatures(Player player, CharacterData data, bool gender)
         {
             //placeholder empty vars

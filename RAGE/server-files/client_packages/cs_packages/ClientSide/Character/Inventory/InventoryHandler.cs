@@ -9,10 +9,21 @@ namespace ClientSide.Character.Inventory
     internal class InventoryHandler : Events.Script
     {
         private static HtmlWindow cefBrowser;
-        public InventoryHandler() 
+
+        public InventoryHandler()
         {
+            // Server to client events
             Events.Add("SERVER:CLIENT:OpenInventory", OpenInventory);
+
+            // CEF to client events
             Events.Add("CEF:CLIENT:CloseInventory", CloseInventory);
+            Events.Add("CEF:CLIENT:UseItem", UseItem);
+            Events.Add("CEF:CLIENT:EquipItem", EquipItem);
+            Events.Add("CEF:CLIENT:WearItem", WearItem);
+            Events.Add("CEF:CLIENT:ShowItem", ShowItem);
+            Events.Add("CEF:CLIENT:GiveItem", GiveItem);
+            Events.Add("CEF:CLIENT:DropItem", DropItem);
+            Events.Add("CEF:CLIENT:UpdateInventoryOrder", UpdateInventoryOrder);
         }
 
         public static void CloseInventory(object[] args)
@@ -27,6 +38,51 @@ namespace ClientSide.Character.Inventory
             cefBrowser = new HtmlWindow("http://package2/html/inventory/inventory.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;
+            string json = args[0].ToString();
+            string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
+            cefBrowser.ExecuteJs($"updateInventory(\"{escapedJson}\");");
+        }
+
+        private void UseItem(object[] args)
+        {
+            string itemId = args[0].ToString();
+            Events.CallRemote("CLIENT:SERVER:UseItem", itemId);
+        }
+
+        private void EquipItem(object[] args)
+        {
+            string itemId = args[0].ToString();
+            Events.CallRemote("CLIENT:SERVER:EquipItem", itemId);
+        }
+
+        private void WearItem(object[] args)
+        {
+            string itemId = args[0].ToString();
+            Events.CallRemote("CLIENT:SERVER:WearItem", itemId);
+        }
+
+        private void ShowItem(object[] args)
+        {
+            string itemId = args[0].ToString();
+            Events.CallRemote("CLIENT:SERVER:ShowItem", itemId);
+        }
+
+        private void GiveItem(object[] args)
+        {
+            string itemId = args[0].ToString();
+            Events.CallRemote("CLIENT:SERVER:GiveItem", itemId);
+        }
+
+        private void DropItem(object[] args)
+        {
+            string itemId = args[0].ToString();
+            Events.CallRemote("CLIENT:SERVER:DropItem", itemId);
+        }
+
+        private void UpdateInventoryOrder(object[] args)
+        {
+            string orderJson = args[0].ToString();
+            Events.CallRemote("CLIENT:SERVER:UpdateInventoryOrder", orderJson);
         }
     }
 }

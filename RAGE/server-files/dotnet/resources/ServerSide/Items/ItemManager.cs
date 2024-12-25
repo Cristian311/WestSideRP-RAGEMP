@@ -1,4 +1,5 @@
-﻿using GTANetworkAPI;
+﻿using Google.Protobuf.WellKnownTypes;
+using GTANetworkAPI;
 using GTANetworkMethods;
 using ServerSide.Accounts;
 using ServerSide.Admin;
@@ -20,6 +21,21 @@ namespace ServerSide.Items
 {
     internal class ItemManager : Script
     {
+        internal class ItemData
+        {
+            public int id;
+            public int amount;
+            public string name;
+            public string type;
+            
+            public ItemData(int ID, string Name, string Type, int Amount)
+            {
+                id = ID;
+                name = Name;
+                type = Type;
+                amount = Amount;
+            }
+        }
         private ItemManager()
         {
             WeaponHashMapper.LoadWeapons("json\\weapon\\weapon_names.json");
@@ -44,9 +60,14 @@ namespace ServerSide.Items
             }
             character.Items = FixItemsOrder(character.Items);
 
-            player.SendChatMessage("hatz");
-            player.TriggerEvent("SERVER:CLIENT:OpenInventory");
+            List<ItemData> itemDataList = character.Items
+                .Select(item => new ItemData(item.localID, item.Name, item.Type, item.Amount))
+                .ToList();
+            
+            string json = NAPI.Util.ToJson(itemDataList);
+            player.TriggerEvent("SERVER:CLIENT:OpenInventory", json);
         }
+
         [Command("invex")]
         private void InvexCommand(Player player)
         {
@@ -63,11 +84,11 @@ namespace ServerSide.Items
             foreach (var item in character.Items) // print items
             {
                 if(item.Type == "phone")
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] Phone - {item.Name} - {item.PhoneNumber}");
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] (Phone) - {item.Name} - {item.PhoneNumber}");
                 else if(item.UsedFor != string.Empty)
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] {item.Name} - {item.Amount} units - Used for: {item.UsedFor}");
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] ({item.Type}) - {item.Name} - {item.Amount} units - Used for: {item.UsedFor}");
                 else
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] {item.Name} - {item.Amount} units.");
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] ({item.Type}) - {item.Name} - {item.Amount} units.");
             }
         }
 
@@ -383,6 +404,187 @@ namespace ServerSide.Items
             // Reassign IDs to ensure they remain sequential
             //character.ItemIdManager.ReassignSequentialIds(character.Items);
             ItemDbManager.UpdateCharacterItems(character);
+        }
+
+        // Add these methods to the ItemManager class:
+
+        [RemoteEvent("CLIENT:SERVER:UseItem")]
+        private void OnUseItem(Player player, string itemId)
+        {
+            try
+            {
+                var character = CharacterManager.PlayerCharacterPair[player];
+                int id = Convert.ToInt32(itemId);
+                Item item = GetItemByIndex(character.Items, id);
+                if (item != null)
+                {
+                    UseItem(character, item);
+                }
+                else
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR} ID al itemului incorect.");
+            }
+            catch (Exception e)
+            {
+                NAPI.Util.ConsoleOutput($"OnUseItem ERROR: {e.Message}\n{e.StackTrace}");
+            }
+        }
+
+        [RemoteEvent("CLIENT:SERVER:EquipItem")]
+        private void OnEquipItem(Player player, string itemId)
+        {
+            try
+            {
+                var character = CharacterManager.PlayerCharacterPair[player];
+                int id = Convert.ToInt32(itemId);
+                Item item = GetItemByIndex(character.Items, id);
+                if (item != null && item.Type.ToLower() == "weapon")
+                {
+                    UseItem(character, item); // Reuse UseItem since it already handles weapons
+                }
+                else
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR} Acest item nu poate fi echipat.");
+            }
+            catch (Exception e)
+            {
+                NAPI.Util.ConsoleOutput($"OnEquipItem ERROR: {e.Message}\n{e.StackTrace}");
+            }
+        }
+
+        [RemoteEvent("CLIENT:SERVER:ShowItem")]
+        private void OnShowItem(Player player, string itemId)
+        {
+            try
+            {
+                var character = CharacterManager.PlayerCharacterPair[player];
+                int id = Convert.ToInt32(itemId);
+                Item item = GetItemByIndex(character.Items, id);
+
+                var nearbyPlayers = NAPI.Player.GetPlayersInRadiusOfPlayer(2f, player);
+                foreach (var nearbyPlayer in nearbyPlayers)
+                {
+                    if (nearbyPlayer != player)
+                    {
+                        nearbyPlayer.SendChatMessage($"{Colors.COLOR_CHAT_INFO}{character.Name} iti arata {Colors.COLOR_CHAT_DARK_BLUE}{item.Name}{Colors.COLOR_CHAT_INFO}.");
+                    }
+                }
+                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai aratat {Colors.COLOR_CHAT_DARK_BLUE}{item.Name}{Colors.COLOR_CHAT_INFO} jucatorilor din jur.");
+            }
+            catch (Exception e)
+            {
+                NAPI.Util.ConsoleOutput($"OnShowItem ERROR: {e.Message}\n{e.StackTrace}");
+            }
+        }
+
+        [RemoteEvent("CLIENT:SERVER:GiveItem")]
+        private void OnGiveItem(Player player, string itemId)
+        {
+            try
+            {
+                var character = CharacterManager.PlayerCharacterPair[player];
+                int id = Convert.ToInt32(itemId);
+                Item item = GetItemByIndex(character.Items, id);
+
+                var nearbyPlayers = NAPI.Player.GetPlayersInRadiusOfPlayer(30f, player);
+                if (nearbyPlayers.Count != 2) // player + 1 target
+                {
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Trebuie sa fie doar o persoana langa tine pentru a da un item.");
+                    return;
+                }
+
+                var targetPlayer = nearbyPlayers.First(p => p != player);
+                var targetCharacter = CharacterManager.PlayerCharacterPair[targetPlayer];
+
+                // Give the item
+                Item receivedItem = new Item(targetCharacter, item.Name, item.Type, 1, item.Countable, item.UsedFor);
+                targetCharacter.Items.Add(receivedItem);
+
+                // Remove from original player
+                if (item.Amount <= 1)
+                {
+                    character.Items.Remove(item);
+                    character.ItemIdManager.ReclaimId(item.localID);
+                }
+                else
+                {
+                    item.Amount--;
+                }
+
+                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}I-ai dat {Colors.COLOR_CHAT_DARK_BLUE}{item.Name} {Colors.COLOR_CHAT_INFO}lui {targetCharacter.Name}.");
+                targetPlayer.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai primit {Colors.COLOR_CHAT_DARK_BLUE}{item.Name} de la {Colors.COLOR_CHAT_INFO}{character.Name}.");
+
+                ItemDbManager.UpdateCharacterItems(character);
+                ItemDbManager.UpdateCharacterItems(targetCharacter);
+            }
+            catch (Exception e)
+            {
+                NAPI.Util.ConsoleOutput($"OnGiveItem ERROR: {e.Message}\n{e.StackTrace}");
+            }
+        }
+
+        [RemoteEvent("CLIENT:SERVER:DropItem")]
+        private void OnDropItem(Player player, string itemId)
+        {
+            try
+            {
+                var character = CharacterManager.PlayerCharacterPair[player];
+                int id = Convert.ToInt32(itemId);
+                Item item = GetItemByIndex(character.Items, id);
+
+                if (item.Amount <= 1)
+                {
+                    character.Items.Remove(item);
+                    character.ItemIdManager.ReclaimId(item.localID);
+                }
+                else
+                {
+                    item.Amount--;
+                }
+
+                player.SendChatMessage($"{Colors.COLOR_CHAT_CRIMSON}Ai aruncat {item.Name}.");
+                ItemDbManager.UpdateCharacterItems(character);
+            }
+            catch (Exception e)
+            {
+                NAPI.Util.ConsoleOutput($"OnDropItem ERROR: {e.Message}\n{e.StackTrace}");
+            }
+        }
+
+        [RemoteEvent("CLIENT:SERVER:UpdateInventoryOrder")]
+        private void OnUpdateInventoryOrder(Player player, string orderJson)
+        {
+            try
+            {
+                var character = CharacterManager.PlayerCharacterPair[player];
+                List<string> newOrder = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(orderJson);
+
+                // Create a new ordered list based on the received order
+                var reorderedItems = new List<Item>();
+                foreach (var idStr in newOrder)
+                {
+                    int id = Convert.ToInt32(idStr);
+                    var item = GetItemByIndex(character.Items, id);
+                    if (item != null)
+                    {
+                        reorderedItems.Add(item);
+                    }
+                }
+
+                // Add any items that weren't in the order list at the end
+                foreach (var item in character.Items)
+                {
+                    if (!reorderedItems.Contains(item))
+                    {
+                        reorderedItems.Add(item);
+                    }
+                }
+
+                character.Items = reorderedItems;
+                ItemDbManager.UpdateCharacterItems(character);
+            }
+            catch (Exception e)
+            {
+                NAPI.Util.ConsoleOutput($"OnUpdateInventoryOrder ERROR: {e.Message}\n{e.StackTrace}");
+            }
         }
         public static List<Item> FixItemsOrder(List<Item> items)
         {
