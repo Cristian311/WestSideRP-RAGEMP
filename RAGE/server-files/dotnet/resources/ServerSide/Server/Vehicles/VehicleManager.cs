@@ -37,7 +37,7 @@ namespace ServerSide.Server.Vehicles
             player.SendChatMessage("Masinile tale: ");
             foreach (var vehicle in character.PersonalVehicles)
             {
-                player.SendChatMessage($"{cont}. {vehicle.VehicleId} {vehicle.Name}");
+                player.SendChatMessage($"{cont}. {vehicle.VehicleId} {vehicle.GTAVehicle.DisplayName}");
                 cont++;
             }
         }

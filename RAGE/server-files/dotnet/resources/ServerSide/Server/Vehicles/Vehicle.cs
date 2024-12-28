@@ -7,23 +7,20 @@ namespace ServerSide.Server.Vehicles
     public class Vehicle
     {
         public string OwnerName { get; }
-        public string Name { get; }
-        public int Color1 { get; set; }
-        public int Color2 { get; set; }
 
         public string OwnerType { get; }
         public int VehicleId { get; set; }
         public string VehiclePlate { get; set; }
-        public GTANetworkAPI.Vehicle vehicle { get; }
+        public double Distance { get; set; }
+        public DateTime InsuranceEnd { get; set; }
+
+        public GTANetworkAPI.Vehicle GTAVehicle { get; }
 
         public Vehicle(string ownerName, string ownerType,  GTANetworkAPI.Vehicle vehicleHash)
         {
             OwnerName = ownerName;
             OwnerType = ownerType;
-            vehicle = vehicleHash;
-            Color1 = vehicle.PrimaryColor;
-            Color2 = vehicle.SecondaryColor;
-
+            GTAVehicle = vehicleHash;
         }
     }
 }
