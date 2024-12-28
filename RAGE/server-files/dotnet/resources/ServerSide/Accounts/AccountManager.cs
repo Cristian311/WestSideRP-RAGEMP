@@ -1,5 +1,5 @@
 ﻿using GTANetworkAPI;
-using ServerSide.Interfaces;
+using ServerSide.Server.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;

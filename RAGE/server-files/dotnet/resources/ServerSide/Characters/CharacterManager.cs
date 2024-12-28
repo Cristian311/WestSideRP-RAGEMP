@@ -1,19 +1,18 @@
 ﻿using GTANetworkAPI;
-using ServerSide.Interfaces;
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using ServerSide.Accounts;
-using ServerSide.Hair;
 using GTANetworkMethods;
 using Player = GTANetworkAPI.Player;
-using ServerSide.DB.CharacterDB;
 using System.Threading;
 using Org.BouncyCastle.Asn1.X509;
-using ServerSide.Characters.Clothes;
-using ServerSide.Characters.Tattoos;
-using ServerSide.Characters.Customize;
-using ServerSide.Items;
+using ServerSide.Characters.Customization.Hair;
+using ServerSide.Characters.Customization.Customize;
+using ServerSide.Characters.Customization.Clothes;
+using ServerSide.Characters.Customization.Tattoos;
+using ServerSide.Server.DB.CharacterDB;
+using ServerSide.Server.Interfaces;
 
 
 namespace ServerSide.Characters

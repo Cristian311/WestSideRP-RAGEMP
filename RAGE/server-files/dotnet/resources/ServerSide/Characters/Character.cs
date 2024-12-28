@@ -1,13 +1,13 @@
 ﻿using GTANetworkAPI;
-using ServerSide.Characters.Clothes;
-using ServerSide.Characters.Customize;
-using ServerSide.Hair;
-using ServerSide.Interfaces;
-using ServerSide.Items;
-using ServerSide.Items.Util;
-using System;
+using ServerSide.Characters.Customization.Clothes;
+using ServerSide.Characters.Customization.Customize;
+using ServerSide.Characters.Customization.Hair;
+using ServerSide.Server.Interfaces;
+using ServerSide.Server.Items;
+
 using System.Collections.Generic;
-using System.Text;
+
+using Vehicle = ServerSide.Server.Vehicles.Vehicle;
 
 namespace ServerSide.Characters
 {
@@ -37,6 +37,7 @@ namespace ServerSide.Characters
         public IdManager<Item> ItemIdManager = new IdManager<Item>();
         public ColShape currentColshape { get; set; }
         public List<string> TattooNames { get; set; } = new List<string>();
+        public List<Vehicle> PersonalVehicles { get; set; } = new List<Vehicle>();
         public Character(Player player, IAccount account, string name, int age, int money)
         {
             this.player = player;

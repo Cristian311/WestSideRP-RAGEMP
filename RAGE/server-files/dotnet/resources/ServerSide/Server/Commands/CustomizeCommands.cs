@@ -1,0 +1,117 @@
+﻿using GTANetworkAPI;
+using ServerSide.Accounts;
+using ServerSide.Characters;
+using ServerSide.Characters.Customization.Clothes;
+using ServerSide.Server.DB.CharacterDB;
+
+
+
+namespace ServerSide.Server.Commands
+{
+    internal class CustomizeCommands : Script
+    {
+        [Command("hair")]
+        private void hairCommand(Player player)
+        {
+            Character character = CharacterManager.PlayerCharacterPair[player];
+            var HairJSON = NAPI.Util.ToJson(character.Hair);
+            player.TriggerEvent("SERVER:CLIENT:ShowHairScreen", HairJSON);
+        }
+        [Command("facefeatures")]
+        private void facefeaturesCommand(Player player)
+        {
+            Character character = CharacterManager.PlayerCharacterPair[player];
+            var FaceJSON = NAPI.Util.ToJson(character.Face);
+            player.TriggerEvent("SERVER:CLIENT:ShowCustomizeCharScreen", FaceJSON, character.Gender);
+        }
+        [Command("changechar")]
+        private void changecharCommand(Player player)
+        {
+            var account = AccountManager.PlayerAccountPairs[player];
+            var character = CharacterManager.PlayerCharacterPair[player];
+            string username = account.Name;
+
+            CharacterManager.GetNameMoneyJson(account, out string namesJSON, out string moneyJSON);
+            UpdateCharDataDBManager.UpdateCharacter(character);
+            //display character interface with new character data
+            player.TriggerEvent("SERVER:CLIENT:ShowCharInterface");
+            player.TriggerEvent("SERVER:CLIENT:DisplayAccountInfo", username, namesJSON, moneyJSON);
+            UpdateCharDataDBManager.UpdateCharacter(character);
+        }
+        [Command("clothes")]
+        private void ClothesCommand(Player player)
+        {
+            var account = AccountManager.PlayerAccountPairs[player];
+            var character = CharacterManager.PlayerCharacterPair[player];
+            ClothesTextureData clothesNames = new ClothesTextureData();
+            var gender = character.Gender ? "male" : "female";
+            clothesNames.SetGender(gender);
+            var itemMaxValuesJSON = NAPI.Util.ToJson(clothesNames.results);
+            var clothes = character.Clothes[character.currentOutfit];
+            var clothesJson = NAPI.Util.ToJson(clothes);
+            player.TriggerEvent("SERVER:CLIENT:OpenClothesScreen", clothesJson, character.currentOutfit);
+            player.TriggerEvent("SERVER:CLIENT:UpdateDataMaxValues", itemMaxValuesJSON);
+
+        }
+        [Command("shirt")]
+        private void ShirtCommand(Player player, string toggle)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if (toggle == "off")
+            {
+                player.SetClothes(3, 15, 0); // torso
+                player.SetClothes(11, 15, 0); // shirt
+                player.SetClothes(8, 15, 0); // undershirt
+            }
+            if (toggle == "on")
+            {
+                int index = character.currentOutfit;
+                player.SetClothes(3, character.Clothes[index].Torso.Drawable, character.Clothes[index].Torso.Texture); // torso
+                player.SetClothes(11, character.Clothes[index].Shirts.Drawable, character.Clothes[index].Shirts.Texture); // shirt
+                player.SetClothes(8, character.Clothes[index].Undershirt.Drawable, character.Clothes[index].Undershirt.Texture); // undershirt
+            }
+        }
+        [Command("pants")]
+        private void PantsCommand(Player player, string toggle)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if (toggle == "off")
+            {
+                player.SetClothes(4, 61, 0); // legs
+            }
+            if (toggle == "on")
+            {
+                int index = character.currentOutfit;
+                player.SetClothes(4, character.Clothes[index].Legs.Drawable, character.Clothes[index].Legs.Texture); // legs
+            }
+        }
+        [Command("shoes")]
+        private void ShoesCommand(Player player, string toggle)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if (toggle == "off")
+            {
+                player.SetClothes(6, 34, 0); // shoes
+            }
+            if (toggle == "on")
+            {
+                int index = character.currentOutfit;
+                player.SetClothes(6, character.Clothes[index].Shoes.Drawable, character.Clothes[index].Shoes.Texture); // shoes
+            }
+        }
+        [Command("cap")]
+        private void CapCommand(Player player, string toggle)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if (toggle == "off")
+            {
+                player.ClearAccessory(0); // cap
+            }
+            if (toggle == "on")
+            {
+                int index = character.currentOutfit;
+                player.SetAccessories(0, character.Clothes[index].Helmets.Drawable, character.Clothes[index].Helmets.Texture); // cap
+            }
+        }
+    }
+}
