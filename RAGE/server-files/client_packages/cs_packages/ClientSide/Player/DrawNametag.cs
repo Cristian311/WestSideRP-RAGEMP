@@ -37,7 +37,7 @@ namespace ClientSide.Player
                 {
                     /* Debug */
                     //Chat.Output($"(debug) Player: {player.Name}; Position: {position.X}, {position.Y}, {position.Z}; Screen: {screenX}, {screenY}; world3dToScreen2d: {_screenX}, {_screenY}");
-                    Chat.Output($"x: {screenX} y: {screenY}");
+                    //Chat.Output($"x: {screenX} y: {screenY}");
                     /* Draw nickname */
                     UIResText.Draw(player.Name, (int)(screenX * _screenX + 100), (int)(screenY * _screenY + 100), Font.ChaletComprimeCologne, 0.4f, Color.White, RAGE.NUI.UIResText.Alignment.Centered, true, true, 0);
                 }

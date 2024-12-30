@@ -1,6 +1,7 @@
 ﻿using GTANetworkAPI;
 using GTANetworkMethods;
 using ServerSide.Characters;
+using ServerSide.Server.Commands;
 using ServerSide.Util;
 using System;
 using System.Collections.Generic;
@@ -19,28 +20,32 @@ namespace ServerSide.Server.Vehicles
             var closestVehicle = character.AccessVehicles
                 .OrderBy(vehicle => Vector3.Distance(character.player.Position, vehicle.Position))
                 .FirstOrDefault();
-            if(Vector3.Distance(character.player.Position, closestVehicle.Position) > 10)
-            {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_RED}Nu ai nici o masina prin apropiere.");
-                return;
-            }
+
             if (closestVehicle != null)
             {
-                if(closestVehicle.GTAVehicle.Locked == false)
+                if (Vector3.Distance(character.player.Position, closestVehicle.Position) > 10)
+                {
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_RED}Nu ai nici o masina prin apropiere.");
+                    return;
+                }
+                if (closestVehicle.GTAVehicle.Locked == false)
                 {
                     player.SendChatMessage($"{Colors.COLOR_CHAT_RED}Ti-ai incuiat masina!");
                     closestVehicle.GTAVehicle.Locked = true;
+                    ChatMessage.ameCommand(player, "si-a incuiat masina.");
                 }
                 else
                 {
                     player.SendChatMessage($"{Colors.COLOR_CHAT_FOREST_GREEN}Ti-ai descuiat masina!");
                     closestVehicle.GTAVehicle.Locked = false;
+                    ChatMessage.ameCommand(player, "si-a descuiat masina.");
                 }    
             }
             else
             {
                 player.SendChatMessage($"{Colors.COLOR_CHAT_RED}Nu ai nici o masina prin apropiere.");
             }
+            
         }
     }
 }

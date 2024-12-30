@@ -5,12 +5,48 @@ using ServerSide.Characters;
 using ServerSide.Util;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ServerSide.Server.Commands
 {
     internal class ChatMessage : Script
     {
+        private static Dictionary<Player, Stopwatch> PlayerStopwatchAmePair = new Dictionary<Player, Stopwatch>();
+
+        //UPDATE NAMETAG
+        [ServerEvent(Event.Update)]
+        private void UpdatePlayerNametag()
+        {
+            foreach(Player player  in PlayerStopwatchAmePair.Keys)
+            {
+                if (PlayerStopwatchAmePair[player].Elapsed.Seconds > 5)
+                {
+                    var character = CharacterManager.PlayerCharacterPair[player];
+                    player.Name = character.Name;
+                    PlayerStopwatchAmePair.Remove(player);
+                }
+            }
+        }
+
+        [Command("ame", GreedyArg = true)]
+        public static void ameCommand(Player player, string action)
+        {
+            var name = CharacterManager.PlayerCharacterPair[player].Name;
+            string newName = $"~p~{name} {action}\n~w~{name}";
+            player.Name = newName;
+
+
+            if (PlayerStopwatchAmePair.ContainsKey(player))
+                PlayerStopwatchAmePair[player].Restart();
+            else
+            {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                PlayerStopwatchAmePair.Add(player, stopwatch);
+            }
+        }
+        //
         [ServerEvent(Event.ChatMessage)]
         private void playerChat(Player player, string message)
         {
@@ -26,6 +62,16 @@ namespace ServerSide.Server.Commands
                 {
                     p.SendChatMessage($"{name} spune: {message}");
                 }
+            }
+        }
+        [Command("b", GreedyArg = true)]
+        private void bCommand(Player player, string action)
+        {
+            var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
+            var name = CharacterManager.PlayerCharacterPair[player].Name;
+            foreach (var p in players)
+            {
+                p.SendChatMessage($"{Colors.COLOR_CHAT_DARK_GRAY} (( {name}: {action} )) ");
             }
         }
         [Command("to")]
@@ -114,6 +160,8 @@ namespace ServerSide.Server.Commands
                 p.SendChatMessage($"{Colors.COLOR_CHAT_ME}* {name} {action}");
             }
         }
+        
+
         [Command("me", GreedyArg = true)]
         private void meCommand(Player player, string action)
         {

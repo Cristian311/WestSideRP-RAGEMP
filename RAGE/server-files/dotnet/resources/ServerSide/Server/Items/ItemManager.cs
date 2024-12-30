@@ -3,6 +3,7 @@ using GTANetworkAPI;
 using GTANetworkMethods;
 using ServerSide.Admin;
 using ServerSide.Characters;
+using ServerSide.Server.Commands;
 using ServerSide.Server.DB.CharacterDB;
 using ServerSide.Server.Items.Util;
 using ServerSide.Util;
@@ -328,9 +329,12 @@ namespace ServerSide.Server.Items
                         WeaponHash weaponHash = NAPI.Util.WeaponNameToModel(usedItem.Name);
                         player.GiveWeapon(weaponHash, 1);
                         character.currentWeapons.Add(weaponHash);
+
                         character.Items.Remove(usedItem);
                         character.ItemIdManager.ReclaimId(usedItem.localID);
+
                         player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai echipat {weaponHash.ToString()}.");
+                        ChatMessage.ameCommand(player, "intinde mana pentru o arma.");
                         return;
                     }
                     Item bullets = GetBulletsOfWeapon(character, usedItem);
@@ -341,12 +345,14 @@ namespace ServerSide.Server.Items
                             WeaponHash weaponHash = NAPI.Util.WeaponNameToModel(usedItem.Name);
                             player.GiveWeapon(weaponHash, bullets.Amount);
                             character.currentWeapons.Add(weaponHash);
-                            player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai echipat {weaponHash.ToString()}.");
 
                             character.Items.Remove(bullets);
                             character.ItemIdManager.ReclaimId(bullets.localID);
                             character.Items.Remove(usedItem);
                             character.ItemIdManager.ReclaimId(usedItem.localID);
+
+                            player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai echipat {weaponHash.ToString()}.");
+                            ChatMessage.ameCommand(player, "intinde mana pentru o arma.");
                         }
                         else
                         {

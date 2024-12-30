@@ -6,7 +6,7 @@ using ServerSide.Server.Interfaces;
 using ServerSide.Server.Items;
 using ServerSide.Server.Vehicles;
 using System.Collections.Generic;
-
+using System.Diagnostics;
 using Vehicle = ServerSide.Server.Vehicles.Vehicle;
 
 namespace ServerSide.Characters
@@ -40,6 +40,7 @@ namespace ServerSide.Characters
         public List<IVehicle> PersonalVehicles { get; set; } = new List<IVehicle>();
         public List<IVehicle> AccessVehicles { get; set; } = new List<IVehicle>();
         public GTANetworkAPI.Vehicle CurrentDrivingVehicle { get; set; }
+        public Stopwatch ameStopwatch { get; set; }
         public Character(Player player, IAccount account, string name, int age, int money)
         {
             this.player = player;
@@ -50,6 +51,11 @@ namespace ServerSide.Characters
             Money = money;
             Items = new List<Item>();
             Tattoos = new List<Decoration>();
+        }
+        public void StartAmeStopwatch()
+        {
+            ameStopwatch.Start();
+
         }
         public void GetCharacterInfo()
         {
