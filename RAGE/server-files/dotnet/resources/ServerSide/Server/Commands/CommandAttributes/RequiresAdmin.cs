@@ -14,7 +14,7 @@ namespace ServerSide.Server.Commands.CommandAttributes
         {
             AdminLevel = adminLevel;
         }
-
+        
         public override bool Check(Player player, string cmdName, string cmdText)
         {
             var account = AccountManager.PlayerAccountPairs[player];

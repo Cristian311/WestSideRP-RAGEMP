@@ -1,6 +1,7 @@
 ﻿using RAGE;
 using RAGE.Elements;
 using RAGE.Game;
+using RAGE.NUI;
 using RAGE.Ui;
 using System;
 using System.Collections.Generic;

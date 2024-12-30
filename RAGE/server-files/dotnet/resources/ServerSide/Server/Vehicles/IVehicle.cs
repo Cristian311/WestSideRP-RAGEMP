@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GTANetworkAPI;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,6 +13,7 @@ namespace ServerSide.Server.Vehicles
         string VehiclePlate { get; set; }
         double Distance { get; set; }
         double GasDistance { get; set; }
+        Vector3 Position { get; set; }
         double Gas {  get; set; }
         bool isPolice { get; set; }
         bool isAmbulance { get; set; }

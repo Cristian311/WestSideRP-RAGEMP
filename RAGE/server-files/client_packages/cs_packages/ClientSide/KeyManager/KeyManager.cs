@@ -15,6 +15,7 @@ namespace CHRP.Assets
         public const int KeyLctrl = 0xA2;    //    Key [Left CTRL]
         public const int KeyY = 0x59;        //    Key [Y]
         public const int KeyF4 = 0x73;        //    Key [F4]
+        public const int KeyL = 0x4C;        //    Key [F4]
 
 
 

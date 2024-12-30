@@ -34,6 +34,7 @@ namespace ServerSide.Server.Vehicles
         public static async Task EnsureInitializedAsync()
         {
             await initializationTask;
+            
         }
         [ServerEvent(Event.PlayerEnterVehicle)]
         private void PlayerEnterVehicleEvent(Player player, GTANetworkAPI.Vehicle vehicle, sbyte seatID)
@@ -53,6 +54,7 @@ namespace ServerSide.Server.Vehicles
             var vehicle = Vehicles.FirstOrDefault(v => v.GTAVehicle == character.CurrentDrivingVehicle);
             vehicle.Distance += distance;
             vehicle.GasDistance += distance;
+            vehicle.Position = player.Position;
             if (vehicle.GasDistance > 300)
             {
                 vehicle.Gas -= 0.01;
@@ -75,6 +77,7 @@ namespace ServerSide.Server.Vehicles
 
             Vehicles.Add(serverVeh);
             character.PersonalVehicles.Add(serverVeh);
+            character.AccessVehicles.Add(serverVeh);
             character.SendChatMessage("Ai primit un nou vehicul de tipul: " + vehicle.DisplayName);
         }
 

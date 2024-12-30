@@ -139,6 +139,7 @@ namespace ServerSide.Characters
                 TattooManager.ApplyTattoos(player, decorations);
             }
             player.Position = new Vector3(253.85786, 287.4269, 105.533104);
+            player.Name = character.Name;
         }
         public static Character GetCharacterNearby(Player player, string targetName, float range = 20f)
         {

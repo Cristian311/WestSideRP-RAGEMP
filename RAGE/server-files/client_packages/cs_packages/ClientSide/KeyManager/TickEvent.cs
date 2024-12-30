@@ -34,6 +34,11 @@ namespace ClientSide
             {
                 InventoryHandler.CloseInventory(null);
             });
+
+            KeyManager.KeyBind(KeyManager.KeyL, () =>
+            {
+                Events.CallRemote("CLIENT:SERVER:LockKeyPressed");
+            });
         }
     }
 }

@@ -4,7 +4,7 @@ using ServerSide.Characters.Customization.Customize;
 using ServerSide.Characters.Customization.Hair;
 using ServerSide.Server.Interfaces;
 using ServerSide.Server.Items;
-
+using ServerSide.Server.Vehicles;
 using System.Collections.Generic;
 
 using Vehicle = ServerSide.Server.Vehicles.Vehicle;
@@ -37,7 +37,8 @@ namespace ServerSide.Characters
         public IdManager<Item> ItemIdManager = new IdManager<Item>();
         public ColShape currentColshape { get; set; }
         public List<string> TattooNames { get; set; } = new List<string>();
-        public List<Vehicle> PersonalVehicles { get; set; } = new List<Vehicle>();
+        public List<IVehicle> PersonalVehicles { get; set; } = new List<IVehicle>();
+        public List<IVehicle> AccessVehicles { get; set; } = new List<IVehicle>();
         public GTANetworkAPI.Vehicle CurrentDrivingVehicle { get; set; }
         public Character(Player player, IAccount account, string name, int age, int money)
         {

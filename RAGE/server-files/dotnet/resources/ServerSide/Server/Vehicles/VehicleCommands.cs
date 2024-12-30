@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using ServerSide.Server.Commands.CommandAttributes;
 namespace ServerSide.Server.Vehicles
 {
     internal class VehicleCommands : Script
     {
+        [RequiresAdmin]
         [Command("fetchvehicledata")]
         public async void FetchVehicleDataAsync(Player player)
         {

@@ -12,6 +12,7 @@ namespace ServerSide.Server.Vehicles
         public string VehiclePlate { get; set; }
         public double Distance { get; set; }
         public DateTime InsuranceEnd { get; set; } = DateTime.Now;
+        public Vector3 Position { get; set; }
         public double Gas { get; set; } = 10.0f;
         public double GasDistance { get; set; }
         public GTANetworkAPI.Vehicle GTAVehicle { get; }
@@ -19,11 +20,11 @@ namespace ServerSide.Server.Vehicles
         public bool isAmbulance { get; set; }
         public bool isTaxi { get; set; }
 
-        public Vehicle(string ownerName, string ownerType,  GTANetworkAPI.Vehicle vehicleHash)
+        public Vehicle(string ownerName, string ownerType,  GTANetworkAPI.Vehicle GTAVehicle)
         {
             OwnerName = ownerName;
             OwnerType = ownerType;
-            GTAVehicle = vehicleHash;
+            this.GTAVehicle = GTAVehicle;
         }
     }
 }
