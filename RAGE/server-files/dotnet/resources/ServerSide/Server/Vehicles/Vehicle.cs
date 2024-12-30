@@ -13,8 +13,9 @@ namespace ServerSide.Server.Vehicles
         public double Distance { get; set; }
         public DateTime InsuranceEnd { get; set; } = DateTime.Now;
         public Vector3 Position { get; set; }
-        public double Gas { get; set; } = 10.0f;
+        public float Gas { get; set; } = 10.0f;
         public double GasDistance { get; set; }
+        public float GasTank { get; set; } = 30;
         public GTANetworkAPI.Vehicle GTAVehicle { get; }
         public bool isPolice { get; set; }
         public bool isAmbulance { get; set; }

@@ -7,7 +7,7 @@ namespace ServerSide.Server.Blips
     {
         private static Blip blip2;
         private static List<BlipData> blips = new List<BlipData>();
-        private string filePath = "json/blips/blips.json";
+        private static string filePath = "json/blips/blips.json";
         private BlipHandler()
         {
             //test blip
@@ -26,7 +26,7 @@ namespace ServerSide.Server.Blips
         }
 
         [Command("createblip")]
-        private void CreateBlipCommand(Player player, string name, int sprite, byte color)
+        public static void CreateBlipCommand(Player player, string name, int sprite, byte color)
         {
             Blip createdBlip = NAPI.Blip.CreateBlip(sprite, player.Position, 1f, color, name, 255, 0, true, 0, NAPI.GlobalDimension);
             BlipData blipData = new BlipData(name, player.Position, 1f, color, uint.Parse(sprite.ToString()));

@@ -30,7 +30,7 @@ namespace ClientSide.Player
             double fuel = double.Parse(args[1].ToString());
             // Ensure fuel is formatted correctly in C#
             string fuelString = fuel.ToString("F2");  // Ensure two decimal places
-            Chat.Output($"updateFuelAndDistance({distance}, {fuelString});");
+            //Chat.Output($"updateFuelAndDistance({distance}, {fuelString});");
             cefBroswer.ExecuteJs($"updateFuelAndDistance({distance}, {fuelString});");
             cefBroswer.ExecuteJs($"updateFuel({fuel*100});");
         }

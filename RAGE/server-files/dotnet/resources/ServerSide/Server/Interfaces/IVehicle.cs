@@ -14,7 +14,8 @@ namespace ServerSide.Server.Vehicles
         double Distance { get; set; }
         double GasDistance { get; set; }
         Vector3 Position { get; set; }
-        double Gas {  get; set; }
+        float Gas {  get; set; }
+        float GasTank { get; set; }
         bool isPolice { get; set; }
         bool isAmbulance { get; set; }
         bool isTaxi { get; set; }

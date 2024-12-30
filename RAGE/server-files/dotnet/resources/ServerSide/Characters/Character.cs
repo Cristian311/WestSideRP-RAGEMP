@@ -20,7 +20,7 @@ namespace ServerSide.Characters
         public static int nrOfCharacters = 0; 
         public string Name { get; }
         public int Age { get; }   
-        public int Money { get; }
+        public int Money { get; set; }
         public List<ICharacter> Characters { get; }
         public Character currentCharacter { get; }
         public int currentOutfit { get; set; }

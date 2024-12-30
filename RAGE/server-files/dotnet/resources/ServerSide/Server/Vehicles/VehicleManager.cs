@@ -1,6 +1,7 @@
 ﻿using GTANetworkAPI;
 using Org.BouncyCastle.Bcpg;
 using ServerSide.Characters;
+using ServerSide.Server.Interfaces;
 using ServerSide.Server.Vehicles.Util;
 using System;
 using System.Collections.Generic;
@@ -41,25 +42,34 @@ namespace ServerSide.Server.Vehicles
         {
             var character = CharacterManager.PlayerCharacterPair[player];
             character.CurrentDrivingVehicle = vehicle;
-            var ServerVehicle = Vehicles.FirstOrDefault(v => v.GTAVehicle == character.CurrentDrivingVehicle);
+            var ServerVehicle = GetServerVehicle(character.CurrentDrivingVehicle);
             if(ServerVehicle != null)
             {
                 player.TriggerEvent("SERVER:CLIENT:UpdateFuelAndDistance", ServerVehicle.Distance, ServerVehicle.Gas);
             }
         }
+        public static Vehicle GetServerVehicle(GTANetworkAPI.Vehicle vehicle)
+        {
+            var ServerVehicle = Vehicles
+                .FirstOrDefault(v => v.GTAVehicle == vehicle) as Vehicle;
+
+            // If the result is null, ServerVehicle will also be null.
+            return ServerVehicle;
+        }
+
         [RemoteEvent("CLIENT:SERVER:UpdateCarPosition")]
         private void UpdateCarPositionEvent(Player player, double distance)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            var vehicle = Vehicles.FirstOrDefault(v => v.GTAVehicle == character.CurrentDrivingVehicle);
+            var vehicle = GetServerVehicle(character.CurrentDrivingVehicle);
             vehicle.Distance += distance;
             vehicle.GasDistance += distance;
             vehicle.Position = player.Position;
             if (vehicle.GasDistance > 300)
             {
-                vehicle.Gas -= 0.01;
+                vehicle.Gas -= 0.01f;
                 vehicle.GasDistance = 0;
-                player.SendChatMessage(vehicle.Gas.ToString());
+                //player.SendChatMessage(vehicle.Gas.ToString());
                 player.TriggerEvent("SERVER:CLIENT:UpdateFuelAndDistance", vehicle.Distance, vehicle.Gas);
             }
         }
