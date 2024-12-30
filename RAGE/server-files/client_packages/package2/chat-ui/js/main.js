@@ -175,11 +175,15 @@ $(document).ready(function()
                     value = value.substr(1);
 
                     if (value.length > 0)
-                        mp.invoke("command", value);
+                    {
+						mp.invoke("command", value);
+						mp.invoke("CEF:CLIENT:Chatlog", '/' + value);
+					}
                 }
 				else
 				{
                     mp.invoke("chatMessage", value);
+					mp.invoke("CEF:CLIENT:Chatlog", value);
                 }
             }
 

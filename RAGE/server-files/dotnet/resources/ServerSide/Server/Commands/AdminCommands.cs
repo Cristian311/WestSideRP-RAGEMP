@@ -53,7 +53,7 @@ namespace ServerSide.Server.Commands
 
         ////MODERATION COMMANDS
         [RequiresAdmin]
-        [Command("kick")]
+        [Command("kick", GreedyArg = true)]
         public void KickPlayerCommand(Player player, string target, string reason)
         {
             var chars = CharacterManager.getCharByName(target);

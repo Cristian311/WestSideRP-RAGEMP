@@ -112,8 +112,10 @@ const sendInput = () => {
             return;
         }
         mp.invoke("command", settings.lowerCaseCommand ? message.lowerCaseFirstWord().substr(1) : message.substr(1));
+        mp.trigger("CEF:CLIENT:Chatlog", message);
     } else {
         mp.invoke("chatMessage", message);
+        mp.trigger("CEF:CLIENT:Chatlog", message);
     }
 
     inputHistory.unshift(message);
