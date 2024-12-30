@@ -38,6 +38,7 @@ namespace ServerSide.Characters
         public ColShape currentColshape { get; set; }
         public List<string> TattooNames { get; set; } = new List<string>();
         public List<Vehicle> PersonalVehicles { get; set; } = new List<Vehicle>();
+        public GTANetworkAPI.Vehicle CurrentDrivingVehicle { get; set; }
         public Character(Player player, IAccount account, string name, int age, int money)
         {
             this.player = player;

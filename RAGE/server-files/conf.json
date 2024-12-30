@@ -3,6 +3,7 @@
 	"name" : "RAGE:MP Unofficial server", 
 	"gamemode" : "freeroam", 
 	"stream-distance" : 300.0,
+	"api-threading-debugging" : false,
 	"announce" : false,
 	"csharp" : "enabled",
 	"port": 22005
