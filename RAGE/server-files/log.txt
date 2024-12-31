@@ -11,3 +11,98 @@
 31.12.2024 07:26:34 aaa Hatz Gion /me cf
 31.12.2024 07:26:35 aaa Hatz Gion sadsa
 31.12.2024 07:26:35 aaa Hatz Gion fd
+31.12.2024 08:25:37 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 08:25:37 - Loaded shop: lll at position: 0 0 0
+31.12.2024 08:25:38 - Loaded shop: kk at position: 0 0 0
+31.12.2024 08:25:38 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 08:25:38 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+31.12.2024 08:26:59 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 08:26:59 - Loaded shop: lll at position: 0 0 0
+31.12.2024 08:26:59 - Loaded shop: kk at position: 0 0 0
+31.12.2024 08:26:59 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 08:26:59 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+31.12.2024 08:27:24 (aaa)  a creat casa ID 0 tip:Modern 1 Apartment
+31.12.2024 08:27:24 (aaa) Hatz Gion: /createhouse Modern 1 Apartment
+31.12.2024 08:30:35 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 08:30:35 - Loaded shop: lll at position: 0 0 0
+31.12.2024 08:30:35 - Loaded shop: kk at position: 0 0 0
+31.12.2024 08:30:35 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 08:30:35 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+31.12.2024 08:30:59 (aaa)  a creat casa ID 0 tip:Modern 1 Apartment
+31.12.2024 08:30:59 (aaa) Hatz Gion: /createhouse Modern 1 Apartment
+31.12.2024 08:31:47 (aaa) Hatz Gion: /cpv infernus
+31.12.2024 08:32:20 (aaa)  a creat casa ID 1 tip:Modern 1 Apartment
+31.12.2024 08:32:20 (aaa) Hatz Gion: /createhouse Modern 1 Apartment
+31.12.2024 08:33:47 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 08:33:47 - Loaded shop: lll at position: 0 0 0
+31.12.2024 08:33:47 - Loaded shop: kk at position: 0 0 0
+31.12.2024 08:33:47 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 08:33:47 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+31.12.2024 08:35:48 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 08:35:48 - Loaded shop: lll at position: 0 0 0
+31.12.2024 08:35:48 - Loaded shop: kk at position: 0 0 0
+31.12.2024 08:35:48 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 08:35:48 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+31.12.2024 08:36:20 (aaa)  a creat casa ID 0 tip:Modern 1 Apartment
+31.12.2024 08:36:20 (aaa) Hatz Gion: /createhouse Modern 1 Apartment
+31.12.2024 08:37:27 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 08:37:27 - Loaded shop: lll at position: 0 0 0
+31.12.2024 08:37:27 - Loaded shop: kk at position: 0 0 0
+31.12.2024 08:37:27 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 08:37:27 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+31.12.2024 08:37:54 (aaa) Hatz Gion: /createhouse
+31.12.2024 08:37:58 (aaa)  a creat casa ID 0 tip:Modern 1 Apartment
+31.12.2024 08:37:58 (aaa) Hatz Gion: /createhouse Modern 1 Apartment
+31.12.2024 08:38:12 (aaa)  a creat casa ID 1 tip:Modern 1 Apartment
+31.12.2024 08:38:12 (aaa) Hatz Gion: /createhouse Modern 1 Apartment
+31.12.2024 08:50:40 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 08:50:40 - Loaded shop: lll at position: 0 0 0
+31.12.2024 08:50:40 - Loaded shop: kk at position: 0 0 0
+31.12.2024 08:50:40 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 08:50:40 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+31.12.2024 08:51:28 (aaa)  a creat casa ID 0 tip:Modern 2 Apartment
+31.12.2024 08:51:28 (aaa) Hatz Gion: /createhouse Modern 2 Apartment
+31.12.2024 08:53:13 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 08:53:13 - Loaded shop: lll at position: 0 0 0
+31.12.2024 08:53:13 - Loaded shop: kk at position: 0 0 0
+31.12.2024 08:53:13 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 08:53:13 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+31.12.2024 08:53:56 (aaa)  a creat casa ID 0 tip:Modern 3 Apartment
+31.12.2024 08:53:56 (aaa) Hatz Gion: /createhouse Modern 3 Apartment
+31.12.2024 08:54:07 (aaa) Hatz Gion: /die
+31.12.2024 08:54:21 (aaa)  a creat casa ID 1 tip:Mody 1 Apartment
+31.12.2024 08:54:21 (aaa) Hatz Gion: /createhouse Mody 1 Apartment
+31.12.2024 08:55:09 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 08:55:09 - Loaded shop: lll at position: 0 0 0
+31.12.2024 08:55:09 - Loaded shop: kk at position: 0 0 0
+31.12.2024 08:55:09 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 08:55:09 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+31.12.2024 08:55:28 (aaa)  a creat casa ID 0 tip:Mody 1 Apartment
+31.12.2024 08:55:28 (aaa) Hatz Gion: /createhouse Mody 1 Apartment
+31.12.2024 08:55:57 (aaa) Hatz Gion: /die
+31.12.2024 08:57:05 (aaa)  a creat casa ID 1 tip:Mody 2 Apartment
+31.12.2024 08:57:05 (aaa) Hatz Gion: /createhouse Mody 2 Apartment
+31.12.2024 08:59:31 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 08:59:31 - Loaded shop: lll at position: 0 0 0
+31.12.2024 08:59:31 - Loaded shop: kk at position: 0 0 0
+31.12.2024 08:59:31 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 08:59:31 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+31.12.2024 08:59:59 (aaa) Hatz Gion: /gotoxyz
+31.12.2024 09:00:09 (aaa) Hatz Gion: /gotoxyz -786.8663 315.7642 217.6385
+31.12.2024 09:00:37 (aaa) Hatz Gion: /gotoxyz 261.4586 -998.8196 -99.00863
+31.12.2024 09:06:50 (aaa) Hatz Gion: /die
+31.12.2024 09:24:34 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 09:24:34 - Loaded shop: lll at position: 0 0 0
+31.12.2024 09:24:34 - Loaded shop: kk at position: 0 0 0
+31.12.2024 09:24:34 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 09:24:34 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+31.12.2024 09:25:03 (aaa)  a creat casa ID 0 tip:Medium End Apartment
+31.12.2024 09:25:03 (aaa) Hatz Gion: /createhouse Medium End Apartment
+31.12.2024 09:27:12 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 09:27:12 - Loaded shop: lll at position: 0 0 0
+31.12.2024 09:27:12 - Loaded shop: kk at position: 0 0 0
+31.12.2024 09:27:12 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 09:27:12 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+31.12.2024 09:27:31 (aaa) Hatz Gion: /createhouse
+31.12.2024 09:27:45 (aaa)  a creat casa ID 0 tip:Medium End Apartment
+31.12.2024 09:27:45 (aaa) Hatz Gion: /createhouse Medium End Apartment

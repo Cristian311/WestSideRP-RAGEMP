@@ -17,7 +17,7 @@ namespace ClientSide
         {
             KeyManager.KeyBind(KeyManager.KeyLctrl, () =>
             {
-                Chat.Output("Key Bind Work");      
+                //Chat.Output("Key Bind Work");      
             });   
             
             KeyManager.KeyBind(KeyManager.KeyMouse, delegate // ~
@@ -27,9 +27,10 @@ namespace ClientSide
 
             KeyManager.KeyBind(KeyManager.KeyY, () =>
             {
-                if(RAGE.Elements.Player.LocalPlayer.Vehicle.GetPedInSeat(-1,0) == RAGE.Elements.Player.LocalPlayer.Handle)
-                    Events.CallRemote("CLIENT:SERVER:TurnEngine");
+                //if(RAGE.Elements.Player.LocalPlayer.Vehicle.GetPedInSeat(-1,0) == RAGE.Elements.Player.LocalPlayer.Handle)
+                //    Events.CallRemote("CLIENT:SERVER:TurnEngine"); // needs fixed very poor optimization
                 Events.CallRemote("CLIENT:SERVER:ActionKeyPressed");
+                Events.CallRemote("CLIENT:SERVER:TryEnterDoor");
             });
 
             KeyManager.KeyBind(KeyManager.KeyF4, () =>

@@ -25,7 +25,19 @@ namespace ServerSide.Server.Commands
             NAPI.Vehicle.CreateVehicle(busModel, player.Position, 0, 0, 0); //Creates a bus on the player's position
 
         }
-
+        [RequiresAdmin]
+        [Command("die")]
+        public void die_cmd(Player player)
+        {
+            player.Kill();
+        }
+        [RequiresAdmin]
+        [Command("gotoxyz")]
+        public void GotoXYZ_Command(Player player, float x, float y, float z)
+        {
+            Vector3 position = new Vector3(x, y, z);
+            player.Position = position;
+        }
         [RequiresAdmin]
         [Command("weapon")]
         public void WeaponCommand(Player player, string weapon, int ammo)

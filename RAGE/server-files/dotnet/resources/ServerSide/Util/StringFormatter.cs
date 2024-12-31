@@ -10,16 +10,14 @@ namespace ServerSide.Util
         {
             if (string.IsNullOrWhiteSpace(input))
             {
-                return input; // Return as-is if the input is null or empty
+                return input; 
             }
 
-            // Ensure the string starts with a capital letter
             if (!char.IsUpper(input[0]))
             {
                 input = char.ToUpper(input[0]) + input.Substring(1);
             } 
 
-            // Ensure the string ends with a period
             if (!input.EndsWith("."))
             {
                 input += ".";

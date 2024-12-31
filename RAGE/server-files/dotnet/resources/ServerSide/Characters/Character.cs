@@ -41,6 +41,9 @@ namespace ServerSide.Characters
         public List<IVehicle> AccessVehicles { get; set; } = new List<IVehicle>();
         public GTANetworkAPI.Vehicle CurrentDrivingVehicle { get; set; }
         public Stopwatch ameStopwatch { get; set; }
+        public bool isInInterior { get; set; }
+        public Vector3 InteriorPosition { get; set; }
+        public ColShape exitColShape { get; set; }
         public Character(Player player, IAccount account, string name, int age, int money)
         {
             this.player = player;
