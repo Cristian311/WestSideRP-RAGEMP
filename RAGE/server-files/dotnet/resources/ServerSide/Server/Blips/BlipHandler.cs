@@ -38,8 +38,10 @@ namespace ServerSide.Server.Blips
             Blip createdBlip = NAPI.Blip.CreateBlip(sprite, player.Position, 1f, color, name, 255, 0, true, 0, NAPI.GlobalDimension);
             BlipData blipData = new BlipData(name, player.Position, 1f, color, uint.Parse(sprite.ToString()));
             blipData.Id = blipIdManager.AssignNewId(blipData);
+
             blips.Add(blipData);
             BlipDbManager.CreateBlip(blipData);
+
             var AdminAccount = AccountManager.PlayerAccountPairs[player];
             AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ADMIN}{AdminAccount.Name} created Blip {name} ID {blipData.Id} at {player.Position.ToString()}");
         }

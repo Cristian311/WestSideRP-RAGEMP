@@ -33,7 +33,8 @@ namespace ServerSide.Server.Commands
         public static void ameCommand(Player player, string action)
         {
             var name = CharacterManager.PlayerCharacterPair[player].Name;
-            string newName = $"~p~{name} {action}\n~w~{name}";
+            string newName = StringFormatter.FormatStringForAme(name, action);
+            
             player.Name = newName;
 
 
@@ -88,15 +89,15 @@ namespace ServerSide.Server.Commands
                 foreach (var p in players)
                 {
                     if (p != otherplayer)
-                        p.SendChatMessage($"{Colors.COLOR_CHAT_LOW}{name} spune lui {character.Name}: {message}");
+                        p.SendChatMessage($"{Colors.COLOR_CHAT_LOW}{name} spune lui ({character.Name}): {message}");
                 }
-                otherplayer.SendChatMessage($"{Colors.COLOR_CHAT_PARTY}[!]{Colors.COLOR_CHAT_LOW}{name} spune lui {character.Name}: {message}");
+                otherplayer.SendChatMessage($"{Colors.COLOR_CHAT_PARTY}[!]{Colors.COLOR_CHAT_LOW}{name} spune lui ({character.Name}): {message}");
             }
             else
             {
                 foreach (var character in chars)
                 {
-                    player.SendChatMessage(character.Name);
+                    player.SendChatMessage($"{character.Id}. {character.Name} Ping:{character.player.Ping}");
                 }
             }
         }
@@ -112,14 +113,43 @@ namespace ServerSide.Server.Commands
                 var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
                 var name = CharacterManager.PlayerCharacterPair[player].Name;
 
-                otherplayer.SendChatMessage($"{Colors.COLOR_CHAT_WHISPER}{name} spune(soapta): {message}");
-                player.SendChatMessage($"{Colors.COLOR_CHAT_WHISPER}{name} spune(soapta): {message}");
+                if (players.Contains(otherplayer))
+                {
+                    otherplayer.SendChatMessage($"{Colors.COLOR_CHAT_WHISPER}{name} spune(soapta): {message}");
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_WHISPER}{name} spune(soapta): {message}");
+                }
+                else
+                {
+                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Acel player nu este langa tine");
+                }
             }
             else
             {
                 foreach (var character in chars)
                 {
-                    player.SendChatMessage(character.Name);
+                    player.SendChatMessage($"{character.Id}. {character.Name} Ping:{character.player.Ping}");
+                }
+            }
+        }
+        [Command("pm")]
+        private void cmd_pm(Player player, string target, string message)
+        {
+            var chars = CharacterManager.getCharByName(target);
+            if (chars.Count == 1)
+            {
+                var character = chars[0];
+                var otherplayer = CharacterManager.CharacterAccountPair[character].player;
+
+                var name = CharacterManager.PlayerCharacterPair[player].Name;
+
+                otherplayer.SendChatMessage($"{Colors.COLOR_CHAT_YELLOW}(( {name}: {message} ))");
+                player.SendChatMessage($"{Colors.COLOR_CHAT_YELLOW}(( {name}: {message} ))");
+            }
+            else
+            {
+                foreach (var character in chars)
+                {
+                    player.SendChatMessage($"{character.Id}. {character.Name} Ping:{character.player.Ping}");
                 }
             }
         }
@@ -146,7 +176,7 @@ namespace ServerSide.Server.Commands
             {
                 foreach (var character in chars)
                 {
-                    player.SendChatMessage(character.Name);
+                    player.SendChatMessage($"{character.Id}. {character.Name} Ping:{character.player.Ping}");
                 }
             }
         }
@@ -171,6 +201,7 @@ namespace ServerSide.Server.Commands
             {
                 p.SendChatMessage($"{Colors.COLOR_CHAT_ME}* {name} {action}");
             }
+            ameCommand(player, action);
         }
 
         [Command("do", GreedyArg = true)]

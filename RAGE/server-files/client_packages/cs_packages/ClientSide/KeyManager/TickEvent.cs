@@ -27,7 +27,8 @@ namespace ClientSide
 
             KeyManager.KeyBind(KeyManager.KeyY, () =>
             {
-                Events.CallRemote("CLIENT:SERVER:TurnEngine");
+                if(RAGE.Elements.Player.LocalPlayer.Vehicle.GetPedInSeat(-1,0) == RAGE.Elements.Player.LocalPlayer.Handle)
+                    Events.CallRemote("CLIENT:SERVER:TurnEngine");
                 Events.CallRemote("CLIENT:SERVER:ActionKeyPressed");
             });
 
