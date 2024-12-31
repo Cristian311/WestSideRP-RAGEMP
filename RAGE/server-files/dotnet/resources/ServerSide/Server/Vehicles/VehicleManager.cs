@@ -1,8 +1,11 @@
 ﻿using GTANetworkAPI;
 using Org.BouncyCastle.Bcpg;
 using ServerSide.Characters;
+using ServerSide.Server.Commands;
+using ServerSide.Server.Commands.CommandAttributes;
 using ServerSide.Server.Interfaces;
 using ServerSide.Server.Vehicles.Util;
+using ServerSide.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,12 +44,23 @@ namespace ServerSide.Server.Vehicles
         private void PlayerEnterVehicleEvent(Player player, GTANetworkAPI.Vehicle vehicle, sbyte seatID)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            character.CurrentDrivingVehicle = vehicle;
-            var ServerVehicle = GetServerVehicle(character.CurrentDrivingVehicle);
-            if(ServerVehicle != null)
+            if (seatID == 0)
             {
-                player.TriggerEvent("SERVER:CLIENT:UpdateFuelAndDistance", ServerVehicle.Distance, ServerVehicle.Gas);
+                character.CurrentDrivingVehicle = vehicle;
+                var ServerVehicle = GetServerVehicle(character.CurrentDrivingVehicle);
+                if (ServerVehicle != null)
+                {
+                    player.TriggerEvent("SERVER:CLIENT:UpdateFuelAndDistance", ServerVehicle.Distance, ServerVehicle.Gas);
+                }
             }
+        }
+        [ServerEvent(Event.PlayerExitVehicle)]
+        private void PlayerExitVehicleEvent(Player player, GTANetworkAPI.Vehicle vehicle)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            character.CurrentDrivingVehicle = null;
+            var ServerVehicle = GetServerVehicle(vehicle);
+            ServerVehicle.Position = player.Position;
         }
         public static Vehicle GetServerVehicle(GTANetworkAPI.Vehicle vehicle)
         {
@@ -90,7 +104,7 @@ namespace ServerSide.Server.Vehicles
             character.AccessVehicles.Add(serverVeh);
             character.SendChatMessage("Ai primit un nou vehicul de tipul: " + vehicle.DisplayName);
         }
-
+        [RequiresAdmin]
         [Command("servervehicles")]
         private void ServerVehiclesCommand(Player player, double speed = 0)
         {
@@ -98,6 +112,53 @@ namespace ServerSide.Server.Vehicles
             {
                 if (veh.MaxSpeed > speed)
                     player.SendChatMessage($"Name: {veh.VehicleName}, Speed: {veh.MaxSpeed}, Breaking: {veh.MaxBraking}");
+            }
+        }
+        [RemoteEvent("CLIENT:SERVER:TurnEngine")]
+        [Command("engine")]
+        private void EngineCommand(Player player)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if(character.CurrentDrivingVehicle == null || player.VehicleSeat != 0)
+            {
+                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu esti intr-o masina");
+                return;
+            }
+            if(player.VehicleSeat == 0)
+            {
+                bool engineStatus = player.Vehicle.EngineStatus;
+                if(engineStatus == false)
+                {
+                    player.Vehicle.EngineStatus = true;
+                    ChatMessage.ameCommand(player, "a pornit motorul.");
+                }
+                else
+                {
+                    player.Vehicle.EngineStatus = false;
+                    ChatMessage.ameCommand(player, "a oprit motorul.");
+                }
+            }
+        }
+        [Command("lights")]
+        private void LightsCommand(Player player)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if (character.CurrentDrivingVehicle == null || player.VehicleSeat != 0)
+            {
+                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu esti intr-o masina");
+                return;
+            }
+            if (player.VehicleSeat == 0)
+            {
+                bool lightsStatus = player.Vehicle.SpecialLight;
+                if (lightsStatus == false)
+                {
+                    player.Vehicle.SpecialLight = true;
+                }
+                else
+                {
+                    player.Vehicle.SpecialLight = false;
+                }
             }
         }
         [Command("vehicles")]

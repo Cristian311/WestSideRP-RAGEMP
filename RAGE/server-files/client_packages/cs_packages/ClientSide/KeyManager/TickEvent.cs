@@ -27,6 +27,7 @@ namespace ClientSide
 
             KeyManager.KeyBind(KeyManager.KeyY, () =>
             {
+                Events.CallRemote("CLIENT:SERVER:TurnEngine");
                 Events.CallRemote("CLIENT:SERVER:ActionKeyPressed");
             });
 

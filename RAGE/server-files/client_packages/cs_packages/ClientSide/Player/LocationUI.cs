@@ -49,22 +49,39 @@ namespace ClientSide
             }
             if (tempDirection != 0)
             {
-                if (tempDirection < 45 || tempDirection > 315)
+                if ((tempDirection >= 0 && tempDirection < 22.5) || (tempDirection >= 337.5 && tempDirection <= 360))
                 {
                     Direction = "N";
                 }
-                if (tempDirection > 45 && tempDirection < 135)
+                else if (tempDirection >= 22.5 && tempDirection < 67.5)
                 {
-                    Direction = "W";
+                    Direction = "NE";
                 }
-                if (tempDirection > 135 && tempDirection < 225)
-                {
-                    Direction = "S";
-                }
-                if (tempDirection > 225 && tempDirection < 315)
+                else if (tempDirection >= 67.5 && tempDirection < 112.5)
                 {
                     Direction = "E";
                 }
+                else if (tempDirection >= 112.5 && tempDirection < 157.5)
+                {
+                    Direction = "SE";
+                }
+                else if (tempDirection >= 157.5 && tempDirection < 202.5)
+                {
+                    Direction = "S";
+                }
+                else if (tempDirection >= 202.5 && tempDirection < 247.5)
+                {
+                    Direction = "SW";
+                }
+                else if (tempDirection >= 247.5 && tempDirection < 292.5)
+                {
+                    Direction = "W";
+                }
+                else if (tempDirection >= 292.5 && tempDirection < 337.5)
+                {
+                    Direction = "NW";
+                }
+
             }
 
             CEF.ExecuteJs($"Update(\"{Street}\", \"{Crossing}\", \"{Zone}\", \"{Direction}\")");
