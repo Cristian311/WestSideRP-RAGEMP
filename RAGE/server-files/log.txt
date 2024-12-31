@@ -1,0 +1,13 @@
+31.12.2024 07:20:58 Loaded shop: hatz at position: 0 0 031.12.2024 07:20:58 Loaded shop: lll at position: 0 0 031.12.2024 07:20:58 Loaded shop: kk at position: 0 0 031.12.2024 07:20:58 Loaded shop: kkk at position: 228,52875 283,74832 105,5921431.12.2024 07:20:58 Loaded shop: hatz at position: 234,65785 283,31845 105,5912131.12.2024 07:23:59 aaa ServerSide.Characters.Character a31.12.2024 07:24:00 aaa ServerSide.Characters.Character sad31.12.2024 07:24:01 aaa ServerSide.Characters.Character fdds31.12.2024 07:24:04 aaa ServerSide.Characters.Character /me cf31.12.2024 07:24:04 aaa ServerSide.Characters.Character FAF31.12.2024 07:24:05 aaa ServerSide.Characters.Character DF31.12.2024 07:26:13 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 07:26:13 - Loaded shop: lll at position: 0 0 0
+31.12.2024 07:26:13 - Loaded shop: kk at position: 0 0 0
+31.12.2024 07:26:13 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 07:26:13 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+31.12.2024 07:26:28 aaa Hatz Gion aadsa
+31.12.2024 07:26:29 aaa Hatz Gion sfad
+31.12.2024 07:26:30 aaa Hatz Gion radfds
+31.12.2024 07:26:30 aaa Hatz Gion s
+31.12.2024 07:26:32 aaa Hatz Gion /me
+31.12.2024 07:26:34 aaa Hatz Gion /me cf
+31.12.2024 07:26:35 aaa Hatz Gion sadsa
+31.12.2024 07:26:35 aaa Hatz Gion fd

@@ -1,5 +1,7 @@
 ﻿using GTANetworkAPI;
+using ServerSide.Accounts;
 using ServerSide.Server.Commands.CommandAttributes;
+using ServerSide.Server.Logger;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,8 +15,9 @@ namespace ServerSide.Server.Shops
     {
         public static List<Shop> shops = new List<Shop>();
         public static List<ColShape> shopColshapes = new List<ColShape>();
+        private static IdManager<ShopData> shopIdManager = new IdManager<ShopData>();
         private static string filePath = "json/shops/shops.json";
-
+        
         public ShopManager()
         {
             // Load existing shops from the JSON file
@@ -30,7 +33,7 @@ namespace ServerSide.Server.Shops
                     Vector3 position = shopData.Position.ToVector3();
 
                     // Debugging output: check if position is deserialized correctly
-                    Console.WriteLine($"Loaded shop: {shopData.Name} at position: {position}");
+                    ServerLogger.Log($"Loaded shop: {shopData.Name} at position: {position}");
 
                     ColShape colShape = NAPI.ColShape.CreateCylinderColShape(position, 1f, 1f, NAPI.GlobalDimension);
                     TextLabel textLabel = NAPI.TextLabel.CreateTextLabel("Press Y to open the shop", position, 5f, 1f, 0, new Color(0, 250, 0), true, NAPI.GlobalDimension);
@@ -56,9 +59,9 @@ namespace ServerSide.Server.Shops
             // Serialize and save to file
             string updatedJson = NAPI.Util.ToJson(shopDataList);
             File.WriteAllText(filePath, updatedJson);
+            
+            ServerLogger.Log($"Saved Shops with Items: {updatedJson}");
 
-            // Debugging output
-            Console.WriteLine($"Saved Shops with Items: {updatedJson}");
         }
 
         [RequiresAdmin]
@@ -77,28 +80,24 @@ namespace ServerSide.Server.Shops
         [Command("copyshop")]
         private void CopyShopCommand(Player player, string name)
         {
-
+            var account = AccountManager.PlayerAccountPairs[player];
+            ServerLogger.LogWithAccount(player, " copied the shop " + name + $" to {player.Position.ToString()}");
         }
         [RequiresAdmin]
         [Command("createshop")]
         private void CreateShopCommand(Player player, string name)
         {
-            // Ensure position is correct before saving
             Console.WriteLine($"Creating shop: {name} at position: {player.Position}");
 
-            // Create the shop in-game
             ColShape colShape = NAPI.ColShape.CreateCylinderColShape(player.Position, 1f, 1f, NAPI.GlobalDimension);
             TextLabel textLabel = NAPI.TextLabel.CreateTextLabel("Press Y to open the shop", player.Position, 5f, 1f, 0, new Color(0, 250, 0), true, NAPI.GlobalDimension);
             Shop shop = new Shop(name, colShape, textLabel, player.Position);
 
-            // Add to runtime lists
             shops.Add(shop);
             shopColshapes.Add(colShape);
 
-            // Create ShopData to save
             ShopData shopData = new ShopData(name, player.Position, null);
 
-            // Read existing shop data from the file
             List<ShopData> existingShops = new List<ShopData>();
             if (File.Exists(filePath))
             {
@@ -106,15 +105,14 @@ namespace ServerSide.Server.Shops
                 existingShops = NAPI.Util.FromJson<List<ShopData>>(existingJson);
             }
 
-            // Add the new shop to the existing list
             existingShops.Add(shopData);
 
-            // Save the updated list back to the file
             string updatedJson = NAPI.Util.ToJson(existingShops);
             File.WriteAllText(filePath, updatedJson);
 
-            // Debugging output to confirm the final saved JSON
-            Console.WriteLine($"Saved Shops: {updatedJson}");
+            int shopId = shopIdManager.AssignNewId(shopData);
+            shopData.Id = shopId;
+            ServerLogger.LogWithAccount(player, $" a creat shopul {name} ID: {shopData.Id}");
         }
     }
 }

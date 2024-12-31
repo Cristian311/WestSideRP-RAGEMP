@@ -6,14 +6,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ServerSide.Server
+namespace ServerSide.Server.Logger
 {
     internal class ChatlogHandler : Script
     {
         private static Dictionary<Player, List<string>> chatlogs = new Dictionary<Player, List<string>>();
         private static void readChatLogs(Player reader, string OtherName, List<string> chatlogs)
         {
-            foreach(string log in chatlogs)
+            foreach (string log in chatlogs)
             {
                 reader.SendChatMessage($"CHATLOG: {OtherName}: {log}");
             }
@@ -27,6 +27,7 @@ namespace ServerSide.Server
             }
             else
                 chatlogs.Add(player, new List<string> { message });
+            ServerLogger.LogWithAccount(player, CharacterManager.PlayerCharacterPair[player].Name + ": " + message);
         }
         [RequiresAdmin]
         [Command("chatlogs")]

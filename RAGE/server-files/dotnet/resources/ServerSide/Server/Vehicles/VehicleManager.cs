@@ -87,6 +87,17 @@ namespace ServerSide.Server.Vehicles
                 player.TriggerEvent("SERVER:CLIENT:UpdateFuelAndDistance", vehicle.Distance, vehicle.Gas);
             }
         }
+
+        [Command("vw")]
+        private void vw_cmd(Player player, string window)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if (character.CurrentDrivingVehicle == null || player.VehicleSeat != 0)
+            {
+                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu esti intr-o masina");
+                return;
+            }
+        }
         [Command("createpersonalvehicle", Alias = "cpv")]
         private void CreatePersonalVehicleCommand(Player player, string vehName)
         {

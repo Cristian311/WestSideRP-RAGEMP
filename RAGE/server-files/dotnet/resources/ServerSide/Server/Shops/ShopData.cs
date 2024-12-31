@@ -7,6 +7,7 @@ namespace ServerSide.Server.Shops
 {
     internal class ShopData
     {
+        public int Id {  get; set; }
         public string Name { get; set; }
         public SerializableVector3 Position { get; set; }
         public List<ShopItem> items { get; set; }
