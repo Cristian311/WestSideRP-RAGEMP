@@ -15,7 +15,6 @@ namespace ClientSide
         }
         private void onPlayerReady()
         {
-            RAGE.Chat.Output("merge clientu3");
             Chat.Show(false);
             var chatbox = new HtmlWindow("http://package2/advanced-chat/index.html");
             chatbox.MarkAsChat();

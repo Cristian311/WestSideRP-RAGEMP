@@ -11,20 +11,33 @@ namespace ClientSide.Player
 {
     internal class DrawNametag : Events.Script
     {
-        float screenX, screenY;
+        private float screenX, screenY;
+        private bool TogLocalNametag = true;
         private DrawNametag()
         {
+            Events.Add("SERVER:CLIENT:TogNametag", TogNametag);
+
             Events.Tick += Tick;
             int x = 1600, y = 900;
             RAGE.Game.Graphics.GetActiveScreenResolution(ref x, ref y);
             screenX = float.Parse(x.ToString());
             screenY = float.Parse(y.ToString());
         }
-        
+
+        private void TogNametag(object[] args)
+        {
+            if (TogLocalNametag)
+                TogLocalNametag = false;
+            else
+                TogLocalNametag = true;
+        }
+
         public void Tick(List<Events.TickNametagData> nametags)
         {
             foreach (var player in Entities.Players.Streamed)
             {
+                if (player == RAGE.Elements.Player.LocalPlayer && TogLocalNametag == false)
+                    break;
                 /* Variables */
                 float _screenX = 0;
                 float _screenY = 0;

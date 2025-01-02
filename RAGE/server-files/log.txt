@@ -106,3 +106,42 @@
 31.12.2024 09:27:31 (aaa) Hatz Gion: /createhouse
 31.12.2024 09:27:45 (aaa)  a creat casa ID 0 tip:Medium End Apartment
 31.12.2024 09:27:45 (aaa) Hatz Gion: /createhouse Medium End Apartment
+31.12.2024 09:41:57 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 09:41:57 - Loaded shop: lll at position: 0 0 0
+31.12.2024 09:41:57 - Loaded shop: kk at position: 0 0 0
+31.12.2024 09:41:57 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 09:41:57 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+31.12.2024 09:42:23 (aaa) Hatz Gion: re
+31.12.2024 09:44:08 - Loaded shop: hatz at position: 0 0 0
+31.12.2024 09:44:08 - Loaded shop: lll at position: 0 0 0
+31.12.2024 09:44:08 - Loaded shop: kk at position: 0 0 0
+31.12.2024 09:44:09 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+31.12.2024 09:44:09 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+01.01.2025 19:49:07 - Loaded shop: hatz at position: 0 0 0
+01.01.2025 19:49:07 - Loaded shop: lll at position: 0 0 0
+01.01.2025 19:49:07 - Loaded shop: kk at position: 0 0 0
+01.01.2025 19:49:07 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+01.01.2025 19:49:07 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 07:54:24 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 07:54:24 - Loaded shop: lll at position: 0 0 0
+02.01.2025 07:54:24 - Loaded shop: kk at position: 0 0 0
+02.01.2025 07:54:24 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 07:54:24 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 07:57:33 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 07:57:33 - Loaded shop: lll at position: 0 0 0
+02.01.2025 07:57:33 - Loaded shop: kk at position: 0 0 0
+02.01.2025 07:57:33 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 07:57:33 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 08:00:38 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 08:00:38 - Loaded shop: lll at position: 0 0 0
+02.01.2025 08:00:38 - Loaded shop: kk at position: 0 0 0
+02.01.2025 08:00:38 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 08:00:38 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 08:00:53 (aaa) Hatz Gion: /tognametag
+02.01.2025 08:00:55 (aaa) Hatz Gion: /tognametag
+02.01.2025 08:00:56 (aaa) Hatz Gion: /tognametag
+02.01.2025 08:05:06 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 08:05:06 - Loaded shop: lll at position: 0 0 0
+02.01.2025 08:05:06 - Loaded shop: kk at position: 0 0 0
+02.01.2025 08:05:06 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 08:05:06 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121

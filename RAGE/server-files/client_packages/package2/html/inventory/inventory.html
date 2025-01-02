@@ -406,18 +406,21 @@
             console.log(`${action} item #${id}`);
             mp.trigger(`CEF:CLIENT:${action.charAt(0).toUpperCase() + action.slice(1)}Item`, id);
             closeFloatingMenu();
+            refreshInventoryDisplay();
         }
 
         function showItem(id) {
             console.log(`Showing item #${id}`);
             mp.trigger("CEF:CLIENT:ShowItem", id);
             closeFloatingMenu();
+            refreshInventoryDisplay();
         }
 
         function giveItem(id) {
             console.log(`Giving item #${id}`);
             mp.trigger("CEF:CLIENT:GiveItem", id);
             closeFloatingMenu();
+            refreshInventoryDisplay();
         }
 
         function dropItem(id) {
@@ -431,6 +434,7 @@
             }
             reorganizeInventory();
             closeFloatingMenu();
+            refreshInventoryDisplay();
         }
 
         // Close floating menu when clicking outside

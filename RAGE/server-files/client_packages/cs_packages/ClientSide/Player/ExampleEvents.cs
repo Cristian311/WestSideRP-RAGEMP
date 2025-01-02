@@ -41,12 +41,12 @@ namespace ClientSide.Player
 
         private void OnPlayerExitColshape(Colshape colshape, Events.CancelEventArgs cancel)
         {
-            RAGE.Chat.Output("You exited the colshape!");
+            //RAGE.Chat.Output("You exited the colshape!");
         }
 
         private void OnPlayerEnterColshape(Colshape colshape, Events.CancelEventArgs cancel)
         {
-            RAGE.Chat.Output("You entered the colshape!");
+           // RAGE.Chat.Output("You entered the colshape!");
         }
     }
 }
