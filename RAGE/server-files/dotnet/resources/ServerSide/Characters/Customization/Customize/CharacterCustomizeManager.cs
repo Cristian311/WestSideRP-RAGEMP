@@ -93,6 +93,7 @@ namespace ServerSide.Characters.Customization.Customize
             face[12] = float.Parse(charData.Lips);
             face[13] = float.Parse(charData.Jaw.Width);
             face[14] = float.Parse(charData.Jaw.Width);
+            //needs fix
             if (charData.Chin.Lenght != null)
                 face[15] = float.Parse(charData.Chin.Lenght);
             else

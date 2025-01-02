@@ -251,42 +251,11 @@
                 </div>
                 <input type="range" id="cheeksCheeksWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <div class="section-title">Eyes & Brows</div>
-            <div class="divider"></div>
-            <div class="slider-container">
-                <div class="slider-label">
-                    <span>Brow Height</span>
-                    <span id="browHeightValue">0.00</span>
-                </div>
-                <input type="range" id="browHeight" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider-container">
-                <div class="slider-label">
-                    <span>Brow Width</span>
-                    <span id="browWidthValue">0.00</span>
-                </div>
-                <input type="range" id="browWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider-container">
-                <div class="slider-label">
-                    <span>Eye Size</span>
-                    <span id="eyeSizeValue">0.00</span>
-                </div>
-                <input type="range" id="eyeSize" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider-container">
-                <div class="slider-label">
-                    <span>Eye Color</span>
-                    <span id="eyeColorValue">0</span>
-                </div>
-                <input type="range" id="eyeColor" min="0" max="29" step="1" value="0" oninput="updateCharAttributes()">
-            </div>
+            
         </div>
 
         <div id="page4" class="page">
             <h2>Facial Structure</h2>
-           
-
             <div class="section-title">Jaw & Chin</div>
             <div class="divider"></div>
             <div class="slider-container">
@@ -327,6 +296,37 @@
         </div>
 
         <div id="page5" class="page">
+            <div class="section-title">Eyes & Brows</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Brow Height</span>
+                    <span id="browHeightValue">0.00</span>
+                </div>
+                <input type="range" id="browHeight" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Brow Width</span>
+                    <span id="browWidthValue">0.00</span>
+                </div>
+                <input type="range" id="browWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Eye Size</span>
+                    <span id="eyeSizeValue">0.00</span>
+                </div>
+                <input type="range" id="eyeSize" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Eye Color</span>
+                    <span id="eyeColorValue">0</span>
+                </div>
+                <input type="range" id="eyeColor" min="0" max="29" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+            
             <h2>Final Adjustments</h2>
             <div class="section-title">Colors & Details</div>
             <div class="divider"></div>
@@ -549,37 +549,49 @@ function createCharacter() {
 
 function updateCharacterDataFromJson(jsonString) {
     const data = JSON.parse(jsonString);
-    
-    // Update all form elements with the new data
+
     Object.entries(data).forEach(([key, value]) => {
         if (typeof value === 'object') {
             Object.entries(value).forEach(([subKey, subValue]) => {
                 const elementId = `${key}${subKey.charAt(0).toUpperCase()}${subKey.slice(1)}`;
                 const element = document.getElementById(elementId);
+
                 if (element) {
                     element.value = subValue;
-                    // Update text display if it's a shape or skin slider
-                    if ((key === 'shape' || key === 'skin') && (subKey === 'first' || subKey === 'second')) {
-                        document.getElementById(`${elementId}Text`).textContent = getCharacterNameFromValue(subValue);
+
+                    // Handle text display for shape/skin sliders
+                    const textElement = document.getElementById(`${elementId}Text`);
+                    if (textElement && (key === 'shape' || key === 'skin') && (subKey === 'first' || subKey === 'second')) {
+                        textElement.textContent = getCharacterNameFromValue(subValue) || 'Unknown';
                     }
+                } else {
+                    mp.gui.chat.push(`Element with ID '${elementId}' not found.`);
                 }
             });
         } else {
             const element = document.getElementById(key);
             if (element) {
                 element.value = value;
+            } else {
+                mp.gui.chat.push(`Element with ID '${key}' not found.`);
             }
         }
     });
-    
-    // Update all displays
-    updateCharAttributes();
+
+    if (typeof updateCharAttributes === 'function') {
+        updateCharAttributes();
+    } else {
+        console.warn('updateCharAttributes function is not defined.');
+    }
 }
 
+let loaded = false;
 // Initialize the interface
 document.addEventListener('DOMContentLoaded', function() {
     showPage(currentPage);
-    updateCharAttributes();
+    if(loaded == true)
+        updateCharAttributes();
+    loaded = true;
 });
 </script>
 

@@ -41,6 +41,7 @@ namespace ClientSide.Character.CustomizeChar
             string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
 
             cefBrowser.ExecuteJs($"updateCharacterDataFromJson(\"{escapedJson}\");");
+            Chat.Output(escapedJson + "hatz");
         }
         private void ShowCustomizeCharScreen(object[] args)
         {
