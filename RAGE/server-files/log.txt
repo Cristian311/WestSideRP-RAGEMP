@@ -145,3 +145,142 @@
 02.01.2025 08:05:06 - Loaded shop: kk at position: 0 0 0
 02.01.2025 08:05:06 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
 02.01.2025 08:05:06 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 08:05:59 (aaa) Hatz Gion: /createhouse
+02.01.2025 08:07:45 (aaa)  a creat casa ID 0 tip:2044 North Conker Avenue
+02.01.2025 08:07:45 (aaa) Hatz Gion: /createhouse 2044 North Conker Avenue
+02.01.2025 08:07:55 (aaa) Hatz Gion: /tognametag
+02.01.2025 08:08:57 (aaa) Hatz Gion: /features
+02.01.2025 08:13:53 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 08:13:53 - Loaded shop: lll at position: 0 0 0
+02.01.2025 08:13:53 - Loaded shop: kk at position: 0 0 0
+02.01.2025 08:13:53 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 08:13:53 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 08:16:13 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 08:16:13 - Loaded shop: lll at position: 0 0 0
+02.01.2025 08:16:13 - Loaded shop: kk at position: 0 0 0
+02.01.2025 08:16:13 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 08:16:13 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 08:17:46 (aaa) Hatz Gion: /tattoos
+02.01.2025 08:17:49 (aaa) Hatz Gion: /tattoo
+02.01.2025 08:17:56 (aaa) Hatz Gion: /facefeatures
+02.01.2025 08:18:13 (aaa) Hatz Gion: /facefeatures
+02.01.2025 08:18:23 (aaa) Hatz Gion: /face
+02.01.2025 08:18:26 (aaa) Hatz Gion: /clothes
+02.01.2025 08:18:40 (aaa) Hatz Gion: /hair
+02.01.2025 08:19:12 (aaa) Hatz Gion: /cpv
+02.01.2025 08:19:15 (aaa) Hatz Gion: /cpv infernus
+02.01.2025 08:20:36 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 08:20:36 - Loaded shop: lll at position: 0 0 0
+02.01.2025 08:20:36 - Loaded shop: kk at position: 0 0 0
+02.01.2025 08:20:36 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 08:20:36 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 08:22:58 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 08:22:58 - Loaded shop: lll at position: 0 0 0
+02.01.2025 08:22:58 - Loaded shop: kk at position: 0 0 0
+02.01.2025 08:22:58 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 08:22:58 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 08:23:22 (aaa) Hatz Gion: /VG
+02.01.2025 08:23:27 (aaa) Hatz Gion: /cpv elegy
+02.01.2025 08:23:53 (aaa) Hatz Gion: /settime 20
+02.01.2025 08:23:58 (aaa) Hatz Gion: /settime
+02.01.2025 08:24:01 (aaa) Hatz Gion: /sett
+02.01.2025 08:24:03 (aaa) Hatz Gion: /time
+02.01.2025 08:24:05 (aaa) Hatz Gion: /time 22
+02.01.2025 08:26:13 (aaa) Hatz Gion: /tognametag
+02.01.2025 08:26:16 (aaa) Hatz Gion: /tognametag
+02.01.2025 08:27:18 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 08:27:18 - Loaded shop: lll at position: 0 0 0
+02.01.2025 08:27:18 - Loaded shop: kk at position: 0 0 0
+02.01.2025 08:27:18 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 08:27:18 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 08:27:32 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 08:27:32 - Loaded shop: lll at position: 0 0 0
+02.01.2025 08:27:32 - Loaded shop: kk at position: 0 0 0
+02.01.2025 08:27:32 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 08:27:32 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 08:27:53 (aaa) Hatz Gion: /tognametag
+02.01.2025 08:27:54 (aaa) Hatz Gion: /tognametag
+02.01.2025 08:28:01 (aaa) Hatz Gion: /me se uita in jur.
+02.01.2025 08:29:06 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 08:29:06 - Loaded shop: lll at position: 0 0 0
+02.01.2025 08:29:06 - Loaded shop: kk at position: 0 0 0
+02.01.2025 08:29:06 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 08:29:06 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 08:29:21 (aaa) Hatz Gion: /me hatz
+02.01.2025 08:32:47 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 08:32:47 - Loaded shop: lll at position: 0 0 0
+02.01.2025 08:32:47 - Loaded shop: kk at position: 0 0 0
+02.01.2025 08:32:47 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 08:32:47 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 20:46:01 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 20:46:01 - Loaded shop: lll at position: 0 0 0
+02.01.2025 20:46:02 - Loaded shop: kk at position: 0 0 0
+02.01.2025 20:46:02 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 20:46:02 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 20:48:48 (aaa) Hatz Gion: /facefeatures
+02.01.2025 20:52:34 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 20:52:34 - Loaded shop: lll at position: 0 0 0
+02.01.2025 20:52:34 - Loaded shop: kk at position: 0 0 0
+02.01.2025 20:52:34 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 20:52:34 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 20:57:34 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 20:57:34 - Loaded shop: lll at position: 0 0 0
+02.01.2025 20:57:34 - Loaded shop: kk at position: 0 0 0
+02.01.2025 20:57:34 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 20:57:34 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 20:59:59 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 20:59:59 - Loaded shop: lll at position: 0 0 0
+02.01.2025 20:59:59 - Loaded shop: kk at position: 0 0 0
+02.01.2025 20:59:59 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 20:59:59 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 21:02:41 (aaa) Hatz Gion: /facefeatures
+02.01.2025 21:17:19 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 21:17:19 - Loaded shop: lll at position: 0 0 0
+02.01.2025 21:17:19 - Loaded shop: kk at position: 0 0 0
+02.01.2025 21:17:19 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 21:17:19 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 21:19:04 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 21:19:04 - Loaded shop: lll at position: 0 0 0
+02.01.2025 21:19:04 - Loaded shop: kk at position: 0 0 0
+02.01.2025 21:19:04 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 21:19:04 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 21:19:31 (aaa) Hatz Gion: /facefeatures
+02.01.2025 21:22:52 (aaa) Hatz Gion: /facefeatures
+02.01.2025 21:25:58 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 21:25:58 - Loaded shop: lll at position: 0 0 0
+02.01.2025 21:25:58 - Loaded shop: kk at position: 0 0 0
+02.01.2025 21:25:58 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 21:25:58 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 21:26:28 (aaa) Hatz Gion: /facefeatures
+02.01.2025 21:27:12 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 21:27:12 - Loaded shop: lll at position: 0 0 0
+02.01.2025 21:27:12 - Loaded shop: kk at position: 0 0 0
+02.01.2025 21:27:12 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 21:27:12 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 21:27:36 (aaa) Hatz Gion: /facefeatures
+02.01.2025 21:29:39 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 21:29:39 - Loaded shop: lll at position: 0 0 0
+02.01.2025 21:29:39 - Loaded shop: kk at position: 0 0 0
+02.01.2025 21:29:39 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 21:29:39 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 21:30:05 (aaa) Hatz Gion: /facefeatures
+02.01.2025 21:44:10 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 21:44:10 - Loaded shop: lll at position: 0 0 0
+02.01.2025 21:44:10 - Loaded shop: kk at position: 0 0 0
+02.01.2025 21:44:10 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 21:44:10 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 21:44:41 (aaa) Hatz Gion: /facefeatures
+02.01.2025 21:45:58 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 21:45:58 - Loaded shop: lll at position: 0 0 0
+02.01.2025 21:45:58 - Loaded shop: kk at position: 0 0 0
+02.01.2025 21:45:58 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 21:45:58 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 21:46:18 (aaa) Hatz Gion: /facefeatures
+02.01.2025 21:49:35 (aaa) Hatz Gion: /tognametag
+02.01.2025 21:49:38 (aaa) Hatz Gion: /facefeatures
+02.01.2025 22:03:48 - Loaded shop: hatz at position: 0 0 0
+02.01.2025 22:03:48 - Loaded shop: lll at position: 0 0 0
+02.01.2025 22:03:48 - Loaded shop: kk at position: 0 0 0
+02.01.2025 22:03:48 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+02.01.2025 22:03:48 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+02.01.2025 22:04:19 (aaa) Hatz Gion: /facefeatures

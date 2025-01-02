@@ -35,7 +35,7 @@ namespace ServerSide.Util
         public static string FormatStringForAme(string name, string action)
         {
             const int maxLineLength = 70;
-            string prefix = $"~p~{name} {action}";
+            string prefix = $"~f~{name} {action}";
             string suffix = $"~w~{name}";
 
             List<string> parts = new List<string>();

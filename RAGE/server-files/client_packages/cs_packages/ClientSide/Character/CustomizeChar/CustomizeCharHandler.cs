@@ -24,23 +24,22 @@ namespace ClientSide.Character.CustomizeChar
         {
             string json = args[0].ToString();
             CharacterData charData = RAGE.Util.Json.Deserialize<CharacterData>(json);
+            Chat.Output(json);
             UpdatePlayerFaceFeatures(charData, Gender);
         }
 
         private void ShowCustomizeCharScreenServer(object[] args)
         {
-            // Initialize the HTML window and show the cursor
             cefBrowser = new HtmlWindow("http://package2/html/Characters/customize_char.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;
 
-            // Get the JSON string and output it to chat for debugging
-            string json = args[0].ToString();
-            Gender = bool.Parse(args[0].ToString());
-            // Escape the JSON for embedding in JavaScript
+            string GenderJson = args[0].ToString();
+            Gender = bool.Parse(GenderJson);
+
+            string json = args[1].ToString();
             string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
 
-            // Execute JavaScript and pass the escaped JSON string
             cefBrowser.ExecuteJs($"updateCharacterDataFromJson(\"{escapedJson}\");");
         }
         private void ShowCustomizeCharScreen(object[] args)
@@ -67,10 +66,8 @@ namespace ClientSide.Character.CustomizeChar
 
         private void UpdatePlayerFaceFeatures(CharacterData data, bool gender)
         {
-
-           
             var eyeColor = byte.Parse(data.Eye.Color);
-            var features = FaceFeatures(data);
+            var features = GetFaceFeatures(data);
             RAGE.Elements.Player.LocalPlayer.SetEyeColor(eyeColor);
             int shapeFirst = int.Parse(data.Shape.First);
             int shapeSecond = int.Parse(data.Shape.Second);
@@ -85,9 +82,10 @@ namespace ClientSide.Character.CustomizeChar
                 var feature = features[i] * 0.01;
                 RAGE.Elements.Player.LocalPlayer.SetFaceFeature(i, (float)feature);
             }
+            
         }
 
-        private static float[] FaceFeatures(CharacterData charData)
+        private static float[] GetFaceFeatures(CharacterData charData)
         {
             float[] face = new float[20];
             face[0] = float.Parse(charData.Nose.Width);

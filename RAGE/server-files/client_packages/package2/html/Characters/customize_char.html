@@ -3,127 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Character Attributes</title>
+    <title>Character Customization</title>
     <style>
+        :root {
+            --primary: #ff6b00;
+            --primary-dark: #cc5500;
+            --bg-dark: #1a1a1a;
+            --bg-darker: #0f0f0f;
+            --text: #ffffff;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0);
+            background-color: transparent;
+            color: var(--text);
         }
+        
         .container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 300px;
+            background-color: var(--bg-dark);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            padding: 24px;
+            width: 400px;
             position: absolute;
             top: 20px;
             left: 20px;
         }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 24px;
+            font-size: 24px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin: 20px 0 10px 0;
+        }
+        
+        .divider {
+            height: 2px;
+            background-color: var(--primary-dark);
+            margin: 5px 0 15px 0;
+        }
+        
         .page {
             display: none;
         }
-        .slider {
-            margin-bottom: 20px;
+        
+        .slider-container {
+            background-color: var(--bg-darker);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
         }
+        
         .slider-label {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 8px;
         }
+        
+        .slider-label span:last-child {
+            color: var(--primary);
+        }
+        
+        .slider-value {
+            color: var(--primary);
+            font-size: 0.9em;
+        }
+        
         input[type="range"] {
             -webkit-appearance: none;
             width: 100%;
-            height: 8px;
-            border-radius: 5px;
-            background: #ddd;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--bg-dark);
             outline: none;
-            opacity: 0.7;
-            transition: opacity .2s;
         }
-        input[type="range"]:hover {
-            opacity: 1;
-        }
+        
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
-            background: #4CAF50; /* Green color */
+            background: var(--primary);
             cursor: pointer;
+            transition: background 0.2s;
         }
-        input[type="range"]::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #4CAF50; /* Green color */
-            cursor: pointer;
+        
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: var(--primary-dark);
         }
-        .button {
-            background-color: #4CAF50; /* Green background */
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: #45a049; /* Darker green */
-        }
+        
         .navigation {
             display: flex;
             justify-content: space-between;
+            margin-top: 24px;
+        }
+        
+        .button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-weight: bold;
+        }
+        
+        .button:hover {
+            background-color: var(--primary-dark);
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <div id="page1" class="page" style="display: block;">
-            <h2>Character Shape</h2>
-            <div class="slider">
+        <div id="page1" class="page">
+            <h2>Character Base</h2>
+            
+            <div class="section-title">Shape Selection</div>
+            <div class="divider"></div>
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Shape First</span><span id="shapeFirstValue">0.00</span>
+                    <span>First Shape</span>
+                    <span class="slider-value" id="shapeFirstText">Benjamin</span>
                 </div>
-                <input type="range" id="shapeFirst" min="0" max="45" step="1" value="0" oninput="updateCharAttributes()">
+                <input type="range" id="shapeFirst" min="0" max="44" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-            <div class="slider">
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Shape Second</span><span id="shapeSecondValue">0.00</span>
+                    <span>Second Shape</span>
+                    <span class="slider-value" id="shapeSecondText">Benjamin</span>
                 </div>
-                <input type="range" id="shapeSecond" min="0" max="45" step="1" value="0" oninput="updateCharAttributes()">
+                <input type="range" id="shapeSecond" min="0" max="44" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-            <div class="slider">
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Hair Color</span><span id="hairColorValue">0.00</span>
-                </div>
-                <input type="range" id="hairColor" min="0" max="63" step="1" value="0" oninput="updateCharAttributes()">
-            </div>
-            <h2>Character Skin</h2>
-            <div class="slider">
-                <div class="slider-label">
-                    <span>Skin First</span><span id="skinFirstValue">0.00</span>
-                </div>
-                <input type="range" id="skinFirst" min="0" max="45" step="1" value="0" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider">
-                <div class="slider-label">
-                    <span>Skin Second</span><span id="skinSecondValue">0.00</span>
-                </div>
-                <input type="range" id="skinSecond" min="0" max="45" step="1" value="0" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider">
-                <div class="slider-label">
-                    <span>Shape Mix</span><span id="shapeMixValue">0.00</span>
+                    <span>Shape Mix</span>
+                    <span id="shapeMixValue">0.50</span>
                 </div>
                 <input type="range" id="shapeMix" min="0" max="1" step="0.01" value="0.5" oninput="updateCharAttributes()">
             </div>
-            <div class="slider">
+
+            <div class="section-title">Skin Selection</div>
+            <div class="divider"></div>
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Skin Mix</span><span id="skinMixValue">0.00</span>
+                    <span>First Skin</span>
+                    <span class="slider-value" id="skinFirstText">Benjamin</span>
+                </div>
+                <input type="range" id="skinFirst" min="0" max="44" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Second Skin</span>
+                    <span class="slider-value" id="skinSecondText">Benjamin</span>
+                </div>
+                <input type="range" id="skinSecond" min="0" max="44" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Skin Mix</span>
+                    <span id="skinMixValue">0.50</span>
                 </div>
                 <input type="range" id="skinMix" min="0" max="1" step="0.01" value="0.5" oninput="updateCharAttributes()">
             </div>
@@ -131,170 +180,179 @@
 
         <div id="page2" class="page">
             <h2>Nose Features</h2>
-            <div class="slider">
+            <div class="section-title">Nose Customization</div>
+            <div class="divider"></div>
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Nose Width</span><span id="noseWidthValue">0.00</span>
+                    <span>Nose Width</span>
+                    <span id="noseWidthValue">0.00</span>
                 </div>
                 <input type="range" id="noseWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <div class="slider">
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Nose Height</span><span id="noseHeightValue">0.00</span>
+                    <span>Nose Height</span>
+                    <span id="noseHeightValue">0.00</span>
                 </div>
                 <input type="range" id="noseHeight" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <div class="slider">
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Nose Length</span><span id="noseLengthValue">0.00</span>
+                    <span>Nose Length</span>
+                    <span id="noseLengthValue">0.00</span>
                 </div>
                 <input type="range" id="noseLength" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <div class="slider">
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Nose Bridge</span><span id="noseBridgeValue">0.00</span>
+                    <span>Nose Bridge</span>
+                    <span id="noseBridgeValue">0.00</span>
                 </div>
                 <input type="range" id="noseBridge" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-            <div class="slider">
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Nose Tip</span><span id="noseTipValue">0.00</span>
+                    <span>Nose Tip</span>
+                    <span id="noseTipValue">0.00</span>
                 </div>
                 <input type="range" id="noseTip" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Bridge Shift</span>
+                    <span id="noseBridgeShiftValue">0.00</span>
+                </div>
+                <input type="range" id="noseBridgeShift" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
         </div>
 
         <div id="page3" class="page">
             <h2>Facial Features</h2>
-            <div class="slider">
+            <div class="section-title">Cheeks</div>
+            <div class="divider"></div>
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Nose Bridge Shift</span><span id="noseBridgeShiftValue">0.00</span>
-                </div>
-                <input type="range" id="noseBridgeShift" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider">
-                <div class="slider-label">
-                    <span>Brow Height</span><span id="browHeightValue">0.00</span>
-                </div>
-                <input type="range" id="browHeight" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider">
-                <div class="slider-label">
-                    <span>Brow Width</span><span id="browWidthValue">0.00</span>
-                </div>
-                <input type="range" id="browWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider">
-                <div class="slider-label">
-                    <span>Jaw Width</span><span id="jawWidthValue">0.00</span>
-                </div>
-                <input type="range" id="jawWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
-            </div>
-        </div>
-
-        <div id="page4" class="page">
-            <h2>Final Adjustments</h2>
-            <div class="slider">
-                <div class="slider-label">
-                    <span>Skin Color</span><span id="skinColorValue">0.00</span>
-                </div>
-                <input type="range" id="skinColor" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider">
-                <div class="slider-label">
-                    <span>Eye Size</span><span id="eyeSizeValue">0.00</span>
-                </div>
-                <input type="range" id="eyeSize" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider">
-                <div class="slider-label">
-                    <span>Eye Color</span><span id="eyeColorValue">0.00</span>
-                </div>
-                <input type="range" id="eyeColor" min="0" max="29" step="1" value="0" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider">
-                <div class="slider-label">
-                    <span>Lips</span><span id="lipsValue">0.00</span>
-                </div>
-                <input type="range" id="lips" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
-            </div>
-        </div>
-
-        <div id="page4" class="page">
-            <h2>Facial Features</h2>
-
-            <!-- Slider for Cheeks Height -->
-            <div class="slider">
-                <div class="slider-label">
-                    <span>Cheeks Height</span><span id="cheeksHeightValue">0.00</span> <!-- Added for cheeks height -->
+                    <span>Cheeks Height</span>
+                    <span id="cheeksHeightValue">0.00</span>
                 </div>
                 <input type="range" id="cheeksHeight" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-
-            <!-- Slider for Cheeks Width -->
-            <div class="slider">
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Cheeks Width</span><span id="cheeksWidthValue">0.00</span> <!-- Added for cheeks width -->
+                    <span>Cheeks Width</span>
+                    <span id="cheeksWidthValue">0.00</span>
                 </div>
                 <input type="range" id="cheeksWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-
-            <!-- Slider for Cheeks Cheeks Width -->
-            <div class="slider">
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Cheeks Cheeks Width</span><span id="cheeksCheeksWidthValue">0.00</span> <!-- Added for cheeks width (renamed) -->
+                    <span>Cheeks Width 2</span>
+                    <span id="cheeksCheeksWidthValue">0.00</span>
                 </div>
                 <input type="range" id="cheeksCheeksWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-
-            <!-- Slider for Jaw Width -->
-            <div class="slider">
+            <div class="section-title">Eyes & Brows</div>
+            <div class="divider"></div>
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Jaw Width</span><span id="jawWidthValue">0.00</span> <!-- Added for jaw width -->
+                    <span>Brow Height</span>
+                    <span id="browHeightValue">0.00</span>
+                </div>
+                <input type="range" id="browHeight" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Brow Width</span>
+                    <span id="browWidthValue">0.00</span>
+                </div>
+                <input type="range" id="browWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Eye Size</span>
+                    <span id="eyeSizeValue">0.00</span>
+                </div>
+                <input type="range" id="eyeSize" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Eye Color</span>
+                    <span id="eyeColorValue">0</span>
+                </div>
+                <input type="range" id="eyeColor" min="0" max="29" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+        </div>
+
+        <div id="page4" class="page">
+            <h2>Facial Structure</h2>
+           
+
+            <div class="section-title">Jaw & Chin</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Jaw Width</span>
+                    <span id="jawWidthValue">0.00</span>
                 </div>
                 <input type="range" id="jawWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-
-            <!-- Slider for Chin Length -->
-            <div class="slider">
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Chin Length</span><span id="chinLengthValue">0.00</span> <!-- Added for chin length -->
+                    <span>Chin Length</span>
+                    <span id="chinLengthValue">0.00</span>
                 </div>
                 <input type="range" id="chinLength" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-
-            <!-- Slider for Chin Position -->
-            <div class="slider">
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Chin Position</span><span id="chinPositionValue">0.00</span> <!-- Added for chin position -->
+                    <span>Chin Position</span>
+                    <span id="chinPositionValue">0.00</span>
                 </div>
                 <input type="range" id="chinPosition" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-
-            <!-- Slider for Chin Width -->
-            <div class="slider">
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Chin Width</span><span id="chinWidthValue">0.00</span> <!-- Added for chin width -->
+                    <span>Chin Width</span>
+                    <span id="chinWidthValue">0.00</span>
                 </div>
                 <input type="range" id="chinWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
-
-            <!-- Slider for Chin Shape -->
-            <div class="slider">
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Chin Shape</span><span id="chinShapeValue">0.00</span> <!-- Added for chin shape -->
+                    <span>Chin Shape</span>
+                    <span id="chinShapeValue">0.00</span>
                 </div>
                 <input type="range" id="chinShape" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
+        </div>
 
-            <!-- Slider for Neck Width -->
-            <div class="slider">
+        <div id="page5" class="page">
+            <h2>Final Adjustments</h2>
+            <div class="section-title">Colors & Details</div>
+            <div class="divider"></div>
+            <div class="slider-container">
                 <div class="slider-label">
-                    <span>Neck Width</span><span id="neckWidthValue">0.00</span> <!-- Added for neck width -->
+                    <span>Skin Color</span>
+                    <span id="skinColorValue">0.00</span>
+                </div>
+                <input type="range" id="skinColor" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Lips</span>
+                    <span id="lipsValue">0.00
+                    </span>
+                </div>
+                <input type="range" id="lips" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Neck Width</span>
+                    <span id="neckWidthValue">0.00</span>
                 </div>
                 <input type="range" id="neckWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
         </div>
-
 
         <div class="navigation">
             <button id="prevButton" class="button" onclick="prevPage()">Previous</button>
@@ -304,337 +362,225 @@
     </div>
 
 <script>
-    let currentPage = 0;
-    const pages = document.querySelectorAll('.page');
-    const prevButton = document.getElementById('prevButton');
-    const nextButton = document.getElementById('nextButton');
-    const createButton = document.getElementById('createButton');
+const characterNames = [
+    "Benjamin", "Daniel", "Joshua", "Noah", "Andrew", "Joan", "Alex", "Isaac", "Evan", "Ethan",
+    "Vincent", "Angel", "Diego", "Adrian", "Gabriel", "Michael", "Santiago", "Kevin", "Louis", "Samuel",
+    "Anthony", "John", "Niko", "Claude", "Hannah", "Audrey", "Jasmine", "Giselle", "Amelia",
+    "Isabella", "Zoe", "Ava", "Camilla", "Violet", "Sophia", "Eveline", "Nicole", "Ashley", "Grace",
+    "Brianna", "Natalie", "Olivia", "Elizabeth", "Charlotte", "Emma", "Misty"
+];
 
-    function showPage(pageIndex) {
-        pages.forEach((page, index) => {
-            page.style.display = index === pageIndex ? 'block' : 'none';
-        });
-        updateNavigation();
+let currentPage = 0;
+const pages = document.querySelectorAll('.page');
+const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton');
+const createButton = document.getElementById('createButton');
+
+function getCharacterNameFromValue(value) {
+    return characterNames[Math.min(Math.floor(value), characterNames.length - 1)];
+}
+
+function showPage(pageIndex) {
+    pages.forEach((page, index) => {
+        page.style.display = index === pageIndex ? 'block' : 'none';
+    });
+    updateNavigation();
+}
+
+function updateNavigation() {
+    prevButton.style.display = currentPage === 0 ? 'none' : 'inline-block';
+    nextButton.style.display = currentPage === pages.length - 1 ? 'none' : 'inline-block';
+    createButton.style.display = currentPage === pages.length - 1 ? 'inline-block' : 'none';
+}
+
+function prevPage() {
+    if (currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
     }
+}
 
-    function updateNavigation() {
-        prevButton.style.display = currentPage === 0 ? 'none' : 'inline-block';
-        nextButton.style.display = currentPage === pages.length - 1 ? 'none' : 'inline-block';
-        createButton.style.display = currentPage === pages.length - 1 ? 'inline-block' : 'none';
+function nextPage() {
+    if (currentPage < pages.length - 1) {
+        currentPage++;
+        showPage(currentPage);
     }
+}
 
-    function prevPage() {
-        if (currentPage > 0) {
-            currentPage--;
-            showPage(currentPage);
+function updateCharAttributes() {
+    // Update character name displays
+    document.getElementById('shapeFirstText').textContent = getCharacterNameFromValue(document.getElementById('shapeFirst').value);
+    document.getElementById('shapeSecondText').textContent = getCharacterNameFromValue(document.getElementById('shapeSecond').value);
+    document.getElementById('skinFirstText').textContent = getCharacterNameFromValue(document.getElementById('skinFirst').value);
+    document.getElementById('skinSecondText').textContent = getCharacterNameFromValue(document.getElementById('skinSecond').value);
+
+    // Update mix values
+    document.getElementById('shapeMixValue').textContent = parseFloat(document.getElementById('shapeMix').value).toFixed(2);
+    document.getElementById('skinMixValue').textContent = parseFloat(document.getElementById('skinMix').value).toFixed(2);
+
+    // Get all form values
+    const characterData = {
+        shape: {
+            first: document.getElementById('shapeFirst').value,
+            second: document.getElementById('shapeSecond').value,
+            mix: document.getElementById('shapeMix').value,
+        },
+        skin: {
+            first: document.getElementById('skinFirst').value,
+            second: document.getElementById('skinSecond').value,
+            mix: document.getElementById('skinMix').value,
+        },
+        nose: {
+            width: document.getElementById('noseWidth').value,
+            height: document.getElementById('noseHeight').value,
+            length: document.getElementById('noseLength').value,
+            bridge: document.getElementById('noseBridge').value,
+            tip: document.getElementById('noseTip').value,
+            bridgeShift: document.getElementById('noseBridgeShift').value,
+        },
+        brow: {
+            height: document.getElementById('browHeight').value,
+            width: document.getElementById('browWidth').value,
+        },
+        cheeks: {
+            height: document.getElementById('cheeksHeight').value,
+            width: document.getElementById('cheeksWidth').value,
+            cheeksWidth: document.getElementById('cheeksCheeksWidth').value,
+        },
+        jaw: {
+            width: document.getElementById('jawWidth').value,
+        },
+        chin: {
+            length: document.getElementById('chinLength').value,
+            position: document.getElementById('chinPosition').value,
+            width: document.getElementById('chinWidth').value,
+            shape: document.getElementById('chinShape').value,
+        },
+        neck: {
+            width: document.getElementById('neckWidth').value,
+        },
+        eye: {
+            size: document.getElementById('eyeSize').value,
+            color: document.getElementById('eyeColor').value,
+        },
+        skinColor: document.getElementById('skinColor').value,
+        lips: document.getElementById('lips').value,
+    };
+
+    // Update all numeric value displays
+    Object.entries(characterData).forEach(([key, value]) => {
+        if (typeof value === 'object') {
+            Object.entries(value).forEach(([subKey, subValue]) => {
+                const valueElement = document.getElementById(`${key}${subKey.charAt(0).toUpperCase()}${subKey.slice(1)}Value`);
+                if (valueElement) {
+                    valueElement.textContent = parseFloat(subValue).toFixed(2);
+                }
+            });
+        } else {
+            const valueElement = document.getElementById(`${key}Value`);
+            if (valueElement) {
+                valueElement.textContent = parseFloat(value).toFixed(2);
+            }
         }
-    }
+    });
 
-    function nextPage() {
-        if (currentPage < pages.length - 1) {
-            currentPage++;
-            showPage(currentPage);
-        }
-    }
-
-    function updateCharAttributes() {
-        // Getting values from input elements
-        const shapeFirst = document.getElementById('shapeFirst').value;
-        const shapeSecond = document.getElementById('shapeSecond').value;
-        //const hairColor = document.getElementById('hairColor').value;
-        const skinFirst = document.getElementById('skinFirst').value;
-        const skinSecond = document.getElementById('skinSecond').value;
-        //const skinThird = document.getElementById('skinThird').value;
-        const shapeMix = document.getElementById('shapeMix').value;
-        const skinMix = document.getElementById('skinMix').value;
-        //const thirdMix = document.getElementById('thirdMix').value;
-        const noseWidth = document.getElementById('noseWidth').value;
-        const noseHeight = document.getElementById('noseHeight').value;
-        const noseLength = document.getElementById('noseLength').value;
-        const noseBridge = document.getElementById('noseBridge').value;
-        const noseTip = document.getElementById('noseTip').value;
-        const noseBridgeShift = document.getElementById('noseBridgeShift').value;
-        const browHeight = document.getElementById('browHeight').value;
-        const browWidth = document.getElementById('browWidth').value;
-
-        // New variables for cheeks and chin
-        const cheeksHeight = document.getElementById('cheeksHeight').value; // Added for cheeks height
-        const cheeksWidth = document.getElementById('cheeksWidth').value; // Added for cheeks width
-        const cheeksCheeksWidth = document.getElementById('cheeksCheeksWidth').value; // Added for cheeks width (renamed)
-        const jawWidth = document.getElementById('jawWidth').value;
-        const chinLength = document.getElementById('chinLength').value; // Corrected typo 'lenght' to 'length'
-        const chinPosition = document.getElementById('chinPosition').value; // Added for chin position
-        const chinWidth = document.getElementById('chinWidth').value; // Added for chin width
-        const chinShape = document.getElementById('chinShape').value; // Added for chin shape
-        const neckWidth = document.getElementById('neckWidth').value; // Added for neck width
-        const skinColor = document.getElementById('skinColor').value;
-        const eyeSize = document.getElementById('eyeSize').value;
-        const eyeColor = document.getElementById('eyeColor').value;
-        const lips = document.getElementById('lips').value;
-
-        // Updating text content to match the characterData structure
-        document.getElementById('shapeFirstValue').textContent = shapeFirst;
-        document.getElementById('shapeSecondValue').textContent = shapeSecond;
-        //document.getElementById('hairColorValue').textContent = hairColor;
-        document.getElementById('skinFirstValue').textContent = skinFirst;
-        document.getElementById('skinSecondValue').textContent = skinSecond;
-        //document.getElementById('skinThirdValue').textContent = skinThird;
-        document.getElementById('shapeMixValue').textContent = shapeMix;
-        document.getElementById('skinMixValue').textContent = skinMix;
-        //document.getElementById('thirdMixValue').textContent = thirdMix;
-        document.getElementById('noseWidthValue').textContent = noseWidth;
-        document.getElementById('noseHeightValue').textContent = noseHeight;
-        document.getElementById('noseLengthValue').textContent = noseLength;
-        document.getElementById('noseBridgeValue').textContent = noseBridge;
-        document.getElementById('noseTipValue').textContent = noseTip;
-        document.getElementById('noseBridgeShiftValue').textContent = noseBridgeShift;
-        document.getElementById('browHeightValue').textContent = browHeight;
-        document.getElementById('browWidthValue').textContent = browWidth;
-
-        // Updating text content for new elements
-        document.getElementById('cheeksHeightValue').textContent = cheeksHeight; // Added for cheeks height
-        document.getElementById('cheeksWidthValue').textContent = cheeksWidth; // Added for cheeks width
-        document.getElementById('cheeksCheeksWidthValue').textContent = cheeksCheeksWidth; // Added for cheeks width
-        document.getElementById('jawWidthValue').textContent = jawWidth;
-        document.getElementById('chinLengthValue').textContent = chinLength; // Added for chin length
-        document.getElementById('chinPositionValue').textContent = chinPosition; // Added for chin position
-        document.getElementById('chinWidthValue').textContent = chinWidth; // Added for chin width
-        document.getElementById('chinShapeValue').textContent = chinShape; // Added for chin shape
-        document.getElementById('neckWidthValue').textContent = neckWidth; // Added for neck width
-        document.getElementById('skinColorValue').textContent = skinColor;
-        document.getElementById('eyeSizeValue').textContent = eyeSize;
-        document.getElementById('eyeColorValue').textContent = eyeColor;
-        document.getElementById('lipsValue').textContent = lips;
-        const characterData = {
-            shape: {
-                first: shapeFirst,
-                second: shapeSecond,
-                mix: shapeMix,
-            },
-            skin: {
-                first: skinFirst,
-                second: skinSecond,
-                mix: skinMix,
-            },
-            nose: {
-                width: noseWidth,
-                height: noseHeight,
-                length: noseLength,
-                bridge: noseBridge,
-                tip: noseTip,
-                bridgeShift: noseBridgeShift,
-            },
-            brow: {
-                height: browHeight,
-                width: browWidth,
-            },
-            cheeks: {
-                height : cheeksHeight,
-                width : cheeksWidth,
-                cheeksWidth : cheeksCheeksWidth,
-            },
-            jaw: {
-                width: jawWidth,
-            },
-            chin: {
-                lenght: chinLength,
-                position: chinPosition,
-                width: chinWidth,
-                shape: chinShape,
-            },
-            neck: {
-                width : neckWidth,
-            },
-            lips: lips,
-            skinColor: skinColor,
-            eye: {
-                size: eyeSize,
-                color: eyeColor,
-            },
-            //hair: {
-            //    color: hairColor,
-            //},
-        };
-
-        const jsonString = JSON.stringify(characterData);
+    // Send the data to the game
+    const jsonString = JSON.stringify(characterData);
+    if (typeof mp !== 'undefined') {
         mp.trigger("CEF:CLIENT:UpdateCharacter", jsonString);
     }
+}
 
-    function createCharacter() {
-        const shapeFirst = document.getElementById('shapeFirst').value;
-        const shapeSecond = document.getElementById('shapeSecond').value;
-        //const hairColor = document.getElementById('hairColor').value;
-        const skinFirst = document.getElementById('skinFirst').value;
-        const skinSecond = document.getElementById('skinSecond').value;
-        //const skinThird = document.getElementById('skinThird').value;
-        const shapeMix = document.getElementById('shapeMix').value;
-        const skinMix = document.getElementById('skinMix').value;
-        //const thirdMix = document.getElementById('thirdMix').value;
-        const noseWidth = document.getElementById('noseWidth').value;
-        const noseHeight = document.getElementById('noseHeight').value;
-        const noseLength = document.getElementById('noseLength').value;
-        const noseBridge = document.getElementById('noseBridge').value;
-        const noseTip = document.getElementById('noseTip').value;
-        const noseBridgeShift = document.getElementById('noseBridgeShift').value;
-        const browHeight = document.getElementById('browHeight').value;
-        const browWidth = document.getElementById('browWidth').value;
+function createCharacter() {
+    const characterData = {
+        shape: {
+            first: document.getElementById('shapeFirst').value,
+            second: document.getElementById('shapeSecond').value,
+            mix: document.getElementById('shapeMix').value,
+        },
+        skin: {
+            first: document.getElementById('skinFirst').value,
+            second: document.getElementById('skinSecond').value,
+            mix: document.getElementById('skinMix').value,
+        },
+        nose: {
+            width: document.getElementById('noseWidth').value,
+            height: document.getElementById('noseHeight').value,
+            length: document.getElementById('noseLength').value,
+            bridge: document.getElementById('noseBridge').value,
+            tip: document.getElementById('noseTip').value,
+            bridgeShift: document.getElementById('noseBridgeShift').value,
+        },
+        brow: {
+            height: document.getElementById('browHeight').value,
+            width: document.getElementById('browWidth').value,
+        },
+        cheeks: {
+            height: document.getElementById('cheeksHeight').value,
+            width: document.getElementById('cheeksWidth').value,
+            cheeksWidth: document.getElementById('cheeksCheeksWidth').value,
+        },
+        jaw: {
+            width: document.getElementById('jawWidth').value,
+        },
+        chin: {
+            length: document.getElementById('chinLength').value,
+            position: document.getElementById('chinPosition').value,
+            width: document.getElementById('chinWidth').value,
+            shape: document.getElementById('chinShape').value,
+        },
+        neck: {
+            width: document.getElementById('neckWidth').value,
+        },
+        eye: {
+            size: document.getElementById('eyeSize').value,
+            color: document.getElementById('eyeColor').value,
+        },
+        skinColor: document.getElementById('skinColor').value,
+        lips: document.getElementById('lips').value,
+    };
 
-        // New variables for cheeks and chin
-        const cheeksHeight = document.getElementById('cheeksHeight').value; // Added for cheeks height
-        const cheeksWidth = document.getElementById('cheeksWidth').value; // Added for cheeks width
-        const cheeksCheeksWidth = document.getElementById('cheeksCheeksWidth').value; // Added for cheeks width (renamed)
-        const jawWidth = document.getElementById('jawWidth').value;
-        const chinLength = document.getElementById('chinLength').value; // Corrected typo 'lenght' to 'length'
-        const chinPosition = document.getElementById('chinPosition').value; // Added for chin position
-        const chinWidth = document.getElementById('chinWidth').value; // Added for chin width
-        const chinShape = document.getElementById('chinShape').value; // Added for chin shape
-        const neckWidth = document.getElementById('neckWidth').value; // Added for neck width
-        const skinColor = document.getElementById('skinColor').value;
-        const eyeSize = document.getElementById('eyeSize').value;
-        const eyeColor = document.getElementById('eyeColor').value;
-        const lips = document.getElementById('lips').value;
-        
-        const characterData = {
-            shape: {
-                first: shapeFirst,
-                second: shapeSecond,
-                mix: shapeMix,
-            },
-            skin: {
-                first: skinFirst,
-                second: skinSecond,
-                mix: skinMix,
-            },
-            nose: {
-                width: noseWidth,
-                height: noseHeight,
-                length: noseLength,
-                bridge: noseBridge,
-                tip: noseTip,
-                bridgeShift: noseBridgeShift,
-            },
-            brow: {
-                height: browHeight,
-                width: browWidth,
-            },
-            cheeks: {
-                height : cheeksHeight,
-                width : cheeksWidth,
-                cheeksWidth : cheeksCheeksWidth,
-            },
-            jaw: {
-                width: jawWidth,
-            },
-            chin: {
-                lenght: chinLength,
-                position: chinPosition,
-                width: chinWidth,
-                shape: chinShape,
-            },
-            neck: {
-                width : neckWidth,
-            },
-            lips: lips,
-            skinColor: skinColor,
-            eye: {
-                size: eyeSize,
-                color: eyeColor,
-            },
-        };
-
-        const jsonString = JSON.stringify(characterData);
-        console.log(jsonString);
+    const jsonString = JSON.stringify(characterData);
+    if (typeof mp !== 'undefined') {
         mp.trigger("CEF:CLIENT:UpdateCharacter", jsonString);
         mp.trigger("CEF:CLIENT:CloseCustomizeCharScreen", jsonString);
     }
-    function updateCharacterDataFromJson(CharJSON) {
-        // Parse the JSON string into an object
-        const characterData = JSON.parse(CharJSON);
+}
 
-        // Update each property in the HTML (both value and textContent)
-        document.getElementById('shapeFirst').value = characterData.shape.first;
-        document.getElementById('shapeFirstValue').textContent = characterData.shape.first;
+function updateCharacterDataFromJson(jsonString) {
+    const data = JSON.parse(jsonString);
+    
+    // Update all form elements with the new data
+    Object.entries(data).forEach(([key, value]) => {
+        if (typeof value === 'object') {
+            Object.entries(value).forEach(([subKey, subValue]) => {
+                const elementId = `${key}${subKey.charAt(0).toUpperCase()}${subKey.slice(1)}`;
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.value = subValue;
+                    // Update text display if it's a shape or skin slider
+                    if ((key === 'shape' || key === 'skin') && (subKey === 'first' || subKey === 'second')) {
+                        document.getElementById(`${elementId}Text`).textContent = getCharacterNameFromValue(subValue);
+                    }
+                }
+            });
+        } else {
+            const element = document.getElementById(key);
+            if (element) {
+                element.value = value;
+            }
+        }
+    });
+    
+    // Update all displays
+    updateCharAttributes();
+}
 
-        document.getElementById('shapeSecond').value = characterData.shape.second;
-        document.getElementById('shapeSecondValue').textContent = characterData.shape.second;
-
-        document.getElementById('shapeMix').value = characterData.shape.mix;
-        document.getElementById('shapeMixValue').textContent = characterData.shape.mix;
-
-        document.getElementById('skinFirst').value = characterData.skin.first;
-        document.getElementById('skinFirstValue').textContent = characterData.skin.first;
-
-        document.getElementById('skinSecond').value = characterData.skin.second;
-        document.getElementById('skinSecondValue').textContent = characterData.skin.second;
-
-        document.getElementById('skinMix').value = characterData.skin.mix;
-        document.getElementById('skinMixValue').textContent = characterData.skin.mix;
-
-        document.getElementById('noseWidth').value = characterData.nose.width;
-        document.getElementById('noseWidthValue').textContent = characterData.nose.width;
-
-        document.getElementById('noseHeight').value = characterData.nose.height;
-        document.getElementById('noseHeighValue').textContent = characterData.nose.height;
-
-        document.getElementById('noseLength').value = characterData.nose.length;
-        document.getElementById('noseLengthValue').textContent = characterData.nose.length;
-
-        document.getElementById('noseBridge').value = characterData.nose.bridge;
-        document.getElementById('noseBridgeValue').textContent = characterData.nose.bridge;
-
-        document.getElementById('noseTip').value = characterData.nose.tip;
-        document.getElementById('noseTipValue').textContent = characterData.nose.tip;
-
-        document.getElementById('noseBridgeShift').value = characterData.nose.bridgeShift;
-        document.getElementById('noseBridgeShiftValue').textContent = characterData.nose.bridgeShift;
-
-        document.getElementById('browHeight').value = characterData.brow.height;
-        document.getElementById('browHeightValue').textContent = characterData.brow.height;
-
-        document.getElementById('browWidth').value = characterData.brow.width;
-        document.getElementById('browWidthValue').textContent = characterData.brow.width;
-
-        document.getElementById('cheeksHeight').value = characterData.cheeks.height;
-        document.getElementById('cheeksHeightValue').textContent = characterData.cheeks.height;
-
-        document.getElementById('cheeksWidth').value = characterData.cheeks.width;
-        document.getElementById('cheeksWidthValue').textContent = characterData.cheeks.width;
-
-        document.getElementById('cheeksCheeksWidth').value = characterData.cheeks.cheeksWidth;
-        document.getElementById('cheeksCheeksWidthValue').textContent = characterData.cheeks.cheeksWidth;
-
-        document.getElementById('jawWidth').value = characterData.jaw.width;
-        document.getElementById('jawWidthValue').textContent = characterData.jaw.width;
-
-        document.getElementById('chinLength').value = characterData.chin.length;
-        document.getElementById('chinLengthValue').textContent = characterData.chin.length;
-
-        document.getElementById('chinPosition').value = characterData.chin.position;
-        document.getElementById('chinPositionValue').textContent = characterData.chin.position;
-
-        document.getElementById('chinWidth').value = characterData.chin.width;
-        document.getElementById('chinWidthValue').textContent = characterData.chin.width;
-
-        document.getElementById('chinShape').value = characterData.chin.shape;
-        document.getElementById('chinShapeValue').textContent = characterData.chin.shape;
-
-        document.getElementById('neckWidth').value = characterData.neck.width;
-        document.getElementById('neckWidthValue').textContent = characterData.neck.width;
-
-        document.getElementById('skinColor').value = characterData.skinColor;
-        document.getElementById('skinColorValue').textContent = characterData.skinColor;
-
-        document.getElementById('eyeSize').value = characterData.eye.size;
-        document.getElementById('eyeSizeValue').textContent = characterData.eye.size;
-
-        document.getElementById('eyeColor').value = characterData.eye.color;
-        document.getElementById('eyeColorValue').textContent = characterData.eye.color;
-
-        document.getElementById('lips').value = characterData.lips;
-        document.getElementById('lipsValue').textContent = characterData.lips;
-    }
-
-    showPage(currentPage); // Initial page load
+// Initialize the interface
+document.addEventListener('DOMContentLoaded', function() {
+    showPage(currentPage);
+    updateCharAttributes();
+});
 </script>
 
 </body>

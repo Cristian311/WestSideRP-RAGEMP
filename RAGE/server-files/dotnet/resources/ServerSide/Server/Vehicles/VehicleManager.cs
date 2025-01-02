@@ -78,7 +78,7 @@ namespace ServerSide.Server.Vehicles
             var vehicle = GetServerVehicle(character.CurrentDrivingVehicle);
             vehicle.Distance += distance;
             vehicle.GasDistance += distance;
-            vehicle.Position = player.Position;
+            //vehicle.Position = player.Position;
             if (vehicle.GasDistance > 300)
             {
                 vehicle.Gas -= 0.01f;

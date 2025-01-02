@@ -19,6 +19,8 @@ namespace ServerSide.Server.AuthServer
         [ServerEvent(Event.PlayerDisconnected)]
         private void onPlayerDisconnected(Player player, DisconnectionType type, string reason)
         {
+            if (AccountManager.PlayerAccountPairs.ContainsKey(player) == false)
+                return;
             Account account = AccountManager.PlayerAccountPairs[player];
             if (account != null)
                 AccountManager.idManager.ReclaimId(account.GameId);

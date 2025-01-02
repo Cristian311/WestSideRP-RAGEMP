@@ -19,12 +19,12 @@ namespace ServerSide.Server.Commands
             if(tog == false)
             {
                 player.SetData<bool>("TogNametag", true);
-                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}At activat optiunea sa-ti vezi nametagul.");
+                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}At dezactivat optiunea sa-ti vezi nametagul.");
             }    
             else
             {
                 player.SetData<bool>("TogNametag", false);
-                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}At dezactivat optiunea sa-ti vezi nametagul.");
+                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}At activat optiunea sa-ti vezi nametagul.");
             }
         }
     }

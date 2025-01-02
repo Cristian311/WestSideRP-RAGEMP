@@ -98,6 +98,7 @@ namespace ClientSide.Character.Clothes
         private void OpenClothesScreen(object[] args)
         {
             cefBrowser = new HtmlWindow("http://package2/html/clothes/clothes.html");
+
             cefBrowser.Active = true;
             Cursor.Visible = true;
 
