@@ -108,15 +108,16 @@ namespace ServerSide.Server.DB.CharacterDB
         }
         public static Character getCharacter(IAccount account, string name)
         {
-            if (name == string.Empty)
+            if (string.IsNullOrEmpty(name))
                 return null;
+
             Database db = new Database();
             using (MySqlConnection connection = db.getDatabaseConnection())
             {
                 string query = "SELECT * FROM `characters` WHERE Name = @name";
-
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@name", name);
+
                 try
                 {
                     connection.Open();
@@ -126,35 +127,45 @@ namespace ServerSide.Server.DB.CharacterDB
                         {
                             reader.Read();
 
-                            Character character = new Character(account.player, account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+                            Character character = new Character(
+                                account.player,
+                                account,
+                                reader.GetString(2), // Assuming Name column is not nullable
+                                reader.GetInt32(3),
+                                reader.GetInt32(4)
+                            );
 
                             character.Id = reader.GetInt32(0);
-
                             character.isCreated = reader.GetBoolean(6);
-
                             character.Gender = reader.GetBoolean(9);
 
-                            if (character.isCreated == true)
+                            if (character.isCreated)
                             {
-                                //FACE HANDLER
-                                var FaceJSON = reader.GetString(7);
-                                character.Face = NAPI.Util.FromJson<CharacterData>(FaceJSON);
+                                // FACE HANDLER
+                                character.Face = !reader.IsDBNull(7)
+                                    ? NAPI.Util.FromJson<CharacterData>(reader.GetString(7))
+                                    : null;
 
-                                //HAIR HANDLER
-                                var HairJSON = reader.GetString(8);
-                                character.Hair = NAPI.Util.FromJson<HairData>(HairJSON);
+                                // HAIR HANDLER
+                                character.Hair = !reader.IsDBNull(8)
+                                    ? NAPI.Util.FromJson<HairData>(reader.GetString(8))
+                                    : null;
 
-                                //ITEMS HANDLER
-                                var ItemsJSON = reader.GetString(10);
-                                character.Items = NAPI.Util.FromJson<List<Item>>(ItemsJSON);
-
-                                if (character.Items == null)
+                                // ITEMS HANDLER
+                                if (!reader.IsDBNull(10))
+                                {
+                                    var ItemsJSON = reader.GetString(10);
+                                    character.Items = NAPI.Util.FromJson<List<Item>>(ItemsJSON) ?? new List<Item>();
+                                }
+                                else
+                                {
                                     character.Items = new List<Item>();
+                                }
 
                                 foreach (var item in character.Items)
                                 {
                                     character.ItemIdManager.SetIdBusy(item.localID);
-                                    if (item.Type == "phone")
+                                    if (item.Type == "phone" && !string.IsNullOrEmpty(item.PhoneNumber.ToString()))
                                     {
                                         var phone = new Phone(character, item.Name, "phone", item.PhoneNumber);
                                         character.SendChatMessage($"phone:{item.Name} number:{item.PhoneNumber}");
@@ -162,57 +173,43 @@ namespace ServerSide.Server.DB.CharacterDB
                                     }
                                 }
 
-                                //CURRENT OUTFIT HANDLER
-                                character.currentOutfit = reader.GetInt32(11);
-                                if (character.currentOutfit == null)
-                                    character.currentOutfit = 0;
+                                // CURRENT OUTFIT HANDLER
+                                character.currentOutfit = !reader.IsDBNull(11) ? reader.GetInt32(11) : 0;
 
-                                //TATOOOS DB HANDLER
-                                var TattooJSON = reader.GetString(12);
-                                character.Tattoos = NAPI.Util.FromJson<List<Decoration>>(TattooJSON);
+                                // TATTOOS HANDLER
+                                character.Tattoos = !reader.IsDBNull(12)
+                                    ? NAPI.Util.FromJson<List<Decoration>>(reader.GetString(12))
+                                    : new List<Decoration>();
 
-                                var HighlightsJson = reader.GetString(13);
-                                if (HighlightsJson != null)
+                                character.TattooNames = !reader.IsDBNull(13)
+                                    ? NAPI.Util.FromJson<List<string>>(reader.GetString(13))
+                                    : new List<string>();
+
+                                // MAIN PHONE DB HANDLER
+                                if (!reader.IsDBNull(14))
                                 {
-                                    var highlights = NAPI.Util.FromJson<List<string>>(HighlightsJson);
-                                    character.TattooNames = highlights;
-                                }
-                                else
-                                    character.TattooNames = new List<string>();
+                                    int mainPhoneIndex = reader.GetInt32(14);
 
-                                //MAIN PHONE DB HANDLER
-                                int? mainPhone = reader.IsDBNull(14) ? (int?)null : reader.GetInt32(14);
-
-                                if (mainPhone.HasValue) // Check if mainPhone is not null
-                                {
-                                    int mainPhoneIndex = mainPhone.Value; // Get the actual integer value
-
-                                    // Check if the index is within bounds to prevent out-of-range errors
                                     if (mainPhoneIndex >= 0 && mainPhoneIndex < character.Items.Count)
                                     {
-                                        Item phoneItem = character.Items[mainPhoneIndex]; // Use the non-nullable int index
-                                        Phone phone = new Phone(character, phoneItem.Name, "phone", phoneItem.PhoneNumber);
-                                        character.MainPhone = phone;
+                                        var phoneItem = character.Items[mainPhoneIndex];
+                                        character.MainPhone = new Phone(character, phoneItem.Name, "phone", phoneItem.PhoneNumber);
                                     }
                                     else
                                     {
-                                        // Handle the case where the index is out of range
                                         character.MainPhone = null;
                                     }
                                 }
                                 else
                                 {
-                                    // Handle the case where mainPhone is null
                                     character.MainPhone = null;
                                 }
-
-
                             }
+
                             return character;
                         }
                         else
                         {
-                            // No character found
                             account.player.SendChatMessage("No characters found on this account, create one!");
                             return null;
                         }
@@ -229,6 +226,7 @@ namespace ServerSide.Server.DB.CharacterDB
                 }
             }
         }
+
         public static Character getCharacterById(IAccount account, int id)
         {
             Database db = new Database();
