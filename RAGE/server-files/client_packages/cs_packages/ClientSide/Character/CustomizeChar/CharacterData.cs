@@ -41,19 +41,26 @@ namespace Clientside.CustomizeChar
         public class FacialAttributes
         {
             [JsonProperty("blemishes")]
-            public int Blemishes { get; set; }
+            public FacialData Blemishes { get; set; }
 
             [JsonProperty("ageing")]
-            public int Ageing { get; set; }
+            public FacialData Ageing { get; set; }
 
             [JsonProperty("complexion")]
-            public int Complexion { get; set; }
+            public FacialData Complexion { get; set; }
 
             [JsonProperty("sunDamage")]
-            public int SunDamage { get; set; }
+            public FacialData SunDamage { get; set; }
 
             [JsonProperty("molesFreckles")]
-            public int MolesFreckles { get; set; }
+            public FacialData MolesFreckles { get; set; }
+        }
+        public class FacialData
+        {
+            [JsonProperty("value")]
+            public int Value { get; set; }
+            [JsonProperty("opacity")]
+            public float Opacity { get; set; }
         }
         public class ShapeAttributes
         {

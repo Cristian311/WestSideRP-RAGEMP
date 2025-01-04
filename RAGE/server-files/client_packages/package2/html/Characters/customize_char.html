@@ -30,6 +30,35 @@
             position: absolute;
             top: 20px;
             left: 20px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .page {
+            max-height: calc(80vh - 120px);
+            overflow-y: auto;
+            padding-right: 10px;
+            margin-bottom: 20px;
+        }
+        
+        /* Custom scrollbar styles */
+        .page::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .page::-webkit-scrollbar-track {
+            background: var(--bg-darker);
+            border-radius: 4px;
+        }
+        
+        .page::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        
+        .page::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
         }
         
         h2 {
@@ -38,6 +67,10 @@
             font-size: 24px;
             border-bottom: 2px solid var(--primary);
             padding-bottom: 8px;
+            position: sticky;
+            top: 0;
+            background: var(--bg-dark);
+            z-index: 1;
         }
         
         .section-title {
@@ -105,7 +138,9 @@
         .navigation {
             display: flex;
             justify-content: space-between;
-            margin-top: 24px;
+            padding-top: 20px;
+            margin-top: auto;
+            background: var(--bg-dark);
         }
         
         .button {
@@ -363,52 +398,94 @@
         <div id="page6" class="page">
             <h2>Facial Details</h2>
             
-            <!-- Blemishes Slider -->
+            <!-- Blemishes with Opacity -->
+            <div class="section-title">Blemishes</div>
+            <div class="divider"></div>
             <div class="slider-container">
                 <div class="slider-label">
-                    <span>Blemishes</span><span id="blemishesValue">0</span>
+                    <span>Type</span><span id="blemishesValue">0</span>
                 </div>
                 <input type="range" id="blemishes" min="0" max="23" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-    
-            <!-- Ageing Slider -->
             <div class="slider-container">
                 <div class="slider-label">
-                    <span>Ageing</span><span id="ageingValue">0</span>
+                    <span>Opacity</span><span id="blemishesOpacityValue">0.00</span>
+                </div>
+                <input type="range" id="blemishesOpacity" min="0" max="1" step="0.01" value="1" oninput="updateCharAttributes()">
+            </div>
+    
+            <!-- Ageing with Opacity -->
+            <div class="section-title">Ageing</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Type</span><span id="ageingValue">0</span>
                 </div>
                 <input type="range" id="ageing" min="0" max="14" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-    
-            <!-- Complexion Slider -->
             <div class="slider-container">
                 <div class="slider-label">
-                    <span>Complexion</span><span id="complexionValue">0</span>
+                    <span>Opacity</span><span id="ageingOpacityValue">0.00</span>
+                </div>
+                <input type="range" id="ageingOpacity" min="0" max="1" step="0.01" value="1" oninput="updateCharAttributes()">
+            </div>
+    
+            <!-- Complexion with Opacity -->
+            <div class="section-title">Complexion</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Type</span><span id="complexionValue">0</span>
                 </div>
                 <input type="range" id="complexion" min="0" max="11" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-    
-            <!-- Sun Damage Slider -->
             <div class="slider-container">
                 <div class="slider-label">
-                    <span>Sun Damage</span><span id="sunDamageValue">0</span>
+                    <span>Opacity</span><span id="complexionOpacityValue">0.00</span>
+                </div>
+                <input type="range" id="complexionOpacity" min="0" max="1" step="0.01" value="1" oninput="updateCharAttributes()">
+            </div>
+    
+            <!-- Sun Damage with Opacity -->
+            <div class="section-title">Sun Damage</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Type</span><span id="sunDamageValue">0</span>
                 </div>
                 <input type="range" id="sunDamage" min="0" max="10" step="1" value="0" oninput="updateCharAttributes()">
             </div>
-    
-            <!-- Moles/Freckles Slider -->
             <div class="slider-container">
                 <div class="slider-label">
-                    <span>Moles/Freckles</span><span id="molesFrecklesValue">0</span>
+                    <span>Opacity</span><span id="sunDamageOpacityValue">0.00</span>
+                </div>
+                <input type="range" id="sunDamageOpacity" min="0" max="1" step="0.01" value="1" oninput="updateCharAttributes()">
+            </div>
+    
+            <!-- Moles/Freckles with Opacity -->
+            <div class="section-title">Moles/Freckles</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Type</span><span id="molesFrecklesValue">0</span>
                 </div>
                 <input type="range" id="molesFreckles" min="0" max="17" step="1" value="0" oninput="updateCharAttributes()">
             </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Opacity</span><span id="molesFrecklesOpacityValue">0.00</span>
+                </div>
+                <input type="range" id="molesFrecklesOpacity" min="0" max="1" step="0.01" value="1" oninput="updateCharAttributes()">
+            </div>
         </div>
+
         <div class="navigation">
             <button id="prevButton" class="button" onclick="prevPage()">Previous</button>
             <button id="nextButton" class="button" onclick="nextPage()">Next</button>
             <button id="createButton" class="button" style="display: none;" onclick="createCharacter()">Create</button>
         </div>
     </div>
+
 
 <script>
 const characterNames = [
@@ -467,18 +544,23 @@ function updateCharAttributes() {
     document.getElementById('shapeMixValue').textContent = parseFloat(document.getElementById('shapeMix').value).toFixed(2);
     document.getElementById('skinMixValue').textContent = parseFloat(document.getElementById('skinMix').value).toFixed(2);
 
-    const blemishes = document.getElementById('blemishes').value;
-    const ageing = document.getElementById('ageing').value;
-    const complexion = document.getElementById('complexion').value;
-    const sunDamage = document.getElementById('sunDamage').value;
-    const molesFreckles = document.getElementById('molesFreckles').value;
+    // Update facial details values and their opacities
+    const facialFeatures = ['blemishes', 'ageing', 'complexion', 'sunDamage', 'molesFreckles'];
+    
+    facialFeatures.forEach(feature => {
+        // Update the feature value
+        const valueElement = document.getElementById(`${feature}Value`);
+        if (valueElement) {
+            valueElement.textContent = document.getElementById(feature).value;
+        }
+        
+        // Update the opacity value
+        const opacityElement = document.getElementById(`${feature}OpacityValue`);
+        if (opacityElement) {
+            opacityElement.textContent = parseFloat(document.getElementById(`${feature}Opacity`).value).toFixed(2);
+        }
+    });
 
-    // Update display values for new attributes
-    document.getElementById('blemishesValue').textContent = blemishes;
-    document.getElementById('ageingValue').textContent = ageing;
-    document.getElementById('complexionValue').textContent = complexion;
-    document.getElementById('sunDamageValue').textContent = sunDamage;
-    document.getElementById('molesFrecklesValue').textContent = molesFreckles;
     // Get all form values
     const characterData = {
         shape: {
@@ -528,11 +610,26 @@ function updateCharAttributes() {
         skinColor: document.getElementById('skinColor').value,
         lips: document.getElementById('lips').value,
         facialDetails: {
-            blemishes: blemishes,
-            ageing: ageing,
-            complexion: complexion,
-            sunDamage: sunDamage,
-            molesFreckles: molesFreckles
+            blemishes: {
+                value: parseInt(document.getElementById('blemishes').value),
+                opacity: parseFloat(document.getElementById('blemishesOpacity').value)
+            },
+            ageing: {
+                value: parseInt(document.getElementById('ageing').value),
+                opacity: parseFloat(document.getElementById('ageingOpacity').value)
+            },
+            complexion: {
+                value: parseInt(document.getElementById('complexion').value),
+                opacity: parseFloat(document.getElementById('complexionOpacity').value)
+            },
+            sunDamage: {
+                value: parseInt(document.getElementById('sunDamage').value),
+                opacity: parseFloat(document.getElementById('sunDamageOpacity').value)
+            },
+            molesFreckles: {
+                value: parseInt(document.getElementById('molesFreckles').value),
+                opacity: parseFloat(document.getElementById('molesFrecklesOpacity').value)
+            }
         }
     };
 
@@ -540,9 +637,21 @@ function updateCharAttributes() {
     Object.entries(characterData).forEach(([key, value]) => {
         if (typeof value === 'object') {
             Object.entries(value).forEach(([subKey, subValue]) => {
-                const valueElement = document.getElementById(`${key}${subKey.charAt(0).toUpperCase()}${subKey.slice(1)}Value`);
-                if (valueElement) {
-                    valueElement.textContent = parseFloat(subValue).toFixed(2);
+                if (typeof subValue === 'object') {
+                    // Handle nested facial details
+                    const valueElement = document.getElementById(`${subKey}Value`);
+                    const opacityElement = document.getElementById(`${subKey}OpacityValue`);
+                    if (valueElement) {
+                        valueElement.textContent = subValue.value;
+                    }
+                    if (opacityElement) {
+                        opacityElement.textContent = subValue.opacity.toFixed(2);
+                    }
+                } else {
+                    const valueElement = document.getElementById(`${key}${subKey.charAt(0).toUpperCase()}${subKey.slice(1)}Value`);
+                    if (valueElement) {
+                        valueElement.textContent = parseFloat(subValue).toFixed(2);
+                    }
                 }
             });
         } else {
@@ -609,11 +718,26 @@ function createCharacter() {
         skinColor: document.getElementById('skinColor').value,
         lips: document.getElementById('lips').value,
         facialDetails: {
-            blemishes: document.getElementById('blemishes').value,
-            ageing: document.getElementById('ageing').value,
-            complexion: document.getElementById('complexion').value,
-            sunDamage: document.getElementById('sunDamage').value,
-            molesFreckles: document.getElementById('molesFreckles').value
+            blemishes: {
+                value: parseInt(document.getElementById('blemishes').value),
+                opacity: parseFloat(document.getElementById('blemishesOpacity').value)
+            },
+            ageing: {
+                value: parseInt(document.getElementById('ageing').value),
+                opacity: parseFloat(document.getElementById('ageingOpacity').value)
+            },
+            complexion: {
+                value: parseInt(document.getElementById('complexion').value),
+                opacity: parseFloat(document.getElementById('complexionOpacity').value)
+            },
+            sunDamage: {
+                value: parseInt(document.getElementById('sunDamage').value),
+                opacity: parseFloat(document.getElementById('sunDamageOpacity').value)
+            },
+            molesFreckles: {
+                value: parseInt(document.getElementById('molesFreckles').value),
+                opacity: parseFloat(document.getElementById('molesFrecklesOpacity').value)
+            }
         }
     };
 
@@ -625,55 +749,64 @@ function createCharacter() {
 }
 
 function updateCharacterDataFromJson(jsonString) {
-    const data = JSON.parse(jsonString);
-    if (data.facialDetails) {
-            document.getElementById('blemishes').value = characterData.facialDetails.blemishes;
-            document.getElementById('blemishesValue').textContent = characterData.facialDetails.blemishes;
+    try {
+        const data = JSON.parse(jsonString);
 
-            document.getElementById('ageing').value = characterData.facialDetails.ageing;
-            document.getElementById('ageingValue').textContent = characterData.facialDetails.ageing;
-
-            document.getElementById('complexion').value = characterData.facialDetails.complexion;
-            document.getElementById('complexionValue').textContent = characterData.facialDetails.complexion;
-
-            document.getElementById('sunDamage').value = characterData.facialDetails.sunDamage;
-            document.getElementById('sunDamageValue').textContent = characterData.facialDetails.sunDamage;
-
-            document.getElementById('molesFreckles').value = characterData.facialDetails.molesFreckles;
-            document.getElementById('molesFrecklesValue').textContent = characterData.facialDetails.molesFreckles;
-        }
-    Object.entries(data).forEach(([key, value]) => {
-        if (typeof value === 'object') {
-            Object.entries(value).forEach(([subKey, subValue]) => {
-                const elementId = `${key}${subKey.charAt(0).toUpperCase()}${subKey.slice(1)}`;
-                const element = document.getElementById(elementId);
-
-                if (element) {
-                    element.value = subValue;
-
-                    // Handle text display for shape/skin sliders
-                    const textElement = document.getElementById(`${elementId}Text`);
-                    if (textElement && (key === 'shape' || key === 'skin') && (subKey === 'first' || subKey === 'second')) {
-                        textElement.textContent = getCharacterNameFromValue(subValue) || 'Unknown';
-                    }
-                } else {
-                    mp.gui.chat.push(`Element with ID '${elementId}' not found.`);
-                }
-            });
-        } else {
-            const element = document.getElementById(key);
+        const updateElement = (id, value) => {
+            const element = document.getElementById(id);
             if (element) {
                 element.value = value;
+                const valueDisplay = document.getElementById(`${id}Value`);
+                if (valueDisplay) {
+                    if (element.step === "1") {
+                        valueDisplay.textContent = Math.round(value);
+                    } else {
+                        valueDisplay.textContent = parseFloat(value).toFixed(2);
+                    }
+                }
             } else {
-                mp.gui.chat.push(`Element with ID '${key}' not found.`);
+                console.warn(`Element with ID '${id}' not found.`);
             }
-        }
-    });
+        };
 
-    if (typeof updateCharAttributes === 'function') {
-        updateCharAttributes();
-    } else {
-        console.warn('updateCharAttributes function is not defined.');
+        // Handle facial details separately
+        if (data.facialDetails) {
+            Object.entries(data.facialDetails).forEach(([feature, details]) => {
+                // Update the main value
+                updateElement(feature, details.value);
+                // Update the opacity
+                updateElement(`${feature}Opacity`, details.opacity);
+            });
+        }
+
+        // Update all other attributes
+        Object.entries(data).forEach(([key, value]) => {
+            if (key !== 'facialDetails') {  // Skip facialDetails as we handled it above
+                if (typeof value === "object" && !Array.isArray(value)) {
+                    Object.entries(value).forEach(([subKey, subValue]) => {
+                        const elementId = `${key}${subKey.charAt(0).toUpperCase()}${subKey.slice(1)}`;
+                        if (key === "shape" || key === "skin") {
+                            updateElement(elementId, subValue);
+                            const textElement = document.getElementById(`${elementId}Text`);
+                            if (textElement) {
+                                textElement.textContent = getCharacterNameFromValue(subValue);
+                            }
+                        } else {
+                            updateElement(elementId, subValue);
+                        }
+                    });
+                } else {
+                    updateElement(key, value);
+                }
+            }
+        });
+
+        // Call updateCharAttributes to ensure all displays are updated
+        if (typeof updateCharAttributes === "function") {
+            updateCharAttributes();
+        }
+    } catch (error) {
+        console.error("Error updating character data:", error);
     }
 }
 

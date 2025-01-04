@@ -46,19 +46,26 @@ namespace ServerSide.Characters.Customization.Customize
         public class FacialAttributes
         {
             [JsonProperty("blemishes")]
-            public byte Blemishes { get; set; }
+            public FacialData Blemishes { get; set; }
 
             [JsonProperty("ageing")]
-            public byte Ageing { get; set; }
+            public FacialData Ageing { get; set; }
 
             [JsonProperty("complexion")]
-            public byte Complexion { get; set; }
+            public FacialData Complexion { get; set; }
 
             [JsonProperty("sunDamage")]
-            public byte SunDamage { get; set; }
+            public FacialData SunDamage { get; set; }
 
             [JsonProperty("molesFreckles")]
-            public byte MolesFreckles { get; set; }
+            public FacialData MolesFreckles { get; set; }
+        }
+        public class FacialData
+        {
+            [JsonProperty("value")]
+            public byte Value { get; set; }
+            [JsonProperty("opacity")]
+            public float Opacity { get; set; }
         }
 
         public class ShapeAttributes

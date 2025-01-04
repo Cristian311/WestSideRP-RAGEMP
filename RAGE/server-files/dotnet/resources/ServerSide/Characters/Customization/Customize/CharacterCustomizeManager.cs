@@ -73,19 +73,19 @@ namespace ServerSide.Characters.Customization.Customize
         {
             if (data.Facial == null)
                 return;
-            var blemishes = CreateHeadOverlay(data.Facial.Blemishes, 0, 0, 1);
+            var blemishes = CreateHeadOverlay(data.Facial.Blemishes.Value, 0, 0, data.Facial.Blemishes.Opacity);
             player.SetHeadOverlay(0, blemishes);
 
-            var ageing = CreateHeadOverlay(data.Facial.Ageing, 0, 0, 1);
+            var ageing = CreateHeadOverlay(data.Facial.Ageing.Value, 0, 0, data.Facial.Ageing.Opacity);
             player.SetHeadOverlay(3, ageing);
 
-            var complexion = CreateHeadOverlay(data.Facial.Complexion, 0, 0, 1);
+            var complexion = CreateHeadOverlay(data.Facial.Complexion.Value, 0, 0, data.Facial.Complexion.Opacity);
             player.SetHeadOverlay(6, complexion);
 
-            var sunDamage = CreateHeadOverlay(data.Facial.SunDamage, 0, 0, 1);
+            var sunDamage = CreateHeadOverlay(data.Facial.SunDamage.Value, 0, 0, data.Facial.SunDamage.Opacity);
             player.SetHeadOverlay(7, sunDamage);
 
-            var molesFreckles = CreateHeadOverlay(data.Facial.MolesFreckles, 0, 0, 1);
+            var molesFreckles = CreateHeadOverlay(data.Facial.MolesFreckles.Value, 0, 0, data.Facial.MolesFreckles.Opacity);
             player.SetHeadOverlay(9, molesFreckles);
 
 

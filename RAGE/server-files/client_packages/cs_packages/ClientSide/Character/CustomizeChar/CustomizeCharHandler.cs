@@ -70,11 +70,11 @@ namespace ClientSide.Character.CustomizeChar
             RAGE.Elements.Player.LocalPlayer.SetEyeColor(eyeColor);
 
             //head details
-            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(0, data.Facial.Blemishes, 1f);
-            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(3, data.Facial.Ageing, 1f);
-            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(6, data.Facial.Complexion, 1f);
-            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(7, data.Facial.SunDamage, 1f);
-            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(9, data.Facial.MolesFreckles, 1f);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(0, data.Facial.Blemishes.Value, data.Facial.Blemishes.Opacity);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(3, data.Facial.Ageing.Value, data.Facial.Ageing.Opacity);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(6, data.Facial.Complexion.Value, data.Facial.Complexion.Opacity);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(7, data.Facial.SunDamage.Value, data.Facial.SunDamage.Opacity);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(9, data.Facial.MolesFreckles.Value, data.Facial.MolesFreckles.Opacity);
 
             //headblend
             var shapeFirst = data.Shape.First;

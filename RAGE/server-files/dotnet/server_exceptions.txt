@@ -24447,3 +24447,235 @@ MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of 
    at bool System.Net.Sockets.Socket.DoMultipleAddressConnectCallback(object result, MultipleAddressConnectAsyncResult context)
    at void System.Net.Sockets.Socket.MultipleAddressConnectCallback(IAsyncResult result)
    at void System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(Exception sourc
+==================[04.01.2025 13:53:19]==================
+System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+=========================================================
+
+==================[04.01.2025 13:53:19]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 13 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 487.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+=========================================================
+
+==================[04.01.2025 13:53:19]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 13 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 487.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+=========================================================
+
+==================[04.01.2025 13:53:19]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 13 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 487.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+=========================================================
+
+==================[04.01.2025 13:53:19]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 13 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 487.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at ob
+==================[04.01.2025 13:54:32]==================
+System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+=========================================================
+
+==================[04.01.2025 13:54:32]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 9 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 456.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+=========================================================
+
+==================[04.01.2025 13:54:32]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 9 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 456.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+=========================================================
+
+==================[04.01.2025 13:54:32]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 9 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 456.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+=========================================================
+
+==================[04.01.2025 13:54:32]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 9 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 456.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at object
+==================[04.01.2025 14:02:20]==================
+System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+=========================================================
+
+==================[04.01.2025 14:02:20]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 13 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 487.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+=========================================================
+
+==================[04.01.2025 14:02:20]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 13 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 487.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+=========================================================
+
+==================[04.01.2025 14:02:20]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 13 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 487.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+=========================================================
+
+==================[04.01.2025 14:02:20]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 13 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 487.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at ob
+==================[04.01.2025 14:17:28]==================
+System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+=========================================================
+
+==================[04.01.2025 14:17:28]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 13 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 487.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+=========================================================
+
+==================[04.01.2025 14:17:28]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 13 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 487.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+=========================================================
+
+==================[04.01.2025 14:17:28]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 13 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 487.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+=========================================================
+
+==================[04.01.2025 14:17:28]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value 13 to type 'ServerSide.Characters.Customization.Customize.CharacterData+FacialData'. Path 'facialDetails.blemishes', line 1, position 487.
+ ---> System.ArgumentException: Could not cast or convert from System.Int64 to ServerSide.Characters.Customization.Customize.CharacterData+FacialData.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at ob
