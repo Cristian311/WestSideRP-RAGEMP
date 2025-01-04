@@ -8,30 +8,38 @@ namespace ServerSide.Characters.Customization.Hair
     public class HairData
     {
         [JsonProperty("facialHair")]
-        public HairDetail FacialHair { get; set; }
+        public OtherHairDetail FacialHair { get; set; }
 
         [JsonProperty("hair")]
-        public string Hair { get; set; }
+        public HairDetail Hair { get; set; }
 
         [JsonProperty("eyebrows")]
-        public HairDetail Eyebrows { get; set; }
+        public OtherHairDetail Eyebrows { get; set; }
 
         [JsonProperty("bodyHair")]
-        public HairDetail BodyHair { get; set; }
+        public OtherHairDetail BodyHair { get; set; }
+
+        [JsonProperty("hairTattoo")]
+        public int HairTattoo { get; set; }
     }
 
     public class HairDetail
     {
         [JsonProperty("value")]
-        public string Value { get; set; }
+        public byte Value { get; set; }
 
         [JsonProperty("color")]
-        public string Color { get; set; }
+        public byte Color { get; set; }
+        [JsonProperty("secondColor")]
+        public byte SecondColor { get; set; }
 
-        [JsonProperty("secondaryColor")]
-        public string SecondaryColor { get; set; }
+    }
+    public class OtherHairDetail
+    {
+        [JsonProperty("value")]
+        public byte Value { get; set; }
 
-        [JsonProperty("opacity")]
-        public string Opacity { get; set; }
+        [JsonProperty("color")]
+        public byte Color { get; set; }
     }
 }

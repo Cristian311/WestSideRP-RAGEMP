@@ -44,13 +44,16 @@ namespace ServerSide.Characters.Customization.Hair
         }
         public static void UpdateHair(Player player, HairData hairData)
         {
-            var facialhair = CreateHeadOverlay(byte.Parse(hairData.FacialHair.Value), byte.Parse(hairData.FacialHair.Color), byte.Parse(hairData.FacialHair.SecondaryColor), float.Parse(hairData.FacialHair.Opacity));
-            var eyebrows = CreateHeadOverlay(byte.Parse(hairData.Eyebrows.Value), byte.Parse(hairData.Eyebrows.Color), byte.Parse(hairData.Eyebrows.SecondaryColor), float.Parse(hairData.Eyebrows.Opacity));
-            var bodyhair = CreateHeadOverlay(byte.Parse(hairData.BodyHair.Value), byte.Parse(hairData.BodyHair.Color), byte.Parse(hairData.BodyHair.SecondaryColor), float.Parse(hairData.BodyHair.Opacity));
+            var facialhair = CreateHeadOverlay(hairData.FacialHair.Value, hairData.FacialHair.Color, 0, 1f);
+            var eyebrows = CreateHeadOverlay(hairData.Eyebrows.Value, hairData.Eyebrows.Color, 0, 1f);
+            var bodyhair = CreateHeadOverlay(hairData.BodyHair.Value, hairData.BodyHair.Color, 0, 1f);
             player.SetHeadOverlay(1, facialhair);
             player.SetHeadOverlay(2, eyebrows);
             player.SetHeadOverlay(10, bodyhair);
-            player.SetClothes(2, byte.Parse(hairData.Hair), 0);
+            player.SetClothes(2, hairData.Hair.Value, 0);
+
+            var character = CharacterManager.PlayerCharacterPair[player];
+            player.SetCustomization(character.Gender, new HeadBlend(), character.Face.Eye.Color, hairData.Hair.Color, hairData.Hair.SecondColor, new float[20], new Dictionary<int, HeadOverlay>(), new Decoration[0]);
         }
         private static HeadOverlay CreateHeadOverlay(byte index, byte color, byte secondaryColor, float opacity)
         {

@@ -8,43 +8,48 @@
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0); /* Dark background */
-            color: #e0e0e0; /* Light text for contrast */
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0);
+            color: #e0e0e0;
         }
         .container {
-            background-color: #1e1e1e; /* Slightly lighter than body background */
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(255, 165, 0, 0.2); /* Orange-tinted shadow */
-            padding: 25px;
-            width: 350px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(255, 165, 0, 0.2);
+            padding: 20px;
+            width: 320px;
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 15px;
+            left: 15px;
         }
         h2 {
-            color: #ff8c00; /* Orange header */
+            color: #ff8c00;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+        }
+        .section {
+            margin-bottom: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #555;
         }
         .slider {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         .slider-label {
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: #e0e0e0;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         input[type="range"] {
             -webkit-appearance: none;
             width: 100%;
-            height: 8px;
-            border-radius: 5px;
-            background: #444; /* Dark slider track */
+            height: 6px;
+            border-radius: 4px;
+            background: #444;
             outline: none;
-            opacity: 0.7;
+            opacity: 0.8;
             transition: opacity 0.2s;
         }
         input[type="range"]:hover {
@@ -53,360 +58,252 @@
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
-            background: #ff8c00; /* Orange slider thumb */
+            background: #ff8c00;
             cursor: pointer;
-            box-shadow: 0 0 5px rgba(255, 140, 0, 0.5);
+            box-shadow: 0 0 4px rgba(255, 140, 0, 0.5);
         }
         input[type="range"]::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
-            background: #ff8c00; /* Orange slider thumb */
+            background: #ff8c00;
             cursor: pointer;
-            box-shadow: 0 0 5px rgba(255, 140, 0, 0.5);
+            box-shadow: 0 0 4px rgba(255, 140, 0, 0.5);
         }
         .button {
-            background-color: #ff8c00; /* Orange background */
+            background-color: #ff8c00;
             color: #121212;
             border: none;
-            padding: 10px 15px;
-            border-radius: 6px;
+            padding: 8px 12px;
+            border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
+            width: 100%;
+            margin-top: 15px;
         }
         .button:hover {
-            background-color: #ffa500; /* Lighter orange on hover */
-            transform: scale(1.05); /* Gentle scale effect */
-            box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
-        }
-        .extra-slider {
-            background-color: #2a2a2a;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 10px;
-        }
-        .extra-slider .slider {
-            margin-bottom: 10px;
+            background-color: #ffa500;
+            transform: scale(1.05);
+            box-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
         }
     </style>
+    
 </head>
 <body>
-
     <div class="container">
-    <div id="page1" class="page" style="display: block;">
-        <h2>Character Hair Options</h2>
-        
-        <!-- Hair -->
-        <div class="slider">
-            <div class="slider-label">
-                <span>Hair</span><span id="hairValue"> 0</span>
+        <div id="page1" class="page">
+            <h2>Character Hair Options</h2>
+            
+            <!-- Hair -->
+            <div class="section">
+                <div class="slider">
+                    <div class="slider-label">
+                        <span>Hair</span><span id="hairValue">0</span>
+                    </div>
+                    <input type="range" id="hair" min="0" max="80" step="1" value="0" oninput="updateCharAttributes()">
+                </div>
+                <div class="slider">
+                    <div class="slider-label">
+                        <span>Color</span><span id="hairColorValue">0</span>
+                    </div>
+                    <input type="range" id="hairColor" min="0" max="63" step="1" value="0" oninput="updateCharAttributes()">
+                </div>
+                <div class="slider">
+                    <div class="slider-label">
+                        <span>Secondary Color</span><span id="hairSecondaryColorValue">0</span>
+                    </div>
+                    <input type="range" id="hairSecondaryColor" min="0" max="63" step="1" value="0" oninput="updateCharAttributes()">
+                </div>
             </div>
-            <input type="range" id="hair" min="0" max="80" step="1" value="0" oninput="updateCharAttributes()">
-        </div>
 
-        <!-- Facial Hair -->
-        <div class="slider">
-            <div class="slider-label">
-                <span>Facial Hair</span><span id="facialHairValue"> 0</span>
+            <!-- Facial Hair -->
+            <div class="section">
+                <div class="slider">
+                    <div class="slider-label">
+                        <span>Facial Hair</span><span id="facialHairValue">0</span>
+                    </div>
+                    <input type="range" id="facialHair" min="0" max="28" step="1" value="0" oninput="updateCharAttributes()">
+                </div>
+                <div class="slider">
+                    <div class="slider-label">
+                        <span>Color</span><span id="facialHairColorValue">0</span>
+                    </div>
+                    <input type="range" id="facialHairColor" min="0" max="63" step="1" value="0" oninput="updateCharAttributes()">
+                </div>
             </div>
-            <input type="range" id="facialHair" min="0" max="28" step="1" value="0" oninput="updateCharAttributes()">
-            <button class="button" onclick="toggleExtraSliders('facialHairExtra')">Customize</button>
-        </div>
 
-        <div id="facialHairExtra" class="extra-slider" style="display: none;">
-            <div class="slider">
-                <span>Color</span><span id="facialHairColorValue"> 0</span>
-                <input type="range" min="0" max="63" step="1" value="0" id="facialHairColor" oninput="updateCharAttributes()">
+            <!-- Eyebrows -->
+            <div class="section">
+                <div class="slider">
+                    <div class="slider-label">
+                        <span>Eyebrows</span><span id="eyebrowsValue">0</span>
+                    </div>
+                    <input type="range" id="eyebrows" min="0" max="33" step="1" value="0" oninput="updateCharAttributes()">
+                </div>
+                <div class="slider">
+                    <div class="slider-label">
+                        <span>Color</span><span id="eyebrowsColorValue">0</span>
+                    </div>
+                    <input type="range" id="eyebrowsColor" min="0" max="63" step="1" value="0" oninput="updateCharAttributes()">
+                </div>
             </div>
-            <div class="slider">
-                <span>Secondary Color</span><span id="facialHairSecondaryColorValue"> 0</span>
-                <input type="range" min="0" max="63" step="1" value="0" id="facialHairSecondaryColor" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider">
-                <span>Opacity</span><span id="facialHairOpacityValue"> 1.00</span>
-                <input type="range" min="0" max="1" step="0.05" value="1" id="facialHairOpacity" oninput="updateCharAttributes()">
-            </div>
-        </div>
 
-        <!-- Eyebrows -->
-        <div class="slider">
-            <div class="slider-label">
-                <span>Eyebrows</span><span id="eyebrowsValue"> 0</span>
+            <!-- Body Hair -->
+            <div class="section">
+                <div class="slider">
+                    <div class="slider-label">
+                        <span>Body Hair</span><span id="bodyHairValue">0</span>
+                    </div>
+                    <input type="range" id="bodyHair" min="0" max="33" step="1" value="0" oninput="updateCharAttributes()">
+                </div>
+                <div class="slider">
+                    <div class="slider-label">
+                        <span>Color</span><span id="bodyHairColorValue">0</span>
+                    </div>
+                    <input type="range" id="bodyHairColor" min="0" max="63" step="1" value="0" oninput="updateCharAttributes()">
+                </div>
             </div>
-            <input type="range" id="eyebrows" min="0" max="33" step="1" value="0" oninput="updateCharAttributes()">
-            <button class="button" onclick="toggleExtraSliders('eyebrowsExtra')">Customize</button>
-        </div>
 
-        <div id="eyebrowsExtra" class="extra-slider" style="display: none;">
-            <div class="slider">
-                <span>Color</span><span id="eyebrowsColorValue"> 0</span>
-                <input type="range" min="0" max="63" step="1" value="0" id="eyebrowsColor" oninput="updateCharAttributes()">
+            <!-- Hair Tattoo -->
+            <div class="section">
+                <div class="slider">
+                    <div class="slider-label">
+                        <span>Hair Tattoo</span><span id="hairTattooValue">0</span>
+                    </div>
+                    <input type="range" id="hairTattoo" min="0" max="33" step="1" value="0" oninput="updateCharAttributes()">
+                </div>
             </div>
-            <div class="slider">
-                <span>Secondary Color</span><span id="eyebrowsSecondaryColorValue"> 0</span>
-                <input type="range" min="0" max="63" step="1" value="0" id="eyebrowsSecondaryColor" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider">
-                <span>Opacity</span><span id="eyebrowsOpacityValue"> 1.00</span>
-                <input type="range" min="0" max="1" step="0.05" value="1" id="eyebrowsOpacity" oninput="updateCharAttributes()">
-            </div>
-        </div>
 
-        <!-- Body Hair -->
-        <div class="slider">
-            <div class="slider-label">
-                <span>Body Hair</span><span id="bodyHairValue"> 0</span>
-            </div>
-            <input type="range" id="bodyHair" min="0" max="33" step="1" value="0" oninput="updateCharAttributes()">
-            <button class="button" onclick="toggleExtraSliders('bodyHairExtra')">Customize</button>
+            <button id="editHair" class="button" onclick="editHair()">Edit</button>
         </div>
-
-        <div id="bodyhairExtra" class="extra-slider" style="display: none;">
-            <div class="slider">
-                <span>Color</span><span id="bodyHairColorValue"> 0</span>
-                <input type="range" min="0" max="63" step="1" value="0" id="bodyHairColor" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider">
-                <span>Secondary Color</span><span id="bodyHairSecondaryColorValue"> 0</span>
-                <input type="range" min="0" max="63" step="1" value="0" id="bodyHairSecondaryColor" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider">
-                <span>Opacity</span><span id="bodyHairOpacityValue"> 1.00</span>
-                <input type="range" min="0" max="1" step="0.05" value="1" id="bodyHairOpacity" oninput="updateCharAttributes()">
-            </div>
-        </div>
-
-        <!-- Body Hair -->
-        <div class="slider">
-            <div class="slider-label">
-                <span>Hair Tattoo</span><span id="hairTattooValue">0</span>
-            </div>
-            <input type="range" id="hairTattoo" min="0" max="33" step="1" value="0" oninput="updateCharAttributes()">
-            <button class="button" onclick="toggleExtraSliders('hairTattooExtra')">Customize</button>
-        </div>
-
-        <div id="hairTattooExtra" class="extra-slider" style="display: none;">
-            <div class="slider">
-                <span>Color</span><span id="hairTattooColorValue"> 0</span>
-                <input type="range" min="0" max="63" step="1" value="0" id="hairTattooColor" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider">
-                <span>Secondary Color</span><span id="hairTattooSecondaryColorValue"> 0</span>
-                <input type="range" min="0" max="63" step="1" value="0" id="hairTattooSecondaryColor" oninput="updateCharAttributes()">
-            </div>
-            <div class="slider">
-                <span>Opacity</span><span id="hairTattooOpacityValue"> 1.00</span>
-                <input type="range" min="0" max="1" step="0.05" value="1" id="hairTattooOpacity" oninput="updateCharAttributes()">
-            </div>
-        </div>
-        <button id="editHair" class="button" style="display: block;" onclick="editHair()">Edit</button>
-        </div>
-        
     </div>
     
-<script>
-    let currentPage = 0;
-    const pages = document.querySelectorAll('.page');
-    const prevButton = document.getElementById('prevButton');
-    const nextButton = document.getElementById('nextButton');
-    const createButton = document.getElementById('createButton');
-    function toggleExtraSliders(id) {
-        const sliderContainer = document.getElementById(id);
-        sliderContainer.style.display = sliderContainer.style.display === 'none' ? 'block' : 'none';
-    }
-
-    function showPage(pageIndex) {
-        pages.forEach((page, index) => {
-            page.style.display = index === pageIndex ? 'block' : 'none';
-        });
-        updateNavigation();
-    }
-
-    function updateNavigation() {
-        prevButton.style.display = currentPage === 0 ? 'none' : 'inline-block';
-        nextButton.style.display = currentPage === pages.length - 1 ? 'none' : 'inline-block';
-        createButton.style.display = currentPage === pages.length - 1 ? 'inline-block' : 'none';
-    }
-
-    function prevPage() {
-        if (currentPage > 0) {
-            currentPage--;
-            showPage(currentPage);
+    <script>
+        function updateDisplayValue(elementId, value) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = value;
+            }
         }
-    }
 
-    function nextPage() {
-        if (currentPage < pages.length - 1) {
-            currentPage++;
-            showPage(currentPage);
+        function updateCharAttributes() {
+            const hairData = {
+                hair: {
+                    value: document.getElementById('hair').value,
+                    color: document.getElementById('hairColor').value,
+                    secondaryColor: document.getElementById('hairSecondaryColor').value
+                },
+                facialHair: {
+                    value: document.getElementById('facialHair').value,
+                    color: document.getElementById('facialHairColor').value
+                },
+                eyebrows: {
+                    value: document.getElementById('eyebrows').value,
+                    color: document.getElementById('eyebrowsColor').value
+                },
+                bodyHair: {
+                    value: document.getElementById('bodyHair').value,
+                    color: document.getElementById('bodyHairColor').value
+                },
+                hairTattoo: document.getElementById('hairTattoo').value
+            };
+
+            // Update all display values
+            updateDisplayValue('hairValue', hairData.hair.value);
+            updateDisplayValue('hairColorValue', hairData.color);
+            updateDisplayValue('hairSecondaryColorValue', hairData.secondaryColor);
+            updateDisplayValue('facialHairValue', hairData.facialHair.value);
+            updateDisplayValue('facialHairColorValue', hairData.facialHair.color);
+            updateDisplayValue('eyebrowsValue', hairData.eyebrows.value);
+            updateDisplayValue('eyebrowsColorValue', hairData.eyebrows.color);
+            updateDisplayValue('bodyHairValue', hairData.bodyHair.value);
+            updateDisplayValue('bodyHairColorValue', hairData.bodyHair.color);
+            updateDisplayValue('hairTattooValue', hairData.hairTattoo);
+
+            // Trigger the RAGE:MP event
+            if (typeof mp !== 'undefined') {
+                mp.trigger("CEF:CLIENT:UpdateHair", JSON.stringify(hairData));
+            }
         }
-    }
 
-    function updateCharAttributes() {
-    const hair = document.getElementById('hair').value;
+        function editHair() {
+            const hairData = {
+                hair: {
+                    value: document.getElementById('hair').value,
+                    color: document.getElementById('hairColor').value,
+                    secondaryColor: document.getElementById('hairSecondaryColor').value
+                },
+                facialHair: {
+                    value: document.getElementById('facialHair').value,
+                    color: document.getElementById('facialHairColor').value
+                },
+                eyebrows: {
+                    value: document.getElementById('eyebrows').value,
+                    color: document.getElementById('eyebrowsColor').value
+                },
+                bodyHair: {
+                    value: document.getElementById('bodyHair').value,
+                    color: document.getElementById('bodyHairColor').value
+                },
+                hairTattoo: document.getElementById('hairTattoo').value
+            };
 
-    const facialHair = document.getElementById('facialHair').value;
-    const facialHairColor = document.getElementById('facialHairColor')?.value || 0;
-    const facialHairSecondaryColor = document.getElementById('facialHairSecondaryColor')?.value || 0;
-    const facialHairOpacity = document.getElementById('facialHairOpacity')?.value || 1;
-
-    const eyebrows = document.getElementById('eyebrows').value;
-    const eyebrowsColor = document.getElementById('eyebrowsColor')?.value || 0;
-    const eyebrowsSecondaryColor = document.getElementById('eyebrowsSecondaryColor')?.value || 0;
-    const eyebrowsOpacity = document.getElementById('eyebrowsOpacity')?.value || 1;
-
-    const bodyHair = document.getElementById('bodyHair').value;
-    const bodyHairColor = document.getElementById('bodyHairColor')?.value || 0;
-    const bodyHairSecondaryColor = document.getElementById('bodyHairSecondaryColor')?.value || 0;
-    const bodyHairOpacity = document.getElementById('bodyHairOpacity')?.value || 1;
-
-    const hairTattoo = document.getElementById('hairTattoo').value;
-    const hairTattooColor = document.getElementById('hairTattooColor')?.value || 0;
-    const hairTattooSecondaryColor = document.getElementById('hairTattooSecondaryColor')?.value || 0;
-    const hairTattooOpacity = document.getElementById('hairTattooOpacity')?.value || 1;
-
-    // Update the displayed values
-    document.getElementById('hairValue').textContent = hair;
-    document.getElementById('facialHairValue').textContent = facialHair;
-    document.getElementById('eyebrowsValue').textContent = eyebrows;
-    document.getElementById('bodyHairValue').textContent = bodyHair;
-    document.getElementById('hairTattooValue').textContent = hairTattoo;
-
-    // Create the hair data object with all attributes and colors
-    const hairData = {
-        hair: hair,
-        facialHair: {
-            value: facialHair,
-            color: facialHairColor,
-            secondaryColor: facialHairSecondaryColor,
-            opacity: facialHairOpacity
-        },
-        eyebrows: {
-            value: eyebrows,
-            color: eyebrowsColor,
-            secondaryColor: eyebrowsSecondaryColor,
-            opacity: eyebrowsOpacity
-        },
-        bodyHair: {
-            value: bodyHair,
-            color: bodyHairColor,
-            secondaryColor: bodyHairSecondaryColor,
-            opacity: bodyHairOpacity
-        },
-        hairTattoo: hairTattoo
-    };
-
-    const jsonString = JSON.stringify(hairData);
-    mp.trigger("CEF:CLIENT:UpdateHair", jsonString);
-    }
-
-
-    function editHair() {
-    const hair = document.getElementById('hair').value;
-
-    const facialHair = document.getElementById('facialHair').value;
-    const facialHairColor = document.getElementById('facialHairColor')?.value || 0;
-    const facialHairSecondaryColor = document.getElementById('facialHairSecondaryColor')?.value || 0;
-    const facialHairOpacity = document.getElementById('facialHairOpacity')?.value || 1;
-
-    const eyebrows = document.getElementById('eyebrows').value;
-    const eyebrowsColor = document.getElementById('eyebrowsColor')?.value || 0;
-    const eyebrowsSecondaryColor = document.getElementById('eyebrowsSecondaryColor')?.value || 0;
-    const eyebrowsOpacity = document.getElementById('eyebrowsOpacity')?.value || 1;
-
-    const bodyHair = document.getElementById('bodyHair').value;
-    const bodyHairColor = document.getElementById('bodyHairColor')?.value || 0;
-    const bodyHairSecondaryColor = document.getElementById('bodyHairSecondaryColor')?.value || 0;
-    const bodyHairOpacity = document.getElementById('bodyHairOpacity')?.value || 1;
-
-    const hairTattoo = document.getElementById('hairTattoo').value;
-    const hairTattooColor = document.getElementById('hairTattooColor')?.value || 0;
-    const hairTattooSecondaryColor = document.getElementById('hairTattooSecondaryColor')?.value || 0;
-    const hairTattooOpacity = document.getElementById('hairTattooOpacity')?.value || 1;
-
-    // Update the displayed values
-    document.getElementById('hairValue').textContent = hair;
-    document.getElementById('facialHairValue').textContent = facialHair;
-    document.getElementById('eyebrowsValue').textContent = eyebrows;
-    document.getElementById('bodyHairValue').textContent = bodyHair;
-    document.getElementById('hairTattooValue').textContent = hairTattoo;
-
-    // Create the hair data object with all attributes and colors
-    const hairData = {
-        hair: hair,
-        facialHair: {
-            value: facialHair,
-            color: facialHairColor,
-            secondaryColor: facialHairSecondaryColor,
-            opacity: facialHairOpacity
-        },
-        eyebrows: {
-            value: eyebrows,
-            color: eyebrowsColor,
-            secondaryColor: eyebrowsSecondaryColor,
-            opacity: eyebrowsOpacity
-        },
-        bodyHair: {
-            value: bodyHair,
-            color: bodyHairColor,
-            secondaryColor: bodyHairSecondaryColor,
-            opacity: bodyHairOpacity
-        },
-        hairTattoo: {
-            value: hairTattoo
+            const jsonString = JSON.stringify(hairData);
+            if (typeof mp !== 'undefined') {
+                mp.trigger("CEF:CLIENT:UpdateHair", jsonString);
+                mp.trigger("CEF:CLIENT:StopHairScreen", jsonString);
+            }
         }
-    };
 
-    const jsonString = JSON.stringify(hairData);
-    mp.trigger("CEF:CLIENT:UpdateHair", jsonString);
-        mp.trigger("CEF:CLIENT:StopHairScreen", jsonString);
-    }
-
-    function updateHairDataFromJson(jsonString) {
-            // Parse the JSON string to convert it into an object
-            const hairData = JSON.parse(jsonString);
-
-            // Update all sliders and their corresponding value displays
-            const sliderMappings = [
-                { id: 'hair', value: hairData.hair },
-                { id: 'facialHair', value: hairData.facialHair.value },
-                { id: 'facialHairColor', value: hairData.facialHair.color },
-                { id: 'facialHairSecondaryColor', value: hairData.facialHair.secondaryColor },
-                { id: 'facialHairOpacity', value: hairData.facialHair.opacity },
-                { id: 'eyebrows', value: hairData.eyebrows.value },
-                { id: 'eyebrowsColor', value: hairData.eyebrows.color },
-                { id: 'eyebrowsSecondaryColor', value: hairData.eyebrows.secondaryColor },
-                { id: 'eyebrowsOpacity', value: hairData.eyebrows.opacity },
-                { id: 'bodyHair', value: hairData.bodyHair.value },
-                { id: 'bodyHairColor', value: hairData.bodyHair.color },
-                { id: 'bodyHairSecondaryColor', value: hairData.bodyHair.secondaryColor },
-                { id: 'bodyHairOpacity', value: hairData.bodyHair.opacity },
-                { id: 'hairTattoo', value: hairData.hairTattoo.value }
-            ];
-
-            // Update sliders and their display values
-            sliderMappings.forEach(mapping => {
-                const slider = document.getElementById(mapping.id);
-                const valueDisplay = document.getElementById(`${mapping.id}Value`);
+        function updateHairDataFromJson(jsonString) {
+            try {
+                const hairData = JSON.parse(jsonString);
                 
-                if (slider) {
-                    slider.value = mapping.value;
-                }
-                
-                if (valueDisplay) {
-                    valueDisplay.textContent = mapping.value;
-                }
-            });
+                // Update main hair controls
+                document.getElementById('hair').value = hairData.hair.value;
+                document.getElementById('hairColor').value = hairData.hair.color;
+                document.getElementById('hairSecondaryColor').value = hairData.hair.secondaryColor;
+                updateDisplayValue('hairValue', hairData.hair.value);
+                updateDisplayValue('hairColorValue', hairData.hair.color);
+                updateDisplayValue('hairSecondaryColorValue', hairData.hair.secondaryColor);
 
-            // Trigger update to ensure all visual elements are synchronized
-            updateCharAttributes();
+                // Update facial hair
+                if (hairData.facialHair) {
+                    document.getElementById('facialHair').value = hairData.facialHair.value;
+                    document.getElementById('facialHairColor').value = hairData.facialHair.color;
+                    updateDisplayValue('facialHairValue', hairData.facialHair.value);
+                    updateDisplayValue('facialHairColorValue', hairData.facialHair.color);
+                }
+
+                // Update eyebrows
+                if (hairData.eyebrows) {
+                    document.getElementById('eyebrows').value = hairData.eyebrows.value;
+                    document.getElementById('eyebrowsColor').value = hairData.eyebrows.color;
+                    updateDisplayValue('eyebrowsValue', hairData.eyebrows.value);
+                    updateDisplayValue('eyebrowsColorValue', hairData.eyebrows.color);
+                }
+
+                // Update body hair
+                if (hairData.bodyHair) {
+                    document.getElementById('bodyHair').value = hairData.bodyHair.value;
+                    document.getElementById('bodyHairColor').value = hairData.bodyHair.color;
+                    updateDisplayValue('bodyHairValue', hairData.bodyHair.value);
+                    updateDisplayValue('bodyHairColorValue', hairData.bodyHair.color);
+                }
+
+                // Update hair tattoo
+                if (hairData.hairTattoo) {
+                    document.getElementById('hairTattoo').value = hairData.hairTattoo;
+                    updateDisplayValue('hairTattooValue', hairData.hairTattoo);
+                }
+            } catch (error) {
+                console.error('Error parsing hair data JSON:', error);
+            }
         }
-    showPage(currentPage); // Initial page load
-</script>
-
+    </script>
 </body>
 </html>

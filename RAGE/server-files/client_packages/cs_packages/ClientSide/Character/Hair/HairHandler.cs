@@ -114,10 +114,15 @@ namespace ClientSide.Character.Hair
             string json = args[0].ToString();
             HairData hairData = RAGE.Util.Json.Deserialize<HairData>(json);
 
-            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(1, hairData.FacialHair.Value, hairData.FacialHair.Opacity);
-            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(2, hairData.Eyebrows.Value, hairData.Eyebrows.Opacity);
-            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(10, hairData.BodyHair.Value, hairData.BodyHair.Opacity);
-            RAGE.Elements.Player.LocalPlayer.SetComponentVariation(2, hairData.Hair, 0, 0);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(1, hairData.FacialHair.Value, 1f);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(2, hairData.Eyebrows.Value, 1f);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(10, hairData.BodyHair.Value, 1f);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlayColor(1, 1, hairData.FacialHair.Color, 0);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlayColor(2, 1, hairData.Eyebrows.Color, 0);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlayColor(10, 1, hairData.BodyHair.Color, 0);
+
+            RAGE.Elements.Player.LocalPlayer.SetComponentVariation(2, hairData.Hair.Value, 0, 0);
+            RAGE.Elements.Player.LocalPlayer.SetHairColor(hairData.Hair.Color, hairData.Hair.SecondColor);
         }
         private void ShowHairScreen(object[] args)
         {

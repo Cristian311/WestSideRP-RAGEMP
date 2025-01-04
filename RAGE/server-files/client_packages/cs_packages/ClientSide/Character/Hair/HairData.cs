@@ -8,33 +8,39 @@ namespace ClientSide.Hair
     public class HairData
     {
         [JsonProperty("facialHair")]
-        public HairDetail FacialHair { get; set; }
+        public OtherHairDetail FacialHair { get; set; }
 
         [JsonProperty("hair")]
-        public int Hair { get; set; }
+        public HairDetail Hair { get; set; }
 
         [JsonProperty("eyebrows")]
-        public HairDetail Eyebrows { get; set; }
+        public OtherHairDetail Eyebrows { get; set; }
 
         [JsonProperty("bodyHair")]
-        public HairDetail BodyHair { get; set; }
+        public OtherHairDetail BodyHair { get; set; }
+
         [JsonProperty("hairTattoo")]
-        public string HairTattoo { get; set; }
+        public int HairTattoo { get; set; }
     }
 
     public class HairDetail
     {
         [JsonProperty("value")]
-        public int Value { get; set; }
+        public byte Value { get; set; }
 
         [JsonProperty("color")]
-        public int Color { get; set; }
+        public byte Color { get; set; }
+        [JsonProperty("secondColor")]
+        public byte SecondColor { get; set; }
 
-        [JsonProperty("secondaryColor")]
-        public int SecondaryColor { get; set; }
+    }
+    public class OtherHairDetail
+    {
+        [JsonProperty("value")]
+        public byte Value { get; set; }
 
-        [JsonProperty("opacity")]
-        public int Opacity { get; set; }
+        [JsonProperty("color")]
+        public byte Color { get; set; }
     }
 
     public class HairDecal
