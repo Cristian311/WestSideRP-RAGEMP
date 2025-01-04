@@ -11,7 +11,7 @@ namespace ClientSide.Hair
         public HairDetail FacialHair { get; set; }
 
         [JsonProperty("hair")]
-        public string Hair { get; set; }
+        public int Hair { get; set; }
 
         [JsonProperty("eyebrows")]
         public HairDetail Eyebrows { get; set; }
@@ -25,16 +25,16 @@ namespace ClientSide.Hair
     public class HairDetail
     {
         [JsonProperty("value")]
-        public string Value { get; set; }
+        public int Value { get; set; }
 
         [JsonProperty("color")]
-        public string Color { get; set; }
+        public int Color { get; set; }
 
         [JsonProperty("secondaryColor")]
-        public string SecondaryColor { get; set; }
+        public int SecondaryColor { get; set; }
 
         [JsonProperty("opacity")]
-        public string Opacity { get; set; }
+        public int Opacity { get; set; }
     }
 
     public class HairDecal

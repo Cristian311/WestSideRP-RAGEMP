@@ -1,8 +1,9 @@
 ﻿using GTANetworkAPI;
+using GTANetworkMethods;
 using ServerSide.Server.DB.CharacterDB;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using Player = GTANetworkAPI.Player;
 
 namespace ServerSide.Characters.Customization.Customize
 {
@@ -41,12 +42,11 @@ namespace ServerSide.Characters.Customization.Customize
         [RemoteEvent("CLIENT:SERVER:CharCustomiseUpdate")]
         private void onCharCustomiseUpdate(Player player, string json)
         {
-            CharacterData data = Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterData>(json); //all character data vars are string
-            Character character = CharacterManager.PlayerCharacterPair[player];
+            var data = Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterData>(json); //all character data vars are string
             try
             {
-                UpdatePlayerFaceFeatures(player, data, character.Gender);
-                NAPI.Util.ConsoleOutput(character.Gender.ToString());
+                UpdatePlayerFaceFeatures(player, data);
+                NAPI.Util.ConsoleOutput(json);
             }
             catch (Exception e)
             {
@@ -54,71 +54,101 @@ namespace ServerSide.Characters.Customization.Customize
             }
         }
 
-        public static void UpdatePlayerFaceFeatures(Player player, CharacterData data, bool gender)
+        public static void UpdatePlayerFaceFeatures(Player player, CharacterData data)
         {
-            //placeholder empty vars
-            Decoration[] decoration = new Decoration[10];
-            Dictionary<int, HeadOverlay> headOverlays = new Dictionary<int, HeadOverlay>();
-            HeadOverlay head = new HeadOverlay();
+            bool gender = CharacterManager.PlayerCharacterPair[player].Gender;
+            //head blend
+            var headBlend = GetHeadBlend(data);
+            var features = GetFaceFeatures(data);
+            player.SetCustomization(gender, headBlend, data.Eye.Color, 0, 0, features, new Dictionary<int, HeadOverlay>(), new Decoration[10]);
 
-            //actual vars
-            HeadBlend headBlend = GetHeadBlend(data);
-            var eyeColor = byte.Parse(data.Eye.Color);
-            var features = FaceFeatures(data);
-            NAPI.Util.ConsoleOutput(gender.ToString());
-            player.SetCustomization(gender, headBlend, eyeColor, 0, 0, features, headOverlays, decoration);
+            //face features
+            SetFaceFeatures(player, features);
 
+            //face details
+            SetFaceDetails(player, data);
+        }
+
+        private static void SetFaceDetails(Player player, CharacterData data)
+        {
+            if (data.Facial == null)
+                return;
+            var blemishes = CreateHeadOverlay(data.Facial.Blemishes, 0, 0, 1);
+            player.SetHeadOverlay(0, blemishes);
+
+            var ageing = CreateHeadOverlay(data.Facial.Ageing, 0, 0, 1);
+            player.SetHeadOverlay(3, ageing);
+
+            var complexion = CreateHeadOverlay(data.Facial.Complexion, 0, 0, 1);
+            player.SetHeadOverlay(6, complexion);
+
+            var sunDamage = CreateHeadOverlay(data.Facial.SunDamage, 0, 0, 1);
+            player.SetHeadOverlay(7, sunDamage);
+
+            var molesFreckles = CreateHeadOverlay(data.Facial.MolesFreckles, 0, 0, 1);
+            player.SetHeadOverlay(9, molesFreckles);
+
+
+        }
+        
+        private static void SetFaceFeatures(Player player, float[] features)
+        {
             for (int i = 0; i < 20; i++)
             {
-                var feature = features[i] * 0.01;
-                player.SetFaceFeature(i, (float)feature);
+                player.SetFaceFeature(i, features[i]);
             }
         }
-
-        private static float[] FaceFeatures(CharacterData charData)
+        private static float[] GetFaceFeatures(CharacterData charData)
         {
             float[] face = new float[20];
-            face[0] = float.Parse(charData.Nose.Width);
-            face[1] = float.Parse(charData.Nose.Height);
-            face[2] = float.Parse(charData.Nose.Length);
-            face[3] = float.Parse(charData.Nose.Bridge);
-            face[4] = float.Parse(charData.Nose.Tip);
-            face[5] = float.Parse(charData.Nose.BridgeShift);
-            face[6] = float.Parse(charData.Brow.Height);
-            face[7] = float.Parse(charData.Brow.Width);
-            face[8] = float.Parse(charData.Cheeks.Height);
-            face[9] = float.Parse(charData.Cheeks.Width);
-            face[10] = float.Parse(charData.Cheeks.CheeksWidth);
-            face[11] = float.Parse(charData.Eye.Size);
-            face[12] = float.Parse(charData.Lips);
-            face[13] = float.Parse(charData.Jaw.Width);
-            face[14] = float.Parse(charData.Jaw.Width);
-            //needs fix
-            if (charData.Chin.Lenght != null)
-                face[15] = float.Parse(charData.Chin.Lenght);
-            else
-                face[15] = 0;
-            face[16] = float.Parse(charData.Chin.Position);
-            face[17] = float.Parse(charData.Chin.Width);
-            face[18] = float.Parse(charData.Chin.Shape);
-            face[19] = float.Parse(charData.Neck.Width);
+            face[0] = charData.Nose.Width;
+            face[1] = charData.Nose.Height;
+            face[2] = charData.Nose.Length;
+            face[3] = charData.Nose.Bridge;
+            face[4] = charData.Nose.Tip;
+            face[5] = charData.Nose.BridgeShift;
+            face[6] = charData.Brow.Height;
+            face[7] = charData.Brow.Width;
+            face[8] = charData.Cheeks.Height;
+            face[9] = charData.Cheeks.Width;
+            face[10] = charData.Cheeks.CheeksWidth;
+            face[11] = charData.Eye.Size;
+            face[12] = charData.Lips;
+            face[13] = charData.Jaw.Width;
+            face[14] = charData.Jaw.Height;
+            face[15] = charData.Chin.Length;
+            face[16] = charData.Chin.Position;
+            face[17] = charData.Chin.Width;
+            face[18] = charData.Chin.Shape;
+            face[19] = charData.Neck.Width;
             return face;
         }
+
         private static HeadBlend GetHeadBlend(CharacterData charData)
         {
             HeadBlend headBlend = new HeadBlend();
-            headBlend.ShapeFirst = byte.Parse(charData.Shape.First);
-            headBlend.ShapeSecond = byte.Parse(charData.Shape.Second);
+            headBlend.ShapeFirst = charData.Shape.First;
+            headBlend.ShapeSecond = charData.Shape.Second;
             headBlend.ShapeThird = 0; //byte.Parse(charData.Shape.Third);
-            headBlend.ShapeMix = float.Parse(charData.Shape.Mix) * 0.01f;
+            headBlend.ShapeMix = charData.Shape.Mix;
 
-            headBlend.SkinFirst = byte.Parse(charData.Skin.First);
-            headBlend.SkinSecond = byte.Parse(charData.Skin.Second);
+            headBlend.SkinFirst = charData.Skin.First;
+            headBlend.SkinSecond = charData.Skin.Second;
             headBlend.SkinThird = 0; //byte.Parse(charData.Skin.Third);
-            headBlend.SkinMix = float.Parse(charData.Skin.Mix) * 0.01f;
+            headBlend.SkinMix = charData.Skin.Mix;
 
             //headBlend.ThirdMix = int.Parse(charData.) not implemented yet
             return headBlend;
+        }
+        private static HeadOverlay CreateHeadOverlay(byte index, byte color, byte secondaryColor, float opacity)
+        {
+            return new HeadOverlay
+            {
+                Index = index,
+                Color = color,
+                SecondaryColor = secondaryColor,
+                Opacity = opacity
+            };
         }
     }
 }

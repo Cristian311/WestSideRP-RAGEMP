@@ -267,6 +267,13 @@
             </div>
             <div class="slider-container">
                 <div class="slider-label">
+                    <span>Jaw Height</span>
+                    <span id="jawHeightValue">0.00</span>
+                </div>
+                <input type="range" id="jawHeight" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
                     <span>Chin Length</span>
                     <span id="chinLengthValue">0.00</span>
                 </div>
@@ -353,7 +360,49 @@
                 <input type="range" id="neckWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
             </div>
         </div>
-
+        <div id="page6" class="page">
+            <h2>Facial Details</h2>
+            
+            <!-- Blemishes Slider -->
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Blemishes</span><span id="blemishesValue">0</span>
+                </div>
+                <input type="range" id="blemishes" min="0" max="23" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+    
+            <!-- Ageing Slider -->
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Ageing</span><span id="ageingValue">0</span>
+                </div>
+                <input type="range" id="ageing" min="0" max="14" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+    
+            <!-- Complexion Slider -->
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Complexion</span><span id="complexionValue">0</span>
+                </div>
+                <input type="range" id="complexion" min="0" max="11" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+    
+            <!-- Sun Damage Slider -->
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Sun Damage</span><span id="sunDamageValue">0</span>
+                </div>
+                <input type="range" id="sunDamage" min="0" max="10" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+    
+            <!-- Moles/Freckles Slider -->
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Moles/Freckles</span><span id="molesFrecklesValue">0</span>
+                </div>
+                <input type="range" id="molesFreckles" min="0" max="17" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+        </div>
         <div class="navigation">
             <button id="prevButton" class="button" onclick="prevPage()">Previous</button>
             <button id="nextButton" class="button" onclick="nextPage()">Next</button>
@@ -418,6 +467,18 @@ function updateCharAttributes() {
     document.getElementById('shapeMixValue').textContent = parseFloat(document.getElementById('shapeMix').value).toFixed(2);
     document.getElementById('skinMixValue').textContent = parseFloat(document.getElementById('skinMix').value).toFixed(2);
 
+    const blemishes = document.getElementById('blemishes').value;
+    const ageing = document.getElementById('ageing').value;
+    const complexion = document.getElementById('complexion').value;
+    const sunDamage = document.getElementById('sunDamage').value;
+    const molesFreckles = document.getElementById('molesFreckles').value;
+
+    // Update display values for new attributes
+    document.getElementById('blemishesValue').textContent = blemishes;
+    document.getElementById('ageingValue').textContent = ageing;
+    document.getElementById('complexionValue').textContent = complexion;
+    document.getElementById('sunDamageValue').textContent = sunDamage;
+    document.getElementById('molesFrecklesValue').textContent = molesFreckles;
     // Get all form values
     const characterData = {
         shape: {
@@ -448,6 +509,7 @@ function updateCharAttributes() {
             cheeksWidth: document.getElementById('cheeksCheeksWidth').value,
         },
         jaw: {
+            height: document.getElementById('jawHeight').value,
             width: document.getElementById('jawWidth').value,
         },
         chin: {
@@ -465,6 +527,13 @@ function updateCharAttributes() {
         },
         skinColor: document.getElementById('skinColor').value,
         lips: document.getElementById('lips').value,
+        facialDetails: {
+            blemishes: blemishes,
+            ageing: ageing,
+            complexion: complexion,
+            sunDamage: sunDamage,
+            molesFreckles: molesFreckles
+        }
     };
 
     // Update all numeric value displays
@@ -487,7 +556,7 @@ function updateCharAttributes() {
     // Send the data to the game
     const jsonString = JSON.stringify(characterData);
     if (typeof mp !== 'undefined') {
-        mp.trigger("CEF:CLIENT:UpdateCharacter", jsonString);
+        mp.trigger("CEF:CLIENT:UpdateCharacterClient", jsonString);
     }
 }
 
@@ -521,6 +590,7 @@ function createCharacter() {
             cheeksWidth: document.getElementById('cheeksCheeksWidth').value,
         },
         jaw: {
+            height: document.getElementById('jawHeight').value,
             width: document.getElementById('jawWidth').value,
         },
         chin: {
@@ -538,6 +608,13 @@ function createCharacter() {
         },
         skinColor: document.getElementById('skinColor').value,
         lips: document.getElementById('lips').value,
+        facialDetails: {
+            blemishes: document.getElementById('blemishes').value,
+            ageing: document.getElementById('ageing').value,
+            complexion: document.getElementById('complexion').value,
+            sunDamage: document.getElementById('sunDamage').value,
+            molesFreckles: document.getElementById('molesFreckles').value
+        }
     };
 
     const jsonString = JSON.stringify(characterData);
@@ -549,7 +626,22 @@ function createCharacter() {
 
 function updateCharacterDataFromJson(jsonString) {
     const data = JSON.parse(jsonString);
+    if (data.facialDetails) {
+            document.getElementById('blemishes').value = characterData.facialDetails.blemishes;
+            document.getElementById('blemishesValue').textContent = characterData.facialDetails.blemishes;
 
+            document.getElementById('ageing').value = characterData.facialDetails.ageing;
+            document.getElementById('ageingValue').textContent = characterData.facialDetails.ageing;
+
+            document.getElementById('complexion').value = characterData.facialDetails.complexion;
+            document.getElementById('complexionValue').textContent = characterData.facialDetails.complexion;
+
+            document.getElementById('sunDamage').value = characterData.facialDetails.sunDamage;
+            document.getElementById('sunDamageValue').textContent = characterData.facialDetails.sunDamage;
+
+            document.getElementById('molesFreckles').value = characterData.facialDetails.molesFreckles;
+            document.getElementById('molesFrecklesValue').textContent = characterData.facialDetails.molesFreckles;
+        }
     Object.entries(data).forEach(([key, value]) => {
         if (typeof value === 'object') {
             Object.entries(value).forEach(([subKey, subValue]) => {

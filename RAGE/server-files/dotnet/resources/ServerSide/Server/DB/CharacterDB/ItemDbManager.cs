@@ -1,11 +1,7 @@
 ﻿using GTANetworkAPI;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
-using ServerSide.Server.DB;
-using ServerSide.Server.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using ServerSide.Characters;
 
 namespace ServerSide.Server.DB.CharacterDB
 {

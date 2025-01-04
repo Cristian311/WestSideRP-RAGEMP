@@ -353,3 +353,154 @@
 04.01.2025 00:52:30 (aaa) Zurab Makharadze: /tattoos
 04.01.2025 00:52:33 (aaa) Zurab Makharadze: /tattoo
 04.01.2025 00:53:36 (aaa) Zurab Makharadze: /changechar
+04.01.2025 01:02:26 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 01:02:26 - Loaded shop: lll at position: 0 0 0
+04.01.2025 01:02:26 - Loaded shop: kk at position: 0 0 0
+04.01.2025 01:02:26 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 01:02:26 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 01:03:08 (aaa) Zurab Makharadze: /clothes
+04.01.2025 01:07:10 (aaa) Zurab Makharadze: /use 0
+04.01.2025 01:07:13 (aaa) Zurab Makharadze: /inv
+04.01.2025 01:08:23 (aaa) Zurab Makharadze: /changechar
+04.01.2025 01:08:28 (aaa) Hatz Gion: /changechar
+04.01.2025 01:08:34 (aaa) Zurab Makharadze: /clothes
+04.01.2025 01:09:00 (aaa) Zurab Makharadze: /clothes
+04.01.2025 01:10:13 (aaa) Zurab Makharadze: /me scoate pistolul, il indreapta spre DeMarcus.
+04.01.2025 01:10:25 (aaa) Zurab Makharadze: /me scoate pistolul, il indreapta spre DeMarcus.
+04.01.2025 01:10:43 (aaa) Zurab Makharadze: /createweapon
+04.01.2025 01:11:06 (aaa) Zurab Makharadze: /createweapon assaultrifle 1
+04.01.2025 01:11:08 (aaa) Zurab Makharadze: /inv
+04.01.2025 01:11:20 (aaa) Zurab Makharadze: /createbullets
+04.01.2025 01:11:22 (aaa) Zurab Makharadze: /createbullet
+04.01.2025 01:11:26 (aaa) Zurab Makharadze: /createitem
+04.01.2025 01:11:39 (aaa) Zurab Makharadze: /createitem arbullets bullet 50 assaultrifle
+04.01.2025 01:11:41 (aaa) Zurab Makharadze: /use 0
+04.01.2025 01:11:45 (aaa) Zurab Makharadze: /inv
+04.01.2025 01:12:04 (aaa) Zurab Makharadze: /unequip
+04.01.2025 01:12:06 (aaa) Zurab Makharadze: /inv
+04.01.2025 11:05:49 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 11:05:49 - Loaded shop: lll at position: 0 0 0
+04.01.2025 11:05:49 - Loaded shop: kk at position: 0 0 0
+04.01.2025 11:05:49 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 11:05:49 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 11:06:17 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 11:06:17 - Loaded shop: lll at position: 0 0 0
+04.01.2025 11:06:17 - Loaded shop: kk at position: 0 0 0
+04.01.2025 11:06:17 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 11:06:17 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 11:16:44 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 11:16:44 - Loaded shop: lll at position: 0 0 0
+04.01.2025 11:16:44 - Loaded shop: kk at position: 0 0 0
+04.01.2025 11:16:44 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 11:16:44 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 11:19:48 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 11:19:48 - Loaded shop: lll at position: 0 0 0
+04.01.2025 11:19:48 - Loaded shop: kk at position: 0 0 0
+04.01.2025 11:19:48 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 11:19:48 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 11:20:27 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 11:20:27 - Loaded shop: lll at position: 0 0 0
+04.01.2025 11:20:27 - Loaded shop: kk at position: 0 0 0
+04.01.2025 11:20:27 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 11:20:27 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 11:20:50 (aaa) Zurab Makharadze: /facefeatures
+04.01.2025 11:22:19 (aaa) Zurab Makharadze: /facefeatures
+04.01.2025 11:31:35 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 11:31:35 - Loaded shop: lll at position: 0 0 0
+04.01.2025 11:31:35 - Loaded shop: kk at position: 0 0 0
+04.01.2025 11:31:35 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 11:31:35 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 11:31:53 (aaa) Hatz Gion: /facefeatures
+04.01.2025 11:33:05 (aaa) Hatz Gion: /facefeatures
+04.01.2025 11:34:20 (aaa) Hatz Gion: /facefeatures
+04.01.2025 11:35:31 (aaa) Hatz Gion: /facefeatures
+04.01.2025 11:38:54 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 11:38:54 - Loaded shop: lll at position: 0 0 0
+04.01.2025 11:38:54 - Loaded shop: kk at position: 0 0 0
+04.01.2025 11:38:54 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 11:38:54 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 11:39:11 (aaa) Hatz Gion: /facefeatures
+04.01.2025 11:40:39 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 11:40:39 - Loaded shop: lll at position: 0 0 0
+04.01.2025 11:40:39 - Loaded shop: kk at position: 0 0 0
+04.01.2025 11:40:39 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 11:40:39 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 11:41:27 (aaa) Hatz Gion: /facefeatures
+04.01.2025 11:43:05 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 11:43:05 - Loaded shop: lll at position: 0 0 0
+04.01.2025 11:43:05 - Loaded shop: kk at position: 0 0 0
+04.01.2025 11:43:05 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 11:43:05 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 11:43:29 (aaa) Hatz Gion: /facefeatures
+04.01.2025 11:58:22 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 11:58:22 - Loaded shop: lll at position: 0 0 0
+04.01.2025 11:58:22 - Loaded shop: kk at position: 0 0 0
+04.01.2025 11:58:22 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 11:58:22 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 11:58:45 (aaa) Hatz Gion: /facefeatures
+04.01.2025 12:00:23 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 12:00:23 - Loaded shop: lll at position: 0 0 0
+04.01.2025 12:00:23 - Loaded shop: kk at position: 0 0 0
+04.01.2025 12:00:23 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 12:00:23 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 12:00:49 (aaa) Zurab Makharadze: /facefeatures
+04.01.2025 12:10:24 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 12:10:24 - Loaded shop: lll at position: 0 0 0
+04.01.2025 12:10:24 - Loaded shop: kk at position: 0 0 0
+04.01.2025 12:10:24 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 12:10:24 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 12:10:45 (aaa) Hatz Gion: /facefeatures
+04.01.2025 12:12:29 (aaa) Hatz Gion: /facefeatures
+04.01.2025 12:13:53 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 12:13:53 - Loaded shop: lll at position: 0 0 0
+04.01.2025 12:13:53 - Loaded shop: kk at position: 0 0 0
+04.01.2025 12:13:53 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 12:13:53 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 12:14:46 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 12:14:46 - Loaded shop: lll at position: 0 0 0
+04.01.2025 12:14:46 - Loaded shop: kk at position: 0 0 0
+04.01.2025 12:14:46 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 12:14:46 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 12:15:30 (aaa) Hatz Gion: /facefeatures
+04.01.2025 12:16:51 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 12:16:51 - Loaded shop: lll at position: 0 0 0
+04.01.2025 12:16:51 - Loaded shop: kk at position: 0 0 0
+04.01.2025 12:16:51 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 12:16:51 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 12:17:54 (aaa) Hatz Gion: /facefeatures
+04.01.2025 12:19:17 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 12:19:17 - Loaded shop: lll at position: 0 0 0
+04.01.2025 12:19:17 - Loaded shop: kk at position: 0 0 0
+04.01.2025 12:19:17 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 12:19:17 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 12:19:45 (aaa) Hatz Gion: /facefeatures
+04.01.2025 12:21:50 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 12:21:50 - Loaded shop: lll at position: 0 0 0
+04.01.2025 12:21:50 - Loaded shop: kk at position: 0 0 0
+04.01.2025 12:21:50 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 12:21:50 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 12:22:12 (aaa) Hatz Gion: /facefeatures
+04.01.2025 12:23:54 (aaa) Hatz Gion: /facefeatures
+04.01.2025 12:31:56 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 12:31:56 - Loaded shop: lll at position: 0 0 0
+04.01.2025 12:31:56 - Loaded shop: kk at position: 0 0 0
+04.01.2025 12:31:56 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 12:31:56 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 12:32:22 (aaa) Hatz Gion: /facefeatures
+04.01.2025 12:33:59 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 12:33:59 - Loaded shop: lll at position: 0 0 0
+04.01.2025 12:33:59 - Loaded shop: kk at position: 0 0 0
+04.01.2025 12:33:59 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 12:33:59 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 12:34:16 (aaa) Hatz Gion: /facefeatures
+04.01.2025 12:36:56 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 12:36:56 - Loaded shop: lll at position: 0 0 0
+04.01.2025 12:36:56 - Loaded shop: kk at position: 0 0 0
+04.01.2025 12:36:56 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 12:36:56 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 12:38:09 - Loaded shop: hatz at position: 0 0 0
+04.01.2025 12:38:09 - Loaded shop: lll at position: 0 0 0
+04.01.2025 12:38:09 - Loaded shop: kk at position: 0 0 0
+04.01.2025 12:38:09 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+04.01.2025 12:38:09 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+04.01.2025 12:38:31 (aaa) Hatz Gion: /facefeatures

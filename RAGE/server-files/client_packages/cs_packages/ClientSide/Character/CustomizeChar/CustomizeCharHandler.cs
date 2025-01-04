@@ -24,7 +24,6 @@ namespace ClientSide.Character.CustomizeChar
         {
             string json = args[0].ToString();
             CharacterData charData = RAGE.Util.Json.Deserialize<CharacterData>(json);
-            Chat.Output(json);
             UpdatePlayerFaceFeatures(charData, Gender);
         }
 
@@ -41,7 +40,6 @@ namespace ClientSide.Character.CustomizeChar
             string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
 
             cefBrowser.ExecuteJs($"updateCharacterDataFromJson(\"{escapedJson}\");");
-            Chat.Output(escapedJson + "hatz");
         }
         private void ShowCustomizeCharScreen(object[] args)
         {
@@ -67,21 +65,34 @@ namespace ClientSide.Character.CustomizeChar
 
         private void UpdatePlayerFaceFeatures(CharacterData data, bool gender)
         {
-            var eyeColor = byte.Parse(data.Eye.Color);
-            var features = GetFaceFeatures(data);
+            //eyes
+            var eyeColor = data.Eye.Color;
             RAGE.Elements.Player.LocalPlayer.SetEyeColor(eyeColor);
-            int shapeFirst = int.Parse(data.Shape.First);
-            int shapeSecond = int.Parse(data.Shape.Second);
-            int skinFirst = int.Parse(data.Skin.First);
-            int skinSecond = int.Parse(data.Skin.Second);
-            int shapeMix = int.Parse(data.Shape.Mix);
-            int skinMix = int.Parse(data.Shape.Mix);
+
+            //head details
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(0, data.Facial.Blemishes, 1f);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(3, data.Facial.Ageing, 1f);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(6, data.Facial.Complexion, 1f);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(7, data.Facial.SunDamage, 1f);
+            RAGE.Elements.Player.LocalPlayer.SetHeadOverlay(9, data.Facial.MolesFreckles, 1f);
+
+            //headblend
+            var shapeFirst = data.Shape.First;
+            var shapeSecond = data.Shape.Second;
+
+            var skinFirst = data.Skin.First;
+            var skinSecond = data.Skin.Second;
+
+            var shapeMix = data.Shape.Mix;
+            var skinMix = data.Skin.Mix;
             RAGE.Elements.Player.LocalPlayer.SetHeadBlendData(shapeFirst, shapeSecond, 0, skinFirst, skinSecond, 0, shapeMix, skinMix, 0, true);
 
+            //facefeatures
+            var features = GetFaceFeatures(data);
             for (int i = 0; i < 20; i++)
             {
-                var feature = features[i] * 0.01;
-                RAGE.Elements.Player.LocalPlayer.SetFaceFeature(i, (float)feature);
+                RAGE.Elements.Player.LocalPlayer.SetFaceFeature(i, features[i]);
+                
             }
             
         }
@@ -89,26 +100,26 @@ namespace ClientSide.Character.CustomizeChar
         private static float[] GetFaceFeatures(CharacterData charData)
         {
             float[] face = new float[20];
-            face[0] = float.Parse(charData.Nose.Width);
-            face[1] = float.Parse(charData.Nose.Height);
-            face[2] = float.Parse(charData.Nose.Length);
-            face[3] = float.Parse(charData.Nose.Bridge);
-            face[4] = float.Parse(charData.Nose.Tip);
-            face[5] = float.Parse(charData.Nose.BridgeShift);
-            face[6] = float.Parse(charData.Brow.Height);
-            face[7] = float.Parse(charData.Brow.Width);
-            face[8] = float.Parse(charData.Cheeks.Height);
-            face[9] = float.Parse(charData.Cheeks.Width);
-            face[10] = float.Parse(charData.Cheeks.CheeksWidth);
-            face[11] = float.Parse(charData.Eye.Size);
-            face[12] = float.Parse(charData.Lips);
-            face[13] = float.Parse(charData.Jaw.Width);
-            face[14] = float.Parse(charData.Jaw.Width);
-            face[15] = float.Parse(charData.Chin.Lenght);
-            face[16] = float.Parse(charData.Chin.Position);
-            face[17] = float.Parse(charData.Chin.Width);
-            face[18] = float.Parse(charData.Chin.Shape);
-            face[19] = float.Parse(charData.Neck.Width);
+            face[0] = charData.Nose.Width;
+            face[1] = charData.Nose.Height;
+            face[2] = charData.Nose.Length;
+            face[3] = charData.Nose.Bridge;
+            face[4] = charData.Nose.Tip ;
+            face[5] = charData.Nose.BridgeShift;
+            face[6] = charData.Brow.Height;
+            face[7] = charData.Brow.Width;
+            face[8] = charData.Cheeks.Height;
+            face[9] = charData.Cheeks.Width;
+            face[10] = charData.Cheeks.CheeksWidth;
+            face[11] = charData.Eye.Size;
+            face[12] = charData.Lips;
+            face[13] = charData.Jaw.Width;
+            face[14] = charData.Jaw.Width;
+            face[15] = charData.Chin.Lenght;
+            face[16] = charData.Chin.Position;
+            face[17] = charData.Chin.Width;
+            face[18] = charData.Chin.Shape;
+            face[19] = charData.Neck.Width;
             return face;
         }
     }

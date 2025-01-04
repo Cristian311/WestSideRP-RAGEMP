@@ -1,18 +1,14 @@
 ﻿using GTANetworkAPI;
-using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
 using ServerSide.Accounts;
-using GTANetworkMethods;
-using Player = GTANetworkAPI.Player;
-using System.Threading;
-using Org.BouncyCastle.Asn1.X509;
-using ServerSide.Characters.Customization.Hair;
-using ServerSide.Characters.Customization.Customize;
 using ServerSide.Characters.Customization.Clothes;
+using ServerSide.Characters.Customization.Customize;
+using ServerSide.Characters.Customization.Hair;
 using ServerSide.Characters.Customization.Tattoos;
 using ServerSide.Server.DB.CharacterDB;
 using ServerSide.Server.Interfaces;
+using System;
+using System.Collections.Generic;
+using Player = GTANetworkAPI.Player;
 
 
 namespace ServerSide.Characters
@@ -89,7 +85,7 @@ namespace ServerSide.Characters
             
             //display character interface with new character data
             player.TriggerEvent("SERVER:CLIENT:ShowCharInterface");
-            player.TriggerEvent("SERVER:CLIENT:SisplayAccountInfo", username, namesJSON, moneyJSON); 
+            player.TriggerEvent("SERVER:CLIENT:DisplayAccountInfo", username, namesJSON, moneyJSON); 
         }
         [RemoteEvent("CLIENT:SERVER:CharSelected")]
         private void OnCharSelected(Player player, string charName)
@@ -121,7 +117,7 @@ namespace ServerSide.Characters
 
             if (character.isCreated == true)
             {
-                CharacterCustomizeManager.UpdatePlayerFaceFeatures(player, character.Face, character.Gender);
+                CharacterCustomizeManager.UpdatePlayerFaceFeatures(player, character.Face);
                 //update hair
                 if (character.Hair != null)
                 {

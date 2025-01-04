@@ -1,14 +1,9 @@
 ﻿using GTANetworkAPI;
-using Org.BouncyCastle.Asn1.IsisMtt.Ocsp;
 using ServerSide.Accounts;
 using ServerSide.Admin;
 using ServerSide.Characters;
 using ServerSide.Server.Commands.CommandAttributes;
 using ServerSide.Util;
-using ServerSide.Util.Admin;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Player = GTANetworkAPI.Player;
 
 namespace ServerSide.Server.Commands
@@ -23,7 +18,6 @@ namespace ServerSide.Server.Commands
         {
             VehicleHash busModel = NAPI.Util.VehicleNameToModel(car); //Gets the hash of bus model
             NAPI.Vehicle.CreateVehicle(busModel, player.Position, 0, 0, 0); //Creates a bus on the player's position
-
         }
         [RequiresAdmin]
         [Command("die")]

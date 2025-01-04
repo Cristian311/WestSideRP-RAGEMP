@@ -1,7 +1,5 @@
-﻿using System;
+﻿using GTANetworkAPI;
 using System.Collections.Generic;
-using GTANetworkAPI;
-using System.Text;
 
 namespace ServerSide.Server.Houses
 {

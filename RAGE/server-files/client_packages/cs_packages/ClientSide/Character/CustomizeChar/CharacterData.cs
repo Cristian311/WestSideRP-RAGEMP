@@ -30,104 +30,127 @@ namespace Clientside.CustomizeChar
         [JsonProperty("eye")]
         public EyeAttributes Eye { get; set; }
         [JsonProperty("lips")]
-        public string Lips { get; set; }
+        public float Lips { get; set; }
         [JsonProperty("chin")]
         public ChinAttributes Chin { get; set; }
         [JsonProperty("neck")]
         public NeckAttributes Neck { get; set; }
+        [JsonProperty("facialDetails")]
+        public FacialAttributes Facial { get; set; }
 
+        public class FacialAttributes
+        {
+            [JsonProperty("blemishes")]
+            public int Blemishes { get; set; }
+
+            [JsonProperty("ageing")]
+            public int Ageing { get; set; }
+
+            [JsonProperty("complexion")]
+            public int Complexion { get; set; }
+
+            [JsonProperty("sunDamage")]
+            public int SunDamage { get; set; }
+
+            [JsonProperty("molesFreckles")]
+            public int MolesFreckles { get; set; }
+        }
         public class ShapeAttributes
         {
             [JsonProperty("first")]
-            public string First { get; set; }
+            public int First { get; set; }
 
             [JsonProperty("second")]
-            public string Second { get; set; }
+            public int Second { get; set; }
 
             [JsonProperty("mix")]
-            public string Mix { get; set; }
+            public float Mix { get; set; }
         }
 
         public class SkinAttributes
         {
             [JsonProperty("first")]
-            public string First { get; set; }
+            public int First { get; set; }
 
             [JsonProperty("second")]
-            public string Second { get; set; }
+            public int Second { get; set; }
 
             [JsonProperty("mix")]
-            public string Mix { get; set; }
+            public float Mix { get; set; }
         }
 
         public class NoseAttributes
         {
             [JsonProperty("width")]
-            public string Width { get; set; }
+            public float Width { get; set; }
 
             [JsonProperty("height")]
-            public string Height { get; set; }
+            public float Height { get; set; }
 
             [JsonProperty("length")]
-            public string Length { get; set; }
+            public float Length { get; set; }
 
             [JsonProperty("bridge")]
-            public string Bridge { get; set; }
+            public float Bridge { get; set; }
 
             [JsonProperty("tip")]
-            public string Tip { get; set; }
+            public float Tip { get; set; }
 
             [JsonProperty("bridgeShift")]
-            public string BridgeShift { get; set; }
+            public float BridgeShift { get; set; }
         }
 
         public class BrowAttributes
         {
             [JsonProperty("height")]
-            public string Height { get; set; }
+            public float Height { get; set; }
 
             [JsonProperty("width")]
-            public string Width { get; set; }
+            public float Width { get; set; }
         }
 
         public class CheeksAtrributes
         {
             [JsonProperty("height")]
-            public string Height { get; set; }
+            public float Height { get; set; }
             [JsonProperty("width")]
-            public string Width { get; set; }
+            public float Width { get; set; }
+
             [JsonProperty("cheekswidth")]
-            public string CheeksWidth { get; set; }
+            public float CheeksWidth { get; set; }
         }
         public class JawAttributes
         {
+            [JsonProperty("height")]
+            public float Height { get; set; }
+
             [JsonProperty("width")]
-            public string Width { get; set; }
+            public float Width { get; set; }
         }
         public class ChinAttributes
         {
             [JsonProperty("lenght")]
-            public string Lenght { get; set; }
+            public float Lenght { get; set; }
 
             [JsonProperty("position")]
-            public string Position { get; set; }
+            public float Position { get; set; }
             [JsonProperty("width")]
-            public string Width { get; set; }
+            public float Width { get; set; }
             [JsonProperty("shape")]
-            public string Shape { get; set; }
+            public float Shape { get; set; }
         }
         public class EyeAttributes
         {
             [JsonProperty("size")]
-            public string Size { get; set; }
+            public float Size { get; set; }
 
             [JsonProperty("color")]
-            public string Color { get; set; }
+            public byte Color { get; set; }
         }
         public class NeckAttributes
         {
             [JsonProperty("width")]
-            public string Width { get; set; }
+            public float Width { get; set; }
         }
         
     }
