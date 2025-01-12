@@ -4,6 +4,7 @@ using ServerSide.Characters.Customization.Clothes;
 using ServerSide.Characters.Customization.Customize;
 using ServerSide.Characters.Customization.Hair;
 using ServerSide.Characters.Customization.Tattoos;
+using ServerSide.Server.Commands;
 using ServerSide.Server.DB.CharacterDB;
 using ServerSide.Server.Interfaces;
 using System;
@@ -114,7 +115,6 @@ namespace ServerSide.Characters
             //!!!!!!! UPDATE PLAYER CHARACTER DETAILS AFTER SELECTED
 
 
-
             if (character.isCreated == true)
             {
                 CharacterCustomizeManager.UpdatePlayerFaceFeatures(player, character.Face);
@@ -136,6 +136,7 @@ namespace ServerSide.Characters
             }
             player.Position = new Vector3(253.85786, 287.4269, 105.533104);
             player.Name = character.Name;
+            CustomizeCommands.fixskinCommand(player);
         }
         public static Character GetCharacterNearby(Player player, string targetName, float range = 20f)
         {

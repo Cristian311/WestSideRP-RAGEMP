@@ -30,7 +30,7 @@
         .section {
             margin-bottom: 15px;
             padding-top: 15px;
-            border-top: 2px solid #555;
+            border-top: 2px solid #ff8c00;
         }
         .slider {
             margin-bottom: 10px;
@@ -96,25 +96,25 @@
 <body>
     <div class="container">
         <div id="page1" class="page">
-            <h2>Character Hair Options</h2>
+            <h2>Customizarea părului</h2>
             
             <!-- Hair -->
             <div class="section">
                 <div class="slider">
                     <div class="slider-label">
-                        <span>Hair</span><span id="hairValue">0</span>
+                        <span><strong>Păr</strong></span><span id="hairValue">0</span>
                     </div>
                     <input type="range" id="hair" min="0" max="80" step="1" value="0" oninput="updateCharAttributes()">
                 </div>
                 <div class="slider">
                     <div class="slider-label">
-                        <span>Color</span><span id="hairColorValue">0</span>
+                        <span>Culoare 1</span><span id="hairColorValue">0</span>
                     </div>
                     <input type="range" id="hairColor" min="0" max="63" step="1" value="0" oninput="updateCharAttributes()">
                 </div>
                 <div class="slider">
                     <div class="slider-label">
-                        <span>Secondary Color</span><span id="hairSecondaryColorValue">0</span>
+                        <span>Culoare 2</span><span id="hairSecondaryColorValue">0</span>
                     </div>
                     <input type="range" id="hairSecondaryColor" min="0" max="63" step="1" value="0" oninput="updateCharAttributes()">
                 </div>
@@ -124,13 +124,13 @@
             <div class="section">
                 <div class="slider">
                     <div class="slider-label">
-                        <span>Facial Hair</span><span id="facialHairValue">0</span>
+                        <span><strong>Bărbi</strong></span><span id="facialHairValue">0</span>
                     </div>
                     <input type="range" id="facialHair" min="0" max="28" step="1" value="0" oninput="updateCharAttributes()">
                 </div>
                 <div class="slider">
                     <div class="slider-label">
-                        <span>Color</span><span id="facialHairColorValue">0</span>
+                        <span>Culoare</span><span id="facialHairColorValue">0</span>
                     </div>
                     <input type="range" id="facialHairColor" min="0" max="63" step="1" value="0" oninput="updateCharAttributes()">
                 </div>
@@ -140,13 +140,13 @@
             <div class="section">
                 <div class="slider">
                     <div class="slider-label">
-                        <span>Eyebrows</span><span id="eyebrowsValue">0</span>
+                        <span><strong>Sprâncene</strong></span><span id="eyebrowsValue">0</span>
                     </div>
                     <input type="range" id="eyebrows" min="0" max="33" step="1" value="0" oninput="updateCharAttributes()">
                 </div>
                 <div class="slider">
                     <div class="slider-label">
-                        <span>Color</span><span id="eyebrowsColorValue">0</span>
+                        <span>Culoare 1</span><span id="eyebrowsColorValue">0</span>
                     </div>
                     <input type="range" id="eyebrowsColor" min="0" max="63" step="1" value="0" oninput="updateCharAttributes()">
                 </div>
@@ -156,13 +156,13 @@
             <div class="section">
                 <div class="slider">
                     <div class="slider-label">
-                        <span>Body Hair</span><span id="bodyHairValue">0</span>
+                        <span><strong>Păr pe corp</strong></span><span id="bodyHairValue">0</span>
                     </div>
                     <input type="range" id="bodyHair" min="0" max="33" step="1" value="0" oninput="updateCharAttributes()">
                 </div>
                 <div class="slider">
                     <div class="slider-label">
-                        <span>Color</span><span id="bodyHairColorValue">0</span>
+                        <span>Culoare</span><span id="bodyHairColorValue">0</span>
                     </div>
                     <input type="range" id="bodyHairColor" min="0" max="63" step="1" value="0" oninput="updateCharAttributes()">
                 </div>
@@ -172,13 +172,13 @@
             <div class="section">
                 <div class="slider">
                     <div class="slider-label">
-                        <span>Hair Tattoo</span><span id="hairTattooValue">0</span>
+                        <span><strong>Tatuaj păr</strong></span><span id="hairTattooValue">0</span>
                     </div>
                     <input type="range" id="hairTattoo" min="0" max="33" step="1" value="0" oninput="updateCharAttributes()">
                 </div>
             </div>
 
-            <button id="editHair" class="button" onclick="editHair()">Edit</button>
+            <button id="editHair" class="button" onclick="editHair()">Editeaza</button>
         </div>
     </div>
     

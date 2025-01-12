@@ -1,11 +1,6 @@
 ﻿using RAGE;
-using RAGE.Elements;
-using RAGE.Game;
-using RAGE.NUI;
 using RAGE.Ui;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ClientSide.Player
 {
@@ -21,7 +16,7 @@ namespace ClientSide.Player
         {
             Events.Tick += SpeedUpdate;
             Events.Add("SERVER:CLIENT:UpdateFuelAndDistance", UpdateFuelAndDistance);
-            cefBroswer.Active = true;
+            //cefBroswer.Active = true;
         }
 
         private void UpdateFuelAndDistance(object[] args)

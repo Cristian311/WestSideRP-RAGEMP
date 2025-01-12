@@ -34,6 +34,8 @@ namespace ServerSide.Characters.Customization.Customize
             }
             character.Face = NAPI.Util.FromJson<CharacterData>(faceFeaturesJSON);
 
+            player.TriggerEvent("SERVER:CLIENT:FaceCameraOff");
+            player.StopAnimation();
             //update db
             UpdateCharDataDBManager.UpdateCharacter(character);
             UpdateCharDataDBManager.UpdateCharacterFaceData(character);
@@ -60,13 +62,14 @@ namespace ServerSide.Characters.Customization.Customize
             //head blend
             var headBlend = GetHeadBlend(data);
             var features = GetFaceFeatures(data);
-            player.SetCustomization(gender, headBlend, data.Eye.Color, 0, 0, features, new Dictionary<int, HeadOverlay>(), new Decoration[10]);
-
             //face features
             SetFaceFeatures(player, features);
 
             //face details
             SetFaceDetails(player, data);
+
+            player.SetCustomization(gender, headBlend, data.Eye.Color, 0, 0, features, new Dictionary<int, HeadOverlay>(), new Decoration[10]);
+
         }
 
         private static void SetFaceDetails(Player player, CharacterData data)
@@ -136,7 +139,7 @@ namespace ServerSide.Characters.Customization.Customize
             headBlend.SkinSecond = charData.Skin.Second;
             headBlend.SkinThird = 0; //byte.Parse(charData.Skin.Third);
             headBlend.SkinMix = charData.Skin.Mix;
-
+            headBlend.ThirdMix = 0;
             //headBlend.ThirdMix = int.Parse(charData.) not implemented yet
             return headBlend;
         }

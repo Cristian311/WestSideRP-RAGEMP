@@ -14,11 +14,11 @@ namespace ServerSide.Server.Houses
         public int Value { get; set; }
         public int InteriorCustomObjects { get; set; }
         public Vector3 Position { get; set; }
+        public Vector3 InteriorPosition { get; set; }
         public ColShape ColShape { get; set; }
         public ColShape ExitColShape { get; set; }
         public uint Dimension { get; set; }
         public bool LockStatus { get; set; } = false;
-        public Vector3 InteriorPosition { get; set; }
 
         public House(string Name, string Owner, string OwnerType, Vector3 position, ColShape colShape)
         {

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using System.Linq;
 
 namespace ClientSide.Player
 {
@@ -48,11 +49,9 @@ namespace ClientSide.Player
                 /* world3dToScreen2d */
                 if (Graphics.GetScreenCoordFromWorldCoord(position.X, position.Y, position.Z + 0.60f, ref _screenX, ref _screenY))
                 {
-                    /* Debug */
-                    //Chat.Output($"(debug) Player: {player.Name}; Position: {position.X}, {position.Y}, {position.Z}; Screen: {screenX}, {screenY}; world3dToScreen2d: {_screenX}, {_screenY}");
-                    //Chat.Output($"x: {screenX} y: {screenY}");
-                    /* Draw nickname */
-                    UIResText.Draw(player.Name, (int)(screenX * _screenX + 100), (int)(screenY * _screenY + 100), Font.ChaletComprimeCologne, 0.4f, Color.White, RAGE.NUI.UIResText.Alignment.Centered, true, true, 0);
+                    int newlineCount = player.Name.Count(c => c == '\n');
+                    newlineCount = newlineCount > 0 ? newlineCount + 1 : 1;
+                    UIResText.Draw(player.Name, (int)(screenX * _screenX + 100 ), (int)(screenY * _screenY + 100 * newlineCount), Font.ChaletComprimeCologne, 0.4f, Color.White, RAGE.NUI.UIResText.Alignment.Centered, true, true, 0);
                 }
             }
         }

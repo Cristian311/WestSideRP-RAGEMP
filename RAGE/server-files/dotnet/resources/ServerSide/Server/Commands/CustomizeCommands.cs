@@ -2,7 +2,9 @@
 using ServerSide.Accounts;
 using ServerSide.Characters;
 using ServerSide.Characters.Customization.Clothes;
+using ServerSide.Characters.Customization.Customize;
 using ServerSide.Server.DB.CharacterDB;
+using ServerSide.Util;
 
 
 
@@ -13,17 +15,28 @@ namespace ServerSide.Server.Commands
         [Command("hair")]
         private void hairCommand(Player player)
         {
-            Character character = CharacterManager.PlayerCharacterPair[player];
+            var character = CharacterManager.PlayerCharacterPair[player];
             var HairJSON = NAPI.Util.ToJson(character.Hair);
             player.TriggerEvent("SERVER:CLIENT:ShowHairScreen", HairJSON);
         }
         [Command("facefeatures")]
         private void facefeaturesCommand(Player player)
         {
-            Character character = CharacterManager.PlayerCharacterPair[player];
+            var character = CharacterManager.PlayerCharacterPair[player];
             var FaceJSON = NAPI.Util.ToJson(character.Face);
+
+            player.PlayAnimation("amb@code_human_cross_road@male@idle_a", "idle_e", 1);
             player.TriggerEvent("SERVER:CLIENT:ShowCustomizeCharScreen", character.Gender, FaceJSON);
+            player.TriggerEvent("SERVER:CLIENT:FaceCamera");
         }
+
+        [Command("fixskin")]
+        public static void fixskinCommand(Player player)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            CharacterCustomizeManager.UpdatePlayerFaceFeatures(player, character.Face);
+        }
+
         [Command("changechar")]
         private void changecharCommand(Player player)
         {
@@ -65,10 +78,10 @@ namespace ServerSide.Server.Commands
             }
             if (toggle == "on")
             {
-                int index = character.currentOutfit;
-                player.SetClothes(3, character.Clothes[index].Torso.Drawable, character.Clothes[index].Torso.Texture); // torso
-                player.SetClothes(11, character.Clothes[index].Shirts.Drawable, character.Clothes[index].Shirts.Texture); // shirt
-                player.SetClothes(8, character.Clothes[index].Undershirt.Drawable, character.Clothes[index].Undershirt.Texture); // undershirt
+                var clothes = character.Clothes[character.currentOutfit];
+                player.SetClothes(3, clothes.Torso.Drawable, clothes.Torso.Texture); // torso
+                player.SetClothes(11, clothes.Shirts.Drawable, clothes.Shirts.Texture); // shirt
+                player.SetClothes(8, clothes.Undershirt.Drawable, clothes.Undershirt.Texture); // undershirt
             }
         }
         [Command("pants")]
@@ -81,8 +94,8 @@ namespace ServerSide.Server.Commands
             }
             if (toggle == "on")
             {
-                int index = character.currentOutfit;
-                player.SetClothes(4, character.Clothes[index].Legs.Drawable, character.Clothes[index].Legs.Texture); // legs
+                var clothes = character.Clothes[character.currentOutfit];
+                player.SetClothes(4, clothes.Legs.Drawable, clothes.Legs.Texture); // legs
             }
         }
         [Command("shoes")]
@@ -95,8 +108,8 @@ namespace ServerSide.Server.Commands
             }
             if (toggle == "on")
             {
-                int index = character.currentOutfit;
-                player.SetClothes(6, character.Clothes[index].Shoes.Drawable, character.Clothes[index].Shoes.Texture); // shoes
+                var clothes = character.Clothes[character.currentOutfit];
+                player.SetClothes(6, clothes.Shoes.Drawable, clothes.Shoes.Texture); // shoes
             }
         }
         [Command("cap")]
@@ -109,8 +122,9 @@ namespace ServerSide.Server.Commands
             }
             if (toggle == "on")
             {
-                int index = character.currentOutfit;
-                player.SetAccessories(0, character.Clothes[index].Helmets.Drawable, character.Clothes[index].Helmets.Texture); // cap
+
+                var clothes = character.Clothes[character.currentOutfit];
+                player.SetAccessories(0, clothes.Helmets.Drawable, clothes.Helmets.Texture); // cap
             }
         }
     }

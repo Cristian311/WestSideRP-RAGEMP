@@ -81,7 +81,7 @@ namespace ServerSide.Server.Vehicles
             //vehicle.Position = player.Position;
             if (vehicle.GasDistance > 300)
             {
-                vehicle.Gas -= 0.01f;
+                vehicle.Gas -= 0.005f;
                 vehicle.GasDistance = 0;
                 //player.SendChatMessage(vehicle.Gas.ToString());
                 player.TriggerEvent("SERVER:CLIENT:UpdateFuelAndDistance", vehicle.Distance, vehicle.Gas);
@@ -113,7 +113,7 @@ namespace ServerSide.Server.Vehicles
             Vehicles.Add(serverVeh);
             character.PersonalVehicles.Add(serverVeh);
             character.AccessVehicles.Add(serverVeh);
-            character.SendChatMessage("Ai primit un nou vehicul de tipul: " + vehicle.DisplayName);
+            character.SendChatMessage(Colors.COLOR_CHAT_INFO + "Ai primit un nou vehicul de tipul: " + NAPI.Vehicle.GetVehicleDisplayName(vehicle.Model));
         }
         [RequiresAdmin]
         [Command("servervehicles")]
@@ -177,7 +177,7 @@ namespace ServerSide.Server.Vehicles
         {
             var character = CharacterManager.PlayerCharacterPair[player];
 
-            int cont = 0;
+            int cont = 1;
             player.SendChatMessage("Masinile tale: ");
             foreach (var vehicle in character.PersonalVehicles)
             {

@@ -92,9 +92,7 @@ namespace ClientSide.Character.CustomizeChar
             for (int i = 0; i < 20; i++)
             {
                 RAGE.Elements.Player.LocalPlayer.SetFaceFeature(i, features[i]);
-                
             }
-            
         }
 
         private static float[] GetFaceFeatures(CharacterData charData)
@@ -104,7 +102,7 @@ namespace ClientSide.Character.CustomizeChar
             face[1] = charData.Nose.Height;
             face[2] = charData.Nose.Length;
             face[3] = charData.Nose.Bridge;
-            face[4] = charData.Nose.Tip ;
+            face[4] = charData.Nose.Tip;
             face[5] = charData.Nose.BridgeShift;
             face[6] = charData.Brow.Height;
             face[7] = charData.Brow.Width;
@@ -114,7 +112,7 @@ namespace ClientSide.Character.CustomizeChar
             face[11] = charData.Eye.Size;
             face[12] = charData.Lips;
             face[13] = charData.Jaw.Width;
-            face[14] = charData.Jaw.Width;
+            face[14] = charData.Jaw.Height;
             face[15] = charData.Chin.Lenght;
             face[16] = charData.Chin.Position;
             face[17] = charData.Chin.Width;

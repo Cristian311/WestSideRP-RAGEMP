@@ -5,106 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slider JSON Generator</title>
     <style>
-
     body {
         display: flex;
         justify-content: space-between;
-        font-family: Arial, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin: 0;
         padding: 20px;
         background-color: rgba(0, 0, 0, 0);
+        color: #ffffff;
     }
 
-    /* Left and right menus inside boxes with grey background */
     .left-menu, .menu {
         display: flex;
         flex-direction: column;
         gap: 15px;
-        padding: 20px;
-        background-color: #fff5e6;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        background-color: rgba(18, 18, 18, 0.95);
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 102, 0, 0.1);
     }
 
-    /* Button Styling for both left and right menus */
     .button, .left-button {
         padding: 15px 20px;
-        background-color: #ffa500;
-        color: white;
-        border: none;
-        border-radius: 5px;
+        background-color: #1a1a1a;
+        color: #ff6600;
+        border: 2px solid #ff6600;
+        border-radius: 8px;
         cursor: pointer;
         font-size: 16px;
+        font-weight: 600;
         text-align: center;
-        transition: background-color 0.3s ease, transform 0.2s ease;
+        transition: all 0.3s ease;
         width: 100%;
         box-sizing: border-box;
         white-space: nowrap;
     }
 
     .button:hover, .left-button:hover {
-        background-color: #ff7f00;
-        transform: scale(1.05);
+        background-color: #ff6600;
+        color: #1a1a1a;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
     }
 
-    .left-menu .button, .left-menu .left-button {
-        margin-bottom: 10px;
-    }
-
-    /* Right menu buttons in grid layout */
-    .menu {
-        display: flex;
-        flex-direction: column; /* Make the menu column-based */
-        gap: 15px; /* Space between items */
-    }
-
-    /* Active button highlight */
     .button.active {
-        background-color: #ff7f00; /* Highlight color */
-        transform: scale(1.05);
+        background-color: #ff6600;
+        color: #1a1a1a;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
     }
 
-    /* Slider Group Styling */
     .slider-container {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 20px;
-        width: 100%; /* Ensure sliders take full width */
+        gap: 10px;
+        width: 100%;
     }
 
-    .value-display {
-        margin-top: 5px;
-        font-weight: bold;
+    .slider-control {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .arrow-button {
+        padding: 5px 10px;
+        background-color: #1a1a1a;
+        color: #ff6600;
+        border: 1px solid #ff6600;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+
+    .arrow-button:hover {
+        background-color: #ff6600;
+        color: #1a1a1a;
+    }
+
+    .slider-label {
+        color: #ff6600;
+        font-weight: 600;
         font-size: 14px;
     }
 
-    /* Slider styling */
-    .slider {
-        width: 100%; /* Make sliders as wide as the container */
-        height: 30px; /* Make the sliders bigger */
-        margin-bottom: 10px;
+    .value-display {
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 14px;
+        min-width: 30px;
+        text-align: center;
     }
 
-    /* Layout for buttons in rows of 3 */
+    input[type="range"] {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 6px;
+        background: #333333;
+        border-radius: 3px;
+        outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #ff6600;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        background-color: #1a1a1a;
+        border: 1px solid #ff6600;
+        border-radius: 4px;
+        color: #ffffff;
+        margin-top: 5px;
+    }
+
+    .outfit-name-container {
+        margin-top: 10px;
+        width: 100%;
+    }
+
     .button-row {
         display: flex;
         flex-wrap: wrap;
-        gap: 15px;
+        gap: 12px;
     }
 
     .button-row .button {
-        flex-basis: 30%; /* Each button will take up 30% of the container width */
-        max-width: 30%; /* Ensure buttons don't exceed 30% */
-        white-space: normal; /* Allow wrapping text in buttons */
+        flex: 1;
+        min-width: 120px;
+        font-size: 14px;
     }
 
-    .slider-container input[type="range"] {
-        width: 100%; /* Make sliders fill the container */
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(255, 102, 0, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(255, 102, 0, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 102, 0, 0); }
     }
+
     .button.active {
-    background-color: #ff7f00; /* Highlight color */
-    transform: scale(1.05);
+        animation: pulse 2s infinite;
     }
 </style>
 
@@ -115,6 +163,9 @@
         <div class="slider-group-left">
             <input type="range" min="0" max="10" value="0" class="slider" id="character-select" oninput="updateCharacterValue()">
             <span class="value-display" id="character-select-value">0</span>
+        </div>
+        <div class="outfit-name-container">
+            <input type="text" id="outfit-name" placeholder="Outfit Name" onchange="updateOutfitName()">
         </div>
         <button class="left-button" onclick="buyItem()">Buy</button>
         <button class="left-button" onclick="exitMenu()">Exit</button>
@@ -139,7 +190,7 @@
             <button class="button" onclick="selectItem('bodyArmor')">Body Armors</button>
         </div>
         <div class="button-row">
-            <button class="button active" onclick="selectItem('shirts')">Shirts and Jackets</button>
+            <button class="button" onclick="selectItem('shirts')">Shirts and Jackets</button>
             <button class="button" onclick="selectItem('helmets')">Helmets</button>
             <button class="button" onclick="selectItem('glasses')">Glasses</button>
         </div>
@@ -152,120 +203,148 @@
         <!-- Sliders for drawable and texture -->
         <div class="slider-container">
             <label class="slider-label">Piece:</label>
-            <input type="range" min="0" value="0" class="slider" id="drawable-slider" oninput="updateValue('drawable')">
-            <span class="value-display" id="drawable-value">0</span>
+            <div class="slider-control">
+                <button class="arrow-button" onclick="adjustSlider('drawable', -1)">←</button>
+                <input type="range" min="0" value="0" class="slider" id="drawable-slider" oninput="updateValue('drawable')">
+                <button class="arrow-button" onclick="adjustSlider('drawable', 1)">→</button>
+                <span class="value-display" id="drawable-value">0</span>
+            </div>
         </div>
         <div class="slider-container">
             <label class="slider-label">Texture:</label>
-            <input type="range" min="0" max="30" value="0" class="slider" id="texture-slider" oninput="updateValue('texture')">
-            <span class="value-display" id="texture-value">0</span>
+            <div class="slider-control">
+                <button class="arrow-button" onclick="adjustSlider('texture', -1)">←</button>
+                <input type="range" min="0" max="30" value="0" class="slider" id="texture-slider" oninput="updateValue('texture')">
+                <button class="arrow-button" onclick="adjustSlider('texture', 1)">→</button>
+                <span class="value-display" id="texture-value">0</span>
+            </div>
         </div>
     </div>
 
     <script>
-        // Initialize data structure
-const itemData = {
-    id: 0,
-    decals: { drawable: 0, texture: 0 },
-    masks: { drawable: 0, texture: 0 },
-    torsos: { drawable: 0, texture: 0 },
-    legs: { drawable: 0, texture: 0 },
-    bags: { drawable: 0, texture: 0 },
-    shoes: { drawable: 0, texture: 0 },
-    accessories: { drawable: 0, texture: 0 },
-    undershirts: { drawable: 0, texture: 0 },
-    bodyArmor: { drawable: 0, texture: 0 },
-    shirts: { drawable: 0, texture: 0 },
-    helmets: { drawable: -1, texture: 0 },
-    glasses: { drawable: -1, texture: 0 },
-    earAccesories: { drawable: -1, texture: 0 },
-    watches: { drawable: -1, texture: 0 },
-    bracelets: { drawable: -1, texture: 0 }
-};
+    // Initialize data structure
+    const itemData = {
+        id: 0,
+        outfitName: "",
+        decals: { drawable: 0, texture: 0 },
+        masks: { drawable: 0, texture: 0 },
+        torsos: { drawable: 0, texture: 0 },
+        legs: { drawable: 0, texture: 0 },
+        bags: { drawable: 0, texture: 0 },
+        shoes: { drawable: 0, texture: 0 },
+        accessories: { drawable: 0, texture: 0 },
+        undershirts: { drawable: 0, texture: 0 },
+        bodyArmor: { drawable: 0, texture: 0 },
+        shirts: { drawable: 0, texture: 0 },
+        helmets: { drawable: -1, texture: 0 },
+        glasses: { drawable: -1, texture: 0 },
+        earAccesories: { drawable: -1, texture: 0 },
+        watches: { drawable: -1, texture: 0 },
+        bracelets: { drawable: -1, texture: 0 }
+    };
 
-// Map of item types to their JSON file names
-const itemTypeToJsonMap = {
-    masks: 'masks.json',
-    torsos: '_male_torsos.json',
-    legs: '_male_legs.json',
-    bags: 'bags.json', // Note: This might need adjustment based on actual JSON file name
-    shoes: '_male_shoes.json',
-    accessories: '_male_accessories.json',
-    undershirts: '_male_undershirts.json',
-    bodyArmor: 'bodyArmor.json', // Note: This might need adjustment based on actual JSON file name
-    shirts: '_male_tops.json',
-    helmets: 'props_male_hats.json',
-    glasses: 'props_male_glasses.json',
-    earAccesories: 'props_male_ears.json',
-    watches: 'props_male_watches.json',
-    bracelets: 'props_male_bracelets.json'
-};
+    // Store outfit names
+    const outfitNames = {};
 
-// Store the texture limits for each drawable of each item type
-const itemTextureMaxValues = {};
+    // Map of item types to their JSON file names
+    const itemTypeToJsonMap = {
+        masks: 'masks.json',
+        torsos: '_male_torsos.json',
+        legs: '_male_legs.json',
+        bags: 'bags.json',
+        shoes: '_male_shoes.json',
+        accessories: '_male_accessories.json',
+        undershirts: '_male_undershirts.json',
+        bodyArmor: 'bodyArmor.json',
+        shirts: '_male_tops.json',
+        helmets: 'props_male_hats.json',
+        glasses: 'props_male_glasses.json',
+        earAccesories: 'props_male_ears.json',
+        watches: 'props_male_watches.json',
+        bracelets: 'props_male_bracelets.json'
+    };
 
-// Function to update max values dynamically from the passed JSON string
-function updateMaxValuesFromJSON(jsonString) {
-    try {
-        const jsonData = JSON.parse(jsonString);
+    // Store the texture limits for each drawable of each item type
+    const itemTextureMaxValues = {};
+
+    // Function to adjust slider value using arrow buttons
+    function adjustSlider(type, change) {
+        const slider = document.getElementById(`${type}-slider`);
+        const currentValue = parseInt(slider.value);
+        const newValue = currentValue + change;
         
-        // Process each item type in the JSON
-        for (const [filename, data] of Object.entries(jsonData)) {
-            // Get the item type from the filename
-            const itemType = Object.entries(itemTypeToJsonMap).find(([_, val]) => val === filename)?.[0];
-            
-            if (itemType && data.DrawableSummaries) {
-                // Create a map of drawable IDs to their texture counts
-                itemTextureMaxValues[itemType] = {};
-                
-                // Convert the DrawableSummaries object to the desired format
-                Object.entries(data.DrawableSummaries).forEach(([drawable, textureCount]) => {
-                    itemTextureMaxValues[itemType][parseInt(drawable)] = textureCount;
-                });
-                
-                // Set the initial max drawable value for the item type
-                const maxDrawable = Math.max(...Object.keys(data.DrawableSummaries).map(Number));
-                document.getElementById('drawable-slider').max = maxDrawable;
-            }
+        if (newValue >= parseInt(slider.min) && newValue <= parseInt(slider.max)) {
+            slider.value = newValue;
+            updateValue(type);
         }
-        
-        // Update texture slider for initial selection if there is one
-        if (selectedItem) {
-            updateMaxTexture(selectedItem);
-        }
-    } catch (error) {
-        console.error('Error parsing JSON:', error);
     }
-}
 
-// Function to update the max texture value based on the drawable
-function updateMaxTexture(itemType) {
-    if (!itemTextureMaxValues[itemType]) return;
-    
-    const currentDrawable = itemData[itemType].drawable;
-    const maxTextureValue = itemTextureMaxValues[itemType][currentDrawable] || 0;
-    
-    // Update the texture slider max value and ensure current texture is within bounds
-    const textureSlider = document.getElementById('texture-slider');
-    textureSlider.max = maxTextureValue - 1; // Subtract 1 since textures are 0-based
-    
-    // Ensure the current texture value doesn't exceed the new maximum
-    itemData[itemType].texture = Math.min(itemData[itemType].texture, maxTextureValue - 1);
-    textureSlider.value = itemData[itemType].texture;
-    document.getElementById('texture-value').textContent = itemData[itemType].texture;
-}
-function UpdateClothes(json) {
+    // Function to update outfit name
+    function updateOutfitName() {
+        const name = document.getElementById('outfit-name').value;
+        const outfitId = document.getElementById('character-select').value;
+        outfitNames[outfitId] = name;
+        itemData.outfitName = name;
+        mp.trigger("CEF:CLIENT:UpdateClothes", getItemDataJSON());
+    }
+
+    // Function to update max values dynamically from the passed JSON string
+    function updateMaxValuesFromJSON(jsonString) {
+        try {
+            const jsonData = JSON.parse(jsonString);
+            
+            for (const [filename, data] of Object.entries(jsonData)) {
+                const itemType = Object.entries(itemTypeToJsonMap).find(([_, val]) => val === filename)?.[0];
+                
+                if (itemType && data.DrawableSummaries) {
+                    itemTextureMaxValues[itemType] = {};
+                    
+                    Object.entries(data.DrawableSummaries).forEach(([drawable, textureCount]) => {
+                        itemTextureMaxValues[itemType][parseInt(drawable)] = textureCount;
+                    });
+                    
+                    if (itemType === selectedItem) {
+                        const maxDrawable = Math.max(...Object.keys(data.DrawableSummaries).map(Number));
+                        document.getElementById('drawable-slider').max = maxDrawable;
+                    }
+                }
+            }
+            
+            if (selectedItem) {
+                updateMaxTexture(selectedItem);
+            }
+        } catch (error) {
+            console.error('Error parsing JSON:', error);
+        }
+    }
+
+    // Function to update the max texture value based on the drawable
+    function updateMaxTexture(itemType) {
+        if (!itemTextureMaxValues[itemType]) return;
+        
+        const currentDrawable = itemData[itemType].drawable;
+        const maxTextureValue = itemTextureMaxValues[itemType][currentDrawable] || 0;
+        
+        const textureSlider = document.getElementById('texture-slider');
+        textureSlider.max = maxTextureValue - 1;
+        
+        itemData[itemType].texture = Math.min(itemData[itemType].texture, maxTextureValue - 1);
+        textureSlider.value = itemData[itemType].texture;
+        document.getElementById('texture-value').textContent = itemData[itemType].texture;
+    }
+
+    function UpdateClothes(json) {
         const data = JSON.parse(json);
-
-        // Update each item in itemData using the parsed JSON data
+        
         Object.keys(data).forEach(key => {
             if (key in itemData) {
-                if (typeof data[key] === 'object' && data[key] !== null) {
-                    // Update nested properties (drawable and texture for items like "decals", "masks", etc.)
+                if (key === 'outfitName') {
+                    itemData[key] = data[key];
+                    document.getElementById('outfit-name').value = data[key];
+                } else if (typeof data[key] === 'object' && data[key] !== null) {
                     Object.keys(data[key]).forEach(nestedKey => {
                         itemData[key][nestedKey] = data[key][nestedKey];
                         
-                        // Update UI for the selected item if it matches the current selection
                         if (key === selectedItem) {
                             if (nestedKey === 'drawable') {
                                 document.getElementById('drawable-slider').value = itemData[key][nestedKey];
@@ -277,97 +356,107 @@ function UpdateClothes(json) {
                         }
                     });
                 } else {
-                    // For non-object properties like `id`, update directly
                     itemData[key] = data[key];
-
-                    // Update the UI if we're changing the character ID
+                    
                     if (key === 'id') {
                         document.getElementById('character-select').value = itemData[key];
                         document.getElementById('character-select-value').textContent = itemData[key];
+                        // Update outfit name when switching outfits
+                        document.getElementById('outfit-name').value = outfitNames[itemData[key]] || '';
                     }
                 }
             }
         });
     }
-// Function to select an item
-let selectedItem = "shirts";
-function selectItem(item) {
-    selectedItem = item;
+
+    // Function to select an item
+    let selectedItem = "shirts";
     
-    // Get the maximum drawable value for the selected item
-    const maxDrawable = Math.max(...Object.keys(itemTextureMaxValues[item] || {}).map(Number));
-    
-    // Determine minimum and default drawable values
-    const isSpecialItem = ["helmets", "glasses", "earAccesories", "watches", "bracelets"].includes(item);
-    const minDrawable = isSpecialItem ? -1 : 0;
-    const defaultDrawable = isSpecialItem ? -1 : itemData[item].drawable;
-    
-    // Update the drawable slider
-    const drawableSlider = document.getElementById('drawable-slider');
-    drawableSlider.min = minDrawable;
-    drawableSlider.max = maxDrawable;
-    drawableSlider.value = defaultDrawable;
-    document.getElementById('drawable-value').textContent = defaultDrawable;
-    
-    // Update the texture slider based on the current drawable
-    updateMaxTexture(item);
-    
-    // Remove 'active' class from all buttons
-    const buttons = document.querySelectorAll('.button');
-    buttons.forEach(button => button.classList.remove('active'));
-    
-    // Add 'active' class to the clicked button
-    const clickedButton = document.querySelector(`.button[onclick="selectItem('${item}')"]`);
-    if (clickedButton) {
-        clickedButton.classList.add('active');
+    function selectItem(item) {
+        selectedItem = item;
+        
+        // Get the maximum drawable value for the selected item
+        const maxDrawable = Math.max(...Object.keys(itemTextureMaxValues[item] || {}).map(Number));
+        
+        // Determine minimum and default drawable values
+        const isSpecialItem = ["helmets", "glasses", "earAccesories", "watches", "bracelets"].includes(item);
+        const minDrawable = isSpecialItem ? -1 : 0;
+        const defaultDrawable = itemData[item].drawable; // Use current value instead of resetting
+        
+        // Update the drawable slider
+        const drawableSlider = document.getElementById('drawable-slider');
+        drawableSlider.min = minDrawable;
+        drawableSlider.max = maxDrawable;
+        drawableSlider.value = defaultDrawable;
+        document.getElementById('drawable-value').textContent = defaultDrawable;
+        
+        // Update the texture slider based on the current drawable
+        updateMaxTexture(item);
+        
+        // Remove 'active' class from all buttons
+        const buttons = document.querySelectorAll('.button');
+        buttons.forEach(button => button.classList.remove('active'));
+        
+        // Add 'active' class to the clicked button
+        const clickedButton = document.querySelector(`.button[onclick="selectItem('${item}')"]`);
+        if (clickedButton) {
+            clickedButton.classList.add('active');
+        }
     }
-}
-selectItem(selectedItem);
-// Function to update the value of drawable or texture for the selected item
-function updateValue(type) {
-    if (!selectedItem) return;
-    
-    const value = parseInt(document.getElementById(`${type}-slider`).value);
-    itemData[selectedItem][type] = value;
-    
-    // If drawable was changed, update the texture limits
-    if (type === 'drawable') {
-        updateMaxTexture(selectedItem);
+
+    // Function to update the value of drawable or texture for the selected item
+    function updateValue(type) {
+        if (!selectedItem) return;
+        
+        const value = parseInt(document.getElementById(`${type}-slider`).value);
+        itemData[selectedItem][type] = value;
+        
+        // If drawable was changed, update the texture limits
+        if (type === 'drawable') {
+            updateMaxTexture(selectedItem);
+        }
+        
+        document.getElementById(`${type}-value`).textContent = value;
+        
+        // Trigger any necessary actions based on updated data
+        mp.trigger("CEF:CLIENT:UpdateClothes", getItemDataJSON());
     }
-    
-    document.getElementById(`${type}-value`).textContent = value;
-    itemData.id = parseInt(document.getElementById('character-select').value);
-    
-    // Trigger any necessary actions based on updated data
-    mp.trigger("CEF:CLIENT:UpdateClothes", getItemDataJSON());
-}
 
-// Rest of your existing functions remain the same
-function updateCharacterValue() {
-    const value = document.getElementById('character-select').value;
-    document.getElementById('character-select-value').textContent = value;
-}
+    function updateCharacterValue() {
+        const value = document.getElementById('character-select').value;
+        document.getElementById('character-select-value').textContent = value;
+        itemData.id = parseInt(value);
+        
+        // Update outfit name when switching characters
+        document.getElementById('outfit-name').value = outfitNames[value] || '';
+        itemData.outfitName = outfitNames[value] || '';
+        
+        // Trigger update
+        mp.trigger("CEF:CLIENT:UpdateClothes", getItemDataJSON());
+    }
 
-function getItemDataJSON() {
-    return JSON.stringify(itemData, null, 2);
-}
+    function getItemDataJSON() {
+        return JSON.stringify(itemData, null, 2);
+    }
 
-function selectCharacter() {
-    const value = document.getElementById('character-select').value;
-    mp.trigger("CEF:CLIENT:SelectCostume", value);
-}
+    function selectCharacter() {
+        const value = document.getElementById('character-select').value;
+        mp.trigger("CEF:CLIENT:SelectCostume", value);
+    }
 
-function buyItem() {
-    mp.trigger("CEF:CLIENT:BuyCostume", getItemDataJSON());
-}
+    function buyItem() {
+        mp.trigger("CEF:CLIENT:BuyCostume", getItemDataJSON());
+    }
 
-function exitMenu() {
-    mp.trigger("CEF:CLIENT:CloseClothesScreen");
-}
+    function exitMenu() {
+        mp.trigger("CEF:CLIENT:CloseClothesScreen");
+    }
+
+    // Initialize the interface
+    document.addEventListener('DOMContentLoaded', function() {
+        selectItem('shirts'); // Set initial selection to shirts
+        updateCharacterValue(); // Initialize character value
+    });
     </script>
-    
-    
-
-    
 </body>
 </html>
