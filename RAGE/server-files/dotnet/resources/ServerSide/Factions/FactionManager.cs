@@ -45,17 +45,25 @@ public class FactionManager : Script
     //{
     //    var character
     //}
+    [RequiresFaction]
+    [Command("fonline")]
+    private void fonlineCommand(Player player)
+    {
+        var character = CharacterManager.PlayerCharacterPair[player];
+        var faction = GetFactionById(character.faction);
+
+        foreach(var member in faction.GetOnlineCharacters())
+        {
+            player.SendChatMessage($"{Colors.COLOR_CHAT_WHISPER}{faction.RankNames[member.factionRank]} {member.Name}");
+        }
+    }
+    [RequiresFaction]
     [Command("f", GreedyArg = true)]
     private void FactionChatCommand(Player player, string message)
     {
         var character = CharacterManager.PlayerCharacterPair[player];
-        if(character.faction == -1)
-        {
-            player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu esti intr-o factiune!");
-            return;
-        }
         var faction = GetFactionById(character.faction);
-        SendFactionMessage(character.faction, $"{Colors.COLOR_CHAT_INFO}(( {faction.RankNames[character.factionRank]}{character.Name}: {message} ))");
+        SendFactionMessage(character.faction, $"{Colors.COLOR_CHAT_INFO}(( {faction.RankNames[character.factionRank]} {character.Name}: {message} ))");
     }
     public static void SendFactionMessage(int factionId, string message)
     {
@@ -68,6 +76,7 @@ public class FactionManager : Script
             }
         }
     }
+    [RequiresFaction]
     [RequiresFactionRank]
     [Command("ranks")]
     private void RanksCommand(Player player)
@@ -80,18 +89,12 @@ public class FactionManager : Script
             player.SendChatMessage($"{i}. {faction.RankNames[i]}");
         }
     }
-
+    [RequiresFaction]
     [RequiresFactionRank(5)]
     [Command("assignrank")]
     public static void AssignRankCommand(Player player, string CharName, int rank)
     {
         var playerCharacter = CharacterManager.PlayerCharacterPair[player];
-        if(playerCharacter.faction == -1)
-        {
-            player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu esti intr-o factiune!");
-            return;
-        }
-        
         var character = CharacterManager.GetCharacterByName(player, CharName);
         
         if (character == null) return;
