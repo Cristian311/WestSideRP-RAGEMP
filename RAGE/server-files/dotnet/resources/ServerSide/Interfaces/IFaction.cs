@@ -10,7 +10,7 @@ namespace ServerSide.Interfaces
         int Id { get; }
         string Name { get; }
         string Type { get; }
-        List<ICharacter> Characters { get; set; }
+        List<string> Characters { get; set; }
         Dictionary<int, string> RankNames { get; set; }
 
         List<Character> GetOnlineCharacters();

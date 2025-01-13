@@ -138,6 +138,7 @@ namespace ServerSide.Characters
             player.Position = new Vector3(253.85786, 287.4269, 105.533104);
             player.Name = character.Name;
             CustomizeCommands.fixskinCommand(player);
+            character.GameId = account.GameId;
         }
         public static List<Character> GetMatchingCharacters(string nameOrId)
         {
@@ -174,7 +175,23 @@ namespace ServerSide.Characters
                 return null;
             }
         }
+        public static Character GetCharacterByName(string nameOrId)
+        {
+            var matches = GetMatchingCharacters(nameOrId);
 
+            if (matches.Count == 1)
+            {
+                return matches[0];
+            }
+            else if (matches.Count > 1)
+            {
+                return null;
+            }
+            else
+            {
+                return null;
+            }
+        }
         public static Character GetCharacterNearby(Player player, string targetName, float range = 20f)
         {
             var chars = GetCharByNameAroundPlayer(range, player, targetName);

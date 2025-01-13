@@ -1,5 +1,6 @@
 ﻿using ServerSide.Characters;
 using ServerSide.Interfaces;
+using ServerSide.Server.Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace ServerSide.Factions
         public int Id { get; }
         public string Name { get; }
         public string Type { get; }
-        public List<ICharacter> Characters { get; set; } = new List<ICharacter>();
+        public List<string> Characters { get; set; } = new List<string>();
         public Dictionary<int, string> RankNames { get; set; } 
 
         public Faction(int Id, string Name, string Type)
@@ -37,18 +38,6 @@ namespace ServerSide.Factions
             return character.factionRank >= requiredRank;
         }
 
-        public string GetFactionInfoJson()
-        {
-            var factionInfo = new
-            {
-                Id = this.Id,
-                Name = this.Name,
-                Type = this.Type,
-                Members = Characters.Select(c => new { c.Name, Rank = RankNames[c.factionRank] })
-            };
-
-            return System.Text.Json.JsonSerializer.Serialize(factionInfo);
-        }
         public List<Character> GetOnlineCharacters()
         {
             List<Character> characters = new List<Character>();
@@ -61,6 +50,7 @@ namespace ServerSide.Factions
         }
         public void SendFactionMessage(string message)
         {
+            ServerLogger.Log($"Faction {Name}: " + message);
             foreach (var factionMember in GetOnlineCharacters())
             {
                 factionMember.SendChatMessage(message);

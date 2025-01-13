@@ -27,6 +27,7 @@ namespace ServerSide.Characters
         public CharacterData Face { get; set; }
         public HairData Hair { get; set; }
         public int currentOutfit { get; set; }
+        public int GameId { get; set; }
         public Character currentCharacter { get; }
 
         // Collections

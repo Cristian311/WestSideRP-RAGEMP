@@ -54,7 +54,7 @@ namespace ServerSide.Server.AuthServer
                     account.AdminLevel = adminLevel.GetValueOrDefault();
                     AdminManager.SendChatMessageToAdmins($"Admin {username} Level {adminLevel} s-a logat.");
                 }
-                account.GameId = AccountManager.idManager.AssignId();
+                account.GameId = AccountManager.idManager.AssignNewId(account);
                 if (!AccountManager.loggedAccounts.Contains(account))
                     AccountManager.loggedAccounts.Add(account);
                 if (!AccountManager.AccountPlayerPairs.ContainsKey(account))

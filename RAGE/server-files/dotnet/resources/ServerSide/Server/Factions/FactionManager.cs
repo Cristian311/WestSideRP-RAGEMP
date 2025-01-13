@@ -4,10 +4,13 @@ using ServerSide.Admin;
 using ServerSide.Characters;
 using ServerSide.Factions;
 using ServerSide.Server.Commands.CommandAttributes;
+using ServerSide.Server.DB.FactionDB;
+using ServerSide.Server.Logger;
 using ServerSide.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 public class FactionManager : Script
 {
@@ -32,7 +35,8 @@ public class FactionManager : Script
         character.faction = factionID;
         character.factionRank = 7;
         var faction = GetFactionById(factionID);
-        faction.Characters.Add(character);
+        faction.Characters.Add(character.Name);
+        FactionDbManager.UpdateFaction(faction);
         player.SendChatMessage($"{Colors.INFO}Ai intrat in factiunea {Colors.CRIMSON}{faction.Name}.");
     }
     private static Faction GetFactionById(int Id)
@@ -67,7 +71,7 @@ public class FactionManager : Script
     }
     [RequiresFactionInvitation]
     [Command("faccept")]
-    private void facceptCommand(Player player, string confirm)
+    private void facceptCommand(Player player, string confirm = "")
     {
         var character = CharacterManager.PlayerCharacterPair[player];
 
@@ -79,7 +83,8 @@ public class FactionManager : Script
             var faction = GetFactionById(character.faction);
             character.SendChatMessage($"{Colors.GREEN}Ai intrat in factiunea {faction.Name}!");
             faction.SendFactionMessage($"{Colors.INFO}{character.Name} a intrat in factiune!");
-
+            faction.Characters.Add(character.Name);
+            FactionDbManager.UpdateFaction(faction);
             FactionInvitations.Remove(character);
         }
         else
@@ -87,16 +92,34 @@ public class FactionManager : Script
             character.SendChatMessage($"{Colors.BEIGE}Foloseste /faccept confirm ca sa intrii in factiune.");
         }
     }
-
+    [RequiresAdmin]
+    [Command("fmembers")]
+    private void fmembersCommand(Player player, int factionId)
+    {
+        var faction = GetFactionById(factionId);
+        var loggedchars = CharacterManager.loggedCharacters.Select(c => c.Name);
+        player.SendChatMessage($"Playerii factiunii {Colors.FOREST_GREEN}{faction.Name}:");
+        foreach (var name in faction.Characters)
+        {
+            if (loggedchars.Contains(name))
+            {
+                var character = CharacterManager.GetCharacterByName(name);
+                if(character != null)
+                    player.SendChatMessage(name + $" {Colors.GREEN} ON {Colors.WHITE} ID: {character.GameId}");
+            }
+            else
+                player.SendChatMessage(name + $" {Colors.RED} OFF");
+        }
+    }
     [RequiresFactionInvitation]
     [Command("fdecline")]
-    private void fdecline(Player player, string confirm)
+    private void fdeclineCommand(Player player, string confirm = "")
     {
         var character = CharacterManager.PlayerCharacterPair[player];
         if (confirm.Equals("confirm"))
         {
             var faction = GetFactionById(character.faction);
-            character.SendChatMessage($"{Colors.GREEN}Ai refuzat sa intrii in factiunea {faction.Name}!");
+            character.SendChatMessage($"{Colors.GREEN}Ai refuzat sa intrii in factiunea {Colors.FOREST_GREEN}{faction.Name}!");
 
             FactionInvitations.Remove(character);
         }
@@ -124,8 +147,8 @@ public class FactionManager : Script
     {
         var character = CharacterManager.PlayerCharacterPair[player];
         var faction = GetFactionById(character.faction);
-
-        foreach(var member in faction.GetOnlineCharacters())
+        player.SendChatMessage($"{Colors.WHISPER}Jucatori conectati din factiune:");
+        foreach(var member in faction.GetOnlineCharacters().OrderByDescending(c => c.factionRank))
         {
             var account = AccountManager.PlayerAccountPairs[player];
             if(account.AdminDuty == false)
@@ -140,18 +163,39 @@ public class FactionManager : Script
     {
         var character = CharacterManager.PlayerCharacterPair[player];
         var faction = GetFactionById(character.faction);
-        SendFactionMessage(character.faction, $"{Colors.INFO}(( {faction.RankNames[character.factionRank]} {character.Name}: {message} ))");
+        faction.SendFactionMessage($"{Colors.INFO}(( {faction.RankNames[character.factionRank]} {character.Name}: {message} ))");
     }
     public static void SendFactionMessage(int factionId, string message)
     {
         var faction = GetFactionById(factionId);
+        ServerLogger.Log($"Faction {faction.Name}: " + message);
         foreach (var factionMember in faction.Characters)
         {
-            if (CharacterManager.loggedCharacters.Contains(factionMember))
+            var character = CharacterManager.GetCharacterByName(factionMember);
+            if (character == null)
+                break;
+            if (CharacterManager.loggedCharacters.Contains(character))
             {
-                factionMember.SendChatMessage(message);
+                character.SendChatMessage(message);
             }
         }
+    }
+    [RequiresFaction]
+    [RequiresFactionRank(5)]
+    [Command("editrank", GreedyArg = true)]
+    private void editrankCommand(Player player, int rank, string name)
+    {
+        var character = CharacterManager.PlayerCharacterPair[player];
+        var faction = GetFactionById(character.faction);
+        if(string.IsNullOrEmpty(name))
+        {
+            character.SendErrorMessage("Pune un nume valid de rank.");
+            return;
+        }
+        
+        faction.SendFactionMessage($"{Colors.INDIGO}{character.Name} a schimbat rankul {faction.RankNames[rank]} in {name}");
+        faction.RankNames[rank] = name;
+        FactionDbManager.UpdateFaction(faction);
     }
     [RequiresFaction]
     [RequiresFactionRank]
@@ -198,12 +242,13 @@ public class FactionManager : Script
         SaveFactionToDatabase(newFaction); // Save to DB
         var account = AccountManager.PlayerAccountPairs[player];
         AdminManager.SendChatMessageToAdmins($"{Colors.ADMIN}{account.Name} a creat factiunea {newFaction.Type} ID {newFaction.Id} {newFaction.Name}");
+        FactionDbManager.SaveFaction(newFaction);
     }
 
     // Load factions from the database
     public void LoadFactionsFromDatabase()
     {
-        factions = LoadFactions(); // Load from DB
+        factions = FactionDbManager.LoadFactions(); // Load from DB
         if (factions.Count > 0)
         {
             nextFactionId = factions.Max(f => f.Id) + 1;

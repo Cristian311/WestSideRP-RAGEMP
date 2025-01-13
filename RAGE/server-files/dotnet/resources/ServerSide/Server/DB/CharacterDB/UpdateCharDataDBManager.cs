@@ -30,7 +30,7 @@ namespace ServerSide.Server.DB.CharacterDB
                 try
                 {
                     connection.Open();
-                    string query = "UPDATE `characters` SET AccountId = @accountId, Name = @Name, Age = @Age, Money = @Money, isCreated = @isCreated, currentOutfit = @currentOutfit WHERE Id = @Id";
+                    string query = "UPDATE `characters` SET AccountId = @accountId, Name = @Name, faction = @faction, factionRank = @factionRank, Age = @Age, Money = @Money, isCreated = @isCreated, currentOutfit = @currentOutfit WHERE Id = @Id";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -42,6 +42,8 @@ namespace ServerSide.Server.DB.CharacterDB
                         command.Parameters.AddWithValue("@Id", character.Id);
                         command.Parameters.AddWithValue("@isCreated", character.isCreated);
                         command.Parameters.AddWithValue("@currentOutfit", character.currentOutfit);
+                        command.Parameters.AddWithValue("@faction", character.faction);
+                        command.Parameters.AddWithValue("@factionRank", character.factionRank);
 
                         string debugQuery = $"UPDATE `characters` SET AccountId = {character.Account.Id}, Name = '{character.Name}', Age = {character.Age}, Money = {character.Money} WHERE Id = {character.Id}";
                         NAPI.Util.ConsoleOutput($"Executing Query: {debugQuery}");

@@ -204,6 +204,14 @@ namespace ServerSide.Server.DB.CharacterDB
                                 {
                                     character.MainPhone = null;
                                 }
+
+                                //faction and faction rank
+                                character.faction = !reader.IsDBNull(15)
+                                    ? reader.GetInt32(15)
+                                    : -1;
+                                character.factionRank = !reader.IsDBNull(16)
+                                    ? reader.GetInt32(16)
+                                    : 0;
                             }
 
                             return character;
