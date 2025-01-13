@@ -9,6 +9,7 @@ using ServerSide.Server.DB.CharacterDB;
 using ServerSide.Server.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Player = GTANetworkAPI.Player;
 
 
@@ -138,6 +139,42 @@ namespace ServerSide.Characters
             player.Name = character.Name;
             CustomizeCommands.fixskinCommand(player);
         }
+        public static List<Character> GetMatchingCharacters(string nameOrId)
+        {
+            // If the input is an integer (ID), filter by ID
+            if (int.TryParse(nameOrId, out int id))
+            {
+                return loggedCharacters.Where(c => c.Id == id).ToList();
+            }
+
+            // Otherwise, filter by name
+            return loggedCharacters.Where(c => c.Name.Contains(nameOrId, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+
+        public static Character GetCharacterByName(Player player, string nameOrId)
+        {
+            var matches = GetMatchingCharacters(nameOrId);
+
+            if (matches.Count == 1)
+            {
+                return matches[0];
+            }
+            else if (matches.Count > 1)
+            {
+                player.SendChatMessage($"Multiple characters found matching '{nameOrId}':");
+                foreach (var character in matches)
+                {
+                    player.SendChatMessage($"- {character.Name} (ID: {character.Id})");
+                }
+                return null;
+            }
+            else
+            {
+                player.SendChatMessage($"No character found with the name or ID '{nameOrId}'.");
+                return null;
+            }
+        }
+
         public static Character GetCharacterNearby(Player player, string targetName, float range = 20f)
         {
             var chars = GetCharByNameAroundPlayer(range, player, targetName);

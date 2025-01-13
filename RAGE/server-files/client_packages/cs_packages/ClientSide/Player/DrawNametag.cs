@@ -13,7 +13,7 @@ namespace ClientSide.Player
     internal class DrawNametag : Events.Script
     {
         private float screenX, screenY;
-        private bool TogLocalNametag = true;
+        private bool TogLocalNametag = false;
         private DrawNametag()
         {
             Events.Add("SERVER:CLIENT:TogNametag", TogNametag);

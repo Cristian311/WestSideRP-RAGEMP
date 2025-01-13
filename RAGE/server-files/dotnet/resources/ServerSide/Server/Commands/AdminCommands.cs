@@ -57,199 +57,116 @@ namespace ServerSide.Server.Commands
             player.SendNotification($"Set time to {hour}.");
         }
 
-        ////MODERATION COMMANDS
+        // MODERATION COMMANDS
         [RequiresAdmin]
         [Command("kick", GreedyArg = true)]
         public void KickPlayerCommand(Player player, string target, string reason)
         {
-            var chars = CharacterManager.getCharByName(target);
-            if (chars.Count == 1)
-            {
-                var character = chars[0];
-                var AdminAccount = AccountManager.PlayerAccountPairs[player];
-                var TargetAccount = CharacterManager.CharacterAccountPair[character];
+            var character = CharacterManager.GetCharacterByName(player, target);
+            if (character == null) return;
 
-                TargetAccount.player.Kick($"You were kicked by an admin. Reason: {reason}");
-                NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat kick lui {TargetAccount.currentCharacter.Name} Motiv: {reason}");
-            }
-            else
-            {
-                foreach (var character in chars)
-                {
-                    player.SendChatMessage(character.Name);
-                }
-            }
+            var adminAccount = AccountManager.PlayerAccountPairs[player];
+            var targetAccount = CharacterManager.CharacterAccountPair[character];
+
+            targetAccount.player.Kick($"You were kicked by an admin. Reason: {reason}");
+            NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} i-a dat kick lui {targetAccount.currentCharacter.Name} Motiv: {reason}");
         }
 
         [RequiresAdmin]
         [Command("ban")]
         public void BanPlayerCommand(Player player, string target, string reason)
         {
-            var chars = CharacterManager.getCharByName(target);
-            if (chars.Count == 1)
-            {
-                var character = chars[0];
-                var AdminAccount = AccountManager.PlayerAccountPairs[player];
-                var TargetAccount = CharacterManager.CharacterAccountPair[character];
+            var character = CharacterManager.GetCharacterByName(player, target);
+            if (character == null) return;
 
-                TargetAccount.player.Ban($"You were banned by an admin. Reason: {reason}");
-                //TODO LOGIC BAN DATABASE
-                NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat ban lui {TargetAccount.currentCharacter.Name} Motiv: {reason}");
-            }
-            else
-            {
-                foreach (var character in chars)
-                {
-                    player.SendChatMessage(character.Name);
-                }
-            }
+            var adminAccount = AccountManager.PlayerAccountPairs[player];
+            var targetAccount = CharacterManager.CharacterAccountPair[character];
+
+            targetAccount.player.Ban($"You were banned by an admin. Reason: {reason}");
+            NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} i-a dat ban lui {targetAccount.currentCharacter.Name} Motiv: {reason}");
         }
 
         [RequiresAdmin]
         [Command("mute")]
         public void MutePlayerCommand(Player player, string target, string reason)
         {
-            var chars = CharacterManager.getCharByName(target);
-            if (chars.Count == 1)
-            {
-                var character = chars[0];
-                var AdminAccount = AccountManager.PlayerAccountPairs[player];
-                var TargetAccount = CharacterManager.CharacterAccountPair[character];
+            var character = CharacterManager.GetCharacterByName(player, target);
+            if (character == null) return;
 
-                TargetAccount.Muted = true;
-                //TODO LOGIC MUTE DATABASE
-                NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat mute lui {TargetAccount.currentCharacter.Name} Motiv: {reason}");
-            }
-            else
-            {
-                foreach (var character in chars)
-                {
-                    player.SendChatMessage(character.Name);
-                }
-            }
+            var adminAccount = AccountManager.PlayerAccountPairs[player];
+            var targetAccount = CharacterManager.CharacterAccountPair[character];
+
+            targetAccount.Muted = true;
+            NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} i-a dat mute lui {targetAccount.currentCharacter.Name} Motiv: {reason}");
         }
 
         [RequiresAdmin]
         [Command("unmute")]
         public void UnmutePlayerCommand(Player player, string target)
         {
-            var chars = CharacterManager.getCharByName(target);
-            if (chars.Count == 1)
-            {
-                var character = chars[0];
-                var AdminAccount = AccountManager.PlayerAccountPairs[player];
-                var TargetAccount = CharacterManager.CharacterAccountPair[character];
+            var character = CharacterManager.GetCharacterByName(player, target);
+            if (character == null) return;
 
-                TargetAccount.Muted = false;
-                //TODO LOGIC MUTE DATABASE
-                NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat unmute lui {TargetAccount.currentCharacter.Name}");
-            }
-            else
-            {
-                foreach (var character in chars)
-                {
-                    player.SendChatMessage(character.Name);
-                }
-            }
+            var adminAccount = AccountManager.PlayerAccountPairs[player];
+            var targetAccount = CharacterManager.CharacterAccountPair[character];
+
+            targetAccount.Muted = false;
+            NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} i-a dat unmute lui {targetAccount.currentCharacter.Name}");
         }
 
-        //TELEPORT COMMANDS
+        // TELEPORT COMMANDS
         [RequiresAdmin]
         [Command("goto")]
         public void GotoPlayerCommand(Player player, string target)
         {
-            var chars = CharacterManager.getCharByName(target);
-            if (chars.Count == 1)
-            {
-                var character = chars[0];
-                var AdminAccount = AccountManager.PlayerAccountPairs[player];
-                var TargetAccount = CharacterManager.CharacterAccountPair[character];
+            var character = CharacterManager.GetCharacterByName(player, target);
+            if (character == null) return;
 
-                player.Position = character.Account.player.Position;
-                //TODO LOGIC BAN DATABASE
-                AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} s-a teleportat la {character.Name}");
-            }
-            else
-            {
-                foreach (var character in chars)
-                {
-                    player.SendChatMessage(character.Name);
-                }
-            }
+            var adminAccount = AccountManager.PlayerAccountPairs[player];
+            player.Position = character.Account.player.Position;
+
+            AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} s-a teleportat la {character.Name}");
         }
 
         [RequiresAdmin]
         [Command("bring")]
         public void BringPlayerCommand(Player player, string target)
         {
-            var chars = CharacterManager.getCharByName(target);
-            if (chars.Count == 1)
-            {
-                var character = chars[0];
-                var AdminAccount = AccountManager.PlayerAccountPairs[player];
-                var TargetAccount = CharacterManager.CharacterAccountPair[character];
+            var character = CharacterManager.GetCharacterByName(player, target);
+            if (character == null) return;
 
-                character.Account.player.Position = player.Position;
-                //TODO LOGIC BAN DATABASE
-                AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} l-a teleportat pe {character.Name} la el");
-            }
-            else
-            {
-                foreach (var character in chars)
-                {
-                    player.SendChatMessage(character.Name);
-                }
-            }
+            var adminAccount = AccountManager.PlayerAccountPairs[player];
+            character.Account.player.Position = player.Position;
+
+            AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} l-a teleportat pe {character.Name} la el");
         }
 
-        //FREEEZE
+        // FREEZE/UNFREEZE COMMANDS
         [RequiresAdmin]
         [Command("freeze")]
         public void FreezePlayerCommand(Player player, string target)
         {
-            var chars = CharacterManager.getCharByName(target);
-            if (chars.Count == 1)
-            {
-                var character = chars[0];
-                var AdminAccount = AccountManager.PlayerAccountPairs[player];
-                var TargetAccount = CharacterManager.CharacterAccountPair[character];
+            var character = CharacterManager.GetCharacterByName(player, target);
+            if (character == null) return;
 
-                NAPI.Player.FreezePlayerTime(player, true);
-                //TODO LOGIC BAN DATABASE
-                AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat freeze lui {character.Name}");
-            }
-            else
-            {
-                foreach (var character in chars)
-                {
-                    player.SendChatMessage(character.Name);
-                }
-            }
+            var adminAccount = AccountManager.PlayerAccountPairs[player];
+            NAPI.Player.FreezePlayerTime(character.Account.player, true);
+
+            AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} i-a dat freeze lui {character.Name}");
         }
-        //needs fixed
+
         [RequiresAdmin]
         [Command("unfreeze")]
         public void UnfreezePlayerCommand(Player player, string target)
         {
-            var chars = CharacterManager.getCharByName(target);
-            if (chars.Count == 1)
-            {
-                var character = chars[0];
-                var AdminAccount = AccountManager.PlayerAccountPairs[player];
-                var TargetAccount = CharacterManager.CharacterAccountPair[character];
+            var character = CharacterManager.GetCharacterByName(player, target);
+            if (character == null) return;
 
-                NAPI.Player.FreezePlayerTime(player, false);
+            var adminAccount = AccountManager.PlayerAccountPairs[player];
+            NAPI.Player.FreezePlayerTime(character.Account.player, false);
 
-                //TODO LOGIC BAN DATABASE
-                AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {AdminAccount.Name} i-a dat unfreeze lui {character.Name}");
-            }
-            else
-            {
-                foreach (var character in chars)
-                {
-                    player.SendChatMessage(character.Name);
-                }
-            }
+            AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} i-a dat unfreeze lui {character.Name}");
         }
+
     }
 }

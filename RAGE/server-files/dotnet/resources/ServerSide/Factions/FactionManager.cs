@@ -12,32 +12,40 @@ using System.Linq;
 public class FactionManager : Script
 {
     private static List<Faction> factions = new List<Faction>();
+    private static Dictionary<Character, int> FactionInvitations = new Dictionary<Character, int>();
     private static int nextFactionId = 0;
     FactionManager()
     {
         LoadFactionsFromDatabase();
     }
+
     [RequiresAdmin]
     [Command("joinfaction")]
     private void JoinFactionCommand(Player player, int factionID)
     {
         if(factionID >= nextFactionId)
         {
-            player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu exista acea factiune");
+            player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu exista acea factiune.");
             return;
         }
         var character = CharacterManager.PlayerCharacterPair[player];
         character.faction = factionID;
+        character.factionRank = 7;
         var faction = GetFactionById(factionID);
         faction.Characters.Add(character);
-        player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai intrat in factiunea {Colors.COLOR_CHAT_CRIMSON}{faction.Name}");
+        player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai intrat in factiunea {Colors.COLOR_CHAT_CRIMSON}{faction.Name}.");
     }
     private static Faction GetFactionById(int Id)
     {
         return factions.FirstOrDefault(f => f.Id == Id);
     }
-
-    [Command("f", Alias = "faction", GreedyArg = true)]
+    //[RequiresFactionRank]
+    //[Command("finvite")]
+    //private void FinviteCommand(Player player, string target)
+    //{
+    //    var character
+    //}
+    [Command("f", GreedyArg = true)]
     private void FactionChatCommand(Player player, string message)
     {
         var character = CharacterManager.PlayerCharacterPair[player];
@@ -47,12 +55,56 @@ public class FactionManager : Script
             return;
         }
         var faction = GetFactionById(character.faction);
+        SendFactionMessage(character.faction, $"{Colors.COLOR_CHAT_INFO}(( {faction.RankNames[character.factionRank]}{character.Name}: {message} ))");
+    }
+    public static void SendFactionMessage(int factionId, string message)
+    {
+        var faction = GetFactionById(factionId);
         foreach (var factionMember in faction.Characters)
         {
             if (CharacterManager.loggedCharacters.Contains(factionMember))
             {
-                factionMember.SendChatMessage($"{Colors.COLOR_CHAT_INFO}(( {character.Name}: {message} ))");
+                factionMember.SendChatMessage(message);
             }
+        }
+    }
+    [RequiresFactionRank]
+    [Command("ranks")]
+    private void RanksCommand(Player player)
+    {
+        var character = CharacterManager.PlayerCharacterPair[player];
+        var faction = GetFactionById(character.faction);
+
+        for(int i = 1; i <= faction.RankNames.Count; i++)
+        {
+            player.SendChatMessage($"{i}. {faction.RankNames[i]}");
+        }
+    }
+
+    [RequiresFactionRank(5)]
+    [Command("assignrank")]
+    public static void AssignRankCommand(Player player, string CharName, int rank)
+    {
+        var playerCharacter = CharacterManager.PlayerCharacterPair[player];
+        if(playerCharacter.faction == -1)
+        {
+            player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu esti intr-o factiune!");
+            return;
+        }
+        
+        var character = CharacterManager.GetCharacterByName(player, CharName);
+        
+        if (character == null) return;
+        var faction = GetFactionById(character.faction);
+
+        if (faction.RankNames.ContainsKey(rank))
+        {
+            character.factionRank = rank;
+            FactionManager.SendFactionMessage(playerCharacter.faction, $"{character.Name} has been assigned rank: {faction.RankNames[rank]}");
+        }
+        else
+        {
+            player.SendChatMessage("Invalid rank.");
         }
     }
 
@@ -65,7 +117,7 @@ public class FactionManager : Script
         nextFactionId++;
         SaveFactionToDatabase(newFaction); // Save to DB
         var account = AccountManager.PlayerAccountPairs[player];
-        AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ADMIN}{account.Name} a creat factiunea ID {newFaction.Id} {newFaction.Name}");
+        AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ADMIN}{account.Name} a creat factiunea {newFaction.Type} ID {newFaction.Id} {newFaction.Name}");
     }
 
     // Load factions from the database
@@ -77,18 +129,13 @@ public class FactionManager : Script
             nextFactionId = factions.Max(f => f.Id) + 1;
         }
     }
-
-    // Example placeholder for saving a faction to the database
     private void SaveFactionToDatabase(Faction faction)
     {
-        // Add database save logic here
         Console.WriteLine($"Faction saved: Id={faction.Id}, Name={faction.Name}");
     }
 
-    // Example placeholder for loading factions from the database
     private List<Faction> LoadFactions()
     {
-        // Replace with actual DB loading logic
         return new List<Faction>
         {
             new Faction(0, "FactionA", "Illegal"),
