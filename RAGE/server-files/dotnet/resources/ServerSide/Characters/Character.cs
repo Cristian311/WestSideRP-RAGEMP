@@ -5,6 +5,7 @@ using ServerSide.Characters.Customization.Hair;
 using ServerSide.Server.Interfaces;
 using ServerSide.Server.Items;
 using ServerSide.Server.Vehicles;
+using ServerSide.Util;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -89,6 +90,14 @@ namespace ServerSide.Characters
         public void SendChatMessage(string message)
         {
             player.SendChatMessage(message);
+        }
+        public void SendErrorMessage(string message)
+        {
+            player.SendChatMessage(Colors.ERROR + message);
+        }
+        public void SendInfoMessage(string message)
+        {
+            player.SendChatMessage(Colors.INFO + message);
         }
     }
 }

@@ -43,7 +43,7 @@ namespace ServerSide.Server.Blips
             BlipDbManager.CreateBlip(blipData);
 
             var AdminAccount = AccountManager.PlayerAccountPairs[player];
-            AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ADMIN}{AdminAccount.Name} created Blip {name} ID {blipData.Id} at {player.Position.ToString()}");
+            AdminManager.SendChatMessageToAdmins($"{Colors.ADMIN}{AdminAccount.Name} created Blip {name} ID {blipData.Id} at {player.Position.ToString()}");
         }
     }
 }

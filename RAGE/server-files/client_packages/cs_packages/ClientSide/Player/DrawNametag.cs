@@ -51,7 +51,7 @@ namespace ClientSide.Player
                 {
                     int newlineCount = player.Name.Count(c => c == '\n');
                     newlineCount = newlineCount > 0 ? newlineCount + 1 : 1;
-                    UIResText.Draw(player.Name, (int)(screenX * _screenX + 100 ), (int)(screenY * _screenY + 100 * newlineCount), Font.ChaletComprimeCologne, 0.4f, Color.White, RAGE.NUI.UIResText.Alignment.Centered, true, true, 0);
+                    UIResText.Draw(player.Name, (int)(screenX * _screenX + 100 ), (int)(screenY * _screenY + 100 - (newlineCount * 30)), Font.ChaletComprimeCologne, 0.4f, Color.White, RAGE.NUI.UIResText.Alignment.Centered, true, true, 0);
                 }
             }
         }

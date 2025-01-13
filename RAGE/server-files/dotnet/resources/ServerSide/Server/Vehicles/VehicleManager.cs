@@ -94,7 +94,7 @@ namespace ServerSide.Server.Vehicles
             var character = CharacterManager.PlayerCharacterPair[player];
             if (character.CurrentDrivingVehicle == null || player.VehicleSeat != 0)
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu esti intr-o masina");
+                player.SendChatMessage($"{Colors.ERROR}Nu esti intr-o masina");
                 return;
             }
         }
@@ -113,7 +113,7 @@ namespace ServerSide.Server.Vehicles
             Vehicles.Add(serverVeh);
             character.PersonalVehicles.Add(serverVeh);
             character.AccessVehicles.Add(serverVeh);
-            character.SendChatMessage(Colors.COLOR_CHAT_INFO + "Ai primit un nou vehicul de tipul: " + NAPI.Vehicle.GetVehicleDisplayName(vehicle.Model));
+            character.SendChatMessage(Colors.INFO + "Ai primit un nou vehicul de tipul: " + NAPI.Vehicle.GetVehicleDisplayName(vehicle.Model));
         }
         [RequiresAdmin]
         [Command("servervehicles")]
@@ -132,7 +132,7 @@ namespace ServerSide.Server.Vehicles
             var character = CharacterManager.PlayerCharacterPair[player];
             if(character.CurrentDrivingVehicle == null || player.VehicleSeat != 0)
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu esti intr-o masina");
+                player.SendChatMessage($"{Colors.ERROR}Nu esti intr-o masina");
                 return;
             }
             if(player.VehicleSeat == 0)
@@ -156,7 +156,7 @@ namespace ServerSide.Server.Vehicles
             var character = CharacterManager.PlayerCharacterPair[player];
             if (character.CurrentDrivingVehicle == null || player.VehicleSeat != 0)
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu esti intr-o masina");
+                player.SendChatMessage($"{Colors.ERROR}Nu esti intr-o masina");
                 return;
             }
             if (player.VehicleSeat == 0)

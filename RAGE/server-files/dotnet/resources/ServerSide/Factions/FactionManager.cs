@@ -12,7 +12,7 @@ using System.Linq;
 public class FactionManager : Script
 {
     private static List<Faction> factions = new List<Faction>();
-    private static Dictionary<Character, int> FactionInvitations = new Dictionary<Character, int>();
+    public static Dictionary<Character, int> FactionInvitations = new Dictionary<Character, int>();
     private static int nextFactionId = 0;
     FactionManager()
     {
@@ -25,7 +25,7 @@ public class FactionManager : Script
     {
         if(factionID >= nextFactionId)
         {
-            player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu exista acea factiune.");
+            player.SendChatMessage($"{Colors.ERROR}Nu exista acea factiune.");
             return;
         }
         var character = CharacterManager.PlayerCharacterPair[player];
@@ -33,18 +33,91 @@ public class FactionManager : Script
         character.factionRank = 7;
         var faction = GetFactionById(factionID);
         faction.Characters.Add(character);
-        player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai intrat in factiunea {Colors.COLOR_CHAT_CRIMSON}{faction.Name}.");
+        player.SendChatMessage($"{Colors.INFO}Ai intrat in factiunea {Colors.CRIMSON}{faction.Name}.");
     }
     private static Faction GetFactionById(int Id)
     {
         return factions.FirstOrDefault(f => f.Id == Id);
     }
-    //[RequiresFactionRank]
-    //[Command("finvite")]
-    //private void FinviteCommand(Player player, string target)
-    //{
-    //    var character
-    //}
+    [RequiresFaction]
+    [RequiresFactionRank]
+    [Command("finvite")]
+    private void FinviteCommand(Player player, string target)
+    {
+        var playerCharacter = CharacterManager.PlayerCharacterPair[player];
+        var character = CharacterManager.GetCharacterByName(player, target);
+        if (character == null) return;
+
+        var faction = GetFactionById(playerCharacter.faction);
+        if(character.faction == -1)
+        {
+            playerCharacter.SendErrorMessage("Acel player este deja intr-o factiune.");
+            return;
+        }
+        if (FactionInvitations.ContainsKey(character))
+        {
+            character.SendErrorMessage("Acest character este deja invitat intr-o factiune.");
+            var invitedFaction = GetFactionById(FactionInvitations[character]);
+            playerCharacter.SendErrorMessage($"{character.Name} incearca sa te invite in factiunea {faction.Name}, dar tu esti deja invitat in factiunea {invitedFaction.Name}. Foloseste /faccept sau /fdecline ca sa intrii in factiunea {invitedFaction.Name}");
+            return;
+        }
+        FactionInvitations.Add(character, faction.Id);
+        character.SendInfoMessage($"Ai fost invitat in factiunea {faction.Name}. Foloseste /faccept ca sa accepti sau /fdecline ca sa refuzi oferta.");
+        playerCharacter.SendInfoMessage($"Ai invitat pe {character.Name} in factiunea {faction.Name}");
+    }
+    [RequiresFactionInvitation]
+    [Command("faccept")]
+    private void facceptCommand(Player player, string confirm)
+    {
+        var character = CharacterManager.PlayerCharacterPair[player];
+
+        if(confirm.Equals("confirm"))
+        {
+            character.faction = FactionInvitations[character];
+            character.factionRank = 1;
+
+            var faction = GetFactionById(character.faction);
+            character.SendChatMessage($"{Colors.GREEN}Ai intrat in factiunea {faction.Name}!");
+            faction.SendFactionMessage($"{Colors.INFO}{character.Name} a intrat in factiune!");
+
+            FactionInvitations.Remove(character);
+        }
+        else
+        {
+            character.SendChatMessage($"{Colors.BEIGE}Foloseste /faccept confirm ca sa intrii in factiune.");
+        }
+    }
+
+    [RequiresFactionInvitation]
+    [Command("fdecline")]
+    private void fdecline(Player player, string confirm)
+    {
+        var character = CharacterManager.PlayerCharacterPair[player];
+        if (confirm.Equals("confirm"))
+        {
+            var faction = GetFactionById(character.faction);
+            character.SendChatMessage($"{Colors.GREEN}Ai refuzat sa intrii in factiunea {faction.Name}!");
+
+            FactionInvitations.Remove(character);
+        }
+        else
+        {
+            character.SendChatMessage($"{Colors.BEIGE}Foloseste /fdecline confirm ca sa refuzi invitatia in factiune.");
+        }
+    }
+    [RequiresAdmin]
+    [RequiresFaction]
+    [Command("fa", GreedyArg = true)]
+    private void FactionAdminMessage(Player player, string message)
+    {
+        var character = CharacterManager.PlayerCharacterPair[player];
+        var account = AccountManager.PlayerAccountPairs[player];
+        var faction = GetFactionById(character.faction);
+        if (account.AdminDuty == true)
+            SendFactionMessage(character.faction, $"{Colors.INFO}(( {faction.RankNames[character.factionRank]} {Colors.DARK_RED}{account.Name}{Colors.INFO}: {message} ))");
+        else
+            character.SendErrorMessage("Trebuie sa fii on-duty sa folosesti aceasta comanda, foloseste /aduty");
+    }
     [RequiresFaction]
     [Command("fonline")]
     private void fonlineCommand(Player player)
@@ -56,10 +129,9 @@ public class FactionManager : Script
         {
             var account = AccountManager.PlayerAccountPairs[player];
             if(account.AdminDuty == false)
-                player.SendChatMessage($"{Colors.COLOR_CHAT_WHISPER}{faction.RankNames[member.factionRank]} {member.Name}");
+                player.SendChatMessage($"{Colors.WHISPER}{faction.RankNames[member.factionRank]} {member.Name}");
             else
-                player.SendChatMessage($"{Colors.COLOR_CHAT_WHISPER}{faction.RankNames[member.factionRank]} {Colors.COLOR_CHAT_ADMIN}{account.Name}");
-
+                player.SendChatMessage($"{Colors.WHISPER}{faction.RankNames[member.factionRank]} {Colors.ADMIN}{account.Name}");
         }
     }
     [RequiresFaction]
@@ -68,7 +140,7 @@ public class FactionManager : Script
     {
         var character = CharacterManager.PlayerCharacterPair[player];
         var faction = GetFactionById(character.faction);
-        SendFactionMessage(character.faction, $"{Colors.COLOR_CHAT_INFO}(( {faction.RankNames[character.factionRank]} {character.Name}: {message} ))");
+        SendFactionMessage(character.faction, $"{Colors.INFO}(( {faction.RankNames[character.factionRank]} {character.Name}: {message} ))");
     }
     public static void SendFactionMessage(int factionId, string message)
     {
@@ -125,7 +197,7 @@ public class FactionManager : Script
         nextFactionId++;
         SaveFactionToDatabase(newFaction); // Save to DB
         var account = AccountManager.PlayerAccountPairs[player];
-        AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ADMIN}{account.Name} a creat factiunea {newFaction.Type} ID {newFaction.Id} {newFaction.Name}");
+        AdminManager.SendChatMessageToAdmins($"{Colors.ADMIN}{account.Name} a creat factiunea {newFaction.Type} ID {newFaction.Id} {newFaction.Name}");
     }
 
     // Load factions from the database

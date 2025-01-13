@@ -20,7 +20,7 @@ namespace ServerSide.Server.Commands.CommandAttributes
             var character = CharacterManager.PlayerCharacterPair[player];
             if (character.faction == -1)
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu esti intr-o factiune.");
+                player.SendChatMessage($"{Colors.ERROR}Nu esti intr-o factiune.");
                 character.factionRank = 0;
                 return false;
             }

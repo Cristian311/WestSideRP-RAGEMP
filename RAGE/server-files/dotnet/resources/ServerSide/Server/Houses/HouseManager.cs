@@ -25,13 +25,13 @@ namespace ServerSide.Server.Houses
             if(housesColshapes.Contains(colShape))
             {
                 var character = CharacterManager.PlayerCharacterPair[player];
-                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Apasa Y sa intrii in casa.");
+                player.SendChatMessage($"{Colors.INFO}Apasa Y sa intrii in casa.");
                 character.currentColshape = colShape;
             }
             if (exitHousesColshapes.Contains(colShape))
             {
                 var character = CharacterManager.PlayerCharacterPair[player];
-                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Apasa Y sa iesi din incapere.");
+                player.SendChatMessage($"{Colors.INFO}Apasa Y sa iesi din incapere.");
                 character.currentColshape = colShape;
             }
         }
@@ -41,7 +41,7 @@ namespace ServerSide.Server.Houses
             var character = CharacterManager.PlayerCharacterPair[player];
             if(character.isInInterior)
             {
-                character.SendChatMessage($"{Colors.COLOR_CHAT_INFO}[!]{Colors.COLOR_CHAT_DARK_BLUE}Cadere pe interior detectata, te repozitionam...");
+                character.SendChatMessage($"{Colors.INFO}[!]{Colors.DARK_BLUE}Cadere pe interior detectata, te repozitionam...");
                 player.Position = character.InteriorPosition;
             }
         }
@@ -63,7 +63,7 @@ namespace ServerSide.Server.Houses
                 }
                 else
                 {
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Aceasta usa este incuiata.");
+                    player.SendChatMessage($"{Colors.ERROR}Aceasta usa este incuiata.");
                 }
             }
             if(exitHousesColshapes.Contains(character.currentColshape))

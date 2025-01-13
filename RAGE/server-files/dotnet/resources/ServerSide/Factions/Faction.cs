@@ -59,5 +59,12 @@ namespace ServerSide.Factions
             }
             return characters;
         }
+        public void SendFactionMessage(string message)
+        {
+            foreach (var factionMember in GetOnlineCharacters())
+            {
+                factionMember.SendChatMessage(message);
+            }
+        }
     }
 }

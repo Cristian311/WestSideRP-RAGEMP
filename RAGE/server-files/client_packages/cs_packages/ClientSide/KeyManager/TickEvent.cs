@@ -8,40 +8,45 @@ namespace ClientSide
 {
     public class TickEvent : RAGE.Events.Script
     {
+        private static bool ChatEnabled = false;
         public TickEvent()
         {
-           RAGE.Events.Tick = Tick; 
+           RAGE.Events.Tick = Tick;
+
         }
 
         private void Tick(List<RAGE.Events.TickNametagData> nametags)
         {
-            KeyManager.KeyBind(KeyManager.KeyLctrl, () =>
+            if (RAGE.Ui.Cursor.Visible == false)
             {
-                //Chat.Output("Key Bind Work");      
-            });   
-            
-            KeyManager.KeyBind(KeyManager.KeyMouse, delegate // ~
-            {
-                Cursor.Visible = !Cursor.Visible;
-            });
+                KeyManager.KeyBind(KeyManager.KeyLctrl, () =>
+                {
+                    //Chat.Output("Key Bind Work");      
+                });
 
-            KeyManager.KeyBind(KeyManager.KeyY, () =>
-            {
-                //if(RAGE.Elements.Player.LocalPlayer.Vehicle.GetPedInSeat(-1,0) == RAGE.Elements.Player.LocalPlayer.Handle)
-                //    Events.CallRemote("CLIENT:SERVER:TurnEngine"); // needs fixed very poor optimization
-                Events.CallRemote("CLIENT:SERVER:ActionKeyPressed");
-                Events.CallRemote("CLIENT:SERVER:TryEnterDoor");
-            });
+                KeyManager.KeyBind(KeyManager.KeyMouse, delegate // ~
+                {
+                    Cursor.Visible = !Cursor.Visible;
+                });
 
-            KeyManager.KeyBind(KeyManager.KeyF4, () =>
-            {
-                InventoryHandler.CloseInventory(null);
-            });
+                KeyManager.KeyBind(KeyManager.KeyY, () =>
+                {
+                    //if(RAGE.Elements.Player.LocalPlayer.Vehicle.GetPedInSeat(-1,0) == RAGE.Elements.Player.LocalPlayer.Handle)
+                    //    Events.CallRemote("CLIENT:SERVER:TurnEngine"); // needs fixed very poor optimization
+                    Events.CallRemote("CLIENT:SERVER:ActionKeyPressed");
+                    Events.CallRemote("CLIENT:SERVER:TryEnterDoor");
+                });
 
-            KeyManager.KeyBind(KeyManager.KeyL, () =>
-            {
-                Events.CallRemote("CLIENT:SERVER:LockKeyPressed");
-            });
+                KeyManager.KeyBind(KeyManager.KeyF4, () =>
+                {
+                    InventoryHandler.CloseInventory(null);
+                });
+
+                KeyManager.KeyBind(KeyManager.KeyL, () =>
+                {
+                    Events.CallRemote("CLIENT:SERVER:LockKeyPressed");
+                });
+            }
         }
     }
 }

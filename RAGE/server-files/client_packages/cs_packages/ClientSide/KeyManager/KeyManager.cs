@@ -16,6 +16,7 @@ namespace CHRP.Assets
         public const int KeyY = 0x59;        //    Key [Y]
         public const int KeyF4 = 0x73;        //    Key [F4]
         public const int KeyL = 0x4C;        //    Key [F4]
+        public const int KeyT = 0x54;        //    Key [T]
 
 
 

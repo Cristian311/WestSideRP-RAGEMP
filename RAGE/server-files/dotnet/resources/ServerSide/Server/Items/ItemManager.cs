@@ -50,7 +50,7 @@ namespace ServerSide.Server.Items
             var character = CharacterManager.PlayerCharacterPair[player];
             if (character.Items == null)
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu ai nici un item.");
+                player.SendChatMessage($"{Colors.ERROR}Nu ai nici un item.");
                 return;
             }
             character.Items = FixItemsOrder(character.Items);
@@ -69,21 +69,21 @@ namespace ServerSide.Server.Items
             var character = CharacterManager.PlayerCharacterPair[player];
             if (character.Items == null)
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu ai nici un item.");
+                player.SendChatMessage($"{Colors.ERROR}Nu ai nici un item.");
                 return;
             }
             //
             character.Items = FixItemsOrder(character.Items); // fix items indexes in inventory
 
-            player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}Itemele detinute in prezent:");
+            player.SendChatMessage($"{Colors.ITEMS}Itemele detinute in prezent:");
             foreach (var item in character.Items) // print items
             {
                 if (item.Type == "phone")
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] (Phone) - {item.Name} - {item.PhoneNumber}");
+                    player.SendChatMessage($"{Colors.ITEMS}[{item.localID}] (Phone) - {item.Name} - {item.PhoneNumber}");
                 else if (item.UsedFor != string.Empty)
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] ({item.Type}) - {item.Name} - {item.Amount} units - Used for: {item.UsedFor}");
+                    player.SendChatMessage($"{Colors.ITEMS}[{item.localID}] ({item.Type}) - {item.Name} - {item.Amount} units - Used for: {item.UsedFor}");
                 else
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}[{item.localID}] ({item.Type}) - {item.Name} - {item.Amount} units.");
+                    player.SendChatMessage($"{Colors.ITEMS}[{item.localID}] ({item.Type}) - {item.Name} - {item.Amount} units.");
             }
         }
 
@@ -116,7 +116,7 @@ namespace ServerSide.Server.Items
                 newItem.localID = character.ItemIdManager.AssignNewId(newItem);
                 character.Items.Add(newItem);
             }
-            player.SendChatMessage($"{Colors.COLOR_CHAT_ADMIN}Created item {Name} Type {Type} {Ammount} units.");
+            player.SendChatMessage($"{Colors.ADMIN}Created item {Name} Type {Type} {Ammount} units.");
             ItemDbManager.UpdateCharacterItems(character);
         }
 
@@ -128,7 +128,7 @@ namespace ServerSide.Server.Items
             var character = CharacterManager.PlayerCharacterPair[player];
             Name = StringFormatter.CapitalizeFirstLetter(Name);
 
-            player.SendChatMessage($"{Colors.COLOR_CHAT_ADMIN}Created weapon {Name} {Ammount} units.");
+            player.SendChatMessage($"{Colors.ADMIN}Created weapon {Name} {Ammount} units.");
             bool Countable = false;
 
             for (int i = 1; i <= Ammount; i++)
@@ -145,7 +145,7 @@ namespace ServerSide.Server.Items
             if (!AdminManager.CheckIfAdminAccess(player, 1))
                 return;
 
-            player.SendChatMessage($"{Colors.COLOR_CHAT_LIME_GREEN}Created drug {Name} {Ammount} units.");
+            player.SendChatMessage($"{Colors.LIME_GREEN}Created drug {Name} {Ammount} units.");
             character.Items.Add(new Item(character, Name, "drug", Ammount, true));
 
             //updatedb
@@ -164,7 +164,7 @@ namespace ServerSide.Server.Items
                 Item item = GetItemByIndex(character.Items, index);
                 if (item.Amount < ammount)
                 {
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}N-ai {ammount} {item.Name}.");
+                    player.SendChatMessage($"{Colors.ERROR}N-ai {ammount} {item.Name}.");
                     return;
                 }
 
@@ -177,13 +177,13 @@ namespace ServerSide.Server.Items
 
                 Item receivedItem = new Item(targetCharacter, item.Name, item.Type, ammount, item.Countable, item.UsedFor);
                 targetCharacter.Items.Add(receivedItem);
-                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}I-ai dat {Colors.COLOR_CHAT_DARK_BLUE}{ammount} {item.Name} {Colors.COLOR_CHAT_INFO}lui {targetCharacter.Name}.");
-                targetCharacter.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai primit {Colors.COLOR_CHAT_DARK_BLUE}{ammount} {item.Name} de la {Colors.COLOR_CHAT_INFO}{character.Name}.");
+                player.SendChatMessage($"{Colors.INFO}I-ai dat {Colors.DARK_BLUE}{ammount} {item.Name} {Colors.INFO}lui {targetCharacter.Name}.");
+                targetCharacter.SendChatMessage($"{Colors.INFO}Ai primit {Colors.DARK_BLUE}{ammount} {item.Name} de la {Colors.INFO}{character.Name}.");
             }
             else
             {
                 // If no valid character is found, we already printed the characters in GetCharacterNearby
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu s-a gasit un caracter valid sau sunt prea multe persoane in jur cu acelasi nume.");
+                player.SendChatMessage($"{Colors.ERROR}Nu s-a gasit un caracter valid sau sunt prea multe persoane in jur cu acelasi nume.");
             }
         }
         [Command("showitem")]
@@ -197,13 +197,13 @@ namespace ServerSide.Server.Items
 
                 Item item = GetItemByIndex(character.Items, index);
 
-                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}I-ai aratat {Colors.COLOR_CHAT_DARK_BLUE}{item.Name}{Colors.COLOR_CHAT_INFO} lui {targetCharacter.Name}.");
-                targetCharacter.SendChatMessage($"{Colors.COLOR_CHAT_INFO}{character.Name} ti-a aratat {Colors.COLOR_CHAT_DARK_BLUE}{item.Name}{Colors.COLOR_CHAT_INFO}.");
+                player.SendChatMessage($"{Colors.INFO}I-ai aratat {Colors.DARK_BLUE}{item.Name}{Colors.INFO} lui {targetCharacter.Name}.");
+                targetCharacter.SendChatMessage($"{Colors.INFO}{character.Name} ti-a aratat {Colors.DARK_BLUE}{item.Name}{Colors.INFO}.");
             }
             else
             {
                 // If no valid character is found, we already printed the characters in GetCharacterNearby
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu s-a gasit un caracter valid sau este prea multe persoane.");
+                player.SendChatMessage($"{Colors.ERROR}Nu s-a gasit un caracter valid sau este prea multe persoane.");
             }
         }
 
@@ -217,7 +217,7 @@ namespace ServerSide.Server.Items
                 UseItem(character, item);
             }
             else
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR} ID al itemului incorect.");
+                player.SendChatMessage($"{Colors.ERROR} ID al itemului incorect.");
         }
 
         [Command("unequip")]
@@ -227,7 +227,7 @@ namespace ServerSide.Server.Items
             // Validate the player has weapons to unequip
             if (character.currentWeapons.Count == 0)
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}N-ai nici o arma echipata.");
+                player.SendChatMessage($"{Colors.ERROR}N-ai nici o arma echipata.");
                 return;
             }
 
@@ -272,7 +272,7 @@ namespace ServerSide.Server.Items
                 }
                 character.Items.Clear();
 
-                player.SendChatMessage($"{Colors.COLOR_CHAT_CRIMSON}Ai aruncat toate itemele.");
+                player.SendChatMessage($"{Colors.CRIMSON}Ai aruncat toate itemele.");
             }
         }
 
@@ -283,14 +283,14 @@ namespace ServerSide.Server.Items
 
             if (!UtilMethods.TryGetElement(character.Items, index, out Item element))
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Index-ul nu exista in inventarul tau!");
+                player.SendChatMessage($"{Colors.ERROR}Index-ul nu exista in inventarul tau!");
                 return;
             }
 
             var item = character.Items[index];
             if (item == null)
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu ai un item cu acel id.");
+                player.SendChatMessage($"{Colors.ERROR}Nu ai un item cu acel id.");
             }
             item.Amount -= ammount;
 
@@ -300,7 +300,7 @@ namespace ServerSide.Server.Items
                 character.ItemIdManager.ReclaimId(item.localID);
             }
 
-            player.SendChatMessage($"{Colors.COLOR_CHAT_CRIMSON}Ai aruncat {ammount}{item.Name}.");
+            player.SendChatMessage($"{Colors.CRIMSON}Ai aruncat {ammount}{item.Name}.");
         }
         private bool GetCountable(string Type)
         {
@@ -333,7 +333,7 @@ namespace ServerSide.Server.Items
                         character.Items.Remove(usedItem);
                         character.ItemIdManager.ReclaimId(usedItem.localID);
 
-                        player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai echipat {weaponHash.ToString()}.");
+                        player.SendChatMessage($"{Colors.INFO}Ai echipat {weaponHash.ToString()}.");
                         ChatMessage.ameCommand(player, "intinde mana pentru o arma.");
                         return;
                     }
@@ -351,29 +351,29 @@ namespace ServerSide.Server.Items
                             character.Items.Remove(usedItem);
                             character.ItemIdManager.ReclaimId(usedItem.localID);
 
-                            player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai echipat {weaponHash.ToString()}.");
+                            player.SendChatMessage($"{Colors.INFO}Ai echipat {weaponHash.ToString()}.");
                             ChatMessage.ameCommand(player, "intinde mana pentru o arma.");
                         }
                         else
                         {
-                            player.SendChatMessage($"{Colors.COLOR_CHAT_LIGHT_RED}Nu ai gloante pentru acest tip de arma.");
+                            player.SendChatMessage($"{Colors.LIGHT_RED}Nu ai gloante pentru acest tip de arma.");
                         }
                     }
                     else
                     {
-                        player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu ai gloante pentru acest tip de arma.");
+                        player.SendChatMessage($"{Colors.ERROR}Nu ai gloante pentru acest tip de arma.");
                     }
                     break;
                 case "drink":
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai baut {usedItem.Name}.");
+                    player.SendChatMessage($"{Colors.INFO}Ai baut {usedItem.Name}.");
                     player.Health += 10;
                     break;
                 case "food":
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai mancat {usedItem.Name}.");
+                    player.SendChatMessage($"{Colors.INFO}Ai mancat {usedItem.Name}.");
                     player.Health += 25;
                     break;
                 case "drug":
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai bagat {usedItem.Name}, efectele vor aparea in cateva minute.");
+                    player.SendChatMessage($"{Colors.INFO}Ai bagat {usedItem.Name}, efectele vor aparea in cateva minute.");
                     player.Health += 50;
                     break;
                 case "phone":
@@ -382,7 +382,7 @@ namespace ServerSide.Server.Items
                     PhoneManager.SeeMessages(character, phone);
                     break;
                 default:
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ITEMS}Used item {usedItem.Name}.");
+                    player.SendChatMessage($"{Colors.ITEMS}Used item {usedItem.Name}.");
                     break;
             }
             // Handle item usage and removal
@@ -421,7 +421,7 @@ namespace ServerSide.Server.Items
                     UseItem(character, item);
                 }
                 else
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR} ID al itemului incorect.");
+                    player.SendChatMessage($"{Colors.ERROR} ID al itemului incorect.");
             }
             catch (Exception e)
             {
@@ -442,7 +442,7 @@ namespace ServerSide.Server.Items
                     UseItem(character, item); // Reuse UseItem since it already handles weapons
                 }
                 else
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR} Acest item nu poate fi echipat.");
+                    player.SendChatMessage($"{Colors.ERROR} Acest item nu poate fi echipat.");
             }
             catch (Exception e)
             {
@@ -464,10 +464,10 @@ namespace ServerSide.Server.Items
                 {
                     if (nearbyPlayer != player)
                     {
-                        nearbyPlayer.SendChatMessage($"{Colors.COLOR_CHAT_INFO}{character.Name} iti arata {Colors.COLOR_CHAT_DARK_BLUE}{item.Name}{Colors.COLOR_CHAT_INFO}.");
+                        nearbyPlayer.SendChatMessage($"{Colors.INFO}{character.Name} iti arata {Colors.DARK_BLUE}{item.Name}{Colors.INFO}.");
                     }
                 }
-                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai aratat {Colors.COLOR_CHAT_DARK_BLUE}{item.Name}{Colors.COLOR_CHAT_INFO} jucatorilor din jur.");
+                player.SendChatMessage($"{Colors.INFO}Ai aratat {Colors.DARK_BLUE}{item.Name}{Colors.INFO} jucatorilor din jur.");
             }
             catch (Exception e)
             {
@@ -487,7 +487,7 @@ namespace ServerSide.Server.Items
                 var nearbyPlayers = NAPI.Player.GetPlayersInRadiusOfPlayer(30f, player);
                 if (nearbyPlayers.Count != 2) // player + 1 target
                 {
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Trebuie sa fie doar o persoana langa tine pentru a da un item.");
+                    player.SendChatMessage($"{Colors.ERROR}Trebuie sa fie doar o persoana langa tine pentru a da un item.");
                     return;
                 }
 
@@ -509,8 +509,8 @@ namespace ServerSide.Server.Items
                     item.Amount--;
                 }
 
-                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}I-ai dat {Colors.COLOR_CHAT_DARK_BLUE}{item.Name} {Colors.COLOR_CHAT_INFO}lui {targetCharacter.Name}.");
-                targetPlayer.SendChatMessage($"{Colors.COLOR_CHAT_INFO}Ai primit {Colors.COLOR_CHAT_DARK_BLUE}{item.Name} de la {Colors.COLOR_CHAT_INFO}{character.Name}.");
+                player.SendChatMessage($"{Colors.INFO}I-ai dat {Colors.DARK_BLUE}{item.Name} {Colors.INFO}lui {targetCharacter.Name}.");
+                targetPlayer.SendChatMessage($"{Colors.INFO}Ai primit {Colors.DARK_BLUE}{item.Name} de la {Colors.INFO}{character.Name}.");
 
                 ItemDbManager.UpdateCharacterItems(character);
                 ItemDbManager.UpdateCharacterItems(targetCharacter);
@@ -540,7 +540,7 @@ namespace ServerSide.Server.Items
                     item.Amount--;
                 }
 
-                player.SendChatMessage($"{Colors.COLOR_CHAT_CRIMSON}Ai aruncat {item.Name}.");
+                player.SendChatMessage($"{Colors.CRIMSON}Ai aruncat {item.Name}.");
                 ItemDbManager.UpdateCharacterItems(character);
             }
             catch (Exception e)

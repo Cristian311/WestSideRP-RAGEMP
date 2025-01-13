@@ -25,25 +25,25 @@ namespace ServerSide.Server.Vehicles
             {
                 if (Vector3.Distance(character.player.Position, closestVehicle.GTAVehicle.Position) > 10)
                 {
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_RED}Nu ai nici o masina prin apropiere.");
+                    player.SendChatMessage($"{Colors.RED}Nu ai nici o masina prin apropiere.");
                     return;
                 }
                 if (closestVehicle.GTAVehicle.Locked == false)
                 {
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_RED}Ti-ai incuiat masina!");
+                    player.SendChatMessage($"{Colors.RED}Ti-ai incuiat masina!");
                     closestVehicle.GTAVehicle.Locked = true;
                     ChatMessage.ameCommand(player, "si-a incuiat masina.");
                 }
                 else
                 {
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_FOREST_GREEN}Ti-ai descuiat masina!");
+                    player.SendChatMessage($"{Colors.FOREST_GREEN}Ti-ai descuiat masina!");
                     closestVehicle.GTAVehicle.Locked = false;
                     ChatMessage.ameCommand(player, "si-a descuiat masina.");
                 }    
             }
             else
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_RED}Nu ai nici o cheie pentru vreo masina.");
+                player.SendChatMessage($"{Colors.RED}Nu ai nici o cheie pentru vreo masina.");
             }
             
         }

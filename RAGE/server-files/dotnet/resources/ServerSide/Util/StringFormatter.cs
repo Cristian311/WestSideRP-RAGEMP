@@ -8,15 +8,15 @@ namespace ServerSide.Util
         {
             if (string.IsNullOrWhiteSpace(input))
             {
-                return input; 
+                return input;
             }
 
             if (!char.IsUpper(input[0]))
             {
                 input = char.ToUpper(input[0]) + input.Substring(1);
-            } 
+            }
 
-            if (!input.EndsWith("."))
+            if (!input.EndsWith(".") || !input.EndsWith("?") || !input.EndsWith("!"))
             {
                 input += ".";
             }
@@ -33,7 +33,7 @@ namespace ServerSide.Util
         public static string FormatStringForAme(string name, string action)
         {
             const int maxLineLength = 70;
-            string prefix = $"~f~{name} {action}";
+            string prefix = $"~p~{name} {action}";
             string suffix = $"~w~{name}";
 
             List<string> parts = new List<string>();

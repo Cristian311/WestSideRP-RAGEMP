@@ -74,7 +74,7 @@ namespace ServerSide.Server.GasStations
                 // Check if the percentage is within the valid range (0 to 100)
                 if (percentage < 0 || percentage > 100)
                 {
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Eroare: Introdu procent corect (0-100).");
+                    player.SendChatMessage($"{Colors.ERROR}Eroare: Introdu procent corect (0-100).");
                     return;
                 }
 
@@ -83,12 +83,12 @@ namespace ServerSide.Server.GasStations
                 // Check if the player is in a vehicle
                 if (character.CurrentDrivingVehicle == null)
                 {
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Eroare: Nu esti intr-o masina.");
+                    player.SendChatMessage($"{Colors.ERROR}Eroare: Nu esti intr-o masina.");
                     return;
                 }
                 if (character.CurrentDrivingVehicle.EngineStatus == true)
                 {
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Opreste motorul.");
+                    player.SendChatMessage($"{Colors.ERROR}Opreste motorul.");
                     return;
                 }
                 // Get the vehicle from the VehicleManager
@@ -97,7 +97,7 @@ namespace ServerSide.Server.GasStations
                 // Ensure that the vehicle has a gas tank capacity
                 if (ServerVehicle.GasTank <= 0)
                 {
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Eroare: Vehiculul nu are un rezervor valid.");
+                    player.SendChatMessage($"{Colors.ERROR}Eroare: Vehiculul nu are un rezervor valid.");
                     return;
                 }
 
@@ -109,7 +109,7 @@ namespace ServerSide.Server.GasStations
 
                 if (gasNeeded < 0)
                 {
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Eroare: Rezervorul este deja plin sau peste {percentage}%.");
+                    player.SendChatMessage($"{Colors.ERROR}Eroare: Rezervorul este deja plin sau peste {percentage}%.");
                     return;
                 }
 
@@ -128,7 +128,7 @@ namespace ServerSide.Server.GasStations
                 // Deduct the cost from the player's money (assuming the player has money available)
                 if (character.Money < cost)
                 {
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Eroare: Nu ai suficienti bani pentru a alimenta.");
+                    player.SendChatMessage($"{Colors.ERROR}Eroare: Nu ai suficienti bani pentru a alimenta.");
                     return;
                 }
 
@@ -136,15 +136,15 @@ namespace ServerSide.Server.GasStations
                 // Deduct money from the player's account
 
                 // Notify the player about the refueling action and the cost
-                player.SendChatMessage($"{Colors.COLOR_CHAT_BLUE}Ai incarcat {Colors.COLOR_CHAT_CYAN}{(int)Math.Floor(gasNeeded)}{Colors.COLOR_CHAT_BLUE} litri de combustibil. Cost total: {Colors.COLOR_CHAT_GREEN}${(int)Math.Floor(cost)}.");
-                player.SendChatMessage($"{Colors.COLOR_CHAT_BLUE}Ramas: {Colors.COLOR_CHAT_GREEN}{character.Money}$.");
+                player.SendChatMessage($"{Colors.BLUE}Ai incarcat {Colors.CYAN}{(int)Math.Floor(gasNeeded)}{Colors.BLUE} litri de combustibil. Cost total: {Colors.GREEN}${(int)Math.Floor(cost)}.");
+                player.SendChatMessage($"{Colors.BLUE}Ramas: {Colors.GREEN}{character.Money}$.");
 
                 // Optionally, save the player's data and vehicle status if necessary
                 //CharacterManager.SavePlayerData(character);
             }
             else
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Eroare: Introdu un numar ca procent.");
+                player.SendChatMessage($"{Colors.ERROR}Eroare: Introdu un numar ca procent.");
             }
         }
 

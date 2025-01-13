@@ -32,7 +32,7 @@ namespace ServerSide.Admin
             {
                 var player = account.player;
                 if (account.AdminLevel > 0)
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ADMIN}AdmInfo: {message}");
+                    player.SendChatMessage($"{Colors.ADMIN}AdmInfo: {message}");
             }
         }
     }

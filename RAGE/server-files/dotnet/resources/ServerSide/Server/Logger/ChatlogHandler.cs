@@ -39,7 +39,7 @@ namespace ServerSide.Server.Logger
                 var character = chars[0];
                 if (chatlogs.ContainsKey(character.player) == false)
                 {
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Acest player n-are nici un chat log.");
+                    player.SendChatMessage($"{Colors.ERROR}Acest player n-are nici un chat log.");
                     return;
                 }
                 readChatLogs(player, character.Name, chatlogs[character.player]);

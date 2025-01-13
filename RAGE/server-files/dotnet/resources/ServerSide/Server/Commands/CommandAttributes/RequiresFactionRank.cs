@@ -25,7 +25,7 @@ namespace ServerSide.Server.Commands.CommandAttributes
             var character = CharacterManager.PlayerCharacterPair[player];
             if (character.factionRank < Rank)
             {
-                player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Nu ai grad pentru aceasta comanda.");
+                player.SendChatMessage($"{Colors.ERROR}Nu ai grad pentru aceasta comanda.");
                 return false;
             }
             return true;

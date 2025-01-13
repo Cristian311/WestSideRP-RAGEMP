@@ -53,7 +53,7 @@ namespace ServerSide.Server.Commands
         {
             var account = AccountManager.PlayerAccountPairs[player];
             if (account.Muted == true)
-                player.SendChatMessage($"{Colors.COLOR_CHAT_MUTED}You are muted and can't send a message");
+                player.SendChatMessage($"{Colors.MUTED}You are muted and can't send a message");
             else
             {
                 var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
@@ -72,7 +72,7 @@ namespace ServerSide.Server.Commands
             var name = CharacterManager.PlayerCharacterPair[player].Name;
             foreach (var p in players)
             {
-                p.SendChatMessage($"{Colors.COLOR_CHAT_DARK_GRAY} (( {name}: {action} )) ");
+                p.SendChatMessage($"{Colors.GRAY} (( {name}: {action} )) ");
             }
         }
         [Command("to")]
@@ -89,9 +89,9 @@ namespace ServerSide.Server.Commands
                 foreach (var p in players)
                 {
                     if (p != otherplayer)
-                        p.SendChatMessage($"{Colors.COLOR_CHAT_LOW}{name} spune lui ({character.Name}): {message}");
+                        p.SendChatMessage($"{Colors.LOW}{name} spune lui ({character.Name}): {message}");
                 }
-                otherplayer.SendChatMessage($"{Colors.COLOR_CHAT_PARTY}[!]{Colors.COLOR_CHAT_LOW}{name} spune lui ({character.Name}): {message}");
+                otherplayer.SendChatMessage($"{Colors.PARTY}[!]{Colors.LOW}{name} spune lui ({character.Name}): {message}");
             }
             else
             {
@@ -115,12 +115,12 @@ namespace ServerSide.Server.Commands
 
                 if (players.Contains(otherplayer))
                 {
-                    otherplayer.SendChatMessage($"{Colors.COLOR_CHAT_WHISPER}{name} spune(soapta): {message}");
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_WHISPER}{name} spune(soapta): {message}");
+                    otherplayer.SendChatMessage($"{Colors.WHISPER}{name} spune(soapta): {message}");
+                    player.SendChatMessage($"{Colors.WHISPER}{name} spune(soapta): {message}");
                 }
                 else
                 {
-                    player.SendChatMessage($"{Colors.COLOR_CHAT_ERROR}Acel player nu este langa tine");
+                    player.SendChatMessage($"{Colors.ERROR}Acel player nu este langa tine");
                 }
             }
             else
@@ -142,8 +142,8 @@ namespace ServerSide.Server.Commands
 
                 var name = CharacterManager.PlayerCharacterPair[player].Name;
 
-                otherplayer.SendChatMessage($"{Colors.COLOR_CHAT_YELLOW}(( {name}: {message} ))");
-                player.SendChatMessage($"{Colors.COLOR_CHAT_YELLOW}(( {name}: {message} ))");
+                otherplayer.SendChatMessage($"{Colors.YELLOW}(( {name}: {message} ))");
+                player.SendChatMessage($"{Colors.YELLOW}(( {name}: {message} ))");
             }
             else
             {
@@ -168,9 +168,9 @@ namespace ServerSide.Server.Commands
                 foreach (var p in players)
                 {
                     if (p != otherplayer)
-                        p.SendChatMessage($"{Colors.COLOR_CHAT_LOW}{name} spune(încet) lui {character.Name}: {message}");
+                        p.SendChatMessage($"{Colors.LOW}{name} spune(încet) lui {character.Name}: {message}");
                 }
-                otherplayer.SendChatMessage($"{Colors.COLOR_CHAT_PARTY}[!]{Colors.COLOR_CHAT_LOW}{name} spune(încet) lui {character.Name}: {message}");
+                otherplayer.SendChatMessage($"{Colors.PARTY}[!]{Colors.LOW}{name} spune(încet) lui {character.Name}: {message}");
             }
             else
             {
@@ -187,7 +187,7 @@ namespace ServerSide.Server.Commands
             var name = CharacterManager.PlayerCharacterPair[player].Name;
             foreach (var p in players)
             {
-                p.SendChatMessage($"{Colors.COLOR_CHAT_ME}* {name} {action}");
+                p.SendChatMessage($"{Colors.ME}* {name} {action}");
             }
         }
         
@@ -199,7 +199,7 @@ namespace ServerSide.Server.Commands
             var name = CharacterManager.PlayerCharacterPair[player].Name;
             foreach (var p in players)
             {
-                p.SendChatMessage($"{Colors.COLOR_CHAT_ME}* {name} {action}");
+                p.SendChatMessage($"{Colors.ME}* {name} {action}");
             }
             ameCommand(player, action);
         }
@@ -210,7 +210,7 @@ namespace ServerSide.Server.Commands
             var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
             foreach (var p in players)
             {
-                p.SendChatMessage($"{Colors.COLOR_CHAT_ME}* {action} ({CharacterManager.PlayerCharacterPair[player].Name}) ");
+                p.SendChatMessage($"{Colors.ME}* {action} ({CharacterManager.PlayerCharacterPair[player].Name}) ");
             }
         }
         [Command("dolow", GreedyArg = true)]
@@ -219,7 +219,7 @@ namespace ServerSide.Server.Commands
             var players = NAPI.Player.GetPlayersInRadiusOfPlayer(15, player);
             foreach (var p in players)
             {
-                p.SendChatMessage($"{Colors.COLOR_CHAT_ME}* {action} ({CharacterManager.PlayerCharacterPair[player].Name}) ");
+                p.SendChatMessage($"{Colors.ME}* {action} ({CharacterManager.PlayerCharacterPair[player].Name}) ");
             }
         }
         [Command("low", GreedyArg = true)]
@@ -229,7 +229,7 @@ namespace ServerSide.Server.Commands
             var name = CharacterManager.PlayerCharacterPair[player].Name;
             foreach (var p in players)
             {
-                p.SendChatMessage($"{Colors.COLOR_CHAT_LOW}{name} spune(încet): {action}");
+                p.SendChatMessage($"{Colors.LOW}{name} spune(încet): {action}");
             }
         }
 

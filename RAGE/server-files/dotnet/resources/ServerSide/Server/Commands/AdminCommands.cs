@@ -69,7 +69,7 @@ namespace ServerSide.Server.Commands
             var targetAccount = CharacterManager.CharacterAccountPair[character];
 
             targetAccount.player.Kick($"You were kicked by an admin. Reason: {reason}");
-            NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} i-a dat kick lui {targetAccount.currentCharacter.Name} Motiv: {reason}");
+            NAPI.Chat.SendChatMessageToAll($"{Colors.ERROR}Admin {adminAccount.Name} i-a dat kick lui {targetAccount.currentCharacter.Name} Motiv: {reason}");
         }
 
         [RequiresAdmin]
@@ -83,7 +83,7 @@ namespace ServerSide.Server.Commands
             var targetAccount = CharacterManager.CharacterAccountPair[character];
 
             targetAccount.player.Ban($"You were banned by an admin. Reason: {reason}");
-            NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} i-a dat ban lui {targetAccount.currentCharacter.Name} Motiv: {reason}");
+            NAPI.Chat.SendChatMessageToAll($"{Colors.ERROR}Admin {adminAccount.Name} i-a dat ban lui {targetAccount.currentCharacter.Name} Motiv: {reason}");
         }
 
         [RequiresAdmin]
@@ -97,7 +97,7 @@ namespace ServerSide.Server.Commands
             var targetAccount = CharacterManager.CharacterAccountPair[character];
 
             targetAccount.Muted = true;
-            NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} i-a dat mute lui {targetAccount.currentCharacter.Name} Motiv: {reason}");
+            NAPI.Chat.SendChatMessageToAll($"{Colors.ERROR}Admin {adminAccount.Name} i-a dat mute lui {targetAccount.currentCharacter.Name} Motiv: {reason}");
         }
 
         [RequiresAdmin]
@@ -111,7 +111,7 @@ namespace ServerSide.Server.Commands
             var targetAccount = CharacterManager.CharacterAccountPair[character];
 
             targetAccount.Muted = false;
-            NAPI.Chat.SendChatMessageToAll($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} i-a dat unmute lui {targetAccount.currentCharacter.Name}");
+            NAPI.Chat.SendChatMessageToAll($"{Colors.ERROR}Admin {adminAccount.Name} i-a dat unmute lui {targetAccount.currentCharacter.Name}");
         }
 
         // TELEPORT COMMANDS
@@ -125,7 +125,7 @@ namespace ServerSide.Server.Commands
             var adminAccount = AccountManager.PlayerAccountPairs[player];
             player.Position = character.Account.player.Position;
 
-            AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} s-a teleportat la {character.Name}");
+            AdminManager.SendChatMessageToAdmins($"{Colors.ERROR}Admin {adminAccount.Name} s-a teleportat la {character.Name}");
         }
 
         [RequiresAdmin]
@@ -138,7 +138,7 @@ namespace ServerSide.Server.Commands
             var adminAccount = AccountManager.PlayerAccountPairs[player];
             character.Account.player.Position = player.Position;
 
-            AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} l-a teleportat pe {character.Name} la el");
+            AdminManager.SendChatMessageToAdmins($"{Colors.ERROR}Admin {adminAccount.Name} l-a teleportat pe {character.Name} la el");
         }
 
         // FREEZE/UNFREEZE COMMANDS
@@ -152,7 +152,7 @@ namespace ServerSide.Server.Commands
             var adminAccount = AccountManager.PlayerAccountPairs[player];
             NAPI.Player.FreezePlayerTime(character.Account.player, true);
 
-            AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} i-a dat freeze lui {character.Name}");
+            AdminManager.SendChatMessageToAdmins($"{Colors.ERROR}Admin {adminAccount.Name} i-a dat freeze lui {character.Name}");
         }
         [RequiresAdmin]
         [Command("aduty")]
@@ -180,7 +180,7 @@ namespace ServerSide.Server.Commands
             var adminAccount = AccountManager.PlayerAccountPairs[player];
             NAPI.Player.FreezePlayerTime(character.Account.player, false);
 
-            AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} i-a dat unfreeze lui {character.Name}");
+            AdminManager.SendChatMessageToAdmins($"{Colors.ERROR}Admin {adminAccount.Name} i-a dat unfreeze lui {character.Name}");
         }
 
     }

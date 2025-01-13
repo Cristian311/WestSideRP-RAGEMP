@@ -15,12 +15,12 @@ namespace ServerSide.Server.Commands
             if(tog == false)
             {
                 player.SetData<bool>("tognametag", true);
-                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}At dezactivat optiunea sa-ti vezi nametagul.");
+                player.SendChatMessage($"{Colors.INFO}At dezactivat optiunea sa-ti vezi nametagul.");
             }    
             else
             {
                 player.SetData<bool>("tognametag", false);
-                player.SendChatMessage($"{Colors.COLOR_CHAT_INFO}At activat optiunea sa-ti vezi nametagul.");
+                player.SendChatMessage($"{Colors.INFO}At activat optiunea sa-ti vezi nametagul.");
             }
         }
     }
