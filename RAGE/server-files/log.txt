@@ -968,3 +968,71 @@
 12.01.2025 18:14:09 (aaa) Zurab Makharadze: /clothes
 12.01.2025 18:15:47 (aaa) Zurab Makharadze: /clothes
 12.01.2025 18:17:43 (aaa) Zurab Makharadze: Has morocar
+12.01.2025 18:30:20 - Loaded shop: hatz at position: 0 0 0
+12.01.2025 18:30:20 - Loaded shop: lll at position: 0 0 0
+12.01.2025 18:30:20 - Loaded shop: kk at position: 0 0 0
+12.01.2025 18:30:20 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+12.01.2025 18:30:20 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+12.01.2025 18:30:51 (aaa) Zurab Makharadze: /clothes
+12.01.2025 18:31:52 - Loaded shop: hatz at position: 0 0 0
+12.01.2025 18:31:52 - Loaded shop: lll at position: 0 0 0
+12.01.2025 18:31:52 - Loaded shop: kk at position: 0 0 0
+12.01.2025 18:31:52 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+12.01.2025 18:31:52 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+12.01.2025 18:32:15 (aaa) Zurab Makharadze: /clothes
+12.01.2025 18:38:25 - Loaded shop: hatz at position: 0 0 0
+12.01.2025 18:38:25 - Loaded shop: lll at position: 0 0 0
+12.01.2025 18:38:25 - Loaded shop: kk at position: 0 0 0
+12.01.2025 18:38:25 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+12.01.2025 18:38:25 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+12.01.2025 18:38:52 (aaa) Zurab Makharadze: /clothes
+12.01.2025 18:39:33 (aaa) Zurab Makharadze: /clothes
+12.01.2025 18:39:37 (aaa) Zurab Makharadze: /clothes
+12.01.2025 18:48:58 - Loaded shop: hatz at position: 0 0 0
+12.01.2025 18:48:58 - Loaded shop: lll at position: 0 0 0
+12.01.2025 18:48:58 - Loaded shop: kk at position: 0 0 0
+12.01.2025 18:48:58 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+12.01.2025 18:48:58 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+12.01.2025 18:49:17 (aaa) Zurab Makharadze: /clothes
+12.01.2025 19:08:28 - Loaded shop: hatz at position: 0 0 0
+12.01.2025 19:08:28 - Loaded shop: lll at position: 0 0 0
+12.01.2025 19:08:28 - Loaded shop: kk at position: 0 0 0
+12.01.2025 19:08:28 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+12.01.2025 19:08:28 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+12.01.2025 19:08:58 (aaa) Zurab Makharadze: /clothes
+12.01.2025 19:12:45 (aaa) Zurab Makharadze: /clothes
+12.01.2025 19:18:44 (aaa) Zurab Makharadze: /givegub
+12.01.2025 19:18:46 (aaa) Zurab Makharadze: /weapon
+12.01.2025 19:18:49 (aaa) Zurab Makharadze: /weapon katana 1
+12.01.2025 19:19:07 (aaa) Zurab Makharadze: /weapon sword 1
+12.01.2025 19:19:17 (aaa) Zurab Makharadze: /weapon pistol 50
+12.01.2025 19:19:30 (aaa) Zurab Makharadze: Mai sunteti smecheri?
+12.01.2025 19:19:51 (aaa) Zurab Makharadze: .
+12.01.2025 19:19:58 (aaa) Zurab Makharadze: /unequip
+12.01.2025 19:20:10 (aaa) Zurab Makharadze: /createweapon
+13.01.2025 02:53:42 - Loaded shop: hatz at position: 0 0 0
+13.01.2025 02:53:42 - Loaded shop: lll at position: 0 0 0
+13.01.2025 02:53:42 - Loaded shop: kk at position: 0 0 0
+13.01.2025 02:53:42 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+13.01.2025 02:53:42 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+13.01.2025 02:56:30 (aaa) Zurab Makharadze: /factions
+13.01.2025 02:56:48 (aaa) Zurab Makharadze: /createfaction
+13.01.2025 02:57:02 (aaa) Zurab Makharadze: /createfaction illegal Brigada Vinewood
+13.01.2025 02:59:31 (aaa) Zurab Makharadze: /factions
+13.01.2025 03:23:52 - Loaded shop: hatz at position: 0 0 0
+13.01.2025 03:23:52 - Loaded shop: lll at position: 0 0 0
+13.01.2025 03:23:52 - Loaded shop: kk at position: 0 0 0
+13.01.2025 03:23:52 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+13.01.2025 03:23:52 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+13.01.2025 03:24:18 (aaa) Zurab Makharadze: /factions
+13.01.2025 03:24:24 (aaa) Zurab Makharadze: /joinfaction 2
+13.01.2025 03:24:27 (aaa) Zurab Makharadze: /joinfaction aa
+13.01.2025 03:27:09 - Loaded shop: hatz at position: 0 0 0
+13.01.2025 03:27:09 - Loaded shop: lll at position: 0 0 0
+13.01.2025 03:27:09 - Loaded shop: kk at position: 0 0 0
+13.01.2025 03:27:09 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+13.01.2025 03:27:09 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+13.01.2025 03:27:36 (aaa) Zurab Makharadze: /factions
+13.01.2025 03:27:39 (aaa) Zurab Makharadze: /joinfaction 2
+13.01.2025 03:28:03 (aaa) Zurab Makharadze: /joinfaction 0
+13.01.2025 03:28:08 (aaa) Zurab Makharadze: /f salut

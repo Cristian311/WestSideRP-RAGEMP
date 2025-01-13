@@ -359,10 +359,10 @@
                     itemData[key] = data[key];
                     
                     if (key === 'id') {
-                        document.getElementById('character-select').value = itemData[key];
-                        document.getElementById('character-select-value').textContent = itemData[key];
+                        //document.getElementById('character-select').value = itemData[key];
+                        //document.getElementById('character-select-value').textContent = itemData[key];
                         // Update outfit name when switching outfits
-                        document.getElementById('outfit-name').value = outfitNames[itemData[key]] || '';
+                        //document.getElementById('outfit-name').value = outfitNames[itemData[key]] || '';
                     }
                 }
             }
@@ -457,6 +457,7 @@
         selectItem('shirts'); // Set initial selection to shirts
         updateCharacterValue(); // Initialize character value
     });
+    selectItem('shirts');
     </script>
 </body>
 </html>

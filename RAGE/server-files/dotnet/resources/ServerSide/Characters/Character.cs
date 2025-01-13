@@ -58,6 +58,8 @@ namespace ServerSide.Characters
 
         // Clothes Data
         public ClothesData[] Clothes { get; set; } = new ClothesData[20];
+        public int faction { get; set; } = -1;
+        public int factionRank { get; set; } = 0;
 
         // Constructor
         public Character(Player player, IAccount account, string name, int age, int money)

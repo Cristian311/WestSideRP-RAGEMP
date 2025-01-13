@@ -6,6 +6,8 @@ namespace ClientSide.Character.Clothes
     {
         [JsonProperty("id")]
         public int Id {  get; set; }
+        [JsonProperty("outfitName")]
+        public string Name { get; set; }
 
         [JsonProperty("masks")]
         public ClothingAttributes Mask { get; set; }

@@ -27,6 +27,8 @@ namespace ServerSide.Characters
         HairData Hair { get; set; }
         int currentOutfit { get; set; }
         Character currentCharacter { get; }
+        int faction { get; set; }
+        int factionRank { get; set; }
 
         // Collections
         List<ICharacter> Characters { get; }

@@ -108,7 +108,7 @@ namespace ClientSide.Character.Clothes
             int currentClothes = int.Parse(args[1].ToString());
 
             cefBrowser.ExecuteJs($"UpdateClothes(\"{escapedJson}\");");
-            cefBrowser.ExecuteJs($"selectItem(\"{currentClothes}\");");
+            //cefBrowser.ExecuteJs($"selectItem(\"{currentClothes}\");");
         }
     }
 }
