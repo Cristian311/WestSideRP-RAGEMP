@@ -54,7 +54,12 @@ public class FactionManager : Script
 
         foreach(var member in faction.GetOnlineCharacters())
         {
-            player.SendChatMessage($"{Colors.COLOR_CHAT_WHISPER}{faction.RankNames[member.factionRank]} {member.Name}");
+            var account = AccountManager.PlayerAccountPairs[player];
+            if(account.AdminDuty == false)
+                player.SendChatMessage($"{Colors.COLOR_CHAT_WHISPER}{faction.RankNames[member.factionRank]} {member.Name}");
+            else
+                player.SendChatMessage($"{Colors.COLOR_CHAT_WHISPER}{faction.RankNames[member.factionRank]} {Colors.COLOR_CHAT_ADMIN}{account.Name}");
+
         }
     }
     [RequiresFaction]

@@ -1081,3 +1081,13 @@
 13.01.2025 14:59:36 (aaa) Zurab Makharadze: /ranks
 13.01.2025 14:59:43 (aaa) Zurab Makharadze: /assignrank zurab 1
 13.01.2025 14:59:45 (aaa) Zurab Makharadze: /f salut
+13.01.2025 15:13:31 - Loaded shop: hatz at position: 0 0 0
+13.01.2025 15:13:32 - Loaded shop: lll at position: 0 0 0
+13.01.2025 15:13:32 - Loaded shop: kk at position: 0 0 0
+13.01.2025 15:13:32 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+13.01.2025 15:13:32 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+13.01.2025 15:13:59 (aaa) Zurab Makharadze: /factions
+13.01.2025 15:14:04 (aaa) Zurab Makharadze: /joinfaction 0
+13.01.2025 15:14:06 (aaa) Zurab Makharadze: /fonline
+13.01.2025 15:14:11 (aaa) Zurab Makharadze: /aduty
+13.01.2025 15:14:14 (aaa) Zurab Makharadze: /fonline

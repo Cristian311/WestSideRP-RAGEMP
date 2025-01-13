@@ -15,6 +15,7 @@ namespace ServerSide.Accounts
         public string Email { get; } = "";
         public Player player { get; }
         public int AdminLevel { get; set; }
+        public bool AdminDuty { get; set; } = false;
         public List<ICharacter> Characters { get; set; }
         public Character currentCharacter { get; set; }
         public bool Muted { get; set; }

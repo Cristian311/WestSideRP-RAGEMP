@@ -154,7 +154,22 @@ namespace ServerSide.Server.Commands
 
             AdminManager.SendChatMessageToAdmins($"{Colors.COLOR_CHAT_ERROR}Admin {adminAccount.Name} i-a dat freeze lui {character.Name}");
         }
-
+        [RequiresAdmin]
+        [Command("aduty")]
+        private void adutyCommand(Player player)
+        {
+            var account = AccountManager.PlayerAccountPairs[player];
+            if(account.AdminDuty == false)
+            {
+                account.AdminDuty = true;
+                AdminManager.SendChatMessageToAdmins($"Adminul {account.AdminLevel} {account.Name} este acum on-duty.");
+            }
+            else
+            {
+                account.AdminDuty = false;
+                AdminManager.SendChatMessageToAdmins($"Adminul {account.AdminLevel} {account.Name} este acum off-duty.");
+            }
+        }
         [RequiresAdmin]
         [Command("unfreeze")]
         public void UnfreezePlayerCommand(Player player, string target)
