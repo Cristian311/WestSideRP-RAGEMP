@@ -36,12 +36,13 @@ namespace ServerSide.Characters
         public List<WeaponHash> currentWeapons { get; set; } = new List<WeaponHash>();
         public List<Decoration> Tattoos { get; set; }
         public List<string> TattooNames { get; set; } = new List<string>();
+        
+
+        // Vehicles
+        public GTANetworkAPI.Vehicle CurrentDrivingVehicle { get; set; }
+        public Server.Vehicles.Vehicle CurrentServerDrivingVehicle { get; set; }
         public List<IVehicle> PersonalVehicles { get; set; } = new List<IVehicle>();
         public List<IVehicle> AccessVehicles { get; set; } = new List<IVehicle>();
-
-        // GTANetworkAPI Related
-        public GTANetworkAPI.Vehicle CurrentDrivingVehicle { get; set; }
-
         // Miscellaneous
         public Stopwatch ameStopwatch { get; set; }
         public bool isInInterior { get; set; }
@@ -53,6 +54,7 @@ namespace ServerSide.Characters
         public static int nrOfCharacters = 0;
 
         // Id Manager
+        public IdManager<IVehicle> VehicleIdManager { get; set; } = new IdManager<IVehicle>();
         public IdManager<Item> ItemIdManager { get; set; } = new IdManager<Item>();
 
         // MainPhone Property

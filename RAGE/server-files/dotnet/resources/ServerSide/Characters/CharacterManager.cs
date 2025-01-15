@@ -6,6 +6,7 @@ using ServerSide.Characters.Customization.Hair;
 using ServerSide.Characters.Customization.Tattoos;
 using ServerSide.Server.Commands;
 using ServerSide.Server.DB.CharacterDB;
+using ServerSide.Server.DB.VehicleDB;
 using ServerSide.Server.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace ServerSide.Characters
         //DEFAULT JSONS
         public const string FaceDefaultJSON = "{\"shape\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"skin\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"nose\":{\"width\":\"0\",\"height\":\"0\",\"length\":\"0\",\"bridge\":\"0\",\"tip\":\"0\",\"bridgeShift\":\"0\"},\"brow\":{\"height\":\"0\",\"width\":\"0\"},\"cheeks\":{\"height\":\"0\",\"width\":\"0\",\"cheeksWidth\":\"0\"},\"jaw\":{\"width\":\"0\"},\"chin\":{\"lenght\":\"0\",\"position\":\"0\",\"width\":\"0\",\"shape\":\"0\"},\"neck\":{\"width\":\"0\"},\"lips\":\"0\",\"skinColor\":\"0\",\"eye\":{\"size\":\"0\",\"color\":\"0\"}}\r\n";
         public const string HairDefaultJSON = "{\"hair\":\"0\",\"facialHair\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":1},\"eyebrows\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"},\"bodyHair\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"},\"hairTattoo\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"}}\r\n";
-        
+
         //PAIRS FOR PLAYER AND THEIR DATA
         private static Dictionary<Player, CharacterData> playerData = new Dictionary<Player, CharacterData>(); //this should be <Character, CharacterData>, needs fixed
         private static Dictionary<Character, HairData> characterHairData = new Dictionary<Character, HairData>();
@@ -31,6 +32,10 @@ namespace ServerSide.Characters
         public static List<Character> loggedCharacters = new List<Character>();
         //public static Dictionary<Character, IAccount> CharacterAccountPair = new Dictionary<Character, IAccount>();
 
+        public static Character GetCharacter(Player player)
+        {
+            return PlayerCharacterPair[player];
+        }
         public static List<Character> getCharByName(string name)
         {
             List<Character> chars = new List<Character>();
@@ -139,6 +144,13 @@ namespace ServerSide.Characters
             player.Name = character.Name;
             CustomizeCommands.fixskinCommand(player);
             character.GameId = account.GameId;
+
+            character.PersonalVehicles = VehicleDbManager.LoadVehiclesByName(character.Name);
+            foreach(var veh in character.PersonalVehicles)
+            {
+                veh.VehicleLocalId = character.VehicleIdManager.AssignNewId(veh);
+            }
+            character.AccessVehicles = character.PersonalVehicles;
         }
         public static List<Character> GetMatchingCharacters(string nameOrId)
         {

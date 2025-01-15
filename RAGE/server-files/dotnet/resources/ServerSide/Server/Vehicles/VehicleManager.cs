@@ -3,6 +3,7 @@ using Org.BouncyCastle.Bcpg;
 using ServerSide.Characters;
 using ServerSide.Server.Commands;
 using ServerSide.Server.Commands.CommandAttributes;
+using ServerSide.Server.DB.VehicleDB;
 using ServerSide.Server.Interfaces;
 using ServerSide.Server.Vehicles.Util;
 using ServerSide.Util;
@@ -15,7 +16,7 @@ namespace ServerSide.Server.Vehicles
 {
     internal class VehicleManager : Script
     {
-        private static IdManager<Vehicle> vehicleIdManager = new IdManager<Vehicle>();
+        public static IdManager<IVehicle> vehicleIdManager = new IdManager<IVehicle>();
         public static List<IVehicle> Vehicles { get; private set; } = new List<IVehicle>();
         public static List<VehicleInfo> VehicleInfos { get; private set; } = new List<VehicleInfo>();
 
@@ -34,12 +35,6 @@ namespace ServerSide.Server.Vehicles
             VehicleInfos = loader.Vehicles;
         }
 
-        // Ensures static initialization has completed
-        public static async Task EnsureInitializedAsync()
-        {
-            await initializationTask;
-            
-        }
         [ServerEvent(Event.PlayerEnterVehicle)]
         private void PlayerEnterVehicleEvent(Player player, GTANetworkAPI.Vehicle vehicle, sbyte seatID)
         {
@@ -48,9 +43,14 @@ namespace ServerSide.Server.Vehicles
             {
                 character.CurrentDrivingVehicle = vehicle;
                 var ServerVehicle = GetServerVehicle(character.CurrentDrivingVehicle);
+                character.CurrentServerDrivingVehicle = ServerVehicle;
                 if (ServerVehicle != null)
                 {
                     player.TriggerEvent("SERVER:CLIENT:UpdateFuelAndDistance", ServerVehicle.Distance, ServerVehicle.Gas);
+                }
+                else
+                {
+                    player.SendChatMessage("DEV ERROR: SERVERVEHICLE NOT FOUND");
                 }
             }
         }
@@ -59,15 +59,15 @@ namespace ServerSide.Server.Vehicles
         {
             var character = CharacterManager.PlayerCharacterPair[player];
             character.CurrentDrivingVehicle = null;
+            character.CurrentServerDrivingVehicle = null;
             var ServerVehicle = GetServerVehicle(vehicle);
+            if (ServerVehicle == null) return;
             ServerVehicle.Position = player.Position;
         }
         public static Vehicle GetServerVehicle(GTANetworkAPI.Vehicle vehicle)
         {
-            var ServerVehicle = Vehicles
-                .FirstOrDefault(v => v.GTAVehicle == vehicle) as Vehicle;
+            var ServerVehicle = Vehicles.FirstOrDefault(v => v.GTAVehicle == vehicle) as Vehicle;
 
-            // If the result is null, ServerVehicle will also be null.
             return ServerVehicle;
         }
 
@@ -75,19 +75,72 @@ namespace ServerSide.Server.Vehicles
         private void UpdateCarPositionEvent(Player player, double distance)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            var vehicle = GetServerVehicle(character.CurrentDrivingVehicle);
+            //var vehicle = GetServerVehicle(character.CurrentDrivingVehicle);
+            var vehicle = character.CurrentServerDrivingVehicle;
+            if (vehicle == null) return;
             vehicle.Distance += distance;
             vehicle.GasDistance += distance;
-            //vehicle.Position = player.Position;
+
             if (vehicle.GasDistance > 300)
             {
                 vehicle.Gas -= 0.005f;
                 vehicle.GasDistance = 0;
+                vehicle.Position = player.Position;
                 //player.SendChatMessage(vehicle.Gas.ToString());
                 player.TriggerEvent("SERVER:CLIENT:UpdateFuelAndDistance", vehicle.Distance, vehicle.Gas);
             }
         }
+        [Command("vget", Alias = "vg")]
+        private void vget_cmd(Player player, int index = -1)
+        {
+            if(index == -1)
+            {
+                player.SendChatMessage($"{Colors.RED}Alege un index corect al masinii.");
+                VehiclesCommand(player);
+                return;
+            }
+            var character = CharacterManager.GetCharacter(player);
+            if(index > character.PersonalVehicles.Count)
+            {
+                player.SendChatMessage($"{Colors.RED}Alege un index corect al masinii.");
+                VehiclesCommand(player);
+                return;
+            }
+            var vehicle = character.PersonalVehicles.FirstOrDefault(v => v.VehicleLocalId == index);
+            if (vehicle.isSpawned)
+            {
+                player.SendChatMessage($"{Colors.RED}Acea masina este deja spawnata undeva pe harta.");
+                return;
+            }
+            else
+            {
+                VehicleHash vehModel = NAPI.Util.VehicleNameToModel(vehicle.VehicleName);
+                GTANetworkAPI.Vehicle GTACar = NAPI.Vehicle.CreateVehicle(vehModel, vehicle.Position, 0, 0, 0);
+                vehicle.GTAVehicle = GTACar;
+                vehicle.isSpawned = true;
+                GTACar.NumberPlate = vehicle.VehiclePlate;
+                Vehicles.Add(vehicle);
 
+                player.TriggerEvent("SERVER:CLIENT:CreateBlipForCar", NAPI.Util.ToJson(vehicle.Position));
+                player.SendChatMessage($"{Colors.DARK_YELLOW}Vehicului tau s-a spawnat. Ti-am pus un punct pe harta la locatia acesteia.");
+            }
+        }
+        [Command("vpark", Alias ="vp")]
+        private void vp_cmd(Player player)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            if (character.CurrentDrivingVehicle == null || player.VehicleSeat != 0)
+            {
+                character.SendErrorMessage("Nu esti intr-o masina");
+                return;
+            }
+
+            var vehicle = GetServerVehicle(character.CurrentDrivingVehicle);
+            vehicle.Position = player.Position;
+            vehicle.isSpawned = false;
+            VehicleDbManager.UpdateVehicle(vehicle);
+            character.CurrentDrivingVehicle.Delete();
+        }
         [Command("vw")]
         private void vw_cmd(Player player, string window)
         {
@@ -107,13 +160,25 @@ namespace ServerSide.Server.Vehicles
             GTANetworkAPI.Vehicle vehicle = NAPI.Vehicle.CreateVehicle(vehModel, player.Position, 0, 0, 0);
 
             // Initialize server vehicle
-            Vehicle serverVeh = new Vehicle(character.Name, "personal", vehicle);
+            Vehicle serverVeh = new Vehicle(character.Name, "Personal", vehicle);
             serverVeh.VehicleId = vehicleIdManager.AssignNewId(serverVeh);
 
+            serverVeh.VehicleLocalId = character.VehicleIdManager.AssignNewId(serverVeh);
+            
+            serverVeh.Position = player.Position;
+            serverVeh.VehicleName = vehicle.DisplayName;
+            serverVeh.VehicleDisplayName = NAPI.Vehicle.GetVehicleDisplayName(vehModel);
+            serverVeh.VehiclePlate = "Personal";
+            serverVeh.isSpawned = true;
             Vehicles.Add(serverVeh);
+           
             character.PersonalVehicles.Add(serverVeh);
             character.AccessVehicles.Add(serverVeh);
-            character.SendChatMessage(Colors.INFO + "Ai primit un nou vehicul de tipul: " + NAPI.Vehicle.GetVehicleDisplayName(vehicle.Model));
+            
+            VehicleDbManager.SaveVehicle(serverVeh);
+
+            character.SendChatMessage(Colors.INFO + "Ai primit un nou vehicul de tipul: " + NAPI.Vehicle.GetVehicleDisplayName(vehModel));
+            
         }
         [RequiresAdmin]
         [Command("servervehicles")]
@@ -176,13 +241,10 @@ namespace ServerSide.Server.Vehicles
         private void VehiclesCommand(Player player)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-
-            int cont = 1;
             player.SendChatMessage("Masinile tale: ");
             foreach (var vehicle in character.PersonalVehicles)
             {
-                player.SendChatMessage($"{cont}. {vehicle.VehicleId} {vehicle.GTAVehicle.DisplayName}");
-                cont++;
+                player.SendChatMessage($"{vehicle.VehicleLocalId}. {vehicle.VehicleId} {vehicle.VehicleDisplayName}");
             }
         }
     }

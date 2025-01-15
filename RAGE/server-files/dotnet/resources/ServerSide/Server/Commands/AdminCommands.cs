@@ -12,6 +12,18 @@ namespace ServerSide.Server.Commands
     {
         AccountManager accountManager = new AccountManager();
 
+        [RequiresAdmin(5)]
+        [Command("makeadmin")]
+        private void MakeAdminCommand(Player player, string target, int adminLevel = 1)
+        {
+            var adminAccount = AccountManager.PlayerAccountPairs[player];
+            var targetCharacter = CharacterManager.GetCharacterByName(player, target);
+            if (targetCharacter == null) return;
+
+            var targetAccount = AccountManager.PlayerAccountPairs[targetCharacter.player];
+            AdminManager.SendChatMessageToAdmins($"Adminul {adminAccount.AdminLevel} {adminAccount.Name} l-a facut admin {adminLevel} pe {targetAccount.Name}");
+            targetAccount.AdminLevel = adminLevel;
+        }
         [RequiresAdmin]
         [Command("createveh")]
         public void CreateVehicleCommand(Player player, string car)
