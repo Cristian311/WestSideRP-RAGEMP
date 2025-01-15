@@ -13,6 +13,7 @@ namespace ServerSide.Server.Vehicles
         string VehicleDisplayName { get; set; }
         int VehicleId { get; set; }
         int VehicleLocalId { get; set; }
+        double Distance { get; set; }
         string VehiclePlate { get; set; }
         Vector3 Position { get; set; }
         DateTime InsuranceEnd { get; set; }

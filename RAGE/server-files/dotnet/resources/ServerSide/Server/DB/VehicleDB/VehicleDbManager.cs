@@ -20,11 +20,11 @@ namespace ServerSide.Server.DB.VehicleDB
                 string query = @"
                     INSERT INTO Vehicles 
                         (VehicleId, VehicleLocalId, VehicleName, VehicleDisplayName, OwnerName, OwnerType, VehiclePlate, 
-                         PositionX, PositionY, PositionZ, InsuranceEnd, Gas, GasTank, GasDistance, 
+                         PositionX, PositionY, PositionZ, InsuranceEnd, Distance, Gas, GasTank, GasDistance, 
                          IsPolice, IsAmbulance, IsTaxi)
                     VALUES 
                         (@VehicleId, @VehicleLocalId, @VehicleName, @VehicleDisplayName, @OwnerName, @OwnerType, @VehiclePlate, 
-                         @PositionX, @PositionY, @PositionZ, @InsuranceEnd, @Gas, @GasTank, @GasDistance, 
+                         @PositionX, @PositionY, @PositionZ, @InsuranceEnd, @Distance, @Gas, @GasTank, @GasDistance, 
                          @IsPolice, @IsAmbulance, @IsTaxi)";
 
                 using (var command = new MySqlCommand(query, connection))
@@ -40,6 +40,7 @@ namespace ServerSide.Server.DB.VehicleDB
                     command.Parameters.AddWithValue("@PositionY", vehicle.Position.Y);
                     command.Parameters.AddWithValue("@PositionZ", vehicle.Position.Z);
                     command.Parameters.AddWithValue("@InsuranceEnd", vehicle.InsuranceEnd);
+                    command.Parameters.AddWithValue("@Distance", vehicle.Distance);
                     command.Parameters.AddWithValue("@Gas", vehicle is IGasVehicle gasVehicle ? gasVehicle.Gas : (object)DBNull.Value);
                     command.Parameters.AddWithValue("@GasTank", vehicle is IGasVehicle ? ((IGasVehicle)vehicle).GasTank : (object)DBNull.Value);
                     command.Parameters.AddWithValue("@GasDistance", vehicle is IGasVehicle ? ((IGasVehicle)vehicle).GasDistance : (object)DBNull.Value);
@@ -81,6 +82,7 @@ namespace ServerSide.Server.DB.VehicleDB
                 PositionY = @PositionY,
                 PositionZ = @PositionZ,
                 InsuranceEnd = @InsuranceEnd,
+                Distance = @Distance,
                 Gas = @Gas,
                 GasTank = @GasTank,
                 GasDistance = @GasDistance,
@@ -102,6 +104,7 @@ namespace ServerSide.Server.DB.VehicleDB
                     command.Parameters.AddWithValue("@PositionY", vehicle.Position.Y);
                     command.Parameters.AddWithValue("@PositionZ", vehicle.Position.Z);
                     command.Parameters.AddWithValue("@InsuranceEnd", vehicle.InsuranceEnd);
+                    command.Parameters.AddWithValue("@Distance", vehicle.Distance);
                     command.Parameters.AddWithValue("@Gas", vehicle is IGasVehicle ? ((IGasVehicle)vehicle).Gas : (object)DBNull.Value);
                     command.Parameters.AddWithValue("@GasTank", vehicle is IGasVehicle ? ((IGasVehicle)vehicle).GasTank : (object)DBNull.Value);
                     command.Parameters.AddWithValue("@GasDistance", vehicle is IGasVehicle ? ((IGasVehicle)vehicle).GasDistance : (object)DBNull.Value);
@@ -173,6 +176,7 @@ namespace ServerSide.Server.DB.VehicleDB
                     VehicleDisplayName = vehicleDisplayName,
                     Position = position,
                     InsuranceEnd = insuranceEnd,
+                    Distance = reader.GetDouble("Distance"),
                     Gas = reader.GetFloat("Gas"),
                     GasTank = reader.GetFloat("GasTank"),
                     GasDistance = reader.GetDouble("GasDistance"),

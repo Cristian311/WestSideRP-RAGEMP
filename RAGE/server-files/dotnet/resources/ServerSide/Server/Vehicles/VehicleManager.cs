@@ -100,7 +100,7 @@ namespace ServerSide.Server.Vehicles
                 return;
             }
             var character = CharacterManager.GetCharacter(player);
-            if(index > character.PersonalVehicles.Count)
+            if(index >= character.PersonalVehicles.Count)
             {
                 player.SendChatMessage($"{Colors.RED}Alege un index corect al masinii.");
                 VehiclesCommand(player);
