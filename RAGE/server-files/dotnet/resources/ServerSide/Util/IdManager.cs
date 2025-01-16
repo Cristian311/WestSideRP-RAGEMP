@@ -24,7 +24,10 @@ public class IdManager<T>
 
         return newId;
     }
-
+    public bool IsIdBusy(int id)
+    {
+        return _usedIds.Contains(id);
+    }
     public void RemoveId(int id)
     {
         if (_idToEntityMap.ContainsKey(id))

@@ -1,0 +1,5 @@
+is_global = true
+build_property.RootNamespace = ServerSide
+build_property.ProjectDir = C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\dotnet\resources\ServerSide\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

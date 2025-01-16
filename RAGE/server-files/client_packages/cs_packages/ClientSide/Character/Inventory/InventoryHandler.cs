@@ -35,7 +35,7 @@ namespace ClientSide.Character.Inventory
 
         private void OpenInventory(object[] args)
         {
-            cefBrowser = new HtmlWindow("http://package2/html/inventory/inventory.html");
+            cefBrowser = new HtmlWindow("http://package/html/inventory/inventory.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;
             string json = args[0].ToString();

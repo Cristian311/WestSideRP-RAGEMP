@@ -13,7 +13,7 @@ namespace ServerSide.Server.DB.VehicleDB
         public static void SaveVehicle(IVehicle vehicle)
         {
             Database db = new Database();
-            using (var connection = db.getDatabaseConnection())
+            using (var connection = db.GetDatabaseConnection())
             {
                 connection.Open();
 
@@ -66,7 +66,7 @@ namespace ServerSide.Server.DB.VehicleDB
         public static void UpdateVehicle(IVehicle vehicle)
         {
             Database db = new Database();
-            using (var connection = db.getDatabaseConnection())
+            using (var connection = db.GetDatabaseConnection())
             {
                 connection.Open();
 
@@ -131,7 +131,7 @@ namespace ServerSide.Server.DB.VehicleDB
             var vehicles = new List<IVehicle>();
             Database db = new Database();
 
-            using (var connection = db.getDatabaseConnection())
+            using (var connection = db.GetDatabaseConnection())
             {
                 connection.Open();
 
@@ -147,12 +147,12 @@ namespace ServerSide.Server.DB.VehicleDB
                         {
                             var veh = MapReaderToVehicle(reader);
                             vehicles.Add(veh);
-                            VehicleManager.vehicleIdManager.AssignNewId(veh);
+                            if(!VehicleManager.vehicleIdManager.IsIdBusy(veh.VehicleId))
+                                VehicleManager.vehicleIdManager.SetIdBusy(veh.VehicleId);
                         }
                     }
                 }
             }
-            
             return vehicles;
         }
         private static IVehicle MapReaderToVehicle(MySqlDataReader reader)

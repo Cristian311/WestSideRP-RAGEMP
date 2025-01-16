@@ -16,7 +16,7 @@ namespace ServerSide.Server.DB.FactionDB
         {
             Database db = new Database();
 
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 try
                 {
@@ -65,7 +65,7 @@ namespace ServerSide.Server.DB.FactionDB
             List<Faction> factions = new List<Faction>();
             Database db = new Database();
 
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 try
                 {
@@ -121,7 +121,7 @@ namespace ServerSide.Server.DB.FactionDB
         public static bool UpdateFaction(Faction faction)
         {
             Database db = new Database();
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 try
                 {

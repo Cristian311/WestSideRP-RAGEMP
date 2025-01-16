@@ -28,7 +28,7 @@ namespace ClientSide.Character
         private void ShowCreateCharScreen(object[] args)
         {
             //CloseCreateCharInterface(null);
-            cefBrowser = new HtmlWindow("http://package2/html/Characters/create_character.html"); 
+            cefBrowser = new HtmlWindow("http://package/html/characters/create_character.html"); 
             cefBrowser.Active = true;
             Cursor.Visible = true;
         }

@@ -19,7 +19,7 @@ namespace ClientSide.Auth
          
         private void ShowAuthInterface(object[] args)
         {
-            cefBrowser = new HtmlWindow("http://package2/html/loginregister/login_register.html");
+            cefBrowser = new HtmlWindow("http://package/html/loginregister/login_register.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;
         }

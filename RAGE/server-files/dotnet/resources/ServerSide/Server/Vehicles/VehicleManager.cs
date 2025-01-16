@@ -151,10 +151,13 @@ namespace ServerSide.Server.Vehicles
                 return;
             }
         }
+        [RequiresAdmin(4)]
         [Command("createpersonalvehicle", Alias = "cpv")]
         private void CreatePersonalVehicleCommand(Player player, string vehName)
         {
+
             var character = CharacterManager.PlayerCharacterPair[player];
+            Console.WriteLine($"CreatePersonalVehicleCommand invoked by {character.Name}");
 
             VehicleHash vehModel = NAPI.Util.VehicleNameToModel(vehName);
             GTANetworkAPI.Vehicle vehicle = NAPI.Vehicle.CreateVehicle(vehModel, player.Position, 0, 0, 0);
@@ -170,16 +173,28 @@ namespace ServerSide.Server.Vehicles
             serverVeh.VehicleDisplayName = NAPI.Vehicle.GetVehicleDisplayName(vehModel);
             serverVeh.VehiclePlate = "Personal";
             serverVeh.isSpawned = true;
-            Vehicles.Add(serverVeh);
-           
-            character.PersonalVehicles.Add(serverVeh);
+
+            Vehicles.Add(serverVeh);            character.PersonalVehicles.Add(serverVeh);
             character.AccessVehicles.Add(serverVeh);
-            
+
             VehicleDbManager.SaveVehicle(serverVeh);
 
+            //i dont know why it puts two vehicles in the character.PersonalVehicles instead of one but i ll brute force it to be normal
+            //FixPersonalVehicles(character);
+
             character.SendChatMessage(Colors.INFO + "Ai primit un nou vehicul de tipul: " + NAPI.Vehicle.GetVehicleDisplayName(vehModel));
-            
         }
+        public static void FixPersonalVehicles(Character character)
+        {
+            character.PersonalVehicles.Clear();
+            character.PersonalVehicles = VehicleDbManager.LoadVehiclesByName(character.Name);
+            character.VehicleIdManager = new IdManager<IVehicle>();
+            foreach(var veh in character.PersonalVehicles)
+            {
+                veh.VehicleLocalId = character.VehicleIdManager.AssignNewId(veh);
+            }
+        }
+
         [RequiresAdmin]
         [Command("servervehicles")]
         private void ServerVehiclesCommand(Player player, double speed = 0)
@@ -241,10 +256,12 @@ namespace ServerSide.Server.Vehicles
         private void VehiclesCommand(Player player)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
+            player.SendChatMessage($"Ai {character.PersonalVehicles.Count.ToString()} vehicule. ");
             player.SendChatMessage("Masinile tale: ");
             foreach (var vehicle in character.PersonalVehicles)
             {
-                player.SendChatMessage($"{vehicle.VehicleLocalId}. {vehicle.VehicleId} {vehicle.VehicleDisplayName}");
+                string FuelString = vehicle is IGasVehicle ? "Benzina: " + (((IGasVehicle)vehicle).Gas / ((IGasVehicle)vehicle).GasTank * 100).ToString("F1") + "%" : "";
+                player.SendChatMessage($"{vehicle.VehicleLocalId}. {vehicle.VehicleDisplayName}[{vehicle.VehicleId}] KM: {vehicle.Distance} {FuelString}");
             }
         }
     }

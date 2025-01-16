@@ -5,30 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="html\**" />
-    <EmbeddedResource Remove="html\**" />
-    <None Remove="html\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\..\..\..\gm\RAGE\server-files\dotnet\runtime\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\dotnet\runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="rage-sharpN">
       <HintPath>..\..\..\..\..\..\..\..\..\..\RAGEMP\dotnet\rage-sharpN.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EditorConfigFiles Remove="C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\Player\.editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Player\.editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EditorConfigFiles Remove="C:\Users\sarof\Desktop\RAGE MP SERVERS\GM DE RP .NET CORE 3.1\RAGE\server-files\client_packages\cs_packages\ClientSide\Player\.editorconfig" />
   </ItemGroup>
 
 </Project>

@@ -15,7 +15,7 @@ namespace ClientSide
 
         public PLD()
         {
-            CEF = new HtmlWindow("https://package2/PLD/index.html");
+            CEF = new HtmlWindow("https://package/PLD/index.html");
             Events.Tick += Update;
         }
 

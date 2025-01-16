@@ -26,10 +26,10 @@ namespace ServerSide.Server.Commands
         }
         [RequiresAdmin]
         [Command("createveh")]
-        public void CreateVehicleCommand(Player player, string car)
+        public void CreateVehicleCommand(Player player, string car, int color1 = 0, int color2 = 0)
         {
             VehicleHash busModel = NAPI.Util.VehicleNameToModel(car); //Gets the hash of bus model
-            NAPI.Vehicle.CreateVehicle(busModel, player.Position, 0, 0, 0); //Creates a bus on the player's position
+            NAPI.Vehicle.CreateVehicle(busModel, player.Position, 0, color1, color2); //Creates a bus on the player's position
         }
         [RequiresAdmin]
         [Command("die")]

@@ -13,7 +13,7 @@ namespace ServerSide.Server.DB.CharacterDB
             if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
                 return false;
 
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 try
                 {

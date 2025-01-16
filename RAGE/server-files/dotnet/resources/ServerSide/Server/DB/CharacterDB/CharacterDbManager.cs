@@ -10,6 +10,7 @@ using ServerSide.Server.Interfaces;
 using ServerSide.Server.Items;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Reflection;
 using System.Text;
 
@@ -22,7 +23,7 @@ namespace ServerSide.Server.DB.CharacterDB
             Database db = new Database();
             if (CharacterExists(character.Name))
                 return false;
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 try
                 {
@@ -36,8 +37,8 @@ namespace ServerSide.Server.DB.CharacterDB
                         command.Parameters.AddWithValue("@Age", character.Age);
                         command.Parameters.AddWithValue("@Money", character.Money);
                         command.Parameters.AddWithValue("@gender", character.Gender);
-                        command.Parameters.AddWithValue("@FaceJSON", NAPI.Util.ToJson(character.Face));
-                        command.Parameters.AddWithValue("@HairJSON", NAPI.Util.ToJson(character.Hair));
+                        command.Parameters.AddWithValue("@FaceJSON", CharacterManager.FaceDefaultJSON);
+                        command.Parameters.AddWithValue("@HairJSON", CharacterManager.HairDefaultJSON);
                         command.Parameters.AddWithValue("@TattooJSON", "{}"); // null tattoos when created
                         command.Parameters.AddWithValue("@HighlightsJSON", "{}"); // null highlihhts when created
 
@@ -73,7 +74,7 @@ namespace ServerSide.Server.DB.CharacterDB
             if (name == string.Empty)
                 return false;
             Database db = new Database();
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 string query = "SELECT * FROM `characters` WHERE Name = @Name";
 
@@ -112,7 +113,7 @@ namespace ServerSide.Server.DB.CharacterDB
                 return null;
 
             Database db = new Database();
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 string query = "SELECT * FROM `characters` WHERE Name = @name";
                 MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -130,31 +131,31 @@ namespace ServerSide.Server.DB.CharacterDB
                             Character character = new Character(
                                 account.player,
                                 account,
-                                reader.GetString(2), // Assuming Name column is not nullable
-                                reader.GetInt32(3),
-                                reader.GetInt32(4)
+                                reader.GetString("NAME"), // Assuming Name column is not nullable
+                                reader.GetInt32("Age"),
+                                reader.GetInt32("Money")
                             );
 
-                            character.Id = reader.GetInt32(0);
-                            character.isCreated = reader.GetBoolean(6);
-                            character.Gender = reader.GetBoolean(9);
+                            character.Id = reader.GetInt32("id");
+                            character.isCreated = reader.GetBoolean("isCreated");
+                            character.Gender = reader.GetBoolean("gender");
 
-                            if (character.isCreated)
+                            //if (character.isCreated)
                             {
                                 // FACE HANDLER
-                                character.Face = !reader.IsDBNull(7)
-                                    ? NAPI.Util.FromJson<CharacterData>(reader.GetString(7))
+                                character.Face = !reader.IsDBNull("faceJSON")
+                                    ? NAPI.Util.FromJson<CharacterData>(reader.GetString("faceJSON"))
                                     : null;
 
                                 // HAIR HANDLER
-                                character.Hair = !reader.IsDBNull(8)
-                                    ? NAPI.Util.FromJson<HairData>(reader.GetString(8))
+                                character.Hair = !reader.IsDBNull("HairJSON")
+                                    ? NAPI.Util.FromJson<HairData>(reader.GetString("HairJSON"))
                                     : null;
 
                                 // ITEMS HANDLER
-                                if (!reader.IsDBNull(10))
+                                if (!reader.IsDBNull("ItemsJSON"))
                                 {
-                                    var ItemsJSON = reader.GetString(10);
+                                    var ItemsJSON = reader.GetString("ItemsJSON");
                                     character.Items = NAPI.Util.FromJson<List<Item>>(ItemsJSON) ?? new List<Item>();
                                 }
                                 else
@@ -174,21 +175,25 @@ namespace ServerSide.Server.DB.CharacterDB
                                 }
 
                                 // CURRENT OUTFIT HANDLER
-                                character.currentOutfit = !reader.IsDBNull(11) ? reader.GetInt32(11) : 0;
+                                character.currentOutfit = !reader.IsDBNull("currentOutfit") ? reader.GetInt32("currentOutfit") : 0;
 
                                 // TATTOOS HANDLER
-                                character.Tattoos = !reader.IsDBNull(12)
-                                    ? NAPI.Util.FromJson<List<Decoration>>(reader.GetString(12))
-                                    : new List<Decoration>();
+                                var tattoo = reader.GetString("TattooJSON");
+                                if (!tattoo.Equals("{}"))
+                                    character.Tattoos = !reader.IsDBNull("TattooJSON")
+                                        ? NAPI.Util.FromJson<List<Decoration>>(tattoo)
+                                        : new List<Decoration>();
 
-                                character.TattooNames = !reader.IsDBNull(13)
-                                    ? NAPI.Util.FromJson<List<string>>(reader.GetString(13))
-                                    : new List<string>();
+                                var tattooNames = reader.GetString("HighlightsJSON");
+                                if (!tattoo.Equals("{}"))
+                                    character.TattooNames = !reader.IsDBNull("HighlightsJSON")
+                                        ? NAPI.Util.FromJson<List<string>>(tattooNames)
+                                        : new List<string>();
 
                                 // MAIN PHONE DB HANDLER
-                                if (!reader.IsDBNull(14))
+                                if (!reader.IsDBNull("currentphone"))
                                 {
-                                    int mainPhoneIndex = reader.GetInt32(14);
+                                    int mainPhoneIndex = reader.GetInt32("currentphone");
 
                                     if (mainPhoneIndex >= 0 && mainPhoneIndex < character.Items.Count)
                                     {
@@ -206,11 +211,11 @@ namespace ServerSide.Server.DB.CharacterDB
                                 }
 
                                 //faction and faction rank
-                                character.faction = !reader.IsDBNull(15)
-                                    ? reader.GetInt32(15)
+                                character.faction = !reader.IsDBNull("faction")
+                                    ? reader.GetInt32("faction")
                                     : -1;
-                                character.factionRank = !reader.IsDBNull(16)
-                                    ? reader.GetInt32(16)
+                                character.factionRank = !reader.IsDBNull("factionRank")
+                                    ? reader.GetInt32("factionRank")
                                     : 0;
                             }
 
@@ -238,7 +243,7 @@ namespace ServerSide.Server.DB.CharacterDB
         public static Character getCharacterById(IAccount account, int id)
         {
             Database db = new Database();
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 string query = "SELECT * FROM `characters` WHERE id = @id";
 
@@ -293,7 +298,7 @@ namespace ServerSide.Server.DB.CharacterDB
             if (account == null)
                 return null;
             Database db = new Database();
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 List<ICharacter> characters = new List<ICharacter>();
                 string query = "SELECT * FROM `characters` WHERE AccountId = @accountId";
@@ -338,7 +343,7 @@ namespace ServerSide.Server.DB.CharacterDB
         {
 
             Database db = new Database();
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 ClothesData clothesData = new ClothesData();
                 string query = "SELECT * FROM `clothes` WHERE characterID = @characterId AND localID = @localID";

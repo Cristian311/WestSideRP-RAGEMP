@@ -66,7 +66,7 @@ namespace ClientSide.Character
                 string tattooCollectionJson = args[2].ToString();
                 string tattooHashJson = args[3].ToString();
 
-                cefBrowser = new HtmlWindow("http://package2/html/tattoos/tattoos.html");
+                cefBrowser = new HtmlWindow("http://package/html/tattoos/tattoos.html");
 
                 cefBrowser.Active = true;
                 Cursor.Visible = true;

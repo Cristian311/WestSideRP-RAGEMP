@@ -22,10 +22,10 @@ namespace ServerSide.Server.DB.CharacterDB
         public static bool UpdateCharacter(ICharacter character)
         {
             Database db = new Database();
-            if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
-                return false;
+            //if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
+            //    return false;
 
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 try
                 {
@@ -79,7 +79,7 @@ namespace ServerSide.Server.DB.CharacterDB
             if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
                 return false;
 
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 try
                 {
@@ -124,7 +124,7 @@ namespace ServerSide.Server.DB.CharacterDB
             if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
                 return false;
 
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 try
                 {
@@ -171,7 +171,7 @@ namespace ServerSide.Server.DB.CharacterDB
             if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
                 return false;
 
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 try
                 {
@@ -215,7 +215,7 @@ namespace ServerSide.Server.DB.CharacterDB
             if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
                 return false;
 
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 try
                 {
@@ -258,7 +258,7 @@ namespace ServerSide.Server.DB.CharacterDB
         public static bool UpdateCharacterClothes(ICharacter character, ClothesData clothes)
         {
             Database db = new Database();
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 try
                 {

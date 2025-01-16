@@ -127,7 +127,7 @@ namespace ClientSide.Character.Hair
         private void ShowHairScreen(object[] args)
         {
             // Initialize the HTML window and show the cursor
-            cefBrowser = new HtmlWindow("http://package2/html/Characters/customize_hair.html");
+            cefBrowser = new HtmlWindow("http://package/html/characters/customize_hair.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;
 

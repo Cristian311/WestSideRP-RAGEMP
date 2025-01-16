@@ -6,7 +6,7 @@ namespace ClientSide.Player
 {
     internal class Speedometer : Events.Script
     {
-        private HtmlWindow cefBroswer = new HtmlWindow("https://package2/speedometer/CEF/speedometer.html");
+        private HtmlWindow cefBroswer = new HtmlWindow("https://package/speedometer/CEF/speedometer.html");
         private static RAGE.Elements.Player player = RAGE.Elements.Player.LocalPlayer;
         private static bool showed = false;
         private Vector3 lastPosition;

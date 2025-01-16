@@ -8,6 +8,7 @@ using ServerSide.Server.Commands;
 using ServerSide.Server.DB.CharacterDB;
 using ServerSide.Server.DB.VehicleDB;
 using ServerSide.Server.Interfaces;
+using ServerSide.Server.Vehicles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,10 @@ namespace ServerSide.Characters
     internal class CharacterManager : Script
     {
         //DEFAULT JSONS
-        public const string FaceDefaultJSON = "{\"shape\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"skin\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"nose\":{\"width\":\"0\",\"height\":\"0\",\"length\":\"0\",\"bridge\":\"0\",\"tip\":\"0\",\"bridgeShift\":\"0\"},\"brow\":{\"height\":\"0\",\"width\":\"0\"},\"cheeks\":{\"height\":\"0\",\"width\":\"0\",\"cheeksWidth\":\"0\"},\"jaw\":{\"width\":\"0\"},\"chin\":{\"lenght\":\"0\",\"position\":\"0\",\"width\":\"0\",\"shape\":\"0\"},\"neck\":{\"width\":\"0\"},\"lips\":\"0\",\"skinColor\":\"0\",\"eye\":{\"size\":\"0\",\"color\":\"0\"}}\r\n";
-        public const string HairDefaultJSON = "{\"hair\":\"0\",\"facialHair\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":1},\"eyebrows\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"},\"bodyHair\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"},\"hairTattoo\":{\"value\":\"0\",\"color\":\"0\",\"secondaryColor\":\"0\",\"opacity\":\"1\"}}\r\n";
+        //public const string FaceDefaultJSON = "{\"shape\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"skin\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"nose\":{\"width\":\"0\",\"height\":\"0\",\"length\":\"0\",\"bridge\":\"0\",\"tip\":\"0\",\"bridgeShift\":\"0\"},\"brow\":{\"height\":\"0\",\"width\":\"0\"},\"cheeks\":{\"height\":\"0\",\"width\":\"0\",\"cheeksWidth\":\"0\"},\"jaw\":{\"width\":\"0\"},\"chin\":{\"lenght\":\"0\",\"position\":\"0\",\"width\":\"0\",\"shape\":\"0\"},\"neck\":{\"width\":\"0\"},\"lips\":\"0\",\"skinColor\":\"0\",\"eye\":{\"size\":\"0\",\"color\":\"0\"}}\r\n";
+        public const string FaceDefaultJSON = "{\"shape\":{\"first\":25,\"second\":19,\"mix\":0.85},\"skin\":{\"first\":16,\"second\":14,\"mix\":0.76},\"nose\":{\"width\":0.46,\"height\":0.14,\"length\":0.34,\"bridge\":0.21,\"tip\":-0.14,\"bridgeShift\":0.35},\"brow\":{\"height\":0.38,\"width\":-0.34},\"cheeks\":{\"height\":0.58,\"width\":0.48,\"cheekswidth\":0.0},\"jaw\":{\"height\":0.24,\"width\":0.4},\"skinColor\":\"0\",\"eye\":{\"size\":-0.09,\"color\":12},\"lips\":-0.21,\"chin\":{\"length\":0.99,\"position\":0.64,\"width\":0.66,\"shape\":-0.3},\"neck\":{\"width\":0.67},\"facialDetails\":{\"blemishes\":{\"value\":21,\"opacity\":0.4},\"ageing\":{\"value\":7,\"opacity\":0.99},\"complexion\":{\"value\":5,\"opacity\":0.81},\"sunDamage\":{\"value\":8,\"opacity\":0.71},\"molesFreckles\":{\"value\":14,\"opacity\":0.81}}}";
+        
+        public const string HairDefaultJSON = "{\"facialHair\":{\"value\":14,\"color\":0},\"hair\":{\"value\":12,\"color\":0,\"secondColor\":0},\"eyebrows\":{\"value\":24,\"color\":4},\"bodyHair\":{\"value\":5,\"color\":0},\"hairTattoo\":12}";
 
         //PAIRS FOR PLAYER AND THEIR DATA
         private static Dictionary<Player, CharacterData> playerData = new Dictionary<Player, CharacterData>(); //this should be <Character, CharacterData>, needs fixed
@@ -130,6 +133,11 @@ namespace ServerSide.Characters
                     HairManager.UpdateHair(player, character.Hair);
                 }
             }
+            //else
+            //{
+            //    string faceJson = NAPI.Util.ToJson(character.Face);
+            //    player.TriggerEvent("SERVER:CLIENT:ShowCustomizeCharScreen", character.Gender, faceJson);
+            //}
             ClothesManager.GetClothes(player, (byte)character.currentOutfit);
             if (character.Tattoos != null)
             {
@@ -151,6 +159,7 @@ namespace ServerSide.Characters
                 veh.VehicleLocalId = character.VehicleIdManager.AssignNewId(veh);
             }
             character.AccessVehicles = character.PersonalVehicles;
+            //VehicleManager.FixPersonalVehicles(character);
         }
         public static List<Character> GetMatchingCharacters(string nameOrId)
         {

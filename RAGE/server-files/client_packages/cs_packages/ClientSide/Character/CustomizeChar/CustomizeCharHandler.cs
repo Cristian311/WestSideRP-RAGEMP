@@ -29,7 +29,7 @@ namespace ClientSide.Character.CustomizeChar
 
         private void ShowCustomizeCharScreenServer(object[] args)
         {
-            cefBrowser = new HtmlWindow("http://package2/html/Characters/customize_char.html");
+            cefBrowser = new HtmlWindow("http://package/html/characters/customize_char.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;
 
@@ -44,7 +44,7 @@ namespace ClientSide.Character.CustomizeChar
         private void ShowCustomizeCharScreen(object[] args)
         {
             
-            cefBrowser = new HtmlWindow("http://package2/html/Characters/customize_char.html");
+            cefBrowser = new HtmlWindow("http://package/html/characters/customize_char.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;
         }

@@ -10,7 +10,7 @@ namespace ServerSide.Server.DB
             if (CheckAccountLogin(username, password, out int? _))
                 return false;
             Database db = new Database();
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 connection.Open();
                 string query = "INSERT INTO `accounts` (Name, Password) VALUES (@username, @password)";
@@ -42,7 +42,7 @@ namespace ServerSide.Server.DB
             if (username == string.Empty || password == string.Empty)
                 return false;
             Database db = new Database();
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 string query = "SELECT * FROM `accounts` WHERE Name = @username AND Password = @password";
 
@@ -90,7 +90,7 @@ namespace ServerSide.Server.DB
                 return false;
 
             Database db = new Database();
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 string query = "SELECT * FROM `accounts` WHERE Name = @username";
 
@@ -130,7 +130,7 @@ namespace ServerSide.Server.DB
         public bool CheckAccountRegister(string username)
         {
             Database db = new Database();
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 if (username == string.Empty)
                     return false;

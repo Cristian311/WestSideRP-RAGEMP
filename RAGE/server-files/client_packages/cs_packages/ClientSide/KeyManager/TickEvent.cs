@@ -17,6 +17,10 @@ namespace ClientSide
 
         private void Tick(List<RAGE.Events.TickNametagData> nametags)
         {
+            KeyManager.KeyBind(KeyManager.KeyMouse, delegate // ~
+            {
+                Cursor.Visible = !Cursor.Visible;
+            });
             if (RAGE.Ui.Cursor.Visible == false)
             {
                 KeyManager.KeyBind(KeyManager.KeyLctrl, () =>
@@ -24,10 +28,7 @@ namespace ClientSide
                     //Chat.Output("Key Bind Work");      
                 });
 
-                KeyManager.KeyBind(KeyManager.KeyMouse, delegate // ~
-                {
-                    Cursor.Visible = !Cursor.Visible;
-                });
+                
 
                 KeyManager.KeyBind(KeyManager.KeyY, () =>
                 {

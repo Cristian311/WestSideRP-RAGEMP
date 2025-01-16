@@ -11,7 +11,7 @@ namespace ServerSide.Server.DB
         public static bool CreateBlip(BlipData blip)
         {
             Database db = new Database();
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 try
                 {
@@ -57,7 +57,7 @@ namespace ServerSide.Server.DB
         public static List<BlipData> GetBlips()
         {
             Database db = new Database();
-            using (MySqlConnection connection = db.getDatabaseConnection())
+            using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 List<BlipData> blips = new List<BlipData>();
                 string query = "SELECT * FROM `blips`";

@@ -18,7 +18,7 @@ namespace ClientSide.Shop
 
         private void OpenShop(object[] args)
         {
-            cefBrowser = new HtmlWindow("http://package2/html/shops/store.html");
+            cefBrowser = new HtmlWindow("http://package/html/shops/store.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;
 

@@ -22,7 +22,7 @@ namespace ClientSide.Character
         
         private void ShowCharInterface(object[] args)
         {
-            cefBrowser = new HtmlWindow("http://package2/html/Characters/characters.html");
+            cefBrowser = new HtmlWindow("http://package/html/characters/characters.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;
         }
