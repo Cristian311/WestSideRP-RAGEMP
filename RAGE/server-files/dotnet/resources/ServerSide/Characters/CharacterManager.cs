@@ -37,7 +37,9 @@ namespace ServerSide.Characters
 
         public static Character GetCharacter(Player player)
         {
-            return PlayerCharacterPair[player];
+            if(PlayerCharacterPair.ContainsKey(player))
+                return PlayerCharacterPair[player];
+            return null;
         }
         public static List<Character> getCharByName(string name)
         {

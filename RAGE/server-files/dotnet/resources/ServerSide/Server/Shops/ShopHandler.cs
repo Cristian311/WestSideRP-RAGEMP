@@ -1,5 +1,7 @@
 ﻿using GTANetworkAPI;
+using ServerSide.Accounts;
 using ServerSide.Characters;
+using ServerSide.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +21,46 @@ namespace ServerSide.Server.Shops
                 if (shop != null)
                 {
                     string json = NAPI.Util.ToJson(shop.items ?? new List<ShopItem>());
-                    player.TriggerEvent("SERVER:CLIENT:OpenShop", json);
+                    var account = AccountManager.PlayerAccountPairs[player];
+                    bool check = account.AdminLevel > 0 ? true : false;
+                    player.TriggerEvent("SERVER:CLIENT:OpenShop", json, check);
                 }
             }
+        }
+        [RemoteEvent("CLIENT:SERVER:BuyShopItems")]
+        private void BuyShopItems(Player player, string json)
+        {
+            var character = CharacterManager.GetCharacter(player);
+
+            var cart = NAPI.Util.FromJson<Cart>(json);
+            player.SendChatMessage(cart.PaymentMethod);
+            if (cart.PaymentMethod.Equals("cash"))
+            {
+                if (character.RemoveMoney((int)cart.TotalCost))
+                    character.SendInfoMessage($"Ai cumparat de la magazin pentru suma de{Colors.GREEN}{(int)cart.TotalCost}{Colors.INFO}. Bani cash ramasi: {Colors.GREEN}{character.Money}.");
+                else
+                {
+                    character.SendErrorMessage("N-ai destui bani cash pentru asta.");
+                    return;
+                } 
+            }
+            else if (cart.PaymentMethod.Equals("card"))
+            {
+                if (character.RemoveBankMoney((int)cart.TotalCost))
+                    character.SendInfoMessage($"Ai cumparat de la magazin pentru suma de{Colors.GREEN}{(int)cart.TotalCost}{Colors.INFO}. Bani card ramasi: {Colors.GREEN}{character.BankMoney}.");
+                else
+                {
+                    character.SendErrorMessage("N-ai destui bani in banca pentru asta.");
+                    return;
+                }
+            }
+            foreach(var item in cart.Items)
+            {
+                var charItem = new Items.Item(character, item.Name, item.Type, item.Quantity, true);
+                charItem.localID = character.ItemIdManager.AssignNewId(charItem);
+                character.Items.Add(charItem);
+            }
+
         }
 
         [RemoteEvent("CLIENT:SERVER:SaveItemData")]

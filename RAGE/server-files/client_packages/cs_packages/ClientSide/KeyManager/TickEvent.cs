@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using CHRP.Assets;
 using ClientSide.Character.Inventory;
+using ClientSide.Shop;
 using RAGE;
 using RAGE.Ui;
 
@@ -21,6 +22,11 @@ namespace ClientSide
             {
                 Cursor.Visible = !Cursor.Visible;
             });
+            KeyManager.KeyBind(KeyManager.KeyF4, () =>
+            {
+                InventoryHandler.CloseInventory(null);
+                ShopHandler.CloseShop(null);
+            });
             if (RAGE.Ui.Cursor.Visible == false)
             {
                 KeyManager.KeyBind(KeyManager.KeyLctrl, () =>
@@ -38,10 +44,7 @@ namespace ClientSide
                     Events.CallRemote("CLIENT:SERVER:TryEnterDoor");
                 });
 
-                KeyManager.KeyBind(KeyManager.KeyF4, () =>
-                {
-                    InventoryHandler.CloseInventory(null);
-                });
+                
 
                 KeyManager.KeyBind(KeyManager.KeyL, () =>
                 {

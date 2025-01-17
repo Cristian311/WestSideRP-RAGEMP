@@ -1,1 +1,128 @@
-[{"Name":"hatz","Position":{"X":0.0,"Y":0.0,"Z":0.0},"items":[{"Name":"dfd","Type":"Food","Cost":33}]},{"Name":"lll","Position":{"X":0.0,"Y":0.0,"Z":0.0},"items":[{"Name":"bau","Type":"Food","Cost":23},{"Name":"ff","Type":"Food","Cost":44},{"Name":"233","Type":"Food","Cost":44}]},{"Name":"kk","Position":{"X":0.0,"Y":0.0,"Z":0.0},"items":[{"Name":"dd","Type":"Food","Cost":22}]},{"Name":"kkk","Position":{"X":228.52875,"Y":283.74832,"Z":105.59214},"items":[{"Name":"dfd","Type":"Food","Cost":33},{"Name":"ff","Type":"Food","Cost":44},{"Name":"Premium Coffee","Type":"Food","Cost":10},{"Name":"Artisan Sandwich","Type":"Food","Cost":15},{"Name":"Fresh Salad","Type":"Food","Cost":20},{"Name":"Gourmet Burger","Type":"Food","Cost":25},{"Name":"Premium Coffee","Type":"Food","Cost":10},{"Name":"Artisan Sandwich","Type":"Food","Cost":15},{"Name":"Fresh Salad","Type":"Food","Cost":20},{"Name":"Gourmet Burger","Type":"Food","Cost":25},{"Name":"Premium Coffee","Type":"Food","Cost":10},{"Name":"Artisan Sandwich","Type":"Food","Cost":15},{"Name":"Fresh Salad","Type":"Food","Cost":20},{"Name":"Gourmet Burger","Type":"Food","Cost":25}]},{"Name":"hatz","Position":{"X":234.65785,"Y":283.31845,"Z":105.59121},"items":[{"Name":"dfdf","Type":"Food","Cost":33},{"Name":"dd","Type":"Food","Cost":22},{"Name":"gg","Type":"Food","Cost":3},{"Name":"Premium Coffee","Type":"Food","Cost":10},{"Name":"Artisan Sandwich","Type":"Food","Cost":15},{"Name":"Fresh Salad","Type":"Food","Cost":20},{"Name":"Gourmet Burger","Type":"Food","Cost":25},{"Name":"Premium Coffee","Type":"Food","Cost":10},{"Name":"Artisan Sandwich","Type":"Food","Cost":15},{"Name":"Fresh Salad","Type":"Food","Cost":20},{"Name":"Gourmet Burger","Type":"Food","Cost":25}]}]
+[
+    {
+        "Id": 0,
+        "Name": "kkk",
+        "Position": {
+            "X": 228.52875,
+            "Y": 283.74832,
+            "Z": 105.59214
+        },
+        "items": [
+            {
+                "Name": "Fresh Salad",
+                "Type": "Food",
+                "ImageType": "salad",
+                "Cost": 20
+            },
+            {
+                "Name": "Gourmet Burger",
+                "Type": "Food",
+                "ImageType": "burger",
+                "Cost": 25
+            },
+            {
+                "Name": "Premium Coffee",
+                "Type": "Food",
+                "ImageType": "coffee",
+                "Cost": 10
+            },
+            {
+                "Name": "Artisan Sandwich",
+                "Type": "Food",
+                "ImageType": "sandwich",
+                "Cost": 15
+            }
+        ]
+    },
+    {
+        "Id": 0,
+        "Name": "hatz",
+        "Position": {
+            "X": 234.65785,
+            "Y": 283.31845,
+            "Z": 105.59121
+        },
+        "items": [
+            {
+                "Name": "Salata",
+                "Type": "Food",
+                "ImageType": "salad",
+                "Cost": 20
+            },
+            {
+                "Name": "Burger",
+                "Type": "Food",
+                "ImageType": "burger",
+                "Cost": 25
+            },
+            {
+                "Name": "Pizza",
+                "Type": "Food",
+                "ImageType": "pizza",
+                "Cost": 25
+            },
+            {
+                "Name": "Sandviș",
+                "Type": "Food",
+                "ImageType": "sandwich",
+                "Cost": 15
+            },
+            {
+                "Name": "Apă",
+                "Type": "Drink",
+                "ImageType": "water",
+                "Cost": 5
+            },
+            {
+                "Name": "Țigări Redwood",
+                "Type": "Cigarettes",
+                "ImageType": "redwood",
+                "Cost": 25
+            },
+            {
+                "Name": "Brichetă",
+                "Type": "Misc",
+                "ImageType": "lighter",
+                "Cost": 5
+            },
+            {
+                "Name": "Suc",
+                "Type": "Drink",
+                "ImageType": "juice",
+                "Cost": 5
+            },
+            {
+                "Name": "Lapte",
+                "Type": "Drink",
+                "ImageType": "milk",
+                "Cost": 10
+            },
+            {
+                "Name": "Cărți de Joc",
+                "Type": "Misc",
+                "ImageType": "cards",
+                "Cost": 15
+            },
+            {
+                "Name": "Shaorma",
+                "Type": "Food",
+                "ImageType": "shaorma",
+                "Cost": 30
+            },
+            {
+                "Name": "Cartofi Prăjiți",
+                "Type": "Food",
+                "ImageType": "fries",
+                "Cost": 10
+            },
+            
+            {
+                "Name": "Chipsuri",
+                "Type": "Food",
+                "ImageType": "chips",
+                "Cost": 8
+            }
+            
+        ]
+    }
+]

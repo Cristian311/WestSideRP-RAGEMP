@@ -33,7 +33,7 @@ namespace ClientSide.Player
                 TogLocalNametag = true;
         }
 
-        public void Tick(List<Events.TickNametagData> nametags)
+        private void Tick(List<Events.TickNametagData> nametags)
         {
             foreach (var player in Entities.Players.Streamed)
             {

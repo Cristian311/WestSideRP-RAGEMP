@@ -1,4 +1,5 @@
-﻿using RAGE;
+﻿using Newtonsoft.Json;
+using RAGE;
 using RAGE.Ui;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,23 @@ namespace ClientSide.Shop
 {
     internal class ShopHandler : Events.Script
     {
-        private HtmlWindow cefBrowser;
+        private static HtmlWindow cefBrowser;
         public ShopHandler()
         {
             Events.Add("SERVER:CLIENT:OpenShop", OpenShop);
             Events.Add("CEF:CLIENT:CloseShop", CloseShop);
             Events.Add("CEF:CLIENT:SaveItemData", SaveItemData);
+            Events.Add("CEF:CLIENT:BuyShopItems", BuyShopItems);
+        }
+
+        private void BuyShopItems(object[] args)
+        {
+            var json = args[0].ToString();
+            Events.CallRemote("CLIENT:SERVER:BuyShopItems", json);
+
+            cefBrowser.Destroy();
+            cefBrowser = null;
+            Cursor.Visible = false;
         }
 
         private void OpenShop(object[] args)
@@ -24,9 +36,14 @@ namespace ClientSide.Shop
 
             string json = args[0].ToString();
             string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
+            escapedJson = JsonConvert.SerializeObject(json);
 
-            // Use a timeout to ensure the browser is fully loaded before executing JS
-            cefBrowser.ExecuteJs($"UpdateItems(\"{escapedJson}\");");
+            bool adminBool = bool.Parse(args[1].ToString());
+            //Chat.Output(adminBool.ToString());
+
+            cefBrowser.ExecuteJs("setTimeout(() => UpdateItems(" + escapedJson + "), 100);");
+            //cefBrowser.ExecuteJs("setTimeout(() => toggleAdmin(" + adminBool.ToString().ToLower() + "), 100);");
+            cefBrowser.ExecuteJs("setTimeout(() => toggleAdmin(false), 100);");
 
         }
 
@@ -36,10 +53,10 @@ namespace ClientSide.Shop
             Events.CallRemote("CLIENT:SERVER:SaveItemData", json);
         }
 
-        private void CloseShop(object[] args)
+        public static void CloseShop(object[] args)
         {
-            string json = args[0].ToString();
-            Events.CallRemote("CLIENT:SERVER:SaveItemData", json);
+        //    string json = args[0].ToString();
+        //    Events.CallRemote("CLIENT:SERVER:SaveItemData", json);
 
             cefBrowser.Destroy();
             cefBrowser = null;

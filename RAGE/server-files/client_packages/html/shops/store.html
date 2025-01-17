@@ -7,258 +7,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Store Interface</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: rgba(0, 0, 0, 0);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .store-container {
-            width: 60%;
-            max-width: 900px;
-            min-height: 600px;
-            max-height: 800px;
-            background-color: #111;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(255, 102, 0, 0.2);
-        }
-
-        .store-header {
-            background-color: #000;
-            padding: 12px;
-            text-align: center;
-            border-bottom: 2px solid #ff6600;
-        }
-
-        .store-header h1 {
-            margin: 0;
-            color: #ff6600;
-            font-size: 1.5em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .content {
-            display: flex;
-            padding: 15px;
-            gap: 15px;
-            flex: 1;
-        }
-
-        /* Store Items Section */
-        .store-menu {
-            width: 65%;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
-            padding: 15px;
-            background-color: #1a1a1a;
-            border-radius: 12px;
-            max-height: 450px;
-            overflow-y: auto;
-        }
-
-        .store-item {
-            height: 120px;
-            background-color: #222;
-            border-radius: 8px;
-            padding: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border: 1px solid #333;
-        }
-
-        .store-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 3px 10px rgba(255, 102, 0, 0.3);
-            border-color: #ff6600;
-        }
-
-        .item-name {
-            font-size: 1em;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .item-price {
-            color: #ff6600;
-            font-size: 1.1em;
-            font-weight: bold;
-        }
-
-        /* Cart Section */
-        .cart-menu {
-            width: 35%;
-            background-color: #1a1a1a;
-            padding: 15px;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #ff6600;
-        }
-
-        .cart-header h2 {
-            font-size: 1.2em;
-            margin: 0;
-        }
-
-        .cart-items-container {
-            flex-grow: 1;
-            overflow-y: auto;
-            margin-bottom: 15px;
-            padding: 8px;
-            background-color: #222;
-            border-radius: 8px;
-            max-height: 200px;
-        }
-
-        .cart-item {
-            background-color: #333;
-            padding: 10px;
-            margin-bottom: 8px;
-            border-radius: 6px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9em;
-        }
-
-        .cart-item button {
-            background-color: #ff3300;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8em;
-        }
-
-        .select2-container {
-            margin-bottom: 15px;
-        }
-
-        .select2-container--default .select2-selection--single {
-            background-color: #333;
-            border: 1px solid #ff6600;
-            border-radius: 6px;
-            height: 35px;
-        }
-
-        .total {
-            font-size: 1.2em;
-            margin: 15px 0;
-            padding: 10px;
-            background-color: #222;
-            border-radius: 6px;
-            text-align: right;
-        }
-
-        .checkout-btn {
-            background-color: #ff6600;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 1em;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .add-item-section {
-            padding: 15px;
-            background-color: #1a1a1a;
-            margin: 15px;
-            border-radius: 12px;
-        }
-
-        .add-item-form {
-            display: none;
-            gap: 10px;
-            padding: 15px;
-            background-color: #222;
-            border-radius: 8px;
-        }
-
-        .add-item-form input,
-        .add-item-form select {
-            padding: 8px;
-            border-radius: 6px;
-            border: 1px solid #ff6600;
-            background-color: #333;
-            color: white;
-            font-size: 0.9em;
-        }
-
-        .add-item-form button,
-        .add-item-section > button {
-            background-color: #ff6600;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .exit-btn {
-            align-self: center;
-            margin: 15px;
-            padding: 8px 20px;
-            background-color: #ff3300;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
-            border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #ff6600;
-            border-radius: 3px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<!-- Rest of the HTML and JavaScript remains the same as in the previous version -->
+
 <body>
     <div class="store-container">
         <div class="store-header">
             <h1>Store</h1>
+            <button class="exit-btn" onclick="exitStore()">X</button>
         </div>
         <div class="content">
             <div class="store-menu" id="store-menu">
@@ -273,13 +29,15 @@
                     <option value="cash">Cash</option>
                     <option value="card">Card</option>
                 </select>
+                <p id="payment-warning" style="color: red; font-size: 0.9em; display: none; margin-top: 5px;"></p>
                 <div class="total">Total: $<span id="total-cost">0</span></div>
-                <button class="checkout-btn">Checkout</button>
+                <button class="checkout-btn" onclick="checkout()">Checkout</button>
             </div>
         </div>
-        <div class="add-item-section">
-            <button onclick="toggleAddItemForm()">Add New Item</button>
-            <div class="add-item-form" id="add-item-form">
+        <!-- Move add-item-section outside of cart menu -->
+        <div class="add-item-section" id="add-item-section" style="display: none;">
+            <button class="add-item-btn" onclick="toggleAddItemForm()">Add New Item</button>
+            <div class="add-item-form" id="add-item-form" style="display: none;">
                 <input type="text" id="new-item-name" placeholder="Item Name" />
                 <input type="number" id="new-item-price" placeholder="Item Price" />
                 <select id="new-item-type">
@@ -287,74 +45,151 @@
                     <option value="drink">Drink</option>
                     <option value="other">Other</option>
                 </select>
+                <input type="text" id="new-item-image" placeholder="Image Type" />
                 <button onclick="addItem()">Add Item</button>
             </div>
         </div>
-        <button class="exit-btn" onclick="exitStore()">Exit Store</button>
     </div>
 
     <script>
         let cart = {};
         let totalCost = 0;
+        let isAdmin = false;
 
-        // Initialize with some sample items
+        const imageMapping = {
+            // Food items
+            'burger': './images/burger.png',
+            'pizza': './images/pizza.png',
+            'sandwich': './images/sandwich.png',
+            'salad': './images/salad.png',
+            
+            // Drinks
+            'coffee': './images/coffee.png',
+            'soda': './images/soda.png',
+            'water': './images/water.png',
+            'juice': './images/juice.png',
+
+            'redwood': './images/redwood.png',
+            'milk': './images/milk.png',
+            'cards': './images/pack_of_cards.png',
+            'shaorma': './images/shaorma.png',
+            'fries': './images/fries.png',
+            'lighter': './images/lighter.png',
+            'chips': './images/chips.png',
+            // Default fallback image
+            'default': './images/default.png'
+        };
+
+        // Initialize with sample items including image-type
         const initialItems = [
-            { name: "Premium Coffee", price: 10 },
-            { name: "Artisan Sandwich", price: 15 },
-            { name: "Fresh Salad", price: 20 },
-            { name: "Gourmet Burger", price: 25 }
+            
         ];
 
         function initializeStore() {
             const storeMenu = document.getElementById('store-menu');
+            storeMenu.innerHTML = '';
             initialItems.forEach(item => {
-                const newItem = createStoreItem(item.name, item.price);
+                const newItem = createStoreItem(item.name, item.price, item.type, item.imageType);
                 storeMenu.appendChild(newItem);
             });
         }
 
-        function createStoreItem(name, price) {
+        function getImagePath(imageType) {
+            return imageMapping[imageType] || imageMapping['default'];
+        }
+
+        // Update createStoreItem function to use the image mapping
+        function createStoreItem(name, price, type, imageType) {
             const div = document.createElement('div');
             div.className = 'store-item';
+            
+            const imagePath = getImagePath(imageType);
+            
             div.innerHTML = `
+                <img src="${imagePath}" 
+                     alt="${imageType}" 
+                     class="item-image" 
+                     data-image-type="${imageType}"
+                     onerror="this.src='${imageMapping['default']}'">
+                <span class="item-type">${type}</span>
                 <span class="item-name">${name}</span>
                 <span class="item-price">$${price}</span>
             `;
-            div.onclick = () => addToCart(name, price);
+            div.onclick = () => addToCart(name, price, type, imageType);
             return div;
         }
+        function updateCart() {
+            const cartContainer = document.getElementById('cart-items');
+            cartContainer.innerHTML = ''; // Clear existing cart items
 
-        function addToCart(item, price) {
+            for (const [itemName, itemDetails] of Object.entries(cart)) {
+                const cartItemDiv = document.createElement('div');
+                cartItemDiv.className = 'cart-item';
+
+                cartItemDiv.innerHTML = `
+                    <span class="cart-item-name">${itemName}</span>
+                    <span class="cart-item-quantity">x${itemDetails.quantity}</span>
+                    <span class="cart-item-price">$${(itemDetails.price * itemDetails.quantity).toFixed(2)}</span>
+                    <button class="remove-item-btn" onclick="removeFromCart('${itemName}')">Remove</button>
+                `;
+                cartContainer.appendChild(cartItemDiv);
+            }
+
+            // Update the total cost display
+            document.getElementById('total-cost').textContent = totalCost.toFixed(2);
+
+            // Log cart state for debugging
+            console.log("Cart updated:", cart);
+        }
+
+        function addToCart(item, price, type, imageType) {
             if (cart[item]) {
                 cart[item].quantity++;
             } else {
-                cart[item] = { price, quantity: 1 };
+                cart[item] = { price, quantity: 1, type, imageType };
             }
             totalCost += price;
             updateCart();
         }
 
-        function updateCart() {
-            const cartItems = document.getElementById('cart-items');
-            const totalCostSpan = document.getElementById('total-cost');
+        function checkout() {
+            const paymentMethod = document.getElementById('payment-method').value;
+            const paymentWarning = document.getElementById('payment-warning');
 
-            cartItems.innerHTML = '';
-            for (const [item, details] of Object.entries(cart)) {
-                const div = document.createElement('div');
-                div.className = 'cart-item';
-                div.innerHTML = `
-                    <span>${item}</span>
-                    <div>
-                        <span>$${details.price}</span>
-                        <span class="quantity">×${details.quantity}</span>
-                        <button onclick="removeFromCart('${item}')">Remove</button>
-                    </div>
-                `;
-                cartItems.appendChild(div);
+            if (!paymentMethod) {
+                paymentWarning.textContent = 'Please select a payment method to proceed.';
+                paymentWarning.style.display = 'block';
+                return;
             }
 
-            totalCostSpan.textContent = totalCost.toFixed(2);
+            // Clear warning if payment method is selected
+            paymentWarning.style.display = 'none';
+
+            const cartItems = [];
+            for (const [item, details] of Object.entries(cart)) {
+                cartItems.push({
+                    name: item,
+                    price: details.price,
+                    quantity: details.quantity,
+                    type: details.type,
+                    imageType: details.imageType,
+                    totalPrice: details.price * details.quantity
+                });
+            }
+
+            const checkoutData = {
+                items: cartItems,
+                totalCost: totalCost,
+                paymentMethod: paymentMethod
+            };
+
+            mp.trigger("CEF:CLIENT:BuyShopItems", JSON.stringify(checkoutData));
+
+            cart = {};
+            totalCost = 0;
+            updateCart();
         }
+
 
         function removeFromCart(item) {
             if (cart[item]) {
@@ -375,14 +210,17 @@
         function addItem() {
             const name = document.getElementById('new-item-name').value;
             const price = parseFloat(document.getElementById('new-item-price').value);
+            const type = document.getElementById('new-item-type').value;
+            const imageType = document.getElementById('new-item-image').value;
 
-            if (name && price && price > 0) {
+            if (name && price && price > 0 && imageType) {
                 const storeMenu = document.getElementById('store-menu');
-                const newItem = createStoreItem(name, price);
+                const newItem = createStoreItem(name, price, type, imageType);
                 storeMenu.appendChild(newItem);
 
                 document.getElementById('new-item-name').value = '';
                 document.getElementById('new-item-price').value = '';
+                document.getElementById('new-item-image').value = '';
                 toggleAddItemForm();
 
                 saveItemData();
@@ -398,12 +236,14 @@
             storeItems.forEach(item => {
                 const name = item.querySelector('.item-name').textContent;
                 const price = parseFloat(item.querySelector('.item-price').textContent.replace('$', ''));
-                const type = 'Food'; // Default type, modify as needed
+                const type = item.querySelector('.item-type').textContent;
+                const imageType = item.querySelector('.item-image').getAttribute('data-image-type');
 
                 itemsList.push({
                     Name: name,
                     Type: type,
-                    Cost: price
+                    Cost: price,
+                    ImageType: imageType
                 });
             });
 
@@ -412,14 +252,52 @@
         }
 
         function UpdateItems(json) {
-            const itemData = JSON.parse(json);
-            const storeMenu = document.getElementById('store-menu');
-            storeMenu.innerHTML = '';
+            console.log("UpdateItems called with:", json); // Debug log
+            try {
+                const itemData = JSON.parse(json);
+                const storeMenu = document.getElementById('store-menu');
+                storeMenu.innerHTML = '';
 
-            itemData.forEach(item => {
-                const newItem = createStoreItem(item.Name, item.Cost);
-                storeMenu.appendChild(newItem);
-            });
+                itemData.forEach(item => {
+                    const newItem = createStoreItem(item.Name, item.Cost, item.Type, item.ImageType);
+                    storeMenu.appendChild(newItem);
+                });
+            } catch (error) {
+                console.error("Error updating items:", error);
+            }
+        }
+
+        function checkout() {
+            const paymentMethod = document.getElementById('payment-method').value;
+
+            if (!paymentMethod) {
+                alert('Please select a payment method before checking out.');
+                return;
+            }
+
+            const cartItems = [];
+            for (const [item, details] of Object.entries(cart)) {
+                cartItems.push({
+                    name: item,
+                    price: details.price,
+                    quantity: details.quantity,
+                    type: details.type,
+                    imageType: details.imageType,
+                    totalPrice: details.price * details.quantity
+                });
+            }
+
+            const checkoutData = {
+                items: cartItems,
+                totalCost: totalCost,
+                paymentMethod: paymentMethod
+            };
+
+            mp.trigger("CEF:CLIENT:BuyShopItems", JSON.stringify(checkoutData));
+
+            cart = {};
+            totalCost = 0;
+            updateCart();
         }
 
         function exitStore() {
@@ -429,12 +307,14 @@
             storeItems.forEach(item => {
                 const name = item.querySelector('.item-name').textContent;
                 const price = parseFloat(item.querySelector('.item-price').textContent.replace('$', ''));
-                const type = 'Food'; // Default type, modify as needed
+                const type = item.querySelector('.item-type').textContent;
+                const imageType = item.querySelector('.item-image').getAttribute('data-image-type');
 
                 itemsList.push({
                     Name: name,
                     Type: type,
-                    Cost: price
+                    Cost: price,
+                    ImageType: imageType
                 });
             });
 
@@ -443,11 +323,40 @@
             document.querySelector('.store-container').style.display = 'none';
         }
 
-        // Initialize Select2 and store items when document is ready
+        function toggleAdmin(show) {
+            console.log("toggleAdmin called with:", show); // Debug log
+            isAdmin = show === true || show === "true";
+            const addItemSection = document.getElementById('add-item-section');
+            const typeLabels = document.querySelectorAll('.item-type');
+
+            if (isAdmin) {
+                addItemSection.style.display = 'block';
+                typeLabels.forEach(label => {
+                    label.style.display = 'block';
+                });
+            } else {
+                addItemSection.style.display = 'none';
+                typeLabels.forEach(label => {
+                    label.style.display = 'none';
+                });
+            }
+        }
+
         $(document).ready(function() {
             $('#payment-method').select2({
                 placeholder: "Select payment method",
                 allowClear: true
+            }).on('change', function() {
+                const paymentMethod = $(this).val();
+                const checkoutButton = document.querySelector('.checkout-btn');
+                const paymentWarning = document.getElementById('payment-warning');
+
+                checkoutButton.disabled = !paymentMethod;
+
+                // Hide warning message if a payment method is selected
+                if (paymentMethod) {
+                    paymentWarning.style.display = 'none';
+                }
             });
 
             $('#new-item-type').select2({
@@ -456,7 +365,12 @@
             });
 
             initializeStore();
+            
+
+            // Initially disable the checkout button
+            document.querySelector('.checkout-btn').disabled = true;
         });
+
     </script>
 </body>
 </html>

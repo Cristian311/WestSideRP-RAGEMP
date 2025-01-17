@@ -21,6 +21,7 @@ namespace ServerSide.Characters
         public string Name { get; }
         public int Age { get; }
         public int Money { get; set; }
+        public int BankMoney { get; set; }
         public bool Gender { get; set; }
         public bool isCreated { get; set; } = false;
         public bool isCop { get; set; } = false;
@@ -79,6 +80,30 @@ namespace ServerSide.Characters
         }
 
         // Methods
+        public bool RemoveMoney(int value)
+        {
+            if (Money < value) return false;
+            Money -= value;
+            player.TriggerEvent("SERVER:CLIENT:CashMoneyUpdate", Money);
+            return true;
+        }
+        public bool RemoveBankMoney(int value)
+        {
+            if (BankMoney < value) return false;
+            BankMoney -= value;
+            player.TriggerEvent("SERVER:CLIENT:BankMoneyUpdate", BankMoney);
+            return true;
+        }
+        public void AddMoney(int value)
+        {
+            Money += value;
+            player.TriggerEvent("SERVER:CLIENT:CashMoneyUpdate", Money);
+        }
+        public void AddBankMoney(int value)
+        {
+            BankMoney += value;
+            player.TriggerEvent("SERVER:CLIENT:BankMoneyUpdate", BankMoney);
+        }
         public void StartAmeStopwatch()
         {
             ameStopwatch.Start();
