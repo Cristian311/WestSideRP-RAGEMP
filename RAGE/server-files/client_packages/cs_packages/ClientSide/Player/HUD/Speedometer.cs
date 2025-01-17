@@ -2,7 +2,7 @@
 using RAGE.Ui;
 using System.Collections.Generic;
 
-namespace ClientSide.Player
+namespace ClientSide.Player.HUD
 {
     internal class Speedometer : Events.Script
     {
@@ -27,7 +27,7 @@ namespace ClientSide.Player
             string fuelString = fuel.ToString("F2");  // Ensure two decimal places
             //Chat.Output($"updateFuelAndDistance({distance}, {fuelString});");
             cefBroswer.ExecuteJs($"updateFuelAndDistance({distance}, {fuelString});");
-            cefBroswer.ExecuteJs($"updateFuel({fuel*100});");
+            cefBroswer.ExecuteJs($"updateFuel({fuel * 100});");
         }
 
         private void SpeedUpdate(List<Events.TickNametagData> nametags)
@@ -63,7 +63,7 @@ namespace ClientSide.Player
             {
                 if (showed)
                 {
-                    
+
                     cefBroswer.ExecuteJs("hideSpeedo();");
                     showed = false;
                 }

@@ -3,7 +3,7 @@ using RAGE;
 using RAGE.Game;
 using RAGE.Ui;
 
-namespace ClientSide
+namespace ClientSide.Player.HUD
 {
     class PLD : Events.Script
     {
@@ -37,19 +37,19 @@ namespace ClientSide
 
             if (tempCrossing != 0)
             {
-                Crossing = "/ " + Ui.GetStreetNameFromHashKey((uint)tempCrossing);
+                Crossing = "/ " + UiBase.GetStreetNameFromHashKey((uint)tempCrossing);
             }
             if (tempStreet != 0)
             {
-                Street = Ui.GetStreetNameFromHashKey((uint)tempStreet);
+                Street = UiBase.GetStreetNameFromHashKey((uint)tempStreet);
             }
             if (tempZone != "")
             {
-                Zone = Ui.GetLabelText(tempZone);
+                Zone = UiBase.GetLabelText(tempZone);
             }
             if (tempDirection != 0)
             {
-                if ((tempDirection >= 0 && tempDirection < 22.5) || (tempDirection >= 337.5 && tempDirection <= 360))
+                if (tempDirection >= 0 && tempDirection < 22.5 || tempDirection >= 337.5 && tempDirection <= 360)
                 {
                     Direction = "N";
                 }
