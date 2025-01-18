@@ -1,6 +1,6 @@
 require('./animator.js');
 require('./camera.js');
-
+require("./street/index.js");
 
 //enter vehicle passenger with G
 mp.events.add('render', () =>

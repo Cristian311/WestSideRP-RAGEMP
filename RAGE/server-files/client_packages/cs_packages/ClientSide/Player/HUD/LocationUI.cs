@@ -3,7 +3,7 @@ using RAGE;
 using RAGE.Game;
 using RAGE.Ui;
 
-namespace ClientSide.Player.HUD
+namespace ClientSide.Player
 {
     class PLD : Events.Script
     {

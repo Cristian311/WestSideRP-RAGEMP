@@ -9,7 +9,8 @@ namespace ServerSide.Util
         public static string GOLD = "!{#FFD700}"; // Gold
         public static string ERROR = "!{#FF6347}"; // OrangeRed
         public static string SUCCESS = "!{#32CD32}"; // LimeGreen
-        public static string INFO = "!{#1E90FF}"; // DodgerBlue
+        //public static string INFO = "!{#1E90FF}"; // DodgerBlue
+        public static string INFO = "!{#FFA500}"; // LIGHT ORANGE
         public static string FACTION = "!{#1E90FF}"; // DodgerBlue
         public static string WARNING = "!{#FFA500}"; // Orange
         public static string CRITICAL = "!{#FF0000}"; // Red

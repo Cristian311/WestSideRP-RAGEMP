@@ -33,11 +33,11 @@ namespace ServerSide.Server.Shops
             var character = CharacterManager.GetCharacter(player);
 
             var cart = NAPI.Util.FromJson<Cart>(json);
-            player.SendChatMessage(cart.PaymentMethod);
+            //player.SendChatMessage(cart.PaymentMethod);
             if (cart.PaymentMethod.Equals("cash"))
             {
                 if (character.RemoveMoney((int)cart.TotalCost))
-                    character.SendInfoMessage($"Ai cumparat de la magazin pentru suma de{Colors.GREEN}{(int)cart.TotalCost}{Colors.INFO}. Bani cash ramasi: {Colors.GREEN}{character.Money}.");
+                    character.SendInfoMessage($"Ai cumparat de la magazin pentru suma de {Colors.GREEN}{(int)cart.TotalCost}${Colors.INFO}. Bani cash ramasi: {Colors.GREEN}{character.Money}$.");
                 else
                 {
                     character.SendErrorMessage("N-ai destui bani cash pentru asta.");
@@ -47,7 +47,7 @@ namespace ServerSide.Server.Shops
             else if (cart.PaymentMethod.Equals("card"))
             {
                 if (character.RemoveBankMoney((int)cart.TotalCost))
-                    character.SendInfoMessage($"Ai cumparat de la magazin pentru suma de{Colors.GREEN}{(int)cart.TotalCost}{Colors.INFO}. Bani card ramasi: {Colors.GREEN}{character.BankMoney}.");
+                    character.SendInfoMessage($"Ai cumparat de la magazin pentru suma de {Colors.GREEN}{(int)cart.TotalCost}${Colors.INFO}. Bani card ramasi: {Colors.GREEN}{character.BankMoney}$.");
                 else
                 {
                     character.SendErrorMessage("N-ai destui bani in banca pentru asta.");

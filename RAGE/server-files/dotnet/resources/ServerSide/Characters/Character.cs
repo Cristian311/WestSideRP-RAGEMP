@@ -80,6 +80,14 @@ namespace ServerSide.Characters
         }
 
         // Methods
+        public void PlayAnimation(string animDict, string animName, int flag)
+        {
+            player.PlayAnimation(animDict, animName, flag);
+        }
+        public void SetMoneyHud(int cash, int bank)
+        {
+            player.TriggerEvent("SERVER:CLIENT:SetMoney", cash, bank);
+        }
         public bool RemoveMoney(int value)
         {
             if (Money < value) return false;

@@ -2,7 +2,7 @@
 using RAGE.Ui;
 using System.Collections.Generic;
 
-namespace ClientSide.Player.HUD
+namespace ClientSide.Player
 {
     internal class Speedometer : Events.Script
     {

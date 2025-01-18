@@ -21,6 +21,7 @@ namespace ClientSide
             RAGE.Chat.Colors = true;
             RAGE.Game.Ui.HideHudComponentThisFrame(7);
             RAGE.Game.Ui.HideHudComponentThisFrame(9);
+            RAGE.Game.Ui.HideHudComponentThisFrame(3);
         }
     }
 }

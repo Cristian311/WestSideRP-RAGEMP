@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="./css/styles.css" type="text/css" />
 
 	<script>
-		function Update(street, cross, zone, dir) {
+		function update(street, cross, zone, dir) {
 			document.getElementsByClassName('street')[0].innerHTML = street;
 			document.getElementsByClassName('cross')[0].innerHTML = cross;
 			document.getElementsByClassName('zone')[0].innerHTML = zone;
@@ -23,16 +23,16 @@
 	<div class="compass" id="container">
 		<div class="direction">
 			<span class="border">|</span>
-			<span class="dir direction shadow-stroke"></span>
+			<span class="dir direction shadow-stroke">N</span>
 			<span class="border">|</span>
 		</div>
 
 		<div class="vicinity">
 			<div style="display:inline-block">
-				<span class="street shadow-stroke"></span>
-				<span class="cross shadow-stroke"></span>
+				<span class="street shadow-stroke">Alta Street</span>
+				<span class="cross shadow-stroke">/ Vinewood Blvd</span>
 			</div>
-			<span class="zone shadow-stroke"></span>
+			<span class="zone shadow-stroke">Downtown Vinewood</span>
 		</div>
 	</div>
 </body>

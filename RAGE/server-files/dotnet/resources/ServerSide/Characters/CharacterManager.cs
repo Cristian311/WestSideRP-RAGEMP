@@ -161,6 +161,7 @@ namespace ServerSide.Characters
                 veh.VehicleLocalId = character.VehicleIdManager.AssignNewId(veh);
             }
             character.AccessVehicles = character.PersonalVehicles;
+            character.SetMoneyHud(character.Money, character.BankMoney);
             //VehicleManager.FixPersonalVehicles(character);
         }
         public static List<Character> GetMatchingCharacters(string nameOrId)
