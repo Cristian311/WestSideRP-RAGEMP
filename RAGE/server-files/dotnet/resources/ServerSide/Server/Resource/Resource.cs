@@ -5,8 +5,8 @@ namespace ServerSide.Server
 {
     public class Resource : Script
     {
-        private static readonly string ServerName = "West-Side Roleplay";
-        private static readonly string Version = "Version: 0.5a";
+        public static readonly string ServerName = "West-Side Roleplay";
+        public static readonly string Version = "Version: 0.6a";
 
         [ServerEvent(Event.ResourceStart)]
         public void OnResourceStart()
@@ -24,7 +24,7 @@ namespace ServerSide.Server
         private void OnPlayerConnected(Player player)
         {
             string text = $"{ServerName} {Version}";
-            player.TriggerEvent("SERVER:CLIENT:ShowLogo", text);
+            
             player.SendChatMessage(Colors.INFO + text);
         }
     }

@@ -1,9 +1,11 @@
 ﻿using GTANetworkAPI;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Security;
 using ServerSide.Server.DB.CharacterDB;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 
@@ -11,22 +13,54 @@ namespace ServerSide.Characters.Customization.Clothes
 {
     internal class ClothesManager : Script
     {
-        private static string defaultClothesJSON = "{\"id\":2,\"masks\":{\"drawable\":0,\"texture\":0},\"torsos\":{\"drawable\":0,\"texture\":0},\"legs\":{\"drawable\":0,\"texture\":0},\"bags\":{\"drawable\":0,\"texture\":0},\"shoes\":{\"drawable\":0,\"texture\":0},\"accessories\":{\"drawable\":0,\"texture\":0},\"undershirts\":{\"drawable\":0,\"texture\":0},\"bodyArmor\":{\"drawable\":0,\"texture\":0},\"decals\":{\"drawable\":0,\"texture\":0},\"shirts\":{\"drawable\":0,\"texture\":0},\"helmets\":{\"drawable\":-1,\"texture\":0},\"glasses\":{\"drawable\":-1,\"texture\":0},\"earAccesories\":{\"drawable\":-1,\"texture\":0},\"watches\":{\"drawable\":-1,\"texture\":0},\"bracelets\":{\"drawable\":-1,\"texture\":0}}";
+        private static string defaultClothesJSON = "{\"masks\":{\"drawable\":0,\"texture\":0},\"torsos\":{\"drawable\":0,\"texture\":0},\"legs\":{\"drawable\":0,\"texture\":0},\"bags\":{\"drawable\":0,\"texture\":0},\"shoes\":{\"drawable\":0,\"texture\":0},\"accessories\":{\"drawable\":0,\"texture\":0},\"undershirts\":{\"drawable\":0,\"texture\":0},\"bodyArmor\":{\"drawable\":0,\"texture\":0},\"decals\":{\"drawable\":0,\"texture\":0},\"shirts\":{\"drawable\":0,\"texture\":0},\"helmets\":{\"drawable\":-1,\"texture\":0},\"glasses\":{\"drawable\":-1,\"texture\":0},\"earAccesories\":{\"drawable\":-1,\"texture\":0},\"watches\":{\"drawable\":-1,\"texture\":0},\"bracelets\":{\"drawable\":-1,\"texture\":0}}";
         private ClothesManager()
         {
 
         }
+        public static void SendOutfitNames(Player player)
+        {
+            var character = CharacterManager.PlayerCharacterPair[player];
+            var outfitNames = new Dictionary<int, string>();
 
+            // Populate from your database/storage
+            if(character.Clothes == null) return;
+            for(int i = 0; i < 20; i ++)
+            {
+                if (character.Clothes[i] == null)
+                {
+                    outfitNames[i] = "";
+                    break;
+                }
+                if (character.Clothes[i].Id != null && !string.IsNullOrEmpty(character.Clothes[i].Name))
+                {
+                    outfitNames[character.Clothes[i].Id] = character.Clothes[i].Name;
+                }
+            }
+
+            string namesJson = NAPI.Util.ToJson(outfitNames);
+            player.TriggerEvent("SERVER:CLIENT:UpdateOutfitNames", namesJson);
+        }
         [RemoteEvent("CLIENT:SERVER:GetClothes")]
         public static void GetClothes(Player player, byte index)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
             var clothes = CharacterDbManager.getClothes(character, index);
             string clothesJson;
+
             if (clothes != null)
+            {
+                // Make sure we're including the ID in the JSON
+                clothes.Id = index;  // Ensure the ID is set
                 clothesJson = NAPI.Util.ToJson(clothes);
+            }
             else
-                clothesJson = defaultClothesJSON;
+            {
+                // Include the ID in the default clothes JSON
+                clothesJson = "{" + $"\"id\":{index},\"outfitName\":\"\"," + defaultClothesJSON.Substring(1);
+            }
+
+            // Send the data to client
             player.TriggerEvent("SERVER:CLIENT:ShowCostume", clothesJson);
             ClothesUpdate(player, clothesJson);
 
@@ -51,7 +85,7 @@ namespace ServerSide.Characters.Customization.Clothes
         [RemoteEvent("CLIENT:SERVER:ClothesUpdate")] //event not called anymore since moved clothes to clientside, method still useful above
         private static void ClothesUpdate(Player player, string json)
         {
-            NAPI.Util.ConsoleOutput(json);
+            //NAPI.Util.ConsoleOutput(json);
             var clothesData = NAPI.Util.FromJson<ClothesData>(json);
             var clothes = GetClothesComponents(clothesData);
             SetProps(player, clothesData);

@@ -2338,3 +2338,126 @@
 18.01.2025 05:43:33 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
 18.01.2025 05:45:19 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
 18.01.2025 05:45:19 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+18.01.2025 05:48:22 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+18.01.2025 05:48:22 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+18.01.2025 05:49:24 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+18.01.2025 05:49:24 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+18.01.2025 15:37:16 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+18.01.2025 15:37:16 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+18.01.2025 15:40:47 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+18.01.2025 15:40:47 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 18:40:48 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 18:40:48 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 18:43:26 (aaa) Joseph Stalin: /clothes
+19.01.2025 18:44:34 (aaa) Joseph Stalin: /clothes
+19.01.2025 19:40:40 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 19:40:40 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 19:43:54 (aaa) Joseph Stalin: /clothes
+19.01.2025 19:47:05 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 19:47:05 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 19:47:32 (aaa) Joseph Stalin: /clothes
+19.01.2025 19:49:35 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 19:49:35 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 19:50:04 (aaa) Joseph Stalin: /clothes
+19.01.2025 20:02:22 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 20:02:22 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 20:04:08 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 20:04:08 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 20:04:48 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 20:04:48 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 20:06:00 (aaa) Joseph Stalin: /clothes
+19.01.2025 20:06:22 (aaa) Joseph Stalin: /clothes
+19.01.2025 20:06:32 (aaa) Joseph Stalin: /clothes
+19.01.2025 20:14:03 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 20:14:03 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 20:14:27 (aaa) Joseph Stalin: /clothes
+19.01.2025 20:14:57 (aaa) Joseph Stalin: /clothes
+19.01.2025 20:15:13 (aaa) Joseph Stalin: /clothes
+19.01.2025 20:19:15 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 20:19:15 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 20:19:50 (aaa) Joseph Stalin: /clothes
+19.01.2025 20:21:12 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 20:21:12 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 20:21:32 (aaa) Joseph Stalin: /clothes
+19.01.2025 20:22:12 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 20:22:12 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 20:22:30 (aaa) Joseph Stalin: /clothes
+19.01.2025 20:22:50 (aaa) Joseph Stalin: /clothes
+19.01.2025 20:22:58 (aaa) Joseph Stalin: /clothes
+19.01.2025 20:23:06 (aaa) Joseph Stalin: /clothes
+19.01.2025 20:59:21 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 20:59:21 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 21:00:52 (aaa) Joseph Stalin: /stats
+19.01.2025 21:01:27 (aaa) Joseph Stalin: /clothes
+19.01.2025 21:01:34 (aaa) Joseph Stalin: /clothes
+19.01.2025 21:02:40 (aaa) Joseph Stalin: /clothes
+19.01.2025 21:23:03 (aaa) Joseph Stalin: /clothes
+19.01.2025 21:24:10 (aaa) Joseph Stalin: /clothes
+19.01.2025 21:31:34 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 21:31:34 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 21:39:29 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 21:39:29 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 21:39:56 (aaa) Joseph Stalin: /factions
+19.01.2025 21:40:36 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 21:40:36 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 21:43:28 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 21:43:28 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 21:43:58 (aaa) Joseph Stalin: /clothes
+19.01.2025 21:44:11 (aaa) Joseph Stalin: /clothes
+19.01.2025 21:44:35 (aaa) Joseph Stalin: /clothes
+19.01.2025 21:46:26 (aaa) Joseph Stalin: /joinfaction
+19.01.2025 21:46:28 (aaa) Joseph Stalin: /joinfaction 1
+19.01.2025 21:46:33 - Faction Brigada Vinewood: !{#FFA500}(( Authority Joseph Stalin: salut ))
+19.01.2025 21:46:33 (aaa) Joseph Stalin: /f salut
+19.01.2025 21:46:42 (aaa) Joseph Stalin: /factions
+19.01.2025 21:46:53 (aaa) Joseph Stalin: /clothes
+19.01.2025 21:50:09 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 21:50:09 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 21:50:38 (aaa) Joseph Stalin: Stats
+19.01.2025 21:51:49 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 21:51:49 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 21:52:08 (aaa) Joseph Stalin: /stats
+19.01.2025 21:53:27 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 21:53:27 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 21:54:41 (aaa) Joseph Stalin: /stats
+19.01.2025 21:55:03 (aaa) Joseph Stalin: /f salut
+19.01.2025 21:55:24 (aaa) Joseph Stalin: /clothes
+19.01.2025 21:55:31 (aaa) Joseph Stalin: /clothes
+19.01.2025 21:56:04 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 21:56:04 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 21:56:32 (aaa) Joseph Stalin: /clothes
+19.01.2025 22:02:57 (aaa) Joseph Stalin: /clothes
+19.01.2025 22:03:12 (aaa) Joseph Stalin: /clothes
+19.01.2025 22:08:01 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 22:08:01 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 22:11:09 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 22:11:09 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 22:11:32 (aaa) Joseph Stalin: /cpv infernus
+19.01.2025 22:13:05 (aaa) Joseph Stalin: /stats
+19.01.2025 22:13:25 (aaa) Joseph Stalin: /clothes
+19.01.2025 22:16:20 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 22:16:20 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 22:17:07 (aaa) Jack Spencer: /cpv
+19.01.2025 22:17:17 (aaa) Jack Spencer: /cpv Infernus
+19.01.2025 22:18:18 (aaa) Jack Spencer: /stats
+19.01.2025 22:18:25 (aaa) Jack Spencer: /clothes
+19.01.2025 22:21:55 (aaa) Jack Spencer: alb
+19.01.2025 22:22:21 (aaa) Jack Spencer: /clothes
+19.01.2025 22:24:14 (aaa) Jack Spencer: /tattoos
+19.01.2025 22:24:18 (aaa) Jack Spencer: /tattoo
+19.01.2025 22:27:13 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 22:27:13 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 22:27:38 (aaa) Jack Spencer: /vg
+19.01.2025 22:29:30 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 22:29:30 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 22:30:15 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 22:30:15 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 22:30:53 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 22:30:53 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 22:31:26 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+19.01.2025 22:31:26 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+19.01.2025 22:31:58 (aaa) Jack Spencer: /cpv bullet
+19.01.2025 22:32:38 (aaa) Jack Spencer: /stats
+19.01.2025 22:32:48 (aaa) Jack Spencer: /clothes
+19.01.2025 22:35:10 (aaa) Jack Spencer: /clothes
+19.01.2025 22:36:00 (aaa) Jack Spencer: /clothes

@@ -382,5 +382,54 @@ namespace ServerSide.Server.DB.CharacterDB
                 }
             }
         }
+        public static ClothesData[] GetAllClothes(ICharacter character)
+        {
+            Database db = new Database();
+            using (MySqlConnection connection = db.GetDatabaseConnection())
+            {
+                ClothesData[] clothesArray = new ClothesData[20]; // Fixed array size of 20
+                int index = 0; // Variable to track how many clothes are found
+                string query = "SELECT * FROM `clothes` WHERE characterID = @characterId";
+
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@characterId", character.Id);
+
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read() && index < clothesArray.Length)
+                            {
+                                var clothesJSON = reader.GetString(4); // Adjust this index as needed
+                                var clothesData = NAPI.Util.FromJson<ClothesData>(clothesJSON);
+                                clothesArray[index] = clothesData;
+                                index++;
+                            }
+                        }
+                        else
+                        {
+                            // No clothes found
+                            NAPI.Util.ConsoleOutput("No clothes found for this character!");
+                        }
+                    }
+                    // If not all slots are filled, the unused entries will be null.
+                    return clothesArray;
+                }
+                catch (MySqlException ex)
+                {
+                    NAPI.Util.ConsoleOutput($"An error occurred: {ex.Message}");
+                    return null;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+
     }
 }

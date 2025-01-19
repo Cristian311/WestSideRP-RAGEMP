@@ -156,7 +156,7 @@ namespace ServerSide.Characters.Customization.Tattoos
             string TattooHashJson = NAPI.Util.ToJson(tattooHash);
             player.TriggerEvent("SERVER:CLIENT:ShowTattooScreen", tattooZoneGroupedJson, CurrentTattoosJson, TattooCollectionJson, TattooHashJson);
 
-            NAPI.Util.ConsoleOutput(tattooZoneGroupedJson);
+            //NAPI.Util.ConsoleOutput(tattooZoneGroupedJson);
         }
     }
 }

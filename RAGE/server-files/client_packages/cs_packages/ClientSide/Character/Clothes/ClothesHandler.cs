@@ -19,6 +19,13 @@ namespace ClientSide.Character.Clothes
             Events.Add("CEF:CLIENT:BuyCostume", BuyClothes);
             Events.Add("SERVER:CLIENT:ShowCostume", ShowClothes);
             Events.Add("SERVER:CLIENT:UpdateDataMaxValues", UpdateDataMaxValues);
+            Events.Add("SERVER:CLIENT:UpdateOutfitNames", UpdateOutfitNames);
+        }
+        private void UpdateOutfitNames(object[] args)
+        {
+            string json = args[0].ToString();
+            string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
+            cefBrowser.ExecuteJs($"updateOutfitNames(\"{escapedJson}\");");
         }
 
         private void ShowClothes(object[] args)
@@ -40,6 +47,39 @@ namespace ClientSide.Character.Clothes
         {
             byte index = byte.Parse(args[0].ToString());
             Events.CallRemote("CLIENT:SERVER:GetClothes", index);
+        }
+        
+        private void CloseClothesScreen(object[] args)
+        {
+            cefBrowser.Destroy();
+            cefBrowser = null;
+            Cursor.Visible = false;
+            Chat.Show(true);
+        }
+        private void UpdateDataMaxValues(object[] args)
+        {
+            string json = args[0].ToString();
+            string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
+
+            cefBrowser.ExecuteJs($"updateMaxValuesFromJSON(\"{escapedJson}\");");
+        }
+        private void OpenClothesScreen(object[] args)
+        {
+            cefBrowser = new HtmlWindow("http://package/html/clothes/clothes.html");
+            cefBrowser.Active = true;
+            Cursor.Visible = true;
+            Chat.Show(false);
+
+            string json = args[0].ToString();
+            string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
+            int currentClothes = int.Parse(args[1].ToString());
+            
+            // First, update the clothes data
+            cefBrowser.ExecuteJs($"UpdateClothes(\"{escapedJson}\");");
+            cefBrowser.ExecuteJs($"selectCharacter({currentClothes});");
+
+            // Then, trigger getting the current outfit's clothes
+            Events.CallRemote("CLIENT:SERVER:GetClothes", (byte)currentClothes);
         }
         private void UpdateClothes(object[] args)
         {
@@ -72,43 +112,15 @@ namespace ClientSide.Character.Clothes
             else
                 RAGE.Elements.Player.LocalPlayer.SetPropIndex(2, clothesData.EarAccesories.Drawable, clothesData.EarAccesories.Texture, true);
 
-            if(clothesData.Watches.Drawable == -1)
+            if (clothesData.Watches.Drawable == -1)
                 RAGE.Elements.Player.LocalPlayer.ClearProp(6);
             else
                 RAGE.Elements.Player.LocalPlayer.SetPropIndex(6, clothesData.Watches.Drawable, clothesData.Watches.Texture, true);
 
-            if(clothesData.Bracelets.Drawable == -1)
+            if (clothesData.Bracelets.Drawable == -1)
                 RAGE.Elements.Player.LocalPlayer.ClearProp(7);
             else
                 RAGE.Elements.Player.LocalPlayer.SetPropIndex(7, clothesData.Bracelets.Drawable, clothesData.Bracelets.Texture, true);
-        }
-        private void CloseClothesScreen(object[] args)
-        {
-            cefBrowser.Destroy();
-            cefBrowser = null;
-            Cursor.Visible = false;
-        }
-        private void UpdateDataMaxValues(object[] args)
-        {
-            string json = args[0].ToString();
-            string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
-
-            cefBrowser.ExecuteJs($"updateMaxValuesFromJSON(\"{escapedJson}\");");
-        }
-        private void OpenClothesScreen(object[] args)
-        {
-            cefBrowser = new HtmlWindow("http://package/html/clothes/clothes.html");
-
-            cefBrowser.Active = true;
-            Cursor.Visible = true;
-
-            string json = args[0].ToString();
-            string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
-
-            int currentClothes = int.Parse(args[1].ToString());
-
-            cefBrowser.ExecuteJs($"UpdateClothes(\"{escapedJson}\");");
-            //cefBrowser.ExecuteJs($"selectItem(\"{currentClothes}\");");
         }
     }
 }

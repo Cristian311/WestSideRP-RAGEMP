@@ -1,18 +1,24 @@
 ﻿using GTANetworkAPI;
+using GTANetworkMethods;
 using ServerSide.Accounts;
 using ServerSide.Characters.Customization.Clothes;
 using ServerSide.Characters.Customization.Customize;
 using ServerSide.Characters.Customization.Hair;
 using ServerSide.Characters.Customization.Tattoos;
+using ServerSide.Server;
 using ServerSide.Server.Commands;
 using ServerSide.Server.DB.CharacterDB;
 using ServerSide.Server.DB.VehicleDB;
 using ServerSide.Server.Interfaces;
 using ServerSide.Server.Vehicles;
+using ServerSide.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using static System.Net.Mime.MediaTypeNames;
 using Player = GTANetworkAPI.Player;
+using Resource = ServerSide.Server.Resource;
 
 
 namespace ServerSide.Characters
@@ -163,6 +169,11 @@ namespace ServerSide.Characters
             character.AccessVehicles = character.PersonalVehicles;
             character.SetMoneyHud(character.Money, character.BankMoney);
             //VehicleManager.FixPersonalVehicles(character);
+
+            character.Clothes = CharacterDbManager.GetAllClothes(character);
+            //show hud
+            player.TriggerEvent("SERVER:CLIENT:ShowLogo", $"{Resource.ServerName} {Resource.Version}");
+            character.SendInfoMessage($"Te-ai conectat ca {Colors.WHITE}{character.Name}{Colors.INFO} ID:{Colors.WHITE} {character.GameId}");
         }
         public static List<Character> GetMatchingCharacters(string nameOrId)
         {

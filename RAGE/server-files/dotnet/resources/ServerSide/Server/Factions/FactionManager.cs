@@ -39,7 +39,7 @@ public class FactionManager : Script
         FactionDbManager.UpdateFaction(faction);
         player.SendChatMessage($"{Colors.INFO}Ai intrat in factiunea {Colors.CRIMSON}{faction.Name}.");
     }
-    private static Faction GetFactionById(int Id)
+    public static Faction GetFactionById(int Id)
     {
         return factions.FirstOrDefault(f => f.Id == Id);
     }
@@ -163,7 +163,10 @@ public class FactionManager : Script
     {
         var character = CharacterManager.PlayerCharacterPair[player];
         var faction = GetFactionById(character.faction);
-        faction.SendFactionMessage($"{Colors.INFO}(( {faction.RankNames[character.factionRank]} {character.Name}: {message} ))");
+        if (faction == null)
+            character.SendErrorMessage("Nu esti intr-o factiune.");
+        else
+            faction.SendFactionMessage($"{Colors.INFO}(( {faction.RankNames[character.factionRank]} {character.Name}: {message} ))");
     }
     public static void SendFactionMessage(int factionId, string message)
     {

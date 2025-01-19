@@ -64,6 +64,7 @@ namespace ServerSide.Server.Commands
             var clothesJson = NAPI.Util.ToJson(clothes);
             player.TriggerEvent("SERVER:CLIENT:OpenClothesScreen", clothesJson, character.currentOutfit);
             player.TriggerEvent("SERVER:CLIENT:UpdateDataMaxValues", itemMaxValuesJSON);
+            ClothesManager.SendOutfitNames(player);
 
         }
         [Command("shirt")]

@@ -1,45 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Bottom Center</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-      background-color: transparent;
-    }
 
-    img {
-        top: 15px;
-        width: 100px; /* Adjust to your desired percentage */
-        height: auto; /* Maintain aspect ratio */
-        display: block;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Bottom Center</title>
+    <style>
+        body,
+        html {
+            user-select: none;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: transparent;
         }
 
-    .text {
-      color: orange;
-      font-size: 18px;
-      font-family: Arial, sans-serif;
-      margin-top: 10px;
-    }
-  </style>
-</head>
-<body>
-  <img src="logo.png" alt="Centered Image">
-  <div id="text" class="text">West-Side Roleplay Version: 0.5a</div>
+        img {
+            width: 75px;
+            height: auto;
+            display: block;
+            margin-bottom: 5px;
+        }
 
-  <script>
-    function updateText(newText) {
-      document.getElementById("text").textContent = newText;
-    }
-  </script>
+        .text {
+            color: orange;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            margin-top: 10px;
+            text-shadow: 2px 2px 4px black, -2px -2px 4px black, 2px -2px 4px black, -2px 2px 4px black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="text" class="text">West-Side Roleplay v0.6a</div>
+
+    <script>
+        function updateText(newText) {
+            document.getElementById("text").textContent = newText;
+        }
+    </script>
 </body>
+
 </html>
