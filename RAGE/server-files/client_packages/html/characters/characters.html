@@ -10,52 +10,147 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: flex-start;
-            align-items: center;
+            align-items: flex-start;
             background-color: rgba(0, 0, 0, 0);
+            color: #fff;
+            position: relative;
         }
 
         .container {
-            margin-left: 50px; /* Positions the container a few centimeters from the left edge */
+            margin-left: 50px;
+            margin-top: 50px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #2d2d2d;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid #ff6b00;
         }
 
         .account-name {
-            font-size: 18px;
+            font-size: 24px;
             font-weight: bold;
-            margin-bottom: 15px;
-            color: #333;
+            margin-bottom: 20px;
+            color: #ff6b00;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .field {
-            width: 250px;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: #e9e9e9;
+            width: 300px;
+            padding: 15px;
+            margin: 8px 0;
+            border: 1px solid #ff6b00;
+            border-radius: 6px;
+            background-color: #3d3d3d;
             cursor: pointer;
             text-align: left;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .field::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 107, 0, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .field:hover {
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+            background-color: #4d4d4d;
+        }
+
+        .field:hover::before {
+            left: 100%;
+        }
+
+        .field.selected {
+            background-color: #ff6b00;
+            transform: translateX(15px);
+            box-shadow: 0 0 25px rgba(255, 107, 0, 0.4);
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            margin-top: 20px;
         }
 
         .create-button {
             width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            background-color: #4CAF50;
+            padding: 12px;
+            background-color: #ff6b00;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .create-button:hover {
+            background-color: #ff8533;
+            transform: scale(1.02);
+        }
+
+        .select-character-button {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            background-color: #ff6b00;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+
+        .select-character-button:hover {
+            background-color: #ff8533;
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        .select-character-button:disabled {
+            background-color: #666;
+            cursor: not-allowed;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .field.clicked {
+            animation: pulse 0.3s ease-in-out;
         }
     </style>
 </head>
@@ -65,47 +160,75 @@
             <div id="accountName" class="account-name"></div>
             <div id="characters"></div>
         </div>
-        <!-- Create Character Button -->
-        <button class="create-button" onclick="createCharacter()">Create Character</button>
+        <div class="button-container">
+            <button class="create-button" onclick="createCharacter()">Create Character</button>
+        </div>
     </div>
+    <button id="selectButton" class="select-character-button" onclick="selectCurrentCharacter()" disabled>Select Character</button>
 
     <script>
+        let selectedCharacterName = null;
+
         function displayAccountInfo(accountName, charNames, money) {
-            // Display the account name
             const accountNameDiv = document.getElementById('accountName');
-            accountNameDiv.textContent = `Account Name: ${accountName}`;
+            accountNameDiv.textContent = `Account: ${accountName}`;
 
-            // Clear previous character info
             const charactersDiv = document.getElementById('characters');
-            charactersDiv.innerHTML = ''; // Clear existing character info
+            charactersDiv.innerHTML = '';
 
-            // Loop through characters and money to create display elements
             for (let i = 0; i < charNames.length; i++) {
                 const charName = charNames[i];
                 const charMoney = money[i];
 
-                // Create a div for each character
                 const characterDiv = document.createElement('div');
                 characterDiv.className = 'field';
-                characterDiv.textContent = `Character Name: ${charName} - Money: $${charMoney}`;
-                characterDiv.onclick = () => selectCharacter(charName); // Attach the click event
+                characterDiv.textContent = `${charName} - $${charMoney.toLocaleString()}`;
+                
+                characterDiv.onclick = () => handleCharacterClick(characterDiv, charName);
 
-                // Append to the characters div
                 charactersDiv.appendChild(characterDiv);
             }
         }
+
+        function handleCharacterClick(characterDiv, charName) {
+            // Remove selected class from all fields
+            document.querySelectorAll('.field').forEach(field => {
+                field.classList.remove('selected');
+                field.classList.remove('clicked');
+            });
+
+            // Add selected and clicked classes to the clicked field
+            characterDiv.classList.add('selected');
+            characterDiv.classList.add('clicked');
+
+            // Remove the clicked class after animation
+            setTimeout(() => {
+                characterDiv.classList.remove('clicked');
+            }, 300);
+
+            selectedCharacterName = charName;
+            
+            // Enable select button
+            document.getElementById('selectButton').disabled = false;
+
+            // Trigger character selection sound or effect if needed
+            // mp.trigger("CEF:CLIENT:PlaySelectSound"); // Uncomment if you have sound effects
+        }
+
         function selectCharacter(characterName) {
             mp.trigger("CEF:CLIENT:CharacterSelected", characterName);
             mp.trigger("CEF:CLIENT:CloseCharInterface");
-            
-            //mp.trigger("CEF:CLIENT:showCustomizeCharScreen");
+        }
+
+        function selectCurrentCharacter() {
+            if (selectedCharacterName) {
+                selectCharacter(selectedCharacterName);
+            }
         }
 
         function createCharacter() {
             mp.trigger("CEF:CLIENT:CloseCharInterface");
             mp.trigger("CEF:CLIENT:ShowCreateCharScreen");
-            
-            // Functionality to create a new character goes here
         }
     </script>
 </body>

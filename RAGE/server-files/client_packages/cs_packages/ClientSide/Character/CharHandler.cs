@@ -48,7 +48,7 @@ namespace ClientSide.Character
             string CharacterName = args[0].ToString();
 
             Events.CallRemote("CLIENT:SERVER:CharSelected", CharacterName);
-            Events.CallRemote("CLIENT:SERVER:CheckIfCharExistsForCustomizeScreen");
+            Events.CallRemote("CLIENT:SERVER:CustomizeScreenOnCreation");
         }
     }
 }

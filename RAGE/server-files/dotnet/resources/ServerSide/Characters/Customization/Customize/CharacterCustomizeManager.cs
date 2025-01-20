@@ -9,7 +9,7 @@ namespace ServerSide.Characters.Customization.Customize
 {
     internal class CharacterCustomizeManager : Script
     {
-        [RemoteEvent("CLIENT:SERVER:CheckIfCharExistsForCustomizeScreen")] // this checks if the character is created or not, if it's not created it will show the cusyomize character interface
+        [RemoteEvent("CLIENT:SERVER:CustomizeScreenOnCreation")] // this checks if the character is created or not, if it's not created it will show the cusyomize character interface
         private void CharVerifications(Player player)
         {
             Character character = CharacterManager.PlayerCharacterPair[player];
