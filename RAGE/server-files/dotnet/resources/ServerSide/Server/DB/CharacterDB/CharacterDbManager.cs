@@ -316,6 +316,7 @@ namespace ServerSide.Server.DB.CharacterDB
                             {
                                 Character character = new Character(account.player, account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
                                 character.isCreated = reader.GetBoolean(6);
+                                character.Id = reader.GetInt32("id");
 
                                 //tatooo HANDLER
                                 var tattoo = reader.GetString("TattooJSON");
@@ -336,6 +337,7 @@ namespace ServerSide.Server.DB.CharacterDB
                                 //CLOTHES
                                 character.currentOutfit = !reader.IsDBNull("currentOutfit") ? reader.GetInt32("currentOutfit") : 0;
                                 character.Clothes[character.currentOutfit] = getClothes(character, (byte)character.currentOutfit);
+                                NAPI.Util.ConsoleOutput(NAPI.Util.ToJson(character.Clothes[character.currentOutfit]));
 
                                 characters.Add(character);
                             }
@@ -380,13 +382,13 @@ namespace ServerSide.Server.DB.CharacterDB
                         if (reader.HasRows)
                         {
                             reader.Read();
-                            var clothesJSON = reader.GetString(4);
+                            var clothesJSON = reader.GetString("clothesdata");
                             clothesData = NAPI.Util.FromJson<ClothesData>(clothesJSON);
                         }
                         else
                         {
                             // No character found
-                            NAPI.Util.ConsoleOutput("No clothes found on this account, create one!");
+                            NAPI.Util.ConsoleOutput($"No clothes found on {character.Name} #{character.Id} index: {index}, create one!");
                             return null;
                         }
                     }

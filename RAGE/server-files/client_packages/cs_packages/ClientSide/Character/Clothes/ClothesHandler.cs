@@ -81,11 +81,11 @@ namespace ClientSide.Character.Clothes
             // Then, trigger getting the current outfit's clothes
             Events.CallRemote("CLIENT:SERVER:GetClothes", (byte)currentClothes);
         }
-        private void UpdateClothes(object[] args)
+        public static void UpdateClothes(object[] args)
         {
             string json = args[0].ToString();
             var clothesData = RAGE.Util.Json.Deserialize<ClothesData>(json);
-            //Events.CallRemote("CLIENT:SERVER:ClothesUpdate", json);
+
             RAGE.Elements.Player.LocalPlayer.SetComponentVariation(1, clothesData.Mask.Drawable, clothesData.Mask.Texture, 0);
             RAGE.Elements.Player.LocalPlayer.SetComponentVariation(3, clothesData.Torso.Drawable, clothesData.Torso.Texture, 0);
             RAGE.Elements.Player.LocalPlayer.SetComponentVariation(4, clothesData.Legs.Drawable, clothesData.Legs.Texture, 0);

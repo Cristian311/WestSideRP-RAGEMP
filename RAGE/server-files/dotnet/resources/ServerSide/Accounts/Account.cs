@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Principal;
 using System.Text;
 using GTANetworkAPI;
+using MySql.Data.MySqlClient;
 using ServerSide.Characters;
+using ServerSide.Server.DB.CharacterDB;
 using ServerSide.Server.Interfaces;
 namespace ServerSide.Accounts
 {
@@ -24,7 +27,7 @@ namespace ServerSide.Accounts
             Id = id;
             Name = name;
             this.player = player;
-
+            Characters = CharacterDbManager.GetCharacters(this);
         }
     }
 }

@@ -12,8 +12,8 @@ mp.events.add("SERVER:CLIENT:FaceCamera", () => {
 mp.events.add("SERVER:CLIENT:ChooseCharacterCamera", () => {
 
     handCamera.setActive(true);
-    handCamera.setCoord(209.13136, 283.0628, 141.47795 + 0.80);
-    handCamera.pointAtCoord(210.71982, 285.08926, 141.92323);
+    handCamera.setCoord(209.13136, 283.0628 + 0.0, 141.47795 + 1.0);
+    handCamera.pointAtCoord(210.71982, 285.08926, 142.52323);
 
     mp.game.cam.renderScriptCams(true, false, 0, true, false);
 });

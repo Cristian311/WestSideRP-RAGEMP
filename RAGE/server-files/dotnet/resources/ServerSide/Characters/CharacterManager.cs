@@ -102,7 +102,7 @@ namespace ServerSide.Characters
             var account = AccountManager.PlayerAccountPairs[player];
             string username = account.Name;
 
-            GetNameMoneyJson(account, out string namesJSON, out string moneyJSON);
+            GetNameMoneyJson(account, out string namesJSON, out string moneyJSON, account.Characters);
             
             //display character interface with new character data
             player.TriggerEvent("SERVER:CLIENT:ShowCharInterface");
@@ -115,7 +115,6 @@ namespace ServerSide.Characters
             if (charName == "null")
                 return;
 
-
             //account setup
             Account account = AccountManager.PlayerAccountPairs[player];
             Character character = CharacterDbManager.GetCharacter(account, charName);
@@ -126,11 +125,6 @@ namespace ServerSide.Characters
             
 
             //character update
-            UpdatePhones(character);
-            CharacterCustomizeManager.UpdatePlayerFaceFeatures(character.player, character.Face);
-            UpdateHair(character);
-            ClothesManager.GetClothes(player, (byte)character.currentOutfit);
-            ApplyTattoos(character);
             character.GameId = account.GameId;
             character.PersonalVehicles = VehicleDbManager.LoadVehiclesByName(character.Name);
             foreach(var veh in character.PersonalVehicles)
@@ -141,6 +135,13 @@ namespace ServerSide.Characters
             character.SetMoneyHud(character.Money, character.BankMoney);
             character.Clothes = CharacterDbManager.GetAllClothes(character);
             character.SendInfoMessage($"Te-ai conectat ca {Colors.WHITE}{character.Name}{Colors.INFO} ID:{Colors.WHITE} {character.GameId}");
+
+            //features update
+            UpdatePhones(character);
+            CharacterCustomizeManager.UpdatePlayerFaceFeatures(character.player, character.Face);
+            UpdateHair(character);
+            ClothesManager.GetClothes(player, (byte)character.currentOutfit);
+            ApplyTattoos(character);
 
             //player update
             player.Nametag = charName;
@@ -231,9 +232,9 @@ namespace ServerSide.Characters
             else
                 return false;
         }
-        public static void GetNameMoneyJson(Account account, out string namesJSON, out string moneyJSON)
+        public static void GetNameMoneyJson(Account account, out string namesJSON, out string moneyJSON, List<ICharacter> characters)
         {
-            List<ICharacter> characters = CharacterDbManager.GetCharacters(account);
+            
 
             GetNamesAndMoneyForCEF(characters, GetRequiredCount(characters), out string[] names, out int[] money);
 

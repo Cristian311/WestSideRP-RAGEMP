@@ -109,7 +109,7 @@ namespace ClientSide.Character.Hair
             };
         }
 
-        private void UpdateHair(object[] args)
+        public static void UpdateHair(object[] args)
         {
             string json = args[0].ToString();
             HairData hairData = RAGE.Util.Json.Deserialize<HairData>(json);

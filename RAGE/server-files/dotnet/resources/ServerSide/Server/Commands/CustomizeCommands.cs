@@ -44,13 +44,15 @@ namespace ServerSide.Server.Commands
             var character = CharacterManager.PlayerCharacterPair[player];
             string username = account.Name;
 
-            CharacterManager.GetNameMoneyJson(account, out string namesJSON, out string moneyJSON);
+            var characters = CharacterDbManager.GetCharacters(account);
+            CharacterManager.GetNameMoneyJson(account, out string namesJSON, out string moneyJSON, characters);
             UpdateCharDataDBManager.UpdateCharacter(character);
+
             //display character interface with new character data
             player.TriggerEvent("SERVER:CLIENT:ShowCharInterface");
             player.TriggerEvent("SERVER:CLIENT:DisplayAccountInfo", username, namesJSON, moneyJSON);
             UpdateCharDataDBManager.UpdateCharacter(character);
-            player.Dimension = (uint)account.GameId;
+            player.Dimension = account.GameId != 0 ? (uint)account.GameId : 1001;
         }
         [Command("clothes")]
         private void ClothesCommand(Player player)

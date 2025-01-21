@@ -63,7 +63,7 @@ namespace ClientSide.Character.CustomizeChar
             Events.CallRemote("CLIENT:SERVER:CharCustomiseUpdate", json);
         }
 
-        private void UpdatePlayerFaceFeatures(CharacterData data)
+        public static void UpdatePlayerFaceFeatures(CharacterData data)
         {
             //eyes
             var eyeColor = data.Eye.Color;

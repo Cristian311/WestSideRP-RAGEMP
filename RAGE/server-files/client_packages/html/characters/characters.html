@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Fields</title>
     <style>
-        body, html {
+        body,
+        html {
             margin: 0;
             padding: 0;
             width: 100%;
@@ -62,12 +64,10 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 107, 0, 0.2),
-                transparent
-            );
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 107, 0, 0.2),
+                    transparent);
             transition: 0.5s;
         }
 
@@ -144,9 +144,17 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         .field.clicked {
@@ -154,6 +162,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div id="accountInfo">
@@ -164,7 +173,8 @@
             <button class="create-button" onclick="createCharacter()">Create Character</button>
         </div>
     </div>
-    <button id="selectButton" class="select-character-button" onclick="selectCurrentCharacter()" disabled>Select Character</button>
+    <button id="selectButton" class="select-character-button" onclick="selectCurrentCharacter()" disabled>Select
+        Character</button>
 
     <script>
         let selectedCharacterName = null;
@@ -183,14 +193,15 @@
                 const characterDiv = document.createElement('div');
                 characterDiv.className = 'field';
                 characterDiv.textContent = `${charName} - $${charMoney.toLocaleString()}`;
-                
-                characterDiv.onclick = () => handleCharacterClick(characterDiv, charName);
+
+                // Pass both the div, name, and index to the click handler
+                characterDiv.onclick = () => handleCharacterClick(characterDiv, charName, i);
 
                 charactersDiv.appendChild(characterDiv);
             }
         }
 
-        function handleCharacterClick(characterDiv, charName) {
+        function handleCharacterClick(characterDiv, charName, characterIndex) {
             // Remove selected class from all fields
             document.querySelectorAll('.field').forEach(field => {
                 field.classList.remove('selected');
@@ -207,12 +218,12 @@
             }, 300);
 
             selectedCharacterName = charName;
-            
+
             // Enable select button
             document.getElementById('selectButton').disabled = false;
 
-            // Trigger character selection sound or effect if needed
-            // mp.trigger("CEF:CLIENT:PlaySelectSound"); // Uncomment if you have sound effects
+            // Trigger the new character pressed event with the index
+            mp.trigger("CEF:CLIENT:CharacterPressed", characterIndex);
         }
 
         function selectCharacter(characterName) {
@@ -232,4 +243,5 @@
         }
     </script>
 </body>
+
 </html>

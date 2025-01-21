@@ -24,8 +24,14 @@ namespace ServerSide.Server
         private void OnPlayerConnected(Player player)
         {
             string text = $"{ServerName} {Version}";
-            
+            player.TriggerEvent("SERVER:CLIENT:ShowLogo", text);
             player.SendChatMessage(Colors.INFO + text);
+        }
+
+        [RemoteEvent("CLIENT:SERVER:PrintConsole")]
+        private void ClientPrintConsole(Player player, string text)
+        {
+            NAPI.Util.ConsoleOutput(text);
         }
     }
 }
