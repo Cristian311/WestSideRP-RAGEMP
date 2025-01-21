@@ -29,14 +29,13 @@ namespace ServerSide.Server.Commands
             }
         }
 
-        [Command("ame", GreedyArg = true)]
-        public static void ameCommand(Player player, string action)
+        [Command("ame", "/ame [message]", GreedyArg = true)]
+        public static void cmd_ame(Player player, string action, bool chatMessage = false)
         {
             var name = CharacterManager.PlayerCharacterPair[player].Name;
             string newName = StringFormatter.FormatStringForAme(name, action);
             
             player.Name = newName;
-
 
             if (PlayerStopwatchAmePair.ContainsKey(player))
                 PlayerStopwatchAmePair[player].Restart();
@@ -53,20 +52,21 @@ namespace ServerSide.Server.Commands
         {
             var account = AccountManager.PlayerAccountPairs[player];
             if (account.Muted == true)
-                player.SendChatMessage($"{Colors.MUTED}You are muted and can't send a message");
-            else
             {
-                var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
-                message = StringFormatter.FormatStringForChatMessage(message);
-                var name = CharacterManager.PlayerCharacterPair[player].Name;
-                foreach (var p in players)
-                {
-                    p.SendChatMessage($"{name} spune: {message}");
-                }
+                player.SendChatMessage($"{Colors.MUTED}You are muted and can't send a message");
+                return;
+            }
+            var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
+            message = StringFormatter.FormatStringForChatMessage(message);
+            var name = CharacterManager.PlayerCharacterPair[player].Name;
+            foreach (var p in players)
+            {
+                p.SendChatMessage($"{name} spune: {message}");
             }
         }
+
         [Command("b", GreedyArg = true)]
-        private void bCommand(Player player, string action)
+        private void cmd_b(Player player, string action)
         {
             var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
             var name = CharacterManager.PlayerCharacterPair[player].Name;
@@ -75,6 +75,7 @@ namespace ServerSide.Server.Commands
                 p.SendChatMessage($"{Colors.GRAY} (( {name}: {action} )) ");
             }
         }
+
         [Command("to")]
         private void cmd_to(Player player, string target, string message)
         {
@@ -104,81 +105,55 @@ namespace ServerSide.Server.Commands
         [Command("w")]
         private void cmd_w(Player player, string target, string message)
         {
-            var chars = CharacterManager.getCharByName(target);
-            if (chars.Count == 1)
+            var character = CharacterManager.GetCharacterByName(player, target);
+            if (character == null) return;
+
+            var otherplayer = CharacterManager.CharacterAccountPair[character].player;
+
+            var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
+            var name = CharacterManager.PlayerCharacterPair[player].Name;
+
+            if (players.Contains(otherplayer))
             {
-                var character = chars[0];
-                var otherplayer = CharacterManager.CharacterAccountPair[character].player;
-
-                var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
-                var name = CharacterManager.PlayerCharacterPair[player].Name;
-
-                if (players.Contains(otherplayer))
-                {
-                    otherplayer.SendChatMessage($"{Colors.WHISPER}{name} spune(soapta): {message}");
-                    player.SendChatMessage($"{Colors.WHISPER}{name} spune(soapta): {message}");
-                }
-                else
-                {
-                    player.SendChatMessage($"{Colors.ERROR}Acel player nu este langa tine");
-                }
+                otherplayer.SendChatMessage($"{Colors.WHISPER}{name} spune(soapta): {message}");
+                player.SendChatMessage($"{Colors.WHISPER}{name} spune(soapta): {message}");
             }
             else
             {
-                foreach (var character in chars)
-                {
-                    player.SendChatMessage($"{character.Id}. {character.Name} Ping:{character.player.Ping}");
-                }
+                player.SendChatMessage($"{Colors.ERROR}Acel player nu este langa tine");
             }
+
         }
         [Command("pm")]
         private void cmd_pm(Player player, string target, string message)
         {
-            var chars = CharacterManager.getCharByName(target);
-            if (chars.Count == 1)
-            {
-                var character = chars[0];
-                var otherplayer = CharacterManager.CharacterAccountPair[character].player;
+            var character = CharacterManager.GetCharacterByName(player, target);
+            if (character == null) return;
 
-                var name = CharacterManager.PlayerCharacterPair[player].Name;
+            var otherplayer = CharacterManager.CharacterAccountPair[character].player;
 
-                otherplayer.SendChatMessage($"{Colors.YELLOW}(( {name}: {message} ))");
-                player.SendChatMessage($"{Colors.YELLOW}(( {name}: {message} ))");
-            }
-            else
-            {
-                foreach (var character in chars)
-                {
-                    player.SendChatMessage($"{character.Id}. {character.Name} Ping:{character.player.Ping}");
-                }
-            }
+            var name = CharacterManager.PlayerCharacterPair[player].Name;
+
+            otherplayer.SendChatMessage($"{Colors.YELLOW}(( {name}: {message} ))");
+            player.SendChatMessage($"{Colors.YELLOW}(( {name}: {message} ))");
+
         }
         [Command("lowto")]
         private void cmd_lowto(Player player, string target, string message)
         {
-            var chars = CharacterManager.getCharByName(target);
-            if (chars.Count == 1)
-            {
-                var character = chars[0];
+            var character = CharacterManager.GetCharacterByName(player, target);
+            if (character == null) return;
 
-                var players = NAPI.Player.GetPlayersInRadiusOfPlayer(15, player);
-                var otherplayer = CharacterManager.CharacterAccountPair[character].player;
+            var players = NAPI.Player.GetPlayersInRadiusOfPlayer(15, player);
+            var playerCharacter = CharacterManager.GetCharacter(player);
 
-                var name = CharacterManager.PlayerCharacterPair[player].Name;
-                foreach (var p in players)
-                {
-                    if (p != otherplayer)
-                        p.SendChatMessage($"{Colors.LOW}{name} spune(încet) lui {character.Name}: {message}");
-                }
-                otherplayer.SendChatMessage($"{Colors.PARTY}[!]{Colors.LOW}{name} spune(încet) lui {character.Name}: {message}");
-            }
-            else
+            var name = CharacterManager.GetCharacter(player).Name;
+            foreach (var p in players)
             {
-                foreach (var character in chars)
-                {
-                    player.SendChatMessage($"{character.Id}. {character.Name} Ping:{character.player.Ping}");
-                }
+                if (p != playerCharacter.player)
+                    p.SendChatMessage($"{Colors.LOW}{name} spune(încet) lui {character.Name}: {message}");
             }
+            playerCharacter.SendChatMessage($"{Colors.PARTY}[!]{Colors.LOW}{name} spune(încet) lui {character.Name}: {message}");
         }
         [Command("melow", GreedyArg = true)]
         private void cmd_melow(Player player, string action)
@@ -193,7 +168,7 @@ namespace ServerSide.Server.Commands
         
 
         [Command("me", GreedyArg = true)]
-        private void meCommand(Player player, string action)
+        private void cmd_me(Player player, string action)
         {
             var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
             var name = CharacterManager.PlayerCharacterPair[player].Name;
@@ -201,11 +176,11 @@ namespace ServerSide.Server.Commands
             {
                 p.SendChatMessage($"{Colors.ME}* {name} {action}");
             }
-            ameCommand(player, action);
+            cmd_ame(player, action, false);
         }
 
         [Command("do", GreedyArg = true)]
-        private void doCommand(Player player, string action)
+        private void cmd_do(Player player, string action)
         {
             var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
             foreach (var p in players)
@@ -214,7 +189,7 @@ namespace ServerSide.Server.Commands
             }
         }
         [Command("dolow", GreedyArg = true)]
-        private void dolowCommand(Player player, string action)
+        private void cmd_dolow(Player player, string action)
         {
             var players = NAPI.Player.GetPlayersInRadiusOfPlayer(15, player);
             foreach (var p in players)
@@ -223,7 +198,7 @@ namespace ServerSide.Server.Commands
             }
         }
         [Command("low", GreedyArg = true)]
-        private void lowCommand(Player player, string action)
+        private void cmd_low(Player player, string action)
         {
             var players = NAPI.Player.GetPlayersInRadiusOfPlayer(15, player);
             var name = CharacterManager.PlayerCharacterPair[player].Name;
@@ -233,5 +208,15 @@ namespace ServerSide.Server.Commands
             }
         }
 
+        [Command("lower", GreedyArg = true)]
+        private void cmd_lower(Player player, string action)
+        {
+            var players = NAPI.Player.GetPlayersInRadiusOfPlayer(7, player);
+            var name = CharacterManager.PlayerCharacterPair[player].Name;
+            foreach (var p in players)
+            {
+                p.SendChatMessage($"{Colors.LOW}{name} spune(încet): {action}");
+            }
+        }
     }
 }

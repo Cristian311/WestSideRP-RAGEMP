@@ -2,6 +2,7 @@
 using RAGE;
 using System.Linq;
 using RAGE.Util;
+using System;
 namespace ClientSide.Character
 {
     public class CharHandler : Events.Script
@@ -18,8 +19,16 @@ namespace ClientSide.Character
 
             Events.Add("SERVER:CLIENT:DisplayAccountInfo", DisplayAccountInfo);
             Events.Add("CEF:CLIENT:CharacterSelected", CharacterSelected);
+
+
+            Events.Add("CEF:CLIENT:CharacterPressed", CharacterPressed);
         }
-        
+
+        private void CharacterPressed(object[] args)
+        {
+            throw new NotImplementedException();
+        }
+
         private void ShowCharInterface(object[] args)
         {
             cefBrowser = new HtmlWindow("http://package/html/characters/characters.html");

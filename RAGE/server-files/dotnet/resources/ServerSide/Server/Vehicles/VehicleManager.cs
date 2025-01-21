@@ -160,8 +160,13 @@ namespace ServerSide.Server.Vehicles
             Console.WriteLine($"CreatePersonalVehicleCommand invoked by {character.Name}");
 
             VehicleHash vehModel = NAPI.Util.VehicleNameToModel(vehName);
+            if(NAPI.Vehicle.GetVehicleDisplayName(vehModel) == string.Empty)
+            {
+                character.SendErrorMessage($"Nu exista acea masina!");
+                return;
+            }
             GTANetworkAPI.Vehicle vehicle = NAPI.Vehicle.CreateVehicle(vehModel, player.Position, 0, 0, 0);
-
+            vehicle.Dimension = NAPI.GlobalDimension;
             // Initialize server vehicle
             Vehicle serverVeh = new Vehicle(character.Name, "Personal", vehicle);
             serverVeh.VehicleId = vehicleIdManager.AssignNewId(serverVeh);
@@ -174,7 +179,8 @@ namespace ServerSide.Server.Vehicles
             serverVeh.VehiclePlate = "Personal";
             serverVeh.isSpawned = true;
 
-            Vehicles.Add(serverVeh);            character.PersonalVehicles.Add(serverVeh);
+            Vehicles.Add(serverVeh);            
+            character.PersonalVehicles.Add(serverVeh);
             character.AccessVehicles.Add(serverVeh);
 
             VehicleDbManager.SaveVehicle(serverVeh);
@@ -221,12 +227,12 @@ namespace ServerSide.Server.Vehicles
                 if(engineStatus == false)
                 {
                     player.Vehicle.EngineStatus = true;
-                    ChatMessage.ameCommand(player, "a pornit motorul.");
+                    ChatMessage.cmd_ame(player, "a pornit motorul.");
                 }
                 else
                 {
                     player.Vehicle.EngineStatus = false;
-                    ChatMessage.ameCommand(player, "a oprit motorul.");
+                    ChatMessage.cmd_ame(player, "a oprit motorul.");
                 }
             }
         }

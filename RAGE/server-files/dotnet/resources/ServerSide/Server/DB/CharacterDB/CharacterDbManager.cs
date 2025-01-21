@@ -107,7 +107,7 @@ namespace ServerSide.Server.DB.CharacterDB
                 }
             }
         }
-        public static Character getCharacter(IAccount account, string name)
+        public static Character GetCharacter(IAccount account, string name)
         {
             if (string.IsNullOrEmpty(name))
                 return null;
@@ -240,7 +240,7 @@ namespace ServerSide.Server.DB.CharacterDB
             }
         }
 
-        public static Character getCharacterById(IAccount account, int id)
+        public static Character GetCharacterById(IAccount account, int id)
         {
             Database db = new Database();
             using (MySqlConnection connection = db.GetDatabaseConnection())
@@ -293,7 +293,7 @@ namespace ServerSide.Server.DB.CharacterDB
                 }
             }
         }
-        public static List<ICharacter> getCharacters(IAccount account)
+        public static List<ICharacter> GetCharacters(IAccount account)
         {
             if (account == null)
                 return null;
@@ -316,6 +316,27 @@ namespace ServerSide.Server.DB.CharacterDB
                             {
                                 Character character = new Character(account.player, account, reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
                                 character.isCreated = reader.GetBoolean(6);
+
+                                //tatooo HANDLER
+                                var tattoo = reader.GetString("TattooJSON");
+                                if (!tattoo.Equals("{}"))
+                                    character.Tattoos = !reader.IsDBNull("TattooJSON")
+                                        ? NAPI.Util.FromJson<List<Decoration>>(tattoo)
+                                        : new List<Decoration>();
+                                // FACE HANDLER
+                                character.Face = !reader.IsDBNull("faceJSON")
+                                    ? NAPI.Util.FromJson<CharacterData>(reader.GetString("faceJSON"))
+                                    : null;
+
+                                // HAIR HANDLER
+                                character.Hair = !reader.IsDBNull("HairJSON")
+                                    ? NAPI.Util.FromJson<HairData>(reader.GetString("HairJSON"))
+                                    : null;
+
+                                //CLOTHES
+                                character.currentOutfit = !reader.IsDBNull("currentOutfit") ? reader.GetInt32("currentOutfit") : 0;
+                                character.Clothes[character.currentOutfit] = getClothes(character, (byte)character.currentOutfit);
+
                                 characters.Add(character);
                             }
                         }

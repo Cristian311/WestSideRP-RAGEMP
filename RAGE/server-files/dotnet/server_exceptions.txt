@@ -26181,3 +26181,39 @@ Newtonsoft.Json.JsonSerializationException: Error converting value "3" to type '
    at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
    --- End of inner exception stack trace ---
    at object Newtonsoft.Json.Seria
+==================[21.01.2025 05:03:29]==================
+System.ArgumentException: Could not cast or convert from System.String to ServerSide.Characters.Customization.Hair.HairDetail.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+=========================================================
+
+==================[21.01.2025 05:03:29]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value "3" to type 'ServerSide.Characters.Customization.Hair.HairDetail'. Path 'hair', line 1, position 11.
+ ---> System.ArgumentException: Could not cast or convert from System.String to ServerSide.Characters.Customization.Hair.HairDetail.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+=========================================================
+
+==================[21.01.2025 05:03:29]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value "3" to type 'ServerSide.Characters.Customization.Hair.HairDetail'. Path 'hair', line 1, position 11.
+ ---> System.ArgumentException: Could not cast or convert from System.String to ServerSide.Characters.Customization.Hair.HairDetail.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)
+   at bool Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, object target)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, string id)
+=========================================================
+
+==================[21.01.2025 05:03:29]==================
+Newtonsoft.Json.JsonSerializationException: Error converting value "3" to type 'ServerSide.Characters.Customization.Hair.HairDetail'. Path 'hair', line 1, position 11.
+ ---> System.ArgumentException: Could not cast or convert from System.String to ServerSide.Characters.Customization.Hair.HairDetail.
+   at object Newtonsoft.Json.Utilities.ConvertUtils.EnsureTypeAssignable(object value, Type initialType, Type targetType)
+   at object Newtonsoft.Json.Utilities.ConvertUtils.ConvertOrCast(object initialValue, CultureInfo culture, Type targetType)
+   at object Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, object value, CultureInfo culture, JsonContract contract, Type targetType)
+   --- End of inner exception stack trace ---
+   at object Newtonsoft.Json.Seria

@@ -13,7 +13,7 @@ namespace ServerSide.Server.Blips
         private static Blip blip2;
         private static List<BlipData> blips = new List<BlipData>();
         private static IdManager<BlipData> blipIdManager = new IdManager<BlipData>();
-        private static string filePath = "json/blips/blips.json";
+
         private BlipHandler()
         {
             //test blip

@@ -24,7 +24,7 @@ namespace ClientSide.Character.CustomizeChar
         {
             string json = args[0].ToString();
             CharacterData charData = RAGE.Util.Json.Deserialize<CharacterData>(json);
-            UpdatePlayerFaceFeatures(charData, Gender);
+            UpdatePlayerFaceFeatures(charData);
         }
 
         private void ShowCustomizeCharScreenServer(object[] args)
@@ -63,7 +63,7 @@ namespace ClientSide.Character.CustomizeChar
             Events.CallRemote("CLIENT:SERVER:CharCustomiseUpdate", json);
         }
 
-        private void UpdatePlayerFaceFeatures(CharacterData data, bool gender)
+        private void UpdatePlayerFaceFeatures(CharacterData data)
         {
             //eyes
             var eyeColor = data.Eye.Color;

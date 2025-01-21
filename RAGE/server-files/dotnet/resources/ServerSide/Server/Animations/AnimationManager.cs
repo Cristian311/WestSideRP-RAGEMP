@@ -23,7 +23,12 @@ namespace ServerSide.Server.Animations
             var animation = GetAnimByName(anim);
             var character = CharacterManager.GetCharacter(player);
 
-            character.PlayAnimation(animation.AnimDict, animation.AnimName, animation.Flag);
+            if (animation == null)
+            {
+                character.SendErrorMessage("Nu exista acea animatie");
+                return;
+            }
+                character.PlayAnimation(animation.AnimDict, animation.AnimName, animation.Flag);
         }
 
         [Command("sa")]

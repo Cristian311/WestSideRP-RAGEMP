@@ -334,7 +334,7 @@ namespace ServerSide.Server.Items
                         character.ItemIdManager.ReclaimId(usedItem.localID);
 
                         player.SendChatMessage($"{Colors.INFO}Ai echipat {weaponHash.ToString()}.");
-                        ChatMessage.ameCommand(player, "intinde mana pentru o arma.");
+                        ChatMessage.cmd_ame(player, "intinde mana pentru o arma.");
                         return;
                     }
                     Item bullets = GetBulletsOfWeapon(character, usedItem);
@@ -352,7 +352,7 @@ namespace ServerSide.Server.Items
                             character.ItemIdManager.ReclaimId(usedItem.localID);
 
                             player.SendChatMessage($"{Colors.INFO}Ai echipat {weaponHash.ToString()}.");
-                            ChatMessage.ameCommand(player, "intinde mana pentru o arma.");
+                            ChatMessage.cmd_ame(player, "intinde mana pentru o arma.");
                         }
                         else
                         {

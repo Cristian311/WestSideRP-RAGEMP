@@ -135,5 +135,9 @@ namespace ServerSide.Characters
         {
             player.SendChatMessage(Colors.INFO + message);
         }
+        public void SendAdminMessage(string message)
+        {
+            player.SendChatMessage(Colors.ADMIN + message);
+        }
     }
 }

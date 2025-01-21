@@ -32,13 +32,13 @@ namespace ServerSide.Server.Vehicles
                 {
                     player.SendChatMessage($"{Colors.RED}Ti-ai incuiat masina!");
                     closestVehicle.GTAVehicle.Locked = true;
-                    ChatMessage.ameCommand(player, "si-a incuiat masina.");
+                    ChatMessage.cmd_ame(player, "si-a incuiat masina.");
                 }
                 else
                 {
                     player.SendChatMessage($"{Colors.FOREST_GREEN}Ti-ai descuiat masina!");
                     closestVehicle.GTAVehicle.Locked = false;
-                    ChatMessage.ameCommand(player, "si-a descuiat masina.");
+                    ChatMessage.cmd_ame(player, "si-a descuiat masina.");
                 }    
             }
             else

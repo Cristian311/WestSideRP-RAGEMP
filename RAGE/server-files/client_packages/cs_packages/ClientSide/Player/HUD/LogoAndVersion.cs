@@ -8,7 +8,7 @@ namespace ClientSide.Player.HUD
 {
     public class LogoAndVersion : Events.Script
     {
-        private HtmlWindow cefBrowser;
+        private static HtmlWindow cefBrowser;
         public LogoAndVersion() 
         {
             Events.Add("SERVER:CLIENT:ShowLogo", ShowLogo);
@@ -17,8 +17,9 @@ namespace ClientSide.Player.HUD
         private void ShowLogo(object[] args)
         {
             cefBrowser = new HtmlWindow("http://package/hud/logo.html");
-            cefBrowser.ExecuteJs($"updateText({args[0]});");
-            cefBrowser.ExecuteJs($"setTimeout(() => updateText({args[0]}), 100);");
+            string text = args[0].ToString();
+            cefBrowser.ExecuteJs($"updateText({text});");
+            cefBrowser.ExecuteJs($"setTimeout(() => updateText({text}), 100);");
         }
     }
 }

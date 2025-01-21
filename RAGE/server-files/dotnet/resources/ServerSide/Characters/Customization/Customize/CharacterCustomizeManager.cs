@@ -34,7 +34,7 @@ namespace ServerSide.Characters.Customization.Customize
             }
             character.Face = NAPI.Util.FromJson<CharacterData>(faceFeaturesJSON);
 
-            player.TriggerEvent("SERVER:CLIENT:FaceCameraOff");
+            player.TriggerEvent("SERVER:CLIENT:CameraOff");
             player.StopAnimation();
             //update db
             UpdateCharDataDBManager.UpdateCharacter(character);
@@ -48,7 +48,6 @@ namespace ServerSide.Characters.Customization.Customize
             try
             {
                 UpdatePlayerFaceFeatures(player, data);
-                NAPI.Util.ConsoleOutput(json);
             }
             catch (Exception e)
             {
@@ -62,6 +61,7 @@ namespace ServerSide.Characters.Customization.Customize
             //head blend
             var headBlend = GetHeadBlend(data);
             var features = GetFaceFeatures(data);
+
             //face features
             SetFaceFeatures(player, features);
 

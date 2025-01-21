@@ -50,6 +50,7 @@ namespace ServerSide.Server.Commands
             player.TriggerEvent("SERVER:CLIENT:ShowCharInterface");
             player.TriggerEvent("SERVER:CLIENT:DisplayAccountInfo", username, namesJSON, moneyJSON);
             UpdateCharDataDBManager.UpdateCharacter(character);
+            player.Dimension = (uint)account.GameId;
         }
         [Command("clothes")]
         private void ClothesCommand(Player player)

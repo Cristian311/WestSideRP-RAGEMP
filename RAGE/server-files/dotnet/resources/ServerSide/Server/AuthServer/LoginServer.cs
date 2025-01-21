@@ -55,17 +55,20 @@ namespace ServerSide.Server.AuthServer
                     AdminManager.SendChatMessageToAdmins($"Admin {username} Level {adminLevel} s-a logat.");
                 }
                 account.GameId = AccountManager.idManager.AssignNewId(account);
-                if (!AccountManager.loggedAccounts.Contains(account))
+                //if (!AccountManager.loggedAccounts.Contains(account))
                     AccountManager.loggedAccounts.Add(account);
-                if (!AccountManager.AccountPlayerPairs.ContainsKey(account))
+                //if (!AccountManager.AccountPlayerPairs.ContainsKey(account))
                     AccountManager.AccountPlayerPairs.Add(account, player);
-                if (!AccountManager.PlayerAccountPairs.ContainsKey(player))
+                //if (!AccountManager.PlayerAccountPairs.ContainsKey(player))
                     AccountManager.PlayerAccountPairs.Add(player, account);
-
+                player.Position = new Vector3(210.71982, 285.08926, 141.92323);
+                player.Rotation = new Vector3(0, 0, 144);
                 //CHARACTER SELECT
                 CharacterManager.GetNameMoneyJson(account, out string namesJSON, out string moneyJSON);
                 player.TriggerEvent("SERVER:CLIENT:ShowCharInterface");
                 player.TriggerEvent("SERVER:CLIENT:DisplayAccountInfo", username, namesJSON, moneyJSON);
+                player.TriggerEvent("SERVER:CLIENT:ChooseCharacterCamera");
+                player.TriggerEvent("SERVER:CLIENT:FreezePlayer");
             }
             else
             {//login unsuccesfull

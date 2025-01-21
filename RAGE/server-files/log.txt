@@ -2472,3 +2472,91 @@
 20.01.2025 03:54:53 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
 20.01.2025 03:56:28 (aaa) Jack Spencer: /createveh infernus
 20.01.2025 03:57:00 (aaa) Jack Spencer: /changechar
+20.01.2025 19:22:54 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+20.01.2025 19:22:54 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+20.01.2025 19:27:51 (aaa) Jack Spencer: /vg
+20.01.2025 19:28:07 (aaa) Jack Spencer: /getveh
+20.01.2025 19:30:20 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+20.01.2025 19:30:20 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+20.01.2025 19:30:43 (aaa) Jack Spencer: /cpv bullet
+20.01.2025 19:30:57 (aaa) Jack Spencer: /vg
+20.01.2025 19:30:59 (aaa) Jack Spencer: /vg 2
+20.01.2025 19:31:04 (aaa) Jack Spencer: /vg 1
+20.01.2025 19:31:13 (aaa) Jack Spencer: /vg 0
+20.01.2025 19:31:38 (aaa) Jack Spencer: /vg
+20.01.2025 19:31:46 (aaa) Jack Spencer: /createveh infernus
+20.01.2025 19:31:57 (aaa) Jack Spencer: /createveh infernus
+20.01.2025 19:31:59 (aaa) Jack Spencer: /veh
+20.01.2025 19:32:04 (aaa) Jack Spencer: /createveh
+20.01.2025 19:32:07 (aaa) Jack Spencer: /createveh infernus
+20.01.2025 19:32:22 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+20.01.2025 19:32:22 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+20.01.2025 19:32:53 (aaa) Jack Spencer: /createveh infernus
+20.01.2025 19:32:57 (aaa) Jack Spencer: /createveh infernus 2 2
+20.01.2025 19:33:13 (aaa) Jack Spencer: /createveh infernus 2 2
+20.01.2025 19:33:18 (aaa) Jack Spencer: /cpv infernus
+20.01.2025 19:34:24 (aaa) Jack Spencer: /createveh
+20.01.2025 19:34:28 (aaa) Jack Spencer: /createveh pck
+20.01.2025 19:34:30 (aaa) Jack Spencer: /createveh pcj
+20.01.2025 19:35:50 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+20.01.2025 19:35:50 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+20.01.2025 19:36:27 (aaa) Joseph Stalin: /cpv
+20.01.2025 19:36:31 (aaa) Joseph Stalin: /cpv infernus
+20.01.2025 19:38:56 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+20.01.2025 19:38:56 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+20.01.2025 19:39:20 (aaa) Jack Spencer: /dimension
+20.01.2025 19:39:22 (aaa) Jack Spencer: /dimension -1
+20.01.2025 19:39:43 (aaa) Jack Spencer: /cpv infernus
+20.01.2025 19:39:58 (aaa) Jack Spencer: /vehicles
+20.01.2025 19:40:03 (aaa) Jack Spencer: /servervehicles
+20.01.2025 19:40:11 (aaa) Jack Spencer: /vg
+20.01.2025 19:40:15 (aaa) Jack Spencer: /vg 4
+20.01.2025 19:40:18 (aaa) Jack Spencer: /vg 2
+20.01.2025 19:43:00 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+20.01.2025 19:43:00 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+20.01.2025 19:43:29 (aaa) Jack Spencer: /vg 1
+20.01.2025 19:43:33 (aaa) Jack Spencer: /dimension 01
+20.01.2025 19:43:36 (aaa) Jack Spencer: /dimension -1
+20.01.2025 19:43:43 (aaa) Jack Spencer: /cpv bullet
+20.01.2025 19:47:14 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+20.01.2025 19:47:14 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+20.01.2025 19:47:46 (aaa) Jack Spencer: /anim sit
+20.01.2025 19:47:48 (aaa) Jack Spencer: /anim si2
+20.01.2025 19:47:49 (aaa) Jack Spencer: /anim sit2
+20.01.2025 19:47:51 (aaa) Jack Spencer: /anim sit3
+20.01.2025 19:47:57 (aaa) Jack Spencer: /anim sit5
+20.01.2025 19:48:02 (aaa) Jack Spencer: /anim sitchair4
+20.01.2025 19:48:05 (aaa) Jack Spencer: /anim sitchair5
+20.01.2025 19:48:41 (aaa) Jack Spencer: /createveh infernus
+20.01.2025 19:48:44 (aaa) Jack Spencer: /createveh infernus
+20.01.2025 19:48:48 (aaa) Jack Spencer: /dimension 0
+20.01.2025 19:56:33 (aaa) Jack Spencer: /createveh pcj
+21.01.2025 03:24:42 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+21.01.2025 03:24:42 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+21.01.2025 03:25:44 (aaa) Jack Spencer: /createveh infernus
+21.01.2025 03:25:55 (aaa) Jack Spencer: /dimension 0
+21.01.2025 03:32:07 (aaa) Jack Spencer: /createveh sparrow
+21.01.2025 03:32:17 (aaa) Jack Spencer: /createveh helo
+21.01.2025 03:32:24 (aaa) Jack Spencer: /createveh helicopter
+21.01.2025 03:32:33 (aaa) Jack Spencer: /createveh maverick
+21.01.2025 03:34:55 (aaa) Jack Spencer: /camera
+21.01.2025 03:35:11 (aaa) Jack Spencer: /save
+21.01.2025 03:35:16 (aaa) Jack Spencer: /save playerposition
+21.01.2025 03:35:27 (aaa) Jack Spencer: /save cameraposition
+21.01.2025 03:53:32 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+21.01.2025 03:53:32 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+21.01.2025 03:55:48 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+21.01.2025 03:55:48 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+21.01.2025 04:07:19 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+21.01.2025 04:07:19 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+21.01.2025 04:45:48 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+21.01.2025 04:45:48 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+21.01.2025 04:46:36 (aaa) Jack Spencer: /changechar
+21.01.2025 04:46:43 (aaa) William Johnson: /changechar
+21.01.2025 04:48:22 (aaa) Hatz Gioom: z
+21.01.2025 04:48:25 (aaa) Hatz Gioom: /changechar
+21.01.2025 04:48:30 (aaa) Joseph Stalin: /changechar
+21.01.2025 04:58:00 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+21.01.2025 04:58:00 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+21.01.2025 05:03:01 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+21.01.2025 05:03:01 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121

@@ -15,6 +15,8 @@ using ServerSide.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Cache;
+using System.Net.WebSockets;
 using System.Runtime.InteropServices;
 using static System.Net.Mime.MediaTypeNames;
 using Player = GTANetworkAPI.Player;
@@ -53,7 +55,7 @@ namespace ServerSide.Characters
             foreach(var character in loggedCharacters)
             {
                 var charName = character.Name.ToLower();
-                NAPI.Util.ConsoleOutput(character.Name);
+
                 if (charName.Contains(name.ToLower()))
                 {
                     chars.Add(character);
@@ -68,7 +70,6 @@ namespace ServerSide.Characters
             foreach (var character in loggedCharacters)
             {
                 var charName = character.Name.ToLower();
-                NAPI.Util.ConsoleOutput(character.Name);
                 if (charName.Contains(name.ToLower()))
                 {
                     if(playersAroundPlayer.Contains(character.player))
@@ -77,13 +78,15 @@ namespace ServerSide.Characters
             }
             return chars;
         }
+        
         [RemoteEvent("CLIENT:SERVER:CreateCharacter")]
         private void CreateCharacter(Player player, string firstname, string lastname, string selectedgender)
         {
             //prepare vars
-            string tempname = firstname + ' ' + lastname;
-            Character character = new Character(player, AccountManager.PlayerAccountPairs[player], tempname, 20, 5000);
-            NAPI.Util.ConsoleOutput(selectedgender);
+            string Name = firstname + ' ' + lastname;
+            var account = AccountManager.PlayerAccountPairs[player];
+            Character character = new Character(player, account, Name, 20, 5000);
+
             character.Gender = GetGender(selectedgender);
             character.GetCharacterInfo();//debug
 
@@ -105,62 +108,30 @@ namespace ServerSide.Characters
             player.TriggerEvent("SERVER:CLIENT:ShowCharInterface");
             player.TriggerEvent("SERVER:CLIENT:DisplayAccountInfo", username, namesJSON, moneyJSON); 
         }
+
         [RemoteEvent("CLIENT:SERVER:CharSelected")]
         private void OnCharSelected(Player player, string charName)
         {
             if (charName == "null")
                 return;
-            //Character character = AccountManager.PlayerAccountPairs[player].currentCharacter;
-            Account account = AccountManager.PlayerAccountPairs[player];
 
-            Character character = CharacterDbManager.getCharacter(account, charName);
+
+            //account setup
+            Account account = AccountManager.PlayerAccountPairs[player];
+            Character character = CharacterDbManager.GetCharacter(account, charName);
             loggedCharacters.Add(character);
             PlayerCharacterPair[player] = character;
             CharacterManager.CharacterAccountPair[character] = account;
             account.currentCharacter = character;
-            player.Nametag = charName;
+            
 
-            //add the phones to phone list
-            foreach (var item in character.Items)
-            {
-                if (item.Type == "phone")
-                {
-                    Phone phone = new Phone(character, item.Name, item.Type, item.PhoneNumber);
-                    PhoneManager.phoneList.Add(phone);
-                }
-            }
-            //!!!!!!! UPDATE PLAYER CHARACTER DETAILS AFTER SELECTED
-
-
-            if (character.isCreated == true)
-            {
-                CharacterCustomizeManager.UpdatePlayerFaceFeatures(player, character.Face);
-                //update hair
-                if (character.Hair != null)
-                {
-                    HairManager.UpdateHair(player, character.Hair);
-                }
-            }
-            //else
-            //{
-            //    string faceJson = NAPI.Util.ToJson(character.Face);
-            //    player.TriggerEvent("SERVER:CLIENT:ShowCustomizeCharScreen", character.Gender, faceJson);
-            //}
+            //character update
+            UpdatePhones(character);
+            CharacterCustomizeManager.UpdatePlayerFaceFeatures(character.player, character.Face);
+            UpdateHair(character);
             ClothesManager.GetClothes(player, (byte)character.currentOutfit);
-            if (character.Tattoos != null)
-            {
-                Decoration[] decorations = new Decoration[character.Tattoos.Count];
-                for (int i = 0; i < character.Tattoos.Count; i++)
-                {
-                    decorations[i] = character.Tattoos[i];
-                }
-                TattooManager.ApplyTattoos(player, decorations);
-            }
-            player.Position = new Vector3(253.85786, 287.4269, 105.533104);
-            player.Name = character.Name;
-            CustomizeCommands.fixskinCommand(player);
+            ApplyTattoos(character);
             character.GameId = account.GameId;
-
             character.PersonalVehicles = VehicleDbManager.LoadVehiclesByName(character.Name);
             foreach(var veh in character.PersonalVehicles)
             {
@@ -168,12 +139,19 @@ namespace ServerSide.Characters
             }
             character.AccessVehicles = character.PersonalVehicles;
             character.SetMoneyHud(character.Money, character.BankMoney);
-            //VehicleManager.FixPersonalVehicles(character);
-
             character.Clothes = CharacterDbManager.GetAllClothes(character);
-            //show hud
-            player.TriggerEvent("SERVER:CLIENT:ShowLogo", $"{Resource.ServerName} {Resource.Version}");
             character.SendInfoMessage($"Te-ai conectat ca {Colors.WHITE}{character.Name}{Colors.INFO} ID:{Colors.WHITE} {character.GameId}");
+
+            //player update
+            player.Nametag = charName;
+            player.Position = new Vector3(253.85786, 287.4269, 105.533104);
+            player.Name = character.Name;
+            player.Dimension = 0;
+            CustomizeCommands.fixskinCommand(player);
+            player.TriggerEvent("SERVER:CLIENT:ShowLogo", $"{Resource.ServerName} {Resource.Version}");//show hud
+            player.TriggerEvent("SERVER:CLIENT:UnfreezePlayer");
+            player.TriggerEvent("SERVER:CLIENT:CameraOff");
+            
         }
         public static List<Character> GetMatchingCharacters(string nameOrId)
         {
@@ -248,7 +226,6 @@ namespace ServerSide.Characters
 
         private bool GetGender(string gender)
         {
-            NAPI.Util.ConsoleOutput(gender);
             if (gender.Equals("male"))
                 return true;
             else
@@ -256,7 +233,7 @@ namespace ServerSide.Characters
         }
         public static void GetNameMoneyJson(Account account, out string namesJSON, out string moneyJSON)
         {
-            List<ICharacter> characters = CharacterDbManager.getCharacters(account);
+            List<ICharacter> characters = CharacterDbManager.GetCharacters(account);
 
             GetNamesAndMoneyForCEF(characters, GetRequiredCount(characters), out string[] names, out int[] money);
 
@@ -264,7 +241,7 @@ namespace ServerSide.Characters
             moneyJSON = NAPI.Util.ToJson(money);
         }
             
-        public static void GetNamesAndMoneyForCEF(List<ICharacter> characters, int requiredCount, out string[] names, out int[] money)
+        private static void GetNamesAndMoneyForCEF(List<ICharacter> characters, int requiredCount, out string[] names, out int[] money)
         {
             names = new string[requiredCount];
             money = new int[requiredCount];
@@ -293,7 +270,7 @@ namespace ServerSide.Characters
                 }    
             }
         }
-        public static int GetRequiredCount(List<ICharacter> characters)
+        private static int GetRequiredCount(List<ICharacter> characters)
         {
             int requiredCount;
             if (characters == null)
@@ -301,6 +278,40 @@ namespace ServerSide.Characters
             else
                 requiredCount = Math.Max(3, characters.Count);
             return requiredCount;
+        }
+        private void UpdatePhones(Character character)
+        {
+            foreach (var item in character.Items)
+            {
+                if (item.Type == "phone")
+                {
+                    Phone phone = new Phone(character, item.Name, item.Type, item.PhoneNumber);
+                    PhoneManager.phoneList.Add(phone);
+                }
+            }
+        }
+        private void ApplyTattoos(Character character)
+        {
+            if (character.Tattoos != null)
+            {
+                Decoration[] decorations = new Decoration[character.Tattoos.Count];
+                for (int i = 0; i < character.Tattoos.Count; i++)
+                {
+                    decorations[i] = character.Tattoos[i];
+                }
+                TattooManager.ApplyTattoos(character.player, decorations);
+            }
+        }
+        private void UpdateHair(Character character)
+        {
+            if (character.isCreated == true)
+            {
+                //update hair
+                if (character.Hair != null)
+                {
+                    HairManager.UpdateHair(character.player, character.Hair);
+                }
+            }
         }
     }
 }

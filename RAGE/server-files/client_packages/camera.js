@@ -1,7 +1,7 @@
 let handCamera = mp.cameras.new('default', new mp.Vector3(0,  0,  0), new mp.Vector3(0,0,0), 40);
 
 mp.events.add("SERVER:CLIENT:FaceCamera", () => {
-    let playerPosition = mp.players.local.position
+    let playerPosition = mp.players.local.position;
     
     handCamera.setActive(true);
     handCamera.pointAtPedBone(mp.players.local.handle, 31086, 0, 0, 0, true);
@@ -9,6 +9,15 @@ mp.events.add("SERVER:CLIENT:FaceCamera", () => {
     mp.game.cam.renderScriptCams(true, false, 0, true, false);
 });
 
-mp.events.add("SERVER:CLIENT:FaceCameraOff", () => {
+mp.events.add("SERVER:CLIENT:ChooseCharacterCamera", () => {
+
+    handCamera.setActive(true);
+    handCamera.setCoord(209.13136, 283.0628, 141.47795 + 0.80);
+    handCamera.pointAtCoord(210.71982, 285.08926, 141.92323);
+
+    mp.game.cam.renderScriptCams(true, false, 0, true, false);
+});
+
+mp.events.add("SERVER:CLIENT:CameraOff", () => {
     mp.game.cam.renderScriptCams(false, false, 0, false, false);
 });
