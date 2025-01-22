@@ -37,12 +37,12 @@ namespace ServerSide
 
             // Use the item's properties to create a new Phone object
             return new Phone(
-                item.currentCharacter,
+                item.CurrentCharacter,
                 item.Name,
                 item.Type,
                 item.PhoneNumber, // Use the PhoneNumber property from the item
                 item.Amount,
-                item.Countable,
+                item.isStackable,
                 item.UsedFor
             );
         }
@@ -79,17 +79,17 @@ namespace ServerSide
             bool messageSent = false;
             foreach (var phone in phoneList)
             {
-                Console.WriteLine($"Phone: {phone.PhoneNumber}, Character: {phone.currentCharacter?.Name}");
+                Console.WriteLine($"Phone: {phone.PhoneNumber}, Character: {phone.CurrentCharacter?.Name}");
 
                 if (phone.PhoneNumber == Message.ReceiverNumber)
                 {
-                    if (phone.currentCharacter == null)
+                    if (phone.CurrentCharacter == null)
                     {
                         player.SendChatMessage($"{Colors.ERROR} Telefonul tinta nu este activ.");
                         return;
                     }
 
-                    phone.currentCharacter.SendChatMessage($"{Colors.YELLOW}Mesaj de la {Message.SenderNumber}: {Message.Message}");
+                    phone.CurrentCharacter.SendChatMessage($"{Colors.YELLOW}Mesaj de la {Message.SenderNumber}: {Message.Message}");
                     phone.messages ??= new List<PhoneMessage>();
                     phone.messages.Add(Message);
 
@@ -143,9 +143,9 @@ namespace ServerSide
                 {
                     var phone = GetPhoneFromItem(item);
                     if (character.MainPhone != null && item.Name == character.MainPhone.Name) // !!!!! NEEDS FIX ASAP IT SHOULD CHECK BY ID NOT NAME, BUT ITS BUGGED
-                        character.SendChatMessage($"{Colors.GREEN}{item.localID}. {phone.Name} - {phone.PhoneNumber} [Main Phone]");
+                        character.SendChatMessage($"{Colors.GREEN}{item.LocalId}. {phone.Name} - {phone.PhoneNumber} [Main Phone]");
                     else
-                        character.SendChatMessage($"{Colors.GREEN}{item.localID}. {phone.Name} - {phone.PhoneNumber}");
+                        character.SendChatMessage($"{Colors.GREEN}{item.LocalId}. {phone.Name} - {phone.PhoneNumber}");
                     found = true;
                 }
             }

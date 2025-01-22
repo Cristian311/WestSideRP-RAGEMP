@@ -56,34 +56,19 @@ namespace ServerSide.Server.AuthServer
                     account.AdminLevel = adminLevel.GetValueOrDefault();
                     AdminManager.SendChatMessageToAdmins($"Admin {username} Level {adminLevel} s-a logat.");
                 }
+
                 account.GameId = AccountManager.idManager.AssignNewId(account);
                 if (!AccountManager.loggedAccounts.Contains(account))
                     AccountManager.loggedAccounts.Add(account);
-                //if (!AccountManager.AccountPlayerPairs.ContainsKey(account))
+                if (!AccountManager.AccountPlayerPairs.ContainsKey(account))
                     AccountManager.AccountPlayerPairs.Add(account, player);
-                //if (!AccountManager.PlayerAccountPairs.ContainsKey(player))
+                if (!AccountManager.PlayerAccountPairs.ContainsKey(player))
                     AccountManager.PlayerAccountPairs.Add(player, account);
-                player.Position = new Vector3(210.71982, 285.08926, 141.92323);
-                player.Rotation = new Vector3(0, 0, 144);
-                
+
                 //CHARACTER SELECT
-                account.Characters = CharacterDbManager.GetCharacters(account);
-                var facesJson = NAPI.Util.ToJson(account.Characters.Select(c => c.Face));
-                var hairsJson = NAPI.Util.ToJson(account.Characters.Select(c => c.Hair));
-                var clothesJson = NAPI.Util.ToJson(account.Characters.Select(c => CharacterDbManager.getClothes(c, (byte)c.currentOutfit)));
-                NAPI.Util.ConsoleOutput("SERVER:");
-                NAPI.Util.ConsoleOutput(facesJson);
-                NAPI.Util.ConsoleOutput(hairsJson);
-                NAPI.Util.ConsoleOutput(clothesJson);
+                CharacterManager.ShowChangeCharacterScreen(account);
 
-                player.TriggerEvent("SERVER:CLIENT:CharactersInfo", facesJson, hairsJson, clothesJson);
-
-                CharacterManager.GetNameMoneyJson(account, out string namesJSON, out string moneyJSON, account.Characters);
-                player.TriggerEvent("SERVER:CLIENT:ShowCharInterface");
-                player.TriggerEvent("SERVER:CLIENT:DisplayAccountInfo", username, namesJSON, moneyJSON);
-                player.TriggerEvent("SERVER:CLIENT:ChooseCharacterCamera");
-                player.TriggerEvent("SERVER:CLIENT:FreezePlayer");
-                foreach(var acc in AccountManager.loggedAccounts)
+                foreach (var acc in AccountManager.loggedAccounts)
                 {
                     acc.player.TriggerEvent("SERVER:CLIENT:UpdateDiscord", $"{AccountManager.loggedAccounts.Count}/1000");
                 }

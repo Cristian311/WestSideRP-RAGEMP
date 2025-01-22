@@ -152,8 +152,8 @@ namespace ServerSide.Characters
             player.TriggerEvent("SERVER:CLIENT:ShowLogo", $"{Resource.ServerName} {Resource.Version}");//show hud
             player.TriggerEvent("SERVER:CLIENT:UnfreezePlayer");
             player.TriggerEvent("SERVER:CLIENT:CameraOff");
-            
         }
+
         public static List<Character> GetMatchingCharacters(string nameOrId)
         {
             // If the input is an integer (ID), filter by ID
@@ -165,7 +165,30 @@ namespace ServerSide.Characters
             // Otherwise, filter by name
             return loggedCharacters.Where(c => c.Name.Contains(nameOrId, StringComparison.OrdinalIgnoreCase)).ToList();
         }
+        public static void ShowChangeCharacterScreen(IAccount account)
+        {
+            var player = account.player;
 
+            var facesJson = NAPI.Util.ToJson(account.Characters.Select(c => c.Face));
+            var hairsJson = NAPI.Util.ToJson(account.Characters.Select(c => c.Hair));
+            var clothesJson = NAPI.Util.ToJson(account.Characters.Select(c => CharacterDbManager.getClothes(c, (byte)c.currentOutfit)));
+            NAPI.Util.ConsoleOutput("SERVER:");
+            NAPI.Util.ConsoleOutput(facesJson);
+            NAPI.Util.ConsoleOutput(hairsJson);
+            NAPI.Util.ConsoleOutput(clothesJson);
+
+            player.TriggerEvent("SERVER:CLIENT:CharactersInfo", facesJson, hairsJson, clothesJson);
+
+            CharacterManager.GetNameMoneyJson(account, out string namesJSON, out string moneyJSON, account.Characters);
+            player.TriggerEvent("SERVER:CLIENT:ShowCharInterface");
+            player.TriggerEvent("SERVER:CLIENT:DisplayAccountInfo", account.Name, namesJSON, moneyJSON);
+            player.TriggerEvent("SERVER:CLIENT:ChooseCharacterCamera");
+            player.TriggerEvent("SERVER:CLIENT:FreezePlayer");
+
+            player.Position = new Vector3(210.71982, 285.08926, 141.92323);
+            player.Rotation = new Vector3(0, 0, 144);
+            player.Dimension = account.GameId != 0 ? (uint)account.GameId : 1001;
+        }
         public static Character GetCharacterByName(Player player, string nameOrId)
         {
             var matches = GetMatchingCharacters(nameOrId);
@@ -232,7 +255,7 @@ namespace ServerSide.Characters
             else
                 return false;
         }
-        public static void GetNameMoneyJson(Account account, out string namesJSON, out string moneyJSON, List<ICharacter> characters)
+        public static void GetNameMoneyJson(IAccount account, out string namesJSON, out string moneyJSON, List<ICharacter> characters)
         {
             
 

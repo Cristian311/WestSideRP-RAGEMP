@@ -1,243 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory System</title>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: rgba(0, 0, 0, 0);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .inventory-container {
-            width: 40%;
-            max-width: 600px;
-            background-color: #111;
-            color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(255, 102, 0, 0.2);
-            position: relative;
-        }
-
-        .inventory-header {
-            background-color: #000;
-            padding: 8px;
-            text-align: center;
-            border-bottom: 2px solid #ff6600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .inventory-header h1 {
-            margin: 0;
-            color: #ff6600;
-            font-size: 1.2em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            flex-grow: 1;
-        }
-
-        .close-button {
-            background: none;
-            border: none;
-            color: #ff6600;
-            cursor: pointer;
-            font-size: 1.2em;
-            padding: 0 10px;
-        }
-
-        .close-button:hover {
-            color: #ff8533;
-        }
-
-        .inventory-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 5px;
-            padding: 10px;
-            background-color: #1a1a1a;
-            min-height: 300px;
-        }
-
-        .inventory-slot {
-            aspect-ratio: 1;
-            background-color: #222;
-            border-radius: 4px;
-            border: 1px solid #333;
-            position: relative;
-            transition: all 0.2s ease;
-        }
-
-        .inventory-slot.empty {
-            cursor: default;
-        }
-
-        .inventory-slot:not(.empty):hover {
-            border-color: #ff6600;
-            transform: translateY(-2px);
-        }
-
-        .item {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 5px;
-            box-sizing: border-box;
-            position: relative;
-            font-size: 0.8em;
-            cursor: move;
-        }
-
-        .item-id {
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            font-size: 0.7em;
-            color: #ff6600;
-        }
-
-        .item-amount {
-            position: absolute;
-            bottom: 2px;
-            right: 2px;
-            font-size: 0.8em;
-            color: #fff;
-            background-color: rgba(255, 102, 0, 0.8);
-            padding: 1px 4px;
-            border-radius: 3px;
-        }
-
-        .item-name {
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 2px;
-        }
-
-        .item-type {
-            font-size: 0.7em;
-            color: #888;
-        }
-
-        .floating-menu {
-            position: fixed;
-            background-color: #1a1a1a;
-            border: 1px solid #ff6600;
-            border-radius: 4px;
-            padding: 3px;
-            display: none;
-            flex-direction: column;
-            gap: 2px;
-            width: 100px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-
-        .floating-menu button {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 2px;
-            cursor: pointer;
-            font-size: 0.8em;
-            transition: background-color 0.2s;
-            text-align: left;
-        }
-
-        .floating-menu button:hover {
-            background-color: #ff6600;
-        }
-
-        .sortable-ghost {
-            opacity: 0.5;
-        }
-
-        .sortable-chosen {
-            background-color: #333;
-        }
-
-        .sortable-drag {
-            cursor: grabbing;
-        }
-        /* Add styles for the new modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #1a1a1a;
-            color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 300px;
-            z-index: 2000;
-        }
-
-        .modal-header {
-            padding: 10px;
-            background-color: #000;
-            border-bottom: 2px solid #ff6600;
-            text-align: center;
-        }
-
-        .modal-content {
-            padding: 10px;
-        }
-
-        .modal-footer {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            border-top: 1px solid #333;
-        }
-
-        .player-list {
-            max-height: 150px;
-            overflow-y: auto;
-            margin-bottom: 10px;
-        }
-
-        .player-list button {
-            width: 100%;
-            padding: 5px;
-            text-align: left;
-            border: none;
-            background-color: #333;
-            color: white;
-            margin-bottom: 5px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .player-list button:hover {
-            background-color: #ff6600;
-        }
-
-        .slider-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .slider-container input {
-            flex-grow: 1;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="inventory-container">
         <div class="inventory-header">
@@ -248,8 +19,8 @@
     </div>
     <div class="floating-menu" id="floating-menu"></div>
 
-     <!-- Player selection modal -->
-     <div class="modal" id="player-modal">
+    <!-- Player selection modal -->
+    <div class="modal" id="player-modal">
         <div class="modal-header">
             <h3>Select a Player</h3>
         </div>
@@ -268,6 +39,7 @@
     <script>
         let inventoryItems = []; // Will be populated by updateInventory
 
+
         function updateInventory(itemDataJson) {
             try {
                 const itemData = JSON.parse(itemDataJson);
@@ -280,7 +52,8 @@
 
         function refreshInventoryDisplay() {
             const grid = document.getElementById('inventory-grid');
-            // Clear all slots first
+
+            // Clear all slots
             Array.from(grid.children).forEach(slot => {
                 slot.className = 'inventory-slot empty';
                 slot.innerHTML = '';
@@ -292,13 +65,13 @@
                     const slot = grid.children[index];
                     slot.className = 'inventory-slot';
                     slot.innerHTML = `
-                        <div class="item" data-item-id="${item.id}" data-item-type="${item.type}">
-                            <span class="item-id">#${item.id}</span>
-                            <span class="item-name">${item.name}</span>
-                            <span class="item-type">${item.type}</span>
-                            <span class="item-amount">${item.amount || 1}</span>
-                        </div>
-                    `;
+                <div class="item" data-item-id="${item.id}" data-item-type="${item.type}">
+                    <span class="item-id">#${item.id}</span>
+                    <span class="item-name">${item.name}</span>
+                    <span class="item-type">${item.type}</span>
+                    <span class="item-amount">${item.amount || 1}</span>
+                </div>
+            `;
                 }
             });
         }
@@ -318,7 +91,7 @@
         }
 
         function getPrimaryActionText(type) {
-            switch(type.toLowerCase()) {
+            switch (type.toLowerCase()) {
                 case 'weapon': return 'Equip';
                 case 'food':
                 case 'consumable': return 'Use';
@@ -343,7 +116,7 @@
             `;
 
             const rect = item.getBoundingClientRect();
-            
+
             let top = rect.bottom;
             let left = rect.left;
 
@@ -357,7 +130,7 @@
             menu.style.top = `${top}px`;
             menu.style.left = `${left}px`;
             menu.style.display = 'flex';
-            
+
             e.stopPropagation();
         }
 
@@ -374,7 +147,7 @@
 
         function initializeSortable() {
             const grid = document.getElementById('inventory-grid');
-            
+
             new Sortable(grid, {
                 animation: 150,
                 ghostClass: 'sortable-ghost',
@@ -382,18 +155,18 @@
                 dragClass: 'sortable-drag',
                 handle: '.item',
                 filter: '.empty', // Prevent dragging empty slots
-                onStart: function(evt) {
+                onStart: function (evt) {
                     closeFloatingMenu();
                 },
-                onEnd: function(evt) {
+                onEnd: function (evt) {
                     const fromSlot = evt.from.children[evt.oldIndex];
                     const toSlot = evt.to.children[evt.newIndex];
-                    
+
                     if (toSlot.querySelector('.item') && fromSlot !== toSlot) {
                         // Revert if target slot is not empty
                         evt.from.insertBefore(evt.item, evt.from.children[evt.oldIndex]);
                     }
-                    
+
                     reorganizeInventory();
                     // Trigger an event to save the new order if needed
                     const newOrder = Array.from(grid.querySelectorAll('.item')).map(item => item.dataset.itemId);
@@ -402,11 +175,29 @@
             });
         }
 
+        // Updated action handlers
         function handleItemAction(id, action) {
-            console.log(`${action} item #${id}`);
             mp.trigger(`CEF:CLIENT:${action.charAt(0).toUpperCase() + action.slice(1)}Item`, id);
             closeFloatingMenu();
-            refreshInventoryDisplay();
+            // The server will trigger the inventory update
+        }
+
+        function giveItem(id) {
+            mp.trigger("CEF:CLIENT:GiveItem", id);
+            closeFloatingMenu();
+            // The server will trigger the inventory update
+        }
+
+        function dropItem(id) {
+            mp.trigger("CEF:CLIENT:DropItem", id);
+            closeFloatingMenu();
+            // The server will trigger the inventory update
+        }
+
+        function giveItemToPlayer(itemId, playerId, amount) {
+            mp.trigger("CEF:CLIENT:GiveItemToPlayer", itemId, playerId, amount);
+            closePlayerModal();
+            // The server will trigger the inventory update
         }
 
         function showItem(id) {
@@ -416,32 +207,11 @@
             refreshInventoryDisplay();
         }
 
-        function giveItem(id) {
-            console.log(`Giving item #${id}`);
-            mp.trigger("CEF:CLIENT:GiveItem", id);
-            closeFloatingMenu();
-            refreshInventoryDisplay();
-        }
-
-        function dropItem(id) {
-            console.log(`Dropping item #${id}`);
-            mp.trigger("CEF:CLIENT:DropItem", id);
-            const item = document.querySelector(`[data-item-id="${id}"]`);
-            if (item) {
-                const slot = item.closest('.inventory-slot');
-                slot.className = 'inventory-slot empty';
-                slot.innerHTML = '';
-            }
-            reorganizeInventory();
-            closeFloatingMenu();
-            refreshInventoryDisplay();
-        }
-
         // Close floating menu when clicking outside
         document.addEventListener('mousedown', e => {
             const clickedItem = e.target.closest('.item');
             const clickedMenu = e.target.closest('.floating-menu');
-            
+
             if (!clickedItem && !clickedMenu) {
                 closeFloatingMenu();
             } else if (clickedItem && !clickedMenu && e.button === 0) {
@@ -515,12 +285,9 @@
             console.log(`Showing item #${itemId} to player #${playerId}`);
             mp.trigger("CEF:CLIENT:ShowItemToPlayer", itemId, playerId);
         }
-
-        function giveItemToPlayer(itemId, playerId, amount) {
-            console.log(`Giving ${amount} of item #${itemId} to player #${playerId}`);
-            mp.trigger("CEF:CLIENT:GiveItemToPlayer", itemId, playerId, amount);
-        }
-
+        mp.events.add('SERVER:CLIENT:UpdateInventory', (inventoryData) => {
+            updateInventory(inventoryData);
+        });
         // Example of populating nearby players from client-side:
         populateNearbyPlayers('[{"id":1,"name":"Player1"},{"id":2,"name":"Player2"}]');
         // Initialize the inventory
@@ -531,4 +298,5 @@
         // updateInventory('[{"id": 1, "name": "Desert Eagle", "type": "weapon", "amount": 1}, {"id": 2, "name": "Medkit", "type": "consumable", "amount": 5}]');
     </script>
 </body>
+
 </html>

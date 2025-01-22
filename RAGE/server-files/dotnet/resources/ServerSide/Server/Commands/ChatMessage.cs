@@ -138,7 +138,7 @@ namespace ServerSide.Server.Commands
             player.SendChatMessage($"{Colors.YELLOW}(( {name}: {message} ))");
 
         }
-        [Command("lowto")]
+        [Command("lowto", Alias = "lto")]
         private void cmd_lowto(Player player, string target, string message)
         {
             var character = CharacterManager.GetCharacterByName(player, target);
@@ -197,7 +197,7 @@ namespace ServerSide.Server.Commands
                 p.SendChatMessage($"{Colors.ME}* {action} ({CharacterManager.PlayerCharacterPair[player].Name}) ");
             }
         }
-        [Command("low", GreedyArg = true)]
+        [Command("low", Alias = "l", GreedyArg = true)]
         private void cmd_low(Player player, string action)
         {
             var players = NAPI.Player.GetPlayersInRadiusOfPlayer(15, player);

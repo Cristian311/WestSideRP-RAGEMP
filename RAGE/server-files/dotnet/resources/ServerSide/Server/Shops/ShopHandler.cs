@@ -1,6 +1,7 @@
 ﻿using GTANetworkAPI;
 using ServerSide.Accounts;
 using ServerSide.Characters;
+using ServerSide.Server.Items;
 using ServerSide.Util;
 using System;
 using System.Collections.Generic;
@@ -56,8 +57,8 @@ namespace ServerSide.Server.Shops
             }
             foreach(var item in cart.Items)
             {
-                var charItem = new Items.Item(character, item.Name, item.Type, item.Quantity, true);
-                charItem.localID = character.ItemIdManager.AssignNewId(charItem);
+                var charItem = new Item(character, item.Name, item.Type, item.Quantity, true);
+                charItem.LocalId = character.ItemIdManager.AssignNewId(charItem);
                 character.Items.Add(charItem);
             }
 

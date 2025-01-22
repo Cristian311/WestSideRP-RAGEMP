@@ -165,7 +165,7 @@ namespace ServerSide.Server.DB.CharacterDB
 
                                 foreach (var item in character.Items)
                                 {
-                                    character.ItemIdManager.SetIdBusy(item.localID);
+                                    item.LocalId = character.ItemIdManager.AssignNewId(item);
                                     if (item.Type == "phone" && !string.IsNullOrEmpty(item.PhoneNumber.ToString()))
                                     {
                                         var phone = new Phone(character, item.Name, "phone", item.PhoneNumber);

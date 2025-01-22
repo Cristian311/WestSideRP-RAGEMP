@@ -166,7 +166,6 @@ namespace ServerSide.Server.Vehicles
                 return;
             }
             GTANetworkAPI.Vehicle vehicle = NAPI.Vehicle.CreateVehicle(vehModel, player.Position, 0, 0, 0);
-            vehicle.Dimension = NAPI.GlobalDimension;
             // Initialize server vehicle
             Vehicle serverVeh = new Vehicle(character.Name, "Personal", vehicle);
             serverVeh.VehicleId = vehicleIdManager.AssignNewId(serverVeh);
@@ -201,7 +200,7 @@ namespace ServerSide.Server.Vehicles
             }
         }
 
-        [RequiresAdmin]
+        [RequiresAdmin(5)]
         [Command("servervehicles")]
         private void ServerVehiclesCommand(Player player, double speed = 0)
         {
@@ -267,7 +266,7 @@ namespace ServerSide.Server.Vehicles
             foreach (var vehicle in character.PersonalVehicles)
             {
                 string FuelString = vehicle is IGasVehicle ? "Benzina: " + (((IGasVehicle)vehicle).Gas / ((IGasVehicle)vehicle).GasTank * 100).ToString("F1") + "%" : "";
-                player.SendChatMessage($"{vehicle.VehicleLocalId}. {vehicle.VehicleDisplayName}[{vehicle.VehicleId}] KM: {vehicle.Distance} {FuelString}");
+                player.SendChatMessage($"{vehicle.VehicleLocalId}. {vehicle.VehicleDisplayName}[{vehicle.VehicleId}] KM: {(vehicle.Distance / 100).ToString("F1")} {FuelString}");
             }
         }
     }

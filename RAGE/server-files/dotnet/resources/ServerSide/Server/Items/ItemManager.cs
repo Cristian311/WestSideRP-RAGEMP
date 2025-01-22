@@ -44,6 +44,9 @@ namespace ServerSide.Server.Items
             var character = CharacterManager.PlayerCharacterPair[player];
             ItemDbManager.UpdateCharacterItems(character);
         }
+
+        private static Dictionary<WeaponHash, string> equippedWeapons = new Dictionary<WeaponHash, string>();
+
         [Command("inv")]
         private void InvCommand(Player player)
         {
@@ -53,10 +56,10 @@ namespace ServerSide.Server.Items
                 player.SendChatMessage($"{Colors.ERROR}Nu ai nici un item.");
                 return;
             }
-            character.Items = FixItemsOrder(character.Items);
+            //character.Items = FixItemsOrder(character.Items);
 
             List<ItemData> itemDataList = character.Items
-                .Select(item => new ItemData(item.localID, item.Name, item.Type, item.Amount))
+                .Select(item => new ItemData(item.LocalId, item.Name, item.Type, item.Amount))
                 .ToList();
 
             string json = NAPI.Util.ToJson(itemDataList);
@@ -73,17 +76,17 @@ namespace ServerSide.Server.Items
                 return;
             }
             //
-            character.Items = FixItemsOrder(character.Items); // fix items indexes in inventory
+            //character.Items = FixItemsOrder(character.Items); // fix items indexes in inventory
 
             player.SendChatMessage($"{Colors.ITEMS}Itemele detinute in prezent:");
             foreach (var item in character.Items) // print items
             {
                 if (item.Type == "phone")
-                    player.SendChatMessage($"{Colors.ITEMS}[{item.localID}] (Phone) - {item.Name} - {item.PhoneNumber}");
+                    player.SendChatMessage($"{Colors.ITEMS}[{item.LocalId}] (Phone) - {item.Name} - {item.PhoneNumber}");
                 else if (item.UsedFor != string.Empty)
-                    player.SendChatMessage($"{Colors.ITEMS}[{item.localID}] ({item.Type}) - {item.Name} - {item.Amount} units - Used for: {item.UsedFor}");
+                    player.SendChatMessage($"{Colors.ITEMS}[{item.LocalId}] ({item.Type}) - {item.Name} - {item.Amount} units - Used for: {item.UsedFor}");
                 else
-                    player.SendChatMessage($"{Colors.ITEMS}[{item.localID}] ({item.Type}) - {item.Name} - {item.Amount} units.");
+                    player.SendChatMessage($"{Colors.ITEMS}[{item.LocalId}] ({item.Type}) - {item.Name} - {item.Amount} units.");
             }
         }
 
@@ -105,7 +108,7 @@ namespace ServerSide.Server.Items
                 for (int i = 1; i <= Ammount; i++)
                 {
                     var newItem = new Item(character, Name, Type, 1, false, UsedFor);
-                    newItem.localID = character.ItemIdManager.AssignNewId(newItem);
+                    newItem.LocalId = character.ItemIdManager.AssignNewId(newItem);
                     character.Items.Add(newItem);
                 }
             }
@@ -113,7 +116,7 @@ namespace ServerSide.Server.Items
             {
                 // For countable items, create a single item
                 var newItem = new Item(character, Name, Type, Ammount, true, UsedFor);
-                newItem.localID = character.ItemIdManager.AssignNewId(newItem);
+                newItem.LocalId = character.ItemIdManager.AssignNewId(newItem);
                 character.Items.Add(newItem);
             }
             player.SendChatMessage($"{Colors.ADMIN}Created item {Name} Type {Type} {Ammount} units.");
@@ -172,10 +175,10 @@ namespace ServerSide.Server.Items
                 if (item.Amount <= 0)
                 {
                     character.Items.Remove(item);
-                    character.ItemIdManager.ReclaimId(item.localID);
+                    character.ItemIdManager.ReclaimId(item.LocalId);
                 }
 
-                Item receivedItem = new Item(targetCharacter, item.Name, item.Type, ammount, item.Countable, item.UsedFor);
+                Item receivedItem = new Item(targetCharacter, item.Name, item.Type, ammount, item.isStackable, item.UsedFor);
                 targetCharacter.Items.Add(receivedItem);
                 player.SendChatMessage($"{Colors.INFO}I-ai dat {Colors.DARK_BLUE}{ammount} {item.Name} {Colors.INFO}lui {targetCharacter.Name}.");
                 targetCharacter.SendChatMessage($"{Colors.INFO}Ai primit {Colors.DARK_BLUE}{ammount} {item.Name} de la {Colors.INFO}{character.Name}.");
@@ -207,54 +210,75 @@ namespace ServerSide.Server.Items
             }
         }
 
-        [Command("use", Alias = "equip", Description = "Usage: /use [itemID]")]
+        [Command("use", Alias = "equip")]
         private void UseCommand(Player player, int index)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
             Item item = GetItemByIndex(character.Items, index);
-            if (item != null)
-            {
-                UseItem(character, item);
-            }
-            else
-                player.SendChatMessage($"{Colors.ERROR} ID al itemului incorect.");
-        }
 
+            if (item == null)
+            {
+                player.SendChatMessage($"{Colors.ERROR}Item invalid.");
+                return;
+            }
+
+            UseItem(character, item);
+        }
         [Command("unequip")]
         private void UnequipCommand(Player player)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            // Validate the player has weapons to unequip
             if (character.currentWeapons.Count == 0)
             {
-                player.SendChatMessage($"{Colors.ERROR}N-ai nici o arma echipata.");
+                player.SendChatMessage($"{Colors.ERROR}No weapons equipped.");
                 return;
             }
 
-            foreach (var weapon in character.currentWeapons)
+            foreach (var weaponHash in character.currentWeapons.ToList())
             {
-                string weaponName = StringFormatter.CapitalizeFirstLetter(weapon.ToString());
-
-                if (string.IsNullOrEmpty(weaponName))
-                {
-                    NAPI.Util.ConsoleOutput($"Unmapped weapon hash: {weapon}");
-                    continue;
-                }
-
-                //Create weapon and ammo data and add them to char
-                Item weaponData = new Item(character, weaponName, "weapon", 1, false);
-                character.Items.Add(weaponData);
-
-                var ammo = player.GetWeaponAmmo(weapon);
-                if (ammo > 0)
-                {
-                    Item ammoData = new Item(character, $"{weaponName} bullets", "bullet", ammo, true, weaponName);
-                    character.Items.Add(ammoData);
-                }
-
-                player.RemoveWeapon(weapon);
+                UnequipWeapon(player, character, weaponHash);
             }
+
+            character.currentWeapons.Clear();
+            ItemDbManager.UpdateCharacterItems(character);
         }
+
+        private void UnequipWeapon(Player player, Character character, WeaponHash weaponHash)
+        {
+            if (!equippedWeapons.TryGetValue(weaponHash, out string weaponName))
+            {
+                NAPI.Util.ConsoleOutput($"Unmapped weapon hash: {weaponHash}");
+                return;
+            }
+
+            int ammo = player.GetWeaponAmmo(weaponHash);
+
+            // Create weapon item
+            Item weaponItem = new Item(character, weaponName, "weapon", 1, false);
+            weaponItem.LocalId = character.ItemIdManager.AssignNewId(weaponItem);
+            character.Items.Add(weaponItem);
+
+            // Create ammo item if there's any ammunition left
+            if (ammo > 0)
+            {
+                Item ammoItem = new Item(character, $"{weaponName} bullets", "bullet", ammo, true, weaponName);
+                ammoItem.LocalId = character.ItemIdManager.AssignNewId(ammoItem);
+                character.Items.Add(ammoItem);
+            }
+
+            player.RemoveWeapon(weaponHash);
+            equippedWeapons.Remove(weaponHash);
+            player.SendChatMessage($"{Colors.INFO}Unequipped {weaponName} with {ammo} rounds remaining.");
+        }
+
+        // Helper methods
+        private Item GetBulletsOfWeapon(Character character, Item weapon)
+        {
+            return character.Items.FirstOrDefault(item =>
+                item.Type == "bullet" &&
+                StringFormatter.CapitalizeFirstLetter(item.UsedFor) == weapon.Name);
+        }
+
         [Command("drop")]
         private void DropCommand(Player player, string all = "")
         {
@@ -263,7 +287,7 @@ namespace ServerSide.Server.Items
             {
                 foreach (var item in character.Items)
                 {
-                    character.ItemIdManager.ReclaimId(item.localID);
+                    character.ItemIdManager.ReclaimId(item.LocalId);
                 }
                 foreach (var item in character.Items)
                 {
@@ -297,7 +321,7 @@ namespace ServerSide.Server.Items
             if (item.Amount <= 0)
             {
                 character.Items.Remove(item);
-                character.ItemIdManager.ReclaimId(item.localID);
+                character.ItemIdManager.ReclaimId(item.LocalId);
             }
 
             player.SendChatMessage($"{Colors.CRIMSON}Ai aruncat {ammount}{item.Name}.");
@@ -323,46 +347,7 @@ namespace ServerSide.Server.Items
             switch (usedItem.Type.ToLower())
             {
                 case "weapon":
-                    var whiteWeapons = WeaponData.ExtractWeaponNames(WeaponData.WhiteWeaponData);
-                    if (whiteWeapons.Contains("weapon_" + usedItem.Name.ToLower()))
-                    {
-                        WeaponHash weaponHash = NAPI.Util.WeaponNameToModel(usedItem.Name);
-                        player.GiveWeapon(weaponHash, 1);
-                        character.currentWeapons.Add(weaponHash);
-
-                        character.Items.Remove(usedItem);
-                        character.ItemIdManager.ReclaimId(usedItem.localID);
-
-                        player.SendChatMessage($"{Colors.INFO}Ai echipat {weaponHash.ToString()}.");
-                        ChatMessage.cmd_ame(player, "intinde mana pentru o arma.");
-                        return;
-                    }
-                    Item bullets = GetBulletsOfWeapon(character, usedItem);
-                    if (bullets != null)
-                    {
-                        if (bullets.Amount > 0)
-                        {
-                            WeaponHash weaponHash = NAPI.Util.WeaponNameToModel(usedItem.Name);
-                            player.GiveWeapon(weaponHash, bullets.Amount);
-                            character.currentWeapons.Add(weaponHash);
-
-                            character.Items.Remove(bullets);
-                            character.ItemIdManager.ReclaimId(bullets.localID);
-                            character.Items.Remove(usedItem);
-                            character.ItemIdManager.ReclaimId(usedItem.localID);
-
-                            player.SendChatMessage($"{Colors.INFO}Ai echipat {weaponHash.ToString()}.");
-                            ChatMessage.cmd_ame(player, "intinde mana pentru o arma.");
-                        }
-                        else
-                        {
-                            player.SendChatMessage($"{Colors.LIGHT_RED}Nu ai gloante pentru acest tip de arma.");
-                        }
-                    }
-                    else
-                    {
-                        player.SendChatMessage($"{Colors.ERROR}Nu ai gloante pentru acest tip de arma.");
-                    }
+                    HandleWeaponEquip(player, character, usedItem);
                     break;
                 case "drink":
                     player.SendChatMessage($"{Colors.INFO}Ai baut {usedItem.Name}.");
@@ -386,27 +371,77 @@ namespace ServerSide.Server.Items
                     break;
             }
             // Handle item usage and removal
-            if (usedItem != null)
+            if (usedItem.isStackable && usedItem.Type != "weapon" && usedItem.Type != "bullet")
             {
-                if (!usedItem.Countable)
-                    return;
-                // Decrease the item's amount
                 usedItem.Amount--;
-
-                // If the amount reaches zero, remove it from the list
                 if (usedItem.Amount <= 0)
                 {
                     character.Items.Remove(usedItem);
-                    character.ItemIdManager.ReclaimId(usedItem.localID);
+                    character.ItemIdManager.ReclaimId(usedItem.LocalId);
                 }
             }
 
-            // Reassign IDs to ensure they remain sequential
-            //character.ItemIdManager.ReassignSequentialIds(character.Items);
             ItemDbManager.UpdateCharacterItems(character);
         }
+        private void HandleWeaponEquip(Player player, Character character, Item weaponItem)
+        {
+            // Check if weapon is already equipped
+            WeaponHash weaponHash = NAPI.Util.WeaponNameToModel(weaponItem.Name);
+            if (character.currentWeapons.Contains(weaponHash))
+            {
+                player.SendChatMessage($"{Colors.ERROR}Already have this weapon equipped.");
+                return;
+            }
 
-        // Add these methods to the ItemManager class:
+            // Handle white weapons (melee weapons)
+            var whiteWeapons = WeaponData.ExtractWeaponNames(WeaponData.WhiteWeaponData);
+            if (whiteWeapons.Contains("weapon_" + weaponItem.Name.ToLower()))
+            {
+                EquipWhiteWeapon(player, character, weaponItem, weaponHash);
+                return;
+            }
+
+            // Handle regular weapons
+            Item bullets = GetBulletsOfWeapon(character, weaponItem);
+            if (bullets == null || bullets.Amount <= 0)
+            {
+                player.SendChatMessage($"{Colors.ERROR}No ammunition for this weapon.");
+                return;
+            }
+
+            EquipWeaponWithAmmo(player, character, weaponItem, bullets, weaponHash);
+        }
+
+        private void EquipWhiteWeapon(Player player, Character character, Item weaponItem, WeaponHash weaponHash)
+        {
+            player.GiveWeapon(weaponHash, 1);
+            character.currentWeapons.Add(weaponHash);
+            equippedWeapons[weaponHash] = weaponItem.Name;
+
+            // Remove from inventory
+            character.Items.Remove(weaponItem);
+            character.ItemIdManager.ReclaimId(weaponItem.LocalId);
+
+            player.SendChatMessage($"{Colors.INFO}Equipped {weaponHash}.");
+            ChatMessage.cmd_ame(player, "reaches for a weapon.");
+        }
+
+        private void EquipWeaponWithAmmo(Player player, Character character, Item weaponItem, Item bullets, WeaponHash weaponHash)
+        {
+            player.GiveWeapon(weaponHash, bullets.Amount);
+            character.currentWeapons.Add(weaponHash);
+            equippedWeapons[weaponHash] = weaponItem.Name;
+
+            // Remove weapon and bullets from inventory
+            character.Items.Remove(weaponItem);
+            character.ItemIdManager.ReclaimId(weaponItem.LocalId);
+            character.Items.Remove(bullets);
+            character.ItemIdManager.ReclaimId(bullets.LocalId);
+
+            player.SendChatMessage($"{Colors.INFO}Equipped {weaponHash} with {bullets.Amount} rounds.");
+            ChatMessage.cmd_ame(player, "reaches for a weapon.");
+        }
+
 
         [RemoteEvent("CLIENT:SERVER:UseItem")]
         private void OnUseItem(Player player, string itemId)
@@ -495,14 +530,14 @@ namespace ServerSide.Server.Items
                 var targetCharacter = CharacterManager.PlayerCharacterPair[targetPlayer];
 
                 // Give the item
-                Item receivedItem = new Item(targetCharacter, item.Name, item.Type, 1, item.Countable, item.UsedFor);
+                Item receivedItem = new Item(targetCharacter, item.Name, item.Type, 1, item.isStackable, item.UsedFor);
                 targetCharacter.Items.Add(receivedItem);
 
                 // Remove from original player
                 if (item.Amount <= 1)
                 {
                     character.Items.Remove(item);
-                    character.ItemIdManager.ReclaimId(item.localID);
+                    character.ItemIdManager.ReclaimId(item.LocalId);
                 }
                 else
                 {
@@ -533,7 +568,7 @@ namespace ServerSide.Server.Items
                 if (item.Amount <= 1)
                 {
                     character.Items.Remove(item);
-                    character.ItemIdManager.ReclaimId(item.localID);
+                    character.ItemIdManager.ReclaimId(item.LocalId);
                 }
                 else
                 {
@@ -599,17 +634,17 @@ namespace ServerSide.Server.Items
             {
                 if (item.Type == "weapon")
                 {
-                    result.Add(new Item(item.currentCharacter, item.Name, item.Type, item.Amount, item.Countable, item.UsedFor)
+                    result.Add(new Item(item.CurrentCharacter, item.Name, item.Type, item.Amount, item.isStackable, item.UsedFor)
                     {
-                        localID = item.localID,
+                        LocalId = item.LocalId,
                         Description = item.Description
                     });
                 }
                 else if (item.Type == "phone")
                 {
-                    var phone = new Phone(item.currentCharacter, item.Name, item.Type, item.PhoneNumber)
+                    var phone = new Phone(item.CurrentCharacter, item.Name, item.Type, item.PhoneNumber)
                     {
-                        localID = item.localID,
+                        LocalId = item.LocalId,
                         Description = item.Description
                     };
                     phoneItems.Add(phone);
@@ -624,9 +659,9 @@ namespace ServerSide.Server.Items
                     }
                     else
                     {
-                        otherItems[key] = new Item(item.currentCharacter, item.Name, item.Type, item.Amount, item.Countable, item.UsedFor)
+                        otherItems[key] = new Item(item.CurrentCharacter, item.Name, item.Type, item.Amount, item.isStackable, item.UsedFor)
                         {
-                            localID = item.localID,
+                            LocalId = item.LocalId,
                             Description = item.Description
                         };
                     }
@@ -637,7 +672,7 @@ namespace ServerSide.Server.Items
             var sortedPhones = phoneItems.OrderBy(p => p.PhoneNumber).ToList();
             for (int i = 0; i < sortedPhones.Count; i++)
             {
-                sortedPhones[i].localID = i;
+                sortedPhones[i].LocalId = i;
                 result.Add(sortedPhones[i]);
             }
 
@@ -648,7 +683,7 @@ namespace ServerSide.Server.Items
             var otherItemsList = result.Where(item => item.Type != "weapon" && item.Type != "phone").ToList();
             for (int i = sortedPhones.Count; i < result.Count; i++)
             {
-                result[i].localID = i;
+                result[i].LocalId = i;
             }
 
             return result;
@@ -661,24 +696,12 @@ namespace ServerSide.Server.Items
 
             return !string.IsNullOrEmpty(usedFor) ? usedFor : name;
         }
-        private Item GetBulletsOfWeapon(Character character, Item weapon)
-        {
-            foreach (var item in character.Items)
-            {
-                if (item.Type == "bullet")
-                {
-                    if (StringFormatter.CapitalizeFirstLetter(item.UsedFor) == weapon.Name) //check if the bullet's used for param is the weapon
-                        return item;
-                }
-            }
-            return null;
-        }
         public static Item GetItemByIndex(List<Item> items, int index)
         {
             bool foundItem = false;
             foreach (var item in items)
             {
-                if (item.localID == index)
+                if (item.LocalId == index)
                 {
                     return item;
                 }

@@ -3,6 +3,7 @@ using ServerSide.Accounts;
 using ServerSide.Characters;
 using ServerSide.Characters.Customization.Clothes;
 using ServerSide.Characters.Customization.Customize;
+using ServerSide.Server.Commands.CommandAttributes;
 using ServerSide.Server.DB.CharacterDB;
 using ServerSide.Util;
 
@@ -30,6 +31,7 @@ namespace ServerSide.Server.Commands
             player.TriggerEvent("SERVER:CLIENT:FaceCamera");
         }
 
+        [RequiresAdmin]
         [Command("fixskin")]
         public static void fixskinCommand(Player player)
         {
@@ -42,17 +44,17 @@ namespace ServerSide.Server.Commands
         {
             var account = AccountManager.PlayerAccountPairs[player];
             var character = CharacterManager.PlayerCharacterPair[player];
-            string username = account.Name;
 
-            var characters = CharacterDbManager.GetCharacters(account);
-            CharacterManager.GetNameMoneyJson(account, out string namesJSON, out string moneyJSON, characters);
+            var players = NAPI.Player.GetPlayersInRadiusOfPlayer(20, player);
+            foreach(var p in players )
+            {
+                p.SendChatMessage($"{character.Name} si-a schimbat characterul.");
+            }
+
+            CharacterManager.ShowChangeCharacterScreen(account);
             UpdateCharDataDBManager.UpdateCharacter(character);
 
-            //display character interface with new character data
-            player.TriggerEvent("SERVER:CLIENT:ShowCharInterface");
-            player.TriggerEvent("SERVER:CLIENT:DisplayAccountInfo", username, namesJSON, moneyJSON);
-            UpdateCharDataDBManager.UpdateCharacter(character);
-            player.Dimension = account.GameId != 0 ? (uint)account.GameId : 1001;
+
         }
         [Command("clothes")]
         private void ClothesCommand(Player player)

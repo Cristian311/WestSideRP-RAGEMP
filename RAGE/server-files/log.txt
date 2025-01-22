@@ -2635,3 +2635,72 @@
 21.01.2025 08:07:42 (aaa) Zurab Makharadze: /vg 20
 21.01.2025 08:07:49 (aaa) Zurab Makharadze: /createveh infernus
 21.01.2025 08:07:54 (aaa) Zurab Makharadze: /vehicles
+22.01.2025 07:01:36 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+22.01.2025 07:01:36 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+22.01.2025 07:08:15 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+22.01.2025 07:08:15 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+22.01.2025 07:08:38 (aaa) Zurab Makharadze: a
+22.01.2025 07:09:46 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+22.01.2025 07:09:46 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+22.01.2025 07:13:23 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+22.01.2025 07:13:23 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+22.01.2025 07:13:52 (aaa) Zurab Makharadze: /inv
+22.01.2025 07:14:24 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+22.01.2025 07:14:24 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+22.01.2025 07:21:44 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+22.01.2025 07:21:44 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+22.01.2025 07:26:10 (aaa) Zurab Makharadze: /invex
+22.01.2025 07:28:21 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+22.01.2025 07:28:21 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+22.01.2025 07:28:54 (aaa) Zurab Makharadze: /inv
+22.01.2025 07:29:09 (aaa) Zurab Makharadze: /invex
+22.01.2025 07:29:21 (aaa) Zurab Makharadze: /unequip
+22.01.2025 07:29:23 (aaa) Zurab Makharadze: /inv
+22.01.2025 07:29:28 (aaa) Zurab Makharadze: /inv
+22.01.2025 07:34:21 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+22.01.2025 07:34:21 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+22.01.2025 07:34:44 (aaa) Zurab Makharadze: /inv
+22.01.2025 07:35:03 (aaa) Zurab Makharadze: /invex
+22.01.2025 07:35:10 (aaa) Zurab Makharadze: /inv
+22.01.2025 07:38:26 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+22.01.2025 07:38:26 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+22.01.2025 07:38:50 (aaa) Zurab Makharadze: /inv
+22.01.2025 07:39:02 (aaa) Zurab Makharadze: /unequip
+22.01.2025 07:39:04 (aaa) Zurab Makharadze: /inv
+22.01.2025 07:41:23 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+22.01.2025 07:41:23 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+22.01.2025 07:41:43 (aaa) Zurab Makharadze: /inv
+22.01.2025 07:41:56 (aaa) Zurab Makharadze: /inv
+22.01.2025 07:42:10 (aaa) Zurab Makharadze: /unequip
+22.01.2025 07:42:13 (aaa) Zurab Makharadze: /inv
+22.01.2025 07:43:11 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+22.01.2025 07:43:11 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+22.01.2025 07:43:37 (aaa) Zurab Makharadze: /inv
+22.01.2025 07:44:26 (aaa) Zurab Makharadze: /inv
+22.01.2025 07:45:38 (aaa) Zurab Makharadze: /inv
+22.01.2025 07:47:37 (aaa) Zurab Makharadze: /tognametag
+22.01.2025 07:50:07 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+22.01.2025 07:50:07 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+22.01.2025 07:50:35 (aaa) Zurab Makharadze: /inv
+22.01.2025 08:03:12 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+22.01.2025 08:03:12 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+22.01.2025 08:03:37 (aaa) Zurab Makharadze: /inv
+22.01.2025 08:03:46 (aaa) Zurab Makharadze: /invex
+22.01.2025 08:03:52 (aaa) Zurab Makharadze: /unequip
+22.01.2025 08:03:58 (aaa) Zurab Makharadze: /inv
+22.01.2025 08:06:10 (aaa) Zurab Makharadze: /inv
+22.01.2025 08:06:41 (aaa) Zurab Makharadze: /inv
+22.01.2025 08:06:49 (aaa) Zurab Makharadze: /inv
+22.01.2025 08:06:53 (aaa) Zurab Makharadze: /invex
+22.01.2025 08:07:02 (aaa) Zurab Makharadze: /use 1
+22.01.2025 08:07:04 (aaa) Zurab Makharadze: /use 1
+22.01.2025 08:07:06 (aaa) Zurab Makharadze: /use 1
+22.01.2025 08:07:08 (aaa) Zurab Makharadze: /inv
+22.01.2025 08:07:13 (aaa) Zurab Makharadze: /invex
+22.01.2025 08:07:15 (aaa) Zurab Makharadze: /use 1
+22.01.2025 08:07:19 (aaa) Zurab Makharadze: /inv
+22.01.2025 08:09:55 (aaa) Zurab Makharadze: /use 0
+22.01.2025 08:10:55 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+22.01.2025 08:10:55 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+22.01.2025 08:11:17 (aaa) Zurab Makharadze: /inv
+22.01.2025 08:11:23 (aaa) Zurab Makharadze: /invex

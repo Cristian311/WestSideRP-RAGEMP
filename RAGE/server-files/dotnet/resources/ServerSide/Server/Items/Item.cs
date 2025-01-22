@@ -8,17 +8,17 @@ namespace ServerSide.Server.Items
     {
         private static int ItemsCounter = 0;
         public int Id { get; }
-        public int localID { get; set; }
+        public int LocalId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }
         public string UsedFor { get; set; }
         public int Amount { get; set; }
-        public bool Countable { get; }
+        public bool isStackable { get; }
         public int PhoneNumber { get; set; }
-        public int currentCharacterId { get; } = 0;
+        public int CurrentCharacterId { get; } = 0;
         [JsonIgnore]
-        public Character currentCharacter { get; set; }
+        public Character CurrentCharacter { get; set; }
         public Item(Character character, string Name, string Type, int Amount, bool Countable, string UsedFor = "")
         {
             Id = ItemsCounter;
@@ -26,17 +26,17 @@ namespace ServerSide.Server.Items
 
             if (character != null)
             {
-                currentCharacterId = character.Id;
-                localID = character.ItemIdManager.AssignNewId(this);
-                currentCharacter = character;
+                CurrentCharacterId = character.Id;
+                LocalId = character.ItemIdManager.AssignNewId(this);
+                CurrentCharacter = character;
             }
             else
-                currentCharacter = ItemManager.GetCharacterById(currentCharacterId);
+                CurrentCharacter = ItemManager.GetCharacterById(CurrentCharacterId);
 
             this.Name = Name;
             this.Type = Type.ToLower();
             this.Amount = Amount;
-            this.Countable = Countable;
+            this.isStackable = Countable;
             this.UsedFor = UsedFor;
 
             if (Type.ToLower() == "phone")
