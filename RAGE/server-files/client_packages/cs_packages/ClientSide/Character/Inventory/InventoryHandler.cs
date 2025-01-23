@@ -15,6 +15,7 @@ namespace ClientSide.Character.Inventory
             // Server to client events
             Events.Add("SERVER:CLIENT:OpenInventory", OpenInventory);
             Events.Add("SERVER:CLIENT:UpdateInventory", UpdateInventory);
+            Events.Add("SERVER:CLIENT:PopulateNearbyCharacters", PopulateNearbyCharacters);
 
             // CEF to client events
             Events.Add("CEF:CLIENT:CloseInventory", CloseInventory);
@@ -25,7 +26,19 @@ namespace ClientSide.Character.Inventory
             Events.Add("CEF:CLIENT:GiveItem", GiveItem);
             Events.Add("CEF:CLIENT:DropItem", DropItem);
             Events.Add("CEF:CLIENT:UpdateInventoryOrder", UpdateInventoryOrder);
+            Events.Add("CEF:CLIENT:GetNearbyCharacters", GetNearbyCharacters);
             
+        }
+
+        private void PopulateNearbyCharacters(object[] args)
+        {
+            string json = args[0].ToString();
+            cefBrowser.ExecuteJs($"populateNearbyPlayers({json});");
+        }
+
+        private void GetNearbyCharacters(object[] args)
+        {
+            Events.CallRemote("CLIENT:SERVER:GetNearbyCharacters");
         }
 
         private void UpdateInventory(object[] args)

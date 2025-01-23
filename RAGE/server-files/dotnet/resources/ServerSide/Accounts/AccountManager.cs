@@ -12,5 +12,12 @@ namespace ServerSide.Accounts
         public static Dictionary<Account, Player> AccountPlayerPairs = new Dictionary<Account, Player>();
         public static Dictionary<Player, Account> PlayerAccountPairs = new Dictionary<Player, Account>();
         public static IdManager<Account> idManager = new IdManager<Account>();
+
+        public static Account GetAccount(Player player)
+        {
+            if(PlayerAccountPairs.ContainsKey(player)) 
+                return PlayerAccountPairs[player]; 
+            return null;
+        }
     }
 }

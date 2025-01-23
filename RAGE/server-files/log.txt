@@ -2764,3 +2764,34 @@
 23.01.2025 08:56:45 (aaa) Zurab Makharadze: /inv
 23.01.2025 08:56:52 (aaa) Zurab Makharadze: /inv
 23.01.2025 08:58:03 (aaa) Zurab Makharadze: /unequip
+23.01.2025 09:38:49 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 09:38:49 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 09:42:37 (aaa) Zurab Makharadze: /inv
+23.01.2025 09:42:47 (aaa) Zurab Makharadze: /bulletlist
+23.01.2025 09:43:03 (aaa) Zurab Makharadze: /createbullet
+23.01.2025 09:43:17 (aaa) Zurab Makharadze: /createbullet 7.62 50
+23.01.2025 09:43:26 - !{#8B0000}aaa a creat gloante de tipul 7.62mm (50 units).
+23.01.2025 09:43:26 (aaa) Zurab Makharadze: /createbullet 7.62mm 50
+23.01.2025 09:43:33 (aaa) Zurab Makharadze: /inv
+23.01.2025 09:43:44 (aaa) Zurab Makharadze: /invex
+23.01.2025 09:43:48 (aaa) Zurab Makharadze: /drop 1 14
+23.01.2025 09:43:51 (aaa) Zurab Makharadze: /drop all
+23.01.2025 09:43:56 (aaa) Zurab Makharadze: /dropitem
+23.01.2025 09:44:06 (aaa) Zurab Makharadze: /unequip
+23.01.2025 09:44:08 (aaa) Zurab Makharadze: /inv
+23.01.2025 10:59:56 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 10:59:56 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 11:00:57 (aaa) Zurab Makharadze: /inv
+23.01.2025 11:01:04 (aaa) Zurab Makharadze: /inv
+23.01.2025 11:19:26 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 11:19:26 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 11:19:59 (aaa) Zurab Makharadze: /inv
+23.01.2025 11:20:08 (aaa) Zurab Makharadze: /inv
+23.01.2025 11:21:45 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 11:21:45 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 11:22:20 (aaa) Zurab Makharadze: /inv
+23.01.2025 11:28:12 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 11:28:12 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 11:28:51 (aaa) Jack Spencer: /inv
+23.01.2025 11:28:55 (aaa) Jack Spencer: /changechar
+23.01.2025 11:29:04 (aaa) Zurab Makharadze: /inv

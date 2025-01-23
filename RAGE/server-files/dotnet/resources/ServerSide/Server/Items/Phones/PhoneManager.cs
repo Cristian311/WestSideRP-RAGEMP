@@ -42,8 +42,7 @@ namespace ServerSide
                 item.Type,
                 item.PhoneNumber, // Use the PhoneNumber property from the item
                 item.Amount,
-                item.isStackable,
-                item.UsedFor
+                item.isStackable
             );
         }
 

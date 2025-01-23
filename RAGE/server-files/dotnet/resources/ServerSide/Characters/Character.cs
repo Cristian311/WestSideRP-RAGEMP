@@ -30,6 +30,7 @@ namespace ServerSide.Characters
         public int currentOutfit { get; set; }
         public int GameId { get; set; }
         public Character currentCharacter { get; }
+        public Dictionary<WeaponHash, string> equippedWeapons = new Dictionary<WeaponHash, string>();
 
         // Collections
         public List<ICharacter> Characters { get; }

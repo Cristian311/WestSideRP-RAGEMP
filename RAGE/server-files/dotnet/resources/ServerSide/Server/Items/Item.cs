@@ -12,14 +12,13 @@ namespace ServerSide.Server.Items
         public string Name { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }
-        public string UsedFor { get; set; }
         public int Amount { get; set; }
         public bool isStackable { get; }
         public int PhoneNumber { get; set; }
         public int CurrentCharacterId { get; } = 0;
         [JsonIgnore]
         public Character CurrentCharacter { get; set; }
-        public Item(Character character, string Name, string Type, int Amount, bool Countable, string UsedFor = "")
+        public Item(Character character, string Name, string Type, int Amount, bool Countable)
         {
             Id = ItemsCounter;
             ItemsCounter++;
@@ -37,7 +36,6 @@ namespace ServerSide.Server.Items
             this.Type = Type.ToLower();
             this.Amount = Amount;
             this.isStackable = Countable;
-            this.UsedFor = UsedFor;
 
             if (Type.ToLower() == "phone")
             {

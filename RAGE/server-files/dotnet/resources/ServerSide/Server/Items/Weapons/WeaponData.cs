@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ServerSide.Server.Items
+namespace ServerSide.Server.Items.Weapons
 {
     internal class WeaponData
     {
