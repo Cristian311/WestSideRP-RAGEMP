@@ -207,6 +207,10 @@
             refreshInventoryDisplay();
         }
 
+        function showItemToPlayer(itemId, playerId) {
+            console.log(`Showing item #${itemId} to player #${playerId}`);
+            mp.trigger("CEF:CLIENT:ShowItemToPlayer", itemId, playerId);
+        }
         // Close floating menu when clicking outside
         document.addEventListener('mousedown', e => {
             const clickedItem = e.target.closest('.item');
@@ -281,13 +285,7 @@
             return item ? item.amount : 1;
         }
 
-        function showItemToPlayer(itemId, playerId) {
-            console.log(`Showing item #${itemId} to player #${playerId}`);
-            mp.trigger("CEF:CLIENT:ShowItemToPlayer", itemId, playerId);
-        }
-        mp.events.add('SERVER:CLIENT:UpdateInventory', (inventoryData) => {
-            updateInventory(inventoryData);
-        });
+
         // Example of populating nearby players from client-side:
         populateNearbyPlayers('[{"id":1,"name":"Player1"},{"id":2,"name":"Player2"}]');
         // Initialize the inventory

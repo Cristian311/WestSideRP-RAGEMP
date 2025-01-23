@@ -42,6 +42,7 @@ namespace ServerSide.Server.Items
             if (CharacterManager.PlayerCharacterPair.ContainsKey(player) == false)
                 return;
             var character = CharacterManager.PlayerCharacterPair[player];
+            UnequipCommand(player);
             ItemDbManager.UpdateCharacterItems(character);
         }
 
@@ -454,6 +455,7 @@ namespace ServerSide.Server.Items
                 if (item != null)
                 {
                     UseItem(character, item);
+                    ShowUpdatedInventory(character);
                 }
                 else
                     player.SendChatMessage($"{Colors.ERROR} ID al itemului incorect.");
@@ -475,9 +477,11 @@ namespace ServerSide.Server.Items
                 if (item != null && item.Type.ToLower() == "weapon")
                 {
                     UseItem(character, item); // Reuse UseItem since it already handles weapons
+                    ShowUpdatedInventory(character);
                 }
                 else
                     player.SendChatMessage($"{Colors.ERROR} Acest item nu poate fi echipat.");
+
             }
             catch (Exception e)
             {
@@ -502,6 +506,7 @@ namespace ServerSide.Server.Items
                         nearbyPlayer.SendChatMessage($"{Colors.INFO}{character.Name} iti arata {Colors.DARK_BLUE}{item.Name}{Colors.INFO}.");
                     }
                 }
+
                 player.SendChatMessage($"{Colors.INFO}Ai aratat {Colors.DARK_BLUE}{item.Name}{Colors.INFO} jucatorilor din jur.");
             }
             catch (Exception e)
@@ -546,6 +551,7 @@ namespace ServerSide.Server.Items
 
                 player.SendChatMessage($"{Colors.INFO}I-ai dat {Colors.DARK_BLUE}{item.Name} {Colors.INFO}lui {targetCharacter.Name}.");
                 targetPlayer.SendChatMessage($"{Colors.INFO}Ai primit {Colors.DARK_BLUE}{item.Name} de la {Colors.INFO}{character.Name}.");
+                ShowUpdatedInventory(character);
 
                 ItemDbManager.UpdateCharacterItems(character);
                 ItemDbManager.UpdateCharacterItems(targetCharacter);
@@ -575,7 +581,8 @@ namespace ServerSide.Server.Items
                     item.Amount--;
                 }
 
-                player.SendChatMessage($"{Colors.CRIMSON}Ai aruncat {item.Name}.");
+                player.SendChatMessage($"{Colors.CRIMSON}Ai aruncat {Colors.WHITE}{item.Name}{Colors.CRIMSON}.");
+                ShowUpdatedInventory(character);
                 ItemDbManager.UpdateCharacterItems(character);
             }
             catch (Exception e)
@@ -583,7 +590,14 @@ namespace ServerSide.Server.Items
                 NAPI.Util.ConsoleOutput($"OnDropItem ERROR: {e.Message}\n{e.StackTrace}");
             }
         }
-
+        private void ShowUpdatedInventory(Character character)
+        {
+            List<ItemData> itemDataList = character.Items
+                .Select(item => new ItemData(item.LocalId, item.Name, item.Type, item.Amount))
+                .ToList();
+            string json = NAPI.Util.ToJson(itemDataList);
+            character.player.TriggerEvent("SERVER:CLIENT:UpdateInventory", json);
+        }
         [RemoteEvent("CLIENT:SERVER:UpdateInventoryOrder")]
         private void OnUpdateInventoryOrder(Player player, string orderJson)
         {

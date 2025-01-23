@@ -163,6 +163,7 @@ body {
 .sortable-drag {
     cursor: grabbing;
 }
+
 /* Add styles for the new modal */
 .modal {
     display: none;

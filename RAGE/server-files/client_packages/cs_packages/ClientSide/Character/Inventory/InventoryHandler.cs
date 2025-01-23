@@ -14,6 +14,7 @@ namespace ClientSide.Character.Inventory
         {
             // Server to client events
             Events.Add("SERVER:CLIENT:OpenInventory", OpenInventory);
+            Events.Add("SERVER:CLIENT:UpdateInventory", UpdateInventory);
 
             // CEF to client events
             Events.Add("CEF:CLIENT:CloseInventory", CloseInventory);
@@ -24,6 +25,14 @@ namespace ClientSide.Character.Inventory
             Events.Add("CEF:CLIENT:GiveItem", GiveItem);
             Events.Add("CEF:CLIENT:DropItem", DropItem);
             Events.Add("CEF:CLIENT:UpdateInventoryOrder", UpdateInventoryOrder);
+            
+        }
+
+        private void UpdateInventory(object[] args)
+        {
+            string json = args[0].ToString();
+            string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
+            cefBrowser.ExecuteJs($"updateInventory(\"{escapedJson}\");");
         }
 
         public static void CloseInventory(object[] args)
