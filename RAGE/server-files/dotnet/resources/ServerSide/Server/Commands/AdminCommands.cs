@@ -38,7 +38,7 @@ namespace ServerSide.Server.Commands
         private void cmd_makeadmin(Player player, string target, int adminLevel = 1)
         {
             var adminAccount = AccountManager.PlayerAccountPairs[player];
-            var targetCharacter = CharacterManager.GetCharacterByName(player, target);
+            var targetCharacter = CharacterManager.GetCharacterByNameOrId(player, target);
             if (targetCharacter == null) return;
 
             var targetAccount = AccountManager.PlayerAccountPairs[targetCharacter.player];
@@ -95,7 +95,7 @@ namespace ServerSide.Server.Commands
         [Command("kick", GreedyArg = true)]
         public void cmd_kick(Player player, string target, string reason)
         {
-            var character = CharacterManager.GetCharacterByName(player, target);
+            var character = CharacterManager.GetCharacterByNameOrId(player, target);
             if (character == null) return;
 
             var adminAccount = AccountManager.PlayerAccountPairs[player];
@@ -113,7 +113,7 @@ namespace ServerSide.Server.Commands
         [Command("ban")]
         public void cmd_ban(Player player, string target, string reason)
         {
-            var character = CharacterManager.GetCharacterByName(player, target);
+            var character = CharacterManager.GetCharacterByNameOrId(player, target);
             if (character == null) return;
 
             var adminAccount = AccountManager.PlayerAccountPairs[player];
@@ -127,7 +127,7 @@ namespace ServerSide.Server.Commands
         [Command("mute")]
         public void cmd_mute(Player player, string target, string reason)
         {
-            var character = CharacterManager.GetCharacterByName(player, target);
+            var character = CharacterManager.GetCharacterByNameOrId(player, target);
             if (character == null) return;
 
             var adminAccount = AccountManager.PlayerAccountPairs[player];
@@ -141,7 +141,7 @@ namespace ServerSide.Server.Commands
         [Command("unmute")]
         public void cmd_unmute(Player player, string target)
         {
-            var character = CharacterManager.GetCharacterByName(player, target);
+            var character = CharacterManager.GetCharacterByNameOrId(player, target);
             if (character == null) return;
 
             var adminAccount = AccountManager.PlayerAccountPairs[player];
@@ -156,7 +156,7 @@ namespace ServerSide.Server.Commands
         [Command("goto")]
         public void cmd_goto(Player player, string target)
         {
-            var character = CharacterManager.GetCharacterByName(player, target);
+            var character = CharacterManager.GetCharacterByNameOrId(player, target);
             if (character == null) return;
 
             var adminAccount = AccountManager.PlayerAccountPairs[player];
@@ -169,7 +169,7 @@ namespace ServerSide.Server.Commands
         [Command("bring")]
         public void cmd_bring(Player player, string target)
         {
-            var character = CharacterManager.GetCharacterByName(player, target);
+            var character = CharacterManager.GetCharacterByNameOrId(player, target);
             if (character == null) return;
 
             var adminAccount = AccountManager.PlayerAccountPairs[player];
@@ -202,7 +202,7 @@ namespace ServerSide.Server.Commands
         [Command("freeze")]
         public void cmd_freeze(Player player, string target)
         {
-            var character = CharacterManager.GetCharacterByName(player, target);
+            var character = CharacterManager.GetCharacterByNameOrId(player, target);
             if (character == null) return;
 
             var adminAccount = AccountManager.PlayerAccountPairs[player];
@@ -216,7 +216,7 @@ namespace ServerSide.Server.Commands
         [Command("unfreeze")]
         public void cmd_unfreeze(Player player, string target)
         {
-            var character = CharacterManager.GetCharacterByName(player, target);
+            var character = CharacterManager.GetCharacterByNameOrId(player, target);
             if (character == null) return;
 
             var adminAccount = AccountManager.PlayerAccountPairs[player];

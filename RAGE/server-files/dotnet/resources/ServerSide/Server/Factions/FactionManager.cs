@@ -49,7 +49,7 @@ public class FactionManager : Script
     private void FinviteCommand(Player player, string target)
     {
         var playerCharacter = CharacterManager.PlayerCharacterPair[player];
-        var character = CharacterManager.GetCharacterByName(player, target);
+        var character = CharacterManager.GetCharacterByNameOrId(player, target);
         if (character == null) return;
 
         var faction = GetFactionById(playerCharacter.faction);
@@ -103,7 +103,7 @@ public class FactionManager : Script
         {
             if (loggedchars.Contains(name))
             {
-                var character = CharacterManager.GetCharacterByName(name);
+                var character = CharacterManager.GetCharacterByNameOrId(name);
                 if(character != null)
                     player.SendChatMessage(name + $" {Colors.GREEN} ON {Colors.WHITE} ID: {character.GameId}");
             }
@@ -174,7 +174,7 @@ public class FactionManager : Script
         ServerLogger.Log($"Faction {faction.Name}: " + message);
         foreach (var factionMember in faction.Characters)
         {
-            var character = CharacterManager.GetCharacterByName(factionMember);
+            var character = CharacterManager.GetCharacterByNameOrId(factionMember);
             if (character == null)
                 break;
             if (CharacterManager.loggedCharacters.Contains(character))
@@ -219,7 +219,7 @@ public class FactionManager : Script
     public static void AssignRankCommand(Player player, string CharName, int rank)
     {
         var playerCharacter = CharacterManager.PlayerCharacterPair[player];
-        var character = CharacterManager.GetCharacterByName(player, CharName);
+        var character = CharacterManager.GetCharacterByNameOrId(player, CharName);
         
         if (character == null) return;
         var faction = GetFactionById(character.faction);

@@ -25,9 +25,26 @@ namespace ClientSide.Character.Inventory
             Events.Add("CEF:CLIENT:ShowItem", ShowItem);
             Events.Add("CEF:CLIENT:GiveItem", GiveItem);
             Events.Add("CEF:CLIENT:DropItem", DropItem);
+            Events.Add("CEF:CLIENT:PlayerSelected", PlayerSelected);
             Events.Add("CEF:CLIENT:UpdateInventoryOrder", UpdateInventoryOrder);
             Events.Add("CEF:CLIENT:GetNearbyCharacters", GetNearbyCharacters);
             
+        }
+
+        private void PlayerSelected(object[] args)
+        {
+            string json = args[0].ToString();
+
+            var action = RAGE.Util.Json.Deserialize<PlayerAction>(json);
+
+            if (action.Action == "give")
+            {
+                Events.CallRemote("CLIENT:SERVER:GiveItem", action.PlayerId, action.ItemId, action.Amount);
+            }    
+            else if(action.Action == "show")
+            {
+                Events.CallRemote("CLIENT:SERVER:ShowItem", action.PlayerId, action.ItemId);
+            }
         }
 
         private void PopulateNearbyCharacters(object[] args)

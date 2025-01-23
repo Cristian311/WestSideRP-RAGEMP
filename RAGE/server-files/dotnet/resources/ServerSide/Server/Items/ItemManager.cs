@@ -380,7 +380,7 @@ namespace ServerSide.Server.Items
         }
 
         [RemoteEvent("CLIENT:SERVER:ShowItem")]
-        private void OnShowItem(Player player, string itemId)
+        private void OnShowItem(Player player, int playerId, int itemId)
         {
             try
             {
@@ -388,16 +388,11 @@ namespace ServerSide.Server.Items
                 int id = Convert.ToInt32(itemId);
                 Item item = GetItemByIndex(character.Items, id);
 
-                var nearbyPlayers = NAPI.Player.GetPlayersInRadiusOfPlayer(2f, player);
-                foreach (var nearbyPlayer in nearbyPlayers)
-                {
-                    if (nearbyPlayer != player)
-                    {
-                        nearbyPlayer.SendChatMessage($"{Colors.INFO}{character.Name} iti arata {Colors.DARK_BLUE}{item.Name}{Colors.INFO}.");
-                    }
-                }
+                var targetCharacter = CharacterManager.loggedCharacters.FirstOrDefault(c => c.GameId == playerId);
 
-                player.SendChatMessage($"{Colors.INFO}Ai aratat {Colors.DARK_BLUE}{item.Name}{Colors.INFO} jucatorilor din jur.");
+                targetCharacter.SendChatMessage($"{Colors.LIGHT_BLUE}{character.Name} iti arata {Colors.WHITE}{item.Name}{Colors.LIGHT_BLUE}.");
+
+                player.SendChatMessage($"{Colors.LIGHT_BLUE}Ai aratat {Colors.WHITE}{item.Name}{Colors.LIGHT_BLUE} jucatorilor din jur.");
             }
             catch (Exception e)
             {
@@ -440,7 +435,7 @@ namespace ServerSide.Server.Items
             }
         }
         [RemoteEvent("CLIENT:SERVER:GiveItem")]
-        private void OnGiveItem(Player player, string itemId)
+        private void OnGiveItem(Player player, int playerId, int itemId, int ammount)
         {
             try
             {
@@ -448,15 +443,7 @@ namespace ServerSide.Server.Items
                 int id = Convert.ToInt32(itemId);
                 Item item = GetItemByIndex(character.Items, id);
 
-                var nearbyPlayers = NAPI.Player.GetPlayersInRadiusOfPlayer(30f, player);
-                if (nearbyPlayers.Count != 2) // player + 1 target
-                {
-                    player.SendChatMessage($"{Colors.ERROR}Trebuie sa fie doar o persoana langa tine pentru a da un item.");
-                    return;
-                }
-
-                var targetPlayer = nearbyPlayers.First(p => p != player);
-                var targetCharacter = CharacterManager.PlayerCharacterPair[targetPlayer];
+                var targetCharacter = CharacterManager.loggedCharacters.FirstOrDefault(c => c.GameId == playerId);
 
                 // Give the item
                 Item receivedItem = new Item(targetCharacter, item.Name, item.Type, 1, item.isStackable);
@@ -473,8 +460,8 @@ namespace ServerSide.Server.Items
                     item.Amount--;
                 }
 
-                player.SendChatMessage($"{Colors.INFO}I-ai dat {Colors.DARK_BLUE}{item.Name} {Colors.INFO}lui {targetCharacter.Name}.");
-                targetPlayer.SendChatMessage($"{Colors.INFO}Ai primit {Colors.DARK_BLUE}{item.Name} de la {Colors.INFO}{character.Name}.");
+                player.SendChatMessage($"{Colors.LIGHT_BLUE}I-ai dat {Colors.WHITE}{item.Name} {Colors.LIGHT_BLUE}lui {targetCharacter.Name}.");
+                targetCharacter.SendChatMessage($"{Colors.LIGHT_BLUE}Ai primit {Colors.WHITE}{item.Name}{Colors.LIGHT_BLUE} de la {character.Name}.");
                 ShowUpdatedInventory(character);
 
                 ItemDbManager.UpdateCharacterItems(character);

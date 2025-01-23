@@ -65,13 +65,13 @@ namespace ServerSide.Characters.Customization.Clothes
             ClothesUpdate(player, clothesJson);
 
             character.Clothes[index] = clothes;
-            character.currentOutfit = index;
+            character.CurrentOutfit = index;
         }
         [Command("getoutfit")] //debug command
         private void outfit(Player player)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            character.SendChatMessage(character.currentOutfit.ToString());
+            character.SendChatMessage(character.CurrentOutfit.ToString());
         }
         [RemoteEvent("CLIENT:SERVER:BuyClothes")]
         private void BuyClothes(Player player, string ClothesJSON)
@@ -79,7 +79,7 @@ namespace ServerSide.Characters.Customization.Clothes
             var clothes = NAPI.Util.FromJson<ClothesData>(ClothesJSON);
             var character = CharacterManager.PlayerCharacterPair[player];
             UpdateCharDataDBManager.UpdateCharacterClothes(character, clothes);
-            character.currentOutfit = clothes.Id;
+            character.CurrentOutfit = clothes.Id;
             ClothesUpdate(player, ClothesJSON);
         }
         [RemoteEvent("CLIENT:SERVER:ClothesUpdate")] //event not called anymore since moved clothes to clientside, method still useful above

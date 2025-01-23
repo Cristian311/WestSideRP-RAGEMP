@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CHRP.Assets;
+using ClientSide.Character.Attributes;
 using ClientSide.Character.Inventory;
 using ClientSide.Shop;
 using RAGE;
@@ -49,6 +50,10 @@ namespace ClientSide
                 KeyManager.KeyBind(KeyManager.KeyL, () =>
                 {
                     Events.CallRemote("CLIENT:SERVER:LockKeyPressed");
+                });
+                KeyManager.KeyBind(KeyManager.KeyE, () =>
+                {
+                    Examine.CloseExamineScreen();
                 });
             }
         }

@@ -276,13 +276,13 @@
             actionBtn.onclick = () => {
                 if (selectedPlayer) {
                     const amount = action === 'give' ? parseInt(document.getElementById('amount-slider').value, 10) : 1;
-                    mp.trigger("CEF:CLIENT:PlayerSelected", {
+                    mp.trigger("CEF:CLIENT:PlayerSelected", JSON.stringify({
                         action: action,
                         itemId: itemId,
                         playerId: selectedPlayer.id,
                         playerName: selectedPlayer.name,
                         amount: amount
-                    });
+                    }));
                     closePlayerModal();
                 }
             };

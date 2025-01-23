@@ -105,7 +105,7 @@ namespace ServerSide.Server.Commands
         [Command("w")]
         private void cmd_w(Player player, string target, string message)
         {
-            var character = CharacterManager.GetCharacterByName(player, target);
+            var character = CharacterManager.GetCharacterByNameOrId(player, target);
             if (character == null) return;
 
             var otherplayer = CharacterManager.CharacterAccountPair[character].player;
@@ -127,7 +127,7 @@ namespace ServerSide.Server.Commands
         [Command("pm")]
         private void cmd_pm(Player player, string target, string message)
         {
-            var character = CharacterManager.GetCharacterByName(player, target);
+            var character = CharacterManager.GetCharacterByNameOrId(player, target);
             if (character == null) return;
 
             var otherplayer = CharacterManager.CharacterAccountPair[character].player;
@@ -141,7 +141,7 @@ namespace ServerSide.Server.Commands
         [Command("lowto", Alias = "lto")]
         private void cmd_lowto(Player player, string target, string message)
         {
-            var character = CharacterManager.GetCharacterByName(player, target);
+            var character = CharacterManager.GetCharacterByNameOrId(player, target);
             if (character == null) return;
 
             var players = NAPI.Player.GetPlayersInRadiusOfPlayer(15, player);

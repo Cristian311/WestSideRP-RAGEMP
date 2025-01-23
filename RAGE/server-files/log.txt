@@ -2795,3 +2795,81 @@
 23.01.2025 11:28:51 (aaa) Jack Spencer: /inv
 23.01.2025 11:28:55 (aaa) Jack Spencer: /changechar
 23.01.2025 11:29:04 (aaa) Zurab Makharadze: /inv
+23.01.2025 12:01:10 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 12:01:10 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 12:10:51 (aaa) Zurab Makharadze: /clothes
+23.01.2025 13:10:30 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 13:10:30 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 13:12:42 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 13:12:42 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 13:13:03 (aaa) Zurab Makharadze: /attributes
+23.01.2025 13:13:24 (aaa) Zurab Makharadze: z gionule hatz
+23.01.2025 13:13:35 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 13:14:15 (aaa) Zurab Makharadze: aaa
+23.01.2025 13:36:04 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 13:36:04 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 13:36:30 (aaa) Zurab Makharadze: /attributes
+23.01.2025 13:36:50 (aaa) Zurab Makharadze: /ex
+23.01.2025 13:36:52 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 13:37:04 (aaa) Zurab Makharadze: /clothes
+23.01.2025 13:37:09 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 13:37:12 (aaa) Zurab Makharadze: ..
+23.01.2025 13:37:57 (aaa) Zurab Makharadze: . fsjgosdfogj idsfojgs nh kdslgn kdsgndk fgmdf;gndf; gmdfgkndfkf glkdfngfejkgnlekgnkldgnfdlngdfljgnsfjndfglndfkgldsnfkgjndsflgnsdklgndsfkjg nsdjgsjklgnkdsfjgn kdsfjgn dsfkgndsfgjndsflkgndsfkjlgmdslkgn
+23.01.2025 13:38:10 (aaa) Zurab Makharadze: tty stkjsdn sgso dghso ghdsg sdio ghsdfg hodsfgh sdfg hsojfgh sdufg idsfugh odsfu fgousdfh gusdfhgu dsf hfd hsd sidf gsdg hsudfigh iusfgh iudsgh usfh gshg isuogh euheowgheoehoehuouh urrorh ro ror or r
+23.01.2025 13:49:33 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 13:49:33 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 13:51:02 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 13:51:02 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 13:53:11 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 13:53:11 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 13:54:11 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 13:54:11 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 13:54:40 (aaa) Zurab Makharadze: /v
+23.01.2025 13:54:47 (aaa) Zurab Makharadze: /attributes
+23.01.2025 13:54:59 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 13:55:35 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 13:55:35 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 13:56:33 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 13:56:33 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 13:57:03 (aaa) Zurab Makharadze: /attributes
+23.01.2025 13:57:16 (aaa) Zurab Makharadze: `
+23.01.2025 13:57:25 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 14:08:44 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 14:08:44 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 14:09:10 (aaa) Zurab Makharadze: /attributes
+23.01.2025 14:09:23 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 14:13:56 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 14:13:56 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 14:15:16 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 14:15:16 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 14:15:56 (aaa) Zurab Makharadze: /attributes
+23.01.2025 14:16:07 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 14:17:10 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 14:17:10 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 14:18:20 (aaa) Zurab Makharadze: /attributes
+23.01.2025 14:18:35 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 14:18:40 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 14:18:46 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 14:20:27 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 14:20:27 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 14:21:03 (aaa) Zurab Makharadze: /attributes
+23.01.2025 14:21:13 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 14:22:07 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 14:22:07 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 14:22:44 (aaa) Zurab Makharadze: /attributes
+23.01.2025 14:22:55 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 14:25:30 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 14:25:30 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 14:26:24 (aaa) Zurab Makharadze: /attributes
+23.01.2025 14:26:37 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 14:29:18 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 14:29:18 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 14:29:47 (aaa) Zurab Makharadze: /attributes
+23.01.2025 14:29:57 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 14:36:07 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+23.01.2025 14:36:07 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+23.01.2025 14:36:33 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 14:36:39 (aaa) Zurab Makharadze: /ex zurab
+23.01.2025 14:36:47 (aaa) Zurab Makharadze: /attributes
+23.01.2025 14:36:59 (aaa) Zurab Makharadze: /attributes
+23.01.2025 14:37:05 (aaa) Zurab Makharadze: /ex zurab

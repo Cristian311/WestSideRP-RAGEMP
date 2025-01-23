@@ -19,7 +19,7 @@ namespace ServerSide.Characters
         public string accountName { get; }
         public int Id { get; set; }
         public string Name { get; }
-        public int Age { get; }
+        public int Age { get; set; }
         public int Money { get; set; }
         public int BankMoney { get; set; }
         public bool Gender { get; set; }
@@ -27,11 +27,14 @@ namespace ServerSide.Characters
         public bool isCop { get; set; } = false;
         public CharacterData Face { get; set; }
         public HairData Hair { get; set; }
-        public int currentOutfit { get; set; }
+        public int CurrentOutfit { get; set; }
         public int GameId { get; set; }
         public Character currentCharacter { get; }
         public Dictionary<WeaponHash, string> equippedWeapons = new Dictionary<WeaponHash, string>();
-
+        public string CharacterDescription { get; set; }
+        public string[] OutfitDescription { get; set; } = new string[50];
+        public string TattooDescription {  get; set; }
+        public bool DarkMode { get; set; } = true;
         // Collections
         public List<ICharacter> Characters { get; }
         public List<Item> Items { get; set; } = new List<Item>();

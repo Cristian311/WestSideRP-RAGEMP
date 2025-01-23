@@ -140,7 +140,7 @@ namespace ServerSide.Characters
             UpdatePhones(character);
             CharacterCustomizeManager.UpdatePlayerFaceFeatures(character.player, character.Face);
             UpdateHair(character);
-            ClothesManager.GetClothes(player, (byte)character.currentOutfit);
+            ClothesManager.GetClothes(player, (byte)character.CurrentOutfit);
             ApplyTattoos(character);
 
             //player update
@@ -171,7 +171,7 @@ namespace ServerSide.Characters
 
             var facesJson = NAPI.Util.ToJson(account.Characters.Select(c => c.Face));
             var hairsJson = NAPI.Util.ToJson(account.Characters.Select(c => c.Hair));
-            var clothesJson = NAPI.Util.ToJson(account.Characters.Select(c => CharacterDbManager.getClothes(c, (byte)c.currentOutfit)));
+            var clothesJson = NAPI.Util.ToJson(account.Characters.Select(c => CharacterDbManager.getClothes(c, (byte)c.CurrentOutfit)));
             NAPI.Util.ConsoleOutput("SERVER:");
             NAPI.Util.ConsoleOutput(facesJson);
             NAPI.Util.ConsoleOutput(hairsJson);
@@ -189,7 +189,7 @@ namespace ServerSide.Characters
             player.Rotation = new Vector3(0, 0, 144);
             player.Dimension = account.GameId != 0 ? (uint)account.GameId : 1001;
         }
-        public static Character GetCharacterByName(Player player, string nameOrId)
+        public static Character GetCharacterByNameOrId(Player player, string nameOrId)
         {
             var matches = GetMatchingCharacters(nameOrId);
 
@@ -212,7 +212,7 @@ namespace ServerSide.Characters
                 return null;
             }
         }
-        public static Character GetCharacterByName(string nameOrId)
+        public static Character GetCharacterByNameOrId(string nameOrId)
         {
             var matches = GetMatchingCharacters(nameOrId);
 

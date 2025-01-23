@@ -175,7 +175,7 @@ namespace ServerSide.Server.DB.CharacterDB
                                 }
 
                                 // CURRENT OUTFIT HANDLER
-                                character.currentOutfit = !reader.IsDBNull("currentOutfit") ? reader.GetInt32("currentOutfit") : 0;
+                                character.CurrentOutfit = !reader.IsDBNull("currentOutfit") ? reader.GetInt32("currentOutfit") : 0;
 
                                 // TATTOOS HANDLER
                                 var tattoo = reader.GetString("TattooJSON");
@@ -335,9 +335,9 @@ namespace ServerSide.Server.DB.CharacterDB
                                     : null;
 
                                 //CLOTHES
-                                character.currentOutfit = !reader.IsDBNull("currentOutfit") ? reader.GetInt32("currentOutfit") : 0;
-                                character.Clothes[character.currentOutfit] = getClothes(character, (byte)character.currentOutfit);
-                                NAPI.Util.ConsoleOutput(NAPI.Util.ToJson(character.Clothes[character.currentOutfit]));
+                                character.CurrentOutfit = !reader.IsDBNull("currentOutfit") ? reader.GetInt32("currentOutfit") : 0;
+                                character.Clothes[character.CurrentOutfit] = getClothes(character, (byte)character.CurrentOutfit);
+                                NAPI.Util.ConsoleOutput(NAPI.Util.ToJson(character.Clothes[character.CurrentOutfit]));
 
                                 characters.Add(character);
                             }

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+    }
+
+    .interface {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      width: 250px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: grey;
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      border-radius: 10px;
+      transform: translateY(-50%);
+      z-index: 1000;
+    }
+
+    .text-container {
+      margin-bottom: 10px;
+    }
+
+    .orange {
+      color: orange;
+    }
+
+    .white {
+      color: white;
+    }
+
+    .description-text {
+      max-height: 150px;
+      overflow-y: auto;
+      word-wrap: break-word;
+      text-align: left;
+    }
+
+    #outfit-description, #tattoo-text {
+      display: none;
+    }
+
+    .close-instruction {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: grey;
+    }
+  </style>
+</head>
+<body>
+  <div id="interface" class="interface">
+    
+    
+    <div id="description" class="text-container">
+      <span id="description-label" class="orange">Description of </span>
+      <span id="character-name" class="white">Character Name</span>
+      <div id="age" class="text-container">
+        <span class="orange">Age: </span>
+        <span id="age-range" class="white">20</span>
+      </div>
+      <div id="character-description" class="description-text"></div>
+    </div>
+    
+    <div id="outfit-description" class="text-container">
+      <span class="orange">Outfit Description:</span>
+      <p id="outfit-text" class="white"></p>
+    </div>
+    
+    <div id="tattoo-text" class="text-container">
+      <span>Use /tattoos to check the player's tattoos</span>
+    </div>
+
+    <div class="close-instruction">
+      Press <span class="orange">E</span> to close
+    </div>
+  </div>
+
+  <script>
+    function updateCharacterAge(age) {
+      const ageRangeElement = document.getElementById('age-range');
+      let minAge, maxAge;
+
+      if (age <= 20) {
+        minAge = Math.max(age - 1, 18);
+        maxAge = age + 1;
+      } else if (age <= 30) {
+        minAge = age - 2;
+        maxAge = age + 2;
+      } else if (age <= 40) {
+        minAge = age - 3;
+        maxAge = age + 3;
+      } else if (age <= 50) {
+        minAge = age - 5;
+        maxAge = age + 5;
+      } else {
+        minAge = age - 7;
+        maxAge = age + 7;
+      }
+
+      ageRangeElement.textContent = `${minAge}-${maxAge}`;
+    }
+
+    function updateCharacterDescription(characterName, description) {
+      document.getElementById('character-name').textContent = characterName;
+      const descriptionElement = document.getElementById('character-description');
+      
+      descriptionElement.textContent = '';
+      
+      const paragraphs = description.split(/\n+/);
+      paragraphs.forEach(para => {
+        const paraElement = document.createElement('p');
+        paraElement.textContent = para.trim();
+        descriptionElement.appendChild(paraElement);
+      });
+    }
+
+    function updateOutfitDescription(outfitDesc) {
+      const outfitElement = document.getElementById('outfit-description');
+      const outfitTextElement = document.getElementById('outfit-text');
+      
+      if (outfitDesc && outfitDesc.trim()) {
+        outfitTextElement.textContent = outfitDesc;
+        outfitElement.style.display = 'block';
+      } else {
+        outfitElement.style.display = 'none';
+      }
+    }
+
+    function toggleTattooCheck(toggle) {
+      const tattooTextElement = document.getElementById('tattoo-text');
+      tattooTextElement.style.display = toggle ? 'block' : 'none';
+    }
+  </script>
+</body>
+</html>

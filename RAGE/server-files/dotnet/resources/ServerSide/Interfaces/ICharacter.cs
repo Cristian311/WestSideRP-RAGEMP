@@ -25,7 +25,7 @@ namespace ServerSide.Characters
         bool isCop { get; set; }
         CharacterData Face { get; set; }
         HairData Hair { get; set; }
-        int currentOutfit { get; set; }
+        int CurrentOutfit { get; set; }
         Character currentCharacter { get; }
         int faction { get; set; }
         int factionRank { get; set; }

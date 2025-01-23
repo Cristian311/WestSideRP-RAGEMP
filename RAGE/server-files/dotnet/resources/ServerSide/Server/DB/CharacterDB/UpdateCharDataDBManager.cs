@@ -41,7 +41,7 @@ namespace ServerSide.Server.DB.CharacterDB
                         command.Parameters.AddWithValue("@Money", character.Money);
                         command.Parameters.AddWithValue("@Id", character.Id);
                         command.Parameters.AddWithValue("@isCreated", character.isCreated);
-                        command.Parameters.AddWithValue("@currentOutfit", character.currentOutfit);
+                        command.Parameters.AddWithValue("@currentOutfit", character.CurrentOutfit);
                         command.Parameters.AddWithValue("@faction", character.faction);
                         command.Parameters.AddWithValue("@factionRank", character.factionRank);
 
