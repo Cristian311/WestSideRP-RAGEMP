@@ -20,21 +20,13 @@ namespace ServerSide.Characters
 {
     internal class CharacterManager : Script
     {
-        //DEFAULT JSONS
-        //public const string FaceDefaultJSON = "{\"shape\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"skin\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"nose\":{\"width\":\"0\",\"height\":\"0\",\"length\":\"0\",\"bridge\":\"0\",\"tip\":\"0\",\"bridgeShift\":\"0\"},\"brow\":{\"height\":\"0\",\"width\":\"0\"},\"cheeks\":{\"height\":\"0\",\"width\":\"0\",\"cheeksWidth\":\"0\"},\"jaw\":{\"width\":\"0\"},\"chin\":{\"lenght\":\"0\",\"position\":\"0\",\"width\":\"0\",\"shape\":\"0\"},\"neck\":{\"width\":\"0\"},\"lips\":\"0\",\"skinColor\":\"0\",\"eye\":{\"size\":\"0\",\"color\":\"0\"}}\r\n";
         public const string FaceDefaultJSON = "{\"shape\":{\"first\":25,\"second\":19,\"mix\":0.85},\"skin\":{\"first\":16,\"second\":14,\"mix\":0.76},\"nose\":{\"width\":0.46,\"height\":0.14,\"length\":0.34,\"bridge\":0.21,\"tip\":-0.14,\"bridgeShift\":0.35},\"brow\":{\"height\":0.38,\"width\":-0.34},\"cheeks\":{\"height\":0.58,\"width\":0.48,\"cheekswidth\":0.0},\"jaw\":{\"height\":0.24,\"width\":0.4},\"skinColor\":\"0\",\"eye\":{\"size\":-0.09,\"color\":12},\"lips\":-0.21,\"chin\":{\"length\":0.99,\"position\":0.64,\"width\":0.66,\"shape\":-0.3},\"neck\":{\"width\":0.67},\"facialDetails\":{\"blemishes\":{\"value\":21,\"opacity\":0.4},\"ageing\":{\"value\":7,\"opacity\":0.99},\"complexion\":{\"value\":5,\"opacity\":0.81},\"sunDamage\":{\"value\":8,\"opacity\":0.71},\"molesFreckles\":{\"value\":14,\"opacity\":0.81}}}";
 
         public const string HairDefaultJSON = "{\"facialHair\":{\"value\":14,\"color\":0},\"hair\":{\"value\":12,\"color\":0,\"secondColor\":0},\"eyebrows\":{\"value\":24,\"color\":4},\"bodyHair\":{\"value\":5,\"color\":0},\"hairTattoo\":12}";
 
-        //PAIRS FOR PLAYER AND THEIR DATA
-        private static Dictionary<Player, CharacterData> playerData = new Dictionary<Player, CharacterData>(); //this should be <Character, CharacterData>, needs fixed
-        private static Dictionary<Character, HairData> characterHairData = new Dictionary<Character, HairData>();
-
-        //player->character and character->account links
         public static Dictionary<Player, Character> PlayerCharacterPair = new Dictionary<Player, Character>();
-        public static Dictionary<Character, Account> CharacterAccountPair = new Dictionary<Character, Account>();
         public static List<Character> loggedCharacters = new List<Character>();
-        //public static Dictionary<Character, IAccount> CharacterAccountPair = new Dictionary<Character, IAccount>();
+
 
         public static Character GetCharacter(Player player)
         {
@@ -77,7 +69,7 @@ namespace ServerSide.Characters
         {
             //prepare vars
             string Name = firstname + ' ' + lastname;
-            var account = AccountManager.PlayerAccountPairs[player];
+            var account = AccountManager.GetAccount(player);
             Character character = new Character(player, account, Name, 20, 5000);
 
             character.Gender = GetGender(selectedgender);
@@ -92,7 +84,7 @@ namespace ServerSide.Characters
         [RemoteEvent("CLIENT:SERVER:ClosedCreateCharScreen")] // meaning character interface needs to appear
         private void OnCloseCreateCharScreen(Player player)
         {
-            var account = AccountManager.PlayerAccountPairs[player];
+            var account = AccountManager.GetAccount(player);
             string username = account.Name;
 
             GetNameMoneyJson(account, out string namesJSON, out string moneyJSON, account.Characters);
@@ -109,11 +101,11 @@ namespace ServerSide.Characters
                 return;
 
             //account setup
-            Account account = AccountManager.PlayerAccountPairs[player];
-            Character character = CharacterDbManager.GetCharacter(account, charName);
+            var account = AccountManager.GetAccount(player);
+            var character = CharacterDbManager.GetCharacter(account, charName);
+
             loggedCharacters.Add(character);
             PlayerCharacterPair[player] = character;
-            CharacterManager.CharacterAccountPair[character] = account;
             account.currentCharacter = character;
 
 
@@ -164,11 +156,8 @@ namespace ServerSide.Characters
 
             var facesJson = NAPI.Util.ToJson(account.Characters.Select(c => c.Face));
             var hairsJson = NAPI.Util.ToJson(account.Characters.Select(c => c.Hair));
-            var clothesJson = NAPI.Util.ToJson(account.Characters.Select(c => CharacterDbManager.getClothes(c, (byte)c.CurrentOutfit)));
-            NAPI.Util.ConsoleOutput("SERVER:");
-            NAPI.Util.ConsoleOutput(facesJson);
-            NAPI.Util.ConsoleOutput(hairsJson);
-            NAPI.Util.ConsoleOutput(clothesJson);
+            var clothesJson = NAPI.Util.ToJson(account.Characters.Select(c => CharacterDbManager.GetClothes(c, (byte)c.CurrentOutfit)));
+
 
             player.TriggerEvent("SERVER:CLIENT:CharactersInfo", facesJson, hairsJson, clothesJson);
 
@@ -248,7 +237,7 @@ namespace ServerSide.Characters
             else
                 return false;
         }
-        public static void GetNameMoneyJson(IAccount account, out string namesJSON, out string moneyJSON, List<ICharacter> characters)
+        public static void GetNameMoneyJson(IAccount account, out string namesJSON, out string moneyJSON, List<Character> characters)
         {
 
 
@@ -258,7 +247,7 @@ namespace ServerSide.Characters
             moneyJSON = NAPI.Util.ToJson(money);
         }
 
-        private static void GetNamesAndMoneyForCEF(List<ICharacter> characters, int requiredCount, out string[] names, out int[] money)
+        private static void GetNamesAndMoneyForCEF(List<Character> characters, int requiredCount, out string[] names, out int[] money)
         {
             names = new string[requiredCount];
             money = new int[requiredCount];
@@ -287,7 +276,7 @@ namespace ServerSide.Characters
                 }
             }
         }
-        private static int GetRequiredCount(List<ICharacter> characters)
+        private static int GetRequiredCount(List<Character> characters)
         {
             int requiredCount;
             if (characters == null)

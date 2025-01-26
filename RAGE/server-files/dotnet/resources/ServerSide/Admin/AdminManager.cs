@@ -14,7 +14,7 @@ namespace ServerSide.Admin
         }
         public static bool CheckIfAdminAccess(Player player, int minimumAdminLevel)
         {
-            var account = AccountManager.PlayerAccountPairs[player];
+            var account = AccountManager.GetAccount(player);
             if (account.AdminLevel < minimumAdminLevel)
             {
                 player.SendChatMessage(AdminMessages.NoAccessAdmMessage);

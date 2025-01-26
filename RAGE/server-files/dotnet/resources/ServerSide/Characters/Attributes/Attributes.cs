@@ -1,4 +1,5 @@
 ﻿using GTANetworkAPI;
+using ServerSide.Accounts;
 using ServerSide.Server.DB.CharacterDB;
 
 namespace ServerSide.Characters.Attributes
@@ -8,7 +9,7 @@ namespace ServerSide.Characters.Attributes
         [Command("attributes")]
         public static void cmd_attributes(Player player)
         {
-            var darkmode = CharacterManager.GetCharacter(player).DarkMode;
+            var darkmode = AccountManager.GetAccount(player).DarkMode;
             player.TriggerEvent("SERVER:CLIENT:OpenAttributesScreen", darkmode);
         }
 
@@ -16,9 +17,12 @@ namespace ServerSide.Characters.Attributes
         private void AttributesUpdate(Player player, string json)
         {
             var character = CharacterManager.GetCharacter(player);
-            var charData = NAPI.Util.FromJson<CharacterAttributesData>(json);
+            
+            //first time attributes
             if (character.isCreated == false)
                 character.isCreated = true;
+
+            var charData = NAPI.Util.FromJson<CharacterAttributesData>(json);
 
             character.Age = charData.Age;
             character.CharacterDescription = charData.Description;

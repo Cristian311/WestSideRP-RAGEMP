@@ -78,7 +78,7 @@ namespace ServerSide.Server.Shops
         [Command("copyshop")]
         private void CopyShopCommand(Player player, string name)
         {
-            var account = AccountManager.PlayerAccountPairs[player];
+            var account = AccountManager.GetAccount(player);
             ServerLogger.LogWithAccount(player, " copied the shop " + name + $" to {player.Position.ToString()}");
         }
         [RequiresAdmin]

@@ -13,7 +13,7 @@ namespace ServerSide.Server.DB.CharacterDB
 {
     internal class CharacterDbManager
     {
-        public static bool CreateCharacter(ICharacter character)
+        public static bool CreateCharacter(Character character)
         {
             Database db = new Database();
             if (CharacterExists(character.Name))
@@ -293,14 +293,14 @@ namespace ServerSide.Server.DB.CharacterDB
                 }
             }
         }
-        public static List<ICharacter> GetCharacters(IAccount account)
+        public static List<Character> GetCharacters(IAccount account)
         {
             if (account == null)
                 return null;
             Database db = new Database();
             using (MySqlConnection connection = db.GetDatabaseConnection())
             {
-                List<ICharacter> characters = new List<ICharacter>();
+                List<Character> characters = new List<Character>();
                 string query = "SELECT * FROM `characters` WHERE AccountId = @accountId";
 
                 MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -336,8 +336,7 @@ namespace ServerSide.Server.DB.CharacterDB
 
                                 //CLOTHES
                                 character.CurrentOutfit = !reader.IsDBNull("currentOutfit") ? reader.GetInt32("currentOutfit") : 0;
-                                character.Clothes[character.CurrentOutfit] = getClothes(character, (byte)character.CurrentOutfit);
-                                NAPI.Util.ConsoleOutput(NAPI.Util.ToJson(character.Clothes[character.CurrentOutfit]));
+                                character.Clothes[character.CurrentOutfit] = GetClothes(character, (byte)character.CurrentOutfit);
 
                                 characters.Add(character);
                             }
@@ -362,7 +361,7 @@ namespace ServerSide.Server.DB.CharacterDB
                 }
             }
         }
-        public static ClothesData getClothes(ICharacter character, byte index)
+        public static ClothesData GetClothes(Character character, byte index)
         {
 
             Database db = new Database();
@@ -410,7 +409,7 @@ namespace ServerSide.Server.DB.CharacterDB
                 }
             }
         }
-        public static ClothesData[] GetAllClothes(ICharacter character)
+        public static ClothesData[] GetAllClothes(Character character)
         {
             Database db = new Database();
             using (MySqlConnection connection = db.GetDatabaseConnection())

@@ -133,7 +133,7 @@ public class FactionManager : Script
     private void FactionAdminMessage(Player player, string message)
     {
         var character = CharacterManager.PlayerCharacterPair[player];
-        var account = AccountManager.PlayerAccountPairs[player];
+        var account = AccountManager.GetAccount(player);
         var faction = GetFactionById(character.faction);
         if (account.AdminDuty == true)
             SendFactionMessage(character.faction, $"{Colors.INFO}(( {faction.RankNames[character.factionRank]} {Colors.DARK_RED}{account.Name}{Colors.INFO}: {message} ))");
@@ -149,7 +149,7 @@ public class FactionManager : Script
         player.SendChatMessage($"{Colors.WHISPER}Jucatori conectati din factiune:");
         foreach (var member in faction.GetOnlineCharacters().OrderByDescending(c => c.factionRank))
         {
-            var account = AccountManager.PlayerAccountPairs[player];
+            var account = AccountManager.GetAccount(player);
             if (account.AdminDuty == false)
                 player.SendChatMessage($"{Colors.WHISPER}{faction.RankNames[member.factionRank]} {member.Name}");
             else
@@ -242,7 +242,7 @@ public class FactionManager : Script
         factions.Add(newFaction);
         nextFactionId++;
         SaveFactionToDatabase(newFaction); // Save to DB
-        var account = AccountManager.PlayerAccountPairs[player];
+        var account = AccountManager.GetAccount(player);
         AdminManager.SendChatMessageToAdmins($"{Colors.ADMIN}{account.Name} a creat factiunea {newFaction.Type} ID {newFaction.Id} {newFaction.Name}");
         FactionDbManager.SaveFaction(newFaction);
     }

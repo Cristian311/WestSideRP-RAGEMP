@@ -30,7 +30,7 @@ namespace ServerSide.Factions
                 { 7, "Authority" }
             };
         }
-        public bool HasPermission(ICharacter character, int requiredRank)
+        public bool HasPermission(Character character, int requiredRank)
         {
             return character.factionRank >= requiredRank;
         }

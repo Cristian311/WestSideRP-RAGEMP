@@ -41,7 +41,7 @@ namespace ServerSide.Server.Commands
         [Command("changechar")]
         private void changecharCommand(Player player)
         {
-            var account = AccountManager.PlayerAccountPairs[player];
+            var account = AccountManager.GetAccount(player);
             var character = CharacterManager.PlayerCharacterPair[player];
 
             var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);

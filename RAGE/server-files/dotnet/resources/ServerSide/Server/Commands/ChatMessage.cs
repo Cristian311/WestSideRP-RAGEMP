@@ -1,9 +1,11 @@
 ﻿using GTANetworkAPI;
+using GTANetworkMethods;
 using ServerSide.Accounts;
 using ServerSide.Characters;
 using ServerSide.Util;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Player = GTANetworkAPI.Player;
 
 namespace ServerSide.Server.Commands
 {
@@ -47,7 +49,7 @@ namespace ServerSide.Server.Commands
         [ServerEvent(Event.ChatMessage)]
         private void playerChat(Player player, string message)
         {
-            var account = AccountManager.PlayerAccountPairs[player];
+            var account = AccountManager.GetAccount(player);
             if (account.Muted == true)
             {
                 player.SendChatMessage($"{Colors.MUTED}You are muted and can't send a message");
@@ -76,28 +78,21 @@ namespace ServerSide.Server.Commands
         [Command("to")]
         private void cmd_to(Player player, string target, string message)
         {
-            var chars = CharacterManager.getCharByName(target);
-            if (chars.Count == 1)
-            {
-                var character = chars[0];
-                var otherplayer = CharacterManager.CharacterAccountPair[character].player;
+            var character = CharacterManager.GetCharacterByNameOrId(target);
+            if (character == null) return;
 
-                var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
-                var name = CharacterManager.PlayerCharacterPair[player].Name;
-                foreach (var p in players)
-                {
-                    if (p != otherplayer)
-                        p.SendChatMessage($"{Colors.LOW}{name} spune lui ({character.Name}): {message}");
-                }
-                otherplayer.SendChatMessage($"{Colors.PARTY}[!]{Colors.LOW}{name} spune lui ({character.Name}): {message}");
-            }
-            else
+            var otherplayer = character.player;
+
+            var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
+            var name = CharacterManager.GetCharacter(player).Name;
+
+            foreach (var p in players)
             {
-                foreach (var character in chars)
-                {
-                    player.SendChatMessage($"{character.Id}. {character.Name} Ping:{character.player.Ping}");
-                }
+                if (p != otherplayer)
+                    p.SendChatMessage($"{Colors.LOW}{name} spune lui ({character.Name}): {message}");
             }
+
+            otherplayer.SendChatMessage($"{Colors.PARTY}[!]{Colors.LOW}{name} spune lui ({character.Name}): {message}");
         }
         [Command("w")]
         private void cmd_w(Player player, string target, string message)
@@ -105,7 +100,7 @@ namespace ServerSide.Server.Commands
             var character = CharacterManager.GetCharacterByNameOrId(player, target);
             if (character == null) return;
 
-            var otherplayer = CharacterManager.CharacterAccountPair[character].player;
+            var otherplayer = character.player;
 
             var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
             var name = CharacterManager.PlayerCharacterPair[player].Name;
@@ -127,7 +122,7 @@ namespace ServerSide.Server.Commands
             var character = CharacterManager.GetCharacterByNameOrId(player, target);
             if (character == null) return;
 
-            var otherplayer = CharacterManager.CharacterAccountPair[character].player;
+            var otherplayer = character.player;
 
             var name = CharacterManager.PlayerCharacterPair[player].Name;
 

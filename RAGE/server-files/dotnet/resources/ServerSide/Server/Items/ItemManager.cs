@@ -285,7 +285,7 @@ namespace ServerSide.Server.Items
 
         private void UseItem(Character character, Item usedItem)
         {
-            Player player = CharacterManager.CharacterAccountPair[character].player;
+            var player = character.player;
 
 
             switch (usedItem.Type.ToLower())

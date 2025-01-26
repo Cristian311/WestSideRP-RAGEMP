@@ -68,7 +68,6 @@ namespace ServerSide.Server.Items.Weapons
             var accountName = AccountManager.GetAccount(player).Name;
             bulletType = StringFormatter.CapitalizeFirstLetter(bulletType);
 
-            // Check if the bullet type exists
             if (!WeaponBulletTypes.ContainsValue(bulletType))
             {
                 character.SendErrorMessage($"Eroare: '{bulletType}' este invalid.");
@@ -205,7 +204,6 @@ namespace ServerSide.Server.Items.Weapons
 
             return null; // No matching bullet type or bullet item found
         }
-
 
         public static void HandleWeaponEquip(Character character, Item weaponItem)
         {

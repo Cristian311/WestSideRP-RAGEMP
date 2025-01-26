@@ -21,12 +21,12 @@ namespace ServerSide.Server.AuthServer
         {
             if (AccountManager.PlayerAccountPairs.ContainsKey(player) == false)
                 return;
-            Account account = AccountManager.PlayerAccountPairs[player];
+            var account = AccountManager.GetAccount(player);
+
             if (account != null)
                 AccountManager.idManager.ReclaimId(account.GameId);
 
             AccountManager.PlayerAccountPairs.Remove(player);
-            AccountManager.AccountPlayerPairs.Remove(account);
             AccountManager.loggedAccounts.Remove(account);
         }
         [Command("login")]
@@ -58,8 +58,7 @@ namespace ServerSide.Server.AuthServer
                 account.GameId = AccountManager.idManager.AssignNewId(account);
                 if (!AccountManager.loggedAccounts.Contains(account))
                     AccountManager.loggedAccounts.Add(account);
-                if (!AccountManager.AccountPlayerPairs.ContainsKey(account))
-                    AccountManager.AccountPlayerPairs.Add(account, player);
+
                 if (!AccountManager.PlayerAccountPairs.ContainsKey(player))
                     AccountManager.PlayerAccountPairs.Add(player, account);
 

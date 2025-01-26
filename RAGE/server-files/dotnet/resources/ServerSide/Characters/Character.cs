@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 namespace ServerSide.Characters
 {
-    public class Character : ICharacter
+    public class Character 
     {
         // Public Properties
         public IAccount Account { get; }
@@ -25,29 +25,32 @@ namespace ServerSide.Characters
         public bool Gender { get; set; }
         public bool isCreated { get; set; } = false;
         public bool isCop { get; set; } = false;
-        public CharacterData Face { get; set; }
-        public HairData Hair { get; set; }
+        
         public int CurrentOutfit { get; set; }
         public int GameId { get; set; }
-        public Character currentCharacter { get; }
+
         public Dictionary<WeaponHash, string> equippedWeapons = new Dictionary<WeaponHash, string>();
         public string CharacterDescription { get; set; }
         public string[] OutfitDescription { get; set; } = new string[50];
         public string TattooDescription { get; set; }
-        public bool DarkMode { get; set; } = true;
-        // Collections
-        public List<ICharacter> Characters { get; }
+        
+
+
+        // Data
+        public CharacterData Face { get; set; }
+        public HairData Hair { get; set; }
+        public ClothesData[] Clothes { get; set; } = new ClothesData[20];
         public List<Item> Items { get; set; } = new List<Item>();
         public List<WeaponHash> currentWeapons { get; set; } = new List<WeaponHash>();
         public List<Decoration> Tattoos { get; set; }
         public List<string> TattooNames { get; set; } = new List<string>();
 
-
         // Vehicles
-        public GTANetworkAPI.Vehicle CurrentDrivingVehicle { get; set; }
+        public GTANetworkAPI.Vehicle CurrentGTADrivingVehicle { get; set; }
         public Server.Vehicles.Vehicle CurrentServerDrivingVehicle { get; set; }
         public List<IVehicle> PersonalVehicles { get; set; } = new List<IVehicle>();
         public List<IVehicle> AccessVehicles { get; set; } = new List<IVehicle>();
+
         // Miscellaneous
         public Stopwatch ameStopwatch { get; set; }
         public bool isInInterior { get; set; }
@@ -65,12 +68,11 @@ namespace ServerSide.Characters
         // MainPhone Property
         public Phone MainPhone { get; set; }
 
-        // Clothes Data
-        public ClothesData[] Clothes { get; set; } = new ClothesData[20];
+        // Faction
+        
         public int faction { get; set; } = -1;
         public int factionRank { get; set; } = 0;
 
-        // Constructor
         public Character(Player player, IAccount account, string name, int age, int money)
         {
             this.player = player;
@@ -83,7 +85,6 @@ namespace ServerSide.Characters
             Tattoos = new List<Decoration>();
         }
 
-        // Methods
         public void PlayAnimation(string animDict, string animName, int flag)
         {
             player.PlayAnimation(animDict, animName, flag);
@@ -116,6 +117,7 @@ namespace ServerSide.Characters
             BankMoney += value;
             player.TriggerEvent("SERVER:CLIENT:BankMoneyUpdate", BankMoney);
         }
+
         public void StartAmeStopwatch()
         {
             ameStopwatch.Start();

@@ -18,7 +18,7 @@ namespace ServerSide.Server.Logger
         }
         public static void LogWithAccount(Player player, string message)
         {
-            var account = AccountManager.PlayerAccountPairs[player];
+            var account = AccountManager.GetAccount(player);
             message = DateTime.Now.ToString() + " (" + account.Name + ") " + message + "\n";
             log.Add(message);
             File.AppendAllTextAsync(filepath, message);

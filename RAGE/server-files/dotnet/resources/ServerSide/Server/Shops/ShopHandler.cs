@@ -22,7 +22,7 @@ namespace ServerSide.Server.Shops
                 if (shop != null)
                 {
                     string json = NAPI.Util.ToJson(shop.items ?? new List<ShopItem>());
-                    var account = AccountManager.PlayerAccountPairs[player];
+                    var account = AccountManager.GetAccount(player);
                     bool check = account.AdminLevel > 0 ? true : false;
                     player.TriggerEvent("SERVER:CLIENT:OpenShop", json, check);
                 }

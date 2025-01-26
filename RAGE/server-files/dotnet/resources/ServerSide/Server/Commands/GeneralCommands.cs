@@ -11,7 +11,7 @@ namespace ServerSide.Server.Commands
         [Command("stats")]
         private static void stats_cmd(Player player)
         {
-            var account = AccountManager.PlayerAccountPairs[player];
+            var account = AccountManager.GetAccount(player);
             var character = CharacterManager.GetCharacter(player);
             if (character == null) return;
 
@@ -25,44 +25,12 @@ namespace ServerSide.Server.Commands
             player.SendChatMessage($"{Colors.DARK_YELLOW}-----------------------");
         }
         [Command("id")]
-        private static void cmd_id(Player player, string id)
+        private static void cmd_id(Player player, string target)
         {
-            bool found = false;
-            if (int.TryParse(id, out int id2))
-            {
-                foreach (var account in AccountManager.loggedAccounts)
-                {
-                    var characterName = CharacterManager.PlayerCharacterPair[account.player].Name;
-                    if (account.GameId == id2)
-                    {
-                        player.SendChatMessage($"ID [{id2}] {account.Name}: Playing as {characterName} Ping: {account.player.Ping}");
-                        found = true;
-                    }
-                }
-            }
-            else
-            {
-                var chars = CharacterManager.getCharByName(id);
-                if (chars.Count == 1)
-                {
-                    var character = chars[0];
-                    if (!AdminManager.CheckIfAdminAccess(player, 1))
-                        return;
-                    var AdminAccount = AccountManager.PlayerAccountPairs[player];
-                    var TargetAccount = CharacterManager.CharacterAccountPair[character];
-                    found = true;
-                    player.SendChatMessage($"ID [{id2}] {TargetAccount.Name}: Playing as {character.Name} Ping: {TargetAccount.player.Ping}");
-                }
-                else
-                {
-                    foreach (var character in chars)
-                    {
-                        player.SendChatMessage(character.Name);
-                    }
-                }
-            }
-            if (found == false)
-                player.SendChatMessage("Couldn't find the player you're looking for");
+            var character = CharacterManager.GetCharacterByNameOrId(target);
+            if (character == null) return;
+
+            player.SendChatMessage($"ID [{character.GameId}] {character.Name}");
         }
     }
 }

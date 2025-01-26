@@ -7,7 +7,7 @@ namespace ServerSide.Server.DB.CharacterDB
 {
     internal class ItemDbManager
     {
-        public static bool UpdateCharacterItems(ICharacter character)
+        public static bool UpdateCharacterItems(Character character)
         {
             Database db = new Database();
             if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id

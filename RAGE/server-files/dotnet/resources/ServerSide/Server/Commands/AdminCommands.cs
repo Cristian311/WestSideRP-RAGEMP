@@ -14,22 +14,10 @@ namespace ServerSide.Server.Commands
         AccountManager accountManager = new AccountManager();
 
         [RequiresAdmin]
-        [Command("dimension", "/dimension [id] | Dimensiunea trebuie sa fie un numar pozitiv, -1 pentru dimensiunea globala.")]
-        private void cmd_dimension(Player player, int dimension)
+        [Command("dimension", "/dimension [id] | Dimensiunea trebuie sa fie un numar pozitiv, 0 pentru dimensiunea globala.")]
+        private void cmd_dimension(Player player, uint dimension)
         {
-            if (dimension == -1)
-            {
-                player.Dimension = NAPI.GlobalDimension;
-                player.SendChatMessage($"{Colors.INFO}Ti-ai setat dimensiunea ca: " + player.Dimension);
-                return;
-            }
-            else if (dimension < 0)
-            {
-                player.SendChatMessage($"{Colors.INFO}Dimensiunea nu poate fii negativa " + player.Dimension);
-                return;
-            }
-
-            player.Dimension = (uint)dimension;
+            player.Dimension = dimension;
             player.SendChatMessage($"{Colors.INFO}Ti-ai setat dimensiunea ca: " + player.Dimension);
         }
 
@@ -37,13 +25,15 @@ namespace ServerSide.Server.Commands
         [Command("makeadmin")]
         private void cmd_makeadmin(Player player, string target, int adminLevel = 1)
         {
-            var adminAccount = AccountManager.PlayerAccountPairs[player];
+            var account = AccountManager.GetAccount(player);
             var targetCharacter = CharacterManager.GetCharacterByNameOrId(player, target);
             if (targetCharacter == null) return;
 
-            var targetAccount = AccountManager.PlayerAccountPairs[targetCharacter.player];
-            AdminManager.SendChatMessageToAdmins($"Adminul {adminAccount.AdminLevel} {adminAccount.Name} l-a facut admin {adminLevel} pe {targetAccount.Name}");
+            var targetAccount = AccountManager.GetAccount(targetCharacter.player);
             targetAccount.AdminLevel = adminLevel;
+
+            AdminManager.SendChatMessageToAdmins($"Adminul {account.AdminLevel} {account.Name} l-a facut admin {adminLevel} pe {targetAccount.Name}");
+            
         }
         [RequiresAdmin]
         [Command("createveh")]
@@ -95,15 +85,15 @@ namespace ServerSide.Server.Commands
         [Command("kick", GreedyArg = true)]
         public void cmd_kick(Player player, string target, string reason)
         {
-            var character = CharacterManager.GetCharacterByNameOrId(player, target);
-            if (character == null) return;
+            var targetCharacter = CharacterManager.GetCharacterByNameOrId(player, target);
+            if (targetCharacter == null) return;
 
-            var adminAccount = AccountManager.PlayerAccountPairs[player];
-            var targetAccount = CharacterManager.CharacterAccountPair[character];
+            var account = AccountManager.GetAccount(player);
+            var targetAccount = AccountManager.GetAccount(targetCharacter.player);
 
             targetAccount.player.Kick($"You were kicked by an admin. Reason: {reason}");
 
-            string message = $"{Colors.ERROR}Admin {adminAccount.Name} i-a dat kick lui {targetAccount.currentCharacter.Name} Motiv: {reason}";
+            string message = $"{Colors.ERROR}Admin {account.Name} i-a dat kick lui {targetAccount.currentCharacter.Name} Motiv: {reason}";
             NAPI.Chat.SendChatMessageToAll(message);
 
             ServerLogger.LogWithAccount(player, message);
@@ -113,39 +103,39 @@ namespace ServerSide.Server.Commands
         [Command("ban")]
         public void cmd_ban(Player player, string target, string reason)
         {
-            var character = CharacterManager.GetCharacterByNameOrId(player, target);
-            if (character == null) return;
+            var targetCharacter = CharacterManager.GetCharacterByNameOrId(player, target);
+            if (targetCharacter == null) return;
 
-            var adminAccount = AccountManager.PlayerAccountPairs[player];
-            var targetAccount = CharacterManager.CharacterAccountPair[character];
+            var account = AccountManager.GetAccount(player);
+            var targetAccount = AccountManager.GetAccount(targetCharacter.player);
 
             targetAccount.player.Ban($"You were banned by an admin. Reason: {reason}");
-            NAPI.Chat.SendChatMessageToAll($"{Colors.ERROR}Admin {adminAccount.Name} i-a dat ban lui {targetAccount.currentCharacter.Name} Motiv: {reason}");
+            NAPI.Chat.SendChatMessageToAll($"{Colors.ERROR}Admin {account.Name} i-a dat ban lui {targetAccount.currentCharacter.Name} Motiv: {reason}");
         }
 
         [RequiresAdmin]
         [Command("mute")]
         public void cmd_mute(Player player, string target, string reason)
         {
-            var character = CharacterManager.GetCharacterByNameOrId(player, target);
-            if (character == null) return;
+            var targetCharacter = CharacterManager.GetCharacterByNameOrId(player, target);
+            if (targetCharacter == null) return;
 
-            var adminAccount = AccountManager.PlayerAccountPairs[player];
-            var targetAccount = CharacterManager.CharacterAccountPair[character];
+            var account = AccountManager.GetAccount(player);
+            var targetAccount = AccountManager.GetAccount(targetCharacter.player);
 
             targetAccount.Muted = true;
-            NAPI.Chat.SendChatMessageToAll($"{Colors.ERROR}Admin {adminAccount.Name} i-a dat mute lui {targetAccount.currentCharacter.Name} Motiv: {reason}");
+            NAPI.Chat.SendChatMessageToAll($"{Colors.ERROR}Admin {account.Name} i-a dat mute lui {targetAccount.currentCharacter.Name} Motiv: {reason}");
         }
 
         [RequiresAdmin]
         [Command("unmute")]
         public void cmd_unmute(Player player, string target)
         {
-            var character = CharacterManager.GetCharacterByNameOrId(player, target);
-            if (character == null) return;
+            var targetCharacter = CharacterManager.GetCharacterByNameOrId(player, target);
+            if (targetCharacter == null) return;
 
-            var adminAccount = AccountManager.PlayerAccountPairs[player];
-            var targetAccount = CharacterManager.CharacterAccountPair[character];
+            var adminAccount = AccountManager.GetAccount(player);
+            var targetAccount = AccountManager.GetAccount(targetCharacter.player);
 
             targetAccount.Muted = false;
             NAPI.Chat.SendChatMessageToAll($"{Colors.ERROR}Admin {adminAccount.Name} i-a dat unmute lui {targetAccount.currentCharacter.Name}");
@@ -156,26 +146,27 @@ namespace ServerSide.Server.Commands
         [Command("goto")]
         public void cmd_goto(Player player, string target)
         {
-            var character = CharacterManager.GetCharacterByNameOrId(player, target);
-            if (character == null) return;
+            var targetCharacter = CharacterManager.GetCharacterByNameOrId(player, target);
+            if (targetCharacter == null) return;
 
-            var adminAccount = AccountManager.PlayerAccountPairs[player];
-            player.Position = character.Account.player.Position;
+            var adminAccount = AccountManager.GetAccount(player);
 
-            AdminManager.SendChatMessageToAdmins($"{Colors.ERROR}Admin {adminAccount.Name} s-a teleportat la {character.Name}");
+            player.Position = targetCharacter.Account.player.Position;
+
+            AdminManager.SendChatMessageToAdmins($"{Colors.ERROR}Admin {adminAccount.Name} s-a teleportat la {targetCharacter.Name}");
         }
 
         [RequiresAdmin]
         [Command("bring")]
         public void cmd_bring(Player player, string target)
         {
-            var character = CharacterManager.GetCharacterByNameOrId(player, target);
-            if (character == null) return;
+            var targetCharacter = CharacterManager.GetCharacterByNameOrId(player, target);
+            if (targetCharacter == null) return;
 
-            var adminAccount = AccountManager.PlayerAccountPairs[player];
-            character.Account.player.Position = player.Position;
+            var adminAccount = AccountManager.GetAccount(player);
+            targetCharacter.player.Position = player.Position;
 
-            AdminManager.SendChatMessageToAdmins($"{Colors.ERROR}Admin {adminAccount.Name} l-a teleportat pe {character.Name} la el");
+            AdminManager.SendChatMessageToAdmins($"{Colors.ERROR}Admin {adminAccount.Name} l-a teleportat pe {targetCharacter.Name} la el");
         }
 
         // FREEZE/UNFREEZE COMMANDS
@@ -184,7 +175,7 @@ namespace ServerSide.Server.Commands
         [Command("aduty")]
         private void cmd_aduty(Player player)
         {
-            var account = AccountManager.PlayerAccountPairs[player];
+            var account = AccountManager.GetAccount(player);
             if (account.AdminDuty == false)
             {
                 account.AdminDuty = true;
@@ -202,28 +193,28 @@ namespace ServerSide.Server.Commands
         [Command("freeze")]
         public void cmd_freeze(Player player, string target)
         {
-            var character = CharacterManager.GetCharacterByNameOrId(player, target);
-            if (character == null) return;
+            var targetCharacter = CharacterManager.GetCharacterByNameOrId(player, target);
+            if (targetCharacter == null) return;
 
-            var adminAccount = AccountManager.PlayerAccountPairs[player];
-            character.player.TriggerEvent("SERVER:CLIENT:FreezePlayer");
+            var adminAccount = AccountManager.GetAccount(player);
+            targetCharacter.player.TriggerEvent("SERVER:CLIENT:FreezePlayer");
 
-            AdminManager.SendChatMessageToAdmins($"{Colors.ERROR}Admin {adminAccount.Name} i-a dat freeze lui {character.Name}.");
-            character.SendAdminMessage($"Ai primit freeze de la {adminAccount.Name} ({adminAccount.GameId}).");
+            AdminManager.SendChatMessageToAdmins($"{Colors.ERROR}Admin {adminAccount.Name} i-a dat freeze lui {targetCharacter.Name}.");
+            targetCharacter.SendAdminMessage($"Ai primit freeze de la {adminAccount.Name} ({adminAccount.GameId}).");
         }
 
         [RequiresAdmin]
         [Command("unfreeze")]
         public void cmd_unfreeze(Player player, string target)
         {
-            var character = CharacterManager.GetCharacterByNameOrId(player, target);
-            if (character == null) return;
+            var targetCharacter = CharacterManager.GetCharacterByNameOrId(player, target);
+            if (targetCharacter == null) return;
 
-            var adminAccount = AccountManager.PlayerAccountPairs[player];
-            character.player.TriggerEvent("SERVER:CLIENT:UnfreezePlayer");
+            var adminAccount = AccountManager.GetAccount(player);
+            targetCharacter.player.TriggerEvent("SERVER:CLIENT:UnfreezePlayer");
 
-            character.SendAdminMessage($"Ai primit unfreeze de la {adminAccount.Name} ({adminAccount.GameId}).");
-            AdminManager.SendChatMessageToAdmins($"{Colors.ERROR}Admin {adminAccount.Name} i-a dat unfreeze lui {character.Name}.");
+            targetCharacter.SendAdminMessage($"Ai primit unfreeze de la {adminAccount.Name} ({adminAccount.GameId}).");
+            AdminManager.SendChatMessageToAdmins($"{Colors.ERROR}Admin {adminAccount.Name} i-a dat unfreeze lui {targetCharacter.Name}.");
         }
 
     }

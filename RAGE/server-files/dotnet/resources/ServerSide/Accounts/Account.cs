@@ -15,9 +15,10 @@ namespace ServerSide.Accounts
         public Player player { get; }
         public int AdminLevel { get; set; }
         public bool AdminDuty { get; set; } = false;
-        public List<ICharacter> Characters { get; set; }
+        public List<Character> Characters { get; set; }
         public Character currentCharacter { get; set; }
         public bool Muted { get; set; }
+        public bool DarkMode { get; set; } = true;
         public Account(int id, string name, Player player)
         {
             Id = id;

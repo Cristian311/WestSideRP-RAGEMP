@@ -39,8 +39,8 @@ namespace ServerSide.Server.Vehicles
             var character = CharacterManager.PlayerCharacterPair[player];
             if (seatID == 0)
             {
-                character.CurrentDrivingVehicle = vehicle;
-                var ServerVehicle = GetServerVehicle(character.CurrentDrivingVehicle);
+                character.CurrentGTADrivingVehicle = vehicle;
+                var ServerVehicle = GetServerVehicle(character.CurrentGTADrivingVehicle);
                 character.CurrentServerDrivingVehicle = ServerVehicle;
                 if (ServerVehicle != null)
                 {
@@ -56,7 +56,7 @@ namespace ServerSide.Server.Vehicles
         private void PlayerExitVehicleEvent(Player player, GTANetworkAPI.Vehicle vehicle)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            character.CurrentDrivingVehicle = null;
+            character.CurrentGTADrivingVehicle = null;
             character.CurrentServerDrivingVehicle = null;
             var ServerVehicle = GetServerVehicle(vehicle);
             if (ServerVehicle == null) return;
@@ -127,23 +127,23 @@ namespace ServerSide.Server.Vehicles
         private void vp_cmd(Player player)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            if (character.CurrentDrivingVehicle == null || player.VehicleSeat != 0)
+            if (character.CurrentGTADrivingVehicle == null || player.VehicleSeat != 0)
             {
                 character.SendErrorMessage("Nu esti intr-o masina");
                 return;
             }
 
-            var vehicle = GetServerVehicle(character.CurrentDrivingVehicle);
+            var vehicle = GetServerVehicle(character.CurrentGTADrivingVehicle);
             vehicle.Position = player.Position;
             vehicle.isSpawned = false;
             VehicleDbManager.UpdateVehicle(vehicle);
-            character.CurrentDrivingVehicle.Delete();
+            character.CurrentGTADrivingVehicle.Delete();
         }
         [Command("vw")]
         private void vw_cmd(Player player, string window)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            if (character.CurrentDrivingVehicle == null || player.VehicleSeat != 0)
+            if (character.CurrentGTADrivingVehicle == null || player.VehicleSeat != 0)
             {
                 player.SendChatMessage($"{Colors.ERROR}Nu esti intr-o masina");
                 return;
@@ -213,7 +213,7 @@ namespace ServerSide.Server.Vehicles
         private void EngineCommand(Player player)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            if (character.CurrentDrivingVehicle == null || player.VehicleSeat != 0)
+            if (character.CurrentGTADrivingVehicle == null || player.VehicleSeat != 0)
             {
                 player.SendChatMessage($"{Colors.ERROR}Nu esti intr-o masina");
                 return;
@@ -237,7 +237,7 @@ namespace ServerSide.Server.Vehicles
         private void LightsCommand(Player player)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            if (character.CurrentDrivingVehicle == null || player.VehicleSeat != 0)
+            if (character.CurrentGTADrivingVehicle == null || player.VehicleSeat != 0)
             {
                 player.SendChatMessage($"{Colors.ERROR}Nu esti intr-o masina");
                 return;

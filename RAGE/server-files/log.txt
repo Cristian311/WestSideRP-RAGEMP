@@ -2926,3 +2926,9 @@
 25.01.2025 09:06:17 (aaa) Zurab Makharadze: /attributes
 25.01.2025 09:06:29 (aaa) Zurab Makharadze: /ex zurab
 25.01.2025 10:37:33 (aaa) Zurab Makharadze: /ex zurab
+26.01.2025 02:45:08 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+26.01.2025 02:45:08 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+26.01.2025 03:26:34 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+26.01.2025 03:26:34 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+26.01.2025 03:27:14 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+26.01.2025 03:27:14 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121

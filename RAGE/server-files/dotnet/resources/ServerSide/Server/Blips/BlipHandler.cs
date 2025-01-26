@@ -40,9 +40,9 @@ namespace ServerSide.Server.Blips
 
             blips.Add(blipData);
             BlipDbManager.CreateBlip(blipData);
-
-            var AdminAccount = AccountManager.PlayerAccountPairs[player];
-            AdminManager.SendChatMessageToAdmins($"{Colors.ADMIN}{AdminAccount.Name} created Blip {name} ID {blipData.Id} at {player.Position.ToString()}");
+            
+            var account = AccountManager.GetAccount(player);
+            AdminManager.SendChatMessageToAdmins($"{Colors.ADMIN}{account.Name} created Blip {name} ID {blipData.Id} at {player.Position.ToString()}");
         }
     }
 }

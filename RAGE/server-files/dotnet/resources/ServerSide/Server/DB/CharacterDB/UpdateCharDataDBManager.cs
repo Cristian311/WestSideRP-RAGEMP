@@ -87,7 +87,7 @@ namespace ServerSide.Server.DB.CharacterDB
                 }
             }
         }
-        public static bool UpdateCharacterFaceData(ICharacter character)
+        public static bool UpdateCharacterFaceData(Character character)
         {
             Database db = new Database();
             if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
@@ -239,7 +239,7 @@ namespace ServerSide.Server.DB.CharacterDB
                 }
             }
         }
-        public static bool UpdateCharacterHair(ICharacter character)
+        public static bool UpdateCharacterHair(Character character)
         {
             Database db = new Database();
             if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
@@ -290,7 +290,7 @@ namespace ServerSide.Server.DB.CharacterDB
             }
         }
 
-        public static bool UpdateCharacterClothes(ICharacter character, ClothesData clothes)
+        public static bool UpdateCharacterClothes(Character character, ClothesData clothes)
         {
             Database db = new Database();
             using (MySqlConnection connection = db.GetDatabaseConnection())

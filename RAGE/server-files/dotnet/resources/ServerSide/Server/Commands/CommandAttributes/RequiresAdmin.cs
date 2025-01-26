@@ -15,7 +15,7 @@ namespace ServerSide.Server.Commands.CommandAttributes
         public override bool Check(Player player, string cmdName, string cmdText)
         {
 
-            var account = AccountManager.PlayerAccountPairs[player];
+            var account = AccountManager.GetAccount(player);
             if (account.AdminLevel < AdminLevel)
             {
                 player.SendChatMessage(AdminMessages.NoAccessAdmMessage);

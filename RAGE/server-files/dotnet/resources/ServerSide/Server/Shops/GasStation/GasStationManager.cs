@@ -81,18 +81,18 @@ namespace ServerSide.Server.GasStations
                 var character = CharacterManager.PlayerCharacterPair[player];
 
                 // Check if the player is in a vehicle
-                if (character.CurrentDrivingVehicle == null)
+                if (character.CurrentGTADrivingVehicle == null)
                 {
                     player.SendChatMessage($"{Colors.ERROR}Eroare: Nu esti intr-o masina.");
                     return;
                 }
-                if (character.CurrentDrivingVehicle.EngineStatus == true)
+                if (character.CurrentGTADrivingVehicle.EngineStatus == true)
                 {
                     player.SendChatMessage($"{Colors.ERROR}Opreste motorul.");
                     return;
                 }
                 // Get the vehicle from the VehicleManager
-                var ServerVehicle = VehicleManager.GetServerVehicle(character.CurrentDrivingVehicle);
+                var ServerVehicle = VehicleManager.GetServerVehicle(character.CurrentGTADrivingVehicle);
 
                 // Ensure that the vehicle has a gas tank capacity
                 if (ServerVehicle.GasTank <= 0)
