@@ -1,16 +1,10 @@
 ﻿using RAGE;
-using RAGE.Game;
-using RAGE.NUI;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
 
 namespace ClientSide.Player
 {
     internal class Blip : Events.Script
     {
-        public Blip() 
+        public Blip()
         {
             Events.Add("SERVER:CLIENT:CreateBlipForCar", CreateBlipForCar);
         }

@@ -1,24 +1,17 @@
 ﻿using GTANetworkAPI;
-using GTANetworkMethods;
 using ServerSide.Accounts;
 using ServerSide.Characters.Customization.Clothes;
 using ServerSide.Characters.Customization.Customize;
 using ServerSide.Characters.Customization.Hair;
 using ServerSide.Characters.Customization.Tattoos;
-using ServerSide.Server;
 using ServerSide.Server.Commands;
 using ServerSide.Server.DB.CharacterDB;
 using ServerSide.Server.DB.VehicleDB;
 using ServerSide.Server.Interfaces;
-using ServerSide.Server.Vehicles;
 using ServerSide.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Cache;
-using System.Net.WebSockets;
-using System.Runtime.InteropServices;
-using static System.Net.Mime.MediaTypeNames;
 using Player = GTANetworkAPI.Player;
 using Resource = ServerSide.Server.Resource;
 
@@ -30,7 +23,7 @@ namespace ServerSide.Characters
         //DEFAULT JSONS
         //public const string FaceDefaultJSON = "{\"shape\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"skin\":{\"first\":\"0\",\"second\":\"0\",\"mix\":\"0\"},\"nose\":{\"width\":\"0\",\"height\":\"0\",\"length\":\"0\",\"bridge\":\"0\",\"tip\":\"0\",\"bridgeShift\":\"0\"},\"brow\":{\"height\":\"0\",\"width\":\"0\"},\"cheeks\":{\"height\":\"0\",\"width\":\"0\",\"cheeksWidth\":\"0\"},\"jaw\":{\"width\":\"0\"},\"chin\":{\"lenght\":\"0\",\"position\":\"0\",\"width\":\"0\",\"shape\":\"0\"},\"neck\":{\"width\":\"0\"},\"lips\":\"0\",\"skinColor\":\"0\",\"eye\":{\"size\":\"0\",\"color\":\"0\"}}\r\n";
         public const string FaceDefaultJSON = "{\"shape\":{\"first\":25,\"second\":19,\"mix\":0.85},\"skin\":{\"first\":16,\"second\":14,\"mix\":0.76},\"nose\":{\"width\":0.46,\"height\":0.14,\"length\":0.34,\"bridge\":0.21,\"tip\":-0.14,\"bridgeShift\":0.35},\"brow\":{\"height\":0.38,\"width\":-0.34},\"cheeks\":{\"height\":0.58,\"width\":0.48,\"cheekswidth\":0.0},\"jaw\":{\"height\":0.24,\"width\":0.4},\"skinColor\":\"0\",\"eye\":{\"size\":-0.09,\"color\":12},\"lips\":-0.21,\"chin\":{\"length\":0.99,\"position\":0.64,\"width\":0.66,\"shape\":-0.3},\"neck\":{\"width\":0.67},\"facialDetails\":{\"blemishes\":{\"value\":21,\"opacity\":0.4},\"ageing\":{\"value\":7,\"opacity\":0.99},\"complexion\":{\"value\":5,\"opacity\":0.81},\"sunDamage\":{\"value\":8,\"opacity\":0.71},\"molesFreckles\":{\"value\":14,\"opacity\":0.81}}}";
-        
+
         public const string HairDefaultJSON = "{\"facialHair\":{\"value\":14,\"color\":0},\"hair\":{\"value\":12,\"color\":0,\"secondColor\":0},\"eyebrows\":{\"value\":24,\"color\":4},\"bodyHair\":{\"value\":5,\"color\":0},\"hairTattoo\":12}";
 
         //PAIRS FOR PLAYER AND THEIR DATA
@@ -45,14 +38,14 @@ namespace ServerSide.Characters
 
         public static Character GetCharacter(Player player)
         {
-            if(PlayerCharacterPair.ContainsKey(player))
+            if (PlayerCharacterPair.ContainsKey(player))
                 return PlayerCharacterPair[player];
             return null;
         }
         public static List<Character> getCharByName(string name)
         {
             List<Character> chars = new List<Character>();
-            foreach(var character in loggedCharacters)
+            foreach (var character in loggedCharacters)
             {
                 var charName = character.Name.ToLower();
 
@@ -72,13 +65,13 @@ namespace ServerSide.Characters
                 var charName = character.Name.ToLower();
                 if (charName.Contains(name.ToLower()))
                 {
-                    if(playersAroundPlayer.Contains(character.player))
+                    if (playersAroundPlayer.Contains(character.player))
                         chars.Add(character);
                 }
             }
             return chars;
         }
-        
+
         [RemoteEvent("CLIENT:SERVER:CreateCharacter")]
         private void CreateCharacter(Player player, string firstname, string lastname, string selectedgender)
         {
@@ -103,10 +96,10 @@ namespace ServerSide.Characters
             string username = account.Name;
 
             GetNameMoneyJson(account, out string namesJSON, out string moneyJSON, account.Characters);
-            
+
             //display character interface with new character data
             player.TriggerEvent("SERVER:CLIENT:ShowCharInterface");
-            player.TriggerEvent("SERVER:CLIENT:DisplayAccountInfo", username, namesJSON, moneyJSON); 
+            player.TriggerEvent("SERVER:CLIENT:DisplayAccountInfo", username, namesJSON, moneyJSON);
         }
 
         [RemoteEvent("CLIENT:SERVER:CharSelected")]
@@ -122,12 +115,12 @@ namespace ServerSide.Characters
             PlayerCharacterPair[player] = character;
             CharacterManager.CharacterAccountPair[character] = account;
             account.currentCharacter = character;
-            
+
 
             //character update
             character.GameId = account.GameId;
             character.PersonalVehicles = VehicleDbManager.LoadVehiclesByName(character.Name);
-            foreach(var veh in character.PersonalVehicles)
+            foreach (var veh in character.PersonalVehicles)
             {
                 veh.VehicleLocalId = character.VehicleIdManager.AssignNewId(veh);
             }
@@ -257,14 +250,14 @@ namespace ServerSide.Characters
         }
         public static void GetNameMoneyJson(IAccount account, out string namesJSON, out string moneyJSON, List<ICharacter> characters)
         {
-            
+
 
             GetNamesAndMoneyForCEF(characters, GetRequiredCount(characters), out string[] names, out int[] money);
 
             namesJSON = NAPI.Util.ToJson(names);
             moneyJSON = NAPI.Util.ToJson(money);
         }
-            
+
         private static void GetNamesAndMoneyForCEF(List<ICharacter> characters, int requiredCount, out string[] names, out int[] money)
         {
             names = new string[requiredCount];
@@ -291,7 +284,7 @@ namespace ServerSide.Characters
                 {
                     names[i] = "none";
                     money[i] = 0;
-                }    
+                }
             }
         }
         private static int GetRequiredCount(List<ICharacter> characters)

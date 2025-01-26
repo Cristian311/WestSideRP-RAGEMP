@@ -14,7 +14,7 @@ namespace ServerSide.Server.GasStations
     {
         public static List<Vector3> gasStations = new List<Vector3>();
         private static string filePath = "json/shops/gasstations.json";
-        
+
         // List to hold ColShape objects
         private static List<ColShape> gasStationColShapes = new List<ColShape>();
 
@@ -152,7 +152,7 @@ namespace ServerSide.Server.GasStations
         {
             // Create a ColShape for the gas station
             ColShape colShape = NAPI.ColShape.CreateCylinderColShape(position, 5f, 1f, NAPI.GlobalDimension);
-            
+
             // Add the ColShape to the list for future reference
             gasStationColShapes.Add(colShape);
 

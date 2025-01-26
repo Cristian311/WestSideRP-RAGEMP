@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ServerSide.Server.Shops
+﻿namespace ServerSide.Server.Shops
 {
     internal class ShopItem
     {

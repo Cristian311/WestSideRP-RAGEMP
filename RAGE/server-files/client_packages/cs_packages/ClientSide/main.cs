@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RAGE;
+﻿using RAGE;
 using RAGE.Ui;
 namespace ClientSide
 {
@@ -23,7 +18,7 @@ namespace ClientSide
             RAGE.Game.Ui.HideHudComponentThisFrame(9);
             RAGE.Game.Ui.HideHudComponentThisFrame(3);
 
-            
+
         }
     }
 }

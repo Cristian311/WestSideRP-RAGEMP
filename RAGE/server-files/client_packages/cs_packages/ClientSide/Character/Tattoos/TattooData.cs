@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ClientSide.Character.Tattoos
+﻿namespace ClientSide.Character.Tattoos
 {
     public class TattooData
     {

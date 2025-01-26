@@ -1,9 +1,5 @@
 ﻿using RAGE;
 using RAGE.Ui;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using System.Text;
 
 namespace ClientSide.Character
 {
@@ -15,20 +11,20 @@ namespace ClientSide.Character
             Events.Add("CEF:CLIENT:ShowCreateCharScreen", ShowCreateCharScreen);
             Events.Add("CEF:CLIENT:CloseCreateCharInterface", CloseCreateCharInterface);
             Events.Add("CEF:CLIENT:CreateNewCharacter", CreateNewCharacter);
-            
+
         }
-        private void CreateNewCharacter(object[] args) 
+        private void CreateNewCharacter(object[] args)
         {
             string firstname = args[0].ToString();
             string lastname = args[1].ToString();
             string selectedGender = args[2].ToString();
             Events.CallRemote("CLIENT:SERVER:CreateCharacter", firstname, lastname, selectedGender);
         }
-        
+
         private void ShowCreateCharScreen(object[] args)
         {
             //CloseCreateCharInterface(null);
-            cefBrowser = new HtmlWindow("http://package/html/characters/create_character.html"); 
+            cefBrowser = new HtmlWindow("http://package/html/characters/create_character.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;
         }
@@ -39,6 +35,6 @@ namespace ClientSide.Character
             Cursor.Visible = false;
             Events.CallRemote("CLIENT:SERVER:ClosedCreateCharScreen");
         }
-        
+
     }
 }

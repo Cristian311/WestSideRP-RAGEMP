@@ -1,11 +1,7 @@
 ﻿using GTANetworkAPI;
-using GTANetworkMethods;
 using ServerSide.Accounts;
 using ServerSide.Util;
 using ServerSide.Util.Admin;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Player = GTANetworkAPI.Player;
 
 namespace ServerSide.Admin
@@ -14,7 +10,7 @@ namespace ServerSide.Admin
     {
         private AdminManager()
         {
-            
+
         }
         public static bool CheckIfAdminAccess(Player player, int minimumAdminLevel)
         {
@@ -28,7 +24,7 @@ namespace ServerSide.Admin
         }
         public static void SendChatMessageToAdmins(string message)
         {
-            foreach(var account in AccountManager.loggedAccounts)
+            foreach (var account in AccountManager.loggedAccounts)
             {
                 var player = account.player;
                 if (account.AdminLevel > 0)

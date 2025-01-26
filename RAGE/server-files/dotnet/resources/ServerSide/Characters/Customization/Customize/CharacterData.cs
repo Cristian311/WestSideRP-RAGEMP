@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using GTANetworkAPI;
-using System.Reflection;
+﻿using GTANetworkAPI;
+using Newtonsoft.Json;
 using System;
+using System.Reflection;
 
 namespace ServerSide.Characters.Customization.Customize
 {
@@ -71,67 +71,67 @@ namespace ServerSide.Characters.Customization.Customize
         public class ShapeAttributes
         {
             [JsonProperty("first")]
-            public byte First { get; set; } 
+            public byte First { get; set; }
 
             [JsonProperty("second")]
-            public byte Second { get; set; } 
+            public byte Second { get; set; }
 
             [JsonProperty("mix")]
-            public float Mix { get; set; } 
+            public float Mix { get; set; }
         }
 
         public class SkinAttributes
         {
             [JsonProperty("first")]
-            public byte First { get; set; } 
+            public byte First { get; set; }
 
             [JsonProperty("second")]
-            public byte Second { get; set; } 
+            public byte Second { get; set; }
 
             [JsonProperty("mix")]
-            public float Mix { get; set; } 
+            public float Mix { get; set; }
         }
 
         public class NoseAttributes
         {
             [JsonProperty("width")]
-            public float Width { get; set; } 
+            public float Width { get; set; }
 
             [JsonProperty("height")]
-            public float Height { get; set; } 
+            public float Height { get; set; }
 
             [JsonProperty("length")]
-            public float Length { get; set; } 
+            public float Length { get; set; }
 
             [JsonProperty("bridge")]
-            public float Bridge { get; set; } 
+            public float Bridge { get; set; }
 
             [JsonProperty("tip")]
-            public float Tip { get; set; } 
+            public float Tip { get; set; }
 
             [JsonProperty("bridgeShift")]
-            public float BridgeShift { get; set; } 
+            public float BridgeShift { get; set; }
         }
 
         public class BrowAttributes
         {
             [JsonProperty("height")]
-            public float Height { get; set; } 
+            public float Height { get; set; }
 
             [JsonProperty("width")]
-            public float Width { get; set; } 
+            public float Width { get; set; }
         }
 
         public class CheeksAttributes
         {
             [JsonProperty("height")]
-            public float Height { get; set; } 
+            public float Height { get; set; }
 
             [JsonProperty("width")]
-            public float Width { get; set; } 
+            public float Width { get; set; }
 
             [JsonProperty("cheekswidth")]
-            public float CheeksWidth { get; set; } 
+            public float CheeksWidth { get; set; }
         }
 
         public class JawAttributes
@@ -140,28 +140,28 @@ namespace ServerSide.Characters.Customization.Customize
             public float Height { get; set; }
 
             [JsonProperty("width")]
-            public float Width { get; set; } 
+            public float Width { get; set; }
         }
 
         public class ChinAttributes
         {
             [JsonProperty("length")]
-            public float Length { get; set; } 
+            public float Length { get; set; }
 
             [JsonProperty("position")]
-            public float Position { get; set; } 
+            public float Position { get; set; }
 
             [JsonProperty("width")]
-            public float Width { get; set; } 
+            public float Width { get; set; }
 
             [JsonProperty("shape")]
-            public float Shape { get; set; } 
+            public float Shape { get; set; }
         }
 
         public class EyeAttributes
         {
             [JsonProperty("size")]
-            public float Size { get; set; } 
+            public float Size { get; set; }
 
             [JsonProperty("color")]
             public byte Color { get; set; } // If it's a color code or name, keep it as string.
@@ -170,7 +170,7 @@ namespace ServerSide.Characters.Customization.Customize
         public class NeckAttributes
         {
             [JsonProperty("width")]
-            public float Width { get; set; } 
+            public float Width { get; set; }
         }
         public void PrintProperties()
         {
@@ -218,5 +218,5 @@ namespace ServerSide.Characters.Customization.Customize
 
     }
 
-    
+
 }

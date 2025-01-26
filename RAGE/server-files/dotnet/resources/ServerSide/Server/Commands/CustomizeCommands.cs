@@ -5,7 +5,6 @@ using ServerSide.Characters.Customization.Clothes;
 using ServerSide.Characters.Customization.Customize;
 using ServerSide.Server.Commands.CommandAttributes;
 using ServerSide.Server.DB.CharacterDB;
-using ServerSide.Util;
 
 
 
@@ -45,17 +44,17 @@ namespace ServerSide.Server.Commands
             var account = AccountManager.PlayerAccountPairs[player];
             var character = CharacterManager.PlayerCharacterPair[player];
 
-            var players = NAPI.Player.GetPlayersInRadiusOfPlayer(20, player);
-            foreach(var p in players )
+            var players = NAPI.Player.GetPlayersInRadiusOfPlayer(30, player);
+            foreach (var p in players)
             {
                 p.SendChatMessage($"{character.Name} si-a schimbat characterul.");
             }
-
+            CharacterManager.loggedCharacters.Remove(character);
             CharacterManager.ShowChangeCharacterScreen(account);
             UpdateCharDataDBManager.UpdateCharacter(character);
 
         }
-        
+
         [Command("clothes")]
         private void ClothesCommand(Player player)
         {

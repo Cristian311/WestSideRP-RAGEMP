@@ -1,10 +1,7 @@
 ﻿using ServerSide.Characters;
 using ServerSide.Interfaces;
 using ServerSide.Server.Logger;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ServerSide.Factions
 {
@@ -14,7 +11,7 @@ namespace ServerSide.Factions
         public string Name { get; }
         public string Type { get; }
         public List<string> Characters { get; set; } = new List<string>();
-        public Dictionary<int, string> RankNames { get; set; } 
+        public Dictionary<int, string> RankNames { get; set; }
 
         public Faction(int Id, string Name, string Type)
         {
@@ -43,7 +40,7 @@ namespace ServerSide.Factions
             List<Character> characters = new List<Character>();
             foreach (var character in CharacterManager.loggedCharacters)
             {
-                if(character.faction == Id)
+                if (character.faction == Id)
                     characters.Add(character);
             }
             return characters;

@@ -10,13 +10,12 @@ using ServerSide.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ServerSide.Server.Items.Weapons
 {
     internal class WeaponManager
     {
-        
+
         private static readonly Dictionary<string, string> WeaponBulletTypes = new Dictionary<string, string>()
         {
             { "Advancedrifle", "5.56mm" },
@@ -206,7 +205,7 @@ namespace ServerSide.Server.Items.Weapons
 
             return null; // No matching bullet type or bullet item found
         }
-        
+
 
         public static void HandleWeaponEquip(Character character, Item weaponItem)
         {

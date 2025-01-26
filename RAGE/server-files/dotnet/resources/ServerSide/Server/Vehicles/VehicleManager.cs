@@ -1,10 +1,8 @@
 ﻿using GTANetworkAPI;
-using Org.BouncyCastle.Bcpg;
 using ServerSide.Characters;
 using ServerSide.Server.Commands;
 using ServerSide.Server.Commands.CommandAttributes;
 using ServerSide.Server.DB.VehicleDB;
-using ServerSide.Server.Interfaces;
 using ServerSide.Server.Vehicles.Util;
 using ServerSide.Util;
 using System;
@@ -93,14 +91,14 @@ namespace ServerSide.Server.Vehicles
         [Command("vget", Alias = "vg")]
         private void vget_cmd(Player player, int index = -1)
         {
-            if(index == -1)
+            if (index == -1)
             {
                 player.SendChatMessage($"{Colors.RED}Alege un index corect al masinii.");
                 VehiclesCommand(player);
                 return;
             }
             var character = CharacterManager.GetCharacter(player);
-            if(index >= character.PersonalVehicles.Count)
+            if (index >= character.PersonalVehicles.Count)
             {
                 player.SendChatMessage($"{Colors.RED}Alege un index corect al masinii.");
                 VehiclesCommand(player);
@@ -125,7 +123,7 @@ namespace ServerSide.Server.Vehicles
                 player.SendChatMessage($"{Colors.DARK_YELLOW}Vehicului tau s-a spawnat. Ti-am pus un punct pe harta la locatia acesteia.");
             }
         }
-        [Command("vpark", Alias ="vp")]
+        [Command("vpark", Alias = "vp")]
         private void vp_cmd(Player player)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
@@ -160,7 +158,7 @@ namespace ServerSide.Server.Vehicles
             Console.WriteLine($"CreatePersonalVehicleCommand invoked by {character.Name}");
 
             VehicleHash vehModel = NAPI.Util.VehicleNameToModel(vehName);
-            if(NAPI.Vehicle.GetVehicleDisplayName(vehModel) == string.Empty)
+            if (NAPI.Vehicle.GetVehicleDisplayName(vehModel) == string.Empty)
             {
                 character.SendErrorMessage($"Nu exista acea masina!");
                 return;
@@ -171,14 +169,14 @@ namespace ServerSide.Server.Vehicles
             serverVeh.VehicleId = vehicleIdManager.AssignNewId(serverVeh);
 
             serverVeh.VehicleLocalId = character.VehicleIdManager.AssignNewId(serverVeh);
-            
+
             serverVeh.Position = player.Position;
             serverVeh.VehicleName = vehicle.DisplayName;
             serverVeh.VehicleDisplayName = NAPI.Vehicle.GetVehicleDisplayName(vehModel);
             serverVeh.VehiclePlate = "Personal";
             serverVeh.isSpawned = true;
 
-            Vehicles.Add(serverVeh);            
+            Vehicles.Add(serverVeh);
             character.PersonalVehicles.Add(serverVeh);
             character.AccessVehicles.Add(serverVeh);
 
@@ -194,7 +192,7 @@ namespace ServerSide.Server.Vehicles
             character.PersonalVehicles.Clear();
             character.PersonalVehicles = VehicleDbManager.LoadVehiclesByName(character.Name);
             character.VehicleIdManager = new IdManager<IVehicle>();
-            foreach(var veh in character.PersonalVehicles)
+            foreach (var veh in character.PersonalVehicles)
             {
                 veh.VehicleLocalId = character.VehicleIdManager.AssignNewId(veh);
             }
@@ -204,7 +202,7 @@ namespace ServerSide.Server.Vehicles
         [Command("servervehicles")]
         private void ServerVehiclesCommand(Player player, double speed = 0)
         {
-            foreach(var veh in VehicleInfos)
+            foreach (var veh in VehicleInfos)
             {
                 if (veh.MaxSpeed > speed)
                     player.SendChatMessage($"Name: {veh.VehicleName}, Speed: {veh.MaxSpeed}, Breaking: {veh.MaxBraking}");
@@ -215,15 +213,15 @@ namespace ServerSide.Server.Vehicles
         private void EngineCommand(Player player)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            if(character.CurrentDrivingVehicle == null || player.VehicleSeat != 0)
+            if (character.CurrentDrivingVehicle == null || player.VehicleSeat != 0)
             {
                 player.SendChatMessage($"{Colors.ERROR}Nu esti intr-o masina");
                 return;
             }
-            if(player.VehicleSeat == 0)
+            if (player.VehicleSeat == 0)
             {
                 bool engineStatus = player.Vehicle.EngineStatus;
-                if(engineStatus == false)
+                if (engineStatus == false)
                 {
                     player.Vehicle.EngineStatus = true;
                     ChatMessage.cmd_ame(player, "a pornit motorul.");

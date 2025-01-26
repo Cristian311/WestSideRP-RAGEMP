@@ -3,7 +3,6 @@ using ServerSide.Characters;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace ServerSide.Server.Animations
 {
@@ -28,7 +27,7 @@ namespace ServerSide.Server.Animations
                 character.SendErrorMessage("Nu exista acea animatie");
                 return;
             }
-                character.PlayAnimation(animation.AnimDict, animation.AnimName, animation.Flag);
+            character.PlayAnimation(animation.AnimDict, animation.AnimName, animation.Flag);
         }
 
         [Command("sa")]

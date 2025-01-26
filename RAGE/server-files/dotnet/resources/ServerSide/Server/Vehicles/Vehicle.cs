@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GTANetworkAPI;
+﻿using GTANetworkAPI;
+using System;
 namespace ServerSide.Server.Vehicles
 {
     public class Vehicle : IVehicle, IGasVehicle, IServiceVehicle
@@ -24,7 +22,7 @@ namespace ServerSide.Server.Vehicles
         public bool isAmbulance { get; set; }
         public bool isTaxi { get; set; }
         public bool isSpawned { get; set; } = false;
-        public Vehicle(string ownerName, string ownerType,  GTANetworkAPI.Vehicle GTAVehicle)
+        public Vehicle(string ownerName, string ownerType, GTANetworkAPI.Vehicle GTAVehicle)
         {
             OwnerName = ownerName;
             OwnerType = ownerType;
@@ -52,7 +50,7 @@ namespace ServerSide.Server.Vehicles
         public DateTime InsuranceEnd { get; set; }
         public GTANetworkAPI.Vehicle GTAVehicle { get; set; }
         public bool isSpawned { get; set; } = false;
-        
+
 
         public MountainBike(string ownerName, string ownerType, GTANetworkAPI.Vehicle gtaVehicle)
         {

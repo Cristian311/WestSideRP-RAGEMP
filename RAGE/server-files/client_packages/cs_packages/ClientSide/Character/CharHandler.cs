@@ -1,14 +1,12 @@
-﻿using RAGE.Ui;
-using RAGE;
-using System.Linq;
-using RAGE.Util;
-using System;
-using System.Collections.Generic;
-using Clientside.CustomizeChar;
-using ClientSide.Hair;
+﻿using Clientside.CustomizeChar;
 using ClientSide.Character.Clothes;
 using ClientSide.Character.CustomizeChar;
 using ClientSide.Character.Hair;
+using ClientSide.Hair;
+using RAGE;
+using RAGE.Ui;
+using RAGE.Util;
+using System.Collections.Generic;
 namespace ClientSide.Character
 {
     public class CharHandler : Events.Script
@@ -77,7 +75,7 @@ namespace ClientSide.Character
             cefBrowser.Destroy();
             cefBrowser = null;
             Cursor.Visible = false;
-            
+
         }
         private void DisplayAccountInfo(object[] args)
         {

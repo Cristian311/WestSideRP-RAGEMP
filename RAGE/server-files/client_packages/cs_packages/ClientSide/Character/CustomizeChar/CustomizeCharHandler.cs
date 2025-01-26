@@ -1,9 +1,6 @@
 ﻿using Clientside.CustomizeChar;
 using RAGE;
 using RAGE.Ui;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ClientSide.Character.CustomizeChar
 {
@@ -43,7 +40,7 @@ namespace ClientSide.Character.CustomizeChar
         }
         private void ShowCustomizeCharScreen(object[] args)
         {
-            
+
             cefBrowser = new HtmlWindow("http://package/html/characters/customize_char.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;

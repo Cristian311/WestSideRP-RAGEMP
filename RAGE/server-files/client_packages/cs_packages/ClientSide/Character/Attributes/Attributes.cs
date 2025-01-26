@@ -1,8 +1,5 @@
 ﻿using RAGE;
 using RAGE.Ui;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ClientSide.Character.Attributes
 {
@@ -28,7 +25,7 @@ namespace ClientSide.Character.Attributes
             Cursor.Visible = true;
 
             bool darkmode = bool.Parse(args[0].ToString());
-            if(darkmode)
+            if (darkmode)
                 cefBrowser.ExecuteJs("toggleDarkMode();");
         }
     }

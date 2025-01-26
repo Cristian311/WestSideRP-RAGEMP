@@ -1,18 +1,13 @@
 ﻿using GTANetworkAPI;
 using MySql.Data.MySqlClient;
-using ServerSide.Accounts;
 using ServerSide.Characters;
 using ServerSide.Characters.Customization.Clothes;
 using ServerSide.Characters.Customization.Customize;
 using ServerSide.Characters.Customization.Hair;
-using ServerSide.Server.DB;
 using ServerSide.Server.Interfaces;
 using ServerSide.Server.Items;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
-using System.Text;
 
 namespace ServerSide.Server.DB.CharacterDB
 {
@@ -217,8 +212,13 @@ namespace ServerSide.Server.DB.CharacterDB
                                 character.factionRank = !reader.IsDBNull("factionRank")
                                     ? reader.GetInt32("factionRank")
                                     : 0;
+                                character.CharacterDescription = !reader.IsDBNull("CharacterDescription")
+                                    ? reader.GetString("CharacterDescription")
+                                    : string.Empty;
+                                character.TattooDescription = !reader.IsDBNull("TattoosDescription")
+                                    ? reader.GetString("TattoosDescription")
+                                    : string.Empty;
                             }
-
                             return character;
                         }
                         else
@@ -369,7 +369,12 @@ namespace ServerSide.Server.DB.CharacterDB
             using (MySqlConnection connection = db.GetDatabaseConnection())
             {
                 ClothesData clothesData = new ClothesData();
-                string query = "SELECT * FROM `clothes` WHERE characterID = @characterId AND localID = @localID";
+                string query = @"
+                    SELECT * 
+                    FROM `clothes` 
+                    WHERE 
+                        characterID = @characterId 
+                        AND localID = @localID";
 
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@characterId", character.Id);

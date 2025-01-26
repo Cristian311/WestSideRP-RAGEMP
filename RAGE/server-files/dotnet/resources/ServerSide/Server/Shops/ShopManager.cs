@@ -5,8 +5,6 @@ using ServerSide.Server.Logger;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using Color = GTANetworkAPI.Color;
 
 namespace ServerSide.Server.Shops
@@ -17,7 +15,7 @@ namespace ServerSide.Server.Shops
         public static List<ColShape> shopColshapes = new List<ColShape>();
         private static IdManager<ShopData> shopIdManager = new IdManager<ShopData>();
         private static string filePath = "json/shops/shops.json";
-        
+
         public ShopManager()
         {
             // Load existing shops from the JSON file
@@ -59,7 +57,7 @@ namespace ServerSide.Server.Shops
             // Serialize and save to file
             string updatedJson = NAPI.Util.ToJson(shopDataList);
             File.WriteAllText(filePath, updatedJson);
-            
+
             ServerLogger.Log($"Saved Shops with Items: {updatedJson}");
 
         }

@@ -6,7 +6,7 @@ namespace ClientSide
     public class Examine : Events.Script
     {
         private static HtmlWindow cefBrowser;
-        public Examine() 
+        public Examine()
         {
             Events.Add("SERVER:CLIENT:OpenExamineScreen", OpenExamineScreen);
         }
@@ -30,7 +30,7 @@ namespace ClientSide
 
             bool tattoos = bool.Parse(args[3].ToString());
             cefBrowser.ExecuteJs($"toggleTattooCheck({tattoos});");
-            
+
         }
     }
 }

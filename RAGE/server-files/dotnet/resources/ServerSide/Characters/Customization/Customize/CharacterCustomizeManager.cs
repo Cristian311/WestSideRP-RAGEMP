@@ -1,5 +1,4 @@
 ﻿using GTANetworkAPI;
-using GTANetworkMethods;
 using ServerSide.Server.DB.CharacterDB;
 using System;
 using System.Collections.Generic;
@@ -27,7 +26,6 @@ namespace ServerSide.Characters.Customization.Customize
             Character character = CharacterManager.PlayerCharacterPair[player];
             if (character.isCreated == false) //show the hair screen if it's not created for first time hairstyle modeling
             {
-                character.isCreated = true;
                 var HairJSON = NAPI.Util.ToJson(character.Hair);
                 player.TriggerEvent("SERVER:CLIENT:ShowHairScreen", HairJSON); // sends hair as json
                 character.GetCharacterInfo(); // debug
@@ -93,7 +91,7 @@ namespace ServerSide.Characters.Customization.Customize
 
 
         }
-        
+
         private static void SetFaceFeatures(Player player, float[] features)
         {
             for (int i = 0; i < 20; i++)

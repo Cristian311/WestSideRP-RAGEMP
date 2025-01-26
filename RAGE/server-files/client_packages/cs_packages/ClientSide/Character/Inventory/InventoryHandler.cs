@@ -1,8 +1,5 @@
 ﻿using RAGE;
 using RAGE.Ui;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ClientSide.Character.Inventory
 {
@@ -28,7 +25,7 @@ namespace ClientSide.Character.Inventory
             Events.Add("CEF:CLIENT:PlayerSelected", PlayerSelected);
             Events.Add("CEF:CLIENT:UpdateInventoryOrder", UpdateInventoryOrder);
             Events.Add("CEF:CLIENT:GetNearbyCharacters", GetNearbyCharacters);
-            
+
         }
 
         private void PlayerSelected(object[] args)
@@ -40,8 +37,8 @@ namespace ClientSide.Character.Inventory
             if (action.Action == "give")
             {
                 Events.CallRemote("CLIENT:SERVER:GiveItem", action.PlayerId, action.ItemId, action.Amount);
-            }    
-            else if(action.Action == "show")
+            }
+            else if (action.Action == "show")
             {
                 Events.CallRemote("CLIENT:SERVER:ShowItem", action.PlayerId, action.ItemId);
             }

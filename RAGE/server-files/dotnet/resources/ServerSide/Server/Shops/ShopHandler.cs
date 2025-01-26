@@ -43,7 +43,7 @@ namespace ServerSide.Server.Shops
                 {
                     character.SendErrorMessage("N-ai destui bani cash pentru asta.");
                     return;
-                } 
+                }
             }
             else if (cart.PaymentMethod.Equals("card"))
             {
@@ -55,7 +55,7 @@ namespace ServerSide.Server.Shops
                     return;
                 }
             }
-            foreach(var item in cart.Items)
+            foreach (var item in cart.Items)
             {
                 var charItem = new Item(character, item.Name, item.Type, item.Quantity, true);
                 charItem.LocalId = character.ItemIdManager.AssignNewId(charItem);

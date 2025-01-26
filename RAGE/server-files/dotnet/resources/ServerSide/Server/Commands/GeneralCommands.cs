@@ -1,19 +1,15 @@
 ﻿using GTANetworkAPI;
-using Org.BouncyCastle.Asn1.X509;
 using ServerSide.Accounts;
 using ServerSide.Admin;
 using ServerSide.Characters;
 using ServerSide.Util;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ServerSide.Server.Commands
 {
-    internal class GeneralCommands : Script
+    public class GeneralCommands : Script
     {
         [Command("stats")]
-        private void stats_cmd(Player player)
+        private static void stats_cmd(Player player)
         {
             var account = AccountManager.PlayerAccountPairs[player];
             var character = CharacterManager.GetCharacter(player);
@@ -29,7 +25,7 @@ namespace ServerSide.Server.Commands
             player.SendChatMessage($"{Colors.DARK_YELLOW}-----------------------");
         }
         [Command("id")]
-        private void cmd_id(Player player, string id)
+        private static void cmd_id(Player player, string id)
         {
             bool found = false;
             if (int.TryParse(id, out int id2))

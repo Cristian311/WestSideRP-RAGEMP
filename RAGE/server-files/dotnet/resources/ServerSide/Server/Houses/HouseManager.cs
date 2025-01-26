@@ -4,10 +4,8 @@ using ServerSide.Interfaces;
 using ServerSide.Server.Commands.CommandAttributes;
 using ServerSide.Server.Logger;
 using ServerSide.Util;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ServerSide.Server.Houses
 {
@@ -22,7 +20,7 @@ namespace ServerSide.Server.Houses
         [ServerEvent(Event.PlayerEnterColshape)]
         private void OnPlayerEnterHouseColshape(ColShape colShape, Player player)
         {
-            if(housesColshapes.Contains(colShape))
+            if (housesColshapes.Contains(colShape))
             {
                 var character = CharacterManager.PlayerCharacterPair[player];
                 player.SendChatMessage($"{Colors.INFO}Apasa Y sa intrii in casa.");
@@ -39,7 +37,7 @@ namespace ServerSide.Server.Houses
         private void FallDetected(Player player)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            if(character.isInInterior)
+            if (character.isInInterior)
             {
                 character.SendChatMessage($"{Colors.INFO}[!]{Colors.DARK_BLUE}Cadere pe interior detectata, te repozitionam...");
                 player.Position = character.InteriorPosition;
@@ -50,10 +48,10 @@ namespace ServerSide.Server.Houses
         {
             var character = CharacterManager.PlayerCharacterPair[player];
             //player.SendChatMessage("hatz");
-            if(housesColshapes.Contains(character.currentColshape))
+            if (housesColshapes.Contains(character.currentColshape))
             {
                 House house = houses.FirstOrDefault(h => h.ColShape == character.currentColshape) as House;
-                if(house.LockStatus == false)
+                if (house.LockStatus == false)
                 {
                     player.Position = house.InteriorPosition;
                     player.Dimension = house.Dimension;
@@ -66,10 +64,10 @@ namespace ServerSide.Server.Houses
                     player.SendChatMessage($"{Colors.ERROR}Aceasta usa este incuiata.");
                 }
             }
-            if(exitHousesColshapes.Contains(character.currentColshape))
+            if (exitHousesColshapes.Contains(character.currentColshape))
             {
-                var house = houses.FirstOrDefault(h => h.ExitColShape ==  character.currentColshape) as House;
-                if(house.LockStatus == false)
+                var house = houses.FirstOrDefault(h => h.ExitColShape == character.currentColshape) as House;
+                if (house.LockStatus == false)
                 {
                     player.Position = house.Position;
                     player.Dimension = NAPI.GlobalDimension;

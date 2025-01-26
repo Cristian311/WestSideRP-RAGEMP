@@ -8,7 +8,7 @@ namespace ClientSide.Auth
         private HtmlWindow cefBrowser;
 
         public AuthHandle()
-        { 
+        {
             Events.Add("SERVER:CLIENT:ShowAuthInterface", ShowAuthInterface);
             Events.Add("SERVER:CLIENT:CloseAuthInterface", CloseAuthInterface);
             Events.Add("CEF:CLIENT:ClientLogin", onClientLogin);
@@ -16,7 +16,7 @@ namespace ClientSide.Auth
             Events.Add("SERVER:CLIENT:DisplayLoginFail", displayLoginFail);
             Events.Add("SERVER:CLIENT:DisplayRegisterMessage", displayRegisterMessage);
         }
-         
+
         private void ShowAuthInterface(object[] args)
         {
             cefBrowser = new HtmlWindow("http://package/html/loginregister/login_register.html");

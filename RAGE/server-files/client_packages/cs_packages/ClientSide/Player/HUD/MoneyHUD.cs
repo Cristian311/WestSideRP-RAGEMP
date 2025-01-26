@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using RAGE;
+﻿using RAGE;
 using RAGE.Game;
 using RAGE.NUI;
 using RAGE.Ui;
@@ -27,7 +26,7 @@ namespace ClientSide.Player
             Events.Add("SERVER:CLIENT:CashMoneyUpdate", CashMoneyUpdate);
             Events.Add("SERVER:CLIENT:BankMoneyUpdate", BankMoneyUpdate);
             Events.Add("SERVER:CLIENT:SetMoney", SetMoney);
-            
+
 
             Events.Tick += Tick;
         }
@@ -83,10 +82,10 @@ namespace ClientSide.Player
                 TimeSpan elapsedTime = DateTime.UtcNow - notificationStartTime;
 
                 // Draw the money change notification
-                if(Value < 0)
-                UIResText.Draw(Value.ToString(), screenX, screenY - (int)(elapsedTime.TotalMilliseconds / 50), Font.ChaletComprimeCologne, 0.8f, Color.Red, RAGE.NUI.UIResText.Alignment.Centered, true, true, 0);
+                if (Value < 0)
+                    UIResText.Draw(Value.ToString(), screenX, screenY - (int)(elapsedTime.TotalMilliseconds / 50), Font.ChaletComprimeCologne, 0.8f, Color.Red, RAGE.NUI.UIResText.Alignment.Centered, true, true, 0);
                 else
-                UIResText.Draw(Value.ToString(), screenX, screenY - (int)(elapsedTime.TotalMilliseconds / 50), Font.ChaletComprimeCologne, 0.8f, Color.Green, RAGE.NUI.UIResText.Alignment.Centered, true, true, 0);
+                    UIResText.Draw(Value.ToString(), screenX, screenY - (int)(elapsedTime.TotalMilliseconds / 50), Font.ChaletComprimeCologne, 0.8f, Color.Green, RAGE.NUI.UIResText.Alignment.Centered, true, true, 0);
 
 
                 // Check if the notification has been displayed for more than 2 seconds

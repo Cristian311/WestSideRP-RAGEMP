@@ -1,8 +1,6 @@
 ﻿using GTANetworkAPI;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using ServerSide.Server.Commands.CommandAttributes;
+using System.Collections.Generic;
 namespace ServerSide.Server.Vehicles
 {
     internal class VehicleCommands : Script

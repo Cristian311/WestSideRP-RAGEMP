@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace ServerSide.Server.Houses
 {
-    internal class HouseInteriors 
-    { 
+    internal class HouseInteriors
+    {
         public static Dictionary<string, Vector3> Interiors = new Dictionary<string, Vector3>
         {
             {"2 Car", new Vector3(173.2903f, -1003.6f, -99.65707f)},

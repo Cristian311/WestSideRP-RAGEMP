@@ -12,11 +12,11 @@ namespace ServerSide.Server.Commands
             bool tog = player.GetData<bool>("tognametag");
             if (tog == null)
                 tog = true;
-            if(tog == false)
+            if (tog == false)
             {
                 player.SetData<bool>("tognametag", true);
                 player.SendChatMessage($"{Colors.INFO}At activat optiunea sa-ti vezi nametagul.");
-            }    
+            }
             else
             {
                 player.SetData<bool>("tognametag", false);

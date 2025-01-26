@@ -10,7 +10,6 @@ using ServerSide.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 
 public class FactionManager : Script
 {
@@ -26,7 +25,7 @@ public class FactionManager : Script
     [Command("joinfaction")]
     private void JoinFactionCommand(Player player, int factionID)
     {
-        if(factionID >= nextFactionId)
+        if (factionID >= nextFactionId)
         {
             player.SendChatMessage($"{Colors.ERROR}Nu exista acea factiune.");
             return;
@@ -53,7 +52,7 @@ public class FactionManager : Script
         if (character == null) return;
 
         var faction = GetFactionById(playerCharacter.faction);
-        if(character.faction == -1)
+        if (character.faction == -1)
         {
             playerCharacter.SendErrorMessage("Acel player este deja intr-o factiune.");
             return;
@@ -75,7 +74,7 @@ public class FactionManager : Script
     {
         var character = CharacterManager.PlayerCharacterPair[player];
 
-        if(confirm.Equals("confirm"))
+        if (confirm.Equals("confirm"))
         {
             character.faction = FactionInvitations[character];
             character.factionRank = 1;
@@ -104,7 +103,7 @@ public class FactionManager : Script
             if (loggedchars.Contains(name))
             {
                 var character = CharacterManager.GetCharacterByNameOrId(name);
-                if(character != null)
+                if (character != null)
                     player.SendChatMessage(name + $" {Colors.GREEN} ON {Colors.WHITE} ID: {character.GameId}");
             }
             else
@@ -148,10 +147,10 @@ public class FactionManager : Script
         var character = CharacterManager.PlayerCharacterPair[player];
         var faction = GetFactionById(character.faction);
         player.SendChatMessage($"{Colors.WHISPER}Jucatori conectati din factiune:");
-        foreach(var member in faction.GetOnlineCharacters().OrderByDescending(c => c.factionRank))
+        foreach (var member in faction.GetOnlineCharacters().OrderByDescending(c => c.factionRank))
         {
             var account = AccountManager.PlayerAccountPairs[player];
-            if(account.AdminDuty == false)
+            if (account.AdminDuty == false)
                 player.SendChatMessage($"{Colors.WHISPER}{faction.RankNames[member.factionRank]} {member.Name}");
             else
                 player.SendChatMessage($"{Colors.WHISPER}{faction.RankNames[member.factionRank]} {Colors.ADMIN}{account.Name}");
@@ -190,12 +189,12 @@ public class FactionManager : Script
     {
         var character = CharacterManager.PlayerCharacterPair[player];
         var faction = GetFactionById(character.faction);
-        if(string.IsNullOrEmpty(name))
+        if (string.IsNullOrEmpty(name))
         {
             character.SendErrorMessage("Pune un nume valid de rank.");
             return;
         }
-        
+
         faction.SendFactionMessage($"{Colors.INDIGO}{character.Name} a schimbat rankul {faction.RankNames[rank]} in {name}");
         faction.RankNames[rank] = name;
         FactionDbManager.UpdateFaction(faction);
@@ -208,7 +207,7 @@ public class FactionManager : Script
         var character = CharacterManager.PlayerCharacterPair[player];
         var faction = GetFactionById(character.faction);
 
-        for(int i = 1; i <= faction.RankNames.Count; i++)
+        for (int i = 1; i <= faction.RankNames.Count; i++)
         {
             player.SendChatMessage($"{i}. {faction.RankNames[i]}");
         }
@@ -220,7 +219,7 @@ public class FactionManager : Script
     {
         var playerCharacter = CharacterManager.PlayerCharacterPair[player];
         var character = CharacterManager.GetCharacterByNameOrId(player, CharName);
-        
+
         if (character == null) return;
         var faction = GetFactionById(character.faction);
 

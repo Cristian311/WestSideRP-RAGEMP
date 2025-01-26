@@ -1,13 +1,6 @@
 ﻿using GTANetworkAPI;
-using Newtonsoft.Json;
-using Org.BouncyCastle.Security;
 using ServerSide.Server.DB.CharacterDB;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.Json;
 
 namespace ServerSide.Characters.Customization.Clothes
 {
@@ -24,8 +17,8 @@ namespace ServerSide.Characters.Customization.Clothes
             var outfitNames = new Dictionary<int, string>();
 
             // Populate from your database/storage
-            if(character.Clothes == null) return;
-            for(int i = 0; i < 20; i ++)
+            if (character.Clothes == null) return;
+            for (int i = 0; i < 20; i++)
             {
                 if (character.Clothes[i] == null)
                 {
@@ -57,7 +50,7 @@ namespace ServerSide.Characters.Customization.Clothes
             else
             {
                 // Include the ID in the default clothes JSON
-                clothesJson = "{" + $"\"id\":{index},\"outfitName\":\"\"," + defaultClothesJSON.Substring(1);
+                clothesJson = "{" + $"\"id\":{index},\"outfitName\":\"\",\"description\":\"\"," + defaultClothesJSON.Substring(1);
             }
 
             // Send the data to client

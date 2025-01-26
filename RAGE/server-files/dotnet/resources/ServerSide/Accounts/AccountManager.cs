@@ -1,8 +1,6 @@
 ﻿using GTANetworkAPI;
 using ServerSide.Server.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ServerSide.Accounts
 {
@@ -15,8 +13,8 @@ namespace ServerSide.Accounts
 
         public static Account GetAccount(Player player)
         {
-            if(PlayerAccountPairs.ContainsKey(player)) 
-                return PlayerAccountPairs[player]; 
+            if (PlayerAccountPairs.ContainsKey(player))
+                return PlayerAccountPairs[player];
             return null;
         }
     }

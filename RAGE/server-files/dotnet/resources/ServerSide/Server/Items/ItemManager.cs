@@ -1,18 +1,14 @@
-﻿
-using Google.Protobuf.WellKnownTypes;
-using GTANetworkAPI;
+﻿using GTANetworkAPI;
 using GTANetworkMethods;
 using ServerSide.Accounts;
 using ServerSide.Admin;
 using ServerSide.Characters;
-using ServerSide.Server.Commands;
 using ServerSide.Server.Commands.CommandAttributes;
 using ServerSide.Server.DB.CharacterDB;
 using ServerSide.Server.Items.Util;
 using ServerSide.Server.Items.Weapons;
 using ServerSide.Server.Logger;
 using ServerSide.Util;
-using ServerSide.Util.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +48,7 @@ namespace ServerSide.Server.Items
             ItemDbManager.UpdateCharacterItems(character);
         }
 
-        
+
 
         [Command("inv")]
         private void InvCommand(Player player)
@@ -128,7 +124,7 @@ namespace ServerSide.Server.Items
             ItemDbManager.UpdateCharacterItems(character);
         }
 
-        
+
 
         [RequiresAdmin]
         [Command("createdrug")]
@@ -148,9 +144,9 @@ namespace ServerSide.Server.Items
             ServerLogger.Log(adminMessage);
         }
 
-        
 
-        
+
+
 
 
         [Command("giveitem")]
@@ -222,7 +218,7 @@ namespace ServerSide.Server.Items
 
             UseItem(character, item);
         }
-        
+
         [Command("drop", "USAGE: /drop 'all'/[index] [index]")]
         private void DropCommand(Player player, string itemType = "", int index = -1, int amount = 1)
         {
@@ -331,7 +327,7 @@ namespace ServerSide.Server.Items
 
             ItemDbManager.UpdateCharacterItems(character);
         }
-        
+
 
 
         [RemoteEvent("CLIENT:SERVER:UseItem")]
@@ -418,13 +414,13 @@ namespace ServerSide.Server.Items
 
             var nearbyPlayers = NAPI.Player.GetPlayersInRadiusOfPlayer(2f, player);
             var nearbyCharacters = new List<NearbyCharactersData>();
-            foreach(var nearbyPlayer in nearbyPlayers)
+            foreach (var nearbyPlayer in nearbyPlayers)
             {
                 var playerCharacter = CharacterManager.GetCharacter(nearbyPlayer);
                 nearbyCharacters.Add(new NearbyCharactersData(playerCharacter.Name, playerCharacter.GameId));
 
             }
-            if(nearbyCharacters != null)
+            if (nearbyCharacters != null)
             {
                 var json = NAPI.Util.ToJson(nearbyCharacters);
                 player.TriggerEvent("SERVER:CLIENT:PopulateNearbyCharacters", json);

@@ -1,8 +1,6 @@
 ﻿using ServerSide.Characters;
 using ServerSide.Server.Items;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ServerSide
 {

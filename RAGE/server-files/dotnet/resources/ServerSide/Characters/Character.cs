@@ -33,7 +33,7 @@ namespace ServerSide.Characters
         public Dictionary<WeaponHash, string> equippedWeapons = new Dictionary<WeaponHash, string>();
         public string CharacterDescription { get; set; }
         public string[] OutfitDescription { get; set; } = new string[50];
-        public string TattooDescription {  get; set; }
+        public string TattooDescription { get; set; }
         public bool DarkMode { get; set; } = true;
         // Collections
         public List<ICharacter> Characters { get; }
@@ -41,7 +41,7 @@ namespace ServerSide.Characters
         public List<WeaponHash> currentWeapons { get; set; } = new List<WeaponHash>();
         public List<Decoration> Tattoos { get; set; }
         public List<string> TattooNames { get; set; } = new List<string>();
-        
+
 
         // Vehicles
         public GTANetworkAPI.Vehicle CurrentDrivingVehicle { get; set; }

@@ -1,10 +1,8 @@
 ﻿using GTANetworkAPI;
-using GTANetworkInternals;
 using ServerSide.Accounts;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace ServerSide.Server.Logger
 {

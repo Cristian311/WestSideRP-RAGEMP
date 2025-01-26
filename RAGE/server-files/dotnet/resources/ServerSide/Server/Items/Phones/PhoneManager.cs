@@ -1,6 +1,4 @@
 ﻿using GTANetworkAPI;
-using Org.BouncyCastle.Bcpg;
-using ServerSide.Accounts;
 using ServerSide.Admin;
 using ServerSide.Characters;
 using ServerSide.Server.DB.CharacterDB;
@@ -9,8 +7,6 @@ using ServerSide.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Xml.Linq;
 
 namespace ServerSide
 {

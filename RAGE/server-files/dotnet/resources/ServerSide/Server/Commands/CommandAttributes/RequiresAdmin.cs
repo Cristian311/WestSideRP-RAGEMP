@@ -1,10 +1,6 @@
 ﻿using GTANetworkAPI;
 using ServerSide.Accounts;
-using ServerSide.Util;
 using ServerSide.Util.Admin;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ServerSide.Server.Commands.CommandAttributes
 {
@@ -15,7 +11,7 @@ namespace ServerSide.Server.Commands.CommandAttributes
         {
             AdminLevel = adminLevel;
         }
-        
+
         public override bool Check(Player player, string cmdName, string cmdText)
         {
 

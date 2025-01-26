@@ -52,7 +52,7 @@
           "dependencies": {
             "MySql.Data": {
               "target": "Package",
-              "version": "[8.0.25, )"
+              "version": "[9.2.0, )"
             },
             "System.Security.Principal.Windows": {
               "target": "Package",

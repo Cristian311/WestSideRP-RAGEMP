@@ -1,6 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Reflection;
-using System; 
 
 namespace Clientside.CustomizeChar
 {
@@ -159,6 +157,6 @@ namespace Clientside.CustomizeChar
             [JsonProperty("width")]
             public float Width { get; set; }
         }
-        
+
     }
 }

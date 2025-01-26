@@ -1,12 +1,9 @@
 ﻿using GTANetworkAPI;
 using ServerSide.Accounts;
-using ServerSide.Admin;
 using ServerSide.Characters;
 using ServerSide.Util;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace ServerSide.Server.Commands
 {
@@ -18,7 +15,7 @@ namespace ServerSide.Server.Commands
         [ServerEvent(Event.Update)]
         private void UpdatePlayerNametag()
         {
-            foreach(Player player  in PlayerStopwatchAmePair.Keys)
+            foreach (Player player in PlayerStopwatchAmePair.Keys)
             {
                 if (PlayerStopwatchAmePair[player].Elapsed.Seconds > 5)
                 {
@@ -34,7 +31,7 @@ namespace ServerSide.Server.Commands
         {
             var name = CharacterManager.PlayerCharacterPair[player].Name;
             string newName = StringFormatter.FormatStringForAme(name, action);
-            
+
             player.Name = newName;
 
             if (PlayerStopwatchAmePair.ContainsKey(player))
@@ -165,7 +162,7 @@ namespace ServerSide.Server.Commands
                 p.SendChatMessage($"{Colors.ME}* {name} {action}");
             }
         }
-        
+
 
         [Command("me", GreedyArg = true)]
         private void cmd_me(Player player, string action)

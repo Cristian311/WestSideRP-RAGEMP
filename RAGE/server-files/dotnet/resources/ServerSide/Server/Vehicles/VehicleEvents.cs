@@ -1,12 +1,8 @@
 ﻿using GTANetworkAPI;
-using GTANetworkMethods;
 using ServerSide.Characters;
 using ServerSide.Server.Commands;
 using ServerSide.Util;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Player = GTANetworkAPI.Player;
 
 namespace ServerSide.Server.Vehicles
@@ -39,13 +35,13 @@ namespace ServerSide.Server.Vehicles
                     player.SendChatMessage($"{Colors.FOREST_GREEN}Ti-ai descuiat masina!");
                     closestVehicle.GTAVehicle.Locked = false;
                     ChatMessage.cmd_ame(player, "si-a descuiat masina.");
-                }    
+                }
             }
             else
             {
                 player.SendChatMessage($"{Colors.RED}Nu ai nici o cheie pentru vreo masina.");
             }
-            
+
         }
     }
 }

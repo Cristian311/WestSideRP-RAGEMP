@@ -1,8 +1,5 @@
 ﻿using RAGE;
 using RAGE.Ui;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ClientSide.Character.Clothes
 {
@@ -48,7 +45,7 @@ namespace ClientSide.Character.Clothes
             byte index = byte.Parse(args[0].ToString());
             Events.CallRemote("CLIENT:SERVER:GetClothes", index);
         }
-        
+
         private void CloseClothesScreen(object[] args)
         {
             cefBrowser.Destroy();
@@ -73,7 +70,7 @@ namespace ClientSide.Character.Clothes
             string json = args[0].ToString();
             string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
             int currentClothes = int.Parse(args[1].ToString());
-            
+
             // First, update the clothes data
             cefBrowser.ExecuteJs($"UpdateClothes(\"{escapedJson}\");");
             cefBrowser.ExecuteJs($"selectCharacter({currentClothes});");

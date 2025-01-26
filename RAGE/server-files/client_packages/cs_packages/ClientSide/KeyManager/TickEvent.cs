@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using CHRP.Assets;
-using ClientSide.Character.Attributes;
 using ClientSide.Character.Inventory;
 using ClientSide.Shop;
 using RAGE;
 using RAGE.Ui;
+using System.Collections.Generic;
 
 namespace ClientSide
 {
@@ -13,7 +12,7 @@ namespace ClientSide
         private static bool ChatEnabled = false;
         public TickEvent()
         {
-           RAGE.Events.Tick = Tick;
+            RAGE.Events.Tick = Tick;
 
         }
 
@@ -35,7 +34,7 @@ namespace ClientSide
                     //Chat.Output("Key Bind Work");      
                 });
 
-                
+
 
                 KeyManager.KeyBind(KeyManager.KeyY, () =>
                 {
@@ -45,7 +44,7 @@ namespace ClientSide
                     Events.CallRemote("CLIENT:SERVER:TryEnterDoor");
                 });
 
-                
+
 
                 KeyManager.KeyBind(KeyManager.KeyL, () =>
                 {

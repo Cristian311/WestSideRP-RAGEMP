@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RAGE;
 using RAGE.Ui;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ClientSide.Shop
 {
@@ -55,8 +52,8 @@ namespace ClientSide.Shop
 
         public static void CloseShop(object[] args)
         {
-        //    string json = args[0].ToString();
-        //    Events.CallRemote("CLIENT:SERVER:SaveItemData", json);
+            //    string json = args[0].ToString();
+            //    Events.CallRemote("CLIENT:SERVER:SaveItemData", json);
 
             cefBrowser.Destroy();
             cefBrowser = null;

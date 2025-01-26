@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <style>
     body {
@@ -41,7 +42,8 @@
       text-align: left;
     }
 
-    #outfit-description, #tattoo-text {
+    #outfit-description,
+    #tattoo-text {
       display: none;
     }
 
@@ -55,10 +57,11 @@
     }
   </style>
 </head>
+
 <body>
   <div id="interface" class="interface">
-    
-    
+
+
     <div id="description" class="text-container">
       <span id="description-label" class="orange">Description of </span>
       <span id="character-name" class="white">Character Name</span>
@@ -68,12 +71,12 @@
       </div>
       <div id="character-description" class="description-text"></div>
     </div>
-    
+
     <div id="outfit-description" class="text-container">
       <span class="orange">Outfit Description:</span>
       <p id="outfit-text" class="white"></p>
     </div>
-    
+
     <div id="tattoo-text" class="text-container">
       <span>Use /tattoos to check the player's tattoos</span>
     </div>
@@ -88,22 +91,32 @@
       const ageRangeElement = document.getElementById('age-range');
       let minAge, maxAge;
 
-      if (age <= 20) {
-        minAge = Math.max(age - 1, 18);
-        maxAge = age + 1;
-      } else if (age <= 30) {
-        minAge = age - 2;
-        maxAge = age + 2;
-      } else if (age <= 40) {
-        minAge = age - 3;
-        maxAge = age + 3;
-      } else if (age <= 50) {
-        minAge = age - 5;
-        maxAge = age + 5;
-      } else {
-        minAge = age - 7;
-        maxAge = age + 7;
+      function getRandomRange(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
       }
+
+      if (age <= 20) {
+        const diff = getRandomRange(1, 2); // Smaller range for younger ages
+        minAge = Math.max(age - diff, 0);  // Ensures age doesn't go below 0
+        maxAge = age + diff;
+      } else if (age <= 30) {
+        const diff = getRandomRange(2, 4);
+        minAge = Math.max(age - diff, 0);
+        maxAge = age + diff;
+      } else if (age <= 40) {
+        const diff = getRandomRange(3, 6);
+        minAge = Math.max(age - diff, 0);
+        maxAge = age + diff;
+      } else if (age <= 50) {
+        const diff = getRandomRange(5, 10);
+        minAge = Math.max(age - diff, 0);
+        maxAge = age + diff;
+      } else {
+        const diff = getRandomRange(7, 15);
+        minAge = Math.max(age - diff, 0);
+        maxAge = age + diff;
+      }
+
 
       ageRangeElement.textContent = `${minAge}-${maxAge}`;
     }
@@ -111,9 +124,9 @@
     function updateCharacterDescription(characterName, description) {
       document.getElementById('character-name').textContent = characterName;
       const descriptionElement = document.getElementById('character-description');
-      
+
       descriptionElement.textContent = '';
-      
+
       const paragraphs = description.split(/\n+/);
       paragraphs.forEach(para => {
         const paraElement = document.createElement('p');
@@ -125,7 +138,7 @@
     function updateOutfitDescription(outfitDesc) {
       const outfitElement = document.getElementById('outfit-description');
       const outfitTextElement = document.getElementById('outfit-text');
-      
+
       if (outfitDesc && outfitDesc.trim()) {
         outfitTextElement.textContent = outfitDesc;
         outfitElement.style.display = 'block';
@@ -140,4 +153,5 @@
     }
   </script>
 </body>
+
 </html>

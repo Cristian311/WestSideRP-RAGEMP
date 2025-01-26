@@ -1,12 +1,7 @@
 ﻿using GTANetworkAPI;
-using GTANetworkInternals;
-using Org.BouncyCastle.Bcpg;
 using ServerSide.Server.DB.CharacterDB;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace ServerSide.Characters.Customization.Tattoos
 {

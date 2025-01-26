@@ -3,7 +3,6 @@ using MySql.Data.MySqlClient;
 using ServerSide.Server.Vehicles;
 using System;
 using System.Collections.Generic;
-using System.Runtime.ConstrainedExecution;
 using Vehicle = ServerSide.Server.Vehicles.Vehicle;
 
 namespace ServerSide.Server.DB.VehicleDB
@@ -147,7 +146,7 @@ namespace ServerSide.Server.DB.VehicleDB
                         {
                             var veh = MapReaderToVehicle(reader);
                             vehicles.Add(veh);
-                            if(!VehicleManager.vehicleIdManager.IsIdBusy(veh.VehicleId))
+                            if (!VehicleManager.vehicleIdManager.IsIdBusy(veh.VehicleId))
                                 VehicleManager.vehicleIdManager.SetIdBusy(veh.VehicleId);
                         }
                     }

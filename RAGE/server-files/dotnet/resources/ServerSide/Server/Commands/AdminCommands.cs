@@ -17,18 +17,18 @@ namespace ServerSide.Server.Commands
         [Command("dimension", "/dimension [id] | Dimensiunea trebuie sa fie un numar pozitiv, -1 pentru dimensiunea globala.")]
         private void cmd_dimension(Player player, int dimension)
         {
-            if(dimension == -1)
+            if (dimension == -1)
             {
                 player.Dimension = NAPI.GlobalDimension;
                 player.SendChatMessage($"{Colors.INFO}Ti-ai setat dimensiunea ca: " + player.Dimension);
                 return;
             }
-            else if(dimension < 0)
+            else if (dimension < 0)
             {
                 player.SendChatMessage($"{Colors.INFO}Dimensiunea nu poate fii negativa " + player.Dimension);
                 return;
             }
-        
+
             player.Dimension = (uint)dimension;
             player.SendChatMessage($"{Colors.INFO}Ti-ai setat dimensiunea ca: " + player.Dimension);
         }
@@ -179,13 +179,13 @@ namespace ServerSide.Server.Commands
         }
 
         // FREEZE/UNFREEZE COMMANDS
-        
+
         [RequiresAdmin]
         [Command("aduty")]
         private void cmd_aduty(Player player)
         {
             var account = AccountManager.PlayerAccountPairs[player];
-            if(account.AdminDuty == false)
+            if (account.AdminDuty == false)
             {
                 account.AdminDuty = true;
                 AdminManager.SendChatMessageToAdmins($"Adminul {account.AdminLevel} {account.Name} este acum on-duty.");

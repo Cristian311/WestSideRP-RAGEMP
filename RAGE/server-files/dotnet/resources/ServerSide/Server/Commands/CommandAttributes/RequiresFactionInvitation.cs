@@ -1,10 +1,5 @@
 ﻿using GTANetworkAPI;
-using ServerSide.Accounts;
 using ServerSide.Characters;
-using ServerSide.Util;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ServerSide.Server.Commands.CommandAttributes
 {
@@ -18,7 +13,7 @@ namespace ServerSide.Server.Commands.CommandAttributes
         public override bool Check(Player player, string cmdName, string cmdText)
         {
             var character = CharacterManager.PlayerCharacterPair[player];
-            if(FactionManager.FactionInvitations.ContainsKey(character) == false)
+            if (FactionManager.FactionInvitations.ContainsKey(character) == false)
             {
                 character.SendErrorMessage("Nu esti invitat in nici o factiune.");
                 return false;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ServerSide.Util.Admin
+﻿namespace ServerSide.Util.Admin
 {
     internal class AdminMessages
     {

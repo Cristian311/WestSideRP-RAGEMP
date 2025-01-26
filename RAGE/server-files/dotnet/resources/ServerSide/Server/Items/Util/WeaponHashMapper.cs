@@ -1,8 +1,6 @@
-﻿using System;
+﻿using GTANetworkAPI;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using GTANetworkAPI;
 namespace ServerSide.Server.Items.Util
 {
     public class WeaponHashMapper

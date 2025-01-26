@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using GTANetworkAPI;
-using System.IO;
-using ServerSide.Server.DB;
-using ServerSide.Server.Commands.CommandAttributes;
-using ServerSide.Admin;
+﻿using GTANetworkAPI;
 using ServerSide.Accounts;
+using ServerSide.Admin;
+using ServerSide.Server.Commands.CommandAttributes;
+using ServerSide.Server.DB;
 using ServerSide.Util;
+using System.Collections.Generic;
 namespace ServerSide.Server.Blips
 {
     internal class BlipHandler : Script
@@ -24,7 +23,7 @@ namespace ServerSide.Server.Blips
 
             //get existing blips
             blips = BlipDbManager.GetBlips();
-            if(blips != null)
+            if (blips != null)
                 foreach (BlipData blip in blips)
                 {
                     NAPI.Blip.CreateBlip(blip.Sprite, blip.Position, blip.Scale, blip.Color, blip.Name, 255, 0, true, 0, NAPI.GlobalDimension);

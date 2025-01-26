@@ -34,7 +34,7 @@ namespace ClientSide.Character
                 var hash = RAGE.Util.Joaat.Hash(tattooHash[tattooName]);
                 RAGE.Elements.Player.LocalPlayer.SetDecoration(collection, hash);
             }
-            
+
         }
 
         private void ApplyTattooClient(object[] args)

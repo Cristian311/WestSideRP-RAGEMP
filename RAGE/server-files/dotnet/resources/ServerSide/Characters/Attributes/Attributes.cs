@@ -1,7 +1,5 @@
 ﻿using GTANetworkAPI;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using ServerSide.Server.DB.CharacterDB;
 
 namespace ServerSide.Characters.Attributes
 {
@@ -19,20 +17,23 @@ namespace ServerSide.Characters.Attributes
         {
             var character = CharacterManager.GetCharacter(player);
             var charData = NAPI.Util.FromJson<CharacterAttributesData>(json);
+            if (character.isCreated == false)
+                character.isCreated = true;
 
             character.Age = charData.Age;
             character.CharacterDescription = charData.Description;
             character.OutfitDescription[character.CurrentOutfit] = charData.Outfit;
             character.TattooDescription = charData.Tattoos;
+            UpdateCharDataDBManager.UpdateCharacter(character);
         }
         [Command("examine", Alias = "ex")]
         private void cmd_examine(Player player, string character)
         {
             var targetCharacter = CharacterManager.GetCharacterByNameOrId(player, character);
-            if (character == null) return;
+            if (targetCharacter == null) return;
 
             player.TriggerEvent("SERVER:CLIENT:OpenExamineScreen", targetCharacter.Age, targetCharacter.CharacterDescription, targetCharacter.OutfitDescription[targetCharacter.CurrentOutfit], targetCharacter.TattooDescription != string.Empty ? true : false, targetCharacter.Name);
         }
-        
+
     }
 }

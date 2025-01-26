@@ -1,9 +1,7 @@
 ﻿using GTANetworkAPI;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace ServerSide.Characters.Customization.Clothes
 {
@@ -11,8 +9,10 @@ namespace ServerSide.Characters.Customization.Clothes
     {
         [JsonProperty("id")]
         public int Id { get; set; }
-        [JsonProperty("outfitName")] 
+        [JsonProperty("outfitName")]
         public string? Name { get; set; }
+        [JsonProperty("description")]
+        public string? Description { get; set; }
 
         [JsonProperty("masks")]
         public ClothingAttributes Mask { get; set; }

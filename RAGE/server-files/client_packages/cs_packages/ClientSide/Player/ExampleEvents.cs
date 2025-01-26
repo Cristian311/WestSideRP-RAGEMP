@@ -1,7 +1,7 @@
-﻿using System;
-using RAGE;
+﻿using RAGE;
 using RAGE.Elements;
 using RAGE.Ui;
+using System;
 
 namespace ClientSide.Player
 {
@@ -46,7 +46,7 @@ namespace ClientSide.Player
 
         private void OnPlayerEnterColshape(Colshape colshape, Events.CancelEventArgs cancel)
         {
-           // RAGE.Chat.Output("You entered the colshape!");
+            // RAGE.Chat.Output("You entered the colshape!");
         }
     }
 }

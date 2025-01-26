@@ -1,5 +1,4 @@
 ﻿using GTANetworkAPI;
-using ServerSide.Characters;
 using ServerSide.Server.DB.CharacterDB;
 using System;
 using System.Collections.Generic;
@@ -39,7 +38,8 @@ namespace ServerSide.Characters.Customization.Hair
             Character character = CharacterManager.PlayerCharacterPair[player];
             var hairData = NAPI.Util.FromJson<HairData>(json);
             character.Hair = hairData;
-
+            if (character.isCreated == false)
+                player.TriggerEvent("SERVER:CLIENT:OpenAttributesScreen", true);
             UpdateCharDataDBManager.UpdateCharacterHair(character);
         }
         public static void UpdateHair(Player player, HairData hairData)

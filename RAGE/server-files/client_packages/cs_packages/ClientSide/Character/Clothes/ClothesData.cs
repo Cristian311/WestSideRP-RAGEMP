@@ -5,7 +5,7 @@ namespace ClientSide.Character.Clothes
     public class ClothesData
     {
         [JsonProperty("id")]
-        public int Id {  get; set; }
+        public int Id { get; set; }
         [JsonProperty("outfitName")]
         public string Name { get; set; }
 
@@ -47,7 +47,7 @@ namespace ClientSide.Character.Clothes
         [JsonProperty("watches")]
         public ClothingAttributes Watches { get; set; }
         [JsonProperty("bracelets")]
-        public ClothingAttributes Bracelets { get; set; }    
+        public ClothingAttributes Bracelets { get; set; }
 
         public class ClothingAttributes
         {
@@ -58,6 +58,6 @@ namespace ClientSide.Character.Clothes
             public int Texture { get; set; }
         }
 
-       
+
     }
 }

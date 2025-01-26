@@ -1,12 +1,9 @@
 ﻿using GTANetworkAPI;
 using MySql.Data.MySqlClient;
-using ServerSide.Characters;
 using ServerSide.Factions;
-using ServerSide.Server.DB.CharacterDB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ServerSide.Server.DB.FactionDB
 {

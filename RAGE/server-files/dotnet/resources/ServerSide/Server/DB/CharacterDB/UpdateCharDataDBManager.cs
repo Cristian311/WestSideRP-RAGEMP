@@ -2,8 +2,6 @@
 using MySql.Data.MySqlClient;
 using ServerSide.Characters;
 using ServerSide.Characters.Customization.Clothes;
-using ServerSide.Server.DB;
-using ServerSide.Server.Interfaces;
 using System;
 
 
@@ -19,7 +17,7 @@ namespace ServerSide.Server.DB.CharacterDB
             var character = CharacterManager.PlayerCharacterPair[player];
             UpdateCharacter(character);
         }
-        public static bool UpdateCharacter(ICharacter character)
+        public static bool UpdateCharacter(Character character)
         {
             Database db = new Database();
             //if (!CharacterDbManager.CharacterExists(character.Name)) // Check existence by unique Id
@@ -30,7 +28,21 @@ namespace ServerSide.Server.DB.CharacterDB
                 try
                 {
                     connection.Open();
-                    string query = "UPDATE `characters` SET AccountId = @accountId, Name = @Name, faction = @faction, factionRank = @factionRank, Age = @Age, Money = @Money, isCreated = @isCreated, currentOutfit = @currentOutfit WHERE Id = @Id";
+                    string query = @"
+                        UPDATE `characters` 
+                        SET 
+                            AccountId = @accountId, 
+                            Name = @Name, 
+                            faction = @faction, 
+                            factionRank = @factionRank, 
+                            Age = @Age, 
+                            Money = @Money, 
+                            isCreated = @isCreated, 
+                            currentOutfit = @currentOutfit 
+                            currentOutfit = @currentOutfit 
+                            currentOutfit = @currentOutfit 
+                        WHERE 
+                            Id = @Id";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -44,6 +56,8 @@ namespace ServerSide.Server.DB.CharacterDB
                         command.Parameters.AddWithValue("@currentOutfit", character.CurrentOutfit);
                         command.Parameters.AddWithValue("@faction", character.faction);
                         command.Parameters.AddWithValue("@factionRank", character.factionRank);
+                        command.Parameters.AddWithValue("@CharacterDescription", character.CharacterDescription);
+                        command.Parameters.AddWithValue("@TattooDescription", character.TattooDescription);
 
                         string debugQuery = $"UPDATE `characters` SET AccountId = {character.Account.Id}, Name = '{character.Name}', Age = {character.Age}, Money = {character.Money} WHERE Id = {character.Id}";
                         NAPI.Util.ConsoleOutput($"Executing Query: {debugQuery}");
@@ -84,7 +98,12 @@ namespace ServerSide.Server.DB.CharacterDB
                 try
                 {
                     connection.Open();
-                    string query = "UPDATE `characters` SET FaceJSON = @json WHERE Id = @Id";
+                    string query = @"
+                        UPDATE `characters`
+                        SET
+                            FaceJSON = @json
+                        WHERE
+                            Id = @Id";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -129,7 +148,13 @@ namespace ServerSide.Server.DB.CharacterDB
                 try
                 {
                     connection.Open();
-                    string query = "UPDATE `characters` SET TattooJSON = @json, HighlightsJSON = @json2 WHERE Id = @Id";
+                    string query = @"
+                        UPDATE `characters` 
+                        SET 
+                            TattooJSON = @json, 
+                            HighlightsJSON = @json2 
+                        WHERE 
+                            Id = @Id";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -176,7 +201,12 @@ namespace ServerSide.Server.DB.CharacterDB
                 try
                 {
                     connection.Open();
-                    string query = "UPDATE `characters` SET currentphone = @currentphone WHERE Id = @Id";
+                    string query = @"
+                        UPDATE `characters` 
+                        SET 
+                            currentphone = @currentphone 
+                        WHERE 
+                            Id = @Id";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -220,7 +250,12 @@ namespace ServerSide.Server.DB.CharacterDB
                 try
                 {
                     connection.Open();
-                    string query = "UPDATE `characters` SET HairJSON = @json WHERE Id = @Id";
+                    string query = @"
+                        UPDATE `characters` 
+                        SET 
+                            HairJSON = @json 
+                        WHERE 
+                            Id = @Id";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -265,7 +300,12 @@ namespace ServerSide.Server.DB.CharacterDB
                     connection.Open();
 
                     // First, check if the localID for the given characterID exists.
-                    string checkQuery = "SELECT COUNT(*) FROM `clothes` WHERE `characterID` = @characterID AND `localID` = @localID";
+                    string checkQuery = @"
+                        SELECT COUNT(*) 
+                        FROM `clothes` 
+                        WHERE 
+                            `characterID` = @characterID 
+                            AND `localID` = @localID";
 
                     using (MySqlCommand checkCommand = new MySqlCommand(checkQuery, connection))
                     {
@@ -277,8 +317,14 @@ namespace ServerSide.Server.DB.CharacterDB
                         // If the record exists, update it.
                         if (count > 0)
                         {
-                            string updateQuery = "UPDATE `clothes` SET `clothesname` = @clothesname, `clothesdata` = @clothesdata WHERE `characterID` = @characterID AND `localID` = @localID";
-
+                            string updateQuery = @"
+                                UPDATE `clothes` 
+                                SET 
+                                    `clothesname` = @clothesname, 
+                                    `clothesdata` = @clothesdata 
+                                WHERE 
+                                    `characterID` = @characterID 
+                                    AND `localID` = @localID";
                             using (MySqlCommand updateCommand = new MySqlCommand(updateQuery, connection))
                             {
                                 updateCommand.Parameters.AddWithValue("@characterID", character.Id);

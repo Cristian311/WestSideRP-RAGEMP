@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using RAGE;
+﻿using RAGE;
 using RAGE.Game;
 using RAGE.Ui;
+using System.Collections.Generic;
 
 namespace ClientSide.Player
 {

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using GTANetworkAPI;
-using System.Text;
+﻿using GTANetworkAPI;
 
 namespace ServerSide.Server.Blips
 {

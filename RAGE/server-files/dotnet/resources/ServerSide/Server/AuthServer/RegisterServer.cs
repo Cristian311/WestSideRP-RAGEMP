@@ -1,8 +1,4 @@
 ﻿using GTANetworkAPI;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using ServerSide.Server.DB;
 namespace ServerSide.Server.AuthServer
 {
