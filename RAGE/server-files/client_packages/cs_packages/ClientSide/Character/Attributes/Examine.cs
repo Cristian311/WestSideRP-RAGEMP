@@ -13,10 +13,20 @@ namespace ClientSide
 
         public static void CloseExamineScreen()
         {
-            cefBrowser.Destroy();
+            if (cefBrowser != null)
+            {
+                cefBrowser.Destroy();
+                cefBrowser = null;
+            }
+            //cefBrowser.ExecuteJs("toggleUI(false);");
         }
         private void OpenExamineScreen(object[] args)
         {
+            if (cefBrowser != null)
+            {
+                cefBrowser.Destroy();
+                cefBrowser = null;
+            }
             cefBrowser = new HtmlWindow("http://package/html/attributes/examine.html");
             cefBrowser.Active = true;
 

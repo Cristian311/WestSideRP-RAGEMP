@@ -64,9 +64,27 @@
             }
         }
 
+        function toggleUI(toggle) {
+			const interfaceElement = document.getElementById('money-container');
+
+			if (toggle) {
+				// Show UI
+				interfaceElement.style.display = 'block';
+				interfaceElement.style.opacity = '1'; // Ensure opacity is set to 1 for visibility
+			} else {
+				// Fade out animation
+				interfaceElement.style.transition = 'opacity 0.3s'; // Smooth fade-out effect
+				interfaceElement.style.opacity = '0';
+
+				// Wait for the fade-out to complete before hiding
+				setTimeout(() => {
+					interfaceElement.style.display = 'none';
+				}, 300); // Match the duration of the fade-out
+			}
+		}
         // Example usage
-        updateBankMoney(123456789);
-        updateNormalMoney(9876543);
+        updateBankMoney(0);
+        updateNormalMoney(0);
     </script>
 </body>
 </html>

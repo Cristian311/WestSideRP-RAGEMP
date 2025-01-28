@@ -43,14 +43,11 @@ namespace ClientSide.Character
             hairs = Json.Deserialize<List<HairData>>(hairsJson);
             clothes = Json.Deserialize<List<ClothesData>>(clothesJson);
 
-            Events.CallRemote("CLIENT:SERVER:PrintConsole", "CLIENT");
-            Events.CallRemote("CLIENT:SERVER:PrintConsole", facesJson);
-            Events.CallRemote("CLIENT:SERVER:PrintConsole", hairsJson);
-            Events.CallRemote("CLIENT:SERVER:PrintConsole", clothesJson);
         }
 
         private void CharacterPressed(object[] args)
         {
+            RAGE.Elements.Player.LocalPlayer.Position =  new Vector3(210.71982f, 285.08926f, 141.92323f);
             byte index = byte.Parse(args[0].ToString());
 
             CustomizeCharHandler.UpdatePlayerFaceFeatures(faces[index]);

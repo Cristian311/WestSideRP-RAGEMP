@@ -30,9 +30,22 @@ setInterval(() => {
         else if (heading > 292.5 && heading < 337.5) direction = "NW";
     }
 }, updateInterval);
-
+let hudtoggle = true;
+mp.events.add('CLIENT:TogglePLD', (toggle) => {
+    if(toggle)
+        {
+            street = mp.browsers.new("package://street/index.html");
+            hudtoggle = true;
+        }
+        else
+    {
+        street.destroy();
+        hudtoggle = false;
+    }
+});
 mp.events.add('render', () => {
     let crossing;
     if (crossingName != "") { crossing = `/ ${crossingName}`; } else { crossing = ""; }
-    street.execute(`update('${streetName}', '${crossing}', '${zoneName}', '${direction}');`);
+    if(hudtoggle)
+        street.execute(`update('${streetName}', '${crossing}', '${zoneName}', '${direction}');`);
 });

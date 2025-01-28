@@ -10,13 +10,14 @@ namespace CHRP.Assets
         private const int ResetTime = 250;    // Time to reset the key
         private static bool _keyStatus = true; // The state of the key
 
-        public const int KeyMouse = 0xC0;    //    Key [~]
-        public const int KeyLctrl = 0xA2;    //    Key [Left CTRL]
-        public const int KeyY = 0x59;        //    Key [Y]
+        public const int KeyMouse = 0xC0;     //    Key [~]
+        public const int KeyLctrl = 0xA2;     //    Key [Left CTRL]
+        public const int KeyY = 0x59;         //    Key [Y]
         public const int KeyF4 = 0x73;        //    Key [F4]
-        public const int KeyL = 0x4C;        //    Key [F4]
-        public const int KeyT = 0x54;        //    Key [T]
-        public const int KeyE = 0x45;        //    Key [E]
+        public const int KeyL = 0x4C;         //    Key [F4]
+        public const int KeyT = 0x54;         //    Key [T]
+        public const int KeyE = 0x45;         //    Key [E]
+        public const int KeyF7 = 0x76;        //    Key [F7]
 
 
 

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace ClientSide.Player
 {
-    class PLD : Events.Script
+    public class PLD : Events.Script
     {
-        HtmlWindow CEF = null;
+        private static HtmlWindow cefBrowser = new HtmlWindow("https://package/PLD/index.html");
         string Street = null;
         string Crossing = null;
         string Zone = null;
@@ -15,10 +15,21 @@ namespace ClientSide.Player
 
         public PLD()
         {
-            CEF = new HtmlWindow("https://package/PLD/index.html");
             Events.Tick += Update;
         }
-
+        public static void HideUI()
+        {
+            
+        }
+        public static void toggleUI(bool toggle)
+        {
+            if(toggle)
+                cefBrowser = new HtmlWindow("https://package/PLD/index.html");
+            else
+            {
+                cefBrowser.Destroy();
+            }
+        }
         public void Update(List<Events.TickNametagData> tick)
         {
             var position = RAGE.Elements.Player.LocalPlayer.Position;
@@ -84,7 +95,7 @@ namespace ClientSide.Player
 
             }
 
-            CEF.ExecuteJs($"Update(\"{Street}\", \"{Crossing}\", \"{Zone}\", \"{Direction}\")");
+            cefBrowser.ExecuteJs($"Update(\"{Street}\", \"{Crossing}\", \"{Zone}\", \"{Direction}\")");
         }
     }
 }

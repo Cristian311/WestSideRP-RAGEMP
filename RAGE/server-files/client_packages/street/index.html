@@ -16,6 +16,25 @@
 			document.getElementsByClassName('zone')[0].innerHTML = zone;
 			document.getElementsByClassName('dir')[0].innerHTML = dir;
 		}
+
+		function toggleUI(toggle) {
+			const interfaceElement = document.getElementById('container');
+
+			if (toggle) {
+				// Show UI
+				interfaceElement.style.display = 'block';
+				interfaceElement.style.opacity = '1'; // Ensure opacity is set to 1 for visibility
+			} else {
+				// Fade out animation
+				interfaceElement.style.transition = 'opacity 0.3s'; // Smooth fade-out effect
+				interfaceElement.style.opacity = '0';
+
+				// Wait for the fade-out to complete before hiding
+				setTimeout(() => {
+					interfaceElement.style.display = 'none';
+				}, 300); // Match the duration of the fade-out
+			}
+		}
 	</script>
 </head>
 
@@ -27,7 +46,7 @@
 			<span class="border">|</span>
 		</div>
 
-		<div class="vicinity">
+		<div class="vicinity" id="container">
 			<div style="display:inline-block">
 				<span class="street shadow-stroke">Alta Street</span>
 				<span class="cross shadow-stroke">/ Vinewood Blvd</span>

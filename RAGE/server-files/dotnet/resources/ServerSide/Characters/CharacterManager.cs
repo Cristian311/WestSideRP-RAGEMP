@@ -166,8 +166,7 @@ namespace ServerSide.Characters
             player.TriggerEvent("SERVER:CLIENT:DisplayAccountInfo", account.Name, namesJSON, moneyJSON);
             player.TriggerEvent("SERVER:CLIENT:ChooseCharacterCamera");
             player.TriggerEvent("SERVER:CLIENT:FreezePlayer");
-
-            player.Position = new Vector3(210.71982, 285.08926, 141.92323);
+            
             player.Rotation = new Vector3(0, 0, 144);
             player.Dimension = account.GameId != 0 ? (uint)account.GameId : 1001;
         }

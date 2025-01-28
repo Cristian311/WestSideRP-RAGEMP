@@ -1,5 +1,6 @@
 require('./animator.js');
 require('./camera.js');
+require('./editor_camera.js');
 require("./street/index.js");
 
 //enter vehicle passenger with G

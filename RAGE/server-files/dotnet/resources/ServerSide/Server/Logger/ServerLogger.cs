@@ -23,5 +23,11 @@ namespace ServerSide.Server.Logger
             log.Add(message);
             File.AppendAllTextAsync(filepath, message);
         }
+        public static void LogWithAccount(Account account, string message)
+        {
+            message = DateTime.Now.ToString() + " (" + account.Name + ") " + message + "\n";
+            log.Add(message);
+            File.AppendAllTextAsync(filepath, message);
+        }
     }
 }

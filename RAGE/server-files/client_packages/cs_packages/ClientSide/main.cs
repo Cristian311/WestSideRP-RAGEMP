@@ -1,4 +1,5 @@
 ﻿using RAGE;
+using RAGE.Game;
 using RAGE.Ui;
 namespace ClientSide
 {
@@ -14,9 +15,8 @@ namespace ClientSide
             var chatbox = new HtmlWindow("http://package/advanced-chat/index.html");
             chatbox.MarkAsChat();
             RAGE.Chat.Colors = true;
-            RAGE.Game.Ui.HideHudComponentThisFrame(7);
-            RAGE.Game.Ui.HideHudComponentThisFrame(9);
-            RAGE.Game.Ui.HideHudComponentThisFrame(3);
+            Ui.DisplayCash(false);
+            Ui.DisplayAreaName(false);
 
 
         }

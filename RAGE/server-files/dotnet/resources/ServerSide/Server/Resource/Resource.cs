@@ -6,7 +6,7 @@ namespace ServerSide.Server
     public class Resource : Script
     {
         public static readonly string ServerName = "West-Side Roleplay";
-        public static readonly string Version = "Version: 0.6a";
+        public static readonly string Version = "Version: 0.7a";
 
         [ServerEvent(Event.ResourceStart)]
         public void OnResourceStart()

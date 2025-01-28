@@ -10,11 +10,11 @@ namespace ClientSide.Player
 {
     public class MoneyHUD : Events.Script
     {
-        private HtmlWindow cefBrowser = new HtmlWindow("http://package/hud/moneyhud.html");
+        private static HtmlWindow cefBrowser = new HtmlWindow("http://package/hud/moneyhud.html");
         Random rand = new Random();
 
-        private int CashMoney = 0;
-        private int BankMoney = 0;
+        private static int CashMoney = 0;
+        private static int BankMoney = 0;
         private int Value;
         private int screenX, screenY;
 
@@ -27,11 +27,21 @@ namespace ClientSide.Player
             Events.Add("SERVER:CLIENT:BankMoneyUpdate", BankMoneyUpdate);
             Events.Add("SERVER:CLIENT:SetMoney", SetMoney);
 
-
             Events.Tick += Tick;
         }
-
-        private void SetMoney(object[] args)
+        public static void toggleUI(bool toggle)
+        {
+            if (cefBrowser != null)
+                cefBrowser.Destroy();
+            if (toggle)
+            {
+                cefBrowser = new HtmlWindow("http://package/hud/moneyhud.html");
+                SetMoney(new object[2] { CashMoney, BankMoney });
+            }
+            else
+                cefBrowser.Destroy();
+        }
+        private static void SetMoney(object[] args)
         {
             int cash = int.Parse(args[0].ToString());
             int bank = int.Parse(args[1].ToString());

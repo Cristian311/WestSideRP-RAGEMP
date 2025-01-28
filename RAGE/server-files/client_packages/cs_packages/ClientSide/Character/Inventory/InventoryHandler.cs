@@ -71,6 +71,8 @@ namespace ClientSide.Character.Inventory
 
         private void OpenInventory(object[] args)
         {
+            if (cefBrowser.Active)
+                cefBrowser.Destroy();
             cefBrowser = new HtmlWindow("http://package/html/inventory/inventory.html");
             cefBrowser.Active = true;
             Cursor.Visible = true;

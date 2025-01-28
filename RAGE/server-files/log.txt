@@ -2932,3 +2932,208 @@
 26.01.2025 03:26:34 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
 26.01.2025 03:27:14 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
 26.01.2025 03:27:14 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 17:18:14 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 17:18:14 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 17:21:17 (aaa) Zurab Makharadze: /editor
+28.01.2025 17:21:20 (aaa) Zurab Makharadze: /editor
+28.01.2025 17:21:56 (aaa) Zurab Makharadze: /editor
+28.01.2025 17:22:37 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 17:22:37 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 17:22:58 (aaa) Zurab Makharadze: /editor
+28.01.2025 17:27:09 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 17:27:09 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 17:27:26 (aaa) Zurab Makharadze: /editor
+28.01.2025 17:30:57 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 17:30:57 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 17:31:18 (aaa) Zurab Makharadze: /editor
+28.01.2025 17:33:42 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 17:33:42 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 17:34:01 (aaa) Zurab Makharadze: /editor
+28.01.2025 17:40:15 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 17:40:15 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 17:40:33 (aaa) Zurab Makharadze: /editor
+28.01.2025 17:45:48 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 17:45:48 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 17:46:10 (aaa) Zurab Makharadze: /editor
+28.01.2025 17:51:35 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 17:51:35 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 17:52:08 (aaa) Zurab Makharadze: /editor
+28.01.2025 17:56:57 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 17:56:57 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 17:57:18 (aaa) Jack Spencer: /vg
+28.01.2025 17:58:17 (aaa) Jack Spencer: /inv
+28.01.2025 17:58:30 (aaa) Jack Spencer: /vg
+28.01.2025 17:58:39 (aaa) Jack Spencer: /cpv infernus
+28.01.2025 17:58:40 (aaa) Jack Spencer: /vg
+28.01.2025 17:59:30 (aaa) Jack Spencer: /editor
+28.01.2025 18:00:27 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 18:00:27 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 18:00:52 (aaa) Zurab Makharadze: /editor
+28.01.2025 18:13:52 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 18:13:52 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 18:14:16 (aaa) Zurab Makharadze: /editor
+28.01.2025 18:27:22 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 18:27:22 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 18:28:09 (aaa) Zurab Makharadze: /vg
+28.01.2025 18:28:13 (aaa) Zurab Makharadze: /editor
+28.01.2025 18:31:58 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 18:31:58 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 18:32:17 (aaa) Zurab Makharadze: /vg
+28.01.2025 18:32:25 (aaa) Zurab Makharadze: /editor
+28.01.2025 18:36:07 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 18:36:07 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 18:36:28 (aaa) Zurab Makharadze: /editor
+28.01.2025 18:37:21 (aaa) Zurab Makharadze: /anim sit
+28.01.2025 18:37:24 (aaa) Zurab Makharadze: /anim sit1
+28.01.2025 18:37:26 (aaa) Zurab Makharadze: /anim sit1
+28.01.2025 18:37:30 (aaa) Zurab Makharadze: /anim sit3
+28.01.2025 18:37:31 (aaa) Zurab Makharadze: /anim sit2
+28.01.2025 18:37:34 (aaa) Zurab Makharadze: /anim sit6
+28.01.2025 18:43:35 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 18:43:35 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 18:43:57 (aaa) Zurab Makharadze: /editor
+28.01.2025 18:49:58 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 18:49:58 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 18:50:22 (aaa) Zurab Makharadze: /editor
+28.01.2025 18:51:40 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 18:51:40 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 18:52:02 (aaa) Zurab Makharadze: /editor
+28.01.2025 18:55:39 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 18:55:39 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 18:56:01 (aaa) Zurab Makharadze: /editor
+28.01.2025 18:59:39 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 18:59:39 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 18:59:58 (aaa) Zurab Makharadze: /editor
+28.01.2025 19:14:10 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 19:14:10 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 19:14:35 (aaa) Zurab Makharadze: /editor
+28.01.2025 19:51:23 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 19:51:23 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 19:51:50 (aaa) Zurab Makharadze: /editor
+28.01.2025 19:56:30 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 19:56:30 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 19:56:56 (aaa) Zurab Makharadze: /anim sit1
+28.01.2025 19:57:03 (aaa) Zurab Makharadze: /sa
+28.01.2025 19:57:06 (aaa) Zurab Makharadze: /anim sit1
+28.01.2025 19:57:11 (aaa) Zurab Makharadze: /anim sit2
+28.01.2025 19:57:13 (aaa) Zurab Makharadze: /anim sit3
+28.01.2025 19:57:14 (aaa) Zurab Makharadze: /sa
+28.01.2025 19:57:25 (aaa) Zurab Makharadze: /editor
+28.01.2025 20:06:36 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 20:06:36 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 20:08:05 (aaa) Zurab Makharadze: /editor
+28.01.2025 20:09:41 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 20:09:41 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 20:10:11 (aaa) Zurab Makharadze: /editor
+28.01.2025 20:11:19 (aaa) Zurab Makharadze: /anim idle1
+28.01.2025 20:11:23 (aaa) Zurab Makharadze: /anim idle2
+28.01.2025 20:11:24 (aaa) Zurab Makharadze: /anim idle3
+28.01.2025 20:11:28 (aaa) Zurab Makharadze: /anim idle3
+28.01.2025 20:11:30 (aaa) Zurab Makharadze: /sa
+28.01.2025 20:33:12 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 20:33:12 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 20:33:54 (aaa) Zurab Makharadze: /editor
+28.01.2025 20:34:25 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 20:34:25 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 20:35:43 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 20:35:43 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 20:42:54 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 20:42:54 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 20:45:18 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 20:45:18 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 20:46:14 (aaa) Zurab Makharadze: /editor
+28.01.2025 20:47:05 (aaa) Zurab Makharadze: /ex zurab
+28.01.2025 20:47:08 (aaa) Zurab Makharadze: /ex zurab
+28.01.2025 20:49:44 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 20:49:44 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 20:57:29 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 20:57:29 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 20:58:36 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 20:58:36 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 21:00:35 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 21:00:35 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 21:02:08 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 21:02:08 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 21:04:56 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 21:04:56 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 21:07:09 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 21:07:09 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 21:08:43 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 21:08:43 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 21:37:55 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 21:37:55 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 21:45:27 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 21:45:27 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 21:52:50 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 21:52:50 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 22:01:10 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 22:01:10 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 22:05:02 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 22:05:02 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 22:07:01 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 22:07:01 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 22:09:13 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 22:09:13 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 22:12:04 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+28.01.2025 22:12:04 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+28.01.2025 22:13:04 (aaa) Zurab Makharadze: /editor
+29.01.2025 00:45:58 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+29.01.2025 00:45:58 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+29.01.2025 00:48:13 (aaa) Zurab Makharadze: /hair
+29.01.2025 00:48:28 (aaa) Zurab Makharadze: /editor
+29.01.2025 00:49:12 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+29.01.2025 00:49:12 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+29.01.2025 00:49:57 (aaa) Zurab Makharadze: /editor
+29.01.2025 00:52:35 (aaa) Zurab Makharadze: //
+29.01.2025 00:52:35 (aaa) Zurab Makharadze: .
+29.01.2025 00:52:39 (aaa) Zurab Makharadze: /editor
+29.01.2025 00:56:07 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+29.01.2025 00:56:07 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+29.01.2025 00:56:30 (aaa) Zurab Makharadze: /editor
+29.01.2025 01:05:54 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+29.01.2025 01:05:54 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+29.01.2025 01:06:33 (aaa) Zurab Makharadze: /editor
+29.01.2025 01:16:34 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+29.01.2025 01:16:34 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+29.01.2025 01:16:54 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+29.01.2025 01:16:54 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+29.01.2025 01:17:15 (aaa) Zurab Makharadze: /vg
+29.01.2025 01:17:18 (aaa) Zurab Makharadze: /editor
+29.01.2025 01:18:59 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+29.01.2025 01:18:59 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+29.01.2025 01:19:23 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+29.01.2025 01:19:23 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+29.01.2025 01:19:58 (aaa) Zurab Makharadze: /editor
+29.01.2025 01:20:27 (aaa) Zurab Makharadze: /editor
+29.01.2025 01:20:33 (aaa) Zurab Makharadze: /editor
+29.01.2025 01:20:41 (aaa) Zurab Makharadze: /editor
+29.01.2025 01:20:52 (aaa) Zurab Makharadze: /editor
+29.01.2025 01:21:02 (aaa) Zurab Makharadze: /editor
+29.01.2025 01:23:58 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+29.01.2025 01:23:58 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+29.01.2025 01:24:19 (aaa) Zurab Makharadze: /editor
+29.01.2025 01:25:39 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+29.01.2025 01:25:39 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+29.01.2025 01:26:01 (aaa) Zurab Makharadze: /editor
+29.01.2025 01:26:23 (aaa) Zurab Makharadze: /editor
+29.01.2025 01:26:53 (aaa) Zurab Makharadze: /admin
+29.01.2025 01:27:52 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+29.01.2025 01:27:52 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+29.01.2025 01:28:19 (aaa) Jack Spencer: /anim idle3
+29.01.2025 01:28:23 (aaa) Jack Spencer: /editor
+29.01.2025 01:29:17 (aaa) Jack Spencer: /sa
+29.01.2025 01:33:23 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+29.01.2025 01:33:23 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+29.01.2025 01:34:00 (aaa) Jack Spencer: /changechar
+29.01.2025 01:34:13 (aaa) William Johnson: /facefeatures
+29.01.2025 01:36:09 (aaa) Jack Spencer: /anim idle3
+29.01.2025 01:36:12 (aaa) Jack Spencer: /editor
+29.01.2025 01:36:49 (aaa) Jack Spencer: /sa
+29.01.2025 01:39:26 - Loaded shop: kkk at position: 228,52875 283,74832 105,59214
+29.01.2025 01:39:26 - Loaded shop: hatz at position: 234,65785 283,31845 105,59121
+29.01.2025 01:40:44 (aaa) Jack Spencer: /anim idle3
+29.01.2025 01:40:46 (aaa) Jack Spencer: /editor
+29.01.2025 01:41:44 (aaa) Jack Spencer: /sa
+29.01.2025 01:46:30 (aaa) William Johnson: /anim idle3
+29.01.2025 01:46:32 (aaa) William Johnson: /editor
+29.01.2025 01:47:22 (aaa) William Johnson: /sa
