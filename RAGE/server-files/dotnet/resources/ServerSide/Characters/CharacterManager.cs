@@ -20,9 +20,9 @@ namespace ServerSide.Characters
 {
     internal class CharacterManager : Script
     {
-        public const string FaceDefaultJSON = "{\"shape\":{\"first\":25,\"second\":19,\"mix\":0.85},\"skin\":{\"first\":16,\"second\":14,\"mix\":0.76},\"nose\":{\"width\":0.46,\"height\":0.14,\"length\":0.34,\"bridge\":0.21,\"tip\":-0.14,\"bridgeShift\":0.35},\"brow\":{\"height\":0.38,\"width\":-0.34},\"cheeks\":{\"height\":0.58,\"width\":0.48,\"cheekswidth\":0.0},\"jaw\":{\"height\":0.24,\"width\":0.4},\"skinColor\":\"0\",\"eye\":{\"size\":-0.09,\"color\":12},\"lips\":-0.21,\"chin\":{\"length\":0.99,\"position\":0.64,\"width\":0.66,\"shape\":-0.3},\"neck\":{\"width\":0.67},\"facialDetails\":{\"blemishes\":{\"value\":21,\"opacity\":0.4},\"ageing\":{\"value\":7,\"opacity\":0.99},\"complexion\":{\"value\":5,\"opacity\":0.81},\"sunDamage\":{\"value\":8,\"opacity\":0.71},\"molesFreckles\":{\"value\":14,\"opacity\":0.81}}}";
+        public const string FaceDefaultJSON = "{\"shape\":{\"first\":0,\"second\":0,\"mix\":0},\"skin\":{\"first\":0,\"second\":0,\"mix\":0},\"nose\":{\"width\":0,\"height\":0,\"length\":0,\"bridge\":0,\"tip\":0,\"bridgeShift\":0},\"brow\":{\"height\":0,\"width\":0},\"cheeks\":{\"height\":0.58,\"width\":0,\"cheekswidth\":0},\"jaw\":{\"height\":0,\"width\":0},\"skinColor\":\"0\",\"eye\":{\"size\":0,\"color\":0},\"lips\":0,\"chin\":{\"length\":0,\"position\":0,\"width\":0,\"shape\":-0.3},\"neck\":{\"width\":0},\"facialDetails\":{\"blemishes\":{\"value\":0,\"opacity\":1},\"ageing\":{\"value\":0,\"opacity\":1},\"complexion\":{\"value\":0,\"opacity\":1},\"sunDamage\":{\"value\":0,\"opacity\":1},\"molesFreckles\":{\"value\":0,\"opacity\":1}}}";
 
-        public const string HairDefaultJSON = "{\"facialHair\":{\"value\":14,\"color\":0},\"hair\":{\"value\":12,\"color\":0,\"secondColor\":0},\"eyebrows\":{\"value\":24,\"color\":4},\"bodyHair\":{\"value\":5,\"color\":0},\"hairTattoo\":12}";
+        public const string HairDefaultJSON = "{\"facialHair\":{\"value\":0,\"color\":0},\"hair\":{\"value\":0,\"color\":0,\"secondColor\":0},\"eyebrows\":{\"value\":0,\"color\":0},\"bodyHair\":{\"value\":0,\"color\":0},\"hairTattoo\":0}";
 
         public static Dictionary<Player, Character> PlayerCharacterPair = new Dictionary<Player, Character>();
         public static List<Character> loggedCharacters = new List<Character>();
