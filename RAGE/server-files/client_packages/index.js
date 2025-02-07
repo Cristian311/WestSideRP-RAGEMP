@@ -1,28 +1,28 @@
-require('./animator.js');
-require('./camera.js');
-require('./editor_camera.js');
-require("./street/index.js");
+require('./dist/animator.js');
+require('./dist/authHandle.js');
+require('./dist/chat.js');
+require('./dist/shopHandle.js');
 
-//enter vehicle passenger with G
-mp.events.add('render', () =>
-    {
-        const controls = mp.game.controls;
-        
-        controls.enableControlAction(0, 23, true);
-        controls.disableControlAction(0, 58, true);
-        
-        if(controls.isDisabledControlJustPressed(0, 58))
-        {
-            let position = mp.players.local.position;		
-            let vehHandle = mp.game.vehicle.getClosestVehicle(position.x, position.y, position.z, 5, 0, 70);
-            
-            let vehicle = mp.vehicles.atHandle(vehHandle);
-            
-            if(vehicle
-                && vehicle.isAnySeatEmpty()
-                && vehicle.getSpeed() < 5)
-            {
-                mp.players.local.taskEnterVehicle(vehicle.handle, 5000, 0, 2, 1, 0);
-            }
-        }
-    });
+require('./dist/PLD/index.js');
+
+require('./dist/player/blip.js');
+require('./dist/player/chatlog.js');
+require('./dist/player/discord.js');
+require('./dist/player/falldetection.js');
+require('./dist/player/freeze.js');
+require('./dist/player/nametags.js');
+
+require('./dist/character/clothesHandler.js');
+require('./dist/character/createCharHandler.js');
+require('./dist/character/customizeHandler.js');
+require('./dist/character/attributes.js');
+require('./dist/character/characterScreenHandler.js');
+require('./dist/character/examine.js');
+require('./dist/character/hairHandler.js');
+require('./dist/character/inventoryHandler.js');
+require('./dist/character/tattooHandler.js');
+
+require('./dist/camera/camera.js');
+require('./dist/camera/editor_camera.js');
+
+require('./dist/toggles/togambience.js');

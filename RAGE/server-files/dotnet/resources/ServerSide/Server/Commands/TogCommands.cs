@@ -8,20 +8,50 @@ namespace ServerSide.Server.Commands
         [Command("tognametag")]
         private void TogNametagCommand(Player player)
         {
-            player.TriggerEvent("SERVER:CLIENT:TogNametag");
-            bool tog = player.GetData<bool>("tognametag");
-            if (tog == null)
-                tog = true;
-            if (tog == false)
+            if (!player.HasData("tognametag"))
             {
-                player.SetData<bool>("tognametag", true);
-                player.SendChatMessage($"{Colors.INFO}At activat optiunea sa-ti vezi nametagul.");
+                player.SetData("tognametag", true);
+            }
+
+            bool tog = player.GetData<bool>("tognametag");
+
+            tog = !tog;
+            player.SetData("tognametag", tog);
+
+            if (tog)
+            {
+                player.SendChatMessage($"Ai {Colors.GREEN}activat {Colors.WHITE}optiunea sa-ti vezi nametagul.");
             }
             else
             {
-                player.SetData<bool>("tognametag", false);
-                player.SendChatMessage($"{Colors.INFO}At dezactivat optiunea sa-ti vezi nametagul.");
+                player.SendChatMessage($"Ai {Colors.RED}dezactivat {Colors.WHITE}optiunea sa-ti vezi nametagul.");
             }
+
+            player.TriggerEvent("SERVER:CLIENT:TogNametag", tog);
+        }
+
+        [Command("togambience")]
+        private void cmd_togambience(Player player)
+        {
+            if (!player.HasData("togambience"))
+            {
+                player.SetData("togambience", true);
+            }
+
+            bool tog = player.GetData<bool>("togambience");
+
+            tog = !tog;
+            player.SetData("togambience", tog);
+
+            if (tog)
+            {
+                player.SendChatMessage($"Ai {Colors.GREEN}activat {Colors.WHITE}optiunea sa auzi sunetele ambientale.");
+            }
+            else
+            {
+                player.SendChatMessage($"Ai {Colors.RED}dezactivat {Colors.WHITE}optiunea sa auzi sunetele ambientale.");
+            }
+            player.TriggerEvent("SERVER:CLIENT:TogAmbience", tog);
         }
     }
 }

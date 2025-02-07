@@ -34,6 +34,11 @@ namespace ServerSide.Characters
                 return PlayerCharacterPair[player];
             return null;
         }
+        public static void RemoveCharacter(Character character)
+        {
+            CharacterManager.loggedCharacters.Remove(character);
+            CharacterManager.PlayerCharacterPair.Remove(character.player);
+        }
         public static List<Character> getCharByName(string name)
         {
             List<Character> chars = new List<Character>();
@@ -133,7 +138,8 @@ namespace ServerSide.Characters
             player.Position = new Vector3(253.85786, 287.4269, 105.533104);
             player.Name = character.Name;
             player.Dimension = 0;
-            CustomizeCommands.fixskinCommand(player);
+            CustomizeCommands.cmd_fixskin(player);
+
             player.TriggerEvent("SERVER:CLIENT:ShowLogo", $"{Resource.ServerName} {Resource.Version}");//show hud
             player.TriggerEvent("SERVER:CLIENT:UnfreezePlayer");
             player.TriggerEvent("SERVER:CLIENT:CameraOff");

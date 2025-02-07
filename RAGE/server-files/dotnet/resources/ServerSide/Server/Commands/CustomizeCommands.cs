@@ -3,6 +3,7 @@ using ServerSide.Accounts;
 using ServerSide.Characters;
 using ServerSide.Characters.Customization.Clothes;
 using ServerSide.Characters.Customization.Customize;
+using ServerSide.Characters.Customization.Hair;
 using ServerSide.Server.Commands.CommandAttributes;
 using ServerSide.Server.DB.CharacterDB;
 
@@ -13,14 +14,14 @@ namespace ServerSide.Server.Commands
     internal class CustomizeCommands : Script
     {
         [Command("hair")]
-        private void hairCommand(Player player)
+        private void cmd_hair(Player player)
         {
             var character = CharacterManager.GetCharacter(player);
             var HairJSON = NAPI.Util.ToJson(character.Hair);
             player.TriggerEvent("SERVER:CLIENT:ShowHairScreen", HairJSON);
         }
         [Command("facefeatures")]
-        private void facefeaturesCommand(Player player)
+        private void cmd_facefeatures(Player player)
         {
             var character = CharacterManager.GetCharacter(player);
             var FaceJSON = NAPI.Util.ToJson(character.Face);
@@ -32,14 +33,20 @@ namespace ServerSide.Server.Commands
 
         [RequiresAdmin]
         [Command("fixskin")]
-        public static void fixskinCommand(Player player)
+        public static void cmd_fixskin(Player player)
         {
-            var character = CharacterManager.GetCharacter(player);
-            CharacterCustomizeManager.UpdatePlayerFaceFeatures(player, character.Face);
+            var face = CharacterManager.GetCharacter(player).Face;
+            CharacterCustomizeManager.UpdatePlayerFaceFeatures(player, face);
+        }
+        [Command("fixhair")]
+        public static void cmd_fixhair(Player player)
+        {
+            var hair = CharacterManager.GetCharacter(player).Hair;
+            HairManager.UpdateHair(player, hair);
         }
 
         [Command("changechar")]
-        private void changecharCommand(Player player)
+        private void cmd_changechar(Player player)
         {
             var account = AccountManager.GetAccount(player);
             var character = CharacterManager.PlayerCharacterPair[player];
@@ -49,14 +56,15 @@ namespace ServerSide.Server.Commands
             {
                 p.SendChatMessage($"{character.Name} si-a schimbat characterul.");
             }
-            CharacterManager.loggedCharacters.Remove(character);
+            CharacterManager.RemoveCharacter(character);
             CharacterManager.ShowChangeCharacterScreen(account);
+
             UpdateCharDataDBManager.UpdateCharacter(character);
 
         }
 
         [Command("clothes")]
-        private void ClothesCommand(Player player)
+        private void cmd_clothes(Player player)
         {
             var account = AccountManager.GetAccount(player);
             var character = CharacterManager.GetCharacter(player);
@@ -72,7 +80,7 @@ namespace ServerSide.Server.Commands
 
         }
         [Command("shirt")]
-        private void ShirtCommand(Player player, string toggle)
+        private void cmd_shirt(Player player, string toggle)
         {
             var character = CharacterManager.GetCharacter(player);
             if (toggle == "off")
@@ -90,7 +98,7 @@ namespace ServerSide.Server.Commands
             }
         }
         [Command("pants")]
-        private void PantsCommand(Player player, string toggle)
+        private void cmd_pants(Player player, string toggle)
         {
             var character = CharacterManager.GetCharacter(player);
             if (toggle == "off")
@@ -104,7 +112,7 @@ namespace ServerSide.Server.Commands
             }
         }
         [Command("shoes")]
-        private void ShoesCommand(Player player, string toggle)
+        private void cmd_shoes(Player player, string toggle)
         {
             var character = CharacterManager.GetCharacter(player);
             if (toggle == "off")
@@ -118,7 +126,7 @@ namespace ServerSide.Server.Commands
             }
         }
         [Command("cap")]
-        private void CapCommand(Player player, string toggle)
+        private void cmd_cap(Player player, string toggle)
         {
             var character = CharacterManager.GetCharacter(player);
             if (toggle == "off")

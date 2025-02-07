@@ -19,6 +19,7 @@ namespace ServerSide.Server.Vehicles
 
             if (closestVehicle != null)
             {
+                if (closestVehicle.GTAVehicle == null) return;
                 if (Vector3.Distance(character.player.Position, closestVehicle.GTAVehicle.Position) > 10)
                 {
                     player.SendChatMessage($"{Colors.RED}Nu ai nici o masina prin apropiere.");
