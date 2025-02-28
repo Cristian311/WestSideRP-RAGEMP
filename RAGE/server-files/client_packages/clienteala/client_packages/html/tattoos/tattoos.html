@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tattoo Selector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: transparent;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+        }
+    
+        .box {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+        }
+    
+        .box h1 {
+            color: orange;
+            margin-bottom: 20px;
+        }
+    
+        .slider-label {
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+    
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #555;
+            outline: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+    
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: orange;
+            cursor: pointer;
+        }
+    
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: orange;
+            cursor: pointer;
+        }
+    
+        .tattoo-section {
+            margin-top: 20px;
+        }
+    
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    
+        button {
+            background-color: orange;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+    
+        button:hover {
+            background-color: #ff8c00;
+        }
+    
+        .slider-value {
+            color: #fff;
+            font-weight: bold;
+        }
+    
+        .highlighted {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Tattoo Selector</h1>
+
+        <label class="slider-label" for="zone-slider">Zone:</label>
+        <input id="zone-slider" type="range" min="0" max="4" value="0">
+        <div class="slider-value" id="zone-name"></div>
+
+        <div class="tattoo-section">
+            <label class="slider-label" for="tattoo-slider">Tattoo:</label>
+            <input id="tattoo-slider" type="range" min="0" max="0" value="0">
+            <div class="slider-value" id="tattoo-name"></div>
+        </div>
+
+        <div class="buttons">
+            <button id="apply-button">Apply</button>
+            <button id="remove-button">Remove</button>
+            <button id="exit-button">Exit</button>
+        </div>
+    </div>
+
+    <script>
+        let tattooData = {};
+        const highlights = {};
+        let zones = [];
+        let currentZone = 0;
+        let currentTattoo = 0;
+        let previousTattoo = null; // Add this to track the previous tattoo
+
+        // Elements
+        const zoneSlider = document.getElementById('zone-slider');
+        const zoneName = document.getElementById('zone-name');
+        const tattooSlider = document.getElementById('tattoo-slider');
+        const tattooName = document.getElementById('tattoo-name');
+        const applyButton = document.getElementById('apply-button');
+        const removeButton = document.getElementById('remove-button');
+        const exitButton = document.getElementById('exit-button');
+        
+        function updateHighlights(jsonStr) {
+        try {
+            const tattooNames = JSON.parse(jsonStr); // Parse the list of tattoo names
+
+            // Clear all current highlights
+            for (const zone in highlights) {
+                highlights[zone] = new Array(tattooData[zone].length).fill(false);
+            }
+
+            // Highlight tattoos based on the provided list
+            for (const zone in tattooData) {
+                tattooData[zone].forEach((tattoo, index) => {
+                    if (tattooNames.includes(tattoo)) {
+                        highlights[zone][index] = true;
+                    }
+                });
+            }
+
+            // Update the display to reflect the new highlights
+            updateDisplays();
+            } catch (error) {
+                console.error('Error updating highlights:', error);
+            }
+        }
+        function getHighlightedTattoos() {
+        const highlightedTattoos = [];
+        
+        for (const zone in highlights) {
+            tattooData[zone].forEach((tattoo, index) => {
+                if (highlights[zone][index]) {
+                    highlightedTattoos.push(tattoo);
+                }
+            });
+        }
+        return highlightedTattoos;
+        }
+
+        function updateTattooData(jsonStr) {
+            try {
+                const data = JSON.parse(jsonStr);
+                tattooData = data;
+                zones = Object.keys(tattooData);
+                zoneSlider.max = zones.length - 1;
+                
+                zones.forEach(zone => {
+                    highlights[zone] = new Array(tattooData[zone].length).fill(false);
+                });
+                
+                currentZone = 0;
+                currentTattoo = 0;
+                previousTattoo = null; // Reset previous tattoo
+                zoneSlider.value = 0;
+                tattooSlider.value = 0;
+                
+                updateDisplays();
+            } catch (error) {
+                console.error('Error updating tattoo data:', error);
+            }
+        }
+
+        function updateDisplays() {
+            if (zones.length === 0) return;
+            
+            const zone = zones[currentZone];
+            const tattoos = tattooData[zone];
+            
+            if (!tattoos || tattoos.length === 0) return;
+            
+            const tattoo = tattoos[currentTattoo];
+            
+            zoneName.textContent = zone;
+            tattooSlider.max = tattoos.length - 1;
+            tattooName.textContent = tattoo;
+
+            if (highlights[zone][currentTattoo]) {
+                tattooName.classList.add('highlighted');
+            } else {
+                tattooName.classList.remove('highlighted');
+            }
+        }
+
+        zoneSlider.addEventListener('input', () => {
+            currentZone = parseInt(zoneSlider.value, 10);
+            currentTattoo = 0;
+            previousTattoo = null; // Reset previous tattoo when changing zones
+            tattooSlider.value = 0;
+            updateDisplays();
+        });
+
+        tattooSlider.addEventListener('input', () => {
+            const zone = zones[currentZone];
+            const tattoos = tattooData[zone];
+            const newTattoo = tattoos[parseInt(tattooSlider.value, 10)];
+            
+            if (typeof mp !== 'undefined') {
+                // If there was a previous tattoo, remove it
+                if (previousTattoo !== null) {
+                    if(highlights[zone][tattoos.indexOf(previousTattoo)] === false)
+                    mp.trigger("CEF:CLIENT:RemoveTattooClient", JSON.stringify(getHighlightedTattoos()));
+                }
+                // Apply the new tattoo
+                mp.trigger("CEF:CLIENT:ApplyTattooClient", newTattoo);
+            }
+            
+            // Update the current and previous tattoo values
+            previousTattoo = newTattoo;
+            currentTattoo = parseInt(tattooSlider.value, 10);
+            updateDisplays();
+        });
+
+        applyButton.addEventListener('click', () => {
+            const zone = zones[currentZone];
+            highlights[zone][currentTattoo] = true;
+            if (typeof mp !== 'undefined') {
+                mp.trigger("CEF:CLIENT:ApplyTattoo", tattooName.textContent);
+            }
+            previousTattoo = tattooName.textContent; // Update previous tattoo when applying
+            updateDisplays();
+        });
+
+        removeButton.addEventListener('click', () => {
+            const zone = zones[currentZone];
+            highlights[zone][currentTattoo] = false;
+            if (typeof mp !== 'undefined') {
+                mp.trigger("CEF:CLIENT:RemoveTattoo", tattooName.textContent);
+            }
+            previousTattoo = null; // Reset previous tattoo when removing
+            updateDisplays();
+        });
+
+        exitButton.addEventListener('click', () => {
+        const highlightedTattoos = getHighlightedTattoos(); // Get the list of highlighted tattoos
+        const currentZone = zones[parseInt(zoneSlider.value, 10)];
+        const currentTattoo = tattooData[currentZone][parseInt(tattooSlider.value, 10)];
+
+        if (!highlightedTattoos.includes(currentTattoo)) {
+            mp.trigger("CEF:CLIENT:RemoveTattoo", currentTattoo); // Remove the current tattoo if not highlighted
+        }
+        
+        const highlightsStr = JSON.stringify(highlightedTattoos);
+        mp.trigger("CEF:CLIENT:StopTattooScreen", highlightsStr);
+        });
+
+        updateDisplays();
+    </script>
+
+</body>
+</html>

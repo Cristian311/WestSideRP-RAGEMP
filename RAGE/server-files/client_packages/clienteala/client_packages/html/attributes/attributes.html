@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Attributes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: transparent;
+            color: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            border: 2px solid #ffa500;
+            border-radius: 10px;
+            padding: 20px;
+            width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffa500;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: calc(100% - 20px);
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ffa500;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e69500;
+        }
+
+        .alert {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffa500;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .dark-mode {
+            background-color: transparent;
+            color: #ffa500;
+        }
+
+        .dark-mode .container {
+            background-color: #0e0d0dea;
+            border-color: #ffa500;
+        }
+
+        .dark-mode input, .dark-mode textarea {
+            background-color: #333;
+            color: #ffa500;
+            border-color: #ffa500;
+        }
+
+        .dark-mode button {
+            background-color: #ffa500;
+            color: black;
+        }
+
+        .dark-mode .alert {
+            background-color: #333;
+            color: #ffa500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="alert" class="alert">Please fill out both the Age and Character Description fields. The description must be at least 20 characters long.</div>
+        <h1>Character Attributes</h1>
+        <form id="attributes-form">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" placeholder="Enter age" required>
+
+            <label for="description">Character Description</label>
+            <textarea id="description" name="description" rows="3" placeholder="Enter character description (at least 20 characters)" required></textarea>
+
+            <label for="outfit">Outfit Description (optional)</label>
+            <textarea id="outfit" name="outfit" rows="3" placeholder="Enter outfit description"></textarea>
+
+            <label for="tattoos">Tattoos (optional)</label>
+            <textarea id="tattoos" name="tattoos" rows="3" placeholder="Enter tattoos description"></textarea>
+
+            <button type="button" id="edit-button">Edit</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        const editButton = document.getElementById('edit-button');
+        const alertBox = document.getElementById('alert');
+
+        editButton.addEventListener('click', () => {
+            const age = document.getElementById('age').value;
+            const description = document.getElementById('description').value;
+            const outfit = document.getElementById('outfit').value;
+            const tattoos = document.getElementById('tattoos').value;
+
+            if (!age || !description || description.length < 20) {
+                alertBox.style.display = 'block';
+                setTimeout(() => {
+                    alertBox.style.display = 'none';
+                }, 3000);
+                return;
+            }
+
+            const characterData = {
+                age: age,
+                description: description,
+                outfit: outfit,
+                tattoos: tattoos
+            };
+
+            mp.trigger("CEF:CLIENT:AttributesUpdate", JSON.stringify(characterData));
+        });
+    </script>
+</body>
+</html>

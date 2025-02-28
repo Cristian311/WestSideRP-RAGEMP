@@ -70,20 +70,46 @@ function updatePlayerClothes(clothesData: ClothesData) {
         if (clothesData.Decals) player.setComponentVariation(10, clothesData.Decals.Drawable, clothesData.Decals.Texture, 0);
         if (clothesData.Shirts) player.setComponentVariation(11, clothesData.Shirts.Drawable, clothesData.Shirts.Texture, 0);
 
-        const clearOrSetProp = (slot: number, drawable: number, texture: number) => {
-            if (drawable === -1) {
-                player.clearProp(slot);
+        // Handle props with explicit checks for -1 values
+        if (clothesData.Helmets) {
+            if (clothesData.Helmets.Drawable === -1) {
+                player.clearProp(0);
             } else {
-                player.setPropIndex(slot, drawable, texture, true);
+                player.setPropIndex(0, clothesData.Helmets.Drawable, clothesData.Helmets.Texture, true);
             }
-        };
-
-        // Safely set props with null checks
-        if (clothesData.Helmets) clearOrSetProp(0, clothesData.Helmets.Drawable, clothesData.Helmets.Texture);
-        if (clothesData.Glasses) clearOrSetProp(1, clothesData.Glasses.Drawable, clothesData.Glasses.Texture);
-        if (clothesData.EarAccessories) clearOrSetProp(2, clothesData.EarAccessories.Drawable, clothesData.EarAccessories.Texture);
-        if (clothesData.Watches) clearOrSetProp(6, clothesData.Watches.Drawable, clothesData.Watches.Texture);
-        if (clothesData.Bracelets) clearOrSetProp(7, clothesData.Bracelets.Drawable, clothesData.Bracelets.Texture);
+        }
+        
+        if (clothesData.Glasses) {
+            if (clothesData.Glasses.Drawable === -1) {
+                player.clearProp(1);
+            } else {
+                player.setPropIndex(1, clothesData.Glasses.Drawable, clothesData.Glasses.Texture, true);
+            }
+        }
+        
+        if (clothesData.EarAccessories) {
+            if (clothesData.EarAccessories.Drawable === -1) {
+                player.clearProp(2);
+            } else {
+                player.setPropIndex(2, clothesData.EarAccessories.Drawable, clothesData.EarAccessories.Texture, true);
+            }
+        }
+        
+        if (clothesData.Watches) {
+            if (clothesData.Watches.Drawable === -1) {
+                player.clearProp(6);
+            } else {
+                player.setPropIndex(6, clothesData.Watches.Drawable, clothesData.Watches.Texture, true);
+            }
+        }
+        
+        if (clothesData.Bracelets) {
+            if (clothesData.Bracelets.Drawable === -1) {
+                player.clearProp(7);
+            } else {
+                player.setPropIndex(7, clothesData.Bracelets.Drawable, clothesData.Bracelets.Texture, true);
+            }
+        }
     } catch (error) {
         mp.console.logError("Error in updatePlayerClothes: " + error);
     }

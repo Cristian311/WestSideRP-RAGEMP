@@ -164,7 +164,7 @@ namespace ServerSide.Characters.Customization.Customize
             public float Size { get; set; }
 
             [JsonProperty("color")]
-            public byte Color { get; set; } // If it's a color code or name, keep it as string.
+            public byte Color { get; set; } 
         }
 
         public class NeckAttributes

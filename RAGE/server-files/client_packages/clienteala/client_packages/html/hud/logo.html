@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Bottom Center</title>
+    <style>
+        body,
+        html {
+            user-select: none;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: transparent;
+        }
+
+        img {
+            width: 75px;
+            height: auto;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .text {
+            color: orange;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            margin-top: 10px;
+            text-shadow: 2px 2px 4px black, -2px -2px 4px black, 2px -2px 4px black, -2px 2px 4px black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="text" class="text">West-Side Roleplay v0.6a</div>
+
+    <script>
+        function updateText(newText) {
+            document.getElementById("text").textContent = newText;
+        }
+        function toggleUI(toggle) {
+            const interfaceElement = document.getElementById('text');
+
+            if (toggle) {
+                // Show UI
+                interfaceElement.style.display = 'block';
+                interfaceElement.style.opacity = '1'; // Ensure opacity is set to 1 for visibility
+            } else {
+                // Fade out animation
+                interfaceElement.style.transition = 'opacity 0.3s'; // Smooth fade-out effect
+                interfaceElement.style.opacity = '0';
+
+                // Wait for the fade-out to complete before hiding
+                setTimeout(() => {
+                    interfaceElement.style.display = 'none';
+                }, 300); // Match the duration of the fade-out
+            }
+        }
+    </script>
+</body>
+
+</html>

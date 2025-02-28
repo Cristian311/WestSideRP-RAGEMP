@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory System</title>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="inventory-container">
+        <div class="inventory-header">
+            <h1>Inventory</h1>
+            <button class="close-button" onclick="closeInventory()">×</button>
+        </div>
+        <div class="inventory-grid" id="inventory-grid"></div>
+    </div>
+    <div class="floating-menu" id="floating-menu"></div>
+
+    <!-- Player selection modal -->
+    <div class="modal" id="player-modal">
+        <div class="modal-header">
+            <h3>Select a Player</h3>
+        </div>
+        <div class="modal-content">
+            <div class="player-list" id="player-list"></div>
+            <div class="slider-container" id="slider-container" style="display: none;">
+                <input type="range" id="amount-slider" min="1" max="1" value="1">
+                <span id="slider-value">1</span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button onclick="closePlayerModal()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        let inventoryItems = []; // Will be populated by updateInventory
+
+
+        function updateInventory(itemDataJson) {
+            try {
+                const itemData = JSON.parse(itemDataJson);
+                inventoryItems = itemData;
+                refreshInventoryDisplay();
+            } catch (e) {
+                console.error('Error parsing inventory data:', e);
+            }
+        }
+
+        function refreshInventoryDisplay() {
+            const grid = document.getElementById('inventory-grid');
+
+            // Clear all slots
+            Array.from(grid.children).forEach(slot => {
+                slot.className = 'inventory-slot empty';
+                slot.innerHTML = '';
+            });
+
+            // Add items to slots
+            inventoryItems.forEach((item, index) => {
+                if (index < grid.children.length) {
+                    const slot = grid.children[index];
+                    slot.className = 'inventory-slot';
+                    slot.innerHTML = `
+                <div class="item" data-item-id="${item.id}" data-item-type="${item.type}">
+                    <span class="item-id">#${item.id}</span>
+                    <span class="item-name">${item.name}</span>
+                    <span class="item-type">${item.type}</span>
+                    <span class="item-amount">${item.amount || 1}</span>
+                </div>
+            `;
+                }
+            });
+        }
+
+        function createInventory() {
+            const grid = document.getElementById('inventory-grid');
+            for (let i = 0; i < 25; i++) {
+                const slot = document.createElement('div');
+                slot.className = 'inventory-slot empty';
+                slot.dataset.slot = i;
+                grid.appendChild(slot);
+            }
+        }
+
+        function closeInventory() {
+            mp.trigger("CEF:CLIENT:CloseInventory");
+        }
+
+        function getPrimaryActionText(type) {
+            switch (type.toLowerCase()) {
+                case 'weapon': return 'Equip';
+                case 'food':
+                case 'consumable': return 'Use';
+                case 'equipment': return 'Wear';
+                case 'key': return 'Use';
+                default: return 'Use';
+            }
+        }
+
+        function showFloatingMenu(e, item) {
+            if (e.button !== 0) return;
+            e.preventDefault();
+            const menu = document.getElementById('floating-menu');
+            const itemId = item.dataset.itemId;
+            const itemType = item.dataset.itemType;
+
+
+            if (!nearbyPlayers || nearbyPlayers.length === 0) populateNearbyPlayers('[{"id":1,"name":"Player1"},{"id":2,"name":"Player2"}]');
+
+            menu.innerHTML = `
+                <button onclick="handleItemAction(${itemId}, '${getPrimaryActionText(itemType).toLowerCase()}')">${getPrimaryActionText(itemType)}</button>
+                <button onclick="showPlayerModal('give', ${itemId})">Give</button>
+                <button onclick="showPlayerModal('show', ${itemId})">Show</button>
+                <button onclick="dropItem(${itemId})">Drop</button>
+            `;
+
+            const rect = item.getBoundingClientRect();
+
+            let top = rect.bottom;
+            let left = rect.left;
+
+            if (top + menu.offsetHeight > window.innerHeight) {
+                top = rect.top - menu.offsetHeight;
+            }
+            if (left + menu.offsetWidth > window.innerWidth) {
+                left = rect.right - menu.offsetWidth;
+            }
+
+            menu.style.top = `${top}px`;
+            menu.style.left = `${left}px`;
+            menu.style.display = 'flex';
+
+            e.stopPropagation();
+        }
+
+        function closeFloatingMenu() {
+            document.getElementById('floating-menu').style.display = 'none';
+        }
+
+        function reorganizeInventory() {
+            const grid = document.getElementById('inventory-grid');
+            Array.from(grid.children).forEach(slot => {
+                slot.className = slot.querySelector('.item') ? 'inventory-slot' : 'inventory-slot empty';
+            });
+        }
+
+        function initializeSortable() {
+            const grid = document.getElementById('inventory-grid');
+
+            new Sortable(grid, {
+                animation: 150,
+                ghostClass: 'sortable-ghost',
+                chosenClass: 'sortable-chosen',
+                dragClass: 'sortable-drag',
+                handle: '.item',
+                filter: '.empty', // Prevent dragging empty slots
+                onStart: function (evt) {
+                    closeFloatingMenu();
+                },
+                onEnd: function (evt) {
+                    const fromSlot = evt.from.children[evt.oldIndex];
+                    const toSlot = evt.to.children[evt.newIndex];
+
+                    if (toSlot.querySelector('.item') && fromSlot !== toSlot) {
+                        // Revert if target slot is not empty
+                        evt.from.insertBefore(evt.item, evt.from.children[evt.oldIndex]);
+                    }
+
+                    reorganizeInventory();
+                    // Trigger an event to save the new order if needed
+                    const newOrder = Array.from(grid.querySelectorAll('.item')).map(item => item.dataset.itemId);
+                    mp.trigger("CEF:CLIENT:UpdateInventoryOrder", JSON.stringify(newOrder));
+                }
+            });
+        }
+
+        // Updated action handlers
+        function handleItemAction(id, action) {
+            mp.trigger(`CEF:CLIENT:${action.charAt(0).toUpperCase() + action.slice(1)}Item`, id);
+            closeFloatingMenu();
+            // The server will trigger the inventory update
+        }
+
+        function giveItem(id) {
+            mp.trigger("CEF:CLIENT:GiveItem", id);
+            closeFloatingMenu();
+            // The server will trigger the inventory update
+        }
+
+        function dropItem(id) {
+            mp.trigger("CEF:CLIENT:DropItem", id);
+            closeFloatingMenu();
+            // The server will trigger the inventory update
+        }
+
+        function giveItemToPlayer(itemId, playerId, amount) {
+            mp.trigger("CEF:CLIENT:GiveItemToPlayer", itemId, playerId, amount);
+            closePlayerModal();
+            // The server will trigger the inventory update
+        }
+
+        function showItem(id) {
+            console.log(`Showing item #${id}`);
+            mp.trigger("CEF:CLIENT:ShowItem", id);
+            closeFloatingMenu();
+            refreshInventoryDisplay();
+        }
+
+        function showItemToPlayer(itemId, playerId) {
+            console.log(`Showing item #${itemId} to player #${playerId}`);
+            mp.trigger("CEF:CLIENT:ShowItemToPlayer", itemId, playerId);
+        }
+        // Close floating menu when clicking outside
+        document.addEventListener('mousedown', e => {
+            const clickedItem = e.target.closest('.item');
+            const clickedMenu = e.target.closest('.floating-menu');
+
+            if (!clickedItem && !clickedMenu) {
+                closeFloatingMenu();
+            } else if (clickedItem && !clickedMenu && e.button === 0) {
+                showFloatingMenu(e, clickedItem);
+            }
+        });
+        let nearbyPlayers = []; // This will be populated by the client-side script
+
+        function populateNearbyPlayers(playersJson) {
+            try {
+                nearbyPlayers = JSON.parse(playersJson);
+            } catch (e) {
+                console.error('Error parsing nearby players:', e);
+                nearbyPlayers = [];
+            }
+        }
+
+        function showPlayerModal(action, itemId) {
+            const modal = document.getElementById('player-modal');
+            const playerList = document.getElementById('player-list');
+            let selectedPlayer = null;
+
+            // Clear previous player list
+            playerList.innerHTML = '';
+
+            // Populate player list with radio button selection
+            nearbyPlayers.forEach(player => {
+                const playerRow = document.createElement('div');
+                playerRow.className = 'player-row';
+
+                const radioBtn = document.createElement('input');
+                radioBtn.type = 'radio';
+                radioBtn.name = 'player-selection';
+                radioBtn.id = `player-${player.id}`;
+                radioBtn.value = player.id;
+                radioBtn.onchange = () => {
+                    selectedPlayer = player;
+                };
+
+                const label = document.createElement('label');
+                label.htmlFor = `player-${player.id}`;
+                label.textContent = player.name;
+
+                playerRow.appendChild(radioBtn);
+                playerRow.appendChild(label);
+                playerList.appendChild(playerRow);
+            });
+
+            // Create modal footer with buttons
+            const modalFooter = document.querySelector('.modal-footer');
+            modalFooter.innerHTML = '';
+
+            const actionBtn = document.createElement('button');
+            actionBtn.textContent = action === 'give' ? 'Give' : 'Show';
+            actionBtn.onclick = () => {
+                if (selectedPlayer) {
+                    const amount = action === 'give' ? parseInt(document.getElementById('amount-slider').value, 10) : 1;
+                    mp.trigger("CEF:CLIENT:PlayerSelected", JSON.stringify({
+                        action: action,
+                        itemId: itemId,
+                        playerId: selectedPlayer.id,
+                        playerName: selectedPlayer.name,
+                        amount: amount
+                    }));
+                    closePlayerModal();
+                }
+            };
+
+            const cancelBtn = document.createElement('button');
+            cancelBtn.textContent = 'Cancel';
+            cancelBtn.onclick = closePlayerModal;
+
+            // Append buttons in the desired order
+            modalFooter.appendChild(actionBtn);
+            modalFooter.appendChild(cancelBtn);
+
+            // Show slider only for "give" action
+            const sliderContainer = document.getElementById('slider-container');
+            const amountSlider = document.getElementById('amount-slider');
+            const sliderValue = document.getElementById('slider-value');
+
+            if (action === 'give') {
+                sliderContainer.style.display = 'flex';
+                amountSlider.max = getItemAmount(itemId);
+                amountSlider.value = amountSlider.max;
+                sliderValue.textContent = amountSlider.value;
+                amountSlider.oninput = () => {
+                    sliderValue.textContent = amountSlider.value;
+                };
+            } else {
+                sliderContainer.style.display = 'none';
+            }
+
+            modal.style.display = 'block';
+        }
+
+        function closePlayerModal() {
+            const modal = document.getElementById('player-modal');
+            modal.style.display = 'none';
+        }
+
+        function getItemAmount(itemId) {
+            const item = inventoryItems.find(item => item.id === parseInt(itemId, 10));
+            return item ? item.amount : 1;
+        }
+
+
+        // Example of populating nearby players from client-side:
+        populateNearbyPlayers('[{"id":1,"name":"Player1"},{"id":2,"name":"Player2"}]');
+        // Initialize the inventory
+        createInventory();
+        initializeSortable();
+
+        // Example of how to update inventory with new data:
+        // updateInventory('[{"id": 1, "name": "Desert Eagle", "type": "weapon", "amount": 1}, {"id": 2, "name": "Medkit", "type": "consumable", "amount": 5}]');
+    </script>
+</body>
+
+</html>

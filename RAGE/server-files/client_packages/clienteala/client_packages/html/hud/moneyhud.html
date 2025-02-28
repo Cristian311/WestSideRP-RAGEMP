@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Display</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        #money-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-align: right;
+        }
+
+        .money {
+            color: lightgreen;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        .money.bank {
+            color: #ccffcc;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="money-container">
+        <div id="bank-money" class="money bank">$0</div>
+        <div id="normal-money" class="money">$0</div>
+    </div>
+
+    <script>
+        function formatCurrency(value) {
+            return value.toLocaleString('en-US') + '$';
+        }
+
+        function updateBankMoney(amount) {
+            const bankMoneyElement = document.getElementById('bank-money');
+            bankMoneyElement.textContent = formatCurrency(amount);
+
+            adjustPosition(bankMoneyElement);
+        }
+
+        function updateNormalMoney(amount) {
+            const normalMoneyElement = document.getElementById('normal-money');
+            normalMoneyElement.textContent = formatCurrency(amount);
+
+            adjustPosition(normalMoneyElement);
+        }
+
+        function adjustPosition(element) {
+            if (element.getBoundingClientRect().right > window.innerWidth) {
+                element.style.transform = `translateX(-${element.getBoundingClientRect().right - window.innerWidth}px)`;
+            } else {
+                element.style.transform = '';
+            }
+        }
+
+        function toggleUI(toggle) {
+			const interfaceElement = document.getElementById('money-container');
+
+			if (toggle) {
+				// Show UI
+				interfaceElement.style.display = 'block';
+				interfaceElement.style.opacity = '1'; // Ensure opacity is set to 1 for visibility
+			} else {
+				// Fade out animation
+				interfaceElement.style.transition = 'opacity 0.3s'; // Smooth fade-out effect
+				interfaceElement.style.opacity = '0';
+
+				// Wait for the fade-out to complete before hiding
+				setTimeout(() => {
+					interfaceElement.style.display = 'none';
+				}, 300); // Match the duration of the fade-out
+			}
+		}
+        // Example usage
+        updateBankMoney(0);
+        updateNormalMoney(0);
+    </script>
+</body>
+</html>

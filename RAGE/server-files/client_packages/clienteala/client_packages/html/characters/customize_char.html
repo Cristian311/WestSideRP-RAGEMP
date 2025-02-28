@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Customization</title>
+    <style>
+        :root {
+            --primary: #ff6b00;
+            --primary-dark: #cc5500;
+            --bg-dark: #1a1a1a;
+            --bg-darker: #0f0f0f;
+            --text: #ffffff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: transparent;
+            color: var(--text);
+        }
+        
+        .container {
+            background-color: var(--bg-dark);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            padding: 24px;
+            width: 400px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .page {
+            max-height: calc(80vh - 120px);
+            overflow-y: auto;
+            padding-right: 10px;
+            margin-bottom: 20px;
+        }
+        
+        /* Custom scrollbar styles */
+        .page::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .page::-webkit-scrollbar-track {
+            background: var(--bg-darker);
+            border-radius: 4px;
+        }
+        
+        .page::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        
+        .page::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 24px;
+            font-size: 24px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+            position: sticky;
+            top: 0;
+            background: var(--bg-dark);
+            z-index: 1;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin: 20px 0 10px 0;
+        }
+        
+        .divider {
+            height: 2px;
+            background-color: var(--primary-dark);
+            margin: 5px 0 15px 0;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .slider-container {
+            background-color: var(--bg-darker);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .slider-label span:last-child {
+            color: var(--primary);
+        }
+        
+        .slider-value {
+            color: var(--primary);
+            font-size: 0.9em;
+        }
+        
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--bg-dark);
+            outline: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: var(--primary-dark);
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 20px;
+            margin-top: auto;
+            background: var(--bg-dark);
+        }
+        
+        .button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-weight: bold;
+        }
+        
+        .button:hover {
+            background-color: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="page1" class="page">
+            <h2>Fața caracterului</h2>
+            
+            <div class="section-title">Formei feței</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Părinte 1</span>
+                    <span class="slider-value" id="shapeFirstText">Benjamin</span>
+                </div>
+                <input type="range" id="shapeFirst" min="0" max="44" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Părinte 2</span>
+                    <span class="slider-value" id="shapeSecondText">Benjamin</span>
+                </div>
+                <input type="range" id="shapeSecond" min="0" max="44" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Mix</span>
+                    <span id="shapeMixValue">0.50</span>
+                </div>
+                <input type="range" id="shapeMix" min="0" max="1" step="0.01" value="0.5" oninput="updateCharAttributes()">
+            </div>
+
+            <div class="section-title">Culoarea pielii</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Părinte 1</span>
+                    <span class="slider-value" id="skinFirstText">Benjamin</span>
+                </div>
+                <input type="range" id="skinFirst" min="0" max="44" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Părinte 2</span>
+                    <span class="slider-value" id="skinSecondText">Benjamin</span>
+                </div>
+                <input type="range" id="skinSecond" min="0" max="44" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Mix</span>
+                    <span id="skinMixValue">0.50</span>
+                </div>
+                <input type="range" id="skinMix" min="0" max="1" step="0.01" value="0.5" oninput="updateCharAttributes()">
+            </div>
+        </div>
+
+        <div id="page2" class="page">
+            <h2>Formei feței</h2>
+            <div class="section-title">Customizarea nasului</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Lățimea nasului</span>
+                    <span id="noseWidthValue">0.00</span>
+                </div>
+                <input type="range" id="noseWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Înălțimea nasului</span>
+                    <span id="noseHeightValue">0.00</span>
+                </div>
+                <input type="range" id="noseHeight" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Lungimea nasului</span>
+                    <span id="noseLengthValue">0.00</span>
+                </div>
+                <input type="range" id="noseLength" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Podul nasului</span>
+                    <span id="noseBridgeValue">0.00</span>
+                </div>
+                <input type="range" id="noseBridge" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Vârful nasului</span>
+                    <span id="noseTipValue">0.00</span>
+                </div>
+                <input type="range" id="noseTip" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Nas rupt</span>
+                    <span id="noseBridgeShiftValue">0.00</span>
+                </div>
+                <input type="range" id="noseBridgeShift" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+        </div>
+
+        <div id="page3" class="page">
+            <h2>Formei feței</h2>
+            <div class="section-title">Obraji</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Înălțimea obrajilor</span>
+                    <span id="cheeksHeightValue">0.00</span>
+                </div>
+                <input type="range" id="cheeksHeight" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Lățimea obrajilor</span>
+                    <span id="cheeksWidthValue">0.00</span>
+                </div>
+                <input type="range" id="cheeksWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Adâncimea obrajilor</span>
+                    <span id="cheeksCheeksWidthValue">0.00</span>
+                </div>
+                <input type="range" id="cheeksCheeksWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            
+        </div>
+
+        <div id="page4" class="page">
+            <h2>Formei feței</h2>
+            <div class="section-title">Bărbie și maxilar</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Lățimea maxilarului</span>
+                    <span id="jawWidthValue">0.00</span>
+                </div>
+                <input type="range" id="jawWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Înălțimea maxilarului</span>
+                    <span id="jawHeightValue">0.00</span>
+                </div>
+                <input type="range" id="jawHeight" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Lungimea bărbiei</span>
+                    <span id="chinLengthValue">0.00</span>
+                </div>
+                <input type="range" id="chinLength" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Poziția bărbiei</span>
+                    <span id="chinPositionValue">0.00</span>
+                </div>
+                <input type="range" id="chinPosition" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Lățimea bărbiei</span>
+                    <span id="chinWidthValue">0.00</span>
+                </div>
+                <input type="range" id="chinWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Forma bărbiei</span>
+                    <span id="chinShapeValue">0.00</span>
+                </div>
+                <input type="range" id="chinShape" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+        </div>
+
+        <div id="page5" class="page">
+            <div class="section-title">Ochi și frunte</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Înălțimea frunții</span>
+                    <span id="browHeightValue">0.00</span>
+                </div>
+                <input type="range" id="browHeight" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Lățimea frunții</span>
+                    <span id="browWidthValue">0.00</span>
+                </div>
+                <input type="range" id="browWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Mărimea ochilor</span>
+                    <span id="eyeSizeValue">0.00</span>
+                </div>
+                <input type="range" id="eyeSize" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Culoarea ochilor</span>
+                    <span id="eyeColorValue">0</span>
+                </div>
+                <input type="range" id="eyeColor" min="0" max="29" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+            
+            <h2>Ajustări finale</h2>
+            <div class="section-title">Culori și detalii</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Buze</span>
+                    <span id="lipsValue">0.00
+                    </span>
+                </div>
+                <input type="range" id="lips" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Lățimea gâtului</span>
+                    <span id="neckWidthValue">0.00</span>
+                </div>
+                <input type="range" id="neckWidth" min="-0.99" max="0.99" step="0.01" value="0" oninput="updateCharAttributes()">
+            </div>
+        </div>
+        <div id="page6" class="page">
+            <h2></h2>
+            
+            <!-- Blemishes with Opacity -->
+            <div class="section-title">Pete</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Type</span><span id="blemishesValue">0</span>
+                </div>
+                <input type="range" id="blemishes" min="0" max="23" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Opacity</span><span id="blemishesOpacityValue">0.00</span>
+                </div>
+                <input type="range" id="blemishesOpacity" min="0" max="1" step="0.01" value="1" oninput="updateCharAttributes()">
+            </div>
+    
+            <!-- Ageing with Opacity -->
+            <div class="section-title">Riduri</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Type</span><span id="ageingValue">0</span>
+                </div>
+                <input type="range" id="ageing" min="0" max="14" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Opacity</span><span id="ageingOpacityValue">0.00</span>
+                </div>
+                <input type="range" id="ageingOpacity" min="0" max="1" step="0.01" value="1" oninput="updateCharAttributes()">
+            </div>
+    
+            <!-- Complexion with Opacity -->
+            <div class="section-title">Complexie</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Type</span><span id="complexionValue">0</span>
+                </div>
+                <input type="range" id="complexion" min="0" max="11" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Opacity</span><span id="complexionOpacityValue">0.00</span>
+                </div>
+                <input type="range" id="complexionOpacity" min="0" max="1" step="0.01" value="1" oninput="updateCharAttributes()">
+            </div>
+    
+            <!-- Sun Damage with Opacity -->
+            <div class="section-title">Daune solare</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Type</span><span id="sunDamageValue">0</span>
+                </div>
+                <input type="range" id="sunDamage" min="0" max="10" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Opacity</span><span id="sunDamageOpacityValue">0.00</span>
+                </div>
+                <input type="range" id="sunDamageOpacity" min="0" max="1" step="0.01" value="1" oninput="updateCharAttributes()">
+            </div>
+    
+            <!-- Moles/Freckles with Opacity -->
+            <div class="section-title">Alunițe si pistrui</div>
+            <div class="divider"></div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Type</span><span id="molesFrecklesValue">0</span>
+                </div>
+                <input type="range" id="molesFreckles" min="0" max="17" step="1" value="0" oninput="updateCharAttributes()">
+            </div>
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Opacity</span><span id="molesFrecklesOpacityValue">0.00</span>
+                </div>
+                <input type="range" id="molesFrecklesOpacity" min="0" max="1" step="0.01" value="1" oninput="updateCharAttributes()">
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button id="prevButton" class="button" onclick="prevPage()">Înapoi</button>
+            <button id="nextButton" class="button" onclick="nextPage()">Următorul</button>
+            <button id="createButton" class="button" style="display: none;" onclick="createCharacter()">Crează</button>
+        </div>
+    </div>
+
+
+<script>
+const characterNames = [
+    "Benjamin", "Daniel", "Joshua", "Noah", "Andrew", "Joan", "Alex", "Isaac", "Evan", "Ethan",
+    "Vincent", "Angel", "Diego", "Adrian", "Gabriel", "Michael", "Santiago", "Kevin", "Louis", "Samuel",
+    "Anthony", "John", "Niko", "Claude", "Hannah", "Audrey", "Jasmine", "Giselle", "Amelia",
+    "Isabella", "Zoe", "Ava", "Camilla", "Violet", "Sophia", "Eveline", "Nicole", "Ashley", "Grace",
+    "Brianna", "Natalie", "Olivia", "Elizabeth", "Charlotte", "Emma", "Misty"
+];
+ 
+let currentPage = 0;
+const pages = document.querySelectorAll('.page');
+const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton');
+const createButton = document.getElementById('createButton');
+
+function getCharacterNameFromValue(value) {
+    return characterNames[Math.min(Math.floor(value), characterNames.length - 1)];
+}
+
+function showPage(pageIndex) {
+    pages.forEach((page, index) => {
+        page.style.display = index === pageIndex ? 'block' : 'none';
+    });
+    updateNavigation();
+}
+
+function updateNavigation() {
+    prevButton.style.display = currentPage === 0 ? 'none' : 'inline-block';
+    nextButton.style.display = currentPage === pages.length - 1 ? 'none' : 'inline-block';
+    createButton.style.display = currentPage === pages.length - 1 ? 'inline-block' : 'none';
+}
+
+function prevPage() {
+    if (currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
+    }
+}
+
+function nextPage() {
+    if (currentPage < pages.length - 1) {
+        currentPage++;
+        showPage(currentPage);
+    }
+}
+
+function updateCharAttributes() {
+    // Update character name displays
+    document.getElementById('shapeFirstText').textContent = getCharacterNameFromValue(document.getElementById('shapeFirst').value);
+    document.getElementById('shapeSecondText').textContent = getCharacterNameFromValue(document.getElementById('shapeSecond').value);
+    document.getElementById('skinFirstText').textContent = getCharacterNameFromValue(document.getElementById('skinFirst').value);
+    document.getElementById('skinSecondText').textContent = getCharacterNameFromValue(document.getElementById('skinSecond').value);
+
+    // Update mix values
+    document.getElementById('shapeMixValue').textContent = parseFloat(document.getElementById('shapeMix').value).toFixed(2);
+    document.getElementById('skinMixValue').textContent = parseFloat(document.getElementById('skinMix').value).toFixed(2);
+
+    // Update facial details values and their opacities
+    const facialFeatures = ['blemishes', 'ageing', 'complexion', 'sunDamage', 'molesFreckles'];
+    
+    facialFeatures.forEach(feature => {
+        // Update the feature value
+        const valueElement = document.getElementById(`${feature}Value`);
+        if (valueElement) {
+            valueElement.textContent = document.getElementById(feature).value;
+        }
+        
+        // Update the opacity value
+        const opacityElement = document.getElementById(`${feature}OpacityValue`);
+        if (opacityElement) {
+            opacityElement.textContent = parseFloat(document.getElementById(`${feature}Opacity`).value).toFixed(2);
+        }
+    });
+
+    // Get all form values
+    const characterData = {
+        shape: {
+            first: document.getElementById('shapeFirst').value,
+            second: document.getElementById('shapeSecond').value,
+            mix: document.getElementById('shapeMix').value,
+        },
+        skin: {
+            first: document.getElementById('skinFirst').value,
+            second: document.getElementById('skinSecond').value,
+            mix: document.getElementById('skinMix').value,
+        },
+        nose: {
+            width: document.getElementById('noseWidth').value,
+            height: document.getElementById('noseHeight').value,
+            length: document.getElementById('noseLength').value,
+            bridge: document.getElementById('noseBridge').value,
+            tip: document.getElementById('noseTip').value,
+            bridgeShift: document.getElementById('noseBridgeShift').value,
+        },
+        brow: {
+            height: document.getElementById('browHeight').value,
+            width: document.getElementById('browWidth').value,
+        },
+        cheeks: {
+            height: document.getElementById('cheeksHeight').value,
+            width: document.getElementById('cheeksWidth').value,
+            cheeksWidth: document.getElementById('cheeksCheeksWidth').value,
+        },
+        jaw: {
+            height: document.getElementById('jawHeight').value,
+            width: document.getElementById('jawWidth').value,
+        },
+        chin: {
+            length: document.getElementById('chinLength').value,
+            position: document.getElementById('chinPosition').value,
+            width: document.getElementById('chinWidth').value,
+            shape: document.getElementById('chinShape').value,
+        },
+        neck: {
+            width: document.getElementById('neckWidth').value,
+        },
+        eye: {
+            size: document.getElementById('eyeSize').value,
+            color: document.getElementById('eyeColor').value,
+        },
+        skinColor: 0,
+        lips: document.getElementById('lips').value,
+        facialDetails: {
+            blemishes: {
+                value: parseInt(document.getElementById('blemishes').value),
+                opacity: parseFloat(document.getElementById('blemishesOpacity').value)
+            },
+            ageing: {
+                value: parseInt(document.getElementById('ageing').value),
+                opacity: parseFloat(document.getElementById('ageingOpacity').value)
+            },
+            complexion: {
+                value: parseInt(document.getElementById('complexion').value),
+                opacity: parseFloat(document.getElementById('complexionOpacity').value)
+            },
+            sunDamage: {
+                value: parseInt(document.getElementById('sunDamage').value),
+                opacity: parseFloat(document.getElementById('sunDamageOpacity').value)
+            },
+            molesFreckles: {
+                value: parseInt(document.getElementById('molesFreckles').value),
+                opacity: parseFloat(document.getElementById('molesFrecklesOpacity').value)
+            }
+        }
+    };
+
+    // Update all numeric value displays
+    Object.entries(characterData).forEach(([key, value]) => {
+        if (typeof value === 'object') {
+            Object.entries(value).forEach(([subKey, subValue]) => {
+                if (typeof subValue === 'object') {
+                    // Handle nested facial details
+                    const valueElement = document.getElementById(`${subKey}Value`);
+                    const opacityElement = document.getElementById(`${subKey}OpacityValue`);
+                    if (valueElement) {
+                        valueElement.textContent = subValue.value;
+                    }
+                    if (opacityElement) {
+                        opacityElement.textContent = subValue.opacity.toFixed(2);
+                    }
+                } else {
+                    const valueElement = document.getElementById(`${key}${subKey.charAt(0).toUpperCase()}${subKey.slice(1)}Value`);
+                    if (valueElement) {
+                        valueElement.textContent = parseFloat(subValue).toFixed(2);
+                    }
+                }
+            });
+        } else {
+            const valueElement = document.getElementById(`${key}Value`);
+            if (valueElement) {
+                valueElement.textContent = parseFloat(value).toFixed(2);
+            }
+        }
+    });
+
+    // Send the data to the game
+    const jsonString = JSON.stringify(characterData);
+    if (typeof mp !== 'undefined') {
+        mp.trigger("CEF:CLIENT:UpdateCharacterClient", jsonString);
+    }
+}
+
+function createCharacter() {
+    const characterData = {
+        shape: {
+            first: document.getElementById('shapeFirst').value,
+            second: document.getElementById('shapeSecond').value,
+            mix: document.getElementById('shapeMix').value,
+        },
+        skin: {
+            first: document.getElementById('skinFirst').value,
+            second: document.getElementById('skinSecond').value,
+            mix: document.getElementById('skinMix').value,
+        },
+        nose: {
+            width: document.getElementById('noseWidth').value,
+            height: document.getElementById('noseHeight').value,
+            length: document.getElementById('noseLength').value,
+            bridge: document.getElementById('noseBridge').value,
+            tip: document.getElementById('noseTip').value,
+            bridgeShift: document.getElementById('noseBridgeShift').value,
+        },
+        brow: {
+            height: document.getElementById('browHeight').value,
+            width: document.getElementById('browWidth').value,
+        },
+        cheeks: {
+            height: document.getElementById('cheeksHeight').value,
+            width: document.getElementById('cheeksWidth').value,
+            cheeksWidth: document.getElementById('cheeksCheeksWidth').value,
+        },
+        jaw: {
+            height: document.getElementById('jawHeight').value,
+            width: document.getElementById('jawWidth').value,
+        },
+        chin: {
+            length: document.getElementById('chinLength').value,
+            position: document.getElementById('chinPosition').value,
+            width: document.getElementById('chinWidth').value,
+            shape: document.getElementById('chinShape').value,
+        },
+        neck: {
+            width: document.getElementById('neckWidth').value,
+        },
+        eye: {
+            size: document.getElementById('eyeSize').value,
+            color: document.getElementById('eyeColor').value,
+        },
+        skinColor: 0,
+        lips: document.getElementById('lips').value,
+        facialDetails: {
+            blemishes: {
+                value: parseInt(document.getElementById('blemishes').value),
+                opacity: parseFloat(document.getElementById('blemishesOpacity').value)
+            },
+            ageing: {
+                value: parseInt(document.getElementById('ageing').value),
+                opacity: parseFloat(document.getElementById('ageingOpacity').value)
+            },
+            complexion: {
+                value: parseInt(document.getElementById('complexion').value),
+                opacity: parseFloat(document.getElementById('complexionOpacity').value)
+            },
+            sunDamage: {
+                value: parseInt(document.getElementById('sunDamage').value),
+                opacity: parseFloat(document.getElementById('sunDamageOpacity').value)
+            },
+            molesFreckles: {
+                value: parseInt(document.getElementById('molesFreckles').value),
+                opacity: parseFloat(document.getElementById('molesFrecklesOpacity').value)
+            }
+        }
+    };
+
+    const jsonString = JSON.stringify(characterData);
+    if (typeof mp !== 'undefined') {
+        mp.trigger("CEF:CLIENT:UpdateCharacter", jsonString);
+        mp.trigger("CEF:CLIENT:CloseCustomizeCharScreen", jsonString);
+    }
+}
+
+function updateCharacterDataFromJson(jsonString) {
+    try {
+        const data = JSON.parse(jsonString);
+
+        const updateElement = (id, value) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.value = value;
+                const valueDisplay = document.getElementById(`${id}Value`);
+                if (valueDisplay) {
+                    if (element.step === "1") {
+                        valueDisplay.textContent = Math.round(value);
+                    } else {
+                        valueDisplay.textContent = parseFloat(value).toFixed(2);
+                    }
+                }
+            } else {
+                console.warn(`Element with ID '${id}' not found.`);
+            }
+        };
+
+        // Handle facial details separately
+        if (data.facialDetails) {
+            Object.entries(data.facialDetails).forEach(([feature, details]) => {
+                // Update the main value
+                updateElement(feature, details.value);
+                // Update the opacity
+                updateElement(`${feature}Opacity`, details.opacity);
+            });
+        }
+
+        // Update all other attributes
+        Object.entries(data).forEach(([key, value]) => {
+            if (key !== 'facialDetails') {  // Skip facialDetails as we handled it above
+                if (typeof value === "object" && !Array.isArray(value)) {
+                    Object.entries(value).forEach(([subKey, subValue]) => {
+                        const elementId = `${key}${subKey.charAt(0).toUpperCase()}${subKey.slice(1)}`;
+                        if (key === "shape" || key === "skin") {
+                            updateElement(elementId, subValue);
+                            const textElement = document.getElementById(`${elementId}Text`);
+                            if (textElement) {
+                                textElement.textContent = getCharacterNameFromValue(subValue);
+                            }
+                        } else {
+                            updateElement(elementId, subValue);
+                        }
+                    });
+                } else {
+                    updateElement(key, value);
+                }
+            }
+        });
+
+        // Call updateCharAttributes to ensure all displays are updated
+        if (typeof updateCharAttributes === "function") {
+            updateCharAttributes();
+        }
+    } catch (error) {
+        console.error("Error updating character data:", error);
+    }
+}
+
+let loaded = false;
+// Initialize the interface
+document.addEventListener('DOMContentLoaded', function() {
+    showPage(currentPage);
+    if(loaded == true)
+        updateCharAttributes();
+    loaded = true;
+});
+</script>
+
+</body>
+</html>

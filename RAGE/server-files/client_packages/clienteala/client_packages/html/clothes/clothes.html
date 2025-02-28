@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider JSON Generator</title>
+    <link rel="stylesheet" href="styles.css">
+
+<body>
+    <!-- Left Menu -->
+    <div class="left-menu">
+        <button class="left-button" onclick="selectCharacter()">Selecteaza-ti costumul</button>
+        <div class="slider-group-left">
+            <input type="range" min="0" max="19" value="0" class="slider" id="character-select"
+                oninput="updateCharacterValue()">
+            <span class="value-display" id="character-select-value">0</span>
+        </div>
+        <div class="outfit-name-container">
+            <input type="text" id="outfit-name" placeholder="Outfit Name" onchange="updateOutfitName()">
+        </div>
+        <button class="left-button" onclick="buyItem()">Cumpara</button>
+        <button class="left-button" onclick="exitMenu()">Exit</button>
+    </div>
+
+    <!-- Right Menu -->
+    <div class="menu">
+        <!-- Buttons to Select Items -->
+        <div class="button-row">
+            <button class="button" onclick="selectItem('shirts')">Bluze</button>
+            <button class="button" onclick="selectItem('undershirts')">Tricouri</button>
+            <button class="button" onclick="selectItem('legs')">Pantaloni</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="selectItem('shoes')">Incaltaminte</button>
+            <button class="button" onclick="selectItem('torsos')">Torso</button>
+            <button class="button" onclick="selectItem('decals')">Decale</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="selectItem('accessories')">Accesorii</button>
+            <button class="button" onclick="selectItem('bags')">Ghiozdan</button>
+            <button class="button" onclick="selectItem('bodyArmor')">Armuri</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="selectItem('masks')">Masti</button>
+            <button class="button" onclick="selectItem('helmets')">Sepci</button>
+            <button class="button" onclick="selectItem('glasses')">Ochelari</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="selectItem('earAccesories')">Cercei</button>
+            <button class="button" onclick="selectItem('watches')">Ceasuri</button>
+            <button class="button" onclick="selectItem('bracelets')">Bratari</button>
+        </div>
+
+        <!-- Sliders for drawable and texture -->
+        <div class="slider-container">
+            <label class="slider-label">Valoare:</label>
+            <div class="slider-control">
+                <button class="arrow-button" onclick="adjustSlider('drawable', -1)">←</button>
+                <input type="range" min="0" value="0" class="slider" id="drawable-slider"
+                    oninput="updateValue('drawable')">
+                <button class="arrow-button" onclick="adjustSlider('drawable', 1)">→</button>
+                <span class="value-display" id="drawable-value">0</span>
+            </div>
+        </div>
+        <div class="slider-container">
+            <label class="slider-label">Textura:</label>
+            <div class="slider-control">
+                <button class="arrow-button" onclick="adjustSlider('texture', -1)">←</button>
+                <input type="range" min="0" max="30" value="0" class="slider" id="texture-slider"
+                    oninput="updateValue('texture')">
+                <button class="arrow-button" onclick="adjustSlider('texture', 1)">→</button>
+                <span class="value-display" id="texture-value">0</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize data structure
+        const itemData = {
+            id: 0,
+            outfitName: "",
+            decals: { drawable: 0, texture: 0 },
+            masks: { drawable: 0, texture: 0 },
+            torsos: { drawable: 0, texture: 0 },
+            legs: { drawable: 0, texture: 0 },
+            bags: { drawable: 0, texture: 0 },
+            shoes: { drawable: 0, texture: 0 },
+            accessories: { drawable: 0, texture: 0 },
+            undershirts: { drawable: 0, texture: 0 },
+            bodyArmor: { drawable: 0, texture: 0 },
+            shirts: { drawable: 0, texture: 0 },
+            helmets: { drawable: -1, texture: 0 },
+            glasses: { drawable: -1, texture: 0 },
+            earAccesories: { drawable: -1, texture: 0 },
+            watches: { drawable: -1, texture: 0 },
+            bracelets: { drawable: -1, texture: 0 }
+        };
+
+        // Store outfit names
+        const outfitNames = {};
+        function updateOutfitNames(namesData) {
+            try {
+                const data = JSON.parse(namesData);
+                Object.assign(outfitNames, data);
+                // Update current outfit name if we're viewing it
+                const currentId = document.getElementById('character-select').value;
+                if (outfitNames[currentId]) {
+                    document.getElementById('outfit-name').value = outfitNames[currentId];
+                    itemData.outfitName = outfitNames[currentId];
+                }
+            } catch (error) {
+                console.error('Error parsing outfit names:', error);
+            }
+        }
+
+        // Map of item types to their JSON file names
+        const itemTypeToJsonMap = {
+            masks: 'masks.json',
+            torsos: '_male_torsos.json',
+            legs: '_male_legs.json',
+            bags: 'bags.json',
+            shoes: '_male_shoes.json',
+            accessories: '_male_accessories.json',
+            undershirts: '_male_undershirts.json',
+            bodyArmor: 'bodyArmor.json',
+            shirts: '_male_tops.json',
+            helmets: 'props_male_hats.json',
+            glasses: 'props_male_glasses.json',
+            earAccesories: 'props_male_ears.json',
+            watches: 'props_male_watches.json',
+            bracelets: 'props_male_bracelets.json'
+        };
+
+        // Store the texture limits for each drawable of each item type
+        const itemTextureMaxValues = {};
+
+        // Function to adjust slider value using arrow buttons
+        function adjustSlider(type, change) {
+            const slider = document.getElementById(`${type}-slider`);
+            const currentValue = parseInt(slider.value);
+            const newValue = currentValue + change;
+
+            if (newValue >= parseInt(slider.min) && newValue <= parseInt(slider.max)) {
+                slider.value = newValue;
+                updateValue(type);
+            }
+        }
+
+        // Function to update outfit name
+        function updateOutfitName() {
+            const name = document.getElementById('outfit-name').value;
+            const outfitId = document.getElementById('character-select').value;
+            outfitNames[outfitId] = name;
+            itemData.outfitName = name;
+
+            // You might want to send the updated names to the server for persistence
+            mp.trigger("CEF:CLIENT:UpdateClothes", getItemDataJSON());
+        }
+
+        // Function to update max values dynamically from the passed JSON string
+        function updateMaxValuesFromJSON(jsonString) {
+            try {
+                const jsonData = JSON.parse(jsonString);
+
+                for (const [filename, data] of Object.entries(jsonData)) {
+                    const itemType = Object.entries(itemTypeToJsonMap).find(([_, val]) => val === filename)?.[0];
+
+                    if (itemType && data.DrawableSummaries) {
+                        itemTextureMaxValues[itemType] = {};
+
+                        Object.entries(data.DrawableSummaries).forEach(([drawable, textureCount]) => {
+                            itemTextureMaxValues[itemType][parseInt(drawable)] = textureCount;
+                        });
+
+                        if (itemType === selectedItem) {
+                            const maxDrawable = Math.max(...Object.keys(data.DrawableSummaries).map(Number));
+                            document.getElementById('drawable-slider').max = maxDrawable;
+                        }
+                    }
+                }
+
+                if (selectedItem) {
+                    updateMaxTexture(selectedItem);
+                }
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+            }
+        }
+
+        // Function to update the max texture value based on the drawable
+        function updateMaxTexture(itemType) {
+            if (!itemTextureMaxValues[itemType]) return;
+
+            const currentDrawable = itemData[itemType].drawable;
+            const textureSlider = document.getElementById('texture-slider');
+
+            if (currentDrawable === -1) {
+                // For -1 drawable, always set texture to 0 and disable the slider
+                textureSlider.value = 0;
+                textureSlider.disabled = true;
+                itemData[itemType].texture = 0;
+                document.getElementById('texture-value').textContent = 0;
+                return;
+            }
+
+            // Enable the slider for non-negative drawables
+            textureSlider.disabled = false;
+            const maxTextureValue = itemTextureMaxValues[itemType][currentDrawable] || 0;
+            textureSlider.max = maxTextureValue - 1;
+
+            // Ensure texture value is valid
+            itemData[itemType].texture = Math.min(itemData[itemType].texture, maxTextureValue - 1);
+            textureSlider.value = itemData[itemType].texture;
+            document.getElementById('texture-value').textContent = itemData[itemType].texture;
+        }
+
+        function UpdateClothes(json) {
+            const data = JSON.parse(json);
+
+            Object.keys(data).forEach(key => {
+                if (key in itemData) {
+                    if (key === 'outfitName') {
+                        itemData[key] = data[key];
+                        document.getElementById('outfit-name').value = data[key];
+                        // Store the outfit name
+                        if (data.id !== undefined) {
+                            outfitNames[data.id] = data[key];
+                        }
+                    } else if (typeof data[key] === 'object' && data[key] !== null) {
+                        Object.keys(data[key]).forEach(nestedKey => {
+                            itemData[key][nestedKey] = data[key][nestedKey];
+
+                            if (key === selectedItem) {
+                                if (nestedKey === 'drawable') {
+                                    document.getElementById('drawable-slider').value = itemData[key][nestedKey];
+                                    document.getElementById('drawable-value').textContent = itemData[key][nestedKey];
+                                } else if (nestedKey === 'texture') {
+                                    document.getElementById('texture-slider').value = itemData[key][nestedKey];
+                                    document.getElementById('texture-value').textContent = itemData[key][nestedKey];
+                                }
+                            }
+                        });
+                    } else {
+                        itemData[key] = data[key];
+                        if (key === 'id') {
+                            document.getElementById('character-select').value = itemData[key];
+                            document.getElementById('character-select-value').textContent = itemData[key];
+                            // Update outfit name when switching outfits
+                            document.getElementById('outfit-name').value = outfitNames[itemData[key]] || '';
+                            itemData.outfitName = outfitNames[itemData[key]] || '';
+                        }
+                    }
+                }
+            });
+
+            // Update texture slider state for current item
+            if (selectedItem) {
+                updateMaxTexture(selectedItem);
+            }
+        }
+
+        // Function to select an item
+        let selectedItem = "shirts";
+
+        function selectItem(item) {
+            selectedItem = item;
+
+            const maxDrawable = Math.max(...Object.keys(itemTextureMaxValues[item] || {}).map(Number));
+            const isSpecialItem = ["helmets", "glasses", "earAccesories", "watches", "bracelets"].includes(item);
+            const minDrawable = isSpecialItem ? -1 : 0;
+            const defaultDrawable = itemData[item].drawable;
+
+            const drawableSlider = document.getElementById('drawable-slider');
+            drawableSlider.min = minDrawable;
+            drawableSlider.max = maxDrawable;
+            drawableSlider.value = defaultDrawable;
+            document.getElementById('drawable-value').textContent = defaultDrawable;
+
+            // Update texture slider and handle -1 drawable case
+            updateMaxTexture(item);
+
+            const buttons = document.querySelectorAll('.button');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            const clickedButton = document.querySelector(`.button[onclick="selectItem('${item}')"]`);
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
+        }
+
+        // Function to update the value of drawable or texture for the selected item
+        function updateValue(type) {
+            if (!selectedItem) return;
+
+            const value = parseInt(document.getElementById(`${type}-slider`).value);
+            itemData[selectedItem][type] = value;
+
+            // If drawable was changed, update the texture limits
+            if (type === 'drawable') {
+                updateMaxTexture(selectedItem);
+            }
+
+            document.getElementById(`${type}-value`).textContent = value;
+
+            // Trigger any necessary actions based on updated data
+            mp.trigger("CEF:CLIENT:UpdateClothes", getItemDataJSON());
+        }
+
+        function updateCharacterValue() {
+            const value = document.getElementById('character-select').value;
+            document.getElementById('character-select-value').textContent = value;
+            itemData.id = parseInt(value);
+
+            // Update outfit name when switching characters
+            const savedName = outfitNames[value];
+            document.getElementById('outfit-name').value = savedName || '';
+            itemData.outfitName = savedName || '';
+
+            // Trigger update
+            mp.trigger("CEF:CLIENT:UpdateClothes", getItemDataJSON());
+        }
+
+        function getItemDataJSON() {
+            return JSON.stringify(itemData, null, 2);
+        }
+
+        function selectCharacter() {
+            const value = document.getElementById('character-select').value;
+            mp.trigger("CEF:CLIENT:SelectCostume", value);
+        }
+
+        function buyItem() {
+            mp.trigger("CEF:CLIENT:BuyCostume", getItemDataJSON());
+        }
+
+        function exitMenu() {
+            mp.trigger("CEF:CLIENT:CloseClothesScreen");
+        }
+
+        // Initialize the interface
+        document.addEventListener('DOMContentLoaded', function () {
+            selectItem('shirts'); // Set initial selection to shirts
+            updateCharacterValue(); // Initialize character value
+        });
+        selectItem('shirts');
+    </script>
+</body>
+
+</html>
