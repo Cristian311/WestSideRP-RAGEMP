@@ -26,29 +26,57 @@ mp.events.add("CEF:CLIENT:UpdateClothes", (json) => {
     updatePlayerClothes(clothesData);
 });
 function updatePlayerClothes(clothesData) {
-    player.setComponentVariation(1, clothesData.Mask.Drawable, clothesData.Mask.Texture, 0);
-    player.setComponentVariation(3, clothesData.Torso.Drawable, clothesData.Torso.Texture, 0);
-    player.setComponentVariation(4, clothesData.Legs.Drawable, clothesData.Legs.Texture, 0);
-    player.setComponentVariation(5, clothesData.Bag.Drawable, clothesData.Bag.Texture, 0);
-    player.setComponentVariation(6, clothesData.Shoes.Drawable, clothesData.Shoes.Texture, 0);
-    player.setComponentVariation(7, clothesData.Accessories.Drawable, clothesData.Accessories.Texture, 0);
-    player.setComponentVariation(8, clothesData.Undershirt.Drawable, clothesData.Undershirt.Texture, 0);
-    player.setComponentVariation(9, clothesData.BodyArmor.Drawable, clothesData.BodyArmor.Texture, 0);
-    player.setComponentVariation(10, clothesData.Decals.Drawable, clothesData.Decals.Texture, 0);
-    player.setComponentVariation(11, clothesData.Shirts.Drawable, clothesData.Shirts.Texture, 0);
-    const clearOrSetProp = (slot, drawable, texture) => {
-        if (drawable === -1) {
-            player.clearProp(slot);
+    try {
+        const player = mp.players.local;
+        // Check if clothesData exists before using it
+        if (!clothesData) {
+            mp.console.logError("Clothes data is undefined");
+            return;
         }
-        else {
-            player.setPropIndex(slot, drawable, texture, true);
-        }
-    };
-    clearOrSetProp(0, clothesData.Helmets.Drawable, clothesData.Helmets.Texture);
-    clearOrSetProp(1, clothesData.Glasses.Drawable, clothesData.Glasses.Texture);
-    clearOrSetProp(2, clothesData.EarAccessories.Drawable, clothesData.EarAccessories.Texture);
-    clearOrSetProp(6, clothesData.Watches.Drawable, clothesData.Watches.Texture);
-    clearOrSetProp(7, clothesData.Bracelets.Drawable, clothesData.Bracelets.Texture);
+        // Safely set component variations with null checks
+        if (clothesData.Mask)
+            player.setComponentVariation(1, clothesData.Mask.Drawable, clothesData.Mask.Texture, 0);
+        if (clothesData.Torso)
+            player.setComponentVariation(3, clothesData.Torso.Drawable, clothesData.Torso.Texture, 0);
+        if (clothesData.Legs)
+            player.setComponentVariation(4, clothesData.Legs.Drawable, clothesData.Legs.Texture, 0);
+        if (clothesData.Bag)
+            player.setComponentVariation(5, clothesData.Bag.Drawable, clothesData.Bag.Texture, 0);
+        if (clothesData.Shoes)
+            player.setComponentVariation(6, clothesData.Shoes.Drawable, clothesData.Shoes.Texture, 0);
+        if (clothesData.Accessories)
+            player.setComponentVariation(7, clothesData.Accessories.Drawable, clothesData.Accessories.Texture, 0);
+        if (clothesData.Undershirt)
+            player.setComponentVariation(8, clothesData.Undershirt.Drawable, clothesData.Undershirt.Texture, 0);
+        if (clothesData.BodyArmor)
+            player.setComponentVariation(9, clothesData.BodyArmor.Drawable, clothesData.BodyArmor.Texture, 0);
+        if (clothesData.Decals)
+            player.setComponentVariation(10, clothesData.Decals.Drawable, clothesData.Decals.Texture, 0);
+        if (clothesData.Shirts)
+            player.setComponentVariation(11, clothesData.Shirts.Drawable, clothesData.Shirts.Texture, 0);
+        const clearOrSetProp = (slot, drawable, texture) => {
+            if (drawable === -1) {
+                player.clearProp(slot);
+            }
+            else {
+                player.setPropIndex(slot, drawable, texture, true);
+            }
+        };
+        // Safely set props with null checks
+        if (clothesData.Helmets)
+            clearOrSetProp(0, clothesData.Helmets.Drawable, clothesData.Helmets.Texture);
+        if (clothesData.Glasses)
+            clearOrSetProp(1, clothesData.Glasses.Drawable, clothesData.Glasses.Texture);
+        if (clothesData.EarAccessories)
+            clearOrSetProp(2, clothesData.EarAccessories.Drawable, clothesData.EarAccessories.Texture);
+        if (clothesData.Watches)
+            clearOrSetProp(6, clothesData.Watches.Drawable, clothesData.Watches.Texture);
+        if (clothesData.Bracelets)
+            clearOrSetProp(7, clothesData.Bracelets.Drawable, clothesData.Bracelets.Texture);
+    }
+    catch (error) {
+        mp.console.logError("Error in updatePlayerClothes: " + error);
+    }
 }
 mp.events.add("CEF:CLIENT:SelectCostume", (index) => {
     mp.events.callRemote("CLIENT:SERVER:GetClothes", index);

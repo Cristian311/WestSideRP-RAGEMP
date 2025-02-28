@@ -1,10 +1,14 @@
-mp.events.add("playerReady", (player : PlayerMp) => {
-    mp.gui.chat.show(false);
-    
-    const chatbox = mp.browsers.new("http://package/html/advanced-chat/index.html");
-    chatbox.markAsChat();
-    mp.gui.chat.colors = true;
+mp.events.add("playerReady", () => {
+    try {
+        mp.gui.chat.show(false);
+        
+        const chatbox = mp.browsers.new("package://html/advanced-chat/index.html");
+        chatbox.markAsChat();
+        mp.gui.chat.colors = true;
 
-    mp.game.ui.displayCash(false);
-    mp.game.ui.displayAreaName(false);
-   });
+        mp.game.ui.displayCash(false);
+        mp.game.ui.displayAreaName(false);
+    } catch (error) {
+        mp.console.logError("Error in playerReady event: " + error);
+    }
+});
