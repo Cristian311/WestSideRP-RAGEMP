@@ -299,6 +299,7 @@ function updatePlayerClothes(clothesData: ClothesData) {
             }
         }
         
+        
         if (clothesData.EarAccessories) {
             if (clothesData.EarAccessories.Drawable === -1) {
                 player.clearProp(2);
