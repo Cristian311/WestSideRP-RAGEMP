@@ -42,10 +42,77 @@ mp.events.add("CEF:CLIENT:CloseClothesScreen", () => {
 });
 
 mp.events.add("CEF:CLIENT:UpdateClothes", (json: string) => {
-    const clothesData: ClothesData = JSON.parse(json);
-    const player = mp.players.local;
-
-    updatePlayerClothes(clothesData);
+    try {
+        const data = JSON.parse(json);
+        
+        // Transform the data to match our ClothesData interface
+        const clothesData: ClothesData = {
+            Mask: {
+                Drawable: data.masks?.drawable ?? 0,
+                Texture: data.masks?.texture ?? 0
+            },
+            Torso: {
+                Drawable: data.torsos?.drawable ?? 0,
+                Texture: data.torsos?.texture ?? 0
+            },
+            Legs: {
+                Drawable: data.legs?.drawable ?? 0,
+                Texture: data.legs?.texture ?? 0
+            },
+            Bag: {
+                Drawable: data.bags?.drawable ?? 0,
+                Texture: data.bags?.texture ?? 0
+            },
+            Shoes: {
+                Drawable: data.shoes?.drawable ?? 0,
+                Texture: data.shoes?.texture ?? 0
+            },
+            Accessories: {
+                Drawable: data.accessories?.drawable ?? 0,
+                Texture: data.accessories?.texture ?? 0
+            },
+            Undershirt: {
+                Drawable: data.undershirts?.drawable ?? 0,
+                Texture: data.undershirts?.texture ?? 0
+            },
+            BodyArmor: {
+                Drawable: data.bodyArmor?.drawable ?? 0,
+                Texture: data.bodyArmor?.texture ?? 0
+            },
+            Decals: {
+                Drawable: data.decals?.drawable ?? 0,
+                Texture: data.decals?.texture ?? 0
+            },
+            Shirts: {
+                Drawable: data.shirts?.drawable ?? 0,
+                Texture: data.shirts?.texture ?? 0
+            },
+            Helmets: {
+                Drawable: data.helmets?.drawable ?? -1,
+                Texture: data.helmets?.texture ?? 0
+            },
+            Glasses: {
+                Drawable: data.glasses?.drawable ?? -1,
+                Texture: data.glasses?.texture ?? 0
+            },
+            EarAccessories: {
+                Drawable: data.earAccesories?.drawable ?? -1,
+                Texture: data.earAccesories?.texture ?? 0
+            },
+            Watches: {
+                Drawable: data.watches?.drawable ?? -1,
+                Texture: data.watches?.texture ?? 0
+            },
+            Bracelets: {
+                Drawable: data.bracelets?.drawable ?? -1,
+                Texture: data.bracelets?.texture ?? 0
+            }
+        };
+        
+        updatePlayerClothes(clothesData);
+    } catch (error) {
+        mp.console.logError("Error in CEF:CLIENT:UpdateClothes: " + error);
+    }
 });
 
 function updatePlayerClothes(clothesData: ClothesData) {

@@ -86,9 +86,177 @@ mp.events.add("SERVER:CLIENT:DisplayAccountInfo", (username: string, namesString
 });
 
 mp.events.add("SERVER:CLIENT:CharactersInfo", (facesJson: string, hairsJson: string, clothesJson: string) => {
-    faces = JSON.parse(facesJson);
-    hairs = JSON.parse(hairsJson);
-    clothes = JSON.parse(clothesJson);
+    try {
+        // Parse the JSON data
+        const facesData = JSON.parse(facesJson);
+        const hairsData = JSON.parse(hairsJson);
+        const clothesData = JSON.parse(clothesJson);
+        
+        // Transform the data to match our interfaces
+        faces = facesData.map((face: any) => ({
+            Eye: {
+                Color: face.eye?.color ?? 0,
+                Size: face.eye?.size ?? 0
+            },
+            Facial: {
+                Blemishes: { 
+                    Value: face.facialDetails?.blemishes?.value ?? 0, 
+                    Opacity: face.facialDetails?.blemishes?.opacity ?? 0 
+                },
+                Ageing: { 
+                    Value: face.facialDetails?.ageing?.value ?? 0, 
+                    Opacity: face.facialDetails?.ageing?.opacity ?? 0 
+                },
+                Complexion: { 
+                    Value: face.facialDetails?.complexion?.value ?? 0, 
+                    Opacity: face.facialDetails?.complexion?.opacity ?? 0 
+                },
+                SunDamage: { 
+                    Value: face.facialDetails?.sunDamage?.value ?? 0, 
+                    Opacity: face.facialDetails?.sunDamage?.opacity ?? 0 
+                },
+                MolesFreckles: { 
+                    Value: face.facialDetails?.molesFreckles?.value ?? 0, 
+                    Opacity: face.facialDetails?.molesFreckles?.opacity ?? 0 
+                }
+            },
+            Shape: {
+                First: face.shape?.first ?? 0,
+                Second: face.shape?.second ?? 0,
+                Mix: face.shape?.mix ?? 0
+            },
+            Skin: {
+                First: face.skin?.first ?? 0,
+                Second: face.skin?.second ?? 0,
+                Mix: face.skin?.mix ?? 0
+            },
+            Nose: {
+                Width: face.nose?.width ?? 0,
+                Height: face.nose?.height ?? 0,
+                Length: face.nose?.length ?? 0,
+                Bridge: face.nose?.bridge ?? 0,
+                Tip: face.nose?.tip ?? 0,
+                BridgeShift: face.nose?.bridgeShift ?? 0
+            },
+            Brow: {
+                Height: face.brow?.height ?? 0,
+                Width: face.brow?.width ?? 0
+            },
+            Cheeks: {
+                Height: face.cheeks?.height ?? 0,
+                Width: face.cheeks?.width ?? 0,
+                CheeksWidth: face.cheeks?.cheekswidth ?? 0
+            },
+            Lips: face.lips ?? 0,
+            Jaw: {
+                Width: face.jaw?.width ?? 0,
+                Height: face.jaw?.height ?? 0
+            },
+            Chin: {
+                Lenght: face.chin?.length ?? 0,
+                Position: face.chin?.position ?? 0,
+                Width: face.chin?.width ?? 0,
+                Shape: face.chin?.shape ?? 0
+            },
+            Neck: {
+                Width: face.neck?.width ?? 0
+            }
+        }));
+        
+        hairs = hairsData.map((hair: any) => ({
+            Hair: {
+                Value: hair.hair?.value ?? 0,
+                Color: hair.hair?.color ?? 0,
+                SecondColor: hair.hair?.secondColor ?? 0
+            },
+            FacialHair: {
+                Value: hair.facialHair?.value ?? 0,
+                Color: hair.facialHair?.color ?? 0
+            },
+            Eyebrows: {
+                Value: hair.eyebrows?.value ?? 0,
+                Color: hair.eyebrows?.color ?? 0
+            },
+            BodyHair: {
+                Value: hair.bodyHair?.value ?? 0,
+                Color: hair.bodyHair?.color ?? 0
+            }
+        }));
+        
+        clothes = clothesData.map((cloth: any) => {
+            if (!cloth) return null;
+            return {
+                Mask: {
+                    Drawable: cloth.masks?.drawable ?? 0,
+                    Texture: cloth.masks?.texture ?? 0
+                },
+                Torso: {
+                    Drawable: cloth.torsos?.drawable ?? 0,
+                    Texture: cloth.torsos?.texture ?? 0
+                },
+                Legs: {
+                    Drawable: cloth.legs?.drawable ?? 0,
+                    Texture: cloth.legs?.texture ?? 0
+                },
+                Bag: {
+                    Drawable: cloth.bags?.drawable ?? 0,
+                    Texture: cloth.bags?.texture ?? 0
+                },
+                Shoes: {
+                    Drawable: cloth.shoes?.drawable ?? 0,
+                    Texture: cloth.shoes?.texture ?? 0
+                },
+                Accessories: {
+                    Drawable: cloth.accessories?.drawable ?? 0,
+                    Texture: cloth.accessories?.texture ?? 0
+                },
+                Undershirt: {
+                    Drawable: cloth.undershirts?.drawable ?? 0,
+                    Texture: cloth.undershirts?.texture ?? 0
+                },
+                BodyArmor: {
+                    Drawable: cloth.bodyArmor?.drawable ?? 0,
+                    Texture: cloth.bodyArmor?.texture ?? 0
+                },
+                Decals: {
+                    Drawable: cloth.decals?.drawable ?? 0,
+                    Texture: cloth.decals?.texture ?? 0
+                },
+                Shirts: {
+                    Drawable: cloth.shirts?.drawable ?? 0,
+                    Texture: cloth.shirts?.texture ?? 0
+                },
+                Helmets: {
+                    Drawable: cloth.helmets?.drawable ?? -1,
+                    Texture: cloth.helmets?.texture ?? 0
+                },
+                Glasses: {
+                    Drawable: cloth.glasses?.drawable ?? -1,
+                    Texture: cloth.glasses?.texture ?? 0
+                },
+                EarAccessories: {
+                    Drawable: cloth.earAccesories?.drawable ?? -1,
+                    Texture: cloth.earAccesories?.texture ?? 0
+                },
+                Watches: {
+                    Drawable: cloth.watches?.drawable ?? -1,
+                    Texture: cloth.watches?.texture ?? 0
+                },
+                Bracelets: {
+                    Drawable: cloth.bracelets?.drawable ?? -1,
+                    Texture: cloth.bracelets?.texture ?? 0
+                }
+            };
+        }).filter(Boolean);
+        
+        // Debug output to help diagnose issues
+        mp.console.logInfo(`Faces: ${faces.length}, Hairs: ${hairs.length}, Clothes: ${clothes.length}`);
+    } catch (error) {
+        mp.console.logError("Error parsing character data: " + error);
+        mp.console.logError("Faces JSON: " + facesJson.substring(0, 200) + "...");
+        mp.console.logError("Hairs JSON: " + hairsJson.substring(0, 200) + "...");
+        mp.console.logError("Clothes JSON: " + clothesJson.substring(0, 200) + "...");
+    }
 });
 
 mp.events.add("CEF:CLIENT:CharacterPressed", (index: number) => {
