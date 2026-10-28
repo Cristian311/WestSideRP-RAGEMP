@@ -1,4 +1,3 @@
-# Ignore everything
 *
 
 !GM DE RP .NET CORE 3.1.sln
@@ -7,23 +6,13 @@
 !/RAGE/server-files/**
 
 !.gitignore
-RAGE/server-files/dotnet/server_logs.txt
-RAGE/server-files/client_packages/.listcache
-RAGE/server-files/client_packages/.listcache
-RAGE/server-files/dotnet/resources/ServerSide/obj/x64/Debug/netcoreapp3.1/ServerSide.AssemblyInfoInputs.cache
-RAGE/server-files/dotnet/resources/ServerSide/obj/x64/Debug/netcoreapp3.1/ServerSide.csproj.CoreCompileInputs.cache
-RAGE/server-files/dotnet/server_logs.txt
-RAGE/server-files/dotnet/server_logs.txt
-RAGE/server-files/client_packages/.listcache
-RAGE/server-files/dotnet/server_logs.txt
-RAGE/server-files/client_packages/.listcache
-RAGE/server-files/client_packages/cs_packages/ClientSide/obj
-RAGE/server-files/dotnet/resources/ServerSide/obj
-RAGE/server-files/dotnet/server_logs.txt
-RAGE/server-files/dotnet/server_exceptions.txt
-
-RAGE/server-files/dotnet/server_logs.txt
-RAGE/server-files/client_packages/.listcache
-RAGE/server-files/dotnet/resources/ServerSide/bin/x64/Debug/netcoreapp3.1/ServerSide.pdb
-RAGE/server-files/dotnet/resources/ServerSide/bin/x64/Debug/netcoreapp3.1/ServerSide.dll
-RAGE/server-files/log.txt
+/RAGE/server-files/client_packages/cs_packages/ClientSide/bin/
+/RAGE/server-files/client_packages/cs_packages/ClientSide/obj/
+/RAGE/server-files/dotnet/resources/ServerSide/bin/
+/RAGE/server-files/dotnet/resources/ServerSide/obj/
+/RAGE/server-files/client_packages/cs_packages/ClientSide/*.csproj.user
+/RAGE/server-files/dotnet/resources/ServerSide/*.csproj.user
+/RAGE/server-files/client_packages/.listcache
+/RAGE/server-files/dotnet/server_logs.txt
+/RAGE/server-files/dotnet/server_exceptions.txt
+/RAGE/server-files/log.txt
