@@ -1,18 +1,19 @@
 *
 
 !GM DE RP .NET CORE 3.1.sln
-!/RAGE/
-!/RAGE/server-files/
-!/RAGE/server-files/**
+!/source/
+!/source/**
+!/server-files/
+!/server-files/**
 
 !.gitignore
-/RAGE/server-files/client_packages/cs_packages/ClientSide/bin/
-/RAGE/server-files/client_packages/cs_packages/ClientSide/obj/
-/RAGE/server-files/dotnet/resources/ServerSide/bin/
-/RAGE/server-files/dotnet/resources/ServerSide/obj/
-/RAGE/server-files/client_packages/cs_packages/ClientSide/*.csproj.user
-/RAGE/server-files/dotnet/resources/ServerSide/*.csproj.user
-/RAGE/server-files/client_packages/.listcache
-/RAGE/server-files/dotnet/server_logs.txt
-/RAGE/server-files/dotnet/server_exceptions.txt
-/RAGE/server-files/log.txt
+/server-files/client_packages/cs_packages/ClientSide/bin/
+/server-files/client_packages/cs_packages/ClientSide/obj/
+/server-files/dotnet/resources/ServerSide/bin/
+/server-files/dotnet/resources/ServerSide/obj/
+/server-files/client_packages/cs_packages/ClientSide/*.csproj.user
+/server-files/dotnet/resources/ServerSide/*.csproj.user
+/server-files/client_packages/.listcache
+/server-files/dotnet/server_logs.txt
+/server-files/dotnet/server_exceptions.txt
+/server-files/log.txt

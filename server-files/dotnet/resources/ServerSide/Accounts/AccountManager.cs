@@ -1,0 +1,20 @@
+﻿using GTANetworkAPI;
+using ServerSide.Server.Interfaces;
+using System.Collections.Generic;
+
+namespace ServerSide.Accounts
+{
+    public class AccountManager
+    {
+        public static List<IAccount> loggedAccounts = new List<IAccount>();
+        public static Dictionary<Player, Account> PlayerAccountPairs = new Dictionary<Player, Account>();
+        public static IdManager<Account> idManager = new IdManager<Account>();
+
+        public static Account GetAccount(Player player)
+        {
+            if (PlayerAccountPairs.ContainsKey(player))
+                return PlayerAccountPairs[player];
+            return null;
+        }
+    }
+}

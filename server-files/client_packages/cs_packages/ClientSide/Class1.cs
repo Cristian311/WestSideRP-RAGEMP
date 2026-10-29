@@ -1,0 +1,20 @@
+﻿using RAGE;
+using RAGE.Ui;
+
+namespace ClientSide
+{
+    public class Class1 : Events.Script
+    {
+        private HtmlWindow cefBrowser;
+
+        public Class1()
+        {
+            Events.OnPlayerReady += onPlayerSpawn;
+        }
+
+        private void onPlayerSpawn()
+        {
+
+        }
+    }
+}
