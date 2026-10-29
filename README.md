@@ -1,4 +1,4 @@
-WestSide Roleplay - RAGE:MP
+# WestSide Roleplay - RAGE:MP
 
 Gamemode de roleplay pentru **GTA V**, dezvoltat în C# pentru platforma **RAGE:MP**.
 
