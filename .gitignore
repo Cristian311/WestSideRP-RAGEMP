@@ -6,7 +6,7 @@
 !/server-files/
 !/server-files/**
 
-!.gitignore
+!README.md
 /server-files/client_packages/cs_packages/ClientSide/bin/
 /server-files/client_packages/cs_packages/ClientSide/obj/
 /server-files/dotnet/resources/ServerSide/bin/
@@ -17,3 +17,11 @@
 /server-files/dotnet/server_logs.txt
 /server-files/dotnet/server_exceptions.txt
 /server-files/log.txt
+
+# Compiled artifacts and external runtime binaries are not stored in this source repository.
+/server-files/**/*.dll
+/server-files/**/*.exe
+/server-files/**/*.pdb
+/server-files/**/*.gz
+/server-files/bin/*.dat
+/server-files/**/*.cache

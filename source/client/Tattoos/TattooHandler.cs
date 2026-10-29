@@ -60,19 +60,17 @@ namespace ClientSide.Character
         {
             try
             {
-                // Initialize the HTML window and show the cursor
-                string json = args[0].ToString();
-                string UsedTattoosJson = args[1].ToString();
-                string tattooCollectionJson = args[2].ToString();
-                string tattooHashJson = args[3].ToString();
-
                 cefBrowser = new HtmlWindow("http://package/html/tattoos/tattoos.html");
 
                 cefBrowser.Active = true;
                 Cursor.Visible = true;
                 Chat.Show(false);
-                //string json = args[0].ToString();
-                //RAGE.Chat.Output(json);
+
+                string json = args[0].ToString();
+                string UsedTattoosJson = args[1].ToString();
+                string tattooCollectionJson = args[2].ToString();
+                string tattooHashJson = args[3].ToString();
+
                 string escapedJson = json.Replace("\\", "\\\\").Replace("\"", "\\\"");
                 cefBrowser.ExecuteJs($"updateTattooData(\"{escapedJson}\");");
 
